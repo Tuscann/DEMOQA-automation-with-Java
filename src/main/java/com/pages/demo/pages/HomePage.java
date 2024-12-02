@@ -1,6 +1,7 @@
 package com.pages.demo.pages;
 
 import com.pages.base.BasePage;
+import com.pages.demo.pages.elements.ElementsPage;
 import com.pages.demo.pages.forms.FormsPage;
 import org.openqa.selenium.By;
 
@@ -19,11 +20,11 @@ public class HomePage extends BasePage {
         return new FormsPage();
     }
 
-//    public ElementsPage goToElements () {
-//        scrollToElementJS(elementsCard);
-//        click(elementsCard);
-//        return new ElementsPage();
-//    }
+    public ElementsPage goToElements () {
+        scrollToElementJS(elementsCard);
+        click(elementsCard);
+        return new ElementsPage();
+    }
 //
 //    public WidgetsPage goToWidgets() {
 //        scrollToElementJS(widgetsCard);
