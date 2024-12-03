@@ -9,6 +9,7 @@ public class WebTablesPage extends ElementsPage {
     private final By registrationLastNameField = By.id("lastName");
     private final By submitButton = By.id("submit");
 
+
     public void clickEdit(String email) {
         By edit = By.xpath("//div[text()='"+ email +"']//following::span[@title='Edit']");
         click(edit);

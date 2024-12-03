@@ -7,7 +7,7 @@ import part3_4.comdemoqa.base.BaseTest;
 public class CheckboxTest extends BaseTest {
 
     @Test
-    public void testCheckboxes() {
+    public void SelectCheckBoxes() {
         var formsPage = homePage.goToForms().clickPracticeForm();
         formsPage.clickSportHobbyCheckbox();
         formsPage.clickMusicHobbyCheckbox();

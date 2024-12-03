@@ -14,4 +14,9 @@ public class ElementsPage extends HomePage {
         click(webTablesMenuItem);
        return new WebTablesPage();
     }
+
+    public LinksPage clickLinks(){
+    click(linksMenuItem);
+        return new LinksPage();
+    }
 }

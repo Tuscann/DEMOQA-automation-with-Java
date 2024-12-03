@@ -3,6 +3,7 @@ package com.pages.demo.pages;
 import com.pages.base.BasePage;
 import com.pages.demo.pages.elements.ElementsPage;
 import com.pages.demo.pages.forms.FormsPage;
+import com.pages.demo.pages.widgets.WidgetsPage;
 import org.openqa.selenium.By;
 
 import static utilities.JavaScriptUtility.scrollToElementJS;
@@ -15,23 +16,23 @@ public class HomePage extends BasePage {
     private final By alertsFrameWindowsCard = By.xpath("//div[@id='app']//h5[contains(text(),'Alerts')]");
 
     public FormsPage goToForms() {
-        scrollToElementJS(formsCard);
+        scrollToElementJS(widgetsCard);
         click(formsCard);
         return new FormsPage();
     }
 
-    public ElementsPage goToElements () {
+    public ElementsPage goToElements() {
         scrollToElementJS(elementsCard);
         click(elementsCard);
         return new ElementsPage();
     }
-//
-//    public WidgetsPage goToWidgets() {
-//        scrollToElementJS(widgetsCard);
-//        click(widgetsCard);
-//        return new WidgetsPage();
-//    }
-//
+
+    public WidgetsPage goToWidgets() {
+        scrollToElementJS(widgetsCard);
+        click(widgetsCard);
+        return new WidgetsPage();
+    }
+
 //    public Alerts_Frames_WindowsPage goToAlertsFramesWindowsCard() {
 //        scrollToElementJS(alertsFrameWindowsCard);
 //        click(alertsFrameWindowsCard);

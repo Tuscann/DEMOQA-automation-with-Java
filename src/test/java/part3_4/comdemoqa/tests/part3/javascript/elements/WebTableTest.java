@@ -4,14 +4,17 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import part3_4.comdemoqa.base.BaseTest;
 
+import static utilities.JavaScriptUtility.scrollToElementJS;
+
 public class WebTableTest extends BaseTest {
 
     @Test
-    public void ChangeAge() {
+    public void UpdateAge() {
         String email = "kierra@example.com";
         String expectedAge = "34";
 
         var webTablePage = homePage.goToElements().clickWebTables();
+
         webTablePage.clickEdit(email);
         webTablePage.setAge("34");
         webTablePage.clickSubmitButton();
@@ -21,7 +24,7 @@ public class WebTableTest extends BaseTest {
     }
 
     @Test
-    public void ChangeFirstNameAndLastName() {
+    public void UpdateFirstNameAndLastName() {
         String email = "cierra@example.com";
         String expectedFirstName = "Zhivko";
         String expectedLastName = "Petrov";

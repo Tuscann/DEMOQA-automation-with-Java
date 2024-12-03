@@ -7,7 +7,7 @@ import part3_4.comdemoqa.base.BaseTest;
 public class RadioButtonTest extends BaseTest {
 
     @Test
-    public void testRadioButton() {
+    public void SelectFemaleRadioButton() {
         var formsPage = homePage.goToForms().clickPracticeForm();
         formsPage.clickFemaleRadioButton();
 
