@@ -12,7 +12,6 @@ import java.util.concurrent.BrokenBarrierException;
 
 public class LoginTests extends BaseTest {
 
-
     @Test
     public void testLogin() throws InterruptedException, BrokenBarrierException {
         loginPage.setUsername("visual_user");

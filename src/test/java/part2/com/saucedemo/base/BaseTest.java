@@ -3,7 +3,7 @@ package part2.com.saucedemo.base;
 import com.pages.base.BasePage;
 import com.pages.saucedemo.pages.LoginPage;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 
@@ -15,7 +15,7 @@ public class BaseTest {
     protected LoginPage loginPage;
 
     public BaseTest() {
-        driver = new ChromeDriver();
+        driver = new EdgeDriver();
     }
 
     @BeforeClass

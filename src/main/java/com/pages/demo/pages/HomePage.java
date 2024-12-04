@@ -1,6 +1,7 @@
 package com.pages.demo.pages;
 
 import com.pages.base.BasePage;
+import com.pages.demo.pages.alerts_frames_windows.Alerts_Frames_WindowsPage;
 import com.pages.demo.pages.bookStoreApplication.BooksPage;
 import com.pages.demo.pages.elements.ElementsPage;
 import com.pages.demo.pages.forms.FormsPage;
@@ -24,7 +25,7 @@ public class HomePage extends BasePage {
     }
 
     public BooksPage goToBooks() {
-        //  scrollToElementJS(booksCard);
+        scrollToElementJS(booksCard);
         click(booksCard);
         return new BooksPage();
     }
@@ -41,9 +42,9 @@ public class HomePage extends BasePage {
         return new WidgetsPage();
     }
 
-//    public Alerts_Frames_WindowsPage goToAlertsFramesWindowsCard() {
-//        scrollToElementJS(alertsFrameWindowsCard);
-//        click(alertsFrameWindowsCard);
-//        return new Alerts_Frames_WindowsPage();
-//    }
+    public Alerts_Frames_WindowsPage goToAlertsFramesWindowsCard() {
+        scrollToElementJS(alertsFrameWindowsCard);
+        click(alertsFrameWindowsCard);
+        return new Alerts_Frames_WindowsPage();
+    }
 }
