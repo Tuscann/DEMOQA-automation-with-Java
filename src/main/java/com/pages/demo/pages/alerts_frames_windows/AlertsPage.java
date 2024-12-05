@@ -6,12 +6,12 @@ import static utilities.JavaScriptUtility.scrollToElementJS;
 
 public class AlertsPage extends Alerts_Frames_WindowsPage {
 
-    private By informationAlertButton = By.id("alertButton");
-    private By confirmationAlertButton = By.id("confirmButton");
-    private By confirmationTimeAlertButton = By.id("timerAlertButton");
-    private By confirmationResult = By.id("confirmResult");
-    private By promptAlertButton = By.id("promtButton");
-    private By promptResult = By.id("promptResult");
+    private final By informationAlertButton = By.id("alertButton");
+    private final By confirmationAlertButton = By.id("confirmButton");
+    private final By confirmationTimeAlertButton = By.id("timerAlertButton");
+    private final By confirmationResult = By.id("confirmResult");
+    private final By promptAlertButton = By.id("promtButton");
+    private final By promptResult = By.id("promptResult");
 
     public String getPromptAlertResult() {
         return find(promptResult).getText();

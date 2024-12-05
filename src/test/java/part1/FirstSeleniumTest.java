@@ -29,26 +29,16 @@ public class FirstSeleniumTest {
 
     @Test
     public void testLoggingIntoApplication() throws InterruptedException {
-        Thread.sleep(2000);
-        var username = driver.findElement(By.name("username"));
-        username.sendKeys("Admin");
-
-        var password = driver.findElement(By.name("password"));
-        password.sendKeys("admin123");
-
-        var button = driver.findElement(By.tagName("button"));
-        button.click();
-
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(12));
-        
-        String actualResult = wait.until(ExpectedConditions.visibilityOfElementLocated(By.tagName("h6"))).getText();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("username")));
 
-        //  Thread.sleep(2000);
-        // String actualResult = driver.findElement(By.tagName("h6")).getText();
+        driver.findElement(By.name("username")).sendKeys("Admin");
+        driver.findElement(By.name("password")).sendKeys("admin123");
+        driver.findElement(By.tagName("button")).click();
+
+        String actualResult = wait.until(ExpectedConditions.visibilityOfElementLocated(By.tagName("h6"))).getText();
 
         String expectedResult = "Dashboard";
         Assert.assertEquals(actualResult, expectedResult, "Found Dashboard");
-
     }
-
 }

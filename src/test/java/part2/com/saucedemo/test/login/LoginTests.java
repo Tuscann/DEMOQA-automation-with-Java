@@ -25,12 +25,12 @@ public class LoginTests extends BaseTest {
 
     @Test
     public void testLoginErrorMessage() throws InterruptedException, BrokenBarrierException {
-
         loginPage.setUsername("standard_user");
         loginPage.setPassword("karma");
         loginPage.clickLoginButton();
-        String actualMessage = loginPage.getErrorMessage();
         Thread.sleep(3000);
+        String actualMessage = loginPage.getErrorMessage();
+
         Assert.assertTrue(actualMessage.contains("Epic sadface"));
     }
 }

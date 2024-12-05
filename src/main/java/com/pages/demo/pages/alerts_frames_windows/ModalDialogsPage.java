@@ -2,6 +2,8 @@ package com.pages.demo.pages.alerts_frames_windows;
 
 import org.openqa.selenium.By;
 
+import static utilities.JavaScriptUtility.scrollToElementJS;
+
 public class ModalDialogsPage extends Alerts_Frames_WindowsPage {
 
     private By smallModalButton = By.id("showSmallModal");
@@ -9,7 +11,6 @@ public class ModalDialogsPage extends Alerts_Frames_WindowsPage {
     private By smallModalText = By.xpath("//div[contains(text(),'small modal')]");
     private By largeModalText = By.xpath("//button[@id='showLargeModal']");
     private By closeButton = By.id("closeSmallModal");
-
 
     public void clickSmallModalButton() {
         click(smallModalButton);
@@ -20,6 +21,7 @@ public class ModalDialogsPage extends Alerts_Frames_WindowsPage {
     }
 
     public String getSmallModalText() {
+        scrollToElementJS(smallModalText);
         return find(smallModalText).getText();
     }
 

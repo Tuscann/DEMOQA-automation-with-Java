@@ -12,7 +12,6 @@ public class SelectMenuPage extends WidgetsPage {
 
     public void selectStandardMulti(String text) {
         scrollToElementJS(standardMultiSelect);
-
         selectByVisibleText(standardMultiSelect, text);
     }
 

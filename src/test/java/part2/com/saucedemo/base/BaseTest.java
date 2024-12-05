@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 
 public class BaseTest {
 
@@ -14,13 +15,14 @@ public class BaseTest {
     protected BasePage basePage;
     protected LoginPage loginPage;
 
-    public BaseTest() {
-        driver = new EdgeDriver();
-    }
-
     @BeforeClass
     public void setUp() {
+        driver = new EdgeDriver();
         driver.manage().window().maximize();
+    }
+
+    @BeforeMethod
+    public void loadApplication() {
         driver.get(url);
         basePage = new BasePage();
         basePage.setDriver(driver);
