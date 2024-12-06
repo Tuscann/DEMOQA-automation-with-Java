@@ -6,7 +6,7 @@ import static utilities.JavaScriptUtility.scrollToElementJS;
 
 public class ModalDialogsPage extends Alerts_Frames_WindowsPage {
 
-    private By smallModalButton = By.id("showSmallModal");
+    private final By smallModalButton = By.id("showSmallModal");
     private By largeModalButton = By.id("showLargeModal");
     private By smallModalText = By.xpath("//div[contains(text(),'small modal')]");
     private By largeModalText = By.xpath("//button[@id='showLargeModal']");
@@ -21,6 +21,7 @@ public class ModalDialogsPage extends Alerts_Frames_WindowsPage {
     }
 
     public String getSmallModalText() {
+        delay(500);
         scrollToElementJS(smallModalText);
         return find(smallModalText).getText();
     }

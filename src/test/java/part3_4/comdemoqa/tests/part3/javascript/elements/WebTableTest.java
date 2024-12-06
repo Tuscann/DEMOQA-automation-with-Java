@@ -4,8 +4,6 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import part3_4.comdemoqa.base.BaseTest;
 
-import static utilities.JavaScriptUtility.scrollToElementJS;
-
 public class WebTableTest extends BaseTest {
 
     @Test

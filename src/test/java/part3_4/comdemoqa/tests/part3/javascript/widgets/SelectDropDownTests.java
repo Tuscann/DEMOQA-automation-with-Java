@@ -25,4 +25,24 @@ public class SelectDropDownTests extends BaseTest {
         Assert.assertFalse(actualSelectedOptions.contains("Saab"),
                 "\n Saab Is Selected As An Option \n");
     }
+
+    @Test
+    public void selectOldStyleSelectMenu() {
+        var selectMenuPage = homePage.goToWidgets().clickSelectMenu();
+        selectMenuPage.selectStandardMulti("Volvo");
+        selectMenuPage.selectStandardMulti(1);
+        selectMenuPage.selectStandardMulti("Audi");
+        selectMenuPage.selectStandardMulti(2);
+
+        selectMenuPage.deselectStandardMulti("saab");
+        List<String> actualSelectedOptions =
+                selectMenuPage.getAllSelectedStandardMultiOptions();
+        Assert.assertTrue(actualSelectedOptions.contains("Volvo"));
+        Assert.assertTrue(actualSelectedOptions.contains("Opel"));
+        Assert.assertTrue(actualSelectedOptions.contains("Audi"));
+        Assert.assertFalse(actualSelectedOptions.contains("Saab"),
+                "\n Saab Is Selected As An Option \n");
+    }
+
+
 }

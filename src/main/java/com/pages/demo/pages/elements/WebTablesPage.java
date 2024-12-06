@@ -1,6 +1,9 @@
 package com.pages.demo.pages.elements;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 import static utilities.JavaScriptUtility.scrollToElementJS;
 
@@ -10,6 +13,8 @@ public class WebTablesPage extends ElementsPage {
     private final By registrationFirstNameField = By.id("firstName");
     private final By registrationLastNameField = By.id("lastName");
     private final By submitButton = By.id("submit");
+
+    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(12));
 
     public void clickEdit(String email) {
         By edit = By.xpath("//div[text()='" + email + "']//following::span[@title='Edit']");
@@ -30,6 +35,7 @@ public class WebTablesPage extends ElementsPage {
     }
 
     public void clickSubmitButton() {
+        delay(200);
         click(submitButton);
     }
 

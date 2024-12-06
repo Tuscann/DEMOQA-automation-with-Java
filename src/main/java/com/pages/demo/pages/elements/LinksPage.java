@@ -21,7 +21,7 @@ public class LinksPage extends ElementsPage {
     }
 
     public String getResponse() {
-        delay(2000);
+        delay(3500); //TODO
         return find(responseLink).getText();
     }
 }

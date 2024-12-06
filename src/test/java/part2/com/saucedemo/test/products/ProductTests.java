@@ -9,6 +9,6 @@ public class ProductTests extends BaseTest {
     @Test
     public void testProductHeaderIsDisplayed() {
         ProductsPage productsPage = loginPage.loginIntoApplication("standard_user", "secret_sauce");
-        Assert.assertTrue(productsPage.isProductsHeaderDispplayed());
+        Assert.assertTrue(productsPage.isProductsHeaderDisplayed());
     }
 }
