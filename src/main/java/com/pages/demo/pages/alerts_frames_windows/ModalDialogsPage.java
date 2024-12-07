@@ -2,8 +2,6 @@ package com.pages.demo.pages.alerts_frames_windows;
 
 import org.openqa.selenium.By;
 
-import static utilities.JavaScriptUtility.scrollToElementJS;
-
 public class ModalDialogsPage extends Alerts_Frames_WindowsPage {
 
     private final By smallModalButton = By.id("showSmallModal");
@@ -21,8 +19,6 @@ public class ModalDialogsPage extends Alerts_Frames_WindowsPage {
     }
 
     public String getSmallModalText() {
-        delay(500);
-        scrollToElementJS(smallModalText);
         return find(smallModalText).getText();
     }
 

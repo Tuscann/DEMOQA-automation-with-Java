@@ -1,6 +1,9 @@
 package com.pages.demo.pages.elements;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+
+import java.util.List;
 
 public class CheckBoxPage extends ElementsPage {
 
@@ -27,6 +30,15 @@ public class CheckBoxPage extends ElementsPage {
     private final By collapseAll = By.cssSelector(".rct-option.rct-icon-collapse-all");
     private final By resultMessage = By.id("result");
 
+    public boolean isResultMessageShown() {
+        List<WebElement> elements = driver.findElements(By.id("result"));
+
+        if (elements.isEmpty()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     public void clickHome() {
         click(home);
@@ -62,6 +74,54 @@ public class CheckBoxPage extends ElementsPage {
 
     public void clickDocuments() {
         click(documents);
+    }
+
+    public void clickVeu() {
+        click(veu);
+    }
+
+    public void clickOffice() {
+        click(office);
+    }
+
+    public void clickPublicOffice() {
+        click(publicOffice);
+    }
+
+    public void clickWorkSpace() {
+        click(workSpace);
+    }
+
+    public void clickReact() {
+        click(react);
+    }
+
+    public void clickAngular() {
+        click(angular);
+    }
+
+    public void clickDownloads() {
+        click(downloads);
+    }
+
+    public void clickWordFileDoc() {
+        click(wordFileDoc);
+    }
+
+    public void clickExcelFileDoc() {
+        click(excelFileDoc);
+    }
+
+    public void clickClassified() {
+        click(classified);
+    }
+
+    public void clickGeneral() {
+        click(general);
+    }
+
+    public void clickPrivateOffice() {
+        click(privateOffice);
     }
 
 }

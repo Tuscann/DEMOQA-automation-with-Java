@@ -5,7 +5,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import part3_4.comdemoqa.base.BaseTest;
 
-public class TextBoxPageTest extends BaseTest {
+public class TextBoxPageTests extends BaseTest {
     @Test
     public void SubmitTextBox() {
 
@@ -176,5 +176,18 @@ public class TextBoxPageTest extends BaseTest {
         Assert.assertEquals(emailLabel, expectedFEmailLabel, "Not same label Email");
         Assert.assertEquals(currentAddressLabel, expectedCurrentAddressLabel, "Not same label Current Address");
         Assert.assertEquals(permanentAddressLabel, expectedPermanentAddressLabel, "Not same label Permanent Address");
+    }
+
+    @Test
+    public void checkRedColorForInvalidMail() {
+        TextBoxPage textBoxPage = homePage.goToElements().clickTextBox();
+        String email = "a";
+        textBoxPage.setEmail(email);
+        textBoxPage.clickSubmitButton();
+
+        String redColor = "1px solid rgb(255, 0, 0)";
+        String actualColor = textBoxPage.isBorderRed();
+
+        Assert.assertEquals(actualColor, redColor, "Not same red color");
     }
 }

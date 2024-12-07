@@ -61,8 +61,8 @@ public class PracticeFormsTests extends BaseTest {
         String expectedEmail = "karma@gmail.com";
         String gender = "Female";
         String expectedMobileNumber = "1234567890";
-        String expectedDateOfBirth = "07 December,2024";
-        String expectedSubject = "";
+        String expectedDateOfBirth = "08 December,2024";
+        String expectedSubject = "Hindi";
         String expectedHobbies = "Sports";
         String expectedPicture = "";
         String expectedCurrentAddress = "Sofia Main St 244";
@@ -77,10 +77,10 @@ public class PracticeFormsTests extends BaseTest {
         formsPage.setEmail(expectedEmail);
         formsPage.clickGenderRadioButton(gender);
         formsPage.setMobile(expectedMobileNumber);
-        //formsPage.setSubject(subject);
+        formsPage.setSubject(expectedSubject);
         formsPage.clickSportHobbyCheckbox();
         formsPage.setCurrentAddress(expectedCurrentAddress);
-        // formsPage.selectState(state);
+        // formsPage.setDropDown(expectedState);
         // formsPage.selectCity(city);
         formsPage.clickSubmitButton();
 
@@ -109,6 +109,5 @@ public class PracticeFormsTests extends BaseTest {
         Assert.assertEquals(actualStateAndCity, expectedState + "" + expectedCity);
         Assert.assertEquals(actualLabel, expectedLabel);
         Assert.assertEquals(actualValues, expectedValues);
-
     }
 }

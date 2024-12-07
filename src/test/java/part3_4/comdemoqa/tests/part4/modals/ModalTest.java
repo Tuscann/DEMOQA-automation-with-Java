@@ -1,5 +1,6 @@
 package part3_4.comdemoqa.tests.part4.modals;
 
+import com.pages.demo.pages.alerts_frames_windows.Alerts_Frames_WindowsPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import part3_4.comdemoqa.base.BaseTest;
@@ -7,7 +8,7 @@ import part3_4.comdemoqa.base.BaseTest;
 public class ModalTest extends BaseTest {
     @Test
     public void testSmallModalDialog() {
-        var afwPage = homePage.goToAlertsFramesWindowsCard();
+        Alerts_Frames_WindowsPage afwPage = homePage.goToAlertsFramesWindowsCard();
         var modalDialogsPage = afwPage.clickModalDialogs();
         modalDialogsPage.clickSmallModalButton();
         String actualText = modalDialogsPage.getSmallModalText();

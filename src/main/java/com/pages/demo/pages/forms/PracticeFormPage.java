@@ -1,6 +1,7 @@
 package com.pages.demo.pages.forms;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 
 import static utilities.JavaScriptUtility.clickJS;
 import static utilities.JavaScriptUtility.scrollToElementJS;
@@ -14,12 +15,12 @@ public class PracticeFormPage extends FormsPage {
     private final By otherRadioButton = By.id("gender-radio-3");
     private final By mobile = By.id("userNumber");
     private final By dateOfBirth = By.id("dateOfBirthInput");
-    private final By subjects = By.id("subjectsContainer");
+    private final By subjects = By.id("subjectsInput");
     private final By sportHobbyCheckbox = By.id("hobbies-checkbox-1");
     private final By readingHobbyCheckbox = By.id("hobbies-checkbox-2");
     private final By musicHobbyCheckbox = By.id("hobbies-checkbox-3");
     private final By currentAddressArea = By.id("currentAddress");
-    private final By selectState = By.xpath("//div[@class=' css-1wa3eu0-placeholder'][contains(.,'Select State')]");
+    private final By selectState = By.id("state");
     private final By selectCity = By.xpath("//div[@class=' css-1wa3eu0-placeholder'][contains(.,'Select City')]");
     private final By submitButton = By.id("submit");
 
@@ -122,7 +123,8 @@ public class PracticeFormPage extends FormsPage {
     }
 
     public void setSubject(String subject) {
-        set(subjects, subject);
+        find(subjects).sendKeys(subject);
+        find(subjects).sendKeys("" + Keys.ENTER);
     }
 
     public void setFirstName(String firstName) {
@@ -212,5 +214,11 @@ public class PracticeFormPage extends FormsPage {
 
     public boolean isSportCheckBSelected() {
         return find(sportHobbyCheckbox).isSelected();
+    }
+
+    public void setDropDown(String expectedState) {
+        click(selectState);
+        //  find(selectState).sendKeys("" + Keys.DOWN);
+
     }
 }
