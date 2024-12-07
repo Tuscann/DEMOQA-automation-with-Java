@@ -16,11 +16,22 @@ public class WidgetsPage extends HomePage {
     private final By selectMenu = By.xpath("//li[@id='item-7']/span[text()='Menu']");
     private final By selectSelectMenu = By.xpath("//li[@id='item-8']/span[text()='Select Menu']");
 
-
     public AccordianPage clickAccordian() {
         scrollToElementJS(selectAccordian);
         click(selectAccordian);
         return new AccordianPage();
+    }
+
+    public AutoCompletePage clickAutoComplete() {
+        scrollToElementJS(selectAutoComplete);
+        click(selectAutoComplete);
+        return new AutoCompletePage();
+    }
+
+    public DatePickerPage clickDatePicker() {
+        scrollToElementJS(datePickerMenuItem);
+        click(datePickerMenuItem);
+        return new DatePickerPage();
     }
 
     public SliderPage clickSlider() {
@@ -35,15 +46,27 @@ public class WidgetsPage extends HomePage {
         return new ProgressBarPage();
     }
 
+    public TabsPage clickTabs() {
+        scrollToElementJS(selectTabs);
+        click(selectTabs);
+        return new TabsPage();
+    }
+
+    public ToolTipsPage clickToolTips() {
+        scrollToElementJS(selectToolTips);
+        click(selectToolTips);
+        return new ToolTipsPage();
+    }
+
+    public MenuPage clickMenu() {
+        scrollToElementJS(selectMenu);
+        click(selectMenu);
+        return new MenuPage();
+    }
+
     public SelectMenuPage clickSelectMenu() {
         scrollToElementJS(selectSelectMenu);
         click(selectSelectMenu);
         return new SelectMenuPage();
-    }
-
-    public DatePickerMenuPage clickDatePicker() {
-        scrollToElementJS(datePickerMenuItem);
-        click(datePickerMenuItem);
-        return new DatePickerMenuPage();
     }
 }

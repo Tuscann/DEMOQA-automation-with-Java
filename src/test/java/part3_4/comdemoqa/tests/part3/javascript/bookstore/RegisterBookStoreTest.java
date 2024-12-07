@@ -9,7 +9,7 @@ import part3_4.comdemoqa.base.BaseTest;
 public class RegisterBookStoreTest extends BaseTest {
 
     @Test
-    public void RegisterToBookStoreTest() throws InterruptedException {
+    public void RegisterToBookStoreTest() {
         LoginPage loginPage = homePage.goToBooks().clickLoginLink();
         RegisterBookStorePage registerBookstorePage = loginPage.clickNewUserButton();
 

@@ -29,7 +29,7 @@ public class FirstSeleniumTest {
 
     @Test
     public void testLoggingIntoApplication() throws InterruptedException {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(12));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("username")));
 
         driver.findElement(By.name("username")).sendKeys("Admin");
@@ -39,6 +39,6 @@ public class FirstSeleniumTest {
         String actualResult = wait.until(ExpectedConditions.visibilityOfElementLocated(By.tagName("h6"))).getText();
 
         String expectedResult = "Dashboard";
-        Assert.assertEquals(actualResult, expectedResult, "Found Dashboard");
+        Assert.assertEquals(actualResult, expectedResult, "Not found Dashboard");
     }
 }

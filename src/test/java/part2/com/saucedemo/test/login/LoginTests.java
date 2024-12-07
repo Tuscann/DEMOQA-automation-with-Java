@@ -13,14 +13,18 @@ import java.util.concurrent.BrokenBarrierException;
 public class LoginTests extends BaseTest {
 
     @Test
-    public void testLogin() throws InterruptedException, BrokenBarrierException {
-        loginPage.setUsername("visual_user");
-        loginPage.setPassword("secret_sauce");
+    public void LoginWithValidPaswordAndUsername() {
+        String username = "visual_user";
+        String password = "secret_sauce";
+
+        loginPage.setUsername(username);
+        loginPage.setPassword(password);
         loginPage.clickLoginButton();
+
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-        String actualResult = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"header_container\"]/div[2]/span"))).getText();
-        String expectedResult = "Products";
-        Assert.assertEquals(actualResult, expectedResult);
+        String actualProducts = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"header_container\"]/div[2]/span"))).getText();
+        String expectedProducts = "Products";
+        Assert.assertEquals(actualProducts, expectedProducts);
     }
 
     @Test
@@ -28,7 +32,7 @@ public class LoginTests extends BaseTest {
         loginPage.setUsername("standard_user");
         loginPage.setPassword("karma");
         loginPage.clickLoginButton();
-        Thread.sleep(3000);
+
         String actualMessage = loginPage.getErrorMessage();
 
         Assert.assertTrue(actualMessage.contains("Epic sadface"));

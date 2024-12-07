@@ -19,6 +19,7 @@ public class AccordianPage extends WidgetsPage {
 
     public void clickOneHeading() {
         click(sectionOneHeading);
+        click(sectionOneHeading);
     }
 
     public void clickTwoHeading() {
@@ -30,17 +31,23 @@ public class AccordianPage extends WidgetsPage {
     }
 
     public String getSectionOneText() {
-        WebElement firstAccordionContent = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("section1Content")));
+        wait.until(ExpectedConditions.invisibilityOf(By.id("section2Content").findElement(driver)));
+        wait.until(ExpectedConditions.invisibilityOf(By.id("section3Content").findElement(driver)));
+        WebElement firstAccordionContent = wait.until(ExpectedConditions.visibilityOfElementLocated(sectionOneContent));
         return firstAccordionContent.getText();
     }
 
     public String getSectionTwoText() {
-        WebElement secondAccordionContent = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("section2Content")));
+        wait.until(ExpectedConditions.invisibilityOf(By.id("section1Content").findElement(driver)));
+        wait.until(ExpectedConditions.invisibilityOf(By.id("section3Content").findElement(driver)));
+        WebElement secondAccordionContent = wait.until(ExpectedConditions.visibilityOfElementLocated(sectionTwoContent));
         return secondAccordionContent.getText();
     }
 
     public String getSectionThreeText() {
-        WebElement ThirdAccordionContent = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("section3Content")));
+        wait.until(ExpectedConditions.invisibilityOf(By.id("section1Content").findElement(driver)));
+        wait.until(ExpectedConditions.invisibilityOf(By.id("section2Content").findElement(driver)));
+        WebElement ThirdAccordionContent = wait.until(ExpectedConditions.visibilityOfElementLocated(sectionThreeContent));
         return ThirdAccordionContent.getText();
     }
 }

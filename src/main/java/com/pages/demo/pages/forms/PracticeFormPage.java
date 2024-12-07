@@ -23,19 +23,139 @@ public class PracticeFormPage extends FormsPage {
     private final By selectCity = By.xpath("//div[@class=' css-1wa3eu0-placeholder'][contains(.,'Select City')]");
     private final By submitButton = By.id("submit");
 
-    public void clickFemaleRadioButton() {
-        scrollToElementJS(femaleRadioButton);
-        clickJS(femaleRadioButton);
+    private final By label = By.xpath("//th[contains(.,'Label')]");
+    private final By values = By.xpath("//th[contains(.,'Label')]/following-sibling::*[1]");
+    private final By StudentNameForm = By.xpath("//td[contains(.,'Student Name')]/following-sibling::*[1]");
+    private final By emailForm = By.xpath("//td[contains(.,'Student Email')]/following-sibling::*[1]");
+    private final By genderForm = By.xpath("//td[contains(.,'Gender')]/following-sibling::*[1]");
+    private final By mobileForm = By.xpath("//td[contains(.,'Mobile')]/following-sibling::*[1]");
+    private final By dateOfBirthForm = By.xpath("//td[contains(.,'Date of Birth')]/following-sibling::*[1]");
+    private final By subjectsForm = By.xpath("//td[contains(.,'Subjects')]/following-sibling::*[1]");
+    private final By hobbiesForm = By.xpath("//td[contains(.,'Hobbies')]/following-sibling::*[1]");
+    private final By pictureForm = By.xpath("//td[contains(.,'Picture')]/following-sibling::*[1]");
+    private final By addressForm = By.xpath("//td[contains(.,'Address')]/following-sibling::*[1]");
+    private final By stateAndCityForm = By.xpath("//td[contains(.,'State')]/following-sibling::*[1]");
+
+    public String getStudentNameFromModal() {
+        delay(1500);
+        return find(StudentNameForm).getText();
     }
 
-    public void clickMaleRadioButton() {
-        scrollToElementJS(maleRadioButton);
-        clickJS(maleRadioButton);
+    public String getEmailFromModal() {
+        return find(emailForm).getText();
     }
 
-    public void clickOtherRadioButton() {
-        scrollToElementJS(otherRadioButton);
-        clickJS(otherRadioButton);
+    public String getLabelFromModal() {
+        return find(label).getText();
+    }
+
+    public String getValuesFromModal() {
+        return find(values).getText();
+    }
+
+    public String getHobbiesFromModal() {
+        return find(hobbiesForm).getText();
+    }
+
+    public String getPictureFromModal() {
+        return find(pictureForm).getText();
+    }
+
+    public String getCurrentAddressFromModal() {
+        return find(addressForm).getText();
+    }
+
+    public String getStateAndCityFromModal() {
+        return find(stateAndCityForm).getText();
+    }
+
+    public String getGenderFromModal() {
+        return find(genderForm).getText();
+    }
+
+    public String getMobileFromModal() {
+        return find(mobileForm).getText();
+    }
+
+    public String getDateOfBirthFromModal() {
+        return find(dateOfBirthForm).getText();
+    }
+
+    public String getSubjectsFromModal() {
+        return find(subjectsForm).getText();
+    }
+
+    public String getPlaceholderFullName() {
+        return find(firstName).getAttribute("placeholder");
+    }
+
+    public String getPlaceholderLastName() {
+        return find(lastName).getAttribute("placeholder");
+    }
+
+    public String getPlaceholderEmail() {
+        return find(email).getAttribute("placeholder");
+    }
+
+    public String getPlaceholderMobile() {
+        return find(mobile).getAttribute("placeholder");
+    }
+
+    public String getPlaceholderDateOfBirth() {
+        return find(dateOfBirth).getAttribute("placeholder");
+    }
+
+    public String getPlaceholderCurrentAddress() {
+        return find(currentAddressArea).getAttribute("placeholder");
+    }
+
+    public String getPlaceholderState() {
+        return find(selectState).getAttribute("placeholder");
+    }
+
+    public String getPlaceholderCity() {
+        return find(selectCity).getAttribute("placeholder");
+    }
+
+    public String getPlaceholderSubjects() {
+        return find(subjects).getAttribute("placeholder");
+    }
+
+    public void setSubject(String subject) {
+        set(subjects, subject);
+    }
+
+    public void setFirstName(String firstName) {
+        click(this.firstName);
+        set(this.firstName, firstName);
+    }
+
+    public void setLastName(String lastName) {
+        click(this.lastName);
+        set(this.lastName, lastName);
+    }
+
+    public void setEmail(String email) {
+        click(this.email);
+        set(this.email, email);
+    }
+
+    public void setMobile(String mobile) {
+        click(this.mobile);
+        set(this.mobile, mobile);
+    }
+
+    public void setCurrentAddress(String currentAddress) {
+        click(this.currentAddressArea);
+        set(this.currentAddressArea, currentAddress);
+    }
+
+    public void clickGenderRadioButton(String gender) {
+        switch (gender) {
+            case "Male" -> clickJS(maleRadioButton);
+            case "Female" -> clickJS(femaleRadioButton);
+            case "Other" -> clickJS(otherRadioButton);
+        }
     }
 
     public boolean isFemaleRadioButtonSelected() {
@@ -80,5 +200,17 @@ public class PracticeFormPage extends FormsPage {
 
     public void clickSubmitButton() {
         click(submitButton);
+    }
+
+    public boolean isReadingCheckBoxSelected() {
+        return find(readingHobbyCheckbox).isSelected();
+    }
+
+    public boolean isMusicCheckBoxSelected() {
+        return find(musicHobbyCheckbox).isSelected();
+    }
+
+    public boolean isSportCheckBSelected() {
+        return find(sportHobbyCheckbox).isSelected();
     }
 }

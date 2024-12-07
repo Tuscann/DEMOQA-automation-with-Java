@@ -1,17 +1,18 @@
 package part3_4.comdemoqa.tests.part3.javascript.elements;
 
+import com.pages.demo.pages.elements.WebTablesPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import part3_4.comdemoqa.base.BaseTest;
 
-public class WebTableTest extends BaseTest {
+public class WebTablePageTests extends BaseTest {
 
     @Test
     public void UpdateAge() {
         String email = "kierra@example.com";
         String expectedAge = "34";
 
-        var webTablePage = homePage.goToElements().clickWebTables();
+        WebTablesPage webTablePage = homePage.goToElements().clickWebTables();
 
         webTablePage.clickEdit(email);
         webTablePage.setAge("34");
