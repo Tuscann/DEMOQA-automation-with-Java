@@ -10,7 +10,7 @@ public class LoginPage extends BooksPage {
     private final By username = By.id("userName");
     private final By password = By.id("password");
     private final By loginButton = By.id("login");
-    private final By newUser = By.id("newUser");
+    private final By newUserButton = By.id("newUser");
     private final By errorMessage = By.id("name");
 
     WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(12));
@@ -28,7 +28,7 @@ public class LoginPage extends BooksPage {
     }
 
     public RegisterBookStorePage clickNewUserButton() {
-        click(newUser);
+        click(newUserButton);
         return new RegisterBookStorePage();
     }
 

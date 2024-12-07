@@ -8,7 +8,6 @@ import org.testng.annotations.Test;
 import part2.com.saucedemo.base.BaseTest;
 
 import java.time.Duration;
-import java.util.concurrent.BrokenBarrierException;
 
 public class LoginTests extends BaseTest {
 
@@ -28,7 +27,7 @@ public class LoginTests extends BaseTest {
     }
 
     @Test
-    public void testLoginErrorMessage() throws InterruptedException, BrokenBarrierException {
+    public void testLoginErrorMessage() {
         loginPage.setUsername("standard_user");
         loginPage.setPassword("karma");
         loginPage.clickLoginButton();

@@ -21,7 +21,6 @@ public class TextBoxPage extends ElementsPage {
     private final By labelCurrentAddress = By.id("currentAddress-label");
     private final By labelPermanentAddress = By.id("permanentAddress-label");
 
-
     public String getFullNameLabel() {
         return find(labelFullName).getText();
     }
@@ -96,5 +95,10 @@ public class TextBoxPage extends ElementsPage {
 
     public String getOutput() {
         return find(output).getText();
+    }
+
+    public String isBorderRed() {
+        delay(500);
+        return find(email).getCssValue("border");
     }
 }
