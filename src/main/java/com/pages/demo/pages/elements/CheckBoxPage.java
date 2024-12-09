@@ -5,6 +5,8 @@ import org.openqa.selenium.WebElement;
 
 import java.util.List;
 
+import static utilities.JavaScriptUtility.scrollToElementJS;
+
 public class CheckBoxPage extends ElementsPage {
 
     private final By home = By.xpath("(//span[contains(.,'Home')])[2]");
@@ -61,10 +63,12 @@ public class CheckBoxPage extends ElementsPage {
     }
 
     public void clickNotes() {
+        scrollToElementJS(notes);
         click(notes);
     }
 
     public void clickCommands() {
+        scrollToElementJS(commands);
         click(commands);
     }
 
@@ -93,6 +97,7 @@ public class CheckBoxPage extends ElementsPage {
     }
 
     public void clickReact() {
+        scrollToElementJS(react);
         click(react);
     }
 
@@ -101,6 +106,7 @@ public class CheckBoxPage extends ElementsPage {
     }
 
     public void clickDownloads() {
+        scrollToElementJS(downloads);
         click(downloads);
     }
 

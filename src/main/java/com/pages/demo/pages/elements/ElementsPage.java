@@ -3,6 +3,8 @@ package com.pages.demo.pages.elements;
 import com.pages.demo.pages.HomePage;
 import org.openqa.selenium.By;
 
+import static utilities.JavaScriptUtility.scrollToElementJS;
+
 public class ElementsPage extends HomePage {
 
     private final By textBox = By.xpath("//li[@id='item-0']/span[text()='Text Box']");
@@ -41,6 +43,7 @@ public class ElementsPage extends HomePage {
     }
 
     public LinksPage clickLinks() {
+        scrollToElementJS(links);
         click(links);
         return new LinksPage();
     }

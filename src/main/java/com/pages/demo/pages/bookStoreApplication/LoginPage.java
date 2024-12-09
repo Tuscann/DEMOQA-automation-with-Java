@@ -6,6 +6,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
+import static utilities.JavaScriptUtility.scrollToElementJS;
+
 public class LoginPage extends BooksPage {
     private final By username = By.id("userName");
     private final By password = By.id("password");
@@ -16,6 +18,7 @@ public class LoginPage extends BooksPage {
     WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(12));
 
     public void clickUsername() {
+        scrollToElementJS(username);
         click(username);
     }
 
@@ -24,10 +27,12 @@ public class LoginPage extends BooksPage {
     }
 
     public void clickLoginButton() {
-        click(loginButton);
+        scrollToElementJS(loginButton);
+        find(loginButton).click();
     }
 
     public RegisterBookStorePage clickNewUserButton() {
+        scrollToElementJS(newUserButton);
         click(newUserButton);
         return new RegisterBookStorePage();
     }

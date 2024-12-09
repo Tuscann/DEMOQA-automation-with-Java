@@ -12,7 +12,7 @@ import java.time.Duration;
 public class LoginTests extends BaseTest {
 
     @Test
-    public void LoginWithValidPaswordAndUsername() {
+    public void LoginWithValidPasswordAndUsername() {
         String username = "visual_user";
         String password = "secret_sauce";
 
@@ -27,7 +27,7 @@ public class LoginTests extends BaseTest {
     }
 
     @Test
-    public void testLoginErrorMessage() {
+    public void checkTextOfLoginErrorMessage() {
         loginPage.setUsername("standard_user");
         loginPage.setPassword("karma");
         loginPage.clickLoginButton();

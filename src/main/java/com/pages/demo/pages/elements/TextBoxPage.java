@@ -2,13 +2,16 @@ package com.pages.demo.pages.elements;
 
 import org.openqa.selenium.By;
 
+import static utilities.ActionUtility.MoveToElementSelenium;
+import static utilities.JavaScriptUtility.scrollToElementJS;
+
 public class TextBoxPage extends ElementsPage {
 
     private final By fullName = By.id("userName");
     private final By email = By.id("userEmail");
     private final By currentAddress = By.id("currentAddress");
     private final By permanentAddress = By.id("permanentAddress");
-    private final By submit = By.id("submit");
+    private final By submitButton = By.id("submit");
 
     private final By expectedFullName = By.xpath("//p[@id=\"name\"]");
     private final By expectedEmail = By.xpath("//p[@id=\"email\"]");
@@ -54,27 +57,32 @@ public class TextBoxPage extends ElementsPage {
     }
 
     public void setFullName(String fullName2) {
+        MoveToElementSelenium(fullName);
+
         click(fullName);
         set(fullName, fullName2);
     }
 
     public void setEmail(String email2) {
+        scrollToElementJS(email);
         click(email);
         set(email, email2);
     }
 
     public void setCurrentAddress(String currentAddress2) {
+        scrollToElementJS(currentAddress);
         click(currentAddress);
         set(currentAddress, currentAddress2);
     }
 
     public void setPermanentAddress(String permanentAddress2) {
-        click(permanentAddress);
+        scrollToElementJS(permanentAddress);
         set(permanentAddress, permanentAddress2);
     }
 
     public void clickSubmitButton() {
-        click(submit);
+        scrollToElementJS(submitButton);
+        click(submitButton);
     }
 
     public String getExpectedFullName() {
@@ -99,6 +107,8 @@ public class TextBoxPage extends ElementsPage {
 
     public String isBorderRed() {
         delay(500);
-        return find(email).getCssValue("border");
+
+        String str = find(email).getCssValue("border");
+        return str.substring(str.length() - 20);
     }
 }

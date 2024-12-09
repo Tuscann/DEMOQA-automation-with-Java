@@ -6,6 +6,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
+import static utilities.JavaScriptUtility.scrollToElementJS;
+
 public class RegisterBookStorePage extends BooksPage {
     private final By firstName = By.id("firstname");
     private final By lastName = By.id("lastname");
@@ -19,6 +21,7 @@ public class RegisterBookStorePage extends BooksPage {
     WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(12));
 
     public void setFirstName(String firstName2) {
+        scrollToElementJS(firstName);
         click(firstName);
         set(firstName, firstName2);
     }
@@ -29,18 +32,21 @@ public class RegisterBookStorePage extends BooksPage {
     }
 
     public void setLastName(String lastName2) {
+        scrollToElementJS(lastName);
         click(lastName);
         set(lastName, lastName2);
     }
 
-    public void setUsername(String username2) {
-        click(username);
-        set(username, username2);
+    public void setUsername(String username) {
+        scrollToElementJS(this.username);
+        click(this.username);
+        set(this.username, username);
     }
 
-    public void setPassword(String password2) {
-        click(password);
-        set(password, password2);
+    public void setPassword(String password) {
+        scrollToElementJS(this.password);
+        click(this.password);
+        set(this.password, password);
     }
 
     public void clickIamRobotButton() {

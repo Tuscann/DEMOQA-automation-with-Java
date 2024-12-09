@@ -2,6 +2,10 @@ package com.pages.demo.pages.forms;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 import static utilities.JavaScriptUtility.clickJS;
 import static utilities.JavaScriptUtility.scrollToElementJS;
@@ -36,6 +40,8 @@ public class PracticeFormPage extends FormsPage {
     private final By pictureForm = By.xpath("//td[contains(.,'Picture')]/following-sibling::*[1]");
     private final By addressForm = By.xpath("//td[contains(.,'Address')]/following-sibling::*[1]");
     private final By stateAndCityForm = By.xpath("//td[contains(.,'State')]/following-sibling::*[1]");
+
+    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
     public String getStudentNameFromModal() {
         delay(1500);
@@ -79,6 +85,8 @@ public class PracticeFormPage extends FormsPage {
     }
 
     public String getDateOfBirthFromModal() {
+
+
         return find(dateOfBirthForm).getText();
     }
 
@@ -138,6 +146,7 @@ public class PracticeFormPage extends FormsPage {
     }
 
     public void setEmail(String email) {
+        scrollToElementJS(this.email);
         click(this.email);
         set(this.email, email);
     }
@@ -158,6 +167,14 @@ public class PracticeFormPage extends FormsPage {
             case "Female" -> clickJS(femaleRadioButton);
             case "Other" -> clickJS(otherRadioButton);
         }
+    }
+
+
+    public void setDateOfBirth(String dateOfBirth) {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(this.dateOfBirth))
+                .sendKeys(Keys.chord(Keys.CONTROL, "a"), dateOfBirth, Keys.chord(Keys.ENTER));
+
+
     }
 
     public boolean isFemaleRadioButtonSelected() {
@@ -201,6 +218,7 @@ public class PracticeFormPage extends FormsPage {
     }
 
     public void clickSubmitButton() {
+        scrollToElementJS(submitButton);
         click(submitButton);
     }
 

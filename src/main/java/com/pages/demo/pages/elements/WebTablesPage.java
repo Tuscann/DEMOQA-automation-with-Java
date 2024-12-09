@@ -21,10 +21,13 @@ public class WebTablesPage extends ElementsPage {
     private final By searchBox = By.id("searchBox");
     private final By nextButton = By.xpath("//button[contains(.,'Next')]");
     private final By previousButton = By.xpath("//button[contains(.,'Previous')]");
-    private final By deleteButton = By.xpath("//div[@class='rt-td'][contains(.,'alden@example.com')]");
-
-
+    private final By noRowsFound = By.xpath("//*[@id=\"app\"]/div/div/div/div[2]/div[2]/div[3]/div[3]");
     WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
+
+
+    public String getNoRowsFound() {
+        return find(noRowsFound).getText();
+    }
 
     public void clickEdit(String email) {
         By edit = By.xpath("//div[text()='" + email + "']//following::span[@title='Edit']");
@@ -38,8 +41,9 @@ public class WebTablesPage extends ElementsPage {
         click(addNewRecordButton);
     }
 
-    public void clickDelete(String email) {
+    public void clickDeleteByEmail(String email) {
         By delete = By.xpath("//div[text()='" + email + "']//following::span[@title='Delete']");
+        scrollToElementJS(delete);
         click(delete);
     }
 
@@ -100,5 +104,17 @@ public class WebTablesPage extends ElementsPage {
     public String getTableDepartment(String email) {
         By tableDepartment = By.xpath("//div[text()='" + email + "']//following-sibling::div[2]");
         return find(tableDepartment).getText();
+    }
+
+    public boolean checkPreviousButtonIsActive() {
+        //   wait.until(ExpectedConditions.elementToBeClickable(previousButton));
+        scrollToElementJS(previousButton);
+        return find(nextButton).isEnabled();
+    }
+
+    public boolean checkNextButtonIsActive() {
+        //   wait.until(ExpectedConditions.elementToBeClickable(nextButton));
+        scrollToElementJS(previousButton);
+        return find(nextButton).isEnabled();
     }
 }

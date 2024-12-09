@@ -7,6 +7,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
+import static utilities.JavaScriptUtility.scrollToElementJS;
+
 public class AccordianPage extends WidgetsPage {
     private final By sectionOneHeading = By.id("section1Heading");
     private final By sectionTwoHeading = By.id("section2Heading");
@@ -23,10 +25,12 @@ public class AccordianPage extends WidgetsPage {
     }
 
     public void clickTwoHeading() {
+        scrollToElementJS(sectionTwoHeading);
         click(sectionTwoHeading);
     }
 
     public void clickThreeHeading() {
+        scrollToElementJS(sectionTwoHeading);
         click(sectionThreeHeading);
     }
 

@@ -8,7 +8,14 @@ public class ModalDialogsPage extends Alerts_Frames_WindowsPage {
     private final By largeModalButton = By.id("showLargeModal");
     private final By smallModalText = By.xpath("//div[contains(text(),'small modal')]");
     private final By largeModalText = By.xpath("//button[@id='showLargeModal']");
-    private final By closeButton = By.id("closeSmallModal");
+    private final By closeSmallButton = By.id("closeSmallModal");
+    private final By closeLargeButton = By.id("closeLargeModal");
+    private final By closeButton = By.xpath("//button[@type='button'][contains(.,'×Close')]");
+
+    private final By modalDialogsText = By.xpath("//h1[@class='text-center'][contains(.,'Modal Dialogs')]");
+    private final By clickText = By.xpath("(//div[contains(.,'Click on button to see modal')])[8]");
+    private final By smallText = By.id("showSmallModal");
+    private final By largeText = By.id("showLargeModal");
 
     public void clickSmallModalButton() {
         click(smallModalButton);
@@ -28,5 +35,21 @@ public class ModalDialogsPage extends Alerts_Frames_WindowsPage {
 
     public void clickCloseButton() {
         click(closeButton);
+    }
+
+    public String getModalDialogsText() {
+        return find(modalDialogsText).getText();
+    }
+
+    public String getClickText() {
+        return find(clickText).getText();
+    }
+
+    public String getSmallText() {
+        return find(smallText).getText();
+    }
+
+    public String getLargeText() {
+        return find(largeText).getText();
     }
 }

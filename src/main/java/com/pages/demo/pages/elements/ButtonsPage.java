@@ -33,6 +33,7 @@ public class ButtonsPage extends ElementsPage {
     }
 
     public String getRightClickMessage() {
+        scrollToElementJS(rightClickMessage);
         return find(rightClickMessage).getText();
     }
 
@@ -46,6 +47,7 @@ public class ButtonsPage extends ElementsPage {
     }
 
     public void clickOnClickMeButton() {
+        scrollToElementJS(clickMeButton);
         click(clickMeButton);
     }
 
