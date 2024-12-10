@@ -1,6 +1,5 @@
 package part3.comdemoqa.tests.elements;
 
-import com.pages.demo.pages.elements.TextBoxPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import part3.comdemoqa.base.BaseTest;
@@ -8,13 +7,12 @@ import part3.comdemoqa.base.BaseTest;
 public class TextBoxPageTests extends BaseTest {
     @Test
     public void SubmitTextBox() {
-
         String fullName = "Zhivko Nedyalkov";
         String email = "fbinnzhivko@gmail.com";
         String currentAddress = "Sofia";
         String permanentAddress = "Earth";
 
-        TextBoxPage textBoxPage = homePage.goToElements().clickTextBox();
+        navigateToUrl("text-box");
         textBoxPage.setFullName(fullName);
         textBoxPage.setEmail(email);
         textBoxPage.setCurrentAddress(currentAddress);
@@ -32,9 +30,9 @@ public class TextBoxPageTests extends BaseTest {
         Assert.assertEquals(actualPermanentAddress, "Permananet Address :" + permanentAddress, "Not same permanent Address");
     }
 
-    @Test
+    @Test(enabled = true, dependsOnGroups = "TextBoxes")
     public void clickSubmitButton() {
-        TextBoxPage textBoxPage = homePage.goToElements().clickTextBox();
+        navigateToUrl("text-box");
         textBoxPage.clickSubmitButton();
 
         String actualOutput = textBoxPage.getOutput();
@@ -47,7 +45,7 @@ public class TextBoxPageTests extends BaseTest {
         String fullName = "Zhivko Nedyalkov";
         String expectedOutput = "Name:" + fullName;
 
-        TextBoxPage textBoxPage = homePage.goToElements().clickTextBox();
+        navigateToUrl("text-box");
         textBoxPage.setFullName(fullName);
         textBoxPage.clickSubmitButton();
 
@@ -60,7 +58,7 @@ public class TextBoxPageTests extends BaseTest {
     public void addEmail() {
         String email = "testemail@example.com";
 
-        TextBoxPage textBoxPage = homePage.goToElements().clickTextBox();
+        navigateToUrl("text-box");
         textBoxPage.setEmail(email);
         textBoxPage.clickSubmitButton();
 
@@ -72,7 +70,7 @@ public class TextBoxPageTests extends BaseTest {
     public void addPermanentAddress() {
         String permanentAddress = "1234 Elm Street, Springfield";
 
-        TextBoxPage textBoxPage = homePage.goToElements().clickTextBox();
+        navigateToUrl("text-box");
         textBoxPage.setPermanentAddress(permanentAddress);
         textBoxPage.clickSubmitButton();
 
@@ -84,7 +82,7 @@ public class TextBoxPageTests extends BaseTest {
     public void addCurrentAddress() {
         String currentAddress = "4321 Maple Lane, Metropolis";
 
-        TextBoxPage textBoxPage = homePage.goToElements().clickTextBox();
+        navigateToUrl("text-box");
         textBoxPage.setCurrentAddress(currentAddress);
         textBoxPage.clickSubmitButton();
 
@@ -100,7 +98,7 @@ public class TextBoxPageTests extends BaseTest {
         String currentAddress = "Sofia";
         String permanentAddress = "Earth";
 
-        TextBoxPage textBoxPage = homePage.goToElements().clickTextBox();
+        navigateToUrl("text-box");
         textBoxPage.setFullName(fullName);
         textBoxPage.setEmail(email);
         textBoxPage.setCurrentAddress(currentAddress);
@@ -116,7 +114,6 @@ public class TextBoxPageTests extends BaseTest {
         Assert.assertEquals(actualEmail, "Email:" + email, "Not same Email");
         Assert.assertEquals(actualCurrentAddress, "Current Address :" + currentAddress, "Not same current Address");
         Assert.assertEquals(actualPermanentAddress, "Permananet Address :" + permanentAddress, "Not same permanent Address");
-
 
         fullName = "Petar Kamenov";
         email = "da@gmail.com";
@@ -142,7 +139,7 @@ public class TextBoxPageTests extends BaseTest {
 
     @Test
     public void checkAllPlaceholders() {
-        TextBoxPage textBoxPage = homePage.goToElements().clickTextBox();
+        navigateToUrl("text-box");
         String expectedPlaceholderFullName = "Full Name";
         String expectedPlaceholderFEmail = "name@example.com";
         String expectedPlaceholderCurrentAddress = "Current Address";
@@ -161,7 +158,7 @@ public class TextBoxPageTests extends BaseTest {
 
     @Test
     public void checkAllLabels() {
-        TextBoxPage textBoxPage = homePage.goToElements().clickTextBox();
+        navigateToUrl("text-box");
         String expectedFullNameLabel = "Full Name";
         String expectedFEmailLabel = "Email";
         String expectedCurrentAddressLabel = "Current Address";
@@ -180,7 +177,7 @@ public class TextBoxPageTests extends BaseTest {
 
     @Test
     public void checkRedColorForInvalidMail() {
-        TextBoxPage textBoxPage = homePage.goToElements().clickTextBox();
+        navigateToUrl("text-box");
         String email = "a";
         textBoxPage.setEmail(email);
         textBoxPage.clickSubmitButton();

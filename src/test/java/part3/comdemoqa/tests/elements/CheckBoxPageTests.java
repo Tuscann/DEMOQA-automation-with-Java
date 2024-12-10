@@ -1,6 +1,5 @@
 package part3.comdemoqa.tests.elements;
 
-import com.pages.demo.pages.elements.CheckBoxPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import part3.comdemoqa.base.BaseTest;
@@ -9,8 +8,7 @@ public class CheckBoxPageTests extends BaseTest {
 
     @Test
     public void SelectOnlyCheckBoxNotes() {
-        var checkBoxPage = homePage.goToElements().clickCheckBox();
-
+        navigateToUrl("checkbox");
         checkBoxPage.clickExpandAll();
         checkBoxPage.clickNotes();
 
@@ -22,7 +20,7 @@ public class CheckBoxPageTests extends BaseTest {
 
     @Test
     public void SelectDesktopWithHomeAndCommandsNotes() {
-        var checkBoxPage = homePage.goToElements().clickCheckBox();
+        navigateToUrl("checkbox");
 
         checkBoxPage.clickExpandAll();
         checkBoxPage.clickNotes();
@@ -40,7 +38,7 @@ public class CheckBoxPageTests extends BaseTest {
 
     @Test
     public void DeSelectOnlyCheckBoxNotes() {
-        var checkBoxPage = homePage.goToElements().clickCheckBox();
+        navigateToUrl("checkbox");
 
         checkBoxPage.clickExpandAll();
         checkBoxPage.clickNotes();
@@ -58,7 +56,7 @@ public class CheckBoxPageTests extends BaseTest {
 
     @Test
     public void CheckAllCheckBoxesAreDeselected() {
-        var checkBoxPage = homePage.goToElements().clickCheckBox();
+        navigateToUrl("checkbox");
         checkBoxPage.clickExpandAll();
 
         Assert.assertTrue(checkBoxPage.isResultMessageShown(), "Shown some category");
@@ -66,7 +64,7 @@ public class CheckBoxPageTests extends BaseTest {
 
     @Test
     public void SelectOnlyCheckBoxCommands() {
-        var checkBoxPage = homePage.goToElements().clickCheckBox();
+        navigateToUrl("checkbox");
 
         checkBoxPage.clickExpandAll();
         checkBoxPage.clickCommands();
@@ -79,7 +77,7 @@ public class CheckBoxPageTests extends BaseTest {
 
     @Test
     public void SelectCheckBoxesNotesAndCommands() {
-        var checkBoxPage = homePage.goToElements().clickCheckBox();
+        navigateToUrl("checkbox");
 
         checkBoxPage.clickExpandAll();
         checkBoxPage.clickNotes();
@@ -97,7 +95,7 @@ public class CheckBoxPageTests extends BaseTest {
 
     @Test
     public void SelectOnlyCheckBoxHome() {
-        var checkBoxPage = homePage.goToElements().clickCheckBox();
+        navigateToUrl("checkbox");
 
         checkBoxPage.clickExpandAll();
         checkBoxPage.clickHome();
@@ -128,7 +126,7 @@ public class CheckBoxPageTests extends BaseTest {
 
     @Test
     public void SelectDesktopAndDocumentsAndDownloadsCheckBoxes() {
-        var checkBoxPage = homePage.goToElements().clickCheckBox();
+        navigateToUrl("checkbox");
 
         checkBoxPage.clickExpandAll();
         checkBoxPage.clickDesktop();
@@ -161,7 +159,7 @@ public class CheckBoxPageTests extends BaseTest {
 
     @Test
     public void SelectAllCheckBoxesOneByOne() {
-        var checkBoxPage = homePage.goToElements().clickCheckBox();
+        navigateToUrl("checkbox");
 
         checkBoxPage.clickExpandAll();
         checkBoxPage.clickNotes();
@@ -202,7 +200,7 @@ public class CheckBoxPageTests extends BaseTest {
 
     @Test
     public void SelectAllCheckBoxesOneByOneAndDeselectAll() {
-        CheckBoxPage checkBoxPage = homePage.goToElements().clickCheckBox();
+        navigateToUrl("checkbox");
 
         checkBoxPage.clickExpandAll();
         checkBoxPage.clickNotes();

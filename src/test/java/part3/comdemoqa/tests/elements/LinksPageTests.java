@@ -1,6 +1,5 @@
 package part3.comdemoqa.tests.elements;
 
-import com.pages.demo.pages.elements.LinksPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import part3.comdemoqa.base.BaseTest;
@@ -8,9 +7,9 @@ import part3.comdemoqa.base.BaseTest;
 public class LinksPageTests extends BaseTest {
     @Test
     public void ClickLinkBadRequest() {
-        LinksPage webTablePage = homePage.goToElements().clickLinks();
-        webTablePage.clickBadRequestLink();
-        String actualResponse = webTablePage.getResponse();
+        navigateToUrl("links");
+        linksPage.clickBadRequestLink();
+        String actualResponse = linksPage.getResponse();
 
         Assert.assertTrue(actualResponse.contains("400")
                         && actualResponse.contains("Bad Request"),
@@ -20,9 +19,9 @@ public class LinksPageTests extends BaseTest {
 
     @Test
     public void ClickLinkCreatedRequest() {
-        var webTablePage = homePage.goToElements().clickLinks();
-        webTablePage.clickCreatedRequestLink();
-        String actualResponse = webTablePage.getResponse();
+        navigateToUrl("links");
+        linksPage.clickCreatedRequestLink();
+        String actualResponse = linksPage.getResponse();
 
         Assert.assertTrue(actualResponse.contains("201")
                         && actualResponse.contains("Created"),
@@ -32,9 +31,9 @@ public class LinksPageTests extends BaseTest {
 
     @Test
     public void ClickLinkMovedRequest() {
-        var webTablePage = homePage.goToElements().clickLinks();
-        webTablePage.clickMovedRequestLink();
-        String actualResponse = webTablePage.getResponse();
+        navigateToUrl("links");
+        linksPage.clickMovedRequestLink();
+        String actualResponse = linksPage.getResponse();
 
         Assert.assertTrue(actualResponse.contains("301")
                         && actualResponse.contains("Moved Permanently"),
@@ -44,9 +43,9 @@ public class LinksPageTests extends BaseTest {
 
     @Test
     public void ClickLinkNoContentRequest() {
-        var webTablePage = homePage.goToElements().clickLinks();
-        webTablePage.clickNoContentRequestLink();
-        String actualResponse = webTablePage.getResponse();
+        navigateToUrl("links");
+        linksPage.clickNoContentRequestLink();
+        String actualResponse = linksPage.getResponse();
 
         Assert.assertTrue(actualResponse.contains("204")
                         && actualResponse.contains("No Content"),
@@ -56,9 +55,9 @@ public class LinksPageTests extends BaseTest {
 
     @Test
     public void ClickLinkAuthorizedRequest() {
-        var webTablePage = homePage.goToElements().clickLinks();
-        webTablePage.clickUnauthorizedRequestLink();
-        String actualResponse = webTablePage.getResponse();
+        navigateToUrl("links");
+        linksPage.clickUnauthorizedRequestLink();
+        String actualResponse = linksPage.getResponse();
 
         Assert.assertTrue(actualResponse.contains("401")
                         && actualResponse.contains("Unauthorized"),
@@ -68,9 +67,9 @@ public class LinksPageTests extends BaseTest {
 
     @Test
     public void ClickLinkForbiddenRequest() {
-        var webTablePage = homePage.goToElements().clickLinks();
-        webTablePage.clickForbiddenRequestLink();
-        String actualResponse = webTablePage.getResponse();
+        navigateToUrl("links");
+        linksPage.clickForbiddenRequestLink();
+        String actualResponse = linksPage.getResponse();
 
         Assert.assertTrue(actualResponse.contains("403")
                         && actualResponse.contains("Forbidden"),
@@ -80,9 +79,9 @@ public class LinksPageTests extends BaseTest {
 
     @Test
     public void ClickLinkNotFoundRequest() {
-        LinksPage webTablePage = homePage.goToElements().clickLinks();
-        webTablePage.clickNotFoundRequestLink();
-        String actualResponse = webTablePage.getResponse();
+        navigateToUrl("links");
+        linksPage.clickNotFoundRequestLink();
+        String actualResponse = linksPage.getResponse();
 
         Assert.assertTrue(actualResponse.contains("404")
                         && actualResponse.contains("Not Found"),
@@ -92,10 +91,10 @@ public class LinksPageTests extends BaseTest {
 
     @Test
     public void ClickOpenNewTabSameWindow() {
-        LinksPage webTablePage = homePage.goToElements().clickLinks();
-        webTablePage.clickNewHomeTab();
+        navigateToUrl("links");
+        linksPage.clickNewHomeTab();
 
-        String urlNewTab = webTablePage.getUrl();
+        String urlNewTab = linksPage.getUrl();
         String expectedUrlNewTab = "https://demoqa.com/";
 
         Assert.assertEquals(urlNewTab, expectedUrlNewTab,

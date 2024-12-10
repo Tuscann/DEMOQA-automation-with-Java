@@ -13,8 +13,8 @@ public class ElementsPage extends HomePage {
     private final By webTables = By.xpath("//li[@id='item-3']/span[text()='Web Tables']");
     private final By Buttons = By.xpath("//li[@id='item-4']/span[text()='Buttons']");
     private final By links = By.xpath("//li[@id='item-5']/span[text()='Links']");
-    private final By brokenLinksImages = By.xpath("//li[@id='item-6']/span[text()='Links']");
-    private final By uploadAndDownload = By.xpath("//li[@id='item-7']/span[text()='Links']");
+    private final By brokenLinksImages = By.xpath("//li[@id='item-6']/span[text()='Broken Links - Images']");
+    private final By uploadAndDownload = By.xpath("//li[@id='item-7']/span[text()='Upload and Download']");
     private final By dynamicPropertiesMenuItem = By.xpath("//li[@id='item-8']/span[text()='Dynamic Properties']");
 
     public TextBoxPage clickTextBox() {

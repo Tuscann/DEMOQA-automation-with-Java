@@ -1,6 +1,5 @@
 package part3.comdemoqa.tests.widgets;
 
-import com.pages.demo.pages.widgets.AccordianPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import part3.comdemoqa.base.BaseTest;
@@ -9,7 +8,7 @@ public class AccordianPageTests extends BaseTest {
 
     @Test
     public void SelectFirstHeading() {
-        AccordianPage accordianPage = homePage.goToWidgets().clickAccordian();
+        navigateToUrl("accordian");
         accordianPage.clickOneHeading();
 
         String actualText = accordianPage.getSectionOneText();
@@ -20,7 +19,7 @@ public class AccordianPageTests extends BaseTest {
 
     @Test
     public void SelectSecondHeading() {
-        AccordianPage accordianPage = homePage.goToWidgets().clickAccordian();
+        navigateToUrl("accordian");
         accordianPage.clickTwoHeading();
 
         String actualText = accordianPage.getSectionTwoText();
@@ -33,7 +32,7 @@ public class AccordianPageTests extends BaseTest {
 
     @Test
     public void SelectThirdHeading() {
-        AccordianPage accordianPage = homePage.goToWidgets().clickAccordian();
+        navigateToUrl("accordian");
         accordianPage.clickThreeHeading();
 
         String actualText = accordianPage.getSectionThreeText();

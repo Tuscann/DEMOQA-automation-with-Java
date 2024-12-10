@@ -1,6 +1,5 @@
 package part3.comdemoqa.tests.widgets;
 
-import com.pages.demo.pages.widgets.ToolTipsPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import part3.comdemoqa.base.BaseTest;
@@ -9,7 +8,7 @@ public class ToolTipsPageTests extends BaseTest {
 
     @Test
     public void checkDefaultValueSlider() {
-        ToolTipsPage toolTipsPage = homePage.goToWidgets().clickToolTips();
+        navigateToUrl("tool-tips");
         toolTipsPage.hoverMeToSeeButton();
 
         String expectedText = toolTipsPage.assertionHoverButtonText();

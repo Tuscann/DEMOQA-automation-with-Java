@@ -1,6 +1,5 @@
 package part3.comdemoqa.tests.elements;
 
-import com.pages.demo.pages.elements.RadioButtonPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import part3.comdemoqa.base.BaseTest;
@@ -8,8 +7,8 @@ import part3.comdemoqa.base.BaseTest;
 public class RadioButtonPageTests extends BaseTest {
 
     @Test
-    public void CheckAllElements() {
-        RadioButtonPage radioButtonPage = homePage.goToElements().clickRadioButton();
+    public void CheckAllTextElements() {
+        navigateToUrl("radio-button");
 
         String expectedRadioButtonText = "Radio Button";
         String expectedYesAnswerLabel = "Yes";
@@ -32,16 +31,16 @@ public class RadioButtonPageTests extends BaseTest {
     }
 
     @Test
-    public void ChooseNoAnswer() {
-        RadioButtonPage radioButtonPage = homePage.goToElements().clickRadioButton();
+    public void ChooseNoAnswerRadioButton() {
+        navigateToUrl("radio-button");
         String expectedNoAnswer = "No";
 
         Assert.assertTrue(radioButtonPage.isAnswerDisable(expectedNoAnswer));
     }
 
     @Test
-    public void ChooseYesAnswer() {
-        RadioButtonPage radioButtonPage = homePage.goToElements().clickRadioButton();
+    public void ChooseYesAnswerRadioButton() {
+        navigateToUrl("radio-button");
 
         String expectedAnswer = "Yes";
         radioButtonPage.clickAnswer(expectedAnswer);
@@ -54,7 +53,7 @@ public class RadioButtonPageTests extends BaseTest {
 
     @Test
     public void ChooseImpressiveAnswer() {
-        RadioButtonPage radioButtonPage = homePage.goToElements().clickRadioButton();
+        navigateToUrl("radio-button");
 
         String expectedAnswer = "Impressive";
         radioButtonPage.clickAnswer(expectedAnswer);
@@ -67,7 +66,7 @@ public class RadioButtonPageTests extends BaseTest {
 
     @Test
     public void verifyColorOfMessage() {
-        RadioButtonPage radioButtonPage = homePage.goToElements().clickRadioButton();
+        navigateToUrl("radio-button");
 
         String expectedAnswer = "Impressive";
         radioButtonPage.clickAnswer(expectedAnswer);

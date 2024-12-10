@@ -16,6 +16,12 @@ public class BooksPage extends BasePage {
         return new LoginPage();
     }
 
+    public BasePage clickLoginLinks() {
+        scrollToElementJS(loginLink);
+        click(loginLink);
+        return new LoginPage();
+    }
+
     public ProfilePage clickProfileLink() {
         click(loginLink);
         return new ProfilePage();

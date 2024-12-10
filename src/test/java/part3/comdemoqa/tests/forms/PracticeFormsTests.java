@@ -1,23 +1,24 @@
 package part3.comdemoqa.tests.forms;
 
-import com.pages.demo.pages.forms.PracticeFormPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import part3.comdemoqa.base.BaseTest;
 
-public class PracticeFormsTests extends BaseTest {
+public class PracticeFormsTests extends FormsTest {
 
     @Test
-    public void SelectTwoCheckBoxes() {
-        PracticeFormPage formsPage = homePage.goToForms().clickPracticeForm();
-        formsPage.clickSportHobbyCheckbox();
-        formsPage.clickMusicHobbyCheckbox();
-        formsPage.clickReadingHobbyCheckbox();
-        formsPage.unClickReadingHobbyCheckbox();
+    public void verifyCheckBoxesState() {
+        homePage.chooseHomePageMenu("Forms");
 
-        boolean isReadingCheckBoxSelected = formsPage.isReadingCheckBoxSelected();
-        boolean isSportsCheckBoxSelected = formsPage.isSportCheckBSelected();
-        boolean isMusicCheckBoxSelected = formsPage.isMusicCheckBoxSelected();
+        practiceFormPage.clickPracticeForm();
+
+        practiceFormPage.clickSportHobbyCheckbox();
+        practiceFormPage.clickMusicHobbyCheckbox();
+        practiceFormPage.clickReadingHobbyCheckbox();
+        practiceFormPage.unClickReadingHobbyCheckbox();
+
+        boolean isReadingCheckBoxSelected = practiceFormPage.isReadingCheckBoxSelected();
+        boolean isSportsCheckBoxSelected = practiceFormPage.isSportCheckBSelected();
+        boolean isMusicCheckBoxSelected = practiceFormPage.isMusicCheckBoxSelected();
 
         Assert.assertTrue(isSportsCheckBoxSelected, "\n Sports checkbox is not unselected \n");
         Assert.assertFalse(isReadingCheckBoxSelected, "\n Reading checkbox is not unselected \n");
@@ -26,36 +27,36 @@ public class PracticeFormsTests extends BaseTest {
 
     @Test
     public void SelectFemaleRadioButton() {
+        navigateToUrl("automation-practice-form");
         String gender = "Female";
-        PracticeFormPage formsPage = homePage.goToForms().clickPracticeForm();
-        formsPage.clickGenderRadioButton(gender);
+        practiceFormPage.clickGenderRadioButton(gender);
 
-        boolean isFemaleRadioButtonSelected = formsPage.isFemaleRadioButtonSelected();
+        boolean isFemaleRadioButtonSelected = practiceFormPage.isFemaleRadioButtonSelected();
         Assert.assertTrue(isFemaleRadioButtonSelected, "\n Female radio button is not selected \n");
     }
 
     @Test
     public void SelectMaleRadioButton() {
+        navigateToUrl("automation-practice-form");
         String gender = "Male";
-        PracticeFormPage formsPage = homePage.goToForms().clickPracticeForm();
-        formsPage.clickGenderRadioButton(gender);
+        practiceFormPage.clickGenderRadioButton(gender);
 
-        boolean isMaleRadioButtonSelected = formsPage.isМaleRadioButtonSelected();
+        boolean isMaleRadioButtonSelected = practiceFormPage.isМaleRadioButtonSelected();
         Assert.assertTrue(isMaleRadioButtonSelected, "\n Male radio button is not selected \n");
     }
 
     @Test
     public void SelectOtherRadioButton() {
+        navigateToUrl("automation-practice-form");
         String gender = "Other";
-        PracticeFormPage formsPage = homePage.goToForms().clickPracticeForm();
-        formsPage.clickGenderRadioButton(gender);
+        practiceFormPage.clickGenderRadioButton(gender);
 
-        boolean isOtherRadioButtonSelected = formsPage.isOtherRadioButtonSelected();
+        boolean isOtherRadioButtonSelected = practiceFormPage.isOtherRadioButtonSelected();
         Assert.assertTrue(isOtherRadioButtonSelected, "\n Other radio button is not selected \n");
     }
 
     @Test
-    public void ClickSubmitButton() {
+    public void SubmitPracticeForm() {
         String firstName = "Zhivko";
         String lastName = "Petrov";
         String expectedEmail = "karma@gmail.com";
@@ -71,7 +72,7 @@ public class PracticeFormsTests extends BaseTest {
         String expectedLabel = "Label";
         String expectedValues = "Values";
 
-        PracticeFormPage practiceFormPage = homePage.goToForms().clickPracticeForm();
+        navigateToUrl("automation-practice-form");
 
         practiceFormPage.setFirstName(firstName);
         practiceFormPage.setLastName(lastName);

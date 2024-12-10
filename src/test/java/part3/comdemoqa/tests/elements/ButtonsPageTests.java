@@ -1,6 +1,5 @@
 package part3.comdemoqa.tests.elements;
 
-import com.pages.demo.pages.elements.ButtonsPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import part3.comdemoqa.base.BaseTest;
@@ -8,7 +7,7 @@ import part3.comdemoqa.base.BaseTest;
 public class ButtonsPageTests extends BaseTest {
     @Test
     public void ClickOnThreeButtons() {
-        ButtonsPage buttonsPage = homePage.goToElements().clickButtons();
+        navigateToUrl("buttons");
 
         String expectedDoubleClickMessage = "You have done a double click";
         String expectedRightClickMessage = "You have done a right click";

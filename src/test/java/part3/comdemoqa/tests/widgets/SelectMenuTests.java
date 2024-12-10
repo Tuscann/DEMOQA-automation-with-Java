@@ -11,7 +11,7 @@ public class SelectMenuTests extends BaseTest {
 
     @Test
     public void testMultiSelectDropDown() {
-        SelectMenuPage selectMenuPage = homePage.goToWidgets().clickSelectMenu();
+        navigateToUrl("select-menu");
         selectMenuPage.selectStandardMulti("Volvo");
         selectMenuPage.selectStandardMulti(1);
         selectMenuPage.selectStandardMulti("Audi");

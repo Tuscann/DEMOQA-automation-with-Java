@@ -11,6 +11,7 @@ public class BooksStoreTest extends BaseTest {
     @Test
     public void tryToLoginWithWrongPassword() {
         LoginPage loginPage = homePage.goToBooks().clickLoginLink();
+
         String expectedUsername = "fbinnnzhivko";
         String password = "password";
         String expectedErrorMessage = "Invalid username or password!";
