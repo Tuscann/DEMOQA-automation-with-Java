@@ -1,6 +1,5 @@
 package part3.comdemoqa.tests.elements;
 
-import com.pages.demo.pages.elements.WebTablesPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import part3.comdemoqa.base.BaseTest;
@@ -9,31 +8,31 @@ import part3.comdemoqa.base.BaseTest;
 public class WebTablePageTests extends BaseTest {
 
     public void UpdateAge() {
+        navigateToUrl("webtables");
+
         String email = "kierra@example.com";
         String expectedAge = "34";
 
-        WebTablesPage webTablePage = homePage.goToElements().clickWebTables();
-
-        webTablePage.clickEdit(email);
-        webTablePage.setAge("34");
-        webTablePage.clickSubmitButton();
-        String actualAge = webTablePage.getTableAge(email);
+        webTablesPage.clickEdit(email);
+        webTablesPage.setAge("34");
+        webTablesPage.clickSubmitButton();
+        String actualAge = webTablesPage.getTableAge(email);
         Assert.assertEquals(actualAge, expectedAge,
                 "\n Actual & Expected Ages Do Not Match \n");
     }
 
     public void UpdateFirstNameAndLastName() {
+        navigateToUrl("webtables");
         String email = "cierra@example.com";
         String expectedFirstName = "Zhivko";
         String expectedLastName = "Petrov";
 
-        WebTablesPage webTablePage = homePage.goToElements().clickWebTables();
-        webTablePage.clickEdit(email);
-        webTablePage.setFirstName(expectedFirstName);
-        webTablePage.setLastName(expectedLastName);
-        webTablePage.clickSubmitButton();
-        String actualFirstName = webTablePage.getTableFirstName(email);
-        String actualLastName = webTablePage.getTableLastName(email);
+        webTablesPage.clickEdit(email);
+        webTablesPage.setFirstName(expectedFirstName);
+        webTablesPage.setLastName(expectedLastName);
+        webTablesPage.clickSubmitButton();
+        String actualFirstName = webTablesPage.getTableFirstName(email);
+        String actualLastName = webTablesPage.getTableLastName(email);
         Assert.assertEquals(actualFirstName, expectedFirstName,
                 "\n Actual & Expected FirstName Do Not Match \n");
         Assert.assertEquals(actualLastName, expectedLastName,
@@ -41,16 +40,14 @@ public class WebTablePageTests extends BaseTest {
     }
 
     public void UpdateEmail() {
+        navigateToUrl("webtables");
         String email = "cierra@example.com";
-
-        WebTablesPage webTablePage = homePage.goToElements().clickWebTables();
-        webTablePage.clickEdit(email);
-
         String expectedEmail = "da@abv.bg";
-        webTablePage.setEmail(expectedEmail);
 
-        webTablePage.clickSubmitButton();
-        String actualEmail = webTablePage.getTableEmail(expectedEmail);
+        webTablesPage.clickEdit(email);
+        webTablesPage.setEmail(expectedEmail);
+        webTablesPage.clickSubmitButton();
+        String actualEmail = webTablesPage.getTableEmail(expectedEmail);
 
         Assert.assertEquals(actualEmail, expectedEmail, "\n Actual & Expected Email Do Not Match \n");
     }
@@ -60,12 +57,12 @@ public class WebTablePageTests extends BaseTest {
         String email2 = "kierra@example.com";
         String email3 = "alden@example.com";
 
-        WebTablesPage webTablePage = homePage.goToElements().clickWebTables();
-        webTablePage.clickDeleteByEmail(email1);
-        webTablePage.clickDeleteByEmail(email2);
-        webTablePage.clickDeleteByEmail(email3);
+        navigateToUrl("webtables");
+        webTablesPage.clickDeleteByEmail(email1);
+        webTablesPage.clickDeleteByEmail(email2);
+        webTablesPage.clickDeleteByEmail(email3);
 
-        String expectedResult = webTablePage.getNoRowsFound();
+        String expectedResult = webTablesPage.getNoRowsFound();
 
         Assert.assertEquals(expectedResult, "No rows found", "Missing message");
     }
@@ -78,24 +75,24 @@ public class WebTablePageTests extends BaseTest {
         String expectedSalary = "2000";
         String expectedDepartment = "Home";
 
-        WebTablesPage webTablePage = homePage.goToElements().clickWebTables();
+        navigateToUrl("webtables");
 
-        webTablePage.clickAddNewRecordButton();
+        webTablesPage.clickAddNewRecordButton();
 
-        webTablePage.setAge(expectedAge);
-        webTablePage.setFirstName(expectedFirstName);
-        webTablePage.setLastName(expectedLastName);
-        webTablePage.setEmail(expectedEmail);
-        webTablePage.setSalary(expectedSalary);
-        webTablePage.setDepartment(expectedDepartment);
-        webTablePage.clickSubmitButton();
+        webTablesPage.setAge(expectedAge);
+        webTablesPage.setFirstName(expectedFirstName);
+        webTablesPage.setLastName(expectedLastName);
+        webTablesPage.setEmail(expectedEmail);
+        webTablesPage.setSalary(expectedSalary);
+        webTablesPage.setDepartment(expectedDepartment);
+        webTablesPage.clickSubmitButton();
 
-        String actualFirstName = webTablePage.getTableFirstName(expectedEmail);
-        String actualLastName = webTablePage.getTableLastName(expectedEmail);
-        String actualEmail = webTablePage.getTableEmail(expectedEmail);
-        String actualAge = webTablePage.getTableAge(expectedEmail);
-        String actualSalary = webTablePage.getTableSalary(expectedEmail);
-        String actualDepartment = webTablePage.getTableDepartment(expectedEmail);
+        String actualFirstName = webTablesPage.getTableFirstName(expectedEmail);
+        String actualLastName = webTablesPage.getTableLastName(expectedEmail);
+        String actualEmail = webTablesPage.getTableEmail(expectedEmail);
+        String actualAge = webTablesPage.getTableAge(expectedEmail);
+        String actualSalary = webTablesPage.getTableSalary(expectedEmail);
+        String actualDepartment = webTablesPage.getTableDepartment(expectedEmail);
 
         Assert.assertEquals(actualFirstName, expectedFirstName, "Wrong first name");
         Assert.assertEquals(actualLastName, expectedLastName, "Wrong last name");
@@ -113,25 +110,71 @@ public class WebTablePageTests extends BaseTest {
         String salary = "2500";
         String department = "QA";
 
-        WebTablesPage webTablePage = homePage.goToElements().clickWebTables();
+        navigateToUrl("webtables");
 
         for (int i = 0; i < 8; i++) {
-            webTablePage.clickAddNewRecordButton();
-            webTablePage.setFirstName(expectedFirstName + i);
-            webTablePage.setLastName(lastName);
-            webTablePage.setEmail(email);
-            webTablePage.setAge(age);
-            webTablePage.setSalary(salary);
-            webTablePage.setDepartment(department);
-            webTablePage.clickSubmitButton();
+            webTablesPage.clickAddNewRecordButton();
+            webTablesPage.setFirstName(expectedFirstName + i);
+            webTablesPage.setLastName(lastName);
+            webTablesPage.setEmail(email);
+            webTablesPage.setAge(age);
+            webTablesPage.setSalary(salary);
+            webTablesPage.setDepartment(department);
+            webTablesPage.clickSubmitButton();
         }
-        Assert.assertTrue(webTablePage.checkNextButtonIsActive(), "Not active Next button");
+        Assert.assertTrue(webTablesPage.checkNextButtonIsActive(), "Not active Next button");
     }
 
     public void CheckPreviousAndNextButtonAreNotActive() {
-        WebTablesPage webTablePage = homePage.goToElements().clickWebTables();
+        navigateToUrl("webtables");
 
-        Assert.assertFalse(webTablePage.checkPreviousButtonIsActive(), "Not active Previous button");
-        Assert.assertFalse(webTablePage.checkNextButtonIsActive(), "Not active Next button");
+        Assert.assertFalse(webTablesPage.checkPreviousButtonIsActive(), "Not active Previous button");
+        Assert.assertFalse(webTablesPage.checkNextButtonIsActive(), "Not active Next button");
+    }
+
+    public void CheckAllLabelsInRegistrationForm() {
+        navigateToUrl("webtables");
+
+        String expectedFirstNameLabel = "First Name";
+        String expectedLastNameLabel = "Last Name";
+        String expectedEmailLabel = "Email";
+        String expectedAgeLabel = "Age";
+        String expectedSalaryLabel = "Salary";
+        String expectedDepartmentLabel = "Department";
+
+        String expectedPlaceholderFirstName = "First Name";
+        String expectedPlaceholderLastNamel = "Last Name";
+        String expectedPlaceholderEmail = "name@example.com";
+        String expectedPlaceholderAge = "Age";
+        String expectedPlaceholderSalary = "Salary";
+        String expectedPlaceholderDepartment = "Department";
+
+        webTablesPage.clickAddNewRecordButton();
+        String actualFirstNameLabel = webTablesPage.getFirstNamLabel();
+        String actualLastNameLabel = webTablesPage.getLastNameLabel();
+        String actualEmailLabel = webTablesPage.getEmailLabel();
+        String actualAgeLabel = webTablesPage.getAgeLabel();
+        String actualSalaryLabel = webTablesPage.getSalaryLabel();
+        String actualDepartmentLabel = webTablesPage.getDepartmentLabel();
+
+        String actualPlaceholderFirstName = webTablesPage.getPlaceholderFirstName();
+        String actualPlaceholderLastName = webTablesPage.getPlaceholderLastName();
+        String actualPlaceholderEmail = webTablesPage.getPlaceholderUserEmail();
+        String actualPlaceholderAge = webTablesPage.getPlaceholderUserAge();
+        String actualPlaceholderSalary = webTablesPage.getPlaceholderUserSalary();
+        String actualPlaceholderDepartment = webTablesPage.getPlaceholderDepartment();
+
+        Assert.assertEquals(actualFirstNameLabel, expectedFirstNameLabel, "Not first name label");
+        Assert.assertEquals(actualLastNameLabel, expectedLastNameLabel, "Not second name label");
+        Assert.assertEquals(actualEmailLabel, expectedEmailLabel, "Not email label");
+        Assert.assertEquals(actualAgeLabel, expectedAgeLabel, "Not age label");
+        Assert.assertEquals(actualSalaryLabel, expectedSalaryLabel, "Not salary label");
+        Assert.assertEquals(actualDepartmentLabel, expectedDepartmentLabel, "Not department label");
+        Assert.assertEquals(actualPlaceholderFirstName, expectedPlaceholderFirstName, "Not first name label");
+        Assert.assertEquals(actualPlaceholderLastName, expectedPlaceholderLastNamel, "Not second name label");
+        Assert.assertEquals(actualPlaceholderEmail, expectedPlaceholderEmail, "Not email label");
+        Assert.assertEquals(actualPlaceholderAge, expectedPlaceholderAge, "Not age label");
+        Assert.assertEquals(actualPlaceholderSalary, expectedPlaceholderSalary, "Not salary label");
+        Assert.assertEquals(actualPlaceholderDepartment, expectedPlaceholderDepartment, "Not department label");
     }
 }

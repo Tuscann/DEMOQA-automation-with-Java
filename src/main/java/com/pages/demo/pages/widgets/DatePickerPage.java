@@ -1,5 +1,6 @@
 package com.pages.demo.pages.widgets;
 
+import com.pages.base.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -7,7 +8,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class DatePickerPage extends WidgetsPage {
+public class DatePickerPage extends BasePage {
     private final By sectionOneHeading = By.id("datePickerMonthYearInput");
     private final By sectionTwoHeading = By.id("dateAndTimePickerInput");
 

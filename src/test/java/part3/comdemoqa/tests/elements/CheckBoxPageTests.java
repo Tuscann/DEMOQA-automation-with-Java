@@ -94,6 +94,32 @@ public class CheckBoxPageTests extends BaseTest {
     }
 
     @Test
+    public void CollapsedWithSelectedCategories() {
+        navigateToUrl("checkbox");
+
+        checkBoxPage.clickExpandAll();
+        checkBoxPage.clickOffice();
+        checkBoxPage.clickWorkSpace();
+        checkBoxPage.clickCollapseAll();
+
+        String actualResult = checkBoxPage.getResultMessage();
+        String expectedResult = """
+                You have selected :
+                documents
+                workspace
+                react
+                angular
+                veu
+                office
+                public
+                private
+                classified
+                general""";
+
+        Assert.assertEquals(actualResult, expectedResult, "Not selected 3 checkbox Notes/Commands");
+    }
+
+    @Test
     public void SelectOnlyCheckBoxHome() {
         navigateToUrl("checkbox");
 

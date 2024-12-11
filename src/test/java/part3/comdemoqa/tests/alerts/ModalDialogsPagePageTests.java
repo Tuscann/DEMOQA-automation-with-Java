@@ -1,16 +1,13 @@
 package part3.comdemoqa.tests.alerts;
 
-import com.pages.demo.pages.alerts_frames_windows.Alerts_Frames_WindowsPage;
-import com.pages.demo.pages.alerts_frames_windows.ModalDialogsPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import part3.comdemoqa.base.BaseTest;
 
-public class ModalDialogsPageTests extends BaseTest {
+public class ModalDialogsPagePageTests extends BaseTest {
     @Test
     public void testSmallModalDialog() {
-        Alerts_Frames_WindowsPage afwPage = homePage.goToAlertsFramesWindowsCard();
-        ModalDialogsPage modalDialogsPage = afwPage.clickModalDialogs();
+        navigateToUrl("modal-dialogs");
         modalDialogsPage.clickSmallModalButton();
         String actualText = modalDialogsPage.getSmallModalText();
         Assert.assertTrue(actualText.contains
@@ -19,8 +16,7 @@ public class ModalDialogsPageTests extends BaseTest {
 
     @Test
     public void testLargeModalDialog() {
-        Alerts_Frames_WindowsPage afwPage = homePage.goToAlertsFramesWindowsCard();
-        ModalDialogsPage modalDialogsPage = afwPage.clickModalDialogs();
+        navigateToUrl("modal-dialogs");
         modalDialogsPage.clickLargeModalButton();
         String actualText = modalDialogsPage.getLargeModalText();
         Assert.assertTrue(actualText.contains
@@ -29,7 +25,7 @@ public class ModalDialogsPageTests extends BaseTest {
 
     @Test
     public void checkAllText() {
-        ModalDialogsPage modalDialogsPage = homePage.goToAlertsFramesWindowsCard().clickModalDialogs();
+        navigateToUrl("modal-dialogs");
 
         String modalDialogsText = "Modal Dialogs";
         String clickText = "Click on button to see modal";

@@ -23,12 +23,12 @@ public class BooksPage extends BasePage {
     }
 
     public ProfilePage clickProfileLink() {
-        click(loginLink);
+        click(profileLink);
         return new ProfilePage();
     }
 
     public BookStoreAPIPage clickBookStoreAPILink() {
-        click(loginLink);
+        click(BookStoreAPILink);
         return new BookStoreAPIPage();
     }
 }

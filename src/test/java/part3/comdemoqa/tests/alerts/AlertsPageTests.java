@@ -1,46 +1,45 @@
 package part3.comdemoqa.tests.alerts;
 
-import com.pages.demo.pages.alerts_frames_windows.AlertsPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import part3.comdemoqa.base.BaseTest;
 
 import static utilities.SwitchToUtility.*;
 
-public class AlertsTests extends BaseTest {
-    @Test
+public class AlertsPageTests extends BaseTest {
+    @Test(enabled = true)
     public void CheckTextOfInformationAlert() {
         // Arrange
+        navigateToUrl("alerts");
         String expectedAlertText = "You clicked a button";
-        AlertsPage alertsPage = homePage.goToAlertsFramesWindowsCard().clickAlerts();
 
         // Act
         alertsPage.clickInformationAlertButton();
+        String actualAlertText = getAlertText();
 
         // Assert
-        Assert.assertEquals(getAlertText(), expectedAlertText, "\n Actual & Expected Messages Do Not Match \n");
-        acceptAlert();
+        Assert.assertEquals(actualAlertText, expectedAlertText, "\n Actual & Expected Messages Do Not Match \n");
     }
 
-    //  @Test //TODO
+    @Test(enabled = true)
     public void CheckTextOfPromptAlertAfter5seconds() throws InterruptedException {
         // Arrange
+        navigateToUrl("alerts");
         String expectedAlertText = "This alert appeared after 5 seconds";
-        AlertsPage alertsPage = homePage.goToAlertsFramesWindowsCard().clickAlerts();
 
         // Act
         alertsPage.clickConfirmationTimeAlertButton();
-        Thread.sleep(6000);
+
         String actualAlertText = getAlertText();
 
         // Assert
         Assert.assertEquals(actualAlertText, expectedAlertText, "/n Different PromptAlertAfter message /n");
     }
 
-    //   @Test  //TODO
+    @Test
     public void CheckTextOfConfirmationAlert() {
         // Arrange
-        AlertsPage alertsPage = homePage.goToAlertsFramesWindowsCard().clickAlerts();
+        navigateToUrl("alerts");
         String expectedConfirmationResult = "You selected Cancel";
 
         // Act
@@ -58,9 +57,9 @@ public class AlertsTests extends BaseTest {
         // Arrange
         String alertText = "Selenium With Java";
         String expectedResult = "You entered " + alertText;
+        navigateToUrl("alerts");
 
         // Act
-        AlertsPage alertsPage = homePage.goToAlertsFramesWindowsCard().clickAlerts();
         alertsPage.clickPromptAlertButton();
         setAlertText(alertText);
         acceptAlert();

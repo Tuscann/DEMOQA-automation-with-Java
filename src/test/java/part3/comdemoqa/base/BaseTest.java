@@ -6,10 +6,9 @@ import com.pages.demo.pages.Intereactions.DroppablePage;
 import com.pages.demo.pages.Intereactions.ResizablePage;
 import com.pages.demo.pages.Intereactions.SelectablePage;
 import com.pages.demo.pages.Intereactions.SortablePage;
-import com.pages.demo.pages.alerts_frames_windows.AlertsPage;
-import com.pages.demo.pages.alerts_frames_windows.FramesPage;
-import com.pages.demo.pages.alerts_frames_windows.ModalDialogsPage;
-import com.pages.demo.pages.alerts_frames_windows.NestedFramesPage;
+import com.pages.demo.pages.alerts_frames_windows.*;
+import com.pages.demo.pages.bookStoreApplication.BooksPage;
+import com.pages.demo.pages.bookStoreApplication.LoginPage;
 import com.pages.demo.pages.bookStoreApplication.ProfilePage;
 import com.pages.demo.pages.elements.*;
 import com.pages.demo.pages.forms.FormsPage;
@@ -33,7 +32,9 @@ import static com.pages.base.BasePage.delay;
 import static utilities.Utility.setUtilityDriver;
 
 public class BaseTest {
+
     private final String DEMOQA_URL = "http://demoqa.com/";
+    public WebDriver driver;
     public ButtonsPage buttonsPage;
     public RadioButtonPage radioButtonPage;
     public BrokenLinksImagesPage brokenLinksImagesPage;
@@ -45,10 +46,13 @@ public class BaseTest {
     public FormsPage formsPage;
     public TextBoxPage textBoxPage;
     public WebTablesPage webTablesPage;
+    public Alerts_Frames_WindowsPage alertsFramesWindowsPage;
+    public BrowserWindowsPage browserWindowsPage;
     public AlertsPage alertsPage;
     public FramesPage framesPage;
     public NestedFramesPage nestedFramesPage;
     public ModalDialogsPage modalDialogsPage;
+    public WidgetsPage widgetsPage;
     public SortablePage sortablePage;
     public AccordianPage accordianPage;
     public AutoCompletePage autoCompletePage;
@@ -60,11 +64,13 @@ public class BaseTest {
     public MenuPage menuPage;
     public SelectMenuPage selectMenuPage;
     public ProfilePage profilePage;
+    public ElementsPage elementsPage;
     public SelectablePage selectablePage;
     public ResizablePage resizablePage;
     public DroppablePage droppablePage;
+    public LoginPage loginPage;
+    public BooksPage booksPage;
 
-    public WebDriver driver;
     protected BasePage basePage;
     protected HomePage homePage;
 
@@ -76,15 +82,30 @@ public class BaseTest {
 
     @BeforeMethod
     public void loadApplication() {
+
         driver.get(DEMOQA_URL);  // Add
         basePage = new BasePage();
         homePage = new HomePage();
-        practiceFormPage = new PracticeFormPage();
-        formsPage = new FormsPage();
+        elementsPage = new ElementsPage();
         textBoxPage = new TextBoxPage();
-        radioButtonPage = new RadioButtonPage();
-        linksPage = new LinksPage();
         checkBoxPage = new CheckBoxPage();
+        radioButtonPage = new RadioButtonPage();
+        webTablesPage = new WebTablesPage();
+        buttonsPage = new ButtonsPage();
+        linksPage = new LinksPage();
+        brokenLinksImagesPage = new BrokenLinksImagesPage();
+        uploadAndDownloadPage = new UploadAndDownloadPage();
+        dynamicPropertiesPage = new DynamicPropertiesPage();
+        formsPage = new FormsPage();
+        practiceFormPage = new PracticeFormPage();
+        //alertsFramesWindowsPage = new alertsFramesWindowsPage;
+        browserWindowsPage = new BrowserWindowsPage();
+        alertsPage = new AlertsPage();
+        framesPage = new FramesPage();
+        nestedFramesPage = new NestedFramesPage();
+        modalDialogsPage = new ModalDialogsPage();
+        widgetsPage = new WidgetsPage();
+
         droppablePage = new DroppablePage();
         resizablePage = new ResizablePage();
         selectablePage = new SelectablePage();
@@ -93,21 +114,16 @@ public class BaseTest {
         toolTipsPage = new ToolTipsPage();
         profilePage = new ProfilePage();
         tabsPage = new TabsPage();
-        webTablesPage = new WebTablesPage();
-        alertsPage = new AlertsPage();
-        framesPage = new FramesPage();
-        nestedFramesPage = new NestedFramesPage();
-        modalDialogsPage = new ModalDialogsPage();
+
+
         sortablePage = new SortablePage();
         accordianPage = new AccordianPage();
         autoCompletePage = new AutoCompletePage();
         datePickerPage = new DatePickerPage();
         sliderPage = new SliderPage();
         progressBarPage = new ProgressBarPage();
-        uploadAndDownloadPage = new UploadAndDownloadPage();
-        dynamicPropertiesPage = new DynamicPropertiesPage();
-        buttonsPage = new ButtonsPage();
-        brokenLinksImagesPage = new BrokenLinksImagesPage();
+        loginPage = new LoginPage();
+        booksPage = new BooksPage();
 
         basePage.setDriver(driver);
         setUtilityDriver();

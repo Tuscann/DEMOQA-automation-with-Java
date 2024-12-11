@@ -1,5 +1,6 @@
 package com.pages.demo.pages.widgets;
 
+import com.pages.base.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -9,7 +10,7 @@ import java.time.Duration;
 
 import static utilities.JavaScriptUtility.scrollToElementJS;
 
-public class AccordianPage extends WidgetsPage {
+public class AccordianPage extends BasePage {
     private final By sectionOneHeading = By.id("section1Heading");
     private final By sectionTwoHeading = By.id("section2Heading");
     private final By sectionThreeHeading = By.id("section3Heading");

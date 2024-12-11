@@ -1,10 +1,6 @@
 package com.pages.demo.pages.elements;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
 
 import static utilities.JavaScriptUtility.scrollToElementJS;
 
@@ -22,8 +18,64 @@ public class WebTablesPage extends ElementsPage {
     private final By nextButton = By.xpath("//button[contains(.,'Next')]");
     private final By previousButton = By.xpath("//button[contains(.,'Previous')]");
     private final By noRowsFound = By.xpath("//*[@id=\"app\"]/div/div/div/div[2]/div[2]/div[3]/div[3]");
-    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
 
+    private final By firstNamLabel = By.id("firstName-label");
+    private final By lastNameLabel = By.id("lastName-label");
+    private final By emailLabel = By.id("userEmail-label");
+    private final By ageLabel = By.id("age-label");
+    private final By salaryLabel = By.id("salary-label");
+    private final By departmentLabel = By.id("department-label");
+
+    public String getFirstNamLabel() {
+        return find(firstNamLabel).getText();
+    }
+
+    public String getLastNameLabel() {
+        return find(lastNameLabel).getText();
+    }
+
+    public String getEmailLabel() {
+        return find(emailLabel).getText();
+    }
+
+    public String getAgeLabel() {
+        return find(ageLabel).getText();
+    }
+
+    public String getSalaryLabel() {
+        return find(salaryLabel).getText();
+    }
+
+    public String getDepartmentLabel() {
+        return find(departmentLabel).getText();
+    }
+
+    public String getPlaceholderFirstName() {
+        return find(registrationFirstNameField).getAttribute("placeholder");
+    }
+
+    public String getPlaceholderLastName() {
+        return find(registrationLastNameField).getAttribute("placeholder");
+    }
+
+    public String getPlaceholderUserEmail() {
+        return find(registrationEmailField).getAttribute("placeholder");
+    }
+
+    public String getPlaceholderUserAge() {
+        return find(registrationAgeField).getAttribute("placeholder");
+    }
+
+    public String getPlaceholderUserSalary() {
+        return find(registrationSalaryField).getAttribute("placeholder");
+    }
+
+    public String getPlaceholderDepartment() {
+        return find(registrationDepartmentField).getAttribute("placeholder");
+    }
+
+
+    //  WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
 
     public String getNoRowsFound() {
         return find(noRowsFound).getText();
@@ -31,7 +83,7 @@ public class WebTablesPage extends ElementsPage {
 
     public void clickEdit(String email) {
         By edit = By.xpath("//div[text()='" + email + "']//following::span[@title='Edit']");
-        wait.until(ExpectedConditions.elementToBeClickable(edit));
+        //  wait.until(ExpectedConditions.elementToBeClickable(edit));
 
         scrollToElementJS(edit);
         click(edit);

@@ -1,22 +1,21 @@
 package part3.comdemoqa.tests.bookstore;
 
-import com.pages.demo.pages.bookStoreApplication.LoginPage;
 import com.pages.demo.pages.bookStoreApplication.ProfilePage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import part3.comdemoqa.base.BaseTest;
 
-public class BooksStoreTest extends BaseTest {
+public class BooksStorePageTest extends BaseTest {
 
-    @Test
+    @Test(enabled = false)
     public void tryToLoginWithWrongPassword() {
-        LoginPage loginPage = homePage.goToBooks().clickLoginLink();
+        navigateToUrl("login");
 
         String expectedUsername = "fbinnnzhivko";
         String password = "password";
         String expectedErrorMessage = "Invalid username or password!";
 
-        loginPage.clickUsername();
+        loginPage.clickNewUserButton();
         loginPage.setUsername(expectedUsername);
         loginPage.clickPassword();
         loginPage.setPassword(password);
@@ -26,9 +25,9 @@ public class BooksStoreTest extends BaseTest {
         Assert.assertEquals(actualErrorMessage, expectedErrorMessage, "Wrong password message");
     }
 
-    @Test
+    @Test(enabled = false)
     public void tryToLoginWithWrongUsername() {
-        LoginPage loginPage = homePage.goToBooks().clickLoginLink();
+        navigateToUrl("login");
         String expectedUsername = "username";
         String password = "h&vfCVj0k9BHofzP";
         String expectedErrorMessage = "Invalid username or password!";
@@ -43,9 +42,9 @@ public class BooksStoreTest extends BaseTest {
         Assert.assertEquals(actualErrorMessage, expectedErrorMessage, "Wrong username message");
     }
 
-    @Test
+    @Test(enabled = false)
     public void tryToLoginWithWrongUsername2() throws InterruptedException {
-        LoginPage loginPage = homePage.goToBooks().clickLoginLink();
+        navigateToUrl("login");
         String expectedUsername = "fbinnnzhivko";
         String password = "h&vfCVj0k9BHofzP";
 

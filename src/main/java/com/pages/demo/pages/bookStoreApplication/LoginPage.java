@@ -1,6 +1,7 @@
 package com.pages.demo.pages.bookStoreApplication;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -10,9 +11,9 @@ import static utilities.JavaScriptUtility.scrollToElementJS;
 
 public class LoginPage extends BooksPage {
     private final By username = By.id("userName");
+    private final By newUserButton = By.id("newUser");
     private final By password = By.id("password");
     private final By loginButton = By.id("login");
-    private final By newUserButton = By.id("newUser");
     private final By errorMessage = By.id("name");
 
     WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(12));
@@ -46,7 +47,21 @@ public class LoginPage extends BooksPage {
     }
 
     public String GetErrorMessage() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("name")));
-        return find(errorMessage).getText();
+        //  WebElement web = driver.findElement(errorMessage);
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+
+        WebElement textElement = driver.findElement(By.id("name"));
+        String initialText = textElement.getText();
+
+        WebElement button = driver.findElement(By.id("name"));
+        button.click();
+
+        wait.until(ExpectedConditions.not(ExpectedConditions.textToBe(By.id("text-element-id"), initialText))); // Wait until the text is not equal to the initial text
+
+        // Retrieve the new text
+        String newText = textElement.getText();
+        return newText;
     }
 }

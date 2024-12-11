@@ -1,15 +1,41 @@
 package utilities;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class SwitchToUtility extends Utility {
+
+
     private static WebDriver.TargetLocator switchTo() {
         return driver.switchTo();
     }
 
     public static String getAlertText() {
-        return switchTo().alert().getText();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        Alert alert;
+        String az = "";
+        
+        while (true) {
+            try {
+                alert = driver.switchTo().alert();
+                az = alert.getText();
+                alert.accept();
+                break;
+            } catch (org.openqa.selenium.NoAlertPresentException e) {
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException ex) {
+
+                }
+            }
+        }
+
+        return az;
+
     }
 
     public static void setAlertText(String text) {
@@ -21,6 +47,7 @@ public class SwitchToUtility extends Utility {
     }
 
     public static void dismissAlert() {
+        // Alert alert = wait.until(ExpectedConditions.alertIsPresent());
         switchTo().alert().dismiss();
     }
 

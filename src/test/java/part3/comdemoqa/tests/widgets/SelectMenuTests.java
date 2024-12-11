@@ -29,6 +29,7 @@ public class SelectMenuTests extends BaseTest {
     @Test
     public void selectOldStyleSelectMenu() {
         SelectMenuPage selectMenuPage = homePage.goToWidgets().clickSelectMenu();
+        // navigateToUrl("select-menu");
         selectMenuPage.selectStandardMulti("Volvo");
         selectMenuPage.selectStandardMulti(1);
         selectMenuPage.selectStandardMulti("Audi");
@@ -46,7 +47,7 @@ public class SelectMenuTests extends BaseTest {
 
     //  @Test
     public void selectOldStyleSelectMenu2() {
-        SelectMenuPage selectMenuPage = homePage.goToWidgets().clickSelectMenu();
+        navigateToUrl("select-menu");
         selectMenuPage.selectStandardMulti("Volvo");
         //  selectMenuPage.selectValue("Group 2, option 2");
     }

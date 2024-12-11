@@ -12,6 +12,7 @@ public class TextBoxPage extends ElementsPage {
     private final By currentAddress = By.id("currentAddress");
     private final By permanentAddress = By.id("permanentAddress");
     private final By submitButton = By.id("submit");
+    private final By textBoxText = By.xpath("//h1[contains(.,'Text Box')]");
 
     private final By expectedFullName = By.xpath("//p[@id=\"name\"]");
     private final By expectedEmail = By.xpath("//p[@id=\"email\"]");
@@ -103,6 +104,10 @@ public class TextBoxPage extends ElementsPage {
 
     public String getOutput() {
         return find(output).getText();
+    }
+
+    public String getTextBoxText() {
+        return find(textBoxText).getText();
     }
 
     public String isBorderRed() {

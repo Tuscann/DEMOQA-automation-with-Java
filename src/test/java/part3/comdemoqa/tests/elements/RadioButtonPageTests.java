@@ -65,7 +65,7 @@ public class RadioButtonPageTests extends BaseTest {
     }
 
     @Test
-    public void verifyColorOfMessage() {
+    public void VerifyGreenColorOfMessage() {
         navigateToUrl("radio-button");
 
         String expectedAnswer = "Impressive";

@@ -1,4 +1,7 @@
 package com.pages.demo.pages.bookStoreApplication;
 
-public class BookStoreAPIPage {
+import com.pages.base.BasePage;
+
+public class BookStoreAPIPage extends BasePage {
+    
 }

@@ -29,7 +29,7 @@ public class CheckBoxPage extends ElementsPage {
     private final By excelFileDoc = By.xpath("(//span[contains(.,'Excel File.doc')])[2]");
 
     private final By expandAll = By.cssSelector(".rct-option.rct-option-expand-all");
-    private final By collapseAll = By.cssSelector(".rct-option.rct-icon-collapse-all");
+    private final By collapseAll = By.cssSelector(".rct-option.rct-option-collapse-all");
     private final By resultMessage = By.id("result");
 
     public boolean isResultMessageShown() {

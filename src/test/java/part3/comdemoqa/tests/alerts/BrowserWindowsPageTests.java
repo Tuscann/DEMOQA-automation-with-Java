@@ -1,6 +1,5 @@
 package part3.comdemoqa.tests.alerts;
 
-import com.pages.demo.pages.alerts_frames_windows.BrowserWindowsPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import part3.comdemoqa.base.BaseTest;
@@ -9,8 +8,7 @@ public class BrowserWindowsPageTests extends BaseTest {
 
     @Test
     public void clickNewTabButton() {
-
-        BrowserWindowsPage browserWindowsPage = homePage.goToAlertsFramesWindowsCard().clickBrowserWindows();
+        navigateToUrl("browser-windows");
         browserWindowsPage.clickNewTabButton();
 
         String expectedNewTabUrl = "https://demoqa.com/sample";
@@ -21,8 +19,7 @@ public class BrowserWindowsPageTests extends BaseTest {
 
     @Test
     public void clickNewWindowButton() {
-
-        BrowserWindowsPage browserWindowsPage = homePage.goToAlertsFramesWindowsCard().clickBrowserWindows();
+        navigateToUrl("browser-windows");
         browserWindowsPage.clickNewWindowButton();
 
         String expectedNewTabUrl = "https://www.moreto.net/";
@@ -33,8 +30,7 @@ public class BrowserWindowsPageTests extends BaseTest {
 
     //@Test
     public void clickNewBrowserMessage() {
-
-        BrowserWindowsPage browserWindowsPage = homePage.goToAlertsFramesWindowsCard().clickBrowserWindows();
+        navigateToUrl("browser-windows");
         browserWindowsPage.clickNewWindowMessageButton();
 
         String expectedBrowserMessage = "Knowledge increases by sharing but not by saving. Please share this website with your friends and in your organization.";
