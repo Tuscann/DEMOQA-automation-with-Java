@@ -59,20 +59,16 @@ public class TextBoxPage extends ElementsPage {
 
     public void setFullName(String fullName2) {
         MoveToElementSelenium(fullName);
-
-        click(fullName);
         set(fullName, fullName2);
     }
 
     public void setEmail(String email2) {
         scrollToElementJS(email);
-        click(email);
         set(email, email2);
     }
 
     public void setCurrentAddress(String currentAddress2) {
         scrollToElementJS(currentAddress);
-        click(currentAddress);
         set(currentAddress, currentAddress2);
     }
 

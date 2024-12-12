@@ -6,7 +6,7 @@ import part3.comdemoqa.base.BaseTest;
 
 public class DatePickerPageTests extends BaseTest {
 
-    @Test
+    @Test(enabled = true)
     public void selectNewDate() {
         navigateToUrl("date-picker");
         String expectedDate = "10/26/2024";

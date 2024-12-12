@@ -4,7 +4,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import part3.comdemoqa.base.BaseTest;
 
-public class ProfilePageTest extends BaseTest {
+public class BooksProfilePageTest extends BaseTest {
 
     @Test(enabled = true)
     public void checkMessage() {
@@ -12,7 +12,7 @@ public class ProfilePageTest extends BaseTest {
 
         String expectedErrorMessage = "Currently you are not logged into the Book Store application, please visit the login page to enter or register page to register yourself.";
 
-        String actualMessage = profilePage.getNotLogginWrapper();
+        String actualMessage = booksProfilePage.getNotLogginWrapper();
 
 
         Assert.assertEquals(actualMessage, expectedErrorMessage, "Wrong password message");
@@ -23,9 +23,9 @@ public class ProfilePageTest extends BaseTest {
         navigateToUrl("profile");
 
         String expectedLoginUrl = "https://demoqa.com/login";
-        profilePage.clickLoginLink();
+        booksProfilePage.clickLoginLink();
 
-        String actualUrl = profilePage.getLoginLink();
+        String actualUrl = booksProfilePage.getLoginLink();
 
         Assert.assertEquals(actualUrl, expectedLoginUrl, "Wrong password message");
     }
@@ -36,8 +36,8 @@ public class ProfilePageTest extends BaseTest {
 
         String expectedLoginUrl = "https://demoqa.com/register";
 
-        profilePage.clickRegisterLink();
-        String actualUrl = profilePage.getLoginLink();
+        booksProfilePage.clickRegisterLink();
+        String actualUrl = booksProfilePage.getLoginLink();
 
         Assert.assertEquals(actualUrl, expectedLoginUrl, "Wrong password message");
     }

@@ -159,13 +159,11 @@ public class WebTablesPage extends ElementsPage {
     }
 
     public boolean checkPreviousButtonIsActive() {
-        //   wait.until(ExpectedConditions.elementToBeClickable(previousButton));
         scrollToElementJS(previousButton);
-        return find(nextButton).isEnabled();
+        return find(previousButton).isEnabled();
     }
 
     public boolean checkNextButtonIsActive() {
-        //   wait.until(ExpectedConditions.elementToBeClickable(nextButton));
         scrollToElementJS(previousButton);
         return find(nextButton).isEnabled();
     }

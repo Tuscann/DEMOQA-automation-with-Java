@@ -7,9 +7,10 @@ import com.pages.demo.pages.Intereactions.ResizablePage;
 import com.pages.demo.pages.Intereactions.SelectablePage;
 import com.pages.demo.pages.Intereactions.SortablePage;
 import com.pages.demo.pages.alerts_frames_windows.*;
+import com.pages.demo.pages.bookStoreApplication.BooksLoginPage;
 import com.pages.demo.pages.bookStoreApplication.BooksPage;
-import com.pages.demo.pages.bookStoreApplication.LoginPage;
-import com.pages.demo.pages.bookStoreApplication.ProfilePage;
+import com.pages.demo.pages.bookStoreApplication.BooksProfilePage;
+import com.pages.demo.pages.bookStoreApplication.BooksRegisterPage;
 import com.pages.demo.pages.elements.*;
 import com.pages.demo.pages.forms.FormsPage;
 import com.pages.demo.pages.forms.PracticeFormPage;
@@ -63,19 +64,23 @@ public class BaseTest {
     public ToolTipsPage toolTipsPage;
     public MenuPage menuPage;
     public SelectMenuPage selectMenuPage;
-    public ProfilePage profilePage;
+    public BooksProfilePage booksProfilePage;
     public ElementsPage elementsPage;
     public SelectablePage selectablePage;
     public ResizablePage resizablePage;
     public DroppablePage droppablePage;
-    public LoginPage loginPage;
+    public BooksLoginPage booksLoginPage;
     public BooksPage booksPage;
+    public BooksRegisterPage booksRegisterPage;
 
     protected BasePage basePage;
     protected HomePage homePage;
 
     @BeforeClass
     public void setUp() {
+        //    EdgeOptions options = new EdgeOptions();
+        //    options.addArguments("--headless");
+        //     driver = new EdgeDriver(options);
         driver = new EdgeDriver();
         driver.manage().window().maximize();
     }
@@ -112,9 +117,11 @@ public class BaseTest {
         selectMenuPage = new SelectMenuPage();
         menuPage = new MenuPage();
         toolTipsPage = new ToolTipsPage();
-        profilePage = new ProfilePage();
+        booksPage = new BooksPage();
+        booksLoginPage = new BooksLoginPage();
+        booksProfilePage = new BooksProfilePage();
+        booksRegisterPage = new BooksRegisterPage();
         tabsPage = new TabsPage();
-
 
         sortablePage = new SortablePage();
         accordianPage = new AccordianPage();
@@ -122,8 +129,6 @@ public class BaseTest {
         datePickerPage = new DatePickerPage();
         sliderPage = new SliderPage();
         progressBarPage = new ProgressBarPage();
-        loginPage = new LoginPage();
-        booksPage = new BooksPage();
 
         basePage.setDriver(driver);
         setUtilityDriver();

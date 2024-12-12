@@ -1,5 +1,6 @@
 package com.pages.demo.pages.bookStoreApplication;
 
+import com.pages.base.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -8,7 +9,7 @@ import java.time.Duration;
 
 import static utilities.JavaScriptUtility.scrollToElementJS;
 
-public class RegisterBookStorePage extends BooksPage {
+public class BooksRegisterPage extends BasePage {
     private final By firstName = By.id("firstname");
     private final By lastName = By.id("lastname");
     private final By username = By.id("userName");

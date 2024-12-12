@@ -15,7 +15,6 @@ public class DatePickerPage extends BasePage {
     WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
     public void selectDate(String enterDate) {
-
         wait.until(ExpectedConditions.visibilityOfElementLocated(sectionOneHeading))
                 .sendKeys(Keys.chord(Keys.CONTROL, "a"), enterDate, Keys.chord(Keys.ENTER));
     }

@@ -1,6 +1,5 @@
 package part3.comdemoqa.tests.widgets;
 
-import com.pages.demo.pages.widgets.SelectMenuPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import part3.comdemoqa.base.BaseTest;
@@ -28,8 +27,7 @@ public class SelectMenuTests extends BaseTest {
 
     @Test
     public void selectOldStyleSelectMenu() {
-        SelectMenuPage selectMenuPage = homePage.goToWidgets().clickSelectMenu();
-        // navigateToUrl("select-menu");
+        navigateToUrl("select-menu");
         selectMenuPage.selectStandardMulti("Volvo");
         selectMenuPage.selectStandardMulti(1);
         selectMenuPage.selectStandardMulti("Audi");

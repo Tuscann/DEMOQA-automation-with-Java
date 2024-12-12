@@ -1,5 +1,6 @@
 package com.pages.demo.pages.bookStoreApplication;
 
+import com.pages.base.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -9,14 +10,21 @@ import java.time.Duration;
 
 import static utilities.JavaScriptUtility.scrollToElementJS;
 
-public class LoginPage extends BooksPage {
+public class BooksLoginPage extends BasePage {
     private final By username = By.id("userName");
     private final By newUserButton = By.id("newUser");
     private final By password = By.id("password");
     private final By loginButton = By.id("login");
     private final By errorMessage = By.id("name");
+    private final By profile = By.id("userName-value");
 
     WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(12));
+
+    public String getErrorMessage() {
+
+        wait.until(ExpectedConditions.elementToBeClickable(errorMessage));
+        return find(errorMessage).getText();
+    }
 
     public void clickUsername() {
         scrollToElementJS(username);
@@ -32,10 +40,16 @@ public class LoginPage extends BooksPage {
         find(loginButton).click();
     }
 
-    public RegisterBookStorePage clickNewUserButton() {
+    public String getProfile() {
+        wait.until(ExpectedConditions.not(ExpectedConditions.visibilityOfElementLocated(profile)));
+        scrollToElementJS(profile);
+        return find(profile).getText();
+    }
+
+    public BooksRegisterPage clickNewUserButton() {
         scrollToElementJS(newUserButton);
         click(newUserButton);
-        return new RegisterBookStorePage();
+        return new BooksRegisterPage();
     }
 
     public void setUsername(String username2) {
@@ -51,7 +65,6 @@ public class LoginPage extends BooksPage {
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
-
         WebElement textElement = driver.findElement(By.id("name"));
         String initialText = textElement.getText();
 
@@ -64,4 +77,6 @@ public class LoginPage extends BooksPage {
         String newText = textElement.getText();
         return newText;
     }
+
+
 }
