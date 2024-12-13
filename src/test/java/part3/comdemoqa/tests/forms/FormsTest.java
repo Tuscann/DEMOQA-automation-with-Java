@@ -6,7 +6,7 @@ import part3.comdemoqa.base.BaseTest;
 
 public class FormsTest extends BaseTest {
     @Test
-    public void checkAllTextOnPage() {
+    public void CheckAllTextOnPage() {
 
         // Arrange
         navigateToUrl("forms");

@@ -28,7 +28,7 @@ public class BookRegisterPageTests extends BaseTest {
     }
 
     @Test
-    public void tryToLoginWithoutReCaptcha() {
+    public void TryToLoginWithoutReCaptcha() {
         navigateToUrl("register");
 
         String expectedFirstName = "Zhivko";

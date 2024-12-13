@@ -42,7 +42,6 @@ public class PracticeFormPage extends BasePage {
     private final By addressForm = By.xpath("//td[contains(.,'Address')]/following-sibling::*[1]");
     private final By stateAndCityForm = By.xpath("//td[contains(.,'State')]/following-sibling::*[1]");
 
-    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
     public String getStudentNameFromModal() {
         delay(1500);
@@ -172,10 +171,9 @@ public class PracticeFormPage extends BasePage {
 
 
     public void setDateOfBirth(String dateOfBirth) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOfElementLocated(this.dateOfBirth))
                 .sendKeys(Keys.chord(Keys.CONTROL, "a"), dateOfBirth, Keys.chord(Keys.ENTER));
-
-
     }
 
     public boolean isFemaleRadioButtonSelected() {

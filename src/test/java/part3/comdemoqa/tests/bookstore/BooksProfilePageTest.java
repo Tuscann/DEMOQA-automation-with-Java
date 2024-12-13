@@ -7,7 +7,7 @@ import part3.comdemoqa.base.BaseTest;
 public class BooksProfilePageTest extends BaseTest {
 
     @Test(enabled = true)
-    public void checkMessage() {
+    public void VerifyMessageText() {
         navigateToUrl("profile");
 
         String expectedErrorMessage = "Currently you are not logged into the Book Store application, please visit the login page to enter or register page to register yourself.";
@@ -19,7 +19,7 @@ public class BooksProfilePageTest extends BaseTest {
     }
 
     @Test(enabled = true)
-    public void checkLoginLink() {
+    public void VerifyLoginLink() {
         navigateToUrl("profile");
 
         String expectedLoginUrl = "https://demoqa.com/login";
@@ -31,7 +31,7 @@ public class BooksProfilePageTest extends BaseTest {
     }
 
     @Test(enabled = true)
-    public void checkRegisterLink() {
+    public void VerifyRegisterLink() {
         navigateToUrl("profile");
 
         String expectedLoginUrl = "https://demoqa.com/register";
@@ -41,5 +41,4 @@ public class BooksProfilePageTest extends BaseTest {
 
         Assert.assertEquals(actualUrl, expectedLoginUrl, "Wrong password message");
     }
-
 }

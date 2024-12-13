@@ -41,7 +41,6 @@ public class AutoCompletePageTests extends BaseTest {
         Assert.assertEquals(actualSelectedColors, expectedFirstColor + "\n" + expectedSecondColor, "Wrong Colors selected");
     }
 
-
     @Test
     public void SelectOneColorClearAddNewColorSingle() {
         navigateToUrl("auto-complete");
@@ -61,7 +60,7 @@ public class AutoCompletePageTests extends BaseTest {
         Assert.assertEquals(actualSelectedColors, expectedFirstColor, "Wrong " + expectedFirstColor + "Color selected");
     }
 
-    @Test  // Too Slow why ????
+    @Test
     public void SelectOneColorSingle() {
         navigateToUrl("auto-complete");
 
@@ -72,9 +71,8 @@ public class AutoCompletePageTests extends BaseTest {
         Assert.assertEquals(actualSelectedColors, expectedFirstColor, "Wrong Color selected");
     }
 
-
     @Test
-    public void CheckTextOnPage() {
+    public void VerifyAllTextOnPage() {
         navigateToUrl("auto-complete");
 
         String expectedText = "Auto Complete";
@@ -84,7 +82,6 @@ public class AutoCompletePageTests extends BaseTest {
         String actualText = autoCompletePage.getText();
         String actualTypeMultipleText = autoCompletePage.getMultipleContainerText();
         String actualTypeSingleText = autoCompletePage.getAutoCompleteSingleText();
-
 
         Assert.assertEquals(actualText, expectedText, "Wrong Auto Complete");
         Assert.assertEquals(actualTypeMultipleText, expectedTypeMultipleText, "Wrong Type multiple color names");

@@ -3,10 +3,13 @@ package part3.comdemoqa.tests.forms;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 public class PracticeFormsTests extends FormsTest {
 
     @Test
-    public void verifyCheckBoxesState() {
+    public void VerifyCheckBoxesState() {
         navigateToUrl("automation-practice-form");
 
         practiceFormPage.clickSportHobbyCheckbox();
@@ -60,7 +63,8 @@ public class PracticeFormsTests extends FormsTest {
         String expectedEmail = "karma@gmail.com";
         String expectedGender = "Female";
         String expectedMobileNumber = "1234567890";
-        String expectedDateOfBirth = "08 December,2024";
+        String expectedDateOfBirth = LocalDate.now().format(DateTimeFormatter.ofPattern("dd MMMM,yyyy"));
+        String DateOfBirth = LocalDate.now().format(DateTimeFormatter.ofPattern("MM/dd/yyyy"));
         String expectedSubject = "Hindi";
         String expectedHobbies = "Sports";
         String expectedPicture = "";
@@ -77,7 +81,7 @@ public class PracticeFormsTests extends FormsTest {
         practiceFormPage.setEmail(expectedEmail);
         practiceFormPage.clickGenderRadioButton(expectedGender);
         practiceFormPage.setMobile(expectedMobileNumber);
-        practiceFormPage.setDateOfBirth(expectedDateOfBirth);
+        practiceFormPage.setDateOfBirth(DateOfBirth);
         practiceFormPage.setSubject(expectedSubject);
         practiceFormPage.clickSportHobbyCheckbox();
         practiceFormPage.setCurrentAddress(expectedCurrentAddress);

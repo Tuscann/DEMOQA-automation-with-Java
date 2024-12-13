@@ -19,11 +19,10 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.io.FileHandler;
 import org.testng.ITestResult;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 
 import java.io.File;
@@ -76,19 +75,17 @@ public class BaseTest {
     protected BasePage basePage;
     protected HomePage homePage;
 
-    @BeforeClass
-    public void setUp() {
-        // EdgeOptions options = new EdgeOptions();
-        // options.addArguments("--headless");
-        //driver = new EdgeDriver(options);
-        driver = new EdgeDriver();
-        driver.manage().window().maximize();
-    }
-
     @BeforeMethod
-    public void loadApplication() {
+    public void setUp() {
+        EdgeOptions options = new EdgeOptions();
+        options.addArguments("--headless=new");
+        // options.addArguments("--disable-gpu");
+        options.addArguments("--window-size=1920,1080"); // Set the window size
 
-        driver.get(DEMOQA_URL);  // Add
+        driver = new EdgeDriver(options);
+        driver.manage().window().maximize();
+        driver.get(DEMOQA_URL);
+
         basePage = new BasePage();
         homePage = new HomePage();
         elementsPage = new ElementsPage();
@@ -110,7 +107,6 @@ public class BaseTest {
         nestedFramesPage = new NestedFramesPage();
         modalDialogsPage = new ModalDialogsPage();
         widgetsPage = new WidgetsPage();
-
         droppablePage = new DroppablePage();
         resizablePage = new ResizablePage();
         selectablePage = new SelectablePage();
@@ -122,7 +118,6 @@ public class BaseTest {
         booksProfilePage = new BooksProfilePage();
         booksRegisterPage = new BooksRegisterPage();
         tabsPage = new TabsPage();
-
         sortablePage = new SortablePage();
         accordianPage = new AccordianPage();
         autoCompletePage = new AutoCompletePage();
@@ -152,7 +147,7 @@ public class BaseTest {
         }
     }
 
-    @AfterClass
+    @AfterMethod
     public void tearDown() {
         delay(1000);
         driver.quit();

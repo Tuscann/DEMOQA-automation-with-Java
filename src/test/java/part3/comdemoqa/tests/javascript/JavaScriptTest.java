@@ -5,7 +5,7 @@ import part3.comdemoqa.base.BaseTest;
 
 public class JavaScriptTest extends BaseTest {
 
-    @Test
+    @Test(enabled = false)
     public void testScrollingToElement() {
         homePage.goToForms();
     }

@@ -6,7 +6,7 @@ import part3.comdemoqa.base.BaseTest;
 
 import java.util.List;
 
-public class SelectMenuTests extends BaseTest {
+public class SelectMenuPageTests extends BaseTest {
 
     @Test
     public void SelectFromMultiSelectDropDown() {
@@ -48,6 +48,4 @@ public class SelectMenuTests extends BaseTest {
         selectMenuPage.selectStandardMultiByText("Volvo");
         //  selectMenuPage.selectValue("Group 2, option 2");
     }
-
-
 }

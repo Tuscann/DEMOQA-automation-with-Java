@@ -2,9 +2,6 @@ package com.pages.demo.pages.elements;
 
 import com.pages.base.BasePage;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-
-import java.util.List;
 
 import static utilities.JavaScriptUtility.scrollToElementJS;
 
@@ -14,7 +11,6 @@ public class CheckBoxPage extends BasePage {
     private final By desktop = By.xpath("(//span[contains(.,'Desktop')])[2]");
     private final By notes = By.xpath("(//span[contains(.,'Notes')])[2]");
     private final By commands = By.xpath("(//span[contains(.,'Commands')])[2]");
-    private final By contacts = By.xpath("(//span[contains(.,'Contacts')])[2]");
     private final By documents = By.xpath("(//span[contains(.,'Documents')])[2]");
     private final By workSpace = By.xpath("(//span[contains(.,'WorkSpace')])[2]");
     private final By react = By.xpath("(//span[contains(.,'React')])[2]");
@@ -34,13 +30,7 @@ public class CheckBoxPage extends BasePage {
     private final By resultMessage = By.id("result");
 
     public boolean isResultMessageShown() {
-        List<WebElement> elements = driver.findElements(By.id("result"));
-
-        if (elements.isEmpty()) {
-            return true;
-        } else {
-            return false;
-        }
+        return driver.findElements(By.id("result")).isEmpty();
     }
 
     public void clickHome() {
@@ -71,10 +61,6 @@ public class CheckBoxPage extends BasePage {
     public void clickCommands() {
         scrollToElementJS(commands);
         click(commands);
-    }
-
-    public void clickContacts() {
-        click(contacts);
     }
 
     public void clickDocuments() {

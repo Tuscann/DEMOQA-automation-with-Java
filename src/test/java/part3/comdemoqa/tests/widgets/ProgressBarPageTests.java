@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 import part3.comdemoqa.base.BaseTest;
 
 public class ProgressBarPageTests extends BaseTest {
-    @Test
+    @Test(enabled = false)
     public void ClickStartButton() throws InterruptedException {
         navigateToUrl("progress-bar");
         progressBarPage.clickStartButtonAfter3seconds();

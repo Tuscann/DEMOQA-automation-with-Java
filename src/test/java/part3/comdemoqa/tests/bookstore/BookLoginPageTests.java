@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 import part3.comdemoqa.base.BaseTest;
 
 public class BookLoginPageTests extends BaseTest {
-    @Test(priority = 1)
+    @Test
     public void LoginWithValidUsernameAndValidPassword() {
         navigateToUrl("login");
 

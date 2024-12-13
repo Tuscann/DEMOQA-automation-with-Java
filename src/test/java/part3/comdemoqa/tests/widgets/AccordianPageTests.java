@@ -42,7 +42,7 @@ public class AccordianPageTests extends BaseTest {
     }
 
     @Test
-    public void CheckText() {
+    public void VerifyAllTextOnPage() {
         navigateToUrl("accordian");
         String expectedHeading = "Accordian";
         String expectedOneHeadingText = "What is Lorem Ipsum?";

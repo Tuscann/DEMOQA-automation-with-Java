@@ -6,7 +6,7 @@ import part3.comdemoqa.base.BaseTest;
 
 public class ModalDialogsPagePageTests extends BaseTest {
     @Test
-    public void testSmallModalDialog() {
+    public void VerifySmallModalDialogText() {
         navigateToUrl("modal-dialogs");
         modalDialogsPage.clickSmallModalButton();
         String actualText = modalDialogsPage.getSmallModalText();
@@ -15,7 +15,7 @@ public class ModalDialogsPagePageTests extends BaseTest {
     }
 
     @Test
-    public void testLargeModalDialog() {
+    public void VerifyLargeModalDialogText() {
         navigateToUrl("modal-dialogs");
         modalDialogsPage.clickLargeModalButton();
         String actualText = modalDialogsPage.getLargeModalText();
@@ -24,7 +24,7 @@ public class ModalDialogsPagePageTests extends BaseTest {
     }
 
     @Test
-    public void checkAllText() {
+    public void VerifyAllTextOnPage() {
         navigateToUrl("modal-dialogs");
 
         String modalDialogsText = "Modal Dialogs";

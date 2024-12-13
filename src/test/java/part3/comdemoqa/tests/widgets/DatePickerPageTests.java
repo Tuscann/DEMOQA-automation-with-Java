@@ -43,7 +43,7 @@ public class DatePickerPageTests extends BaseTest {
     }
 
     @Test
-    public void CheckText() {
+    public void VerifyAllTextOnPage() {
         navigateToUrl("date-picker");
         String expectedDate = LocalDate.now().format(DateTimeFormatter.ofPattern("MM/dd/yyyy"));
         String expectedDateAndTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("MMMM dd, yyyy h:mm a"));

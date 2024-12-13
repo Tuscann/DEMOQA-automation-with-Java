@@ -31,7 +31,7 @@ public class TextBoxPageTests extends BaseTest {
     }
 
     @Test(enabled = true)
-    public void clickSubmitButton() {
+    public void ClickSubmitButton() {
         navigateToUrl("text-box");
         textBoxPage.clickSubmitButton();
 
@@ -41,7 +41,7 @@ public class TextBoxPageTests extends BaseTest {
     }
 
     @Test
-    public void addFullName() {
+    public void AddFullName() {
         String fullName = "Zhivko Nedyalkov";
         String expectedOutput = "Name:" + fullName;
 
@@ -55,7 +55,7 @@ public class TextBoxPageTests extends BaseTest {
     }
 
     @Test
-    public void addEmail() {
+    public void AddEmail() {
         String email = "testemail@example.com";
 
         navigateToUrl("text-box");
@@ -67,7 +67,7 @@ public class TextBoxPageTests extends BaseTest {
     }
 
     @Test
-    public void addPermanentAddress() {
+    public void AddPermanentAddress() {
         String permanentAddress = "1234 Elm Street, Springfield";
 
         navigateToUrl("text-box");
@@ -79,7 +79,7 @@ public class TextBoxPageTests extends BaseTest {
     }
 
     @Test
-    public void addCurrentAddress() {
+    public void AddCurrentAddress() {
         String currentAddress = "4321 Maple Lane, Metropolis";
 
         navigateToUrl("text-box");
@@ -91,7 +91,7 @@ public class TextBoxPageTests extends BaseTest {
     }
 
     @Test
-    public void updateAllFieldsAfterSubmit() {
+    public void UpdateAllFieldsAfterSubmit() {
         navigateToUrl("text-box");
 
         String fullName = "Zhivko Nedyalkov";
@@ -138,7 +138,7 @@ public class TextBoxPageTests extends BaseTest {
     }
 
     @Test
-    public void checkAllPlaceholders() {
+    public void VerifyAllPlaceholdersAndAllLabels() {
         navigateToUrl("text-box");
 
         String expectedPlaceholderFullName = "Full Name";
@@ -146,33 +146,26 @@ public class TextBoxPageTests extends BaseTest {
         String expectedPlaceholderCurrentAddress = "Current Address";
         String expectedPlaceholderPermanentAddress = "";
         String expectedTextBoxText = "Text Box";
+        String expectedFullNameLabel = "Full Name";
+        String expectedFEmailLabel = "Email";
+        String expectedCurrentAddressLabel = "Current Address";
+        String expectedPermanentAddressLabel = "Permanent Address";
 
         String placeholderFullName = textBoxPage.getPlaceholderFullName();
         String placeholderEmail = textBoxPage.getPlaceholderEmail();
         String placeholderCurrentAddress = textBoxPage.getPlaceholderCurrentAddress();
         String placeholderPermanentAddress = textBoxPage.getPlaceholderPermanentAddress();
         String textBoxText = textBoxPage.getTextBoxText();
+        String fullNameLabel = textBoxPage.getFullNameLabel();
+        String emailLabel = textBoxPage.getEmailLabel();
+        String currentAddressLabel = textBoxPage.getCurrentAddressLabel();
+        String permanentAddressLabel = textBoxPage.getPermanentAddressLabel();
 
         Assert.assertEquals(placeholderFullName, expectedPlaceholderFullName, "Not same placeholder Full Name");
         Assert.assertEquals(placeholderEmail, expectedPlaceholderEmail, "Not same placeholder Email");
         Assert.assertEquals(placeholderCurrentAddress, expectedPlaceholderCurrentAddress, "Not same placeholder Current Address");
         Assert.assertEquals(placeholderPermanentAddress, expectedPlaceholderPermanentAddress, "Not same placeholder Permanent Address");
         Assert.assertEquals(textBoxText, expectedTextBoxText, "Wrong text box text");
-    }
-
-    @Test
-    public void CheckAllLabels() {
-        navigateToUrl("text-box");
-        String expectedFullNameLabel = "Full Name";
-        String expectedFEmailLabel = "Email";
-        String expectedCurrentAddressLabel = "Current Address";
-        String expectedPermanentAddressLabel = "Permanent Address";
-
-        String fullNameLabel = textBoxPage.getFullNameLabel();
-        String emailLabel = textBoxPage.getEmailLabel();
-        String currentAddressLabel = textBoxPage.getCurrentAddressLabel();
-        String permanentAddressLabel = textBoxPage.getPermanentAddressLabel();
-
         Assert.assertEquals(fullNameLabel, expectedFullNameLabel, "Not same label Full Name");
         Assert.assertEquals(emailLabel, expectedFEmailLabel, "Not same label Email");
         Assert.assertEquals(currentAddressLabel, expectedCurrentAddressLabel, "Not same label Current Address");

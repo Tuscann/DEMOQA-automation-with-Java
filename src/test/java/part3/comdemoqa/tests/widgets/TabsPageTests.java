@@ -41,19 +41,25 @@ public class TabsPageTests extends BaseTest {
     public void CheckTextsOnPage() {
         navigateToUrl("tabs");
 
-        String expectedString = "Tabs";
+        String expectedHead = "Tabs";
+        String expectedString = "Details about Lorem Ipsum";
         String expectedWhatText = "What";
         String expectedOriginText = "Origin";
-        String expectedUseText = "Tabs";
+        String expectedUseText = "Use";
+        String expectedMoreText = "More";
 
-        String actualString = "Tabs";
-        String actualWhatText = "What";
-        String actualOriginText = "Origin";
-        String actualUseText = "Tabs";
+        String actualString = tabsPage.getUnderTitleText();
+        String actualWhatText = tabsPage.getWhatTabText();
+        String actualOriginText = tabsPage.getOriginTabText();
+        String actualUseText = tabsPage.getUseTabText();
+        String actualMoreText = tabsPage.getMoreTabText();
+        String actualHead = tabsPage.getTabsText();
 
-        Assert.assertEquals(actualString, expectedString, "Wrong use text");
-        Assert.assertEquals(actualWhatText, expectedWhatText, "Wrong use text");
-        Assert.assertEquals(actualOriginText, expectedOriginText, "Wrong use text");
+        Assert.assertEquals(actualString, expectedString, "Wrong Details about Lorem Ipsum text");
+        Assert.assertEquals(actualWhatText, expectedWhatText, "Wrong what text");
+        Assert.assertEquals(actualOriginText, expectedOriginText, "Wrong origin text");
         Assert.assertEquals(actualUseText, expectedUseText, "Wrong use text");
+        Assert.assertEquals(actualMoreText, expectedMoreText, "Wrong more text");
+        Assert.assertEquals(actualHead, expectedHead, "Wrong Tabs text");
     }
 }

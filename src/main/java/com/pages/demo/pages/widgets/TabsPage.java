@@ -2,6 +2,10 @@ package com.pages.demo.pages.widgets;
 
 import com.pages.base.BasePage;
 import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class TabsPage extends BasePage {
 
@@ -15,10 +19,30 @@ public class TabsPage extends BasePage {
     private final By useTabInternalText = By.id("demo-tabpane-use");
 
     private final By underTitle = By.xpath("//*[contains(text(),\"Details about\")]");
-    private final By assertText = By.className("mt-3");
+    private final By tabsText = By.xpath("//h1[contains(.,'Tabs')]");
 
-    public String getUnderTitle() {
+    public String getTabsText() {
+        return find(tabsText).getText();
+    }
+
+    public String getUnderTitleText() {
         return find(underTitle).getText();
+    }
+
+    public String getWhatTabText() {
+        return find(whatTab).getText();
+    }
+
+    public String getOriginTabText() {
+        return find(originTab).getText();
+    }
+
+    public String getUseTabText() {
+        return find(useTab).getText();
+    }
+
+    public String getMoreTabText() {
+        return find(moreTab).getText();
     }
 
     public void clickWhatTab() {
@@ -38,14 +62,14 @@ public class TabsPage extends BasePage {
     }
 
     public String getOriginTabInternalText() {
-        //  WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(4));
-        //  wait.until(ExpectedConditions.visibilityOfElementLocated(originTabInternalText));
         return find(originTabInternalText).getText();
     }
 
     public String getUseTabInternalText() {
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(4));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(useTabInternalText));
+
         return find(useTabInternalText).getText();
     }
-
-
 }
