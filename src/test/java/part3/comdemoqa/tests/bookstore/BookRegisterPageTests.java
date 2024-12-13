@@ -1,28 +1,26 @@
 package part3.comdemoqa.tests.bookstore;
 
-import com.pages.demo.pages.bookStoreApplication.BooksRegisterPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import part3.comdemoqa.base.BaseTest;
 
-public class BookRegisterTest extends BaseTest {
+public class BookRegisterPageTests extends BaseTest {
 
     @Test(enabled = false)
     public void RegisterToBookStoreTest() {
-        navigateToUrl("login");
-        BooksRegisterPage registerBookstorePage = booksLoginPage.clickNewUserButton();
+        navigateToUrl("register");
 
         String expectedFirstName = "Zhivko";
         String expectedLastName = "Petrov";
         String expectedUsername = "fbi" + Math.random();
         String expectedPassword = "12345Aa!" + Math.random();
 
-        registerBookstorePage.setFirstName(expectedFirstName);
-        registerBookstorePage.setLastName(expectedLastName);
-        registerBookstorePage.setUsername(expectedUsername);
-        registerBookstorePage.setPassword(expectedPassword);
-        registerBookstorePage.clickIamRobotButton();
-        registerBookstorePage.clickRegisterButton();
+        booksRegisterPage.setFirstName(expectedFirstName);
+        booksRegisterPage.setLastName(expectedLastName);
+        booksRegisterPage.setUsername(expectedUsername);
+        booksRegisterPage.setPassword(expectedPassword);
+        booksRegisterPage.clickIamRobotButton();
+        booksRegisterPage.clickRegisterButton();
 
         var x = 12;
 

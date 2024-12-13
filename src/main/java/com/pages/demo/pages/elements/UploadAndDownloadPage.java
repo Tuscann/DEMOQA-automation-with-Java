@@ -1,4 +1,6 @@
 package com.pages.demo.pages.elements;
 
-public class UploadAndDownloadPage extends ElementsPage {
+import com.pages.base.BasePage;
+
+public class UploadAndDownloadPage extends BasePage {
 }

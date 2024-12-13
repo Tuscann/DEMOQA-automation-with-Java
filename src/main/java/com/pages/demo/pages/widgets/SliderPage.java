@@ -1,5 +1,6 @@
 package com.pages.demo.pages.widgets;
 
+import com.pages.base.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -11,7 +12,7 @@ import static utilities.GetUtility.getAttribute;
 import static utilities.WaitUtility.explicitWaitUntilVisible;
 import static utilities.WaitUtility.fluentWaitUntilVisible;
 
-public class SliderPage extends WidgetsPage {
+public class SliderPage extends BasePage {
     private final By slider = By.xpath("//div[@id='sliderContainer']//input[@type='range']");
     private final By sliderValue = By.id("sliderValue");
 

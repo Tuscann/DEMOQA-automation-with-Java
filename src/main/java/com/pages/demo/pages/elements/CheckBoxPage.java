@@ -1,5 +1,6 @@
 package com.pages.demo.pages.elements;
 
+import com.pages.base.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -7,7 +8,7 @@ import java.util.List;
 
 import static utilities.JavaScriptUtility.scrollToElementJS;
 
-public class CheckBoxPage extends ElementsPage {
+public class CheckBoxPage extends BasePage {
 
     private final By home = By.xpath("(//span[contains(.,'Home')])[2]");
     private final By desktop = By.xpath("(//span[contains(.,'Desktop')])[2]");

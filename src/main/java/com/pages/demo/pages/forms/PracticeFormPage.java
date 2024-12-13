@@ -1,5 +1,6 @@
 package com.pages.demo.pages.forms;
 
+import com.pages.base.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -10,7 +11,7 @@ import java.time.Duration;
 import static utilities.JavaScriptUtility.clickJS;
 import static utilities.JavaScriptUtility.scrollToElementJS;
 
-public class PracticeFormPage extends FormsPage {
+public class PracticeFormPage extends BasePage {
     private final By firstName = By.id("firstName");
     private final By lastName = By.id("lastName");
     private final By email = By.id("userEmail");

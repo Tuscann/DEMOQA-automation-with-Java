@@ -1,9 +1,9 @@
 package com.pages.demo.pages.Intereactions;
 
-import com.pages.demo.pages.HomePage;
+import com.pages.base.BasePage;
 import org.openqa.selenium.By;
 
-public class InteractionPage extends HomePage {
+public class InteractionPage extends BasePage {
     private final By sortable = By.xpath("//li[@id='item-0']/span[text()='Sortable']");
     private final By selectable = By.xpath("//li[@id='item-1']/span[text()='Selectable']");
     private final By resizable = By.xpath("//li[@id='item-2']/span[text()='Resizable']");
@@ -30,8 +30,8 @@ public class InteractionPage extends HomePage {
         return new DroppablePage();
     }
 
-    public DragabblePage clickDragabble() {
+    public DraggablePage clickDragabble() {
         click(dragabble);
-        return new DragabblePage();
+        return new DraggablePage();
     }
 }

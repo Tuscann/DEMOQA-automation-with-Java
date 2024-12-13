@@ -1,16 +1,50 @@
 package com.pages.demo.pages.widgets;
 
+import com.pages.base.BasePage;
 import org.openqa.selenium.By;
 
+public class TabsPage extends BasePage {
 
-public class TabsPage extends WidgetsPage {
+    private final By whatTab = By.id("demo-tab-what");
+    private final By originTab = By.id("demo-tab-origin");
+    private final By useTab = By.id("demo-tab-use");
+    private final By moreTab = By.id("demo-tab-more");
 
-    private final By tabs = By.xpath("//*[contains(@href,\"#\")]");
+    private final By whatTabInternalText = By.id("demo-tabpane-what");
+    private final By originTabInternalText = By.id("demo-tabpane-origin");
+    private final By useTabInternalText = By.id("demo-tabpane-use");
+
     private final By underTitle = By.xpath("//*[contains(text(),\"Details about\")]");
     private final By assertText = By.className("mt-3");
 
     public String getUnderTitle() {
         return find(underTitle).getText();
+    }
+
+    public void clickWhatTab() {
+        find(whatTab).click();
+    }
+
+    public void clickOriginTab() {
+        find(originTab).click();
+    }
+
+    public void clickUseTab() {
+        find(useTab).click();
+    }
+
+    public String getWhatTabInternalText() {
+        return find(whatTabInternalText).getText();
+    }
+
+    public String getOriginTabInternalText() {
+        //  WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(4));
+        //  wait.until(ExpectedConditions.visibilityOfElementLocated(originTabInternalText));
+        return find(originTabInternalText).getText();
+    }
+
+    public String getUseTabInternalText() {
+        return find(useTabInternalText).getText();
     }
 
 

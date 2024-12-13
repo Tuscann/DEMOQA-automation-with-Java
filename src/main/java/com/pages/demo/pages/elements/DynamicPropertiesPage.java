@@ -1,4 +1,6 @@
 package com.pages.demo.pages.elements;
 
-public class DynamicPropertiesPage extends ElementsPage {
+import com.pages.base.BasePage;
+
+public class DynamicPropertiesPage extends BasePage {
 }

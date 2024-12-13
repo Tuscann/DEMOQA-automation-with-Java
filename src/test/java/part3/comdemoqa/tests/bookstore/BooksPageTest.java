@@ -6,7 +6,7 @@ import part3.comdemoqa.base.BaseTest;
 
 public class BooksPageTest extends BaseTest {
 
-    @Test(enabled = true)
+    @Test
     public void CheckAllFourPagesLinks() {
         navigateToUrl("books");
 
@@ -31,7 +31,7 @@ public class BooksPageTest extends BaseTest {
         Assert.assertEquals(actualUrl, expectedUrl);
     }
 
-    @Test(enabled = true)
+    @Test
     public void GetFirstRowTable() {
         navigateToUrl("books");
 
@@ -46,7 +46,7 @@ public class BooksPageTest extends BaseTest {
         Assert.assertEquals(actualTopRow, expectedTopRow);
     }
 
-    @Test(enabled = true)
+    @Test
     public void CheckCountOfDefaultBooks() {
         navigateToUrl("books");
 
@@ -68,7 +68,7 @@ public class BooksPageTest extends BaseTest {
         Assert.assertEquals(actualUrl, expectedUrl);
     }
 
-    @Test(enabled = true)
+    @Test
     public void SearchAndFindOneBook() {
         navigateToUrl("books");
 
@@ -294,7 +294,7 @@ public class BooksPageTest extends BaseTest {
         Assert.assertEquals(actualFindBooks, expectedBooksCount);
     }
 
-    @Test(enabled = true)
+    @Test
     public void OrderBooksByTitleByAuthorByPublisherAscending() {
         navigateToUrl("books");
 
@@ -396,7 +396,7 @@ public class BooksPageTest extends BaseTest {
         Assert.assertEquals(actualFindBooks, expectedBooksCount);
     }
 
-    @Test(enabled = true)
+    @Test
     public void SearchAndOrderResultAscendingBooks() {
         navigateToUrl("books");
 
@@ -482,7 +482,7 @@ public class BooksPageTest extends BaseTest {
         Assert.assertEquals(actualFindBooks, expectedBooksCount);
     }
 
-    @Test(enabled = true)
+    @Test
     public void SearchAndOrderResultDescendingBooks() {
         navigateToUrl("books");
 

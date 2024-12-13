@@ -1,4 +1,6 @@
 package com.pages.demo.pages.widgets;
 
-public class MenuPage extends WidgetsPage {
+import com.pages.base.BasePage;
+
+public class MenuPage extends BasePage {
 }

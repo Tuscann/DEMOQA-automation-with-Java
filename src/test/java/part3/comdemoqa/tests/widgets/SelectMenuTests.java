@@ -9,12 +9,12 @@ import java.util.List;
 public class SelectMenuTests extends BaseTest {
 
     @Test
-    public void testMultiSelectDropDown() {
+    public void SelectFromMultiSelectDropDown() {
         navigateToUrl("select-menu");
-        selectMenuPage.selectStandardMulti("Volvo");
-        selectMenuPage.selectStandardMulti(1);
-        selectMenuPage.selectStandardMulti("Audi");
-        selectMenuPage.selectStandardMulti(2);
+        selectMenuPage.selectStandardMultiByText("Volvo");
+        selectMenuPage.selectStandardMultiByIndex(1);
+        selectMenuPage.selectStandardMultiByText("Audi");
+        selectMenuPage.selectStandardMultiByIndex(2);
 
         selectMenuPage.deselectStandardMulti("saab");
         List<String> actualSelectedOptions = selectMenuPage.getAllSelectedStandardMultiOptions();
@@ -26,16 +26,15 @@ public class SelectMenuTests extends BaseTest {
     }
 
     @Test
-    public void selectOldStyleSelectMenu() {
+    public void SelectOldStyleSelectMenu() {
         navigateToUrl("select-menu");
-        selectMenuPage.selectStandardMulti("Volvo");
-        selectMenuPage.selectStandardMulti(1);
-        selectMenuPage.selectStandardMulti("Audi");
-        selectMenuPage.selectStandardMulti(2);
+        selectMenuPage.selectStandardMultiByText("Volvo");
+        selectMenuPage.selectStandardMultiByIndex(1);
+        selectMenuPage.selectStandardMultiByText("Audi");
+        selectMenuPage.selectStandardMultiByIndex(2);
 
         selectMenuPage.deselectStandardMulti("saab");
-        List<String> actualSelectedOptions =
-                selectMenuPage.getAllSelectedStandardMultiOptions();
+        List<String> actualSelectedOptions = selectMenuPage.getAllSelectedStandardMultiOptions();
         Assert.assertTrue(actualSelectedOptions.contains("Volvo"));
         Assert.assertTrue(actualSelectedOptions.contains("Opel"));
         Assert.assertTrue(actualSelectedOptions.contains("Audi"));
@@ -46,7 +45,7 @@ public class SelectMenuTests extends BaseTest {
     //  @Test
     public void selectOldStyleSelectMenu2() {
         navigateToUrl("select-menu");
-        selectMenuPage.selectStandardMulti("Volvo");
+        selectMenuPage.selectStandardMultiByText("Volvo");
         //  selectMenuPage.selectValue("Group 2, option 2");
     }
 

@@ -47,7 +47,7 @@ public class BaseTest {
     public FormsPage formsPage;
     public TextBoxPage textBoxPage;
     public WebTablesPage webTablesPage;
-    public Alerts_Frames_WindowsPage alertsFramesWindowsPage;
+    public Alerts_Frames_WindowsPage alerts_frames_windowsPage;
     public BrowserWindowsPage browserWindowsPage;
     public AlertsPage alertsPage;
     public FramesPage framesPage;
@@ -78,9 +78,9 @@ public class BaseTest {
 
     @BeforeClass
     public void setUp() {
-        //    EdgeOptions options = new EdgeOptions();
-        //    options.addArguments("--headless");
-        //     driver = new EdgeDriver(options);
+        // EdgeOptions options = new EdgeOptions();
+        // options.addArguments("--headless");
+        //driver = new EdgeDriver(options);
         driver = new EdgeDriver();
         driver.manage().window().maximize();
     }
@@ -103,7 +103,7 @@ public class BaseTest {
         dynamicPropertiesPage = new DynamicPropertiesPage();
         formsPage = new FormsPage();
         practiceFormPage = new PracticeFormPage();
-        //alertsFramesWindowsPage = new alertsFramesWindowsPage;
+        alerts_frames_windowsPage = new Alerts_Frames_WindowsPage();
         browserWindowsPage = new BrowserWindowsPage();
         alertsPage = new AlertsPage();
         framesPage = new FramesPage();

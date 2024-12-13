@@ -19,17 +19,16 @@ public class BooksRegisterPage extends BasePage {
     private final By IamRobotButton = By.id("g-recaptcha");
     private final By errorMessage = By.id("name");
 
-    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(12));
+    public String getErrorMessage() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(12));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("name")));
+        return find(errorMessage).getText();
+    }
 
     public void setFirstName(String firstName2) {
         scrollToElementJS(firstName);
         click(firstName);
         set(firstName, firstName2);
-    }
-
-    public String getErrorMessage() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("name")));
-        return find(errorMessage).getText();
     }
 
     public void setLastName(String lastName2) {

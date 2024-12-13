@@ -1,10 +1,11 @@
 package com.pages.demo.pages.elements;
 
+import com.pages.base.BasePage;
 import org.openqa.selenium.By;
 
 import static utilities.JavaScriptUtility.scrollToElementJS;
 
-public class WebTablesPage extends ElementsPage {
+public class WebTablesPage extends BasePage {
 
     private final By registrationAgeField = By.id("age");
     private final By registrationFirstNameField = By.id("firstName");

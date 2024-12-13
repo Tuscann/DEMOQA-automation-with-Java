@@ -7,9 +7,7 @@ public class PracticeFormsTests extends FormsTest {
 
     @Test
     public void verifyCheckBoxesState() {
-        homePage.chooseHomePageMenu("Forms");
-
-        practiceFormPage.clickPracticeForm();
+        navigateToUrl("automation-practice-form");
 
         practiceFormPage.clickSportHobbyCheckbox();
         practiceFormPage.clickMusicHobbyCheckbox();

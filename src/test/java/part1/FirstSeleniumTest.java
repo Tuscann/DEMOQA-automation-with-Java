@@ -28,7 +28,7 @@ public class FirstSeleniumTest {
     }
 
     @Test
-    public void testLoggingIntoApplication() throws InterruptedException {
+    public void LoggingIntoApplication() throws InterruptedException {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("username")));
 

@@ -1,11 +1,11 @@
 package com.pages.demo.pages.widgets;
 
-import com.pages.demo.pages.HomePage;
+import com.pages.base.BasePage;
 import org.openqa.selenium.By;
 
 import static utilities.JavaScriptUtility.scrollToElementJS;
 
-public class WidgetsPage extends HomePage {
+public class WidgetsPage extends BasePage {
     private final By selectAccordian = By.xpath("//li[@id='item-0']/span[text()='Accordian']");
     private final By selectAutoComplete = By.xpath("//li[@id='item-1']/span[text()='Auto Complete']");
     private final By datePickerMenuItem = By.xpath("//li[@id='item-2']/span[text()='Date Picker']");

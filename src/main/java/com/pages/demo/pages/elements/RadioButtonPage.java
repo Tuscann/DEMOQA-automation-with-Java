@@ -1,11 +1,12 @@
 package com.pages.demo.pages.elements;
 
+import com.pages.base.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import java.util.List;
 
-public class RadioButtonPage extends ElementsPage {
+public class RadioButtonPage extends BasePage {
 
     private final By radioButtonText = By.xpath("//h1[contains(.,'Radio Button')]");
     private final By question = By.xpath("//div[@class='mb-3'][contains(.,'Do you like the site?')]");

@@ -1,4 +1,6 @@
 package com.pages.demo.pages.Intereactions;
 
-public class DroppablePage extends InteractionPage {
+import com.pages.base.BasePage;
+
+public class DroppablePage extends BasePage {
 }

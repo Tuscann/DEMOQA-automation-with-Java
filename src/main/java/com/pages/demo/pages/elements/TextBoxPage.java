@@ -1,11 +1,12 @@
 package com.pages.demo.pages.elements;
 
+import com.pages.base.BasePage;
 import org.openqa.selenium.By;
 
 import static utilities.ActionUtility.MoveToElementSelenium;
 import static utilities.JavaScriptUtility.scrollToElementJS;
 
-public class TextBoxPage extends ElementsPage {
+public class TextBoxPage extends BasePage {
 
     private final By fullName = By.id("userName");
     private final By email = By.id("userEmail");

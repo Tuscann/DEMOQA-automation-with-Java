@@ -27,7 +27,7 @@ public class LoginTests extends BaseTest {
     }
 
     @Test
-    public void checkTextOfLoginErrorMessage() {
+    public void VerifyTextOfLoginErrorMessage() {
         loginPage.setUsername("standard_user");
         loginPage.setPassword("karma");
         loginPage.clickLoginButton();

@@ -1,11 +1,11 @@
 package com.pages.demo.pages.elements;
 
-import com.pages.demo.pages.HomePage;
+import com.pages.base.BasePage;
 import org.openqa.selenium.By;
 
 import static utilities.JavaScriptUtility.scrollToElementJS;
 
-public class ElementsPage extends HomePage {
+public class ElementsPage extends BasePage {
 
     private final By textBox = By.xpath("//li[@id='item-0']/span[text()='Text Box']");
     private final By checkBox = By.xpath("//li[@id='item-1']/span[text()='Check Box']");

@@ -7,7 +7,7 @@ import part2.com.saucedemo.base.BaseTest;
 
 public class ProductTests extends BaseTest {
     @Test
-    public void testProductHeaderIsDisplayed() {
+    public void VerifyProductHeaderIsDisplayed() {
         String username = "standard_user";
         String password = "secret_sauce";
 

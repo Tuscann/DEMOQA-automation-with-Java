@@ -6,7 +6,7 @@ import part3.comdemoqa.base.BaseTest;
 
 public class ProgressBarPageTests extends BaseTest {
     @Test
-    public void clickStartButton() throws InterruptedException {
+    public void ClickStartButton() throws InterruptedException {
         navigateToUrl("progress-bar");
         progressBarPage.clickStartButtonAfter3seconds();
 

@@ -2,7 +2,6 @@ package com.pages.demo.pages.widgets;
 
 import com.pages.base.BasePage;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -18,7 +17,25 @@ public class AccordianPage extends BasePage {
     private final By sectionTwoContent = By.id("section2Content");
     private final By sectionThreeContent = By.id("section3Content");
 
+    private final By heading = By.xpath("//h1[contains(.,'Accordian')]");
+
     WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
+
+    public String getHeading() {
+        return find(heading).getText();
+    }
+
+    public String getSectionOneHeadingText() {
+        return find(sectionOneHeading).getText();
+    }
+
+    public String getSectionTwoHeadingText() {
+        return find(sectionTwoHeading).getText();
+    }
+
+    public String getSectionThreeHeadingText() {
+        return find(sectionThreeHeading).getText();
+    }
 
     public void clickOneHeading() {
         click(sectionOneHeading);
@@ -36,23 +53,21 @@ public class AccordianPage extends BasePage {
     }
 
     public String getSectionOneText() {
-        wait.until(ExpectedConditions.invisibilityOf(By.id("section2Content").findElement(driver)));
-        wait.until(ExpectedConditions.invisibilityOf(By.id("section3Content").findElement(driver)));
-        WebElement firstAccordionContent = wait.until(ExpectedConditions.visibilityOfElementLocated(sectionOneContent));
-        return firstAccordionContent.getText();
+        wait.until(ExpectedConditions.invisibilityOf(sectionTwoContent.findElement(driver)));
+        wait.until(ExpectedConditions.invisibilityOf(sectionThreeContent.findElement(driver)));
+        //  WebElement firstAccordionContent = wait.until(ExpectedConditions.visibilityOfElementLocated(sectionOneContent));
+        return find(sectionOneContent).getText();
     }
 
     public String getSectionTwoText() {
-        wait.until(ExpectedConditions.invisibilityOf(By.id("section1Content").findElement(driver)));
-        wait.until(ExpectedConditions.invisibilityOf(By.id("section3Content").findElement(driver)));
-        WebElement secondAccordionContent = wait.until(ExpectedConditions.visibilityOfElementLocated(sectionTwoContent));
-        return secondAccordionContent.getText();
+        wait.until(ExpectedConditions.invisibilityOf(sectionOneContent.findElement(driver)));
+        wait.until(ExpectedConditions.invisibilityOf(sectionThreeContent.findElement(driver)));
+        return find(sectionTwoContent).getText();
     }
 
     public String getSectionThreeText() {
-        wait.until(ExpectedConditions.invisibilityOf(By.id("section1Content").findElement(driver)));
-        wait.until(ExpectedConditions.invisibilityOf(By.id("section2Content").findElement(driver)));
-        WebElement ThirdAccordionContent = wait.until(ExpectedConditions.visibilityOfElementLocated(sectionThreeContent));
-        return ThirdAccordionContent.getText();
+        wait.until(ExpectedConditions.invisibilityOf(sectionOneContent.findElement(driver)));
+        wait.until(ExpectedConditions.invisibilityOf(sectionTwoContent.findElement(driver)));
+        return find(sectionThreeContent).getText();
     }
 }

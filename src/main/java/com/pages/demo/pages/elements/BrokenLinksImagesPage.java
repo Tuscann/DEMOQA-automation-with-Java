@@ -1,8 +1,9 @@
 package com.pages.demo.pages.elements;
 
+import com.pages.base.BasePage;
 import org.openqa.selenium.By;
 
-public class BrokenLinksImagesPage extends ElementsPage {
+public class BrokenLinksImagesPage extends BasePage {
 
     private final By validImageText = By.xpath("//p[contains(.,'Valid image')]");
     private final By brokenImageText = By.xpath("//p[contains(.,'Broken image')]");

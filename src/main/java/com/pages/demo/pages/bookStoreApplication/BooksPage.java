@@ -90,9 +90,6 @@ public class BooksPage extends BasePage {
         click(BookStoreAPILink);
     }
 
-    public String checkUrl() {
-        return driver.getCurrentUrl();
-    }
 
     public int getCountOfAllRows() {
         List<WebElement> elements = driver.findElements(allRows);

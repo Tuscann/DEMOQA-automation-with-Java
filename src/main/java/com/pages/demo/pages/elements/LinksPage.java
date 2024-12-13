@@ -1,5 +1,6 @@
 package com.pages.demo.pages.elements;
 
+import com.pages.base.BasePage;
 import org.openqa.selenium.By;
 
 import java.util.ArrayList;
@@ -7,7 +8,7 @@ import java.util.List;
 
 import static utilities.JavaScriptUtility.scrollToElementJS;
 
-public class LinksPage extends ElementsPage {
+public class LinksPage extends BasePage {
 
     private final By newTabHome = By.id("simpleLink");
     private final By createdRequestLink = By.id("created");

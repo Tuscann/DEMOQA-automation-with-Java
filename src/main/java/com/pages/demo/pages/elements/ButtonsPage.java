@@ -1,5 +1,6 @@
 package com.pages.demo.pages.elements;
 
+import com.pages.base.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -8,7 +9,7 @@ import java.time.Duration;
 
 import static utilities.JavaScriptUtility.scrollToElementJS;
 
-public class ButtonsPage extends ElementsPage {
+public class ButtonsPage extends BasePage {
 
     private final By buttons = By.xpath("//h1[contains(.,'Buttons')]");
     private final By doubleClickButton = By.id("doubleClickBtn");

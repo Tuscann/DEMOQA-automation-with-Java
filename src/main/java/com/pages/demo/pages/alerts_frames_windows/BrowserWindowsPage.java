@@ -1,12 +1,13 @@
 package com.pages.demo.pages.alerts_frames_windows;
 
+import com.pages.base.BasePage;
 import org.openqa.selenium.By;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-public class BrowserWindowsPage extends Alerts_Frames_WindowsPage {
+public class BrowserWindowsPage extends BasePage {
     private final By newTabButton = By.id("tabButton");
     private final By newWindowButton = By.id("windowButton");
     private final By newWindowMessageButton = By.id("messageWindowButton");

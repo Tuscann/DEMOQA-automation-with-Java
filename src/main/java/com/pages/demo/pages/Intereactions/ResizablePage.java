@@ -1,4 +1,6 @@
 package com.pages.demo.pages.Intereactions;
 
-public class ResizablePage extends InteractionPage {
+import com.pages.base.BasePage;
+
+public class ResizablePage extends BasePage {
 }

@@ -1,8 +1,9 @@
 package com.pages.demo.pages.alerts_frames_windows;
 
+import com.pages.base.BasePage;
 import org.openqa.selenium.By;
 
-public class ModalDialogsPage extends Alerts_Frames_WindowsPage {
+public class ModalDialogsPage extends BasePage {
 
     private final By smallModalButton = By.id("showSmallModal");
     private final By largeModalButton = By.id("showLargeModal");

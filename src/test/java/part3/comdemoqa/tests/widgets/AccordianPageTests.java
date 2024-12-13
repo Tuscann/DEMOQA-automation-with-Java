@@ -40,4 +40,23 @@ public class AccordianPageTests extends BaseTest {
 
         Assert.assertEquals(actualText, expectedText, "Wrong third paragraph");
     }
+
+    @Test
+    public void CheckText() {
+        navigateToUrl("accordian");
+        String expectedHeading = "Accordian";
+        String expectedOneHeadingText = "What is Lorem Ipsum?";
+        String expectedTwoHeadingText = "Where does it come from?";
+        String expectedThreeHeadingText = "Why do we use it?";
+
+        String actualHeading = accordianPage.getHeading();
+        String actualSectionOneHeadingText = accordianPage.getSectionOneHeadingText();
+        String actualSectionTwoHeadingText = accordianPage.getSectionTwoHeadingText();
+        String actualSectionThreeHeadingText = accordianPage.getSectionThreeHeadingText();
+
+        Assert.assertEquals(actualHeading, expectedHeading, "Wrong heading");
+        Assert.assertEquals(actualSectionOneHeadingText, expectedOneHeadingText, "Wrong one heading text");
+        Assert.assertEquals(actualSectionTwoHeadingText, expectedTwoHeadingText, "Wrong two heading text");
+        Assert.assertEquals(actualSectionThreeHeadingText, expectedThreeHeadingText, "Wrong three heading text");
+    }
 }
