@@ -1,0 +1,57 @@
+package part3.comdemoqa.tests.elements;
+
+import org.testng.Assert;
+import org.testng.annotations.Test;
+import part3.comdemoqa.base.BaseTest;
+
+public class ElementsPageTests extends BaseTest {
+    @Test
+    public void CheckAllNinePagesLinks() {
+        navigateToUrl("elements");
+
+        String expectedUrl = "https://demoqa.com/text-box";
+        elementsPage.clickTextBox();
+        String actualUrl = elementsPage.checkUrl();
+        Assert.assertEquals(actualUrl, expectedUrl);
+
+        expectedUrl = "https://demoqa.com/checkbox";
+        elementsPage.clickCheckBox();
+        actualUrl = elementsPage.checkUrl();
+        Assert.assertEquals(actualUrl, expectedUrl);
+
+        expectedUrl = "https://demoqa.com/radio-button";
+        elementsPage.clickRadioButton();
+        actualUrl = elementsPage.checkUrl();
+        Assert.assertEquals(actualUrl, expectedUrl);
+
+        expectedUrl = "https://demoqa.com/webtables";
+        elementsPage.clickWebTables();
+        actualUrl = elementsPage.checkUrl();
+        Assert.assertEquals(actualUrl, expectedUrl);
+
+        expectedUrl = "https://demoqa.com/buttons";
+        elementsPage.clickButtons();
+        actualUrl = elementsPage.checkUrl();
+        Assert.assertEquals(actualUrl, expectedUrl);
+
+        expectedUrl = "https://demoqa.com/links";
+        elementsPage.clickLinks();
+        actualUrl = elementsPage.checkUrl();
+        Assert.assertEquals(actualUrl, expectedUrl);
+
+        expectedUrl = "https://demoqa.com/broken";
+        elementsPage.clickBrokenLinksImages();
+        actualUrl = elementsPage.checkUrl();
+        Assert.assertEquals(actualUrl, expectedUrl);
+
+        expectedUrl = "https://demoqa.com/upload-download";
+        elementsPage.clickUploadAndDownload();
+        actualUrl = elementsPage.checkUrl();
+        Assert.assertEquals(actualUrl, expectedUrl);
+
+        expectedUrl = "https://demoqa.com/dynamic-properties";
+        elementsPage.clickDynamicProperties();
+        actualUrl = elementsPage.checkUrl();
+        Assert.assertEquals(actualUrl, expectedUrl);
+    }
+}

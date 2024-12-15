@@ -2,6 +2,8 @@ package com.pages.demo.pages.widgets;
 
 import com.pages.base.BasePage;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 
 import java.util.List;
 
@@ -15,6 +17,24 @@ public class SelectMenuPage extends BasePage {
     private final By oldStyle = By.id("oldSelectMenu");
     private final By standardMultiSelect = By.id("cars");
     private final By dropDown = By.id("react-select-4-input");
+
+    public void selectSelectOne(String option) {
+        find(selectOne).sendKeys(option);
+    }
+
+    public void selectOldStyleSelectMenuByText(String text) {
+        WebElement selectElement = driver.findElement(oldStyle);
+        Select dropdown = new Select(selectElement);
+        dropdown.selectByVisibleText(text);
+    }
+
+    public String getOldStyleSelectMenuSelectedValue() {
+        WebElement selectElement = driver.findElement(oldStyle);
+        Select dropdown = new Select(selectElement);
+
+        String selectedOption = dropdown.getFirstSelectedOption().toString();
+        return find(oldStyle).getText();
+    }
 
     public void selectStandardMultiByText(String text) {
         scrollToElementJS(standardMultiSelect);
@@ -34,6 +54,4 @@ public class SelectMenuPage extends BasePage {
     public List<String> getAllSelectedStandardMultiOptions() {
         return getAllSelectedOptions(standardMultiSelect);
     }
-
-
 }

@@ -4,7 +4,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import part3.comdemoqa.base.BaseTest;
 
-public class FormsTest extends BaseTest {
+public class FormsPageTests extends BaseTest {
     @Test
     public void CheckAllTextOnPage() {
 
@@ -17,5 +17,15 @@ public class FormsTest extends BaseTest {
 
         // Assert
         Assert.assertEquals(expectedString, actualString);
+    }
+
+    @Test
+    public void CheckAllNinePagesLinks() {
+        navigateToUrl("forms");
+
+        String expectedUrl = "https://demoqa.com/automation-practice-form";
+        formsPage.clickPracticeForm();
+        String actualUrl = elementsPage.checkUrl();
+        Assert.assertEquals(actualUrl, expectedUrl);
     }
 }

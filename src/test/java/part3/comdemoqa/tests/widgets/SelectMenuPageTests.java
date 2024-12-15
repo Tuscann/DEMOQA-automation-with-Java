@@ -9,7 +9,7 @@ import java.util.List;
 public class SelectMenuPageTests extends BaseTest {
 
     @Test
-    public void SelectFromMultiSelectDropDown() {
+    public void SelectFromStandardMultiSelectDropDown() {
         navigateToUrl("select-menu");
         selectMenuPage.selectStandardMultiByText("Volvo");
         selectMenuPage.selectStandardMultiByIndex(1);
@@ -25,27 +25,29 @@ public class SelectMenuPageTests extends BaseTest {
                 "\n Saab Is Selected As An Option \n");
     }
 
-    @Test
-    public void SelectOldStyleSelectMenu() {
+    @Test(enabled = false)
+    public void SelectOldStyleSelectMenu2() {
         navigateToUrl("select-menu");
-        selectMenuPage.selectStandardMultiByText("Volvo");
-        selectMenuPage.selectStandardMultiByIndex(1);
-        selectMenuPage.selectStandardMultiByText("Audi");
-        selectMenuPage.selectStandardMultiByIndex(2);
+        String expectedColor = "Blue";
 
-        selectMenuPage.deselectStandardMulti("saab");
-        List<String> actualSelectedOptions = selectMenuPage.getAllSelectedStandardMultiOptions();
-        Assert.assertTrue(actualSelectedOptions.contains("Volvo"));
-        Assert.assertTrue(actualSelectedOptions.contains("Opel"));
-        Assert.assertTrue(actualSelectedOptions.contains("Audi"));
-        Assert.assertFalse(actualSelectedOptions.contains("Saab"),
-                "\n Saab Is Selected As An Option \n");
+        selectMenuPage.selectOldStyleSelectMenuByText(expectedColor);
+
+        String actualColor = selectMenuPage.getOldStyleSelectMenuSelectedValue();
+
+        Assert.assertEquals(actualColor, expectedColor, "Wrong color selected");
     }
 
-    //  @Test
-    public void selectOldStyleSelectMenu2() {
+    @Test(enabled = true)
+    public void SelectSelechOne() {
         navigateToUrl("select-menu");
-        selectMenuPage.selectStandardMultiByText("Volvo");
-        //  selectMenuPage.selectValue("Group 2, option 2");
+        String expectedColor = "Prof";
+
+        selectMenuPage.selectSelectOne(expectedColor);
+
+        String actualColor = selectMenuPage.getOldStyleSelectMenuSelectedValue();
+
+        Assert.assertEquals(actualColor, expectedColor, "Wrong color selected");
     }
+
+
 }

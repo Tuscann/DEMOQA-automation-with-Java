@@ -11,8 +11,6 @@ public class FormsPage extends BasePage {
 
     private final By text = By.xpath("(//div[contains(.,'Please select an item from left to start practice.')])[5]");
 
-    // homePage.goToCard("Forms");
-
     public PracticeFormPage clickPracticeForm() {
         scrollToElementJS(practiceFormMenuItem);
         click(practiceFormMenuItem);

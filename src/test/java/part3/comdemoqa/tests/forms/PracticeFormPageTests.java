@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class PracticeFormsTests extends FormsTest {
+public class PracticeFormPageTests extends FormsPageTests {
 
     @Test
     public void VerifyCheckBoxesState() {

@@ -84,8 +84,6 @@ public class WebTablesPage extends BasePage {
 
     public void clickEdit(String email) {
         By edit = By.xpath("//div[text()='" + email + "']//following::span[@title='Edit']");
-        //  wait.until(ExpectedConditions.elementToBeClickable(edit));
-
         scrollToElementJS(edit);
         click(edit);
     }

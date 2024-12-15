@@ -21,13 +21,14 @@ public class DatePickerPageTests extends BaseTest {
         Assert.assertEquals(actualDate, expectedDate, "Wrong Date");
     }
 
-    @Test(enabled = false)  // Need fail test
-    public void SelectNewDate3() {
+    @Test
+    public void TryToSelectNoExistingDate() {
         navigateToUrl("date-picker");
-        String expectedDate = "14/32/2021";
-        datePickerPage.selectDate(expectedDate);
+        String tryToAddDate = "14/32/2021";
+        datePickerPage.selectDate(tryToAddDate);
 
         String actualDate = datePickerPage.getSelectedDate();
+        String expectedDate = "01/01/2024";
 
         Assert.assertEquals(actualDate, expectedDate, "Wrong Date");
     }
@@ -40,6 +41,18 @@ public class DatePickerPageTests extends BaseTest {
         String actualDateAndTime = datePickerPage.getSelectedDateAndTime();
 
         Assert.assertEquals(actualDateAndTime, expectedDateAndTime, "Wrong Date and time");
+    }
+
+    @Test
+    public void TryToSelectNoExistingDateAndTime() {
+        navigateToUrl("date-picker");
+        String tryToAddDate = "December 34, 2024 10:12 PM";
+        datePickerPage.selectDateAndTime(tryToAddDate);
+
+        String actualDate = datePickerPage.getSelectedDateAndTime();
+        String expectedDateAndTime = "December 20, 2034 12:00 AM";
+
+        Assert.assertEquals(actualDate, expectedDateAndTime, "Wrong Date");
     }
 
     @Test

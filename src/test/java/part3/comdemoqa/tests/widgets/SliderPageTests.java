@@ -34,7 +34,7 @@ public class SliderPageTests extends BaseTest {
         Assert.assertEquals(actualValue, expectedValue, "Actual value is not equal to expected value");
     }
 
-    @Test(enabled = false)
+    @Test
     public void CheckDefaultValueSlider() {
         SliderPage sliderPage = homePage.goToWidgets().clickSlider();
 

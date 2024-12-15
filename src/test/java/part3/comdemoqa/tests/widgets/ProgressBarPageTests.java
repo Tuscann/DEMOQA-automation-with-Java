@@ -5,15 +5,16 @@ import org.testng.annotations.Test;
 import part3.comdemoqa.base.BaseTest;
 
 public class ProgressBarPageTests extends BaseTest {
+
     @Test(enabled = false)
-    public void ClickStartButton() throws InterruptedException {
+    public void ClickStartButtonCheckEnValue() throws InterruptedException {
         navigateToUrl("progress-bar");
-        progressBarPage.clickStartButtonAfter3seconds();
 
         progressBarPage.clickStartButton();
 
         String actualText = progressBarPage.getValueProgressBar();
-        String expectedText = "3";
+        String expectedText = "100";
+
 
         Assert.assertEquals(actualText, expectedText, "Wrong time value");
     }

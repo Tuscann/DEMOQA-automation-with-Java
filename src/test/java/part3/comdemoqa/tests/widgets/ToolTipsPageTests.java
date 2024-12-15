@@ -18,5 +18,4 @@ public class ToolTipsPageTests extends BaseTest {
 
         //  Assert.assertEquals(actualValue, expectedValue, "Actual value is not default 25");
     }
-
 }

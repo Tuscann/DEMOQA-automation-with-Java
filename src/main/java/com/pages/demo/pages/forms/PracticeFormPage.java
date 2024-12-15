@@ -42,7 +42,6 @@ public class PracticeFormPage extends BasePage {
     private final By addressForm = By.xpath("//td[contains(.,'Address')]/following-sibling::*[1]");
     private final By stateAndCityForm = By.xpath("//td[contains(.,'State')]/following-sibling::*[1]");
 
-
     public String getStudentNameFromModal() {
         delay(1500);
         return find(StudentNameForm).getText();
@@ -85,8 +84,6 @@ public class PracticeFormPage extends BasePage {
     }
 
     public String getDateOfBirthFromModal() {
-
-
         return find(dateOfBirthForm).getText();
     }
 

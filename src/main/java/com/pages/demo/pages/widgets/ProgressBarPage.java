@@ -3,6 +3,8 @@ package com.pages.demo.pages.widgets;
 import com.pages.base.BasePage;
 import org.openqa.selenium.By;
 
+import java.time.Duration;
+
 import static utilities.WaitUtility.fluentWaitUntilVisible;
 
 public class ProgressBarPage extends BasePage {
@@ -19,7 +21,8 @@ public class ProgressBarPage extends BasePage {
         find(startStopButton).click();
     }
 
-    public String getValueProgressBar() {
-        return find(progressBarCurrent).getAttribute("aria-valuenow").toString();
+    public String getValueProgressBar() throws InterruptedException {
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        return find(progressBarCurrent).getAttribute("aria-valuenow");
     }
 }

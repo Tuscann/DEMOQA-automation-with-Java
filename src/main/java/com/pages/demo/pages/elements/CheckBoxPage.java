@@ -116,5 +116,4 @@ public class CheckBoxPage extends BasePage {
     public void clickPrivateOffice() {
         click(privateOffice);
     }
-
 }
