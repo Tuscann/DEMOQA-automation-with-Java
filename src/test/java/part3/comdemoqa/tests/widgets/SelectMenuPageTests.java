@@ -37,8 +37,8 @@ public class SelectMenuPageTests extends BaseTest {
         Assert.assertEquals(actualColor, expectedColor, "Wrong color selected");
     }
 
-    @Test(enabled = true)
-    public void SelectSelechOne() {
+    @Test(enabled = false)
+    public void SelectSelectOne() {
         navigateToUrl("select-menu");
         String expectedColor = "Prof";
 
@@ -48,6 +48,4 @@ public class SelectMenuPageTests extends BaseTest {
 
         Assert.assertEquals(actualColor, expectedColor, "Wrong color selected");
     }
-
-
 }

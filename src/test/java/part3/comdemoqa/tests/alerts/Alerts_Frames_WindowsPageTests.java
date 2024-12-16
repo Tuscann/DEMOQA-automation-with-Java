@@ -34,5 +34,10 @@ public class Alerts_Frames_WindowsPageTests extends BaseTest {
         alerts_frames_windowsPage.clickModalDialogs();
         actualUrl = booksPage.checkUrl();
         Assert.assertEquals(actualUrl, expectedUrl);
+
+//        String expectedString = "Please select an item from ";
+//        String actualString = alerts_frames_windowsPage.getMainText();
+//
+//        Assert.assertEquals(actualString, expectedString, "Wrong text");
     }
 }

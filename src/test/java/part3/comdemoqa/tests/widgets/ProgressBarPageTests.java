@@ -6,13 +6,14 @@ import part3.comdemoqa.base.BaseTest;
 
 public class ProgressBarPageTests extends BaseTest {
 
-    @Test(enabled = false)
+    @Test(enabled = true)
     public void ClickStartButtonCheckEnValue() throws InterruptedException {
         navigateToUrl("progress-bar");
 
         progressBarPage.clickStartButton();
 
         String actualText = progressBarPage.getValueProgressBar();
+        Thread.sleep(100);
         String expectedText = "100";
 
 

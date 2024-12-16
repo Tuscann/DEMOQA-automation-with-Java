@@ -52,7 +52,7 @@ public class AlertsPageTests extends BaseTest {
     }
 
     @Test
-    public void CheckTextOfConfirmationAlertNo() {
+    public void VerifyTextOfConfirmationAlertNo() {
         // Arrange
         navigateToUrl("alerts");
         String expectedConfirmationResult = "You selected Ok";
@@ -68,7 +68,7 @@ public class AlertsPageTests extends BaseTest {
     }
 
     @Test
-    public void CheckTextPromptAlert() {
+    public void VerifyTextOfPromptAlert() {
         // Arrange
         String alertText = "Selenium With Java";
         String expectedResult = "You entered " + alertText;
@@ -86,7 +86,7 @@ public class AlertsPageTests extends BaseTest {
     }
 
     @Test(enabled = true)
-    public void CheckText() {
+    public void VerifyAllTextOnPage() {
         // Arrange
         String alertText1 = "Alerts";
         String alertText2 = "Click Button to see alert";
@@ -106,9 +106,8 @@ public class AlertsPageTests extends BaseTest {
         // Assert
         Assert.assertEquals(actualFirstText, alertText1, "\n Alert Title Do Not Match \n");
         Assert.assertEquals(actualSecondText, alertText2, "\n Alert Second Text Do Not Match \n");
-        Assert.assertEquals(actualThirdText, alertText3, "\n Alert Five Text Do Not Match \n");
-        Assert.assertEquals(actualFourText, alertTex4, "\n Alert Five Text Do Not Match \n");
+        Assert.assertEquals(actualThirdText, alertText3, "\n Alert Third Text Do Not Match \n");
+        Assert.assertEquals(actualFourText, alertTex4, "\n Alert Four Text Do Not Match \n");
         Assert.assertEquals(actualFiveText, alertTex5, "\n Alert Five Text Do Not Match \n");
-
     }
 }
