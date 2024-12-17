@@ -17,49 +17,40 @@ public class ElementsPage extends BasePage {
     private final By uploadAndDownload = By.xpath("//li[@id='item-7']/span[text()='Upload and Download']");
     private final By dynamicPropertiesMenuItem = By.xpath("//li[@id='item-8']/span[text()='Dynamic Properties']");
 
-    public TextBoxPage clickTextBox() {
+    public void clickTextBox() {
         click(textBox);
-        return new TextBoxPage();
     }
 
-    public CheckBoxPage clickCheckBox() {
+    public void clickCheckBox() {
         click(checkBox);
-        return new CheckBoxPage();
     }
 
-    public RadioButtonPage clickRadioButton() {
+    public void clickRadioButton() {
         click(radioButton);
-        return new RadioButtonPage();
     }
 
-    public WebTablesPage clickWebTables() {
+    public void clickWebTables() {
         click(webTables);
-        return new WebTablesPage();
     }
 
-    public ButtonsPage clickButtons() {
+    public void clickButtons() {
         click(Buttons);
-        return new ButtonsPage();
     }
 
-    public LinksPage clickLinks() {
+    public void clickLinks() {
         scrollToElementJS(links);
         click(links);
-        return new LinksPage();
     }
 
-    public BrokenLinksImagesPage clickBrokenLinksImages() {
+    public void clickBrokenLinksImages() {
         click(brokenLinksImages);
-        return new BrokenLinksImagesPage();
     }
 
-    public UploadAndDownloadPage clickUploadAndDownload() {
+    public void clickUploadAndDownload() {
         click(uploadAndDownload);
-        return new UploadAndDownloadPage();
     }
 
-    public DynamicPropertiesPage clickDynamicProperties() {
+    public void clickDynamicProperties() {
         click(dynamicPropertiesMenuItem);
-        return new DynamicPropertiesPage();
     }
 }

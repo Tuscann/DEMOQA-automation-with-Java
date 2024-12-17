@@ -2,10 +2,7 @@ package part3.comdemoqa.base;
 
 import com.pages.base.BasePage;
 import com.pages.demo.pages.HomePage;
-import com.pages.demo.pages.Intereactions.DroppablePage;
-import com.pages.demo.pages.Intereactions.ResizablePage;
-import com.pages.demo.pages.Intereactions.SelectablePage;
-import com.pages.demo.pages.Intereactions.SortablePage;
+import com.pages.demo.pages.Interactions.*;
 import com.pages.demo.pages.alerts_frames_windows.*;
 import com.pages.demo.pages.bookStoreApplication.BooksLoginPage;
 import com.pages.demo.pages.bookStoreApplication.BooksPage;
@@ -71,6 +68,7 @@ public class BaseTest {
     public BooksLoginPage booksLoginPage;
     public BooksPage booksPage;
     public BooksRegisterPage booksRegisterPage;
+    public InteractionsPage interactionsPage;
 
     protected BasePage basePage;
     protected HomePage homePage;
@@ -78,9 +76,9 @@ public class BaseTest {
     @BeforeMethod
     public void setUp() {
         EdgeOptions options = new EdgeOptions();
-        //options.addArguments("--headless=new");
-        // options.addArguments("--disable-gpu");
-        //options.addArguments("--window-size=1920,1080"); // Set the window size
+        options.addArguments("--headless=new");
+        options.addArguments("--disable-gpu");
+        options.addArguments("--window-size=1920,1080"); // Set the window size
 
         driver = new EdgeDriver(options);
         driver.manage().window().maximize();
@@ -107,6 +105,7 @@ public class BaseTest {
         nestedFramesPage = new NestedFramesPage();
         modalDialogsPage = new ModalDialogsPage();
         widgetsPage = new WidgetsPage();
+        interactionsPage = new InteractionsPage();
         droppablePage = new DroppablePage();
         resizablePage = new ResizablePage();
         selectablePage = new SelectablePage();

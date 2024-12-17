@@ -70,9 +70,9 @@ public class AlertsPageTests extends BaseTest {
     @Test
     public void VerifyTextOfPromptAlert() {
         // Arrange
+        navigateToUrl("alerts");
         String alertText = "Selenium With Java";
         String expectedResult = "You entered " + alertText;
-        navigateToUrl("alerts");
 
         // Act
         alertsPage.clickPromptAlertButton();
@@ -88,13 +88,13 @@ public class AlertsPageTests extends BaseTest {
     @Test(enabled = true)
     public void VerifyAllTextOnPage() {
         // Arrange
+        navigateToUrl("alerts");
+
         String alertText1 = "Alerts";
         String alertText2 = "Click Button to see alert";
         String alertText3 = "On button click, alert will appear after 5 seconds";
         String alertTex4 = "On button click, confirm box will appear";
         String alertTex5 = "On button click, prompt box will appear";
-
-        navigateToUrl("alerts");
 
         // Act
         String actualFirstText = alertsPage.getFirstText();

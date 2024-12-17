@@ -26,6 +26,7 @@ public class PracticeFormPage extends BasePage {
     private final By musicHobbyCheckbox = By.id("hobbies-checkbox-3");
     private final By currentAddressArea = By.id("currentAddress");
     private final By selectState = By.id("state");
+    private final By state = By.xpath("//div[@class=' css-1wa3eu0-placeholder'][contains(.,'Select State')]");
     private final By selectCity = By.xpath("//div[@class=' css-1wa3eu0-placeholder'][contains(.,'Select City')]");
     private final By submitButton = By.id("submit");
 
@@ -234,5 +235,13 @@ public class PracticeFormPage extends BasePage {
         click(selectState);
         //  find(selectState).sendKeys("" + Keys.DOWN);
 
+    }
+
+    public void setStateFromDropDown(String expectedState) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
+        wait.until(ExpectedConditions.elementToBeClickable(selectState))
+                .sendKeys(expectedState);
+        wait.until(ExpectedConditions.elementToBeClickable(selectState))
+                .sendKeys(Keys.chord("" + Keys.ENTER));
     }
 }

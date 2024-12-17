@@ -7,7 +7,7 @@ import part3.comdemoqa.base.BaseTest;
 public class RadioButtonPageTests extends BaseTest {
 
     @Test
-    public void CheckAllTextElements() {
+    public void CheckAllTextOnPage() {
         navigateToUrl("radio-button");
 
         String expectedRadioButtonText = "Radio Button";

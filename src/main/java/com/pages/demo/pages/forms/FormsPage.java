@@ -11,13 +11,13 @@ public class FormsPage extends BasePage {
 
     private final By text = By.xpath("(//div[contains(.,'Please select an item from left to start practice.')])[5]");
 
-    public PracticeFormPage clickPracticeForm() {
+    public void clickPracticeForm() {
         scrollToElementJS(practiceFormMenuItem);
         click(practiceFormMenuItem);
-        return new PracticeFormPage();
     }
 
     public String getText() {
         return find(text).getText();
     }
+
 }

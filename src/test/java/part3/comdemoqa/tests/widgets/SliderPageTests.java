@@ -1,6 +1,5 @@
 package part3.comdemoqa.tests.widgets;
 
-import com.pages.demo.pages.widgets.SliderPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import part3.comdemoqa.base.BaseTest;
@@ -23,8 +22,7 @@ public class SliderPageTests extends BaseTest {
     public void TestSliderResultZero() throws InterruptedException {
         int x = 90;
         int y = 0;
-
-        SliderPage sliderPage = homePage.goToWidgets().clickSlider();
+        navigateToUrl("slider");
 
         sliderPage.moveSlider(x, y);
 
@@ -36,7 +34,7 @@ public class SliderPageTests extends BaseTest {
 
     @Test
     public void CheckDefaultValueSlider() {
-        SliderPage sliderPage = homePage.goToWidgets().clickSlider();
+        navigateToUrl("slider");
 
         String actualValue = sliderPage.getSliderValue();
         String expectedValue = "25";

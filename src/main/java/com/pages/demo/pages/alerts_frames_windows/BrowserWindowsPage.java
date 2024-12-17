@@ -50,7 +50,8 @@ public class BrowserWindowsPage extends BasePage {
 
     public String getBrowserMessage() {
 
-        driver.switchTo().window(driver.getWindowHandles().toArray()[1].toString());
+        Object tt = driver.getWindowHandles().toArray()[1];
+        driver.switchTo().window(tt.toString());
 
         String text = driver.findElement(By.xpath("/html/body/text()")).getText();
 

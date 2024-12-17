@@ -7,7 +7,6 @@ import part3.comdemoqa.base.BaseTest;
 public class FormsPageTests extends BaseTest {
     @Test
     public void CheckAllTextOnPage() {
-
         // Arrange
         navigateToUrl("forms");
         String actualString = "Please select an item from left to start practice.";
@@ -20,7 +19,7 @@ public class FormsPageTests extends BaseTest {
     }
 
     @Test
-    public void CheckAllNinePagesLinks() {
+    public void VerifyLeftPagesLinks() {
         navigateToUrl("forms");
 
         String expectedUrl = "https://demoqa.com/automation-practice-form";

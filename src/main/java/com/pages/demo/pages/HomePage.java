@@ -1,11 +1,6 @@
 package com.pages.demo.pages;
 
 import com.pages.base.BasePage;
-import com.pages.demo.pages.alerts_frames_windows.Alerts_Frames_WindowsPage;
-import com.pages.demo.pages.bookStoreApplication.BooksPage;
-import com.pages.demo.pages.elements.ElementsPage;
-import com.pages.demo.pages.forms.FormsPage;
-import com.pages.demo.pages.widgets.WidgetsPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -24,18 +19,26 @@ public class HomePage extends BasePage {
     private final By bookStoreApplicationCard = By.xpath("//div[@id='app']//h5[text()='Book Store Application']");
 
     private final By clickHomePageItem = By.xpath("(//div[@class='card-up'])");
+    private final By footer = By.xpath("//span[contains(.,'© 2013-2020 TOOLSQA.COM | ALL RIGHTS RESERVED.')]");
 
-
-    public FormsPage goToForms() {
-        scrollToElementJS(widgetsCard);
-        click(formsCard);
-        return new FormsPage();
+    public String getFooterText() {
+        return find(footer).getText();
     }
 
-    public BooksPage goToBooks() {
+    public void goToForms() {
+        scrollToElementJS(formsCard);
+        click(formsCard);
+    }
+
+
+    public void goToInteractions() {
+        scrollToElementJS(interactionsCard);
+        click(interactionsCard);
+    }
+
+    public void goToBooks() {
         scrollToElementJS(bookStoreApplicationCard);
         click(bookStoreApplicationCard);
-        return new BooksPage();
     }
 
     public void chooseHomePageMenu(String homeMenu) {
@@ -51,27 +54,25 @@ public class HomePage extends BasePage {
                 elements.get(i).click();
             }
         }
-        var xddd = 12;
-
-
     }
 
 
-    public ElementsPage goToElements() {
+    public void goToElements() {
         scrollToElementJS(elementsCard);
         click(elementsCard);
-        return new ElementsPage();
     }
 
-    public WidgetsPage goToWidgets() {
+    public void goToWidgets() {
         scrollToElementJS(widgetsCard);
         click(widgetsCard);
-        return new WidgetsPage();
     }
 
-    public Alerts_Frames_WindowsPage goToAlertsFramesWindowsCard() {
+    public void goToAlertsFramesWindowsCard() {
         scrollToElementJS(alertsFrameWindowsCard);
         click(alertsFrameWindowsCard);
-        return new Alerts_Frames_WindowsPage();
+    }
+
+    public void navigateBack() {
+        driver.navigate().back();
     }
 }

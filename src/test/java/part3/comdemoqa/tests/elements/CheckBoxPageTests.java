@@ -7,7 +7,7 @@ import part3.comdemoqa.base.BaseTest;
 public class CheckBoxPageTests extends BaseTest {
 
     @Test
-    public void SelectOnlyCheckBoxNotes() {
+    public void SelectCheckBoxNotes() {
         navigateToUrl("checkbox");
         checkBoxPage.clickExpandAll();
         checkBoxPage.clickNotes();
@@ -37,7 +37,7 @@ public class CheckBoxPageTests extends BaseTest {
     }
 
     @Test
-    public void DeSelectOnlyCheckBoxNotes() {
+    public void DeSelectCheckBoxNotes() {
         navigateToUrl("checkbox");
 
         checkBoxPage.clickExpandAll();
@@ -55,7 +55,7 @@ public class CheckBoxPageTests extends BaseTest {
     }
 
     @Test
-    public void CheckAllCheckBoxesAreDeselected() {
+    public void VerifyAllCheckBoxesAreDeselected() {
         navigateToUrl("checkbox");
         checkBoxPage.clickExpandAll();
 

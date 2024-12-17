@@ -1,4 +1,4 @@
-package com.pages.demo.pages.Intereactions;
+package com.pages.demo.pages.Interactions;
 
 import com.pages.base.BasePage;
 import org.openqa.selenium.By;

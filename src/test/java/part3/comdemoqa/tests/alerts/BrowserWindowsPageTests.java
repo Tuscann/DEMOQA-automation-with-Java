@@ -29,7 +29,7 @@ public class BrowserWindowsPageTests extends BaseTest {
     }
 
     @Test(enabled = false)
-    public void ClickNewBrowserMessage() {
+    public void ClickNewWindowMessage() {
         navigateToUrl("browser-windows");
         browserWindowsPage.clickNewWindowMessageButton();
 

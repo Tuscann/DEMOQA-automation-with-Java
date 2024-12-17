@@ -4,9 +4,29 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import part3.comdemoqa.base.BaseTest;
 
-@Test
 public class WebTablePageTests extends BaseTest {
 
+    @Test
+    public void UpdateFirstNameAndLastName() {
+        navigateToUrl("webtables");
+        String email = "cierra@example.com";
+        String expectedFirstName = "Zhivko";
+        String expectedLastName = "Petrov";
+
+        webTablesPage.clickEdit(email);
+        webTablesPage.setFirstName(expectedFirstName);
+        webTablesPage.setLastName(expectedLastName);
+        webTablesPage.clickSubmitButton();
+        String actualFirstName = webTablesPage.getTableFirstName(email);
+        String actualLastName = webTablesPage.getTableLastName(email);
+
+        Assert.assertEquals(actualFirstName, expectedFirstName,
+                "\n Actual & Expected FirstName Do Not Match \n");
+        Assert.assertEquals(actualLastName, expectedLastName,
+                "\n Actual & Expected LastName Do Not Match \n");
+    }
+
+    @Test
     public void UpdateAge() {
         navigateToUrl("webtables");
 
@@ -21,24 +41,7 @@ public class WebTablePageTests extends BaseTest {
                 "\n Actual & Expected Ages Do Not Match \n");
     }
 
-    public void UpdateFirstNameAndLastName() {
-        navigateToUrl("webtables");
-        String email = "cierra@example.com";
-        String expectedFirstName = "Zhivko";
-        String expectedLastName = "Petrov";
-
-        webTablesPage.clickEdit(email);
-        webTablesPage.setFirstName(expectedFirstName);
-        webTablesPage.setLastName(expectedLastName);
-        webTablesPage.clickSubmitButton();
-        String actualFirstName = webTablesPage.getTableFirstName(email);
-        String actualLastName = webTablesPage.getTableLastName(email);
-        Assert.assertEquals(actualFirstName, expectedFirstName,
-                "\n Actual & Expected FirstName Do Not Match \n");
-        Assert.assertEquals(actualLastName, expectedLastName,
-                "\n Actual & Expected LastName Do Not Match \n");
-    }
-
+    @Test
     public void UpdateEmail() {
         navigateToUrl("webtables");
         String email = "cierra@example.com";
@@ -52,6 +55,7 @@ public class WebTablePageTests extends BaseTest {
         Assert.assertEquals(actualEmail, expectedEmail, "\n Actual & Expected Email Do Not Match \n");
     }
 
+    @Test
     public void DeleteDefaultThreeRows() {
         String email1 = "cierra@example.com";
         String email2 = "kierra@example.com";
@@ -67,7 +71,9 @@ public class WebTablePageTests extends BaseTest {
         Assert.assertEquals(expectedResult, "No rows found", "Missing message");
     }
 
+    @Test
     public void AddNewRow() {
+        navigateToUrl("webtables");
         String expectedEmail = "Zhivko@example.com";
         String expectedFirstName = "Zhivko";
         String expectedLastName = "Petrov";
@@ -75,9 +81,7 @@ public class WebTablePageTests extends BaseTest {
         String expectedSalary = "2000";
         String expectedDepartment = "Home";
 
-        navigateToUrl("webtables");
-
-        webTablesPage.clickAddNewRecordButton();
+        webTablesPage.clickAddButton();
 
         webTablesPage.setAge(expectedAge);
         webTablesPage.setFirstName(expectedFirstName);
@@ -102,7 +106,10 @@ public class WebTablePageTests extends BaseTest {
         Assert.assertEquals(actualDepartment, expectedDepartment, "Wrong department");
     }
 
+    @Test
     public void CheckNextButtonActive() {
+        navigateToUrl("webtables");
+
         String expectedFirstName = "Zhivko";
         String lastName = "Kamenov";
         String email = "Zhivko@example.com";
@@ -110,10 +117,8 @@ public class WebTablePageTests extends BaseTest {
         String salary = "2500";
         String department = "QA";
 
-        navigateToUrl("webtables");
-
         for (int i = 0; i < 8; i++) {
-            webTablesPage.clickAddNewRecordButton();
+            webTablesPage.clickAddButton();
             webTablesPage.setFirstName(expectedFirstName + i);
             webTablesPage.setLastName(lastName);
             webTablesPage.setEmail(email);
@@ -125,6 +130,7 @@ public class WebTablePageTests extends BaseTest {
         Assert.assertTrue(webTablesPage.checkNextButtonIsActive(), "Not active Next button");
     }
 
+    @Test
     public void CheckPreviousAndNextButtonAreNotActive() {
         navigateToUrl("webtables");
 
@@ -132,6 +138,7 @@ public class WebTablePageTests extends BaseTest {
         Assert.assertFalse(webTablesPage.checkNextButtonIsActive(), "Not active Next button");
     }
 
+    @Test
     public void CheckAllLabelsInRegistrationForm() {
         navigateToUrl("webtables");
 
@@ -143,13 +150,13 @@ public class WebTablePageTests extends BaseTest {
         String expectedDepartmentLabel = "Department";
 
         String expectedPlaceholderFirstName = "First Name";
-        String expectedPlaceholderLastNamel = "Last Name";
+        String expectedPlaceholderLastName = "Last Name";
         String expectedPlaceholderEmail = "name@example.com";
         String expectedPlaceholderAge = "Age";
         String expectedPlaceholderSalary = "Salary";
         String expectedPlaceholderDepartment = "Department";
 
-        webTablesPage.clickAddNewRecordButton();
+        webTablesPage.clickAddButton();
         String actualFirstNameLabel = webTablesPage.getFirstNamLabel();
         String actualLastNameLabel = webTablesPage.getLastNameLabel();
         String actualEmailLabel = webTablesPage.getEmailLabel();
@@ -171,10 +178,62 @@ public class WebTablePageTests extends BaseTest {
         Assert.assertEquals(actualSalaryLabel, expectedSalaryLabel, "Not salary label");
         Assert.assertEquals(actualDepartmentLabel, expectedDepartmentLabel, "Not department label");
         Assert.assertEquals(actualPlaceholderFirstName, expectedPlaceholderFirstName, "Not first name label");
-        Assert.assertEquals(actualPlaceholderLastName, expectedPlaceholderLastNamel, "Not second name label");
+        Assert.assertEquals(actualPlaceholderLastName, expectedPlaceholderLastName, "Not second name label");
         Assert.assertEquals(actualPlaceholderEmail, expectedPlaceholderEmail, "Not email label");
         Assert.assertEquals(actualPlaceholderAge, expectedPlaceholderAge, "Not age label");
         Assert.assertEquals(actualPlaceholderSalary, expectedPlaceholderSalary, "Not salary label");
         Assert.assertEquals(actualPlaceholderDepartment, expectedPlaceholderDepartment, "Not department label");
+    }
+
+    @Test
+    public void SearchWithNoExistingCategoryAndCheckResults() {
+        navigateToUrl("webtables");
+
+        String searchedWord = "karma";
+        webTablesPage.searchWithWord(searchedWord);
+
+        String expectedResult = webTablesPage.getNoRowsFound();
+
+        Assert.assertEquals(expectedResult, "No rows found", "Missing message");
+    }
+
+    @Test
+    public void SearchWithExistingCategoryAndCheckResults() {
+        navigateToUrl("webtables");
+
+        String searchedWord = "Insurance";
+        webTablesPage.searchWithWord(searchedWord);
+
+        String expectedEmail = "cierra@example.com";
+        String expectedFirstName = "Cierra";
+        String expectedLastName = "Vega";
+        String expectedAge = "39";
+        String expectedSalary = "10000";
+
+        String actualFirstName = webTablesPage.getTableFirstName(expectedEmail);
+        String actualLastName = webTablesPage.getTableLastName(expectedEmail);
+        String actualEmail = webTablesPage.getTableEmail(expectedEmail);
+        String actualAge = webTablesPage.getTableAge(expectedEmail);
+        String actualSalary = webTablesPage.getTableSalary(expectedEmail);
+        String actualDepartment = webTablesPage.getTableDepartment(expectedEmail);
+
+        Assert.assertEquals(actualFirstName, expectedFirstName, "Wrong first name");
+        Assert.assertEquals(actualLastName, expectedLastName, "Wrong last name");
+        Assert.assertEquals(actualAge, expectedAge, "Wrong age");
+        Assert.assertEquals(actualEmail, expectedEmail, "Wrong email");
+        Assert.assertEquals(actualSalary, expectedSalary, "Wrong salary");
+        Assert.assertEquals(actualDepartment, searchedWord, "Wrong department");
+    }
+
+    @Test
+    public void ClickSubmitOnEmptyForm() {
+        navigateToUrl("webtables");
+        webTablesPage.clickAddButton();
+        webTablesPage.clickSubmitButton();
+
+        String redColor = "d rgb(220, 53, 69)";
+        boolean isAllBordersRed = webTablesPage.isAllBordersRed(redColor);
+
+        Assert.assertTrue(isAllBordersRed);
     }
 }

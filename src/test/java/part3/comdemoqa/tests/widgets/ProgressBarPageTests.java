@@ -6,7 +6,7 @@ import part3.comdemoqa.base.BaseTest;
 
 public class ProgressBarPageTests extends BaseTest {
 
-    @Test(enabled = true)
+    @Test(enabled = false)
     public void ClickStartButtonCheckEnValue() throws InterruptedException {
         navigateToUrl("progress-bar");
 

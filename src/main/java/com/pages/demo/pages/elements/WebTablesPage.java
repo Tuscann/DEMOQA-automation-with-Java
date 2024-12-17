@@ -7,10 +7,10 @@ import static utilities.JavaScriptUtility.scrollToElementJS;
 
 public class WebTablesPage extends BasePage {
 
-    private final By registrationAgeField = By.id("age");
     private final By registrationFirstNameField = By.id("firstName");
     private final By registrationLastNameField = By.id("lastName");
     private final By registrationEmailField = By.id("userEmail");
+    private final By registrationAgeField = By.id("age");
     private final By registrationSalaryField = By.id("salary");
     private final By registrationDepartmentField = By.id("department");
     private final By submitButton = By.id("submit");
@@ -26,6 +26,11 @@ public class WebTablesPage extends BasePage {
     private final By ageLabel = By.id("age-label");
     private final By salaryLabel = By.id("salary-label");
     private final By departmentLabel = By.id("department-label");
+
+    public void searchWithWord(String word) {
+        set(searchBox, word);
+
+    }
 
     public String getFirstNamLabel() {
         return find(firstNamLabel).getText();
@@ -75,9 +80,6 @@ public class WebTablesPage extends BasePage {
         return find(registrationDepartmentField).getAttribute("placeholder");
     }
 
-
-    //  WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
-
     public String getNoRowsFound() {
         return find(noRowsFound).getText();
     }
@@ -88,7 +90,7 @@ public class WebTablesPage extends BasePage {
         click(edit);
     }
 
-    public void clickAddNewRecordButton() {
+    public void clickAddButton() {
         click(addNewRecordButton);
     }
 
@@ -165,5 +167,60 @@ public class WebTablesPage extends BasePage {
     public boolean checkNextButtonIsActive() {
         scrollToElementJS(previousButton);
         return find(nextButton).isEnabled();
+    }
+
+    public boolean isAllBordersRed(String color) {
+        delay(500);
+
+        boolean bordersRed = true;
+
+        for (int i = 0; i <= 6; i++) {
+            if (i == 0) {
+                String str = find(registrationFirstNameField).getCssValue("border");
+                String endColor = str.substring(str.length() - 18);
+
+                if (!endColor.equals(color)) {
+                    bordersRed = false;
+                }
+            } else if (i == 1) {
+                String str = find(registrationLastNameField).getCssValue("border");
+                String endColor = str.substring(str.length() - 18);
+
+                if (!endColor.equals(color)) {
+                    bordersRed = false;
+                }
+            } else if (i == 2) {
+                String str = find(registrationEmailField).getCssValue("border");
+                String endColor = str.substring(str.length() - 18);
+
+                if (!endColor.equals(color)) {
+                    bordersRed = false;
+                }
+            } else if (i == 3) {
+                String str = find(registrationAgeField).getCssValue("border");
+                String endColor = str.substring(str.length() - 18);
+
+                if (!endColor.equals(color)) {
+                    bordersRed = false;
+                }
+            } else if (i == 4) {
+                String str = find(registrationSalaryField).getCssValue("border");
+                String endColor = str.substring(str.length() - 18);
+
+                if (!endColor.equals(color)) {
+                    bordersRed = false;
+                }
+            } else if (i == 5) {
+                String str = find(registrationDepartmentField).getCssValue("border");
+                String endColor = str.substring(str.length() - 18);
+
+                if (!endColor.equals(color)) {
+                    bordersRed = false;
+                }
+            }
+        }
+
+
+        return bordersRed;
     }
 }

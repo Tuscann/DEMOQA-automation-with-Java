@@ -107,7 +107,7 @@ public class TextBoxPage extends BasePage {
         return find(textBoxText).getText();
     }
 
-    public String isBorderRed() {
+    public String isBorderRedAroundEmail() {
         delay(500);
 
         String str = find(email).getCssValue("border");

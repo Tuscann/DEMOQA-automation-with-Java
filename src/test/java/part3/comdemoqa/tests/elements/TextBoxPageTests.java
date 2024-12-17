@@ -42,10 +42,10 @@ public class TextBoxPageTests extends BaseTest {
 
     @Test
     public void AddFullName() {
+        navigateToUrl("text-box");
+
         String fullName = "Zhivko Nedyalkov";
         String expectedOutput = "Name:" + fullName;
-
-        navigateToUrl("text-box");
         textBoxPage.setFullName(fullName);
         textBoxPage.clickSubmitButton();
 
@@ -55,10 +55,10 @@ public class TextBoxPageTests extends BaseTest {
     }
 
     @Test
-    public void AddEmail() {
+    public void AddValidEmailAndClickSubmit() {
+        navigateToUrl("text-box");
         String email = "testemail@example.com";
 
-        navigateToUrl("text-box");
         textBoxPage.setEmail(email);
         textBoxPage.clickSubmitButton();
 
@@ -67,10 +67,10 @@ public class TextBoxPageTests extends BaseTest {
     }
 
     @Test
-    public void AddPermanentAddress() {
+    public void AddPermanentAddressAndClickSubmit() {
+        navigateToUrl("text-box");
         String permanentAddress = "1234 Elm Street, Springfield";
 
-        navigateToUrl("text-box");
         textBoxPage.setPermanentAddress(permanentAddress);
         textBoxPage.clickSubmitButton();
 
@@ -79,10 +79,10 @@ public class TextBoxPageTests extends BaseTest {
     }
 
     @Test
-    public void AddCurrentAddress() {
+    public void AddCurrentAddressAndClickSubmit() {
+        navigateToUrl("text-box");
         String currentAddress = "4321 Maple Lane, Metropolis";
 
-        navigateToUrl("text-box");
         textBoxPage.setCurrentAddress(currentAddress);
         textBoxPage.clickSubmitButton();
 
@@ -103,6 +103,7 @@ public class TextBoxPageTests extends BaseTest {
         textBoxPage.setEmail(email);
         textBoxPage.setCurrentAddress(currentAddress);
         textBoxPage.setPermanentAddress(permanentAddress);
+
         textBoxPage.clickSubmitButton();
 
         String actualFullName = textBoxPage.getExpectedFullName();
@@ -173,14 +174,14 @@ public class TextBoxPageTests extends BaseTest {
     }
 
     @Test
-    public void checkRedColorForInvalidMail() {
+    public void VerifyRedColorLineForInvalidMail() {
         navigateToUrl("text-box");
         String email = "a";
         textBoxPage.setEmail(email);
         textBoxPage.clickSubmitButton();
 
         String redColor = "solid rgb(255, 0, 0)";
-        String actualColor = textBoxPage.isBorderRed();
+        String actualColor = textBoxPage.isBorderRedAroundEmail();
 
         Assert.assertEquals(actualColor, redColor, "Not same red color");
     }

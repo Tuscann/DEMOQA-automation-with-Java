@@ -2,19 +2,26 @@ package com.pages.demo.pages.alerts_frames_windows;
 
 import com.pages.base.BasePage;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
 public class NestedFramesPage extends BasePage {
 
-    private final By frame1 = By.id("frame1");
-
+    private final By parentIframe = By.id("frame1");
+    private final By parentText = By.xpath("//*[text()=\"Parent frame\"]");
     private final By childIframe = By.xpath("//p[contains(.,'Child Iframe')]");
+    private final By childIframeText = By.xpath("//body/p");
 
-    private final By text = By.id("framesWrapper");
+    private final By mainText = By.xpath("//*[contains(text(),\"Sample\")]");
 
-    public String getText() {
-        return find(text).getText();
+    public String getMainText() {
+        return find(mainText).getText();
+    }
+
+    public String getChildText() {
+        return find(childIframeText).getText();
+    }
+
+    public String getParentText() {
+        return find(parentText).getText();
     }
 
     public void switchToParentIFrame() {
@@ -27,11 +34,13 @@ public class NestedFramesPage extends BasePage {
 
     public void selectParentIframe() {
 
-        WebElement firstFrame = driver.findElement(frame1);
-        WebDriver firstHeadingWebElement = driver.switchTo().frame(firstFrame);
+        driver.switchTo().frame(find(parentIframe));
+    }
 
-        String x = firstHeadingWebElement.getTitle();
+    public void selectChildIframe() {
 
+        driver.switchTo().frame(find(parentIframe));
+        driver.switchTo().frame(0);
 
     }
 }

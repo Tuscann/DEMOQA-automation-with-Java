@@ -85,8 +85,8 @@ public class PracticeFormPageTests extends FormsPageTests {
         practiceFormPage.setSubject(expectedSubject);
         practiceFormPage.clickSportHobbyCheckbox();
         practiceFormPage.setCurrentAddress(expectedCurrentAddress);
-        // formsPage.setDropDown(expectedState);
-        // formsPage.selectCity(city);
+        // practiceFormPage.setStateFromDropDown(expectedState);
+        // practiceFormPage.selectCity(city);
         practiceFormPage.clickSubmitButton();
 
         String actualFullName = practiceFormPage.getStudentNameFromModal();

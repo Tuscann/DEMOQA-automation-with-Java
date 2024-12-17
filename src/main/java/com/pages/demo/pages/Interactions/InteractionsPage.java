@@ -1,18 +1,18 @@
-package com.pages.demo.pages.Intereactions;
+package com.pages.demo.pages.Interactions;
 
 import com.pages.base.BasePage;
 import org.openqa.selenium.By;
 
-public class InteractionPage extends BasePage {
+public class InteractionsPage extends BasePage {
     private final By sortable = By.xpath("//li[@id='item-0']/span[text()='Sortable']");
     private final By selectable = By.xpath("//li[@id='item-1']/span[text()='Selectable']");
     private final By resizable = By.xpath("//li[@id='item-2']/span[text()='Resizable']");
     private final By droppable = By.xpath("//li[@id='item-3']/span[text()='Droppable']");
     private final By dragabble = By.xpath("//li[@id='item-4']/span[text()='Dragabble']");
+    private final By text = By.xpath("(//div[contains(.,'Please select an item from left to start practice.')])[5]");
 
-    public SortablePage clickSortable() {
+    public void clickSortable() {
         click(sortable);
-        return new SortablePage();
     }
 
     public SelectablePage clickSelectable() {
@@ -33,5 +33,9 @@ public class InteractionPage extends BasePage {
     public DraggablePage clickDragabble() {
         click(dragabble);
         return new DraggablePage();
+    }
+
+    public String getMainText() {
+        return find(text).getText();
     }
 }
