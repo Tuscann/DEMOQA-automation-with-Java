@@ -57,27 +57,27 @@ public class WebTablesPage extends BasePage {
     }
 
     public String getPlaceholderFirstName() {
-        return find(registrationFirstNameField).getAttribute("placeholder");
+        return find(registrationFirstNameField).getDomAttribute("placeholder");
     }
 
     public String getPlaceholderLastName() {
-        return find(registrationLastNameField).getAttribute("placeholder");
+        return find(registrationLastNameField).getDomAttribute("placeholder");
     }
 
     public String getPlaceholderUserEmail() {
-        return find(registrationEmailField).getAttribute("placeholder");
+        return find(registrationEmailField).getDomAttribute("placeholder");
     }
 
     public String getPlaceholderUserAge() {
-        return find(registrationAgeField).getAttribute("placeholder");
+        return find(registrationAgeField).getDomAttribute("placeholder");
     }
 
     public String getPlaceholderUserSalary() {
-        return find(registrationSalaryField).getAttribute("placeholder");
+        return find(registrationSalaryField).getDomAttribute("placeholder");
     }
 
     public String getPlaceholderDepartment() {
-        return find(registrationDepartmentField).getAttribute("placeholder");
+        return find(registrationDepartmentField).getDomAttribute("placeholder");
     }
 
     public String getNoRowsFound() {

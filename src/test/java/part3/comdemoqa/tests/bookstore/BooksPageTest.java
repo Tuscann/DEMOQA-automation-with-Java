@@ -32,7 +32,7 @@ public class BooksPageTest extends BaseTest {
     }
 
     @Test
-    public void GetFirstRowTable() {
+    public void GetFirstRowOfTable() {
         navigateToUrl("books");
 
         String expectedTopRow = """
@@ -57,7 +57,7 @@ public class BooksPageTest extends BaseTest {
         Assert.assertEquals(actualBooksCount, expectedBooksCount);
     }
 
-    @Test(enabled = true)
+    @Test
     public void ClickLoginButton() {
         navigateToUrl("books");
 
@@ -97,7 +97,7 @@ public class BooksPageTest extends BaseTest {
         Assert.assertEquals(actualMessage, expectedMessage);
     }
 
-    @Test(enabled = true)
+    @Test
     public void ClickNextAndPreviousButtons() {
         navigateToUrl("books");
 
@@ -132,8 +132,8 @@ public class BooksPageTest extends BaseTest {
         Assert.assertFalse(isActiveNextButton);
     }
 
-    @Test(enabled = true)
-    public void ClickAllPerPage() {
+    @Test
+    public void ClickAllRowsPerPage() {
         navigateToUrl("books");
 
         String booksPerPage = "5 rows";
@@ -189,8 +189,7 @@ public class BooksPageTest extends BaseTest {
         Assert.assertEquals(actualBooksCount, expectedBooksCount);
     }
 
-
-    @Test(enabled = true)
+    @Test
     public void OrderBooksByTitleByAuthorByPublisherDescending() {
         navigateToUrl("books");
 

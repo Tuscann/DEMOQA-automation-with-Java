@@ -16,6 +16,51 @@ public class BooksLoginPage extends BasePage {
     private final By loginButton = By.id("login");
     private final By errorMessage = By.id("name");
     private final By profile = By.id("userName-value");
+    private final By logoutButton = By.xpath("//button[contains(.,'Log out')]");
+    private final By goToBookStoreButton = By.xpath("//button[@id='gotoStore']");
+    private final By deleteAccountButton = By.xpath("//button[@type='button'][contains(.,'Delete Account')]");
+    private final By deleteAllBooksButton = By.xpath("(//button[@type='button'][contains(.,'Delete All Books')])[1]");
+
+    private final By usernameLabel = By.id("userName-label");
+    private final By passwordLabel = By.id("password-label");
+
+    private final By loginText = By.xpath("//h5[contains(.,'Login in Book Store')]");
+
+    public String getLoginText() {
+        return find(loginText).getText();
+    }
+
+    public String getUsernamePlaceholder() {
+        return find(username).getDomAttribute("placeholder");
+    }
+
+    public String getPasswordPlaceholder() {
+        return find(username).getDomAttribute("placeholder");
+    }
+
+    public String getPasswordLabel() {
+        return find(passwordLabel).getText();
+    }
+
+    public String getUsernameLabel() {
+        return find(usernameLabel).getText();
+    }
+
+    public void clickGoToBookStoreButton() {
+        find(goToBookStoreButton).click();
+    }
+
+    public void clickDeleteAccountButton() {
+        find(deleteAccountButton).click();
+    }
+
+    public void clickDeleteAllBooksButton() {
+        find(deleteAllBooksButton).click();
+    }
+
+    public void clickLogoutButton() {
+        find(logoutButton).click();
+    }
 
     public String getErrorMessage() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(12));

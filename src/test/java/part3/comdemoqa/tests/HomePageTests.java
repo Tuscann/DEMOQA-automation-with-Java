@@ -7,12 +7,7 @@ import part3.comdemoqa.base.BaseTest;
 public class HomePageTests extends BaseTest {
 
     @Test
-    public void ClickAllLinks() {
-        String expectedFooterText = "© 2013-2020 TOOLSQA.COM | ALL RIGHTS RESERVED.";
-
-        String actualFooterText = homePage.getFooterText();
-        Assert.assertEquals(actualFooterText, expectedFooterText);
-
+    public void ClickAndVerifyAllLinks() {
         String expectedUrl = "https://demoqa.com/elements";
         homePage.goToElements();
         String actualUrl = elementsPage.checkUrl();
@@ -52,5 +47,32 @@ public class HomePageTests extends BaseTest {
         homePage.goToBooks();
         actualUrl = elementsPage.checkUrl();
         Assert.assertEquals(actualUrl, expectedUrl);
+    }
+
+    @Test
+    public void VerifyAllTextOnPage() {
+        String expectedFooterText = "© 2013-2020 TOOLSQA.COM | ALL RIGHTS RESERVED.";
+        String expectedElementsText = "Elements";
+        String expectedFormsText = "Forms";
+        String expectedAlertsText = "Alerts, Frame & Windows";
+        String expectedWidgetsText = "Widgets";
+        String expectedInteractionText = "Interactions";
+        String expectedBooksText = "Book Store Application";
+
+        String actualFooterText = homePage.getFooterText();
+        String actualElementsText = homePage.getElementsText();
+        String actualFormsText = homePage.getFormsText();
+        String actualAlertsText = homePage.getAlertsText();
+        String actualWidgetsText = homePage.getWidgetsText();
+        String actualInteractionText = homePage.getInteractionsText();
+        String actualBooksText = homePage.getBookStoreApplicationText();
+
+        Assert.assertEquals(actualFooterText, expectedFooterText);
+        Assert.assertEquals(actualElementsText, expectedElementsText);
+        Assert.assertEquals(actualFormsText, expectedFormsText);
+        Assert.assertEquals(actualAlertsText, expectedAlertsText);
+        Assert.assertEquals(actualWidgetsText, expectedWidgetsText);
+        Assert.assertEquals(actualInteractionText, expectedInteractionText);
+        Assert.assertEquals(actualBooksText, expectedBooksText);
     }
 }

@@ -19,5 +19,4 @@ public class FormsPage extends BasePage {
     public String getText() {
         return find(text).getText();
     }
-
 }

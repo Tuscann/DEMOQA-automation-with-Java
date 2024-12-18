@@ -17,8 +17,8 @@ public class GetUtility extends Utility {
         return driver.findElement(locator).getText();
     }
 
-    public static String getAttribute(By locator, String attribute) {
-        return driver.findElement(locator).getAttribute(attribute);
+    public static String getDomAttribute(By locator, String attribute) {
+        return driver.findElement(locator).getDomAttribute(attribute);
     }
 
     public static String getURL() {

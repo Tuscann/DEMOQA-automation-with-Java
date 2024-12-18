@@ -155,7 +155,7 @@ public class TextBoxPageTests extends BaseTest {
         String placeholderFullName = textBoxPage.getPlaceholderFullName();
         String placeholderEmail = textBoxPage.getPlaceholderEmail();
         String placeholderCurrentAddress = textBoxPage.getPlaceholderCurrentAddress();
-        String placeholderPermanentAddress = textBoxPage.getPlaceholderPermanentAddress();
+        String actualPlaceholderPermanentAddress = textBoxPage.getPlaceholderPermanentAddress();
         String textBoxText = textBoxPage.getTextBoxText();
         String fullNameLabel = textBoxPage.getFullNameLabel();
         String emailLabel = textBoxPage.getEmailLabel();
@@ -165,7 +165,7 @@ public class TextBoxPageTests extends BaseTest {
         Assert.assertEquals(placeholderFullName, expectedPlaceholderFullName, "Not same placeholder Full Name");
         Assert.assertEquals(placeholderEmail, expectedPlaceholderEmail, "Not same placeholder Email");
         Assert.assertEquals(placeholderCurrentAddress, expectedPlaceholderCurrentAddress, "Not same placeholder Current Address");
-        Assert.assertEquals(placeholderPermanentAddress, expectedPlaceholderPermanentAddress, "Not same placeholder Permanent Address");
+        Assert.assertEquals(actualPlaceholderPermanentAddress, expectedPlaceholderPermanentAddress, "Not same placeholder Permanent Address");
         Assert.assertEquals(textBoxText, expectedTextBoxText, "Wrong text box text");
         Assert.assertEquals(fullNameLabel, expectedFullNameLabel, "Not same label Full Name");
         Assert.assertEquals(emailLabel, expectedFEmailLabel, "Not same label Email");

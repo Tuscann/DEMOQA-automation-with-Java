@@ -21,6 +21,30 @@ public class HomePage extends BasePage {
     private final By clickHomePageItem = By.xpath("(//div[@class='card-up'])");
     private final By footer = By.xpath("//span[contains(.,'© 2013-2020 TOOLSQA.COM | ALL RIGHTS RESERVED.')]");
 
+    public String getElementsText() {
+        return find(elementsCard).getText();
+    }
+
+    public String getFormsText() {
+        return find(formsCard).getText();
+    }
+
+    public String getAlertsText() {
+        return find(alertsFrameWindowsCard).getText();
+    }
+
+    public String getWidgetsText() {
+        return find(widgetsCard).getText();
+    }
+
+    public String getInteractionsText() {
+        return find(interactionsCard).getText();
+    }
+
+    public String getBookStoreApplicationText() {
+        return find(bookStoreApplicationCard).getText();
+    }
+
     public String getFooterText() {
         return find(footer).getText();
     }
@@ -29,7 +53,6 @@ public class HomePage extends BasePage {
         scrollToElementJS(formsCard);
         click(formsCard);
     }
-
 
     public void goToInteractions() {
         scrollToElementJS(interactionsCard);
@@ -55,7 +78,6 @@ public class HomePage extends BasePage {
             }
         }
     }
-
 
     public void goToElements() {
         scrollToElementJS(elementsCard);

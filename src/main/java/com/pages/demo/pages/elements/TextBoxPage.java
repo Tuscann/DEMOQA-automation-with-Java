@@ -43,19 +43,19 @@ public class TextBoxPage extends BasePage {
     }
 
     public String getPlaceholderFullName() {
-        return find(fullName).getAttribute("placeholder");
+        return find(fullName).getDomAttribute("placeholder");
     }
 
     public String getPlaceholderEmail() {
-        return find(email).getAttribute("placeholder");
+        return find(email).getDomAttribute("placeholder");
     }
 
     public String getPlaceholderCurrentAddress() {
-        return find(currentAddress).getAttribute("placeholder");
+        return find(currentAddress).getDomAttribute("placeholder");
     }
 
     public String getPlaceholderPermanentAddress() {
-        return find(permanentAddress).getAttribute("placeholder");
+        return find(permanentAddress).getText();
     }
 
     public void setFullName(String fullName2) {

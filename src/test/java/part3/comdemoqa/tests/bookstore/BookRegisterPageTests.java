@@ -6,25 +6,50 @@ import part3.comdemoqa.base.BaseTest;
 
 public class BookRegisterPageTests extends BaseTest {
 
-    @Test(enabled = false)
-    public void RegisterToBookStoreTest() {
+    @Test(enabled = true)
+    public void VerifyAllTextOnPage() {
         navigateToUrl("register");
 
-        String expectedFirstName = "Zhivko";
-        String expectedLastName = "Petrov";
-        String expectedUsername = "fbi" + Math.random();
-        String expectedPassword = "12345Aa!" + Math.random();
+        String expectedTitle = "Register";
+        String expectedFirstText = "Register to Book Store";
+        String expectedFirstNameLabel = "First Name :";
+        String expectedFirstNamePlaceholder = "First Name";
+        String expectedLastNameLabel = "Last Name :";
+        String expectedLastNamePlaceholder = "Last Name";
+        String expectedUserNameLabel = "UserName :";
+        String expectedUserNamePlaceholder = "UserName";
+        String expectedPasswordLabel = "Password :";
+        String expectedPasswordPlaceholder = "Password";
+        String expectedRegisterButtonName = "Register";
+        String expectedBackToLoginButtonName = "Back to Login";
 
-        booksRegisterPage.setFirstName(expectedFirstName);
-        booksRegisterPage.setLastName(expectedLastName);
-        booksRegisterPage.setUsername(expectedUsername);
-        booksRegisterPage.setPassword(expectedPassword);
-        booksRegisterPage.clickIamRobotButton();
-        booksRegisterPage.clickRegisterButton();
+        String actualTitleText = booksRegisterPage.getTitle();
+        String actualFirstText = booksRegisterPage.getFirstText();
+        String actualFirstNameLabel = booksRegisterPage.getFirstNameLabel();
+        String actualLastNameLabel = booksRegisterPage.getLastNameLabel();
+        String actualUserNameLabel = booksRegisterPage.getUsernameLabel();
+        String actualPasswordLabel = booksRegisterPage.getPasswordLabel();
 
-        var x = 12;
+        String actualFirstNamePlaceholder = booksRegisterPage.getFirstNamePlaceholderText();
+        String actualLastNamePlaceholder = booksRegisterPage.getLastNamePlaceholderText();
+        String actualUserNamePlaceholder = booksRegisterPage.getUsernamePlaceholderText();
+        String actualPasswordPlaceholder = booksRegisterPage.getPasswordPlaceholderText();
+        String actualRegisterButtonText = booksRegisterPage.getTextOfRegisterButton();
+        String actualBackToLoginButtonText = booksRegisterPage.getTextOfBackToLoginButton();
 
-        //TODO Check pop window
+        Assert.assertEquals(actualFirstNamePlaceholder, expectedFirstNamePlaceholder);
+        Assert.assertEquals(actualLastNamePlaceholder, expectedLastNamePlaceholder);
+        Assert.assertEquals(actualUserNamePlaceholder, expectedUserNamePlaceholder);
+        Assert.assertEquals(actualPasswordPlaceholder, expectedPasswordPlaceholder);
+        Assert.assertEquals(actualTitleText, expectedTitle);
+        Assert.assertEquals(actualFirstText, expectedFirstText);
+        Assert.assertEquals(actualFirstNameLabel, expectedFirstNameLabel);
+        Assert.assertEquals(actualLastNameLabel, expectedLastNameLabel);
+        Assert.assertEquals(actualUserNameLabel, expectedUserNameLabel);
+        Assert.assertEquals(actualPasswordLabel, expectedPasswordLabel);
+
+        Assert.assertEquals(actualRegisterButtonText, expectedRegisterButtonName);
+        Assert.assertEquals(actualBackToLoginButtonText, expectedBackToLoginButtonName);
     }
 
     @Test

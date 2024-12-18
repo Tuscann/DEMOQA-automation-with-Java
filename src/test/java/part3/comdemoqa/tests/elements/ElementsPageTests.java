@@ -9,6 +9,10 @@ public class ElementsPageTests extends BaseTest {
     public void CheckAllNinePagesLinks() {
         navigateToUrl("elements");
 
+        String actualString = "Please select an item from left to start practice.";
+        String expectedString = elementsPage.getText();
+        Assert.assertEquals(expectedString, actualString);
+
         String expectedUrl = "https://demoqa.com/text-box";
         elementsPage.clickTextBox();
         String actualUrl = elementsPage.checkUrl();

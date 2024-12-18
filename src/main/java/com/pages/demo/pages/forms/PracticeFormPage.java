@@ -12,6 +12,26 @@ import static utilities.JavaScriptUtility.clickJS;
 import static utilities.JavaScriptUtility.scrollToElementJS;
 
 public class PracticeFormPage extends BasePage {
+    private final By practiceFormLabel = By.xpath("//h1[@class='text-center'][contains(.,'Practice Form')]");
+    private final By studentRegistrationFormLabel = By.xpath("//h5[contains(.,'Student Registration Form')]");
+    private final By nameLabel = By.id("userName-label");
+    private final By userEmailLabel = By.id("userEmail-label");
+    private final By genderLabel = By.xpath("(//div[contains(.,'Gender')])[8]");
+    private final By maleRadioButtonLabel = By.xpath("//label[@for='gender-radio-1'][contains(.,'Male')]");
+    private final By femaleRadioButtonLabel = By.xpath(" //label[@for='gender-radio-2'][contains(.,'Female')]");
+    private final By otherRadioButtonLabel = By.xpath("//label[@for='gender-radio-3'][contains(.,'Other')]");
+    private final By dateOfBirthLabel = By.id("dateOfBirth-label");
+    private final By mobileNumberLabel = By.id("userNumber-label");
+    private final By subjectsLabel = By.id("subjects-label");
+    private final By hobbiesLabel = By.xpath("//label[@class='form-label'][contains(.,'Hobbies')]");
+    private final By pictureLabel = By.xpath("//label[@class='form-label'][contains(.,'Picture')]");
+    private final By sportsLabel = By.xpath("//label[@for='hobbies-checkbox-1'][contains(.,'Sports')]");
+    private final By readingLabel = By.xpath("//label[@for='hobbies-checkbox-2'][contains(.,'Reading')]");
+    private final By musicLabel = By.xpath("//label[@for='hobbies-checkbox-3'][contains(.,'Music')]");
+    private final By selectPictureLabel = By.xpath("//label[@for='uploadPicture'][contains(.,'Select picture')]");
+    private final By currentAddressLabel = By.id("currentAddress-label");
+    private final By stateAndCityLabel = By.id("stateCity-label");
+
     private final By firstName = By.id("firstName");
     private final By lastName = By.id("lastName");
     private final By email = By.id("userEmail");
@@ -25,14 +45,13 @@ public class PracticeFormPage extends BasePage {
     private final By readingHobbyCheckbox = By.id("hobbies-checkbox-2");
     private final By musicHobbyCheckbox = By.id("hobbies-checkbox-3");
     private final By currentAddressArea = By.id("currentAddress");
-    private final By selectState = By.id("state");
-    private final By state = By.xpath("//div[@class=' css-1wa3eu0-placeholder'][contains(.,'Select State')]");
+    private final By selectState = By.xpath("//div[@class=' css-1wa3eu0-placeholder'][contains(.,'Select State')]");
     private final By selectCity = By.xpath("//div[@class=' css-1wa3eu0-placeholder'][contains(.,'Select City')]");
     private final By submitButton = By.id("submit");
 
-    private final By label = By.xpath("//th[contains(.,'Label')]");
-    private final By values = By.xpath("//th[contains(.,'Label')]/following-sibling::*[1]");
-    private final By StudentNameForm = By.xpath("//td[contains(.,'Student Name')]/following-sibling::*[1]");
+    private final By labelForm = By.xpath("//th[contains(.,'Label')]");
+    private final By valuesForm = By.xpath("//th[contains(.,'Label')]/following-sibling::*[1]");
+    private final By studentNameForm = By.xpath("//td[contains(.,'Student Name')]/following-sibling::*[1]");
     private final By emailForm = By.xpath("//td[contains(.,'Student Email')]/following-sibling::*[1]");
     private final By genderForm = By.xpath("//td[contains(.,'Gender')]/following-sibling::*[1]");
     private final By mobileForm = By.xpath("//td[contains(.,'Mobile')]/following-sibling::*[1]");
@@ -43,9 +62,127 @@ public class PracticeFormPage extends BasePage {
     private final By addressForm = By.xpath("//td[contains(.,'Address')]/following-sibling::*[1]");
     private final By stateAndCityForm = By.xpath("//td[contains(.,'State')]/following-sibling::*[1]");
 
+    private final By thanksText = By.xpath("//div[@class='modal-title h4'][contains(.,'Thanks for submitting the form')]");
+    private final By studentNameFormLabel = By.xpath("//td[contains(.,'Student Name')]");
+    private final By studentEmailLabel = By.xpath("//td[contains(.,'Student Email')]");
+    private final By genderFormLabel = By.xpath("//td[contains(.,'Gender')]");
+    private final By mobileFormLabel = By.xpath("//td[contains(.,'Mobile')]");
+    private final By dateOfBirthFormLabel = By.xpath("//td[contains(.,'Date of Birth')]");
+    private final By subjectsFormLabel = By.xpath("//td[contains(.,'Subjects')]");
+    private final By hobbiesFormLabel = By.xpath("//td[contains(.,'Hobbies')]");
+    private final By pictureFormLabel = By.xpath("//td[contains(.,'Picture')]");
+    private final By addressFormLabel = By.xpath("//td[contains(.,'Address')]");
+    private final By stateAndCityFormLabel = By.xpath("//td[contains(.,'State')]");
+    private final By closeButton = By.id("closeLargeModal");
+
+    public String getCloseButtonText() {
+        return find(closeButton).getText();
+    }
+
+    public String getThanksText() {
+        return find(thanksText).getText();
+    }
+
+    public String getStudentNameFormLabel() {
+        return find(studentNameFormLabel).getText();
+    }
+
+    public String getStudentEmailLabel() {
+        return find(studentEmailLabel).getText();
+    }
+
+    public String getGenderFormLabel() {
+        return find(genderFormLabel).getText();
+    }
+
+    public String getMobileFormLabel() {
+        return find(mobileFormLabel).getText();
+    }
+
+    public String getDateOfBirthFormLabel() {
+        return find(dateOfBirthFormLabel).getText();
+    }
+
+    public String getSubjectsFormLabel() {
+        return find(subjectsFormLabel).getText();
+    }
+
+    public String getHobbiesFormLabel() {
+        return find(hobbiesFormLabel).getText();
+    }
+
+    public String getPictureFormLabel() {
+        return find(pictureFormLabel).getText();
+    }
+
+    public String getAddressFormLabel() {
+        return find(addressFormLabel).getText();
+    }
+
+    public String getStateAndCityFormLabel() {
+        return find(stateAndCityFormLabel).getText();
+    }
+
+
+    public String getSelectPictureLabel() {
+        return find(selectPictureLabel).getText();
+    }
+
+    public String getHobbiesLabel() {
+        return find(hobbiesLabel).getText();
+    }
+
+    public String getPictureLabel() {
+        return find(pictureLabel).getText();
+    }
+
+    public String getReadingLabel() {
+        return find(readingLabel).getText();
+    }
+
+    public String getMusicLabel() {
+        return find(musicLabel).getText();
+    }
+
+    public String getMobileNumberLabel() {
+        return find(mobileNumberLabel).getText();
+    }
+
+    public String getMaleGenderText() {
+        return find(maleRadioButtonLabel).getText();
+    }
+
+    public String getFemaleGenderText() {
+        return find(femaleRadioButtonLabel).getText();
+    }
+
+    public String getOtherRadioButtonGenderText() {
+        return find(otherRadioButtonLabel).getText();
+    }
+
+    public String getGenderLabel() {
+        return find(genderLabel).getText();
+    }
+
+    public String getNameLabel() {
+        return find(nameLabel).getText();
+    }
+
+    public String getLastNameLabel() {
+        return find(lastName).getText();
+    }
+
+    public String getPracticeFormLabel() {
+        return find(practiceFormLabel).getText();
+    }
+
+    public String getStudentRegistrationFormLabel() {
+        return find(studentRegistrationFormLabel).getText();
+    }
+
     public String getStudentNameFromModal() {
         delay(1500);
-        return find(StudentNameForm).getText();
+        return find(studentNameForm).getText();
     }
 
     public String getEmailFromModal() {
@@ -53,11 +190,11 @@ public class PracticeFormPage extends BasePage {
     }
 
     public String getLabelFromModal() {
-        return find(label).getText();
+        return find(labelForm).getText();
     }
 
     public String getValuesFromModal() {
-        return find(values).getText();
+        return find(valuesForm).getText();
     }
 
     public String getHobbiesFromModal() {
@@ -92,40 +229,40 @@ public class PracticeFormPage extends BasePage {
         return find(subjectsForm).getText();
     }
 
-    public String getPlaceholderFullName() {
-        return find(firstName).getAttribute("placeholder");
+    public String getFirstNamePlaceholderText() {
+        return find(firstName).getDomAttribute("placeholder");
     }
 
-    public String getPlaceholderLastName() {
-        return find(lastName).getAttribute("placeholder");
+    public String getLastNamePlaceholderText() {
+        return find(lastName).getDomAttribute("placeholder");
     }
 
     public String getPlaceholderEmail() {
-        return find(email).getAttribute("placeholder");
+        return find(email).getDomAttribute("placeholder");
     }
 
-    public String getPlaceholderMobile() {
-        return find(mobile).getAttribute("placeholder");
+    public String getMobileNumberPlaceholderText() {
+        return find(mobile).getDomAttribute("placeholder");
     }
 
-    public String getPlaceholderDateOfBirth() {
-        return find(dateOfBirth).getAttribute("placeholder");
+    public String getDateOfBirthPlaceholder() {
+        return find(dateOfBirth).getDomAttribute("value");
     }
 
-    public String getPlaceholderCurrentAddress() {
-        return find(currentAddressArea).getAttribute("placeholder");
+    public String getCurrentAddressPlaceholder() {
+        return find(currentAddressArea).getDomAttribute("placeholder");
     }
 
-    public String getPlaceholderState() {
-        return find(selectState).getAttribute("placeholder");
+    public String getSelectStatePlaceholder() {
+        return find(selectState).getText();
     }
 
-    public String getPlaceholderCity() {
-        return find(selectCity).getAttribute("placeholder");
+    public String getCityPlaceholder() {
+        return find(selectCity).getText();
     }
 
     public String getPlaceholderSubjects() {
-        return find(subjects).getAttribute("placeholder");
+        return find(subjects).getDomAttribute("placeholder");
     }
 
     public void setSubject(String subject) {
@@ -167,7 +304,6 @@ public class PracticeFormPage extends BasePage {
         }
     }
 
-
     public void setDateOfBirth(String dateOfBirth) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOfElementLocated(this.dateOfBirth))
@@ -182,7 +318,7 @@ public class PracticeFormPage extends BasePage {
         return find(otherRadioButton).isSelected();
     }
 
-    public boolean isМaleRadioButtonSelected() {
+    public boolean isMaleRadioButtonSelected() {
         return find(maleRadioButton).isSelected();
     }
 
@@ -234,7 +370,6 @@ public class PracticeFormPage extends BasePage {
     public void setDropDown(String expectedState) {
         click(selectState);
         //  find(selectState).sendKeys("" + Keys.DOWN);
-
     }
 
     public void setStateFromDropDown(String expectedState) {
@@ -243,5 +378,45 @@ public class PracticeFormPage extends BasePage {
                 .sendKeys(expectedState);
         wait.until(ExpectedConditions.elementToBeClickable(selectState))
                 .sendKeys(Keys.chord("" + Keys.ENTER));
+    }
+
+    public String getPracticeNameLabel() {
+        return find(practiceFormLabel).getText();
+    }
+
+    public String getPracticeEmailLLabel() {
+        return find(email).getText();
+    }
+
+    public String getEmailLLabel() {
+        return find(userEmailLabel).getText();
+    }
+
+    public String getDateOfBirthLabel() {
+        return find(dateOfBirthLabel).getText();
+    }
+
+    public String getSubjectLabel() {
+        return find(subjectsLabel).getText();
+    }
+
+    public String getSelectPictureText() {
+        return find(selectPictureLabel).getText();
+    }
+
+    public String getHobbySportText() {
+        return find(sportsLabel).getText();
+    }
+
+    public String getCurrentAddressLabel() {
+        return find(currentAddressLabel).getText();
+    }
+
+    public String getStateAndCityLabel() {
+        return find(stateAndCityLabel).getText();
+    }
+
+    public String getSubmitButtonText() {
+        return find(submitButton).getText();
     }
 }

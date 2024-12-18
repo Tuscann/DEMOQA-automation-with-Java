@@ -16,6 +16,7 @@ public class ElementsPage extends BasePage {
     private final By brokenLinksImages = By.xpath("//li[@id='item-6']/span[text()='Broken Links - Images']");
     private final By uploadAndDownload = By.xpath("//li[@id='item-7']/span[text()='Upload and Download']");
     private final By dynamicPropertiesMenuItem = By.xpath("//li[@id='item-8']/span[text()='Dynamic Properties']");
+    private final By text = By.xpath("(//div[contains(.,'Please select an item from left to start practice.')])[5]");
 
     public void clickTextBox() {
         click(textBox);
@@ -52,5 +53,9 @@ public class ElementsPage extends BasePage {
 
     public void clickDynamicProperties() {
         click(dynamicPropertiesMenuItem);
+    }
+
+    public String getText() {
+        return find(text).getText();
     }
 }

@@ -9,7 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 import static utilities.ActionUtility.dragAndDropBy;
-import static utilities.GetUtility.getAttribute;
+import static utilities.GetUtility.getDomAttribute;
 import static utilities.WaitUtility.explicitWaitUntilVisible;
 import static utilities.WaitUtility.fluentWaitUntilVisible;
 
@@ -19,7 +19,7 @@ public class SliderPage extends BasePage {
     private final By slider = By.className("range-slider__wrap");
 
     public String getSliderValue() {
-        return getAttribute(sliderValue, "value");
+        return getDomAttribute(sliderValue, "value");
     }
 
     public void moveSlider(int x, int y) throws InterruptedException {

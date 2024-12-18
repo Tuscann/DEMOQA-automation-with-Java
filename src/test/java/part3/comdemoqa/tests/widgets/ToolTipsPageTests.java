@@ -7,9 +7,8 @@ import part3.comdemoqa.base.BaseTest;
 public class ToolTipsPageTests extends BaseTest {
 
     @Test(enabled = false)
-    public void checkDefaultValueSlider() {
+    public void HoverOnHoverMeToSee() {
         navigateToUrl("tool-tips");
-
 
         String expectedText = toolTipsPage.assertionHoverButtonText();
 

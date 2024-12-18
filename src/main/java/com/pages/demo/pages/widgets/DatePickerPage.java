@@ -35,7 +35,7 @@ public class DatePickerPage extends BasePage {
     }
 
     public String getSelectedDate() {
-        return find(sectionOneHeading).getAttribute("value");
+        return find(sectionOneHeading).getDomAttribute("value");
     }
 
     public void selectDateAndTime(String expectedDate) {
@@ -46,6 +46,6 @@ public class DatePickerPage extends BasePage {
     }
 
     public String getSelectedDateAndTime() {
-        return find(sectionTwoHeading).getAttribute("value");
+        return find(sectionTwoHeading).getDomAttribute("value");
     }
 }
