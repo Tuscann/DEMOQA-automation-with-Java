@@ -62,6 +62,9 @@ public class TabsPage extends BasePage {
     }
 
     public String getOriginTabInternalText() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(4));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(originTabInternalText));
+
         return find(originTabInternalText).getText();
     }
 

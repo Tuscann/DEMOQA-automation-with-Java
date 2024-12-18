@@ -3,6 +3,7 @@ package utilities;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
@@ -18,7 +19,7 @@ public class SwitchToUtility extends Utility {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         Alert alert;
         String az = "";
-        
+
         while (true) {
             try {
                 alert = driver.switchTo().alert();
@@ -39,6 +40,8 @@ public class SwitchToUtility extends Utility {
     }
 
     public static void setAlertText(String text) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        Alert alert = wait.until(ExpectedConditions.alertIsPresent());
         switchTo().alert().sendKeys(text);
     }
 

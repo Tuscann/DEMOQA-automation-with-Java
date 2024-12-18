@@ -16,7 +16,7 @@ public class ButtonsPageTests extends BaseTest {
         String expectedDoubleClickButtonText = "Double Click Me";
         String expectedRightClickMeButtonText = "Right Click Me";
         String expectedDynamicClickMeButtonText = "Click Me";
-        String expectedText = "Buttons";
+        String expectedHeaderButtonsText = "Buttons";
 
         buttonsPage.doubleClickOnButton();
         buttonsPage.rightClickOnButton();
@@ -40,6 +40,6 @@ public class ButtonsPageTests extends BaseTest {
         Assert.assertEquals(actualDoubleClickButtonText, expectedDoubleClickButtonText, "Wrong name Double Click Me");
         Assert.assertEquals(actualRightClickMeButtonText, expectedRightClickMeButtonText, "Wrong name Right Click Me");
         Assert.assertEquals(actualDynamicClickMeButtonText, expectedDynamicClickMeButtonText, "Wrong name Click Me");
-        Assert.assertEquals(buttonText, expectedText, "Wrong name Buttons");
+        Assert.assertEquals(buttonText, expectedHeaderButtonsText, "Wrong name Buttons");
     }
 }

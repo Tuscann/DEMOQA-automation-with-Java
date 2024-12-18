@@ -9,6 +9,7 @@ public class BrokenLinksImagesPageTest extends BaseTest {
     public void CheckAllTextOnPage() {
         navigateToUrl("broken");
 
+        String expectedH1header = "Broken Links - Images";
         String expectedValidImageText = "Valid image";
         String expectedBrokenImageText = "Broken image";
         String expectedValidLinkText = "Valid Link";
@@ -16,6 +17,7 @@ public class BrokenLinksImagesPageTest extends BaseTest {
         String expectedBrokenLinkText = "Broken Link";
         String expectedClickHereBrokenLinkText = "Click Here for Broken Link";
 
+        String actualH1Text = brokenLinksImagesPage.getH1Text();
         String actualClickHereValidLinkText = brokenLinksImagesPage.getClickHereValidLinkText();
         String actualBrokenImageText = brokenLinksImagesPage.getBrokenImageText();
         String actualValidLinkText = brokenLinksImagesPage.getValidLinkText();
@@ -23,12 +25,13 @@ public class BrokenLinksImagesPageTest extends BaseTest {
         String actualBrokenLinkText = brokenLinksImagesPage.getBrokenLinkText();
         String actualClickHereBrokenLinkText = brokenLinksImagesPage.getClickHereBrokenLinkText();
 
-        Assert.assertEquals(actualClickHereValidLinkText, expectedClickHereValidLinkText);
-        Assert.assertEquals(actualBrokenImageText, expectedBrokenImageText);
-        Assert.assertEquals(actualValidLinkText, expectedValidLinkText);
-        Assert.assertEquals(actualValidImageText, expectedValidImageText);
-        Assert.assertEquals(actualBrokenLinkText, expectedBrokenLinkText);
-        Assert.assertEquals(actualClickHereBrokenLinkText, expectedClickHereBrokenLinkText);
+        Assert.assertEquals(actualH1Text, expectedH1header, "Wrong header text");
+        Assert.assertEquals(actualClickHereValidLinkText, expectedClickHereValidLinkText, "Wrong click link text");
+        Assert.assertEquals(actualBrokenImageText, expectedBrokenImageText, "Wrong image text");
+        Assert.assertEquals(actualValidLinkText, expectedValidLinkText, "Wrong link text");
+        Assert.assertEquals(actualValidImageText, expectedValidImageText, "Wrong valid image text");
+        Assert.assertEquals(actualBrokenLinkText, expectedBrokenLinkText, "Wrong broken link text");
+        Assert.assertEquals(actualClickHereBrokenLinkText, expectedClickHereBrokenLinkText, "Wrong click link text");
     }
 
     @Test

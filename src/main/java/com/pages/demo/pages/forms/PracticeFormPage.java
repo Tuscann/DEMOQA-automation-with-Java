@@ -3,9 +3,12 @@ package com.pages.demo.pages.forms;
 import com.pages.base.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.File;
+import java.net.URL;
 import java.time.Duration;
 
 import static utilities.JavaScriptUtility.clickJS;
@@ -44,7 +47,10 @@ public class PracticeFormPage extends BasePage {
     private final By sportHobbyCheckbox = By.id("hobbies-checkbox-1");
     private final By readingHobbyCheckbox = By.id("hobbies-checkbox-2");
     private final By musicHobbyCheckbox = By.id("hobbies-checkbox-3");
+    private final By uploadPicture = By.id("uploadPicture");
     private final By currentAddressArea = By.id("currentAddress");
+    private final By states22 = By.id("react-select-3-input");
+    private final By cities = By.id("react-select-4-input");
     private final By selectState = By.xpath("//div[@class=' css-1wa3eu0-placeholder'][contains(.,'Select State')]");
     private final By selectCity = By.xpath("//div[@class=' css-1wa3eu0-placeholder'][contains(.,'Select City')]");
     private final By submitButton = By.id("submit");
@@ -123,7 +129,6 @@ public class PracticeFormPage extends BasePage {
         return find(stateAndCityFormLabel).getText();
     }
 
-
     public String getSelectPictureLabel() {
         return find(selectPictureLabel).getText();
     }
@@ -166,10 +171,6 @@ public class PracticeFormPage extends BasePage {
 
     public String getNameLabel() {
         return find(nameLabel).getText();
-    }
-
-    public String getLastNameLabel() {
-        return find(lastName).getText();
     }
 
     public String getPracticeFormLabel() {
@@ -367,27 +368,6 @@ public class PracticeFormPage extends BasePage {
         return find(sportHobbyCheckbox).isSelected();
     }
 
-    public void setDropDown(String expectedState) {
-        click(selectState);
-        //  find(selectState).sendKeys("" + Keys.DOWN);
-    }
-
-    public void setStateFromDropDown(String expectedState) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
-        wait.until(ExpectedConditions.elementToBeClickable(selectState))
-                .sendKeys(expectedState);
-        wait.until(ExpectedConditions.elementToBeClickable(selectState))
-                .sendKeys(Keys.chord("" + Keys.ENTER));
-    }
-
-    public String getPracticeNameLabel() {
-        return find(practiceFormLabel).getText();
-    }
-
-    public String getPracticeEmailLLabel() {
-        return find(email).getText();
-    }
-
     public String getEmailLLabel() {
         return find(userEmailLabel).getText();
     }
@@ -398,10 +378,6 @@ public class PracticeFormPage extends BasePage {
 
     public String getSubjectLabel() {
         return find(subjectsLabel).getText();
-    }
-
-    public String getSelectPictureText() {
-        return find(selectPictureLabel).getText();
     }
 
     public String getHobbySportText() {
@@ -418,5 +394,34 @@ public class PracticeFormPage extends BasePage {
 
     public String getSubmitButtonText() {
         return find(submitButton).getText();
+    }
+
+    public String getFilePathFromResources(String fileName) {
+        URL resource = getClass().getClassLoader().getResource(fileName);
+        if (resource == null) {
+            return null;
+        }
+
+        File file = new File(resource.getFile());
+        if (file.exists()) {
+            return file.getAbsolutePath();
+        }
+        return null;
+    }
+
+    public void uploadFile(String pathOfFile) {
+        WebElement fileInput = driver.findElement(uploadPicture);
+
+        fileInput.sendKeys(pathOfFile);
+    }
+
+    public void setState(String expectedState) {
+        find(states22).sendKeys(expectedState);
+        find(states22).sendKeys("" + Keys.ENTER);
+    }
+
+    public void setCity(String expectedCity) {
+        find(cities).sendKeys(expectedCity);
+        find(cities).sendKeys("" + Keys.ENTER);
     }
 }

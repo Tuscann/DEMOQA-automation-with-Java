@@ -5,12 +5,17 @@ import org.openqa.selenium.By;
 
 public class BrokenLinksImagesPage extends BasePage {
 
+    private final By h1Text = By.xpath("//h1[@class='text-center'][contains(.,'Broken Links - Images')] ");
     private final By validImageText = By.xpath("//p[contains(.,'Valid image')]");
     private final By brokenImageText = By.xpath("//p[contains(.,'Broken image')]");
     private final By validLinkText = By.xpath("//p[contains(.,'Valid Link')]");
     private final By brokenLinkText = By.xpath("//p[contains(.,'Broken Link')]");
     private final By clickHereValidLinkText = By.xpath("//a[contains(.,'Click Here for Valid Link')]");
     private final By clickHereBrokenLinkText = By.xpath("//a[contains(.,'Click Here for Broken Link')]");
+
+    public String getH1Text() {
+        return find(h1Text).getText();
+    }
 
     public String getValidImageText() {
         return find(validImageText).getText();

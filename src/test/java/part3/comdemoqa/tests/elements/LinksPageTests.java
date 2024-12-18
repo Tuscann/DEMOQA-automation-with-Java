@@ -6,18 +6,6 @@ import part3.comdemoqa.base.BaseTest;
 
 public class LinksPageTests extends BaseTest {
     @Test
-    public void ClickLinkBadRequest() {
-        navigateToUrl("links");
-        linksPage.clickBadRequestLink();
-        String actualResponse = linksPage.getResponse();
-
-        Assert.assertTrue(actualResponse.contains("400")
-                        && actualResponse.contains("Bad Request"),
-                "\n Actual Response (" + actualResponse +
-                        ")\n Does Not Contain '400' and 'Bad Request' \n");
-    }
-
-    @Test
     public void ClickLinkCreatedRequest() {
         navigateToUrl("links");
         linksPage.clickCreatedRequestLink();
@@ -25,18 +13,6 @@ public class LinksPageTests extends BaseTest {
 
         Assert.assertTrue(actualResponse.contains("201")
                         && actualResponse.contains("Created"),
-                "\n Link has responded with staus" + actualResponse +
-                        ")\n and status text Created \n");
-    }
-
-    @Test
-    public void ClickLinkMovedRequest() {
-        navigateToUrl("links");
-        linksPage.clickMovedRequestLink();
-        String actualResponse = linksPage.getResponse();
-
-        Assert.assertTrue(actualResponse.contains("301")
-                        && actualResponse.contains("Moved Permanently"),
                 "\n Link has responded with staus" + actualResponse +
                         ")\n and status text Created \n");
     }
@@ -54,7 +30,31 @@ public class LinksPageTests extends BaseTest {
     }
 
     @Test
-    public void ClickLinkAuthorizedRequest() {
+    public void ClickLinkMovedRequest() {
+        navigateToUrl("links");
+        linksPage.clickMovedRequestLink();
+        String actualResponse = linksPage.getResponse();
+
+        Assert.assertTrue(actualResponse.contains("301")
+                        && actualResponse.contains("Moved Permanently"),
+                "\n Link has responded with staus" + actualResponse +
+                        ")\n and status text Created \n");
+    }
+
+    @Test
+    public void ClickLinkBadRequest() {
+        navigateToUrl("links");
+        linksPage.clickBadRequestLink();
+        String actualResponse = linksPage.getResponse();
+
+        Assert.assertTrue(actualResponse.contains("400")
+                        && actualResponse.contains("Bad Request"),
+                "\n Actual Response (" + actualResponse +
+                        ")\n Does Not Contain '400' and 'Bad Request' \n");
+    }
+
+    @Test
+    public void ClickLinkUnAthorizedRequest() {
         navigateToUrl("links");
         linksPage.clickUnauthorizedRequestLink();
         String actualResponse = linksPage.getResponse();
@@ -90,14 +90,67 @@ public class LinksPageTests extends BaseTest {
     }
 
     @Test
-    public void ClickOpenNewTabSameWindow() {
+    public void OpenNewTabFromHomeLink() {
         navigateToUrl("links");
-        linksPage.clickNewHomeTab();
+        linksPage.clickSimpleTab();
 
         String urlNewTab = linksPage.getUrl();
         String expectedUrlNewTab = "https://demoqa.com/";
 
         Assert.assertEquals(urlNewTab, expectedUrlNewTab,
                 "\n Actual & Expected New Tab Url Do Not Match \n");
+    }
+    
+    @Test
+    public void OpenNewTabDynamicLink() {
+        navigateToUrl("links");
+        linksPage.clickDynamicLink();
+
+        String urlNewTab = linksPage.getUrl();
+        String expectedUrlNewTab = "https://demoqa.com/";
+
+        Assert.assertEquals(urlNewTab, expectedUrlNewTab,
+                "\n Actual & Expected New Tab Url Do Not Match \n");
+    }
+
+    @Test
+    public void VerifyAllTextOnPage() {
+        navigateToUrl("links");
+
+        String expectedLinksHeader = "Links";
+        String expectedFollowingLinksWillOpenNewTab = "Following links will open new tab";
+        String expectedHomeText = "Home";
+        String expectedFollowingLinksWillSendAnApiCall = "Following links will send an api call";
+        String expectedCreatedText = "Created";
+        String expectedNoContentText = "No Content";
+        String expectedMovedText = "Moved";
+        String expectedBadRequestText = "Bad Request";
+        String expectedUnauthorizedText = "Unauthorized";
+        String expectedForbiddenText = "Forbidden";
+        String expectedNotFoundText = "Not Found";
+
+        String actualLinksHeader = linksPage.getLinksText();
+        String actualFollowingLinksWillOpenNewTab = linksPage.getNewTabText();
+        String actualHomeText = linksPage.getSimpleLinkText();
+        String actualFollowingLinksWillSendAnApiCall = linksPage.getApiCallText();
+        String actualCreatedText = linksPage.getCreatedRequestLinkText();
+        String actualNoContentText = linksPage.getNoContentRequestLinkText();
+        String actualMovedText = linksPage.getMovedRequestLinkText();
+        String actualBadRequestText = linksPage.getBadRequestLinkText();
+        String actualUnauthorizedText = linksPage.getUnauthorizedRequestLinkText();
+        String actualForbiddenText = linksPage.getForbiddenRequestLinkText();
+        String actualNotFoundText = linksPage.getNotFoundRequestLinkText();
+
+        Assert.assertEquals(actualLinksHeader, expectedLinksHeader, "Different Header text");
+        Assert.assertEquals(actualFollowingLinksWillOpenNewTab, expectedFollowingLinksWillOpenNewTab, "Different new tab text");
+        Assert.assertEquals(actualHomeText, expectedHomeText, "Different home text");
+        Assert.assertEquals(actualFollowingLinksWillSendAnApiCall, expectedFollowingLinksWillSendAnApiCall, "Different api call text");
+        Assert.assertEquals(actualCreatedText, expectedCreatedText, "Different created text");
+        Assert.assertEquals(actualNoContentText, expectedNoContentText, "Different no content text");
+        Assert.assertEquals(actualMovedText, expectedMovedText, "Different moved text");
+        Assert.assertEquals(actualBadRequestText, expectedBadRequestText, "Different bad request text");
+        Assert.assertEquals(actualUnauthorizedText, expectedUnauthorizedText, "Different Unauthorized text");
+        Assert.assertEquals(actualForbiddenText, expectedForbiddenText, "Different Forbidden text");
+        Assert.assertEquals(actualNotFoundText, expectedNotFoundText, "Different NotFound text");
     }
 }

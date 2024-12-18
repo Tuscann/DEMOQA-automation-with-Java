@@ -59,6 +59,8 @@ public class PracticeFormPageTests extends BaseTest {
 
     @Test
     public void SubmitPracticeForm() {
+        navigateToUrl("automation-practice-form");
+
         String firstName = "Zhivko";
         String lastName = "Petrov";
         String expectedEmail = "karma@gmail.com";
@@ -68,14 +70,14 @@ public class PracticeFormPageTests extends BaseTest {
         String DateOfBirth = LocalDate.now().format(DateTimeFormatter.ofPattern("MM/dd/yyyy"));
         String expectedSubject = "Hindi";
         String expectedHobbies = "Sports";
-        String expectedPicture = "";
+        String expectedPicture = "zhivko.jpg";
         String expectedCurrentAddress = "Sofia Main St 244";
-        String expectedState = ""; //"Haryana"
-        String expectedCity = "";  //"Karnal";
+        String expectedState = "Haryana";
+        String expectedCity = "Karnal";
         String expectedLabel = "Label";
         String expectedValues = "Values";
 
-        navigateToUrl("automation-practice-form");
+        String filePathOnOperationSystem = practiceFormPage.getFilePathFromResources(expectedPicture);
 
         practiceFormPage.setFirstName(firstName);
         practiceFormPage.setLastName(lastName);
@@ -85,9 +87,10 @@ public class PracticeFormPageTests extends BaseTest {
         practiceFormPage.setDateOfBirth(DateOfBirth);
         practiceFormPage.setSubject(expectedSubject);
         practiceFormPage.clickSportHobbyCheckbox();
+        practiceFormPage.uploadFile(filePathOnOperationSystem);
         practiceFormPage.setCurrentAddress(expectedCurrentAddress);
-        // practiceFormPage.setStateFromDropDown(expectedState);
-        // practiceFormPage.selectCity(city);
+        practiceFormPage.setState(expectedState);
+        practiceFormPage.setCity(expectedCity);
         practiceFormPage.clickSubmitButton();
 
         String actualFullName = practiceFormPage.getStudentNameFromModal();
@@ -103,18 +106,18 @@ public class PracticeFormPageTests extends BaseTest {
         String actualLabel = practiceFormPage.getLabelFromModal();
         String actualValues = practiceFormPage.getValuesFromModal();
 
-        Assert.assertEquals(actualFullName, firstName + " " + lastName);
-        Assert.assertEquals(actualEmail, expectedEmail);
-        Assert.assertEquals(actualGender, expectedGender);
-        Assert.assertEquals(actualMobile, expectedMobileNumber);
-        Assert.assertEquals(actualDaterOfBirth, expectedDateOfBirth);
-        Assert.assertEquals(actualSubjects, expectedSubject);
-        Assert.assertEquals(actualHobbies, expectedHobbies);
-        Assert.assertEquals(actualPicture, expectedPicture);
-        Assert.assertEquals(actualCurrentAddress, expectedCurrentAddress);
-        Assert.assertEquals(actualStateAndCity, expectedState + "" + expectedCity);
-        Assert.assertEquals(actualLabel, expectedLabel);
-        Assert.assertEquals(actualValues, expectedValues);
+        Assert.assertEquals(actualFullName, firstName + " " + lastName, "Wrong full name");
+        Assert.assertEquals(actualEmail, expectedEmail, "Wrong email address");
+        Assert.assertEquals(actualGender, expectedGender, "Wrong gender");
+        Assert.assertEquals(actualMobile, expectedMobileNumber, "Wrong mobile number");
+        Assert.assertEquals(actualDaterOfBirth, expectedDateOfBirth, "Wrong date of birth");
+        Assert.assertEquals(actualSubjects, expectedSubject, "Wrong subjects");
+        Assert.assertEquals(actualHobbies, expectedHobbies, "Wrong hobbies");
+        Assert.assertEquals(actualPicture, expectedPicture, "Wrong name of picture");
+        Assert.assertEquals(actualCurrentAddress, expectedCurrentAddress, "Wrong current address");
+        Assert.assertEquals(actualStateAndCity, expectedState + " " + expectedCity, "Wrong State and City");
+        Assert.assertEquals(actualLabel, expectedLabel, "Wrong label");
+        Assert.assertEquals(actualValues, expectedValues, "Wrong values");
     }
 
     @Test
@@ -213,6 +216,8 @@ public class PracticeFormPageTests extends BaseTest {
 
     @Test
     public void VerifySubmitFormTexts() {
+        navigateToUrl("automation-practice-form");
+
         String firstName = "Zhivko";
         String lastName = "Petrov";
         String expectedEmail = "karma@gmail.com";
@@ -223,10 +228,10 @@ public class PracticeFormPageTests extends BaseTest {
         String expectedHobbies = "Sports";
         String expectedPicture = "";
         String expectedCurrentAddress = "Sofia Main St 244";
-        String expectedState = ""; //"Haryana"
-        String expectedCity = "";  //"Karnal";
+        String expectedState = "Haryana";
+        String expectedCity = "Karnal";
 
-        navigateToUrl("automation-practice-form");
+        String filePathOnOperationSystem = practiceFormPage.getFilePathFromResources(expectedPicture);
 
         practiceFormPage.setFirstName(firstName);
         practiceFormPage.setLastName(lastName);
@@ -236,9 +241,10 @@ public class PracticeFormPageTests extends BaseTest {
         practiceFormPage.setDateOfBirth(DateOfBirth);
         practiceFormPage.setSubject(expectedSubject);
         practiceFormPage.clickSportHobbyCheckbox();
+        practiceFormPage.uploadFile(filePathOnOperationSystem);
         practiceFormPage.setCurrentAddress(expectedCurrentAddress);
-        // practiceFormPage.setStateFromDropDown(expectedState);
-        // practiceFormPage.selectCity(city);
+        practiceFormPage.setState(expectedState);
+        practiceFormPage.setCity(expectedCity);
         practiceFormPage.clickSubmitButton();
 
         String expectedThanksText = "Thanks for submitting the form";
