@@ -6,7 +6,7 @@ import part3.comdemoqa.base.BaseTest;
 
 public class Alerts_Frames_WindowsPageTests extends BaseTest {
 
-    @Test(enabled = true)
+    @Test
     public void CheckAllFivePagesLinks() {
         navigateToUrl("alertsWindows");
 

@@ -6,7 +6,7 @@ import part3.comdemoqa.base.BaseTest;
 
 public class ProgressBarPageTests extends BaseTest {
 
-    @Test(enabled = true)
+    @Test
     public void ClickStartButtonCheckEndValue() {
         navigateToUrl("progress-bar");
 
@@ -32,7 +32,7 @@ public class ProgressBarPageTests extends BaseTest {
     }
 
     @Test(enabled = true)
-    public void VerifyTextOnPage() {
+    public void VerifyAllTextOnPage() {
         navigateToUrl("progress-bar");
 
         String expectedHeaderText = "Progress Bar";

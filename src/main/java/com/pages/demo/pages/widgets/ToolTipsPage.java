@@ -1,5 +1,6 @@
 package com.pages.demo.pages.widgets;
 
+
 import com.pages.base.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -36,33 +37,17 @@ public class ToolTipsPage extends BasePage {
         return find(hoverMeToSeeButton).getText();
     }
 
-//    public void hoverMeToSeeButton() {
-//
-//        actions.moveToElement(wait.until(ExpectedConditions.visibilityOfElementLocated((hoverMeToSeeButton)))).perform();
-//    }
-
-    public void hoverMeToSeeTextField() {
-        // moveToElement(hoverTextField);
-    }
-
-
-    public String assertionHoverButtonText() {
-
-        String hoverButtonText = find(hoverMeToSeeButton).getText();
-
-        WebElement hoverButton = driver.findElement(hoverMeToSeeButton);
+    public String getHoverButtonText() {
 
         Actions actions = new Actions(driver);
-        actions.moveToElement(hoverButton).perform();
-
-
-        String tooltipMessage = driver.findElement(hoverMeToSeeButton).getDomAttribute("aria-describedby");
+        actions.moveToElement(driver.findElement(hoverMeToSeeButton)).perform();
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(tooltipMessage)));
 
-        String actualMessage = tooltipMessage;
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(driver.findElement(hoverMeToSeeButton).getDomAttribute("aria-describedby"))));
 
-        return "dasd";
+        WebElement tooltipElement = driver.findElement(By.id(driver.findElement(hoverMeToSeeButton).getDomAttribute("aria-describedby")));
+
+        return tooltipElement.getText();
     }
 }

@@ -22,8 +22,8 @@ public class BrowserWindowsPageTests extends BaseTest {
         navigateToUrl("browser-windows");
         browserWindowsPage.clickNewWindowButton();
 
-        String expectedNewTabUrl = "https://www.moreto.net/";
-        String actualNewTabUrl = browserWindowsPage.getNewWindowUrl(expectedNewTabUrl);
+        String expectedNewTabUrl = "https://demoqa.com/sample";
+        String actualNewTabUrl = browserWindowsPage.getNewWindowUrl();
 
         Assert.assertEquals(actualNewTabUrl, expectedNewTabUrl, "\n Actual & Expected URL Do Not Match \n");
     }
@@ -33,10 +33,8 @@ public class BrowserWindowsPageTests extends BaseTest {
         navigateToUrl("browser-windows");
         browserWindowsPage.clickNewWindowMessageButton();
 
-        String expectedBrowserMessage = "Knowledge increases by sharing but not by saving. Please share this website with your friends and in your organization.";
-        String actualBrowserMessage = browserWindowsPage.getBrowserMessage();
-        //TODO How to take text in new Browser message
-
+        String expectedBrowserMessage = "about:blank";
+        String actualBrowserMessage = browserWindowsPage.getNewWindowUrl();
 
         Assert.assertEquals(actualBrowserMessage, expectedBrowserMessage, "\n Actual & Expected URL Do Not Match \n");
     }

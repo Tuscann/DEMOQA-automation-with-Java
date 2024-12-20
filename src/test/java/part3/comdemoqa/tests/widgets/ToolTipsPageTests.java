@@ -10,11 +10,10 @@ public class ToolTipsPageTests extends BaseTest {
     public void HoverOnHoverMeToSee() {
         navigateToUrl("tool-tips");
 
-        String expectedText = toolTipsPage.assertionHoverButtonText();
+        String actualHoverMeToSeeText = toolTipsPage.getHoverButtonText();
 
-        Assert.assertEquals(expectedText, "Hover me to see", "Hover me to see missing");
-        var x = 12;
+        String expectedHoverMeToSeeText = "You hovered over the Button";
 
-        //  Assert.assertEquals(actualValue, expectedValue, "Actual value is not default 25");
+        Assert.assertEquals(actualHoverMeToSeeText, expectedHoverMeToSeeText, "Hover me to see missing");
     }
 }

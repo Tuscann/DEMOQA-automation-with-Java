@@ -74,19 +74,20 @@ public class WebTablePageTests extends BaseTest {
     @Test
     public void AddNewRow() {
         navigateToUrl("webtables");
-        String expectedEmail = "Zhivko@example.com";
+
         String expectedFirstName = "Zhivko";
         String expectedLastName = "Petrov";
+        String expectedEmail = "Zhivko@example.com";
         String expectedAge = "37";
         String expectedSalary = "2000";
         String expectedDepartment = "Home";
 
         webTablesPage.clickAddButton();
 
-        webTablesPage.setAge(expectedAge);
         webTablesPage.setFirstName(expectedFirstName);
         webTablesPage.setLastName(expectedLastName);
         webTablesPage.setEmail(expectedEmail);
+        webTablesPage.setAge(expectedAge);
         webTablesPage.setSalary(expectedSalary);
         webTablesPage.setDepartment(expectedDepartment);
         webTablesPage.clickSubmitButton();
@@ -107,7 +108,7 @@ public class WebTablePageTests extends BaseTest {
     }
 
     @Test
-    public void CheckNextButtonActive() {
+    public void CheckIsNextButtonActive() {
         navigateToUrl("webtables");
 
         String expectedFirstName = "Zhivko";
@@ -142,6 +143,7 @@ public class WebTablePageTests extends BaseTest {
     public void CheckAllLabelsInRegistrationForm() {
         navigateToUrl("webtables");
 
+        String expectedRegistrationFormText = "Registration Form";
         String expectedFirstNameLabel = "First Name";
         String expectedLastNameLabel = "Last Name";
         String expectedEmailLabel = "Email";
@@ -155,8 +157,10 @@ public class WebTablePageTests extends BaseTest {
         String expectedPlaceholderAge = "Age";
         String expectedPlaceholderSalary = "Salary";
         String expectedPlaceholderDepartment = "Department";
+        String expectedSubmitButtonText = "Submit";
 
         webTablesPage.clickAddButton();
+        String actualRegistrationText = webTablesPage.getRegistrationFormText();
         String actualFirstNameLabel = webTablesPage.getFirstNamLabel();
         String actualLastNameLabel = webTablesPage.getLastNameLabel();
         String actualEmailLabel = webTablesPage.getEmailLabel();
@@ -170,7 +174,9 @@ public class WebTablePageTests extends BaseTest {
         String actualPlaceholderAge = webTablesPage.getPlaceholderUserAge();
         String actualPlaceholderSalary = webTablesPage.getPlaceholderUserSalary();
         String actualPlaceholderDepartment = webTablesPage.getPlaceholderDepartment();
+        String actualSubmitButtonText = webTablesPage.getSubmitButtonText();
 
+        Assert.assertEquals(actualRegistrationText, expectedRegistrationFormText, "Wrong registration name text");
         Assert.assertEquals(actualFirstNameLabel, expectedFirstNameLabel, "Not first name label");
         Assert.assertEquals(actualLastNameLabel, expectedLastNameLabel, "Not second name label");
         Assert.assertEquals(actualEmailLabel, expectedEmailLabel, "Not email label");
@@ -183,6 +189,7 @@ public class WebTablePageTests extends BaseTest {
         Assert.assertEquals(actualPlaceholderAge, expectedPlaceholderAge, "Not age label");
         Assert.assertEquals(actualPlaceholderSalary, expectedPlaceholderSalary, "Not salary label");
         Assert.assertEquals(actualPlaceholderDepartment, expectedPlaceholderDepartment, "Not department label");
+        Assert.assertEquals(actualSubmitButtonText, expectedSubmitButtonText, "Not submit button text");
     }
 
     @Test

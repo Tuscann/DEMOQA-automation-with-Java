@@ -7,6 +7,7 @@ import static utilities.JavaScriptUtility.scrollToElementJS;
 
 public class WebTablesPage extends BasePage {
 
+    private final By registrationFormText = By.xpath("//div[@id='registration-form-modal']");
     private final By registrationFirstNameField = By.id("firstName");
     private final By registrationLastNameField = By.id("lastName");
     private final By registrationEmailField = By.id("userEmail");
@@ -27,9 +28,12 @@ public class WebTablesPage extends BasePage {
     private final By salaryLabel = By.id("salary-label");
     private final By departmentLabel = By.id("department-label");
 
+    public String getRegistrationFormText() {
+        return find(registrationFormText).getText();
+    }
+
     public void searchWithWord(String word) {
         set(searchBox, word);
-
     }
 
     public String getFirstNamLabel() {
@@ -76,28 +80,12 @@ public class WebTablesPage extends BasePage {
         return find(registrationSalaryField).getDomAttribute("placeholder");
     }
 
-    public String getPlaceholderDepartment() {
-        return find(registrationDepartmentField).getDomAttribute("placeholder");
-    }
-
     public String getNoRowsFound() {
         return find(noRowsFound).getText();
     }
 
-    public void clickEdit(String email) {
-        By edit = By.xpath("//div[text()='" + email + "']//following::span[@title='Edit']");
-        scrollToElementJS(edit);
-        click(edit);
-    }
-
     public void clickAddButton() {
         click(addNewRecordButton);
-    }
-
-    public void clickDeleteByEmail(String email) {
-        By delete = By.xpath("//div[text()='" + email + "']//following::span[@title='Delete']");
-        scrollToElementJS(delete);
-        click(delete);
     }
 
     public void setAge(String age) {
@@ -124,9 +112,25 @@ public class WebTablesPage extends BasePage {
         set(registrationLastNameField, name);
     }
 
+    public String getPlaceholderDepartment() {
+        return find(registrationDepartmentField).getDomAttribute("placeholder");
+    }
+
     public void clickSubmitButton() {
         delay(200); //TODO
         click(submitButton);
+    }
+
+    public void clickEdit(String email) {
+        By edit = By.xpath("//div[text()='" + email + "']//following::span[@title='Edit']");
+        scrollToElementJS(edit);
+        click(edit);
+    }
+
+    public void clickDeleteByEmail(String email) {
+        By delete = By.xpath("//div[text()='" + email + "']//following::span[@title='Delete']");
+        scrollToElementJS(delete);
+        click(delete);
     }
 
     public String getTableAge(String email) {
@@ -220,7 +224,10 @@ public class WebTablesPage extends BasePage {
             }
         }
 
-
         return bordersRed;
+    }
+
+    public String getSubmitButtonText() {
+        return find(submitButton).getText();
     }
 }

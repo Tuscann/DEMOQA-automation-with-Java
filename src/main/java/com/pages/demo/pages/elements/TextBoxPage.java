@@ -58,6 +58,30 @@ public class TextBoxPage extends BasePage {
         return find(permanentAddress).getText();
     }
 
+    public String getExpectedFullName() {
+        return find(expectedFullName).getText();
+    }
+
+    public String getExpectedEmail() {
+        return find(expectedEmail).getText();
+    }
+
+    public String getExpectedCurrentAddress() {
+        return find(expectedCurrentAddress).getText();
+    }
+
+    public String getExpectedPermanentAddress() {
+        return find(expectedPermanentAddress).getText();
+    }
+
+    public String getOutput() {
+        return find(output).getText();
+    }
+
+    public String getTextBoxText() {
+        return find(textBoxText).getText();
+    }
+
     public void setFullName(String fullName2) {
         MoveToElementSelenium(fullName);
         set(fullName, fullName2);
@@ -81,30 +105,6 @@ public class TextBoxPage extends BasePage {
     public void clickSubmitButton() {
         scrollToElementJS(submitButton);
         click(submitButton);
-    }
-
-    public String getExpectedFullName() {
-        return find(expectedFullName).getText();
-    }
-
-    public String getExpectedEmail() {
-        return find(expectedEmail).getText();
-    }
-
-    public String getExpectedCurrentAddress() {
-        return find(expectedCurrentAddress).getText();
-    }
-
-    public String getExpectedPermanentAddress() {
-        return find(expectedPermanentAddress).getText();
-    }
-
-    public String getOutput() {
-        return find(output).getText();
-    }
-
-    public String getTextBoxText() {
-        return find(textBoxText).getText();
     }
 
     public String isBorderRedAroundEmail() {

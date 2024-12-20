@@ -11,17 +11,17 @@ public class RadioButtonPageTests extends BaseTest {
         navigateToUrl("radio-button");
 
         String expectedRadioButtonText = "Radio Button";
+        String expectedActualQuestionText = "Do you like the site?";
         String expectedYesAnswerLabel = "Yes";
         String expectedImpressiveAnswerLabel = "Impressive";
         String expectedNoAnswerLabel = "No";
-        String expectedActualQuestionText = "Do you like the site?";
 
         String actualRadioButtonText = radioButtonPage.getRadioButtonText();
+        String actualQuestionText = radioButtonPage.getQuestionText();
         String actualYesAnswerLabel = radioButtonPage.getYesAnswerLabel();
         String actualImpressiveAnswerLabel = radioButtonPage.getImpressiveAnswerLabel();
         String actualNoAnswerLabel = radioButtonPage.getNoAnswerLabel();
-        String actualQuestionText = radioButtonPage.getQuestionText();
-
+        
         Assert.assertEquals(actualRadioButtonText, expectedRadioButtonText, "Not found " + expectedRadioButtonText);
         Assert.assertEquals(actualYesAnswerLabel, expectedYesAnswerLabel, "Not found " + expectedYesAnswerLabel);
         Assert.assertEquals(actualNoAnswerLabel, expectedNoAnswerLabel, "Not found " + expectedNoAnswerLabel);

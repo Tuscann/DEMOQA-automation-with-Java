@@ -2,9 +2,6 @@ package com.pages.demo.pages.elements;
 
 import com.pages.base.BasePage;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-
-import java.util.List;
 
 public class RadioButtonPage extends BasePage {
 
@@ -24,16 +21,36 @@ public class RadioButtonPage extends BasePage {
         return find(question).getText();
     }
 
+    public String isColorGreen() {
+        return find(textSuccessMessage).getCssValue("color");
+    }
+
+    public String getYesAnswerLabel() {
+        return find(yesAnswerLabel).getText();
+    }
+
+    public String getImpressiveAnswerLabel() {
+        return find(impressiveLabel).getText();
+    }
+
+    public String getNoAnswerLabel() {
+        return find(noAnswerLabel).getText();
+    }
+
+    public String getResultMessage() {
+        return find(resultMessage).getText();
+    }
+
+    public boolean isResultMessageDisplayed() {
+        return driver.findElements(By.id("result")).isEmpty();
+    }
+
     public void clickAnswer(String answer) {
         switch (answer) {
             case "Yes" -> find(yesAnswerLabel).click();
             case "No" -> find(noAnswerLabel).click();
             case "Impressive" -> find(impressiveLabel).click();
         }
-    }
-
-    public String isColorGreen() {
-        return find(textSuccessMessage).getCssValue("color");
     }
 
     public boolean isAnswerEnabled(String answer) {
@@ -66,24 +83,5 @@ public class RadioButtonPage extends BasePage {
         return true;
     }
 
-    public String getYesAnswerLabel() {
-        return find(yesAnswerLabel).getText();
-    }
 
-    public String getImpressiveAnswerLabel() {
-        return find(impressiveLabel).getText();
-    }
-
-    public String getNoAnswerLabel() {
-        return find(noAnswerLabel).getText();
-    }
-
-    public String getResultMessage() {
-        return find(resultMessage).getText();
-    }
-
-    public boolean isResultMessageDisplayed() {
-        List<WebElement> elements = driver.findElements(By.id("result"));
-        return elements.isEmpty();
-    }
 }

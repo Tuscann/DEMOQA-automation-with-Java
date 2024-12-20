@@ -2,6 +2,7 @@ package com.pages.demo.pages.alerts_frames_windows;
 
 import com.pages.base.BasePage;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,17 +31,15 @@ public class BrowserWindowsPage extends BasePage {
         return driver.getCurrentUrl();
     }
 
-    public String getNewWindowUrl(String newWindowUrl) {
+    public String getNewWindowUrl() {
 
         String originalWindow = driver.getWindowHandle();
 
-        String actualWindowUrl = newWindowUrl;
+        String actualWindowUrl = "";
         Set<String> allWindows = driver.getWindowHandles();
-        for (String windowHandle : allWindows) {
-            if (!windowHandle.equals(originalWindow)) {
-                driver.switchTo().window(windowHandle);
-                driver.get(newWindowUrl);
-
+        for (String currentWindowHandle : allWindows) {
+            if (!currentWindowHandle.equals(originalWindow)) {
+                driver.switchTo().window(currentWindowHandle);
                 actualWindowUrl = driver.getCurrentUrl();
                 break;
             }
@@ -49,12 +48,23 @@ public class BrowserWindowsPage extends BasePage {
     }
 
     public String getBrowserMessage() {
+        String originalWindow = driver.getWindowHandle();
+        Set<String> allWindows = driver.getWindowHandles();
 
-        Object tt = driver.getWindowHandles().toArray()[1];
-        driver.switchTo().window(tt.toString());
+        String actualMessage = "";
+        String newWindow = null;
+        for (String window : allWindows) {
+            if (!window.equals(originalWindow)) {
+                newWindow = window;
+                //driver.switchTo().window(newWindow);
+                driver.switchTo().window(window);
 
-        String text = driver.findElement(By.xpath("/html/body/text()")).getText();
+                WebElement messageElement = driver.findElement(By.xpath("/html/body/text()"));
+                actualMessage = messageElement.getText().trim();
+                break;
+            }
+        }
 
-        return text;
+        return actualMessage;
     }
 }

@@ -6,7 +6,7 @@ import part3.comdemoqa.base.BaseTest;
 
 public class NestedFramesPageTests extends BaseTest {
 
-    @Test(enabled = true)
+    @Test
     public void VerifyHeadingTextInParentIframe() {
         navigateToUrl("nestedframes");
 

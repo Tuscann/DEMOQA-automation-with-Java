@@ -24,7 +24,6 @@ public class UploadAndDownloadPage extends BasePage {
     }
 
     public String getUploadFilePath() {
-
         return find(uploadFilePath).getText();
     }
 
