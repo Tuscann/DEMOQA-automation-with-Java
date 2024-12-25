@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 import part3.comdemoqa.base.BaseTest;
 
 public class BookLoginPageTests extends BaseTest {
-    @Test
+    @Test(enabled = true)
     public void LoginWithValidUsernameAndValidPassword() {
         navigateToUrl("login");
 
@@ -19,28 +19,6 @@ public class BookLoginPageTests extends BaseTest {
 
         String actualProfile = booksLoginPage.getProfile();
         Assert.assertEquals(actualProfile, expectedUsername, "Not same username");
-    }
-
-    @Test
-    public void VerifyLogoutAfterLogin() {
-        navigateToUrl("login");
-
-        String expectedUsername = "fbinnzhivko";
-        String password = "Karma1987!@";
-
-        booksLoginPage.setUsername(expectedUsername);
-        booksLoginPage.clickPassword();
-        booksLoginPage.setPassword(password);
-        booksLoginPage.clickLoginButton();
-
-        String actualProfile = booksLoginPage.getProfile();
-        Assert.assertEquals(actualProfile, expectedUsername, "Not same username");
-
-        booksLoginPage.clickLogoutButton();
-
-        String expectedLoginText = "Login in Book Store";
-        String actualLoginText = booksLoginPage.getLoginText();
-        Assert.assertEquals(actualLoginText, expectedLoginText, "Not same login text");
     }
 
     @Test(enabled = true)
@@ -98,9 +76,8 @@ public class BookLoginPageTests extends BaseTest {
         Assert.assertEquals(actualErrorMessage, expectedErrorMessage, "Wrong password message");
     }
 
-
-    @Test(enabled = false)
-    public void clickButtonGotoBookStore() {
+    @Test(enabled = true)
+    public void ClickLogoutAfterLogin() {
         navigateToUrl("login");
 
         String expectedUsername = "fbinnzhivko";
@@ -114,9 +91,47 @@ public class BookLoginPageTests extends BaseTest {
         String actualProfile = booksLoginPage.getProfile();
         Assert.assertEquals(actualProfile, expectedUsername, "Not same username");
 
-        // booksLoginPage.clickGoToBookStoreButton();
-        // actualProfile = booksLoginPage.getProfile();
-        // Assert.assertEquals(actualProfile, expectedUsername, "Not same username");
+        booksLoginPage.clickLogoutButton();
+
+        String expectedLoginText = "Login in Book Store";
+        String actualLoginText = booksLoginPage.getLoginText();
+        Assert.assertEquals(actualLoginText, expectedLoginText, "Not same login text");
     }
 
+    @Test(enabled = true)
+    public void ClickButtonGotoBookStore() {
+        navigateToUrl("login");
+
+        String expectedUsername = "fbinnzhivko";
+        String password = "Karma1987!@";
+
+        booksLoginPage.setUsername(expectedUsername);
+        booksLoginPage.setPassword(password);
+        booksLoginPage.clickLoginButton();
+        booksProfilePage.clickGoToBookStoreButton();
+
+        String expectedUrl = "https://demoqa.com/books";
+        String actualUrl = booksPage.checkUrl();
+        Assert.assertEquals(actualUrl, expectedUrl, "Not same books url");
+    }
+
+    @Test(enabled = true)
+    public void VerifyLoginPageAfterLogin() {
+        navigateToUrl("login");
+
+        String expectedUsername = "fbinnzhivko";
+        String password = "Karma1987!@";
+
+        booksLoginPage.setUsername(expectedUsername);
+        booksLoginPage.clickPassword();
+        booksLoginPage.setPassword(password);
+        booksLoginPage.clickLoginButton();
+        booksProfilePage.clickGoToBookStoreButton();
+        booksProfilePage.clickLoginLink2();
+        
+        String expectedUrl = "You are already logged in. View your profile.";
+        String actualLabel = booksLoginPage.getLoadingLabel();
+
+        Assert.assertEquals(actualLabel, expectedUrl, "Not same label");
+    }
 }

@@ -12,8 +12,7 @@ public class BooksProfilePageTest extends BaseTest {
 
         String expectedErrorMessage = "Currently you are not logged into the Book Store application, please visit the login page to enter or register page to register yourself.";
 
-        String actualMessage = booksProfilePage.getNotLogginWrapper();
-
+        String actualMessage = booksProfilePage.getLoggingWrapper();
 
         Assert.assertEquals(actualMessage, expectedErrorMessage, "Wrong password message");
     }

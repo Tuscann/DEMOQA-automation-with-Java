@@ -30,7 +30,6 @@ import static utilities.Utility.setUtilityDriver;
 
 public class BaseTest {
 
-    private final String DEMOQA_URL = "http://demoqa.com/";
     public WebDriver driver;
     public ButtonsPage buttonsPage;
     public RadioButtonPage radioButtonPage;
@@ -76,12 +75,13 @@ public class BaseTest {
     @BeforeMethod
     public void setUp() {
         EdgeOptions options = new EdgeOptions();
-        options.addArguments("--headless=new");
-        options.addArguments("--disable-gpu");
-        options.addArguments("--window-size=1920,1080"); // Set the window size
+//        options.addArguments("--headless=new");
+//        options.addArguments("--disable-gpu");
+//        options.addArguments("--window-size=1920,1080"); // Set the window size
 
         driver = new EdgeDriver(options);
         driver.manage().window().maximize();
+        String DEMOQA_URL = "http://demoqa.com/";
         driver.get(DEMOQA_URL);
 
         basePage = new BasePage();

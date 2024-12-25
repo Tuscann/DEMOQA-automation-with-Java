@@ -20,11 +20,15 @@ public class BooksLoginPage extends BasePage {
     private final By goToBookStoreButton = By.xpath("//button[@id='gotoStore']");
     private final By deleteAccountButton = By.xpath("//button[@type='button'][contains(.,'Delete Account')]");
     private final By deleteAllBooksButton = By.xpath("(//button[@type='button'][contains(.,'Delete All Books')])[1]");
-
+    private final By loadingLabel = By.id("loading-label");
     private final By usernameLabel = By.id("userName-label");
     private final By passwordLabel = By.id("password-label");
 
     private final By loginText = By.xpath("//h5[contains(.,'Login in Book Store')]");
+
+    public String getLoadingLabel() {
+        return find(loadingLabel).getText();
+    }
 
     public String getLoginText() {
         return find(loginText).getText();

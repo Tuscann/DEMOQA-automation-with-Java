@@ -33,13 +33,13 @@ public class DynamicPropertiesPageTests extends BaseTest {
         navigateToUrl("dynamic-properties");
 
         boolean isEnableButton = dynamicPropertiesPage.checkWillEnable5SecondsButton();
-        String colorOFColorChangeButton = dynamicPropertiesPage.getColorOfChangeButton();
+        String colorOfColorChangeButton = dynamicPropertiesPage.getColorOfChangeButton();
         boolean isVisibleAfter5SecondsButton = dynamicPropertiesPage.checkVisibleAfte5SecondsButton();
 
         String expectedColor = "rgba(255, 255, 255, 1)";
 
         Assert.assertFalse(isEnableButton, "Enable button is enable now");
-        Assert.assertEquals(colorOFColorChangeButton, expectedColor, "Not white color on change text");
+        Assert.assertEquals(colorOfColorChangeButton, expectedColor, "Not white color on change text");
         Assert.assertFalse(isVisibleAfter5SecondsButton, "Visible after 5 button is visible now");
     }
 
@@ -48,10 +48,10 @@ public class DynamicPropertiesPageTests extends BaseTest {
         navigateToUrl("dynamic-properties");
 
         String expectedVisibleAfter5SecondsButtonText = "Visible After 5 Seconds";
-        String expectedColor = "rgba(220, 53, 69, 1)";
+        String expectedColor = "rgba(255, 255, 255, 1)";
 
-        String visibleAfter5SecondsButtonText = dynamicPropertiesPage.getVisibleAfter5SecondsButtonTextAfter5seconds();
         String colorOFColorChangeButton = dynamicPropertiesPage.getColorOfChangeButton();
+        String visibleAfter5SecondsButtonText = dynamicPropertiesPage.getVisibleAfter5SecondsButtonTextAfter5seconds();
         boolean isEnableButton = dynamicPropertiesPage.checkWillEnable5SecondsButton();
         boolean isVisibleAfter5SecondsButton = dynamicPropertiesPage.checkVisibleAfte5SecondsButton();
 

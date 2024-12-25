@@ -8,7 +8,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
-import java.net.URL;
 import java.time.Duration;
 
 import static utilities.JavaScriptUtility.clickJS;
@@ -397,12 +396,12 @@ public class PracticeFormPage extends BasePage {
     }
 
     public String getFilePathFromResources(String fileName) {
-        URL resource = getClass().getClassLoader().getResource(fileName);
-        if (resource == null) {
-            return null;
-        }
+//        URL resource = getClass().getClassLoader().getResource(fileName);
+//        if (resource == null) {
+//            return null;
+//        }
 
-        File file = new File(resource.getFile());
+        File file = new File(System.getProperty("user.dir") + "/resources/screenshots/zhivko.jpg");
         if (file.exists()) {
             return file.getAbsolutePath();
         }
