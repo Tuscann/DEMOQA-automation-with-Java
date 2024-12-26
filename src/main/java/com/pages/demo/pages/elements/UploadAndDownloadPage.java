@@ -35,14 +35,16 @@ public class UploadAndDownloadPage extends BasePage {
 
     public String getFilePathFromResources(String fileName) {
         URL resource = getClass().getClassLoader().getResource(fileName);
-        if (resource == null) {
+        URL resource2 = getClass().getClassLoader().getResource("./test/java/recources/" + fileName);
+
+        if (resource2 == null) {
             return null;
         }
 
-        File file = new File(resource.getFile());
-        if (file.exists()) {
-            return file.getAbsolutePath();
-        }
+//        File file = new File(resource.getFile());
+//        if (file.exists()) {
+//            return file.getAbsolutePath();
+//        }
         return null;
     }
 
