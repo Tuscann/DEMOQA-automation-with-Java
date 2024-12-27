@@ -7,7 +7,7 @@ import part3.comdemoqa.base.BaseTest;
 public class DroppablePageTests extends BaseTest {
 
     @Test
-    public void CheckAllNinePagesLinks() {
+    public void VerifyAllTextOnPage() {
         navigateToUrl("droppable");
 
         String expectedHeader = "Droppable";

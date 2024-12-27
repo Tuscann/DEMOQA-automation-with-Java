@@ -64,6 +64,7 @@ public class BaseTest {
     public SelectablePage selectablePage;
     public ResizablePage resizablePage;
     public DroppablePage droppablePage;
+    public DraggablePage draggablePage;
     public BooksLoginPage booksLoginPage;
     public BooksPage booksPage;
     public BooksRegisterPage booksRegisterPage;
@@ -107,6 +108,7 @@ public class BaseTest {
         widgetsPage = new WidgetsPage();
         interactionsPage = new InteractionsPage();
         droppablePage = new DroppablePage();
+        draggablePage = new DraggablePage();
         resizablePage = new ResizablePage();
         selectablePage = new SelectablePage();
         selectMenuPage = new SelectMenuPage();
