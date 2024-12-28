@@ -5,6 +5,42 @@ import org.testng.annotations.Test;
 import part3.comdemoqa.base.BaseTest;
 
 public class BookLoginPageTests extends BaseTest {
+
+    @Test
+    public void VerifyAllTextOnPage() {
+        navigateToUrl("login");
+
+        String loginHeaderText = "Login";
+        String welcomeText = "Welcome,";
+        String loginInBookStoreText = "Login in Book Store";
+        String username = "UserName :";
+        String usernamePlaceholder = "UserName";
+        String password = "Password :";
+        String passwordPlaceholder = "Password";
+        String loginButtonText = "Login";
+        String newUserButtonText = "New User";
+
+        String actualLoginHeaderText = booksLoginPage.getLoginHeaderText();
+        String actualWelcomeText = booksLoginPage.getWelcomeText();
+        String actualLoginInBookStoreText = booksLoginPage.getLoginInBookStoreText();
+        String actualUsername = booksLoginPage.getUsernameLabel();
+        String actualUsernamePlaceholder = booksLoginPage.getUsernamePlaceholder();
+        String actualPassword = booksLoginPage.getPasswordLabel();
+        String actualPasswordPlaceholder = booksLoginPage.getPasswordPlaceholder();
+        String actualLoginButtonText = booksLoginPage.getLoginButtonText();
+        String actualNewUserButtonText = booksLoginPage.getNewUserButtonText();
+
+        Assert.assertEquals(actualLoginHeaderText, loginHeaderText, "Wrong login header text");
+        Assert.assertEquals(actualWelcomeText, welcomeText, "Wrong welcome text");
+        Assert.assertEquals(actualLoginInBookStoreText, loginInBookStoreText, "Wrong login in book store");
+        Assert.assertEquals(actualUsername, username, "Wrong username");
+        Assert.assertEquals(actualUsernamePlaceholder, usernamePlaceholder, "Wrong username placeholder");
+        Assert.assertEquals(actualPassword, password, "Wrong password");
+        Assert.assertEquals(actualPasswordPlaceholder, passwordPlaceholder, "Wrong password placeholder");
+        Assert.assertEquals(actualLoginButtonText, loginButtonText, "Wrong login button text");
+        Assert.assertEquals(actualNewUserButtonText, newUserButtonText, "Wrong new user button text");
+    }
+
     @Test(enabled = true)
     public void LoginWithValidUsernameAndValidPassword() {
         navigateToUrl("login");
@@ -128,7 +164,7 @@ public class BookLoginPageTests extends BaseTest {
         booksLoginPage.clickLoginButton();
         booksProfilePage.clickGoToBookStoreButton();
         booksProfilePage.clickLoginLink2();
-        
+
         String expectedUrl = "You are already logged in. View your profile.";
         String actualLabel = booksLoginPage.getLoadingLabel();
 

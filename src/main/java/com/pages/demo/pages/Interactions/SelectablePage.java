@@ -162,4 +162,34 @@ public class SelectablePage extends BasePage {
     public String getGridNine() {
         return find(gridNine).getText();
     }
+
+    public void selectPositionFromGrid(String searched1Selection) {
+        if (searched1Selection.equals("One")) {
+            find(gridOne).click();
+        } else if (searched1Selection.equals("Two")) {
+            find(gridTwo).click();
+        } else if (searched1Selection.equals("Three")) {
+            find(gridThree).click();
+        } else if (searched1Selection.equals("Four")) {
+            find(gridFour).click();
+        } else if (searched1Selection.equals("Five")) {
+            find(gridFive).click();
+        } else if (searched1Selection.equals("Six")) {
+            find(gridSix).click();
+        } else if (searched1Selection.equals("Seven")) {
+            find(gridSeven).click();
+        } else if (searched1Selection.equals("Eight")) {
+            find(gridEight).click();
+        } else if (searched1Selection.equals("Nine")) {
+            find(gridNine).click();
+        }
+    }
+
+    public boolean isPositionFromGridSelected(String searchedSelection) {
+        WebElement listItem = driver.findElement(By.xpath("//li[contains(.,'" + searchedSelection + "')]"));
+
+        String backgroundColor = listItem.getCssValue("background-color");
+
+        return backgroundColor.equals("rgba(0, 123, 255, 1)");
+    }
 }

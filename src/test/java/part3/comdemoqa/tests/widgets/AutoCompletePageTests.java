@@ -7,6 +7,23 @@ import part3.comdemoqa.base.BaseTest;
 public class AutoCompletePageTests extends BaseTest {
 
     @Test
+    public void VerifyAllTextOnPage() {
+        navigateToUrl("auto-complete");
+
+        String expectedText = "Auto Complete";
+        String expectedTypeMultipleText = "Type multiple color names";
+        String expectedTypeSingleText = "Type single color name";
+
+        String actualText = autoCompletePage.getText();
+        String actualTypeMultipleText = autoCompletePage.getMultipleContainerText();
+        String actualTypeSingleText = autoCompletePage.getAutoCompleteSingleText();
+
+        Assert.assertEquals(actualText, expectedText, "Wrong Auto Complete");
+        Assert.assertEquals(actualTypeMultipleText, expectedTypeMultipleText, "Wrong Type multiple color names");
+        Assert.assertEquals(actualTypeSingleText, expectedTypeSingleText, "Wrong Type single color name");
+    }
+
+    @Test
     public void SelectTwoColorsMultiple() {
         navigateToUrl("auto-complete");
 
@@ -21,7 +38,7 @@ public class AutoCompletePageTests extends BaseTest {
     }
 
     @Test
-    public void SelectTwoColorsDeleteTwoAddNewMultiple() {
+    public void SelectTwoColorsAndDeleteTwoMultiple() {
         navigateToUrl("auto-complete");
 
         String expectedFirstColor = "Red";
@@ -51,7 +68,6 @@ public class AutoCompletePageTests extends BaseTest {
 
         Assert.assertEquals(actualSelectedColors, expectedFirstColor, "Wrong " + expectedFirstColor + " Color selected");
 
-
         expectedFirstColor = "Blue";
         autoCompletePage.clickSingleAutoComplete();
         autoCompletePage.singleAutoComplete(expectedFirstColor);
@@ -69,22 +85,5 @@ public class AutoCompletePageTests extends BaseTest {
         String actualSelectedColors = autoCompletePage.getAllSingleColorNames();
 
         Assert.assertEquals(actualSelectedColors, expectedFirstColor, "Wrong Color selected");
-    }
-
-    @Test
-    public void VerifyAllTextOnPage() {
-        navigateToUrl("auto-complete");
-
-        String expectedText = "Auto Complete";
-        String expectedTypeMultipleText = "Type multiple color names";
-        String expectedTypeSingleText = "Type single color name";
-
-        String actualText = autoCompletePage.getText();
-        String actualTypeMultipleText = autoCompletePage.getMultipleContainerText();
-        String actualTypeSingleText = autoCompletePage.getAutoCompleteSingleText();
-
-        Assert.assertEquals(actualText, expectedText, "Wrong Auto Complete");
-        Assert.assertEquals(actualTypeMultipleText, expectedTypeMultipleText, "Wrong Type multiple color names");
-        Assert.assertEquals(actualTypeSingleText, expectedTypeSingleText, "Wrong Type single color name");
     }
 }

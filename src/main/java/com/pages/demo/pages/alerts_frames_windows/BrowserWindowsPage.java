@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.Set;
 
 public class BrowserWindowsPage extends BasePage {
+
+    private final By header = By.xpath(" //h1[@class='text-center'][contains(.,'Browser Windows')]");
     private final By newTabButton = By.id("tabButton");
     private final By newWindowButton = By.id("windowButton");
     private final By newWindowMessageButton = By.id("messageWindowButton");
@@ -66,5 +68,39 @@ public class BrowserWindowsPage extends BasePage {
         }
 
         return actualMessage;
+    }
+
+    public String getNewTabText() {
+        return find(newTabButton).getText();
+    }
+
+    public String getNewWindowText() {
+        return find(newWindowButton).getText();
+    }
+
+    public String getNewWindowMessageText() {
+        return find(newWindowMessageButton).getText();
+    }
+
+    public String getBrowserWindowsText() {
+        return find(header).getText();
+    }
+
+    public String getNewWindowMessage() {
+        String originalWindow = driver.getWindowHandle();
+        Set<String> windowHandles = driver.getWindowHandles();
+
+        // Switch to the new window
+        String da = "";
+        String newWindow = null;
+        for (String handle : windowHandles) {
+            if (!handle.equals(originalWindow)) {
+                newWindow = handle;
+                driver.switchTo().window(newWindow);
+                da = driver.findElement(By.tagName("body")).getText();
+                break;
+            }
+        }
+        return da;
     }
 }

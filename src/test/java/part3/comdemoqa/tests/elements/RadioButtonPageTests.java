@@ -21,7 +21,7 @@ public class RadioButtonPageTests extends BaseTest {
         String actualYesAnswerLabel = radioButtonPage.getYesAnswerLabel();
         String actualImpressiveAnswerLabel = radioButtonPage.getImpressiveAnswerLabel();
         String actualNoAnswerLabel = radioButtonPage.getNoAnswerLabel();
-        
+
         Assert.assertEquals(actualRadioButtonText, expectedRadioButtonText, "Not found " + expectedRadioButtonText);
         Assert.assertEquals(actualYesAnswerLabel, expectedYesAnswerLabel, "Not found " + expectedYesAnswerLabel);
         Assert.assertEquals(actualNoAnswerLabel, expectedNoAnswerLabel, "Not found " + expectedNoAnswerLabel);
@@ -52,7 +52,7 @@ public class RadioButtonPageTests extends BaseTest {
     }
 
     @Test
-    public void ChooseImpressiveAnswer() {
+    public void ChooseImpressiveAnswerRadioButton() {
         navigateToUrl("radio-button");
 
         String expectedAnswer = "Impressive";

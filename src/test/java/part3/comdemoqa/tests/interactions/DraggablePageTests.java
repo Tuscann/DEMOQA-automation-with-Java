@@ -55,4 +55,5 @@ public class DraggablePageTests extends BaseTest {
         Assert.assertEquals(actualCursorStyleSecondText, cursorStyleSecondText, "Wrong style second text");
         Assert.assertEquals(actualCursorStyleThirdText, cursorStyleThirdText, "Wrong style third text");
     }
+
 }

@@ -7,6 +7,59 @@ import part3.comdemoqa.base.BaseTest;
 public class WebTablePageTests extends BaseTest {
 
     @Test
+    public void CheckAllLabelsOnRegistrationForm() {
+        navigateToUrl("webtables");
+
+        String expectedRegistrationFormText = "Registration Form";
+        String expectedFirstNameLabel = "First Name";
+        String expectedLastNameLabel = "Last Name";
+        String expectedEmailLabel = "Email";
+        String expectedAgeLabel = "Age";
+        String expectedSalaryLabel = "Salary";
+        String expectedDepartmentLabel = "Department";
+
+        String expectedPlaceholderFirstName = "First Name";
+        String expectedPlaceholderLastName = "Last Name";
+        String expectedPlaceholderEmail = "name@example.com";
+        String expectedPlaceholderAge = "Age";
+        String expectedPlaceholderSalary = "Salary";
+        String expectedPlaceholderDepartment = "Department";
+        String expectedSubmitButtonText = "Submit";
+
+        webTablesPage.clickAddButton();
+        String actualRegistrationText = webTablesPage.getRegistrationFormText();
+        String actualFirstNameLabel = webTablesPage.getFirstNamLabel();
+        String actualLastNameLabel = webTablesPage.getLastNameLabel();
+        String actualEmailLabel = webTablesPage.getEmailLabel();
+        String actualAgeLabel = webTablesPage.getAgeLabel();
+        String actualSalaryLabel = webTablesPage.getSalaryLabel();
+        String actualDepartmentLabel = webTablesPage.getDepartmentLabel();
+
+        String actualPlaceholderFirstName = webTablesPage.getPlaceholderFirstName();
+        String actualPlaceholderLastName = webTablesPage.getPlaceholderLastName();
+        String actualPlaceholderEmail = webTablesPage.getPlaceholderUserEmail();
+        String actualPlaceholderAge = webTablesPage.getPlaceholderUserAge();
+        String actualPlaceholderSalary = webTablesPage.getPlaceholderUserSalary();
+        String actualPlaceholderDepartment = webTablesPage.getPlaceholderDepartment();
+        String actualSubmitButtonText = webTablesPage.getSubmitButtonText();
+
+        Assert.assertEquals(actualRegistrationText, expectedRegistrationFormText, "Wrong registration name text");
+        Assert.assertEquals(actualFirstNameLabel, expectedFirstNameLabel, "Not first name label");
+        Assert.assertEquals(actualLastNameLabel, expectedLastNameLabel, "Not second name label");
+        Assert.assertEquals(actualEmailLabel, expectedEmailLabel, "Not email label");
+        Assert.assertEquals(actualAgeLabel, expectedAgeLabel, "Not age label");
+        Assert.assertEquals(actualSalaryLabel, expectedSalaryLabel, "Not salary label");
+        Assert.assertEquals(actualDepartmentLabel, expectedDepartmentLabel, "Not department label");
+        Assert.assertEquals(actualPlaceholderFirstName, expectedPlaceholderFirstName, "Not first name label");
+        Assert.assertEquals(actualPlaceholderLastName, expectedPlaceholderLastName, "Not second name label");
+        Assert.assertEquals(actualPlaceholderEmail, expectedPlaceholderEmail, "Not email label");
+        Assert.assertEquals(actualPlaceholderAge, expectedPlaceholderAge, "Not age label");
+        Assert.assertEquals(actualPlaceholderSalary, expectedPlaceholderSalary, "Not salary label");
+        Assert.assertEquals(actualPlaceholderDepartment, expectedPlaceholderDepartment, "Not department label");
+        Assert.assertEquals(actualSubmitButtonText, expectedSubmitButtonText, "Not submit button text");
+    }
+
+    @Test
     public void UpdateFirstNameAndLastName() {
         navigateToUrl("webtables");
         String email = "cierra@example.com";
@@ -137,59 +190,6 @@ public class WebTablePageTests extends BaseTest {
 
         Assert.assertFalse(webTablesPage.checkPreviousButtonIsActive(), "Not active Previous button");
         Assert.assertFalse(webTablesPage.checkNextButtonIsActive(), "Not active Next button");
-    }
-
-    @Test
-    public void CheckAllLabelsInRegistrationForm() {
-        navigateToUrl("webtables");
-
-        String expectedRegistrationFormText = "Registration Form";
-        String expectedFirstNameLabel = "First Name";
-        String expectedLastNameLabel = "Last Name";
-        String expectedEmailLabel = "Email";
-        String expectedAgeLabel = "Age";
-        String expectedSalaryLabel = "Salary";
-        String expectedDepartmentLabel = "Department";
-
-        String expectedPlaceholderFirstName = "First Name";
-        String expectedPlaceholderLastName = "Last Name";
-        String expectedPlaceholderEmail = "name@example.com";
-        String expectedPlaceholderAge = "Age";
-        String expectedPlaceholderSalary = "Salary";
-        String expectedPlaceholderDepartment = "Department";
-        String expectedSubmitButtonText = "Submit";
-
-        webTablesPage.clickAddButton();
-        String actualRegistrationText = webTablesPage.getRegistrationFormText();
-        String actualFirstNameLabel = webTablesPage.getFirstNamLabel();
-        String actualLastNameLabel = webTablesPage.getLastNameLabel();
-        String actualEmailLabel = webTablesPage.getEmailLabel();
-        String actualAgeLabel = webTablesPage.getAgeLabel();
-        String actualSalaryLabel = webTablesPage.getSalaryLabel();
-        String actualDepartmentLabel = webTablesPage.getDepartmentLabel();
-
-        String actualPlaceholderFirstName = webTablesPage.getPlaceholderFirstName();
-        String actualPlaceholderLastName = webTablesPage.getPlaceholderLastName();
-        String actualPlaceholderEmail = webTablesPage.getPlaceholderUserEmail();
-        String actualPlaceholderAge = webTablesPage.getPlaceholderUserAge();
-        String actualPlaceholderSalary = webTablesPage.getPlaceholderUserSalary();
-        String actualPlaceholderDepartment = webTablesPage.getPlaceholderDepartment();
-        String actualSubmitButtonText = webTablesPage.getSubmitButtonText();
-
-        Assert.assertEquals(actualRegistrationText, expectedRegistrationFormText, "Wrong registration name text");
-        Assert.assertEquals(actualFirstNameLabel, expectedFirstNameLabel, "Not first name label");
-        Assert.assertEquals(actualLastNameLabel, expectedLastNameLabel, "Not second name label");
-        Assert.assertEquals(actualEmailLabel, expectedEmailLabel, "Not email label");
-        Assert.assertEquals(actualAgeLabel, expectedAgeLabel, "Not age label");
-        Assert.assertEquals(actualSalaryLabel, expectedSalaryLabel, "Not salary label");
-        Assert.assertEquals(actualDepartmentLabel, expectedDepartmentLabel, "Not department label");
-        Assert.assertEquals(actualPlaceholderFirstName, expectedPlaceholderFirstName, "Not first name label");
-        Assert.assertEquals(actualPlaceholderLastName, expectedPlaceholderLastName, "Not second name label");
-        Assert.assertEquals(actualPlaceholderEmail, expectedPlaceholderEmail, "Not email label");
-        Assert.assertEquals(actualPlaceholderAge, expectedPlaceholderAge, "Not age label");
-        Assert.assertEquals(actualPlaceholderSalary, expectedPlaceholderSalary, "Not salary label");
-        Assert.assertEquals(actualPlaceholderDepartment, expectedPlaceholderDepartment, "Not department label");
-        Assert.assertEquals(actualSubmitButtonText, expectedSubmitButtonText, "Not submit button text");
     }
 
     @Test

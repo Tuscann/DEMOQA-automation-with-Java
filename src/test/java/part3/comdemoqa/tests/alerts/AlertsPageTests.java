@@ -7,6 +7,33 @@ import part3.comdemoqa.base.BaseTest;
 import static utilities.SwitchToUtility.*;
 
 public class AlertsPageTests extends BaseTest {
+
+    @Test(enabled = true)
+    public void VerifyAllTextOnPage() {
+        // Arrange
+        navigateToUrl("alerts");
+
+        String alertText1 = "Alerts";
+        String alertText2 = "Click Button to see alert";
+        String alertText3 = "On button click, alert will appear after 5 seconds";
+        String alertTex4 = "On button click, confirm box will appear";
+        String alertTex5 = "On button click, prompt box will appear";
+
+        // Act
+        String actualFirstText = alertsPage.getFirstText();
+        String actualSecondText = alertsPage.getSecondText();
+        String actualThirdText = alertsPage.getThirdText();
+        String actualFourText = alertsPage.getFourthText();
+        String actualFiveText = alertsPage.getFiveText();
+
+        // Assert
+        Assert.assertEquals(actualFirstText, alertText1, "\n Alert Title Do Not Match \n");
+        Assert.assertEquals(actualSecondText, alertText2, "\n Alert Second Text Do Not Match \n");
+        Assert.assertEquals(actualThirdText, alertText3, "\n Alert Third Text Do Not Match \n");
+        Assert.assertEquals(actualFourText, alertTex4, "\n Alert Four Text Do Not Match \n");
+        Assert.assertEquals(actualFiveText, alertTex5, "\n Alert Five Text Do Not Match \n");
+    }
+
     @Test
     public void CheckTextOfInformationAlert() {
         // Arrange
@@ -83,31 +110,5 @@ public class AlertsPageTests extends BaseTest {
         // Assert
         Assert.assertEquals(actualResult, expectedResult,
                 "\n Actual & Expected Results Do Not Match \n");
-    }
-
-    @Test(enabled = true)
-    public void VerifyAllTextOnPage() {
-        // Arrange
-        navigateToUrl("alerts");
-
-        String alertText1 = "Alerts";
-        String alertText2 = "Click Button to see alert";
-        String alertText3 = "On button click, alert will appear after 5 seconds";
-        String alertTex4 = "On button click, confirm box will appear";
-        String alertTex5 = "On button click, prompt box will appear";
-
-        // Act
-        String actualFirstText = alertsPage.getFirstText();
-        String actualSecondText = alertsPage.getSecondText();
-        String actualThirdText = alertsPage.getThirdText();
-        String actualFourText = alertsPage.getFourthText();
-        String actualFiveText = alertsPage.getFiveText();
-
-        // Assert
-        Assert.assertEquals(actualFirstText, alertText1, "\n Alert Title Do Not Match \n");
-        Assert.assertEquals(actualSecondText, alertText2, "\n Alert Second Text Do Not Match \n");
-        Assert.assertEquals(actualThirdText, alertText3, "\n Alert Third Text Do Not Match \n");
-        Assert.assertEquals(actualFourText, alertTex4, "\n Alert Four Text Do Not Match \n");
-        Assert.assertEquals(actualFiveText, alertTex5, "\n Alert Five Text Do Not Match \n");
     }
 }

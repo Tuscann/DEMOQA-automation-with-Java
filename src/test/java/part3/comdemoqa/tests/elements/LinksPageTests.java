@@ -5,113 +5,6 @@ import org.testng.annotations.Test;
 import part3.comdemoqa.base.BaseTest;
 
 public class LinksPageTests extends BaseTest {
-    @Test
-    public void ClickLinkCreatedRequest() {
-        navigateToUrl("links");
-        linksPage.clickCreatedRequestLink();
-        String actualResponse = linksPage.getResponse();
-
-        Assert.assertTrue(actualResponse.contains("201")
-                        && actualResponse.contains("Created"),
-                "\n Link has responded with staus" + actualResponse +
-                        ")\n and status text Created \n");
-    }
-
-    @Test
-    public void ClickLinkNoContentRequest() {
-        navigateToUrl("links");
-        linksPage.clickNoContentRequestLink();
-        String actualResponse = linksPage.getResponse();
-
-        Assert.assertTrue(actualResponse.contains("204")
-                        && actualResponse.contains("No Content"),
-                "\n Link has responded with staus" + actualResponse +
-                        ")\n and status text Created \n");
-    }
-
-    @Test
-    public void ClickLinkMovedRequest() {
-        navigateToUrl("links");
-        linksPage.clickMovedRequestLink();
-        String actualResponse = linksPage.getResponse();
-
-        Assert.assertTrue(actualResponse.contains("301")
-                        && actualResponse.contains("Moved Permanently"),
-                "\n Link has responded with staus" + actualResponse +
-                        ")\n and status text Created \n");
-    }
-
-    @Test
-    public void ClickLinkBadRequest() {
-        navigateToUrl("links");
-        linksPage.clickBadRequestLink();
-        String actualResponse = linksPage.getResponse();
-
-        Assert.assertTrue(actualResponse.contains("400")
-                        && actualResponse.contains("Bad Request"),
-                "\n Actual Response (" + actualResponse +
-                        ")\n Does Not Contain '400' and 'Bad Request' \n");
-    }
-
-    @Test
-    public void ClickLinkUnAthorizedRequest() {
-        navigateToUrl("links");
-        linksPage.clickUnauthorizedRequestLink();
-        String actualResponse = linksPage.getResponse();
-
-        Assert.assertTrue(actualResponse.contains("401")
-                        && actualResponse.contains("Unauthorized"),
-                "\n Link has responded with staus" + actualResponse +
-                        ")\n and status text Created \n");
-    }
-
-    @Test
-    public void ClickLinkForbiddenRequest() {
-        navigateToUrl("links");
-        linksPage.clickForbiddenRequestLink();
-        String actualResponse = linksPage.getResponse();
-
-        Assert.assertTrue(actualResponse.contains("403")
-                        && actualResponse.contains("Forbidden"),
-                "\n Link has responded with staus" + actualResponse +
-                        ")\n and status text Created \n");
-    }
-
-    @Test
-    public void ClickLinkNotFoundRequest() {
-        navigateToUrl("links");
-        linksPage.clickNotFoundRequestLink();
-        String actualResponse = linksPage.getResponse();
-
-        Assert.assertTrue(actualResponse.contains("404")
-                        && actualResponse.contains("Not Found"),
-                "\n Link has responded with staus" + actualResponse +
-                        ")\n and status text Created \n");
-    }
-
-    @Test
-    public void OpenNewTabFromHomeLink() {
-        navigateToUrl("links");
-        linksPage.clickSimpleTab();
-
-        String urlNewTab = linksPage.getUrl();
-        String expectedUrlNewTab = "https://demoqa.com/";
-
-        Assert.assertEquals(urlNewTab, expectedUrlNewTab,
-                "\n Actual & Expected New Tab Url Do Not Match \n");
-    }
-    
-    @Test
-    public void OpenNewTabDynamicLink() {
-        navigateToUrl("links");
-        linksPage.clickDynamicLink();
-
-        String urlNewTab = linksPage.getUrl();
-        String expectedUrlNewTab = "https://demoqa.com/";
-
-        Assert.assertEquals(urlNewTab, expectedUrlNewTab,
-                "\n Actual & Expected New Tab Url Do Not Match \n");
-    }
 
     @Test
     public void VerifyAllTextOnPage() {
@@ -120,6 +13,7 @@ public class LinksPageTests extends BaseTest {
         String expectedLinksHeader = "Links";
         String expectedFollowingLinksWillOpenNewTab = "Following links will open new tab";
         String expectedHomeText = "Home";
+        // Dynamic name not for check
         String expectedFollowingLinksWillSendAnApiCall = "Following links will send an api call";
         String expectedCreatedText = "Created";
         String expectedNoContentText = "No Content";
@@ -152,5 +46,113 @@ public class LinksPageTests extends BaseTest {
         Assert.assertEquals(actualUnauthorizedText, expectedUnauthorizedText, "Different Unauthorized text");
         Assert.assertEquals(actualForbiddenText, expectedForbiddenText, "Different Forbidden text");
         Assert.assertEquals(actualNotFoundText, expectedNotFoundText, "Different NotFound text");
+    }
+
+    @Test
+    public void ClickOnLinkCreatedRequest() {
+        navigateToUrl("links");
+        linksPage.clickCreatedRequestLink();
+        String actualResponse = linksPage.getResponse();
+
+        Assert.assertTrue(actualResponse.contains("201")
+                        && actualResponse.contains("Created"),
+                "\n Link has responded with staus" + actualResponse +
+                        ")\n and status text Created \n");
+    }
+
+    @Test
+    public void ClickOnLinkNoContentRequest() {
+        navigateToUrl("links");
+        linksPage.clickNoContentRequestLink();
+        String actualResponse = linksPage.getResponse();
+
+        Assert.assertTrue(actualResponse.contains("204")
+                        && actualResponse.contains("No Content"),
+                "\n Link has responded with staus" + actualResponse +
+                        ")\n and status text Created \n");
+    }
+
+    @Test
+    public void ClickOnLinkMovedRequest() {
+        navigateToUrl("links");
+        linksPage.clickMovedRequestLink();
+        String actualResponse = linksPage.getResponse();
+
+        Assert.assertTrue(actualResponse.contains("301")
+                        && actualResponse.contains("Moved Permanently"),
+                "\n Link has responded with staus" + actualResponse +
+                        ")\n and status text Created \n");
+    }
+
+    @Test
+    public void ClickOnLinkBadRequest() {
+        navigateToUrl("links");
+        linksPage.clickBadRequestLink();
+        String actualResponse = linksPage.getResponse();
+
+        Assert.assertTrue(actualResponse.contains("400")
+                        && actualResponse.contains("Bad Request"),
+                "\n Actual Response (" + actualResponse +
+                        ")\n Does Not Contain '400' and 'Bad Request' \n");
+    }
+
+    @Test
+    public void ClickOnLinkUnAuthorizedRequest() {
+        navigateToUrl("links");
+        linksPage.clickUnauthorizedRequestLink();
+        String actualResponse = linksPage.getResponse();
+
+        Assert.assertTrue(actualResponse.contains("401")
+                        && actualResponse.contains("Unauthorized"),
+                "\n Link has responded with staus" + actualResponse +
+                        ")\n and status text Created \n");
+    }
+
+    @Test
+    public void ClickOnLinkForbiddenRequest() {
+        navigateToUrl("links");
+        linksPage.clickForbiddenRequestLink();
+        String actualResponse = linksPage.getResponse();
+
+        Assert.assertTrue(actualResponse.contains("403")
+                        && actualResponse.contains("Forbidden"),
+                "\n Link has responded with staus" + actualResponse +
+                        ")\n and status text Created \n");
+    }
+
+    @Test
+    public void ClickOnLinkNotFoundRequest() {
+        navigateToUrl("links");
+        linksPage.clickNotFoundRequestLink();
+        String actualResponse = linksPage.getResponse();
+
+        Assert.assertTrue(actualResponse.contains("404")
+                        && actualResponse.contains("Not Found"),
+                "\n Link has responded with staus" + actualResponse +
+                        ")\n and status text Created \n");
+    }
+
+    @Test
+    public void OpenNewTabFromHomeLink() {
+        navigateToUrl("links");
+        linksPage.clickSimpleTab();
+
+        String urlNewTab = linksPage.getUrl();
+        String expectedUrlNewTab = "https://demoqa.com/";
+
+        Assert.assertEquals(urlNewTab, expectedUrlNewTab,
+                "\n Actual & Expected New Tab Url Do Not Match \n");
+    }
+
+    @Test
+    public void OpenNewTabDynamicLink() {
+        navigateToUrl("links");
+        linksPage.clickDynamicLink();
+
+        String urlNewTab = linksPage.getUrl();
+        String expectedUrlNewTab = "https://demoqa.com/";
+
+        Assert.assertEquals(urlNewTab, expectedUrlNewTab,
+                "\n Actual & Expected New Tab Url Do Not Match \n");
     }
 }

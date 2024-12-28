@@ -27,7 +27,7 @@ public class FramesPageTests extends BaseTest {
     }
 
     @Test
-    public void VerifyTextOnPage() {
+    public void VerifyAllTextOnPage() {
         navigateToUrl("frames");
 
         String expectedHeading = "Frames";

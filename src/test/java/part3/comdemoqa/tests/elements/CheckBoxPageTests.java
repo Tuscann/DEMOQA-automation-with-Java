@@ -11,11 +11,14 @@ public class CheckBoxPageTests extends BaseTest {
         navigateToUrl("checkbox");
         checkBoxPage.clickExpandAll();
         checkBoxPage.clickNotes();
+        String header = "Check Box";
+        String actualHeader = checkBoxPage.getHeader();
 
         String actualResult = checkBoxPage.getResultMessage();
         String expectedResult = "You have selected :\nnotes";
 
         Assert.assertEquals(actualResult, expectedResult, "Not selected Notes");
+        Assert.assertEquals(actualHeader, header, "Wrong Header Message");
     }
 
     @Test

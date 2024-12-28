@@ -6,7 +6,7 @@ import part3.comdemoqa.base.BaseTest;
 
 public class BrokenLinksImagesPageTest extends BaseTest {
     @Test
-    public void CheckAllTextOnPage() {
+    public void VerifyAllTextOnPage() {
         navigateToUrl("broken");
 
         String expectedH1header = "Broken Links - Images";

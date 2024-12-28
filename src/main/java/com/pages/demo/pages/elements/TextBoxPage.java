@@ -8,6 +8,7 @@ import static utilities.JavaScriptUtility.scrollToElementJS;
 
 public class TextBoxPage extends BasePage {
 
+    private final By header = By.xpath("//h1[@class='text-center'][contains(.,'Text Box')]");
     private final By fullName = By.id("userName");
     private final By email = By.id("userEmail");
     private final By currentAddress = By.id("currentAddress");
@@ -112,5 +113,13 @@ public class TextBoxPage extends BasePage {
 
         String str = find(email).getCssValue("border");
         return str.substring(str.length() - 20);
+    }
+
+    public String getHeaderText() {
+        return find(header).getText();
+    }
+
+    public String getSubmitButtonText() {
+        return find(submitButton).getText();
     }
 }

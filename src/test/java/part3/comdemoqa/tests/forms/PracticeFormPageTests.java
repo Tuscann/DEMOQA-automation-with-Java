@@ -8,6 +8,99 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class PracticeFormPageTests extends BaseTest {
+    @Test
+    public void VerifyAllTextAndPlaceHolders() {
+        navigateToUrl("automation-practice-form");
+
+        String practiceFromText = "Practice Form";
+        String studentRegistrationFormText = "Student Registration Form";
+        String nameLabel = "Name";
+        String firstNamePlaceholder = "First Name";
+        String lastNamePlaceholder = "Last Name";
+        String emailLabel = "Email";
+        String expectedPlaceholderEmail = "name@example.com";
+        String genderLabel = "Gender";
+        String expectedMaleRadioButtonText = "Male";
+        String expectedFemaleRadioButtonText = "Female";
+        String otherRadioButtonText = "Other";
+        String expectedMobileNumberLabel = "Mobile(10 Digits)";
+        String expectedMobileNumberPlaceholder = "Mobile Number";
+        String expectedDateOfBirthLabel = "Date of Birth";
+        String expectedDateOfBirthPlaceholder = LocalDate.now().format(DateTimeFormatter.ofPattern("dd MMM yyyy"));
+        String expectedSubjectsLabel = "Subjects";
+        String expectedHobbiesLabel = "Hobbies";
+        String expectedHobbySportText = "Sports";
+        String expectedHobbyReadingText = "Reading";
+        String expectedHobbyMusicText = "Music";
+        String expectedPictureLabelText = "Picture";
+        String expectedSelectPictureText = "Select picture";
+        String expectedCurrentAddressLabel = "Current Address";
+        String expectedCurrentAddressPlaceholder = "Current Address";
+        String expectedStateAndCityLabel = "State and City";
+        String expectedSelectStatePlaceholder = "Select State";
+        String expectedSelectCityPlaceholder = "Select City";
+        String expectedSubmitButtonText = "Submit";
+
+        String actualPracticeFromText = practiceFormPage.getPracticeFormLabel();
+        String actualStudentRegistrationFormText = practiceFormPage.getStudentRegistrationFormLabel();
+        String actualNameLabel = practiceFormPage.getNameLabel();
+        String actualFirstNamePlaceholder = practiceFormPage.getFirstNamePlaceholderText();
+        String actualLastNamePlaceholder = practiceFormPage.getLastNamePlaceholderText();
+        String actualEmailLabel = practiceFormPage.getEmailLLabel();
+        String actualPlaceholderEmail = practiceFormPage.getPlaceholderEmail();
+        String actualGenderLabel = practiceFormPage.getGenderLabel();
+        String actualMaleRadioButtonText = practiceFormPage.getMaleGenderText();
+        String actualFemaleRadioButtonText = practiceFormPage.getFemaleGenderText();
+        String actualOtherRadioButtonText = practiceFormPage.getOtherRadioButtonGenderText();
+        String actualMobileNumberLabel = practiceFormPage.getMobileNumberLabel();
+        String actualMobileNumberPlaceholder = practiceFormPage.getMobileNumberPlaceholderText();
+        String actualDateOfBirthLabel = practiceFormPage.getDateOfBirthLabel();
+        String actualDateOfBirthPlaceholder = practiceFormPage.getDateOfBirthPlaceholder();
+        String actualSubjectsLabel = practiceFormPage.getSubjectLabel();
+        String actualSubjectsPlaceholder = practiceFormPage.getPlaceholderSubjects();
+        String actualHobbiesLabel = practiceFormPage.getHobbiesLabel();
+        String actualHobbySportText = practiceFormPage.getHobbySportText();
+        String actualHobbyReadingText = practiceFormPage.getReadingLabel();
+        String actualHobbyMusicText = practiceFormPage.getMusicLabel();
+        String actualPictureLabelText = practiceFormPage.getPictureLabel();
+        String actualSelectPictureText = practiceFormPage.getSelectPictureLabel();
+        String actualCurrentAddressLabel = practiceFormPage.getCurrentAddressLabel();
+        String actualCurrentAddressPlaceholder = practiceFormPage.getCurrentAddressPlaceholder();
+        String actualStateAndCityLabel = practiceFormPage.getStateAndCityLabel();
+        String actualSelectStatePlaceholder = practiceFormPage.getSelectStatePlaceholder();
+        String actualSelectCityPlaceholder = practiceFormPage.getCityPlaceholder();
+        String actualSubmitButtonText = practiceFormPage.getSubmitButtonText();
+
+        Assert.assertEquals(actualPracticeFromText, practiceFromText, "Wrong practice form text");
+        Assert.assertEquals(actualStudentRegistrationFormText, studentRegistrationFormText, "Wrong registration text");
+        Assert.assertEquals(actualNameLabel, nameLabel, "Wrong practice form text");
+        Assert.assertEquals(actualFirstNamePlaceholder, firstNamePlaceholder, "Wrong first placeholder");
+        Assert.assertEquals(actualLastNamePlaceholder, lastNamePlaceholder, "Wrong last placeholder");
+        Assert.assertEquals(actualEmailLabel, emailLabel, "Wrong email placeholder");
+        Assert.assertEquals(actualPlaceholderEmail, expectedPlaceholderEmail, "Wrong email placeholder");
+        Assert.assertEquals(actualGenderLabel, genderLabel, "Wrong gender placeholder");
+        Assert.assertEquals(actualMaleRadioButtonText, expectedMaleRadioButtonText, "Wrong male placeholder");
+        Assert.assertEquals(actualFemaleRadioButtonText, expectedFemaleRadioButtonText, "Wrong female placeholder");
+        Assert.assertEquals(actualOtherRadioButtonText, otherRadioButtonText, "Wrong other placeholder");
+        Assert.assertEquals(actualMobileNumberLabel, expectedMobileNumberLabel, "Wrong mobile number placeholder");
+        Assert.assertEquals(actualMobileNumberPlaceholder, expectedMobileNumberPlaceholder, "Wrong mobile number placeholder");
+        Assert.assertEquals(actualDateOfBirthLabel, expectedDateOfBirthLabel, "Wrong date of birth label");
+        Assert.assertEquals(actualDateOfBirthPlaceholder, expectedDateOfBirthPlaceholder, "Wrong date of birth placeholder");
+        Assert.assertEquals(actualSubjectsLabel, expectedSubjectsLabel, "Wrong subject placeholder");
+        Assert.assertNull(actualSubjectsPlaceholder);
+        Assert.assertEquals(actualHobbiesLabel, expectedHobbiesLabel, "Wrong hobbies placeholder");
+        Assert.assertEquals(actualHobbySportText, expectedHobbySportText, "Wrong hobby sport text");
+        Assert.assertEquals(actualHobbyReadingText, expectedHobbyReadingText, "Wrong hobby reading text");
+        Assert.assertEquals(actualHobbyMusicText, expectedHobbyMusicText, "Wrong hobby music text");
+        Assert.assertEquals(actualPictureLabelText, expectedPictureLabelText, "Wrong picture text");
+        Assert.assertEquals(actualSelectPictureText, expectedSelectPictureText, "Wrong select picture");
+        Assert.assertEquals(actualCurrentAddressLabel, expectedCurrentAddressLabel, "Wrong current address label");
+        Assert.assertEquals(actualCurrentAddressPlaceholder, expectedCurrentAddressPlaceholder, "Wrong current address placeholder");
+        Assert.assertEquals(actualStateAndCityLabel, expectedStateAndCityLabel, "Wrong state and City label");
+        Assert.assertEquals(actualSelectStatePlaceholder, expectedSelectStatePlaceholder, "Wrong select state placeholder");
+        Assert.assertEquals(actualSelectCityPlaceholder, expectedSelectCityPlaceholder, "Wrong select city placeholder");
+        Assert.assertEquals(actualSubmitButtonText, expectedSubmitButtonText, "Wrong submit button text");
+    }
 
     @Test
     public void VerifyCheckBoxesState() {
@@ -118,99 +211,5 @@ public class PracticeFormPageTests extends BaseTest {
         Assert.assertEquals(actualStateAndCity, expectedState + " " + expectedCity, "Wrong State and City");
         Assert.assertEquals(actualLabel, expectedLabel, "Wrong label");
         Assert.assertEquals(actualValues, expectedValues, "Wrong values");
-    }
-
-    @Test
-    public void VerifyAllTextAndPlaceHolders() {
-        navigateToUrl("automation-practice-form");
-
-        String practiceFromText = "Practice Form";
-        String studentRegistrationFormText = "Student Registration Form";
-        String nameLabel = "Name";
-        String firstNamePlaceholder = "First Name";
-        String lastNamePlaceholder = "Last Name";
-        String emailLabel = "Email";
-        String expectedPlaceholderEmail = "name@example.com";
-        String genderLabel = "Gender";
-        String expectedMaleRadioButtonText = "Male";
-        String expectedFemaleRadioButtonText = "Female";
-        String otherRadioButtonText = "Other";
-        String expectedMobileNumberLabel = "Mobile(10 Digits)";
-        String expectedMobileNumberPlaceholder = "Mobile Number";
-        String expectedDateOfBirthLabel = "Date of Birth";
-        String expectedDateOfBirthPlaceholder = LocalDate.now().format(DateTimeFormatter.ofPattern("dd MMM yyyy"));
-        String expectedSubjectsLabel = "Subjects";
-        String expectedHobbiesLabel = "Hobbies";
-        String expectedHobbySportText = "Sports";
-        String expectedHobbyReadingText = "Reading";
-        String expectedHobbyMusicText = "Music";
-        String expectedPictureLabelText = "Picture";
-        String expectedSelectPictureText = "Select picture";
-        String expectedCurrentAddressLabel = "Current Address";
-        String expectedCurrentAddressPlaceholder = "Current Address";
-        String expectedStateAndCityLabel = "State and City";
-        String expectedSelectStatePlaceholder = "Select State";
-        String expectedSelectCityPlaceholder = "Select City";
-        String expectedSubmitButtonText = "Submit";
-
-        String actualPracticeFromText = practiceFormPage.getPracticeFormLabel();
-        String actualStudentRegistrationFormText = practiceFormPage.getStudentRegistrationFormLabel();
-        String actualNameLabel = practiceFormPage.getNameLabel();
-        String actualFirstNamePlaceholder = practiceFormPage.getFirstNamePlaceholderText();
-        String actualLastNamePlaceholder = practiceFormPage.getLastNamePlaceholderText();
-        String actualEmailLabel = practiceFormPage.getEmailLLabel();
-        String actualPlaceholderEmail = practiceFormPage.getPlaceholderEmail();
-        String actualGenderLabel = practiceFormPage.getGenderLabel();
-        String actualMaleRadioButtonText = practiceFormPage.getMaleGenderText();
-        String actualFemaleRadioButtonText = practiceFormPage.getFemaleGenderText();
-        String actualOtherRadioButtonText = practiceFormPage.getOtherRadioButtonGenderText();
-        String actualMobileNumberLabel = practiceFormPage.getMobileNumberLabel();
-        String actualMobileNumberPlaceholder = practiceFormPage.getMobileNumberPlaceholderText();
-        String actualDateOfBirthLabel = practiceFormPage.getDateOfBirthLabel();
-        String actualDateOfBirthPlaceholder = practiceFormPage.getDateOfBirthPlaceholder();
-        String actualSubjectsLabel = practiceFormPage.getSubjectLabel();
-        String actualSubjectsPlaceholder = practiceFormPage.getPlaceholderSubjects();
-        String actualHobbiesLabel = practiceFormPage.getHobbiesLabel();
-        String actualHobbySportText = practiceFormPage.getHobbySportText();
-        String actualHobbyReadingText = practiceFormPage.getReadingLabel();
-        String actualHobbyMusicText = practiceFormPage.getMusicLabel();
-        String actualPictureLabelText = practiceFormPage.getPictureLabel();
-        String actualSelectPictureText = practiceFormPage.getSelectPictureLabel();
-        String actualCurrentAddressLabel = practiceFormPage.getCurrentAddressLabel();
-        String actualCurrentAddressPlaceholder = practiceFormPage.getCurrentAddressPlaceholder();
-        String actualStateAndCityLabel = practiceFormPage.getStateAndCityLabel();
-        String actualSelectStatePlaceholder = practiceFormPage.getSelectStatePlaceholder();
-        String actualSelectCityPlaceholder = practiceFormPage.getCityPlaceholder();
-        String actualSubmitButtonText = practiceFormPage.getSubmitButtonText();
-
-        Assert.assertEquals(actualPracticeFromText, practiceFromText, "Wrong practice form text");
-        Assert.assertEquals(actualStudentRegistrationFormText, studentRegistrationFormText, "Wrong registration text");
-        Assert.assertEquals(actualNameLabel, nameLabel, "Wrong practice form text");
-        Assert.assertEquals(actualFirstNamePlaceholder, firstNamePlaceholder, "Wrong first placeholder");
-        Assert.assertEquals(actualLastNamePlaceholder, lastNamePlaceholder, "Wrong last placeholder");
-        Assert.assertEquals(actualEmailLabel, emailLabel, "Wrong email placeholder");
-        Assert.assertEquals(actualPlaceholderEmail, expectedPlaceholderEmail, "Wrong email placeholder");
-        Assert.assertEquals(actualGenderLabel, genderLabel, "Wrong gender placeholder");
-        Assert.assertEquals(actualMaleRadioButtonText, expectedMaleRadioButtonText, "Wrong male placeholder");
-        Assert.assertEquals(actualFemaleRadioButtonText, expectedFemaleRadioButtonText, "Wrong female placeholder");
-        Assert.assertEquals(actualOtherRadioButtonText, otherRadioButtonText, "Wrong other placeholder");
-        Assert.assertEquals(actualMobileNumberLabel, expectedMobileNumberLabel, "Wrong mobile number placeholder");
-        Assert.assertEquals(actualMobileNumberPlaceholder, expectedMobileNumberPlaceholder, "Wrong mobile number placeholder");
-        Assert.assertEquals(actualDateOfBirthLabel, expectedDateOfBirthLabel, "Wrong date of birth label");
-        Assert.assertEquals(actualDateOfBirthPlaceholder, expectedDateOfBirthPlaceholder, "Wrong date of birth placeholder");
-        Assert.assertEquals(actualSubjectsLabel, expectedSubjectsLabel, "Wrong subject placeholder");
-        Assert.assertNull(actualSubjectsPlaceholder);
-        Assert.assertEquals(actualHobbiesLabel, expectedHobbiesLabel, "Wrong hobbies placeholder");
-        Assert.assertEquals(actualHobbySportText, expectedHobbySportText, "Wrong hobby sport text");
-        Assert.assertEquals(actualHobbyReadingText, expectedHobbyReadingText, "Wrong hobby reading text");
-        Assert.assertEquals(actualHobbyMusicText, expectedHobbyMusicText, "Wrong hobby music text");
-        Assert.assertEquals(actualPictureLabelText, expectedPictureLabelText, "Wrong picture text");
-        Assert.assertEquals(actualSelectPictureText, expectedSelectPictureText, "Wrong select picture");
-        Assert.assertEquals(actualCurrentAddressLabel, expectedCurrentAddressLabel, "Wrong current address label");
-        Assert.assertEquals(actualCurrentAddressPlaceholder, expectedCurrentAddressPlaceholder, "Wrong current address placeholder");
-        Assert.assertEquals(actualStateAndCityLabel, expectedStateAndCityLabel, "Wrong state and City label");
-        Assert.assertEquals(actualSelectStatePlaceholder, expectedSelectStatePlaceholder, "Wrong select state placeholder");
-        Assert.assertEquals(actualSelectCityPlaceholder, expectedSelectCityPlaceholder, "Wrong select city placeholder");
-        Assert.assertEquals(actualSubmitButtonText, expectedSubmitButtonText, "Wrong submit button text");
     }
 }

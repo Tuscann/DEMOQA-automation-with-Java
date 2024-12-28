@@ -5,7 +5,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import java.io.File;
-import java.net.URL;
 import java.nio.file.Paths;
 
 public class UploadAndDownloadPage extends BasePage {
@@ -15,12 +14,14 @@ public class UploadAndDownloadPage extends BasePage {
     private final By selectAFileLabel = By.xpath("//label[@for='uploadFile'][contains(.,'Select a file')]");
     private final By uploadAndDownloadLabel = By.xpath("//h1[@class='text-center'][contains(.,'Upload and Download')]");
 
-    String downloadDir = Paths.get(System.getProperty("user.home"), "Downloads", "selenium_downloads").toString();
 
     public void clickDownloadButton() {
-        String expectedFileName = driver.findElement(downloadButton).getDomAttribute("download");
 
-        waitForFileDownload(expectedFileName, 20);
+        find(downloadButton).click();
+
+//        String expectedFileName = driver.findElement(downloadButton).getDomAttribute("download");
+//
+//        waitForFileDownload(expectedFileName, 20);
     }
 
     public String getUploadFilePath() {
@@ -34,21 +35,16 @@ public class UploadAndDownloadPage extends BasePage {
     }
 
     public String getFilePathFromResources(String fileName) {
-        URL resource = getClass().getClassLoader().getResource(fileName);
-        URL resource2 = getClass().getClassLoader().getResource("./test/java/recources/" + fileName);
-
-        if (resource2 == null) {
+        File file = new File(System.getProperty("user.dir") + "/resources/screenshots/" + fileName);
+        if (file.exists()) {
+            return file.getAbsolutePath();
+        } else {
             return null;
         }
-
-//        File file = new File(resource.getFile());
-//        if (file.exists()) {
-//            return file.getAbsolutePath();
-//        }
-        return null;
     }
 
     private void waitForFileDownload(String fileName, int maxWaitTimeSeconds) {
+        String downloadDir = Paths.get(System.getProperty("user.home"), "Downloads", "selenium_downloads").toString();
         File downloadPath = new File(downloadDir);
         File downloadedFile;
 
@@ -74,8 +70,10 @@ public class UploadAndDownloadPage extends BasePage {
     }
 
     public boolean checkIfFileExists(String fileName) {
-        File downloadPath = new File(downloadDir);
-        File downloadedFile = new File(downloadPath, fileName);
+        String downloadDir = Paths.get(System.getProperty("user.home"), "Downloads").toString();
+
+        delay(1000); //TODO
+        File downloadedFile = new File(downloadDir + File.separator + fileName);
 
         return downloadedFile.exists();
     }

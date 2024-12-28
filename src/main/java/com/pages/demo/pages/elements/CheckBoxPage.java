@@ -7,6 +7,7 @@ import static utilities.JavaScriptUtility.scrollToElementJS;
 
 public class CheckBoxPage extends BasePage {
 
+    private final By header = By.xpath("//h1[@class='text-center'][contains(.,'Check Box')]");
     private final By home = By.xpath("(//span[contains(.,'Home')])[2]");
     private final By desktop = By.xpath("(//span[contains(.,'Desktop')])[2]");
     private final By notes = By.xpath("(//span[contains(.,'Notes')])[2]");
@@ -39,6 +40,10 @@ public class CheckBoxPage extends BasePage {
 
     public String getResultMessage() {
         return find(resultMessage).getText();
+    }
+
+    public String getHeader() {
+        return find(header).getText();
     }
 
     public void clickExpandAll() {

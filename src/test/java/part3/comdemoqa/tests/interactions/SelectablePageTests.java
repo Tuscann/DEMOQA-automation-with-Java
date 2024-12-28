@@ -100,17 +100,37 @@ public class SelectablePageTests extends BaseTest {
         Assert.assertTrue(isFourRowSelected, "Four row is not selected");
     }
 
-    @Test(enabled = false)
-    public void SelectOneFromGrid() {
+    @Test(enabled = true)
+    public void SelectOneByOneAllFromGrid() {
         navigateToUrl("selectable");
         selectablePage.clickGridTab();
 
-        String searched1Selection = "Three";
-        boolean isFirstRowSelected = selectablePage.RowSelected(searched1Selection);
-        Assert.assertFalse(isFirstRowSelected, "One is selected");
-        int position = 0;
-        selectablePage.clickElement(position);
-        isFirstRowSelected = selectablePage.RowSelected(searched1Selection);
-        Assert.assertTrue(isFirstRowSelected, "One is not selected");
+        String searched1Selection;
+        boolean isSelected;
+        for (int i = 0; i < 9; i++) {
+            if (i == 0) {
+                searched1Selection = "One";
+            } else if (i == 1) {
+                searched1Selection = "Two";
+            } else if (i == 2) {
+                searched1Selection = "Three";
+            } else if (i == 3) {
+                searched1Selection = "Four";
+            } else if (i == 4) {
+                searched1Selection = "Five";
+            } else if (i == 5) {
+                searched1Selection = "Six";
+            } else if (i == 6) {
+                searched1Selection = "Seven";
+            } else if (i == 7) {
+                searched1Selection = "Eight";
+            } else {
+                searched1Selection = "Nine";
+            }
+
+            selectablePage.selectPositionFromGrid(searched1Selection);
+            isSelected = selectablePage.isPositionFromGridSelected(searched1Selection);
+            Assert.assertTrue(isSelected, searched1Selection + " is not selected");
+        }
     }
 }

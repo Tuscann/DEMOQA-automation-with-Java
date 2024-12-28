@@ -396,12 +396,7 @@ public class PracticeFormPage extends BasePage {
     }
 
     public String getFilePathFromResources(String fileName) {
-//        URL resource = getClass().getClassLoader().getResource(fileName);
-//        if (resource == null) {
-//            return null;
-//        }
-
-        File file = new File(System.getProperty("user.dir") + "/resources/screenshots/zhivko.jpg");
+        File file = new File(System.getProperty("user.dir") + "/resources/screenshots/" + fileName);
         if (file.exists()) {
             return file.getAbsolutePath();
         }
