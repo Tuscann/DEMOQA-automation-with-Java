@@ -1,0 +1,287 @@
+package demoqa.web.test.elements;
+
+import demoqa.web.BaseTest;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+public class CheckBoxPageTests extends BaseTest {
+
+    @Test
+    public void SelectCheckBoxNotes() {
+        navigateToUrl("checkbox");
+        checkBoxPage.clickExpandAll();
+        checkBoxPage.clickNotes();
+        String header = "Check Box";
+        String actualHeader = checkBoxPage.getHeader();
+
+        String actualResult = checkBoxPage.getResultMessage();
+        String expectedResult = "You have selected :\nnotes";
+
+        Assert.assertEquals(actualResult, expectedResult, "Not selected Notes");
+        Assert.assertEquals(actualHeader, header, "Wrong Header Message");
+    }
+
+    @Test
+    public void SelectDesktopWithHomeAndCommandsNotes() {
+        navigateToUrl("checkbox");
+
+        checkBoxPage.clickExpandAll();
+        checkBoxPage.clickNotes();
+        checkBoxPage.clickCommands();
+
+        String actualResult = checkBoxPage.getResultMessage();
+        String expectedResult = """
+                You have selected :
+                desktop
+                notes
+                commands""";
+
+        Assert.assertEquals(actualResult, expectedResult, "Not selected Notes");
+    }
+
+    @Test
+    public void DeSelectCheckBoxNotes() {
+        navigateToUrl("checkbox");
+
+        checkBoxPage.clickExpandAll();
+        checkBoxPage.clickNotes();
+
+        String actualResult = checkBoxPage.getResultMessage();
+        String expectedResult = """
+                You have selected :
+                notes""";
+        Assert.assertEquals(actualResult, expectedResult, "Not selected Notes");
+
+        checkBoxPage.clickNotes();
+
+        Assert.assertTrue(checkBoxPage.isResultMessageShown(), "Shown some category");
+    }
+
+    @Test
+    public void VerifyAllCheckBoxesAreDeselected() {
+        navigateToUrl("checkbox");
+        checkBoxPage.clickExpandAll();
+
+        Assert.assertTrue(checkBoxPage.isResultMessageShown(), "Shown some category");
+    }
+
+    @Test
+    public void SelectOnlyCheckBoxCommands() {
+        navigateToUrl("checkbox");
+
+        checkBoxPage.clickExpandAll();
+        checkBoxPage.clickCommands();
+
+        String actualResult = checkBoxPage.getResultMessage();
+        String expectedResult = "You have selected :\ncommands";
+
+        Assert.assertEquals(actualResult, expectedResult, "Not selected Commands");
+    }
+
+    @Test
+    public void SelectCheckBoxesNotesAndCommands() {
+        navigateToUrl("checkbox");
+
+        checkBoxPage.clickExpandAll();
+        checkBoxPage.clickNotes();
+        checkBoxPage.clickCommands();
+
+        String actualResult = checkBoxPage.getResultMessage();
+        String expectedResult = """
+                You have selected :
+                desktop
+                notes
+                commands""";
+
+        Assert.assertEquals(actualResult, expectedResult, "Not selected 3 checkbox Notes/Commands");
+    }
+
+    @Test
+    public void CollapsedWithSelectedCategories() {
+        navigateToUrl("checkbox");
+
+        checkBoxPage.clickExpandAll();
+        checkBoxPage.clickOffice();
+        checkBoxPage.clickWorkSpace();
+        checkBoxPage.clickCollapseAll();
+
+        String actualResult = checkBoxPage.getResultMessage();
+        String expectedResult = """
+                You have selected :
+                documents
+                workspace
+                react
+                angular
+                veu
+                office
+                public
+                private
+                classified
+                general""";
+
+        Assert.assertEquals(actualResult, expectedResult, "Not selected 3 checkbox Notes/Commands");
+    }
+
+    @Test
+    public void SelectOnlyCheckBoxHome() {
+        navigateToUrl("checkbox");
+
+        checkBoxPage.clickExpandAll();
+        checkBoxPage.clickHome();
+
+        String actualResult = checkBoxPage.getResultMessage();
+        String expectedResult = """
+                You have selected :
+                home
+                desktop
+                notes
+                commands
+                documents
+                workspace
+                react
+                angular
+                veu
+                office
+                public
+                private
+                classified
+                general
+                downloads
+                wordFile
+                excelFile""";
+
+        Assert.assertEquals(actualResult, expectedResult, "Not selected all CheckBoxes");
+    }
+
+    @Test
+    public void SelectDesktopAndDocumentsAndDownloadsCheckBoxes() {
+        navigateToUrl("checkbox");
+
+        checkBoxPage.clickExpandAll();
+        checkBoxPage.clickDesktop();
+        checkBoxPage.clickDocuments();
+        checkBoxPage.clickDownloads();
+
+        String actualResult = checkBoxPage.getResultMessage();
+        String expectedResult = """
+                You have selected :
+                home
+                desktop
+                notes
+                commands
+                documents
+                workspace
+                react
+                angular
+                veu
+                office
+                public
+                private
+                classified
+                general
+                downloads
+                wordFile
+                excelFile""";
+
+        Assert.assertEquals(actualResult, expectedResult, "Not selected all CheckBoxes");
+    }
+
+    @Test
+    public void SelectAllCheckBoxesOneByOne() {
+        navigateToUrl("checkbox");
+
+        checkBoxPage.clickExpandAll();
+        checkBoxPage.clickNotes();
+        checkBoxPage.clickCommands();
+        checkBoxPage.clickReact();
+        checkBoxPage.clickAngular();
+        checkBoxPage.clickVeu();
+        checkBoxPage.clickPublicOffice();
+        checkBoxPage.clickPrivateOffice();
+        checkBoxPage.clickClassified();
+        checkBoxPage.clickGeneral();
+        checkBoxPage.clickWordFileDoc();
+        checkBoxPage.clickExcelFileDoc();
+
+        String actualResult = checkBoxPage.getResultMessage();
+        String expectedResult = """
+                You have selected :
+                home
+                desktop
+                notes
+                commands
+                documents
+                workspace
+                react
+                angular
+                veu
+                office
+                public
+                private
+                classified
+                general
+                downloads
+                wordFile
+                excelFile""";
+
+        Assert.assertEquals(actualResult, expectedResult, "Not selected all CheckBoxes");
+    }
+
+    @Test
+    public void SelectAllCheckBoxesOneByOneAndDeselectAll() {
+        navigateToUrl("checkbox");
+
+        checkBoxPage.clickExpandAll();
+        checkBoxPage.clickNotes();
+        checkBoxPage.clickCommands();
+        checkBoxPage.clickReact();
+        checkBoxPage.clickAngular();
+        checkBoxPage.clickVeu();
+        checkBoxPage.clickPublicOffice();
+        checkBoxPage.clickPrivateOffice();
+        checkBoxPage.clickClassified();
+        checkBoxPage.clickGeneral();
+        checkBoxPage.clickWordFileDoc();
+        checkBoxPage.clickExcelFileDoc();
+
+        String actualResult = checkBoxPage.getResultMessage();
+        String expectedResult = """
+                You have selected :
+                home
+                desktop
+                notes
+                commands
+                documents
+                workspace
+                react
+                angular
+                veu
+                office
+                public
+                private
+                classified
+                general
+                downloads
+                wordFile
+                excelFile""";
+
+        Assert.assertEquals(actualResult, expectedResult, "Not selected all CheckBoxes");
+
+        checkBoxPage.clickExpandAll();
+        checkBoxPage.clickNotes();
+        checkBoxPage.clickCommands();
+        checkBoxPage.clickReact();
+        checkBoxPage.clickAngular();
+        checkBoxPage.clickVeu();
+        checkBoxPage.clickPublicOffice();
+        checkBoxPage.clickPrivateOffice();
+        checkBoxPage.clickClassified();
+        checkBoxPage.clickGeneral();
+        checkBoxPage.clickWordFileDoc();
+        checkBoxPage.clickExcelFileDoc();
+
+        boolean isMissingMessageNotShown = checkBoxPage.verifyResultMessageIsMissing();
+
+        Assert.assertTrue(isMissingMessageNotShown, "Found some selected CheckBoxes");
+    }
+}
