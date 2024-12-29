@@ -45,18 +45,6 @@ public class TabsPage extends BasePage {
         return find(moreTab).getText();
     }
 
-    public void clickWhatTab() {
-        find(whatTab).click();
-    }
-
-    public void clickOriginTab() {
-        find(originTab).click();
-    }
-
-    public void clickUseTab() {
-        find(useTab).click();
-    }
-
     public String getWhatTabInternalText() {
         return find(whatTabInternalText).getText();
     }
@@ -75,4 +63,17 @@ public class TabsPage extends BasePage {
 
         return find(useTabInternalText).getText();
     }
+
+    public void clickWhatTab() {
+        find(whatTab).click();
+    }
+
+    public void clickOriginTab() {
+        find(originTab).click();
+    }
+
+    public void clickUseTab() {
+        find(useTab).click();
+    }
+
 }

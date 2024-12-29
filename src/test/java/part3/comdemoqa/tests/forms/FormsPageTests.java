@@ -19,7 +19,7 @@ public class FormsPageTests extends BaseTest {
     }
 
     @Test
-    public void VerifyLeftPagesLinks() {
+    public void VerifyPracticeFormLink() {
         navigateToUrl("forms");
 
         String expectedUrl = "https://demoqa.com/automation-practice-form";

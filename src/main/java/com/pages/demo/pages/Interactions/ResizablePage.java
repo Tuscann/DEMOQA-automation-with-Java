@@ -52,7 +52,6 @@ public class ResizablePage extends BasePage {
         return initialSize.toString();
     }
 
-
     public void changeSizeWithoutLimitations(int xOffset, int yOffset) {
         Actions actions = new Actions(driver);
 

@@ -35,7 +35,7 @@ public class InteractionPageTests extends BaseTest {
         Assert.assertEquals(actualUrl, expectedUrl);
 
         expectedUrl = "https://demoqa.com/dragabble";
-        interactionsPage.clickDragabble();
+        interactionsPage.clickDraggable();
         actualUrl = widgetsPage.checkUrl();
         Assert.assertEquals(actualUrl, expectedUrl);
     }

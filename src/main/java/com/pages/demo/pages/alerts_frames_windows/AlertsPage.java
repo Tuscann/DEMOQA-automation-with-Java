@@ -15,7 +15,6 @@ public class AlertsPage extends BasePage {
     private final By confirmationResult = By.id("confirmResult");
     private final By promptResult = By.id("promptResult");
 
-
     private final By alert1Title = By.xpath("//h1[contains(.,'Alerts')]");
     private final By alert2Title = By.xpath("//span[contains(.,'Click Button to see alert')]");
     private final By alert3Title = By.xpath("//span[contains(.,'On button click, alert will appear after 5 seconds')]");
@@ -46,13 +45,8 @@ public class AlertsPage extends BasePage {
         return find(promptResult).getText();
     }
 
-    public void clickPromptAlertButton() {
-        click(promptAlertButton);
-    }
-
-    public void clickConfirmationTimeAlertButton() {
-        scrollToElementJS(confirmationTimeAlertButton);
-        click(confirmationTimeAlertButton);
+    public String getConfirmationResult() {
+        return find(confirmationResult).getText();
     }
 
     public void clickInformationAlertButton() {
@@ -63,7 +57,12 @@ public class AlertsPage extends BasePage {
         click(confirmationAlertButton);
     }
 
-    public String getConfirmationResult() {
-        return find(confirmationResult).getText();
+    public void clickPromptAlertButton() {
+        click(promptAlertButton);
+    }
+
+    public void clickConfirmationTimeAlertButton() {
+        scrollToElementJS(confirmationTimeAlertButton);
+        click(confirmationTimeAlertButton);
     }
 }

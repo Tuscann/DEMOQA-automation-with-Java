@@ -26,7 +26,7 @@ public class ButtonsPageTests extends BaseTest {
     }
 
     @Test
-    public void ClickOnThreeButtons() {
+    public void ClickOnThreeButtonsAndVerifyMessages() {
         navigateToUrl("buttons");
 
         String expectedDoubleClickMessage = "You have done a double click";

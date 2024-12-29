@@ -27,6 +27,14 @@ public class DatePickerPage extends BasePage {
         return find(datePickerText).getText();
     }
 
+    public String getSelectedDate() {
+        return find(sectionOneHeading).getDomAttribute("value");
+    }
+
+    public String getSelectedDateAndTime() {
+        return find(sectionTwoHeading).getDomAttribute("value");
+    }
+
     public void selectDate(String enterDate) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(4));
 
@@ -34,18 +42,10 @@ public class DatePickerPage extends BasePage {
                 .sendKeys(Keys.chord(Keys.CONTROL, "a"), enterDate, Keys.chord(Keys.ENTER));
     }
 
-    public String getSelectedDate() {
-        return find(sectionOneHeading).getDomAttribute("value");
-    }
-
     public void selectDateAndTime(String expectedDate) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(4));
 
         wait.until(ExpectedConditions.visibilityOfElementLocated(sectionTwoHeading))
                 .sendKeys(Keys.chord(Keys.CONTROL, "a"), expectedDate, Keys.chord(Keys.ENTER));
-    }
-
-    public String getSelectedDateAndTime() {
-        return find(sectionTwoHeading).getDomAttribute("value");
     }
 }

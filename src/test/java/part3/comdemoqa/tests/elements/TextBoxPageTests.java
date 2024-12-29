@@ -47,7 +47,7 @@ public class TextBoxPageTests extends BaseTest {
     }
 
     @Test
-    public void SubmitTextBox() {
+    public void SubmitFulledTextBox() {
         String fullName = "Zhivko Nedyalkov";
         String email = "fbinnzhivko@gmail.com";
         String currentAddress = "Sofia";
@@ -72,7 +72,7 @@ public class TextBoxPageTests extends BaseTest {
     }
 
     @Test(enabled = true)
-    public void ClickSubmitButton() {
+    public void ClickSubmitButtonOnEmptyForm() {
         navigateToUrl("text-box");
         textBoxPage.clickSubmitButton();
 
@@ -82,7 +82,7 @@ public class TextBoxPageTests extends BaseTest {
     }
 
     @Test
-    public void AddFullName() {
+    public void SubmitOnlyFullName() {
         navigateToUrl("text-box");
 
         String fullName = "Zhivko Nedyalkov";
@@ -96,7 +96,7 @@ public class TextBoxPageTests extends BaseTest {
     }
 
     @Test
-    public void AddValidEmailAndClickSubmit() {
+    public void SubmitValidEmail() {
         navigateToUrl("text-box");
         String email = "testemail@example.com";
 
@@ -108,7 +108,20 @@ public class TextBoxPageTests extends BaseTest {
     }
 
     @Test
-    public void AddPermanentAddressAndClickSubmit() {
+    public void TryToSubmitUnValidEmailAndCheckRedLine() {
+        navigateToUrl("text-box");
+        String email = "a";
+        textBoxPage.setEmail(email);
+        textBoxPage.clickSubmitButton();
+
+        String redColor = "solid rgb(255, 0, 0)";
+        String actualColor = textBoxPage.isBorderRedAroundEmail();
+
+        Assert.assertEquals(actualColor, redColor, "Not same red color");
+    }
+
+    @Test
+    public void SubmitValidPermanentAddress() {
         navigateToUrl("text-box");
         String permanentAddress = "1234 Elm Street, Springfield";
 
@@ -120,7 +133,7 @@ public class TextBoxPageTests extends BaseTest {
     }
 
     @Test
-    public void AddCurrentAddressAndClickSubmit() {
+    public void SubmitValidCurrentAddress() {
         navigateToUrl("text-box");
         String currentAddress = "4321 Maple Lane, Metropolis";
 
@@ -144,7 +157,6 @@ public class TextBoxPageTests extends BaseTest {
         textBoxPage.setEmail(email);
         textBoxPage.setCurrentAddress(currentAddress);
         textBoxPage.setPermanentAddress(permanentAddress);
-
         textBoxPage.clickSubmitButton();
 
         String actualFullName = textBoxPage.getExpectedFullName();
@@ -177,18 +189,5 @@ public class TextBoxPageTests extends BaseTest {
         Assert.assertEquals(actualEmail, "Email:" + email, "Not same Email");
         Assert.assertEquals(actualCurrentAddress, "Current Address :" + currentAddress, "Not same current Address");
         Assert.assertEquals(actualPermanentAddress, "Permananet Address :" + permanentAddress, "Not same permanent Address");
-    }
-
-    @Test
-    public void VerifyRedColorLineForInvalidMail() {
-        navigateToUrl("text-box");
-        String email = "a";
-        textBoxPage.setEmail(email);
-        textBoxPage.clickSubmitButton();
-
-        String redColor = "solid rgb(255, 0, 0)";
-        String actualColor = textBoxPage.isBorderRedAroundEmail();
-
-        Assert.assertEquals(actualColor, redColor, "Not same red color");
     }
 }

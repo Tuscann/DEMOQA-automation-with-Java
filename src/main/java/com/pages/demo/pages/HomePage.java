@@ -64,21 +64,6 @@ public class HomePage extends BasePage {
         click(bookStoreApplicationCard);
     }
 
-    public void chooseHomePageMenu(String homeMenu) {
-
-        int indexOfElement = HOME_MENU_ITEMS.indexOf(homeMenu);
-        scrollToElementJS(clickHomePageItem);
-
-        List<WebElement> elements = driver.findElements(clickHomePageItem);
-
-        for (int i = 0; i < 3 && i < elements.size(); i++) {
-
-            if (i == indexOfElement) {
-                elements.get(i).click();
-            }
-        }
-    }
-
     public void goToElements() {
         scrollToElementJS(elementsCard);
         click(elementsCard);
@@ -92,6 +77,21 @@ public class HomePage extends BasePage {
     public void goToAlertsFramesWindowsCard() {
         scrollToElementJS(alertsFrameWindowsCard);
         click(alertsFrameWindowsCard);
+    }
+
+    public void chooseHomePageMenu(String homeMenu) {
+
+        int indexOfElement = HOME_MENU_ITEMS.indexOf(homeMenu);
+        scrollToElementJS(clickHomePageItem);
+
+        List<WebElement> elements = driver.findElements(clickHomePageItem);
+
+        for (int i = 0; i < 3 && i < elements.size(); i++) {
+
+            if (i == indexOfElement) {
+                elements.get(i).click();
+            }
+        }
     }
 
     public void navigateBack() {

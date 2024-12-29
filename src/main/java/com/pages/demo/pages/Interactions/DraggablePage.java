@@ -35,10 +35,6 @@ public class DraggablePage extends BasePage {
         return find(axisRestrictedTab).getText();
     }
 
-    public String getAxisRestrictedOnlyX() {
-        return find(axisRestrictedOnlyX).getText();
-    }
-
     public String getAxisRestrictedOnlyY() {
         return find(axisRestrictedOnlyY).getText();
     }
@@ -69,6 +65,11 @@ public class DraggablePage extends BasePage {
 
     public String getCursorStyleThirdText() {
         return find(cursorStyleThirdText).getText();
+    }
+
+    public String getAxisRestrictedOnlyX() {
+        delay(100); //TODO
+        return find(axisRestrictedOnlyX).getText();
     }
 
     public void clickSimpleTab() {

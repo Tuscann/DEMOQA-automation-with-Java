@@ -32,9 +32,9 @@ public class DynamicPropertiesPageTests extends BaseTest {
     public void VerifyMissingButtonOnPage() {
         navigateToUrl("dynamic-properties");
 
-        boolean isEnableButton = dynamicPropertiesPage.checkWillEnable5SecondsButton();
+        boolean isEnableButton = dynamicPropertiesPage.checkButtonWillEnable5Seconds();
         String colorOfColorChangeButton = dynamicPropertiesPage.getColorOfChangeButton();
-        boolean isVisibleAfter5SecondsButton = dynamicPropertiesPage.checkVisibleAfte5SecondsButton();
+        boolean isVisibleAfter5SecondsButton = dynamicPropertiesPage.checkButtonVisibleAfter5Seconds();
 
         String expectedColor = "rgba(255, 255, 255, 1)";
 
@@ -52,8 +52,8 @@ public class DynamicPropertiesPageTests extends BaseTest {
 
         String colorOFColorChangeButton = dynamicPropertiesPage.getColorOfChangeButton();
         String visibleAfter5SecondsButtonText = dynamicPropertiesPage.getVisibleAfter5SecondsButtonTextAfter5seconds();
-        boolean isEnableButton = dynamicPropertiesPage.checkWillEnable5SecondsButton();
-        boolean isVisibleAfter5SecondsButton = dynamicPropertiesPage.checkVisibleAfte5SecondsButton();
+        boolean isEnableButton = dynamicPropertiesPage.checkButtonWillEnable5Seconds();
+        boolean isVisibleAfter5SecondsButton = dynamicPropertiesPage.checkButtonVisibleAfter5Seconds();
 
         Assert.assertTrue(isEnableButton, "Enable button is not enable");
         Assert.assertEquals(colorOFColorChangeButton, expectedColor, "Not white color on change text");

@@ -32,10 +32,6 @@ public class WebTablesPage extends BasePage {
         return find(registrationFormText).getText();
     }
 
-    public void searchWithWord(String word) {
-        set(searchBox, word);
-    }
-
     public String getFirstNamLabel() {
         return find(firstNamLabel).getText();
     }
@@ -84,10 +80,6 @@ public class WebTablesPage extends BasePage {
         return find(noRowsFound).getText();
     }
 
-    public void clickAddButton() {
-        click(addNewRecordButton);
-    }
-
     public void setAge(String age) {
         set(registrationAgeField, age);
     }
@@ -110,6 +102,14 @@ public class WebTablesPage extends BasePage {
 
     public void setLastName(String name) {
         set(registrationLastNameField, name);
+    }
+
+    public void clickAddButton() {
+        click(addNewRecordButton);
+    }
+
+    public void searchWithWord(String word) {
+        set(searchBox, word);
     }
 
     public String getPlaceholderDepartment() {

@@ -36,10 +36,6 @@ public class LinksPage extends BasePage {
         return find(simpleLink).getText();
     }
 
-    public String getDynamicLinkText() {
-        return find(dynamicLink).getText();
-    }
-
     public String getApiCallText() {
         return find(apiCallText).getText();
     }

@@ -6,7 +6,7 @@ import org.openqa.selenium.By;
 import static utilities.JavaScriptUtility.scrollToElementJS;
 
 public class WidgetsPage extends BasePage {
-    private final By selectAccordian = By.xpath("//li[@id='item-0']/span[text()='Accordian']");
+    private final By selectAccordion = By.xpath("//li[@id='item-0']/span[text()='Accordian']");
     private final By selectAutoComplete = By.xpath("//li[@id='item-1']/span[text()='Auto Complete']");
     private final By datePickerMenuItem = By.xpath("//li[@id='item-2']/span[text()='Date Picker']");
     private final By sliderMenuItem = By.xpath("//li[@id='item-3']/span[text()='Slider']");
@@ -16,57 +16,48 @@ public class WidgetsPage extends BasePage {
     private final By selectMenu = By.xpath("//li[@id='item-7']/span[text()='Menu']");
     private final By selectSelectMenu = By.xpath("//li[@id='item-8']/span[text()='Select Menu']");
 
-    public AccordianPage clickAccordian() {
-        scrollToElementJS(selectAccordian);
-        click(selectAccordian);
-        return new AccordianPage();
+    public void clickAccordion() {
+        scrollToElementJS(selectAccordion);
+        click(selectAccordion);
     }
 
-    public AutoCompletePage clickAutoComplete() {
+    public void clickAutoComplete() {
         scrollToElementJS(selectAutoComplete);
         click(selectAutoComplete);
-        return new AutoCompletePage();
     }
 
-    public DatePickerPage clickDatePicker() {
+    public void clickDatePicker() {
         scrollToElementJS(datePickerMenuItem);
         click(datePickerMenuItem);
-        return new DatePickerPage();
     }
 
-    public SliderPage clickSlider() {
+    public void clickSlider() {
         scrollToElementJS(sliderMenuItem);
         click(sliderMenuItem);
-        return new SliderPage();
     }
 
-    public ProgressBarPage clickProgressBar() {
+    public void clickProgressBar() {
         scrollToElementJS(progressBarMenuItem);
         click(progressBarMenuItem);
-        return new ProgressBarPage();
     }
 
-    public TabsPage clickTabs() {
+    public void clickTabs() {
         scrollToElementJS(selectTabs);
         click(selectTabs);
-        return new TabsPage();
     }
 
-    public ToolTipsPage clickToolTips() {
+    public void clickToolTips() {
         scrollToElementJS(selectToolTips);
         click(selectToolTips);
-        return new ToolTipsPage();
     }
 
-    public MenuPage clickMenu() {
+    public void clickMenu() {
         scrollToElementJS(selectMenu);
         click(selectMenu);
-        return new MenuPage();
     }
 
-    public SelectMenuPage clickSelectMenu() {
+    public void clickSelectMenu() {
         scrollToElementJS(selectSelectMenu);
         click(selectSelectMenu);
-        return new SelectMenuPage();
     }
 }

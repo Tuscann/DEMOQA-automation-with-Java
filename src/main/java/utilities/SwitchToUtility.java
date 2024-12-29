@@ -10,7 +10,6 @@ import java.time.Duration;
 
 public class SwitchToUtility extends Utility {
 
-
     private static WebDriver.TargetLocator switchTo() {
         return driver.switchTo();
     }
@@ -50,7 +49,6 @@ public class SwitchToUtility extends Utility {
     }
 
     public static void dismissAlert() {
-        // Alert alert = wait.until(ExpectedConditions.alertIsPresent());
         switchTo().alert().dismiss();
     }
 

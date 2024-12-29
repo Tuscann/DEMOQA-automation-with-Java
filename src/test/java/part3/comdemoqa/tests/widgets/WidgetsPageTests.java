@@ -11,7 +11,7 @@ public class WidgetsPageTests extends BaseTest {
         navigateToUrl("widgets");
 
         String expectedUrl = "https://demoqa.com/accordian";
-        widgetsPage.clickAccordian();
+        widgetsPage.clickAccordion();
         String actualUrl = widgetsPage.checkUrl();
         Assert.assertEquals(actualUrl, expectedUrl);
 

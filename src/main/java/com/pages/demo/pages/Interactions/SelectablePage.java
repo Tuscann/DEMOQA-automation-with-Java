@@ -34,31 +34,8 @@ public class SelectablePage extends BasePage {
     private final By gridEight = By.xpath("//li[@class='list-group-item list-group-item-action'][contains(.,'Eight')]");
     private final By gridNine = By.xpath("//li[@class='list-group-item list-group-item-action'][contains(.,'Nine')]");
 
-    public void clickElement(int index) {
-        List<WebElement> inputField = driver.findElements(allList);
-
-        for (int i = 0; i < inputField.size(); i++) {
-            if (i == index) {
-                inputField.get(i).click();
-                break;
-            }
-        }
-    }
-
     public String getPageTitleText() {
         return find(pageTitle).getText();
-    }
-
-    public boolean isFirstRowSelected() {
-        return driver.findElement(firstRowSelect).isDisplayed();
-    }
-
-    public boolean isSecondRowSelected() {
-        return driver.findElement(secondRowSelect).isDisplayed();
-    }
-
-    public void clickGridTab() {
-        find(gridTabText).click();
     }
 
     public String getListTabText() {
@@ -81,9 +58,23 @@ public class SelectablePage extends BasePage {
         return find(listFourText).getText();
     }
 
-
     public String getGridText() {
         return find(gridTabText).getText();
+    }
+
+    public void clickGridTab() {
+        find(gridTabText).click();
+    }
+
+    public void clickElement(int index) {
+        List<WebElement> inputField = driver.findElements(allList);
+
+        for (int i = 0; i < inputField.size(); i++) {
+            if (i == index) {
+                inputField.get(i).click();
+                break;
+            }
+        }
     }
 
     public void selectFirstRow() {
@@ -164,24 +155,16 @@ public class SelectablePage extends BasePage {
     }
 
     public void selectPositionFromGrid(String searched1Selection) {
-        if (searched1Selection.equals("One")) {
-            find(gridOne).click();
-        } else if (searched1Selection.equals("Two")) {
-            find(gridTwo).click();
-        } else if (searched1Selection.equals("Three")) {
-            find(gridThree).click();
-        } else if (searched1Selection.equals("Four")) {
-            find(gridFour).click();
-        } else if (searched1Selection.equals("Five")) {
-            find(gridFive).click();
-        } else if (searched1Selection.equals("Six")) {
-            find(gridSix).click();
-        } else if (searched1Selection.equals("Seven")) {
-            find(gridSeven).click();
-        } else if (searched1Selection.equals("Eight")) {
-            find(gridEight).click();
-        } else if (searched1Selection.equals("Nine")) {
-            find(gridNine).click();
+        switch (searched1Selection) {
+            case "One" -> find(gridOne).click();
+            case "Two" -> find(gridTwo).click();
+            case "Three" -> find(gridThree).click();
+            case "Four" -> find(gridFour).click();
+            case "Five" -> find(gridFive).click();
+            case "Six" -> find(gridSix).click();
+            case "Seven" -> find(gridSeven).click();
+            case "Eight" -> find(gridEight).click();
+            case "Nine" -> find(gridNine).click();
         }
     }
 

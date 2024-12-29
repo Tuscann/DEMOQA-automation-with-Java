@@ -42,7 +42,6 @@ public class DroppablePage extends BasePage {
     private final By dropHereRevertDraggableText = By.xpath("(//*[@id=\"droppable\"]/p)[3]");
     private final By dropHereRevertDraggable = By.xpath("(//*[@id=\"droppable\"])[3]");
 
-
     public void clickRevertDraggableTab() {
         click(revertDraggableTab);
     }
@@ -136,9 +135,7 @@ public class DroppablePage extends BasePage {
     }
 
     public String getNewColor() {
-        WebElement droppable = driver.findElement(simpleTabDroppedContainer);
-
-        return droppable.getCssValue("background-color");
+        return driver.findElement(simpleTabDroppedContainer).getCssValue("background-color");
     }
 
     public void dragAndDrop() {
@@ -181,9 +178,7 @@ public class DroppablePage extends BasePage {
     }
 
     public String getColorNotAcceptable() {
-        WebElement droppable = driver.findElement(simpleTabDropHere);
-
-        return droppable.getCssValue("background-color");
+        return driver.findElement(simpleTabDropHere).getCssValue("background-color");
     }
 
     public void dragAndDropPropagationOuterDroppableNotGreedy() {
@@ -249,11 +244,7 @@ public class DroppablePage extends BasePage {
     }
 
     public org.openqa.selenium.Point getInitLocation() {
-        WebElement draggable = driver.findElement(willRevert);
-
-        org.openqa.selenium.Point initialLocation = draggable.getLocation();
-
-        return initialLocation;
+        return driver.findElement(willRevert).getLocation();
     }
 
     public void dragAndDropWillRevert() {

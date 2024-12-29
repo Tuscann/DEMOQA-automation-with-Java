@@ -8,31 +8,27 @@ public class InteractionsPage extends BasePage {
     private final By selectable = By.xpath("//li[@id='item-1']/span[text()='Selectable']");
     private final By resizable = By.xpath("//li[@id='item-2']/span[text()='Resizable']");
     private final By droppable = By.xpath("//li[@id='item-3']/span[text()='Droppable']");
-    private final By dragabble = By.xpath("//li[@id='item-4']/span[text()='Dragabble']");
+    private final By draggable = By.xpath("//li[@id='item-4']/span[text()='Dragabble']");
     private final By text = By.xpath("(//div[contains(.,'Please select an item from left to start practice.')])[5]");
 
     public void clickSortable() {
         click(sortable);
     }
 
-    public SelectablePage clickSelectable() {
+    public void clickSelectable() {
         click(selectable);
-        return new SelectablePage();
     }
 
-    public ResizablePage clickResizable() {
+    public void clickResizable() {
         click(resizable);
-        return new ResizablePage();
     }
 
-    public DroppablePage clickDroppable() {
+    public void clickDroppable() {
         click(droppable);
-        return new DroppablePage();
     }
 
-    public DraggablePage clickDragabble() {
-        click(dragabble);
-        return new DraggablePage();
+    public void clickDraggable() {
+        click(draggable);
     }
 
     public String getMainText() {

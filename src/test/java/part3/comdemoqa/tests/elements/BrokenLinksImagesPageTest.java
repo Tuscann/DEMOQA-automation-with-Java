@@ -17,7 +17,7 @@ public class BrokenLinksImagesPageTest extends BaseTest {
         String expectedBrokenLinkText = "Broken Link";
         String expectedClickHereBrokenLinkText = "Click Here for Broken Link";
 
-        String actualH1Text = brokenLinksImagesPage.getH1Text();
+        String actualH1Text = brokenLinksImagesPage.getHeaderText();
         String actualClickHereValidLinkText = brokenLinksImagesPage.getClickHereValidLinkText();
         String actualBrokenImageText = brokenLinksImagesPage.getBrokenImageText();
         String actualValidLinkText = brokenLinksImagesPage.getValidLinkText();

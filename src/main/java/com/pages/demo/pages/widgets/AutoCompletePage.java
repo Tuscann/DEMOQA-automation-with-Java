@@ -15,13 +15,7 @@ public class AutoCompletePage extends BasePage {
     private final By multipleContainerText = By.id("autoCompleteMultiple");
     private final By autoCompleteSingleText = By.id("autoCompleteSingle");
     private final By closeButton = By.xpath(" //div[@aria-hidden='true']");
-
-
     private final By allSelectedMultiColorNames = By.xpath("//div[contains(@class,'value-container--has-value css-1hwfws3')]");
-
-    public void clickCloseButton() {
-        find(closeButton).click();
-    }
 
     public String getMultipleContainerText() {
         return find(multipleContainerText).getText();
@@ -39,6 +33,18 @@ public class AutoCompletePage extends BasePage {
         return find(autoCompleteSingleText).getText();
     }
 
+    public String getAllSingleColorNames() {
+        return find(allSelectedMultiColorNames).getText();
+    }
+
+    public void clickCloseButton() {
+        find(closeButton).click();
+    }
+
+    public void clickSingleAutoComplete() {
+        find(singleAutoComplete).click();
+    }
+
     public void multiAutoComplete(String color) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
         wait.until(ExpectedConditions.visibilityOfElementLocated(multiAutoComplete))
@@ -47,23 +53,11 @@ public class AutoCompletePage extends BasePage {
                 .sendKeys(Keys.chord("" + Keys.ENTER));
     }
 
-    public void clickSingleAutoComplete() {
-        find(singleAutoComplete).click();
-    }
-
     public void singleAutoComplete(String color) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
         wait.until(ExpectedConditions.visibilityOfElementLocated(singleAutoComplete))
                 .sendKeys(color);
         wait.until(ExpectedConditions.visibilityOfElementLocated(singleAutoComplete))
                 .sendKeys(Keys.chord("" + Keys.ENTER));
-    }
-
-    public String getAllSingleColorNames() {
-        return find(allSelectedMultiColorNames).getText();
-    }
-
-    public void deleteAllSelectedColors() {
-        find(multiAutoComplete).clear();
     }
 }

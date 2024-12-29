@@ -2,6 +2,8 @@ package com.pages.demo.pages.Interactions;
 
 import com.pages.base.BasePage;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 
 public class SortablePage extends BasePage {
 
@@ -23,6 +25,9 @@ public class SortablePage extends BasePage {
     private final By gridSeven = By.xpath("(//div[@class='list-group-item list-group-item-action'][contains(.,'Seven')])");
     private final By gridEight = By.xpath("//div[@class='list-group-item list-group-item-action'][contains(.,'Eight')]");
     private final By gridNine = By.xpath("//div[@class='list-group-item list-group-item-action'][contains(.,'Nine')]");
+
+    private final By listOrder = By.id("demo-tabpane-list");
+    private final By gridOrder = By.id("demo-tabpane-grid");
 
     public void clickGridTab() {
         click(gridTab);
@@ -100,5 +105,75 @@ public class SortablePage extends BasePage {
         return find(gridNine).getText();
     }
 
+    public String getListOrder() {
+        return find(listOrder).getText();
+    }
 
+    public String getGridOrder() {
+        return find(gridOrder).getText();
+    }
+
+    public void moveOverGrid(String gridOne, String gridSix) {
+
+        WebElement draggable = null;
+        WebElement droppable = null;
+
+        draggable = switch (gridOne) {
+            case "One" -> driver.findElement(this.gridOne);
+            case "Two" -> driver.findElement(this.gridTwo);
+            case "Three" -> driver.findElement(this.gridThree);
+            case "Four" -> driver.findElement(this.gridFour);
+            case "Five" -> driver.findElement(this.gridFive);
+            case "Six" -> driver.findElement(this.gridSix);
+            case "Seven" -> driver.findElement(this.gridSeven);
+            case "Eight" -> driver.findElement(this.gridEight);
+            case "Nine" -> driver.findElement(this.gridNine);
+            default -> draggable;
+        };
+
+        droppable = switch (gridSix) {
+            case "One" -> driver.findElement(this.gridOne);
+            case "Two" -> driver.findElement(this.gridTwo);
+            case "Three" -> driver.findElement(this.gridThree);
+            case "Four" -> driver.findElement(this.gridFour);
+            case "Five" -> driver.findElement(this.gridFive);
+            case "Six" -> driver.findElement(this.gridSix);
+            case "Seven" -> driver.findElement(this.gridSeven);
+            case "Eight" -> driver.findElement(this.gridEight);
+            case "Nine" -> driver.findElement(this.gridNine);
+            default -> droppable;
+        };
+
+        Actions actions = new Actions(driver);
+        actions.dragAndDrop(draggable, droppable).perform();
+    }
+
+    public void moveOverList(String listOne, String listSix) {
+
+        WebElement draggable = null;
+        WebElement droppable = null;
+
+        draggable = switch (listOne) {
+            case "One" -> driver.findElement(this.listOne);
+            case "Two" -> driver.findElement(this.listTwo);
+            case "Three" -> driver.findElement(this.listThree);
+            case "Four" -> driver.findElement(this.listFour);
+            case "Five" -> driver.findElement(this.listFive);
+            case "Six" -> driver.findElement(this.listSix);
+            default -> draggable;
+        };
+
+        droppable = switch (listSix) {
+            case "One" -> driver.findElement(this.listOne);
+            case "Two" -> driver.findElement(this.listTwo);
+            case "Three" -> driver.findElement(this.listThree);
+            case "Four" -> driver.findElement(this.listFour);
+            case "Five" -> driver.findElement(this.listFive);
+            case "Six" -> driver.findElement(this.listSix);
+            default -> droppable;
+        };
+
+        Actions actions = new Actions(driver);
+        actions.dragAndDrop(draggable, droppable).perform();
+    }
 }

@@ -1,6 +1,7 @@
 package part3.comdemoqa.tests.interactions;
 
 import org.testng.Assert;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import part3.comdemoqa.base.BaseTest;
 
@@ -66,5 +67,171 @@ public class SortablePageTests extends BaseTest {
         Assert.assertEquals(actualGridSeven, gridSeven, "Wrong page seven");
         Assert.assertEquals(actualGridEight, gridEight, "Wrong page eight");
         Assert.assertEquals(actualGridNine, gridNine, "Wrong page nine");
+    }
+
+    @DataProvider(name = "resizeData")
+    public Object[][] resizeDataProvider() {
+        return new Object[][]{
+                {"One", "Six", """
+                Two
+                Three
+                Four
+                Five
+                Six
+                One"""},
+                {"Two", "Six", """
+                One
+                Three
+                Four
+                Five
+                Six
+                Two"""},
+                {"Three", "Six", """
+                One
+                Two
+                Four
+                Five
+                Six
+                Three"""},
+                {"Four", "Six", """
+                One
+                Two
+                Three
+                Five
+                Six
+                Four"""},
+                {"Five", "Six", """
+                One
+                Two
+                Three
+                Four
+                Six
+                Five"""},
+                {"Six", "One", """
+                Six
+                One
+                Two
+                Three
+                Four
+                Five"""},
+
+        };
+    }
+
+    @Test(dataProvider = "resizeData", description = "Check order", enabled = true)
+    public void DragAndDropFromListTab(String dragFromPlace, String dropOnPlace, String expectedOrder) {
+        navigateToUrl("sortable");
+
+        sortablePage.moveOverList(dragFromPlace, dropOnPlace);
+        String actualListSix = sortablePage.getListOrder();
+
+        Assert.assertEquals(actualListSix, expectedOrder, "Wrong order");
+    }
+
+    @DataProvider(name = "resizeData2")
+    public Object[][] resizeDataProvider2() {
+        return new Object[][]{
+                {"One", "Nine", """
+                Two
+                Three
+                Four
+                Five
+                Six
+                Seven
+                Eight
+                Nine
+                One"""},
+                {"Two", "Nine", """
+                One
+                Three
+                Four
+                Five
+                Six
+                Seven
+                Eight
+                Nine
+                Two"""},
+                {"Three", "Nine", """
+                One
+                Two
+                Four
+                Five
+                Six
+                Seven
+                Eight
+                Nine
+                Three"""},
+                {"Four", "Nine", """
+                One
+                Two
+                Three
+                Five
+                Six
+                Seven
+                Eight
+                Nine
+                Four"""},
+                {"Five", "Nine", """
+                One
+                Two
+                Three
+                Four
+                Six
+                Seven
+                Eight
+                Nine
+                Five"""},
+                {"Six", "Nine", """
+                One
+                Two
+                Three
+                Four
+                Five
+                Seven
+                Eight
+                Nine
+                Six"""},
+                {"Seven", "Nine", """
+                One
+                Two
+                Three
+                Four
+                Five
+                Six
+                Eight
+                Nine
+                Seven"""},
+                {"Eight", "Nine", """
+                One
+                Two
+                Three
+                Four
+                Five
+                Six
+                Seven
+                Nine
+                Eight"""},
+                {"Nine", "One", """
+                Nine
+                One
+                Two
+                Three
+                Four
+                Five
+                Six
+                Seven
+                Eight"""},
+        };
+    }
+
+    @Test(dataProvider = "resizeData2", description = "Check order", enabled = true)
+    public void DragAndDropFromGridTab(String dragFromPlace, String dropOnPlace, String expectedOrder) {
+        navigateToUrl("sortable");
+        sortablePage.clickGridTab();
+
+        sortablePage.moveOverGrid(dragFromPlace, dropOnPlace);
+        String actualListSix = sortablePage.getGridOrder();
+
+        Assert.assertEquals(actualListSix, expectedOrder, "Wrong order");
     }
 }

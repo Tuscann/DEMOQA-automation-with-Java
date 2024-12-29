@@ -14,24 +14,8 @@ public class UploadAndDownloadPage extends BasePage {
     private final By selectAFileLabel = By.xpath("//label[@for='uploadFile'][contains(.,'Select a file')]");
     private final By uploadAndDownloadLabel = By.xpath("//h1[@class='text-center'][contains(.,'Upload and Download')]");
 
-
-    public void clickDownloadButton() {
-
-        find(downloadButton).click();
-
-//        String expectedFileName = driver.findElement(downloadButton).getDomAttribute("download");
-//
-//        waitForFileDownload(expectedFileName, 20);
-    }
-
     public String getUploadFilePath() {
         return find(uploadFilePath).getText();
-    }
-
-    public void uploadFile(String pathOfFile) {
-        WebElement fileInput = driver.findElement(chooseFileButton);
-
-        fileInput.sendKeys(pathOfFile);
     }
 
     public String getFilePathFromResources(String fileName) {
@@ -41,41 +25,6 @@ public class UploadAndDownloadPage extends BasePage {
         } else {
             return null;
         }
-    }
-
-    private void waitForFileDownload(String fileName, int maxWaitTimeSeconds) {
-        String downloadDir = Paths.get(System.getProperty("user.home"), "Downloads", "selenium_downloads").toString();
-        File downloadPath = new File(downloadDir);
-        File downloadedFile;
-
-        long startTime = System.currentTimeMillis();
-        long endTime;
-
-        do {
-            downloadedFile = new File(downloadPath, fileName);
-
-            if (downloadedFile.exists()) {
-                return;
-            }
-
-            endTime = System.currentTimeMillis();
-
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-            }
-        } while ((endTime - startTime) <= maxWaitTimeSeconds * 1000);
-
-    }
-
-    public boolean checkIfFileExists(String fileName) {
-        String downloadDir = Paths.get(System.getProperty("user.home"), "Downloads").toString();
-
-        delay(1000); //TODO
-        File downloadedFile = new File(downloadDir + File.separator + fileName);
-
-        return downloadedFile.exists();
     }
 
     public String getDownloadButtonText() {
@@ -88,5 +37,24 @@ public class UploadAndDownloadPage extends BasePage {
 
     public String getSelectAFileText() {
         return find(selectAFileLabel).getText();
+    }
+
+    public void clickDownloadButton() {
+        find(downloadButton).click();
+    }
+
+    public void uploadFile(String pathOfFile) {
+        WebElement fileInput = driver.findElement(chooseFileButton);
+
+        fileInput.sendKeys(pathOfFile);
+    }
+
+    public boolean checkIfFileExists(String fileName) {
+        String downloadDir = Paths.get(System.getProperty("user.home"), "Downloads").toString();
+
+        delay(1000); //TODO
+        File downloadedFile = new File(downloadDir + File.separator + fileName);
+
+        return downloadedFile.exists();
     }
 }

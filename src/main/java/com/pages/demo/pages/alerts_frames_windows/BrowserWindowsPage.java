@@ -90,17 +90,16 @@ public class BrowserWindowsPage extends BasePage {
         String originalWindow = driver.getWindowHandle();
         Set<String> windowHandles = driver.getWindowHandles();
 
-        // Switch to the new window
-        String da = "";
+        String message = "";
         String newWindow = null;
         for (String handle : windowHandles) {
             if (!handle.equals(originalWindow)) {
                 newWindow = handle;
                 driver.switchTo().window(newWindow);
-                da = driver.findElement(By.tagName("body")).getText();
+                message = driver.findElement(By.tagName("body")).getText();
                 break;
             }
         }
-        return da;
+        return message;
     }
 }

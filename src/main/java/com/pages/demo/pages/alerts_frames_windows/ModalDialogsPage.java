@@ -30,6 +30,22 @@ public class ModalDialogsPage extends BasePage {
         click(largeModalButton);
     }
 
+    public String getClickText() {
+        return find(clickText).getText();
+    }
+
+    public String getSmallText() {
+        return find(smallText).getText();
+    }
+
+    public String getLargeText() {
+        return find(largeText).getText();
+    }
+
+    public String getModalDialogsText() {
+        return find(modalDialogsText).getText();
+    }
+
     public String getSmallModalText() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(6));
         wait.until(ExpectedConditions.visibilityOfElementLocated(this.smallModalText));
@@ -42,21 +58,5 @@ public class ModalDialogsPage extends BasePage {
 
     public void clickCloseButton() {
         click(closeButton);
-    }
-
-    public String getModalDialogsText() {
-        return find(modalDialogsText).getText();
-    }
-
-    public String getClickText() {
-        return find(clickText).getText();
-    }
-
-    public String getSmallText() {
-        return find(smallText).getText();
-    }
-
-    public String getLargeText() {
-        return find(largeText).getText();
     }
 }

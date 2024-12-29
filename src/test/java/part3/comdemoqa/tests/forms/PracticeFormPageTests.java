@@ -151,7 +151,7 @@ public class PracticeFormPageTests extends BaseTest {
     }
 
     @Test
-    public void SubmitPracticeForm() {
+    public void SubmitValidPracticeFormAndVerify() {
         navigateToUrl("automation-practice-form");
 
         String firstName = "Zhivko";

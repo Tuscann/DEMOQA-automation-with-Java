@@ -9,9 +9,7 @@ import static utilities.JavaScriptUtility.scrollToElementJS;
 public class FramesPage extends BasePage {
 
     private final By newTabButton = By.xpath("//h1[contains(.,'Frames')]");
-
     private final By text = By.xpath("(//div[contains(.,'Sample Iframe page There are 2 Iframes in this page. Use browser inspecter or firebug to check out the HTML source. In total you can switch between the parent frame, which is this window, and the two frames below')])[7]");
-
 
     private final By frame1 = By.id("frame1");
     private final By frame2 = By.id("frame2");

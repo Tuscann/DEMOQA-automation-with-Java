@@ -54,6 +54,26 @@ public class BooksLoginPage extends BasePage {
         return find(usernameLabel).getText();
     }
 
+    public String getLoginHeaderText() {
+        return find(header).getText();
+    }
+
+    public String getWelcomeText() {
+        return find(welcomeText).getText();
+    }
+
+    public String getLoginInBookStoreText() {
+        return find(loginInBookStore).getText();
+    }
+
+    public String getLoginButtonText() {
+        return find(loginButton).getText();
+    }
+
+    public String getNewUserButtonText() {
+        return find(newUserButton).getText();
+    }
+
     public void clickGoToBookStoreButton() {
         find(goToBookStoreButton).click();
     }
@@ -110,23 +130,5 @@ public class BooksLoginPage extends BasePage {
         set(password, password2);
     }
 
-    public String getLoginHeaderText() {
-        return find(header).getText();
-    }
 
-    public String getWelcomeText() {
-        return find(welcomeText).getText();
-    }
-
-    public String getLoginInBookStoreText() {
-        return find(loginInBookStore).getText();
-    }
-
-    public String getLoginButtonText() {
-        return find(loginButton).getText();
-    }
-
-    public String getNewUserButtonText() {
-        return find(newUserButton).getText();
-    }
 }

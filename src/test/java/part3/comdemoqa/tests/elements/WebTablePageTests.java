@@ -7,7 +7,7 @@ import part3.comdemoqa.base.BaseTest;
 public class WebTablePageTests extends BaseTest {
 
     @Test
-    public void CheckAllLabelsOnRegistrationForm() {
+    public void CheckAllLabelAndPlaceHoldersOnRegistrationForm() {
         navigateToUrl("webtables");
 
         String expectedRegistrationFormText = "Registration Form";
@@ -60,7 +60,7 @@ public class WebTablePageTests extends BaseTest {
     }
 
     @Test
-    public void UpdateFirstNameAndLastName() {
+    public void UpdateFirstNameAndLastNameOnFirstUser() {
         navigateToUrl("webtables");
         String email = "cierra@example.com";
         String expectedFirstName = "Zhivko";
@@ -70,17 +70,16 @@ public class WebTablePageTests extends BaseTest {
         webTablesPage.setFirstName(expectedFirstName);
         webTablesPage.setLastName(expectedLastName);
         webTablesPage.clickSubmitButton();
+
         String actualFirstName = webTablesPage.getTableFirstName(email);
         String actualLastName = webTablesPage.getTableLastName(email);
 
-        Assert.assertEquals(actualFirstName, expectedFirstName,
-                "\n Actual & Expected FirstName Do Not Match \n");
-        Assert.assertEquals(actualLastName, expectedLastName,
-                "\n Actual & Expected LastName Do Not Match \n");
+        Assert.assertEquals(actualFirstName, expectedFirstName, "\n Actual & Expected FirstName Do Not Match \n");
+        Assert.assertEquals(actualLastName, expectedLastName, "\n Actual & Expected LastName Do Not Match \n");
     }
 
     @Test
-    public void UpdateAge() {
+    public void UpdateAgeOnFirstUser() {
         navigateToUrl("webtables");
 
         String email = "kierra@example.com";
@@ -90,12 +89,11 @@ public class WebTablePageTests extends BaseTest {
         webTablesPage.setAge("34");
         webTablesPage.clickSubmitButton();
         String actualAge = webTablesPage.getTableAge(email);
-        Assert.assertEquals(actualAge, expectedAge,
-                "\n Actual & Expected Ages Do Not Match \n");
+        Assert.assertEquals(actualAge, expectedAge, "\n Actual & Expected Ages Do Not Match \n");
     }
 
     @Test
-    public void UpdateEmail() {
+    public void UpdateEmailOnFirstUser() {
         navigateToUrl("webtables");
         String email = "cierra@example.com";
         String expectedEmail = "da@abv.bg";
@@ -185,7 +183,7 @@ public class WebTablePageTests extends BaseTest {
     }
 
     @Test
-    public void CheckPreviousAndNextButtonAreNotActive() {
+    public void VerifyPreviousAndNextButtonAreNotActiveAfterLoadPage() {
         navigateToUrl("webtables");
 
         Assert.assertFalse(webTablesPage.checkPreviousButtonIsActive(), "Not active Previous button");
@@ -211,16 +209,16 @@ public class WebTablePageTests extends BaseTest {
         String searchedWord = "Insurance";
         webTablesPage.searchWithWord(searchedWord);
 
-        String expectedEmail = "cierra@example.com";
         String expectedFirstName = "Cierra";
         String expectedLastName = "Vega";
         String expectedAge = "39";
+        String expectedEmail = "cierra@example.com";
         String expectedSalary = "10000";
 
         String actualFirstName = webTablesPage.getTableFirstName(expectedEmail);
         String actualLastName = webTablesPage.getTableLastName(expectedEmail);
-        String actualEmail = webTablesPage.getTableEmail(expectedEmail);
         String actualAge = webTablesPage.getTableAge(expectedEmail);
+        String actualEmail = webTablesPage.getTableEmail(expectedEmail);
         String actualSalary = webTablesPage.getTableSalary(expectedEmail);
         String actualDepartment = webTablesPage.getTableDepartment(expectedEmail);
 

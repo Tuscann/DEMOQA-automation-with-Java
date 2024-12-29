@@ -33,15 +33,12 @@ public class NestedFramesPage extends BasePage {
     }
 
     public void selectParentIframe() {
-
         driver.switchTo().frame(find(parentIframe));
     }
 
     public void selectChildIframe() {
-
         driver.switchTo().frame(find(parentIframe));
         driver.switchTo().frame(find(childIframe));
         driver.switchTo().frame(0);
-
     }
 }

@@ -279,5 +279,9 @@ public class CheckBoxPageTests extends BaseTest {
         checkBoxPage.clickGeneral();
         checkBoxPage.clickWordFileDoc();
         checkBoxPage.clickExcelFileDoc();
+
+        boolean isMissingMessageNotShown = checkBoxPage.verifyResultMessageIsMissing();
+
+        Assert.assertTrue(isMissingMessageNotShown, "Found some selected CheckBoxes");
     }
 }

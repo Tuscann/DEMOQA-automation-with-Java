@@ -67,67 +67,6 @@ public class PracticeFormPage extends BasePage {
     private final By addressForm = By.xpath("//td[contains(.,'Address')]/following-sibling::*[1]");
     private final By stateAndCityForm = By.xpath("//td[contains(.,'State')]/following-sibling::*[1]");
 
-    private final By thanksText = By.xpath("//div[@class='modal-title h4'][contains(.,'Thanks for submitting the form')]");
-    private final By studentNameFormLabel = By.xpath("//td[contains(.,'Student Name')]");
-    private final By studentEmailLabel = By.xpath("//td[contains(.,'Student Email')]");
-    private final By genderFormLabel = By.xpath("//td[contains(.,'Gender')]");
-    private final By mobileFormLabel = By.xpath("//td[contains(.,'Mobile')]");
-    private final By dateOfBirthFormLabel = By.xpath("//td[contains(.,'Date of Birth')]");
-    private final By subjectsFormLabel = By.xpath("//td[contains(.,'Subjects')]");
-    private final By hobbiesFormLabel = By.xpath("//td[contains(.,'Hobbies')]");
-    private final By pictureFormLabel = By.xpath("//td[contains(.,'Picture')]");
-    private final By addressFormLabel = By.xpath("//td[contains(.,'Address')]");
-    private final By stateAndCityFormLabel = By.xpath("//td[contains(.,'State')]");
-    private final By closeButton = By.id("closeLargeModal");
-
-    public String getCloseButtonText() {
-        return find(closeButton).getText();
-    }
-
-    public String getThanksText() {
-        return find(thanksText).getText();
-    }
-
-    public String getStudentNameFormLabel() {
-        return find(studentNameFormLabel).getText();
-    }
-
-    public String getStudentEmailLabel() {
-        return find(studentEmailLabel).getText();
-    }
-
-    public String getGenderFormLabel() {
-        return find(genderFormLabel).getText();
-    }
-
-    public String getMobileFormLabel() {
-        return find(mobileFormLabel).getText();
-    }
-
-    public String getDateOfBirthFormLabel() {
-        return find(dateOfBirthFormLabel).getText();
-    }
-
-    public String getSubjectsFormLabel() {
-        return find(subjectsFormLabel).getText();
-    }
-
-    public String getHobbiesFormLabel() {
-        return find(hobbiesFormLabel).getText();
-    }
-
-    public String getPictureFormLabel() {
-        return find(pictureFormLabel).getText();
-    }
-
-    public String getAddressFormLabel() {
-        return find(addressFormLabel).getText();
-    }
-
-    public String getStateAndCityFormLabel() {
-        return find(stateAndCityFormLabel).getText();
-    }
-
     public String getSelectPictureLabel() {
         return find(selectPictureLabel).getText();
     }

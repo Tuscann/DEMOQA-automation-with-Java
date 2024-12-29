@@ -7,7 +7,6 @@ import org.openqa.selenium.interactions.Actions;
 
 public class MenuPage extends BasePage {
 
-
     private final By header = By.xpath(" //h1[@class='text-center'][contains(.,'Menu')]");
     private final By mainItem1 = By.xpath("//a[@href='#'][contains(.,'Main Item 1')]");
     private final By mainItem2 = By.xpath("//a[@href='#'][contains(.,'Main Item 2')]");
@@ -74,14 +73,12 @@ public class MenuPage extends BasePage {
         return find(mainItemThirdLi).getCssValue("background-color");
     }
 
-
     public void selectMainItem3() {
         Actions actions = new Actions(driver);
 
         WebElement selectedMainItem3 = driver.findElement(mainItem3);
         actions.moveToElement(selectedMainItem3).perform();
     }
-
 
     public void selectMainItem2SubSubsLIstSubSubItem1() {
         Actions actions = new Actions(driver);

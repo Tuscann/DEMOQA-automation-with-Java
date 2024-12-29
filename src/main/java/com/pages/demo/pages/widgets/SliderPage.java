@@ -14,7 +14,7 @@ import static utilities.WaitUtility.explicitWaitUntilVisible;
 import static utilities.WaitUtility.fluentWaitUntilVisible;
 
 public class SliderPage extends BasePage {
-    private final By sliderr = By.xpath("//div[@id='sliderContainer']//input[@type='range']");
+    private final By sliderContainer = By.xpath("//div[@id='sliderContainer']//input[@type='range']");
     private final By sliderValue = By.id("sliderValue");
     private final By slider = By.className("range-slider__wrap");
 
@@ -41,6 +41,4 @@ public class SliderPage extends BasePage {
         pixels = (int) sliderWidth;
         return pixels;
     }
-
-
 }

@@ -17,14 +17,6 @@ public class DynamicPropertiesPage extends BasePage {
     private final By colorChangeButton = By.id("colorChange");
     private final By visibleAfter5SecondsButton = By.id("visibleAfter");
 
-    public String getVisibleAfter5SecondsButtonTextAfter5seconds() {
-
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(6));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(this.visibleAfter5SecondsButton));
-
-        return find(visibleAfter5SecondsButton).getText();
-    }
-
     public String getColorChangeButtonText() {
         return find(colorChangeButton).getText();
     }
@@ -42,19 +34,25 @@ public class DynamicPropertiesPage extends BasePage {
     }
 
     public String getColorOfChangeButton() {
-
-        WebElement x = find(colorChangeButton);
-        return x.getCssValue("color");
+        return find(colorChangeButton).getCssValue("color");
     }
 
-    public boolean checkWillEnable5SecondsButton() {
+    public String getVisibleAfter5SecondsButtonTextAfter5seconds() {
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(6));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(this.visibleAfter5SecondsButton));
+
+        return find(visibleAfter5SecondsButton).getText();
+    }
+
+    public boolean checkButtonWillEnable5Seconds() {
 
         WebElement enableAfterButton = driver.findElement(willEnable5SecondsButton);
 
         return enableAfterButton.isEnabled();
     }
 
-    public boolean checkVisibleAfte5SecondsButton() {
+    public boolean checkButtonVisibleAfter5Seconds() {
 
         boolean elementExists = true;
         try {

@@ -7,7 +7,7 @@ import part3.comdemoqa.base.BaseTest;
 public class UploadAndDownloadPageTests extends BaseTest {
 
     @Test
-    public void VerifyAllTextsOnPage() {
+    public void VerifyAllTextOnPage() {
         navigateToUrl("upload-download");
 
         String expectedUploadAndDownloadText = "Upload and Download";
@@ -24,7 +24,7 @@ public class UploadAndDownloadPageTests extends BaseTest {
     }
 
     @Test(enabled = true)
-    public void UploadFileVerifyName() {
+    public void UploadFileVerifyImageName() {
         navigateToUrl("upload-download");
 
         String pictureName = "zhivko.jpg";

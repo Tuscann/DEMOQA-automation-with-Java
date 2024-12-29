@@ -2,6 +2,9 @@ package com.pages.demo.pages.elements;
 
 import com.pages.base.BasePage;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+
+import java.util.List;
 
 import static utilities.JavaScriptUtility.scrollToElementJS;
 
@@ -34,10 +37,6 @@ public class CheckBoxPage extends BasePage {
         return driver.findElements(By.id("result")).isEmpty();
     }
 
-    public void clickHome() {
-        click(home);
-    }
-
     public String getResultMessage() {
         return find(resultMessage).getText();
     }
@@ -56,16 +55,6 @@ public class CheckBoxPage extends BasePage {
 
     public void clickDesktop() {
         click(desktop);
-    }
-
-    public void clickNotes() {
-        scrollToElementJS(notes);
-        click(notes);
-    }
-
-    public void clickCommands() {
-        scrollToElementJS(commands);
-        click(commands);
     }
 
     public void clickDocuments() {
@@ -118,7 +107,27 @@ public class CheckBoxPage extends BasePage {
         click(general);
     }
 
+    public void clickHome() {
+        click(home);
+    }
+
     public void clickPrivateOffice() {
         click(privateOffice);
+    }
+
+    public void clickNotes() {
+        scrollToElementJS(notes);
+        click(notes);
+    }
+
+    public void clickCommands() {
+        scrollToElementJS(commands);
+        click(commands);
+    }
+
+    public boolean verifyResultMessageIsMissing() {
+        List<WebElement> elements = driver.findElements(resultMessage);
+
+        return elements.isEmpty();
     }
 }

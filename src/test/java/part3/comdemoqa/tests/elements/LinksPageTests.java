@@ -13,7 +13,7 @@ public class LinksPageTests extends BaseTest {
         String expectedLinksHeader = "Links";
         String expectedFollowingLinksWillOpenNewTab = "Following links will open new tab";
         String expectedHomeText = "Home";
-        // Dynamic name not for check
+        // Dynamic name can not be checked
         String expectedFollowingLinksWillSendAnApiCall = "Following links will send an api call";
         String expectedCreatedText = "Created";
         String expectedNoContentText = "No Content";
@@ -133,7 +133,7 @@ public class LinksPageTests extends BaseTest {
     }
 
     @Test
-    public void OpenNewTabFromHomeLink() {
+    public void OpenNewTabFromSimpleLink() {
         navigateToUrl("links");
         linksPage.clickSimpleTab();
 

@@ -21,10 +21,6 @@ public class RadioButtonPage extends BasePage {
         return find(question).getText();
     }
 
-    public String isColorGreen() {
-        return find(textSuccessMessage).getCssValue("color");
-    }
-
     public String getYesAnswerLabel() {
         return find(yesAnswerLabel).getText();
     }
@@ -41,6 +37,10 @@ public class RadioButtonPage extends BasePage {
         return find(resultMessage).getText();
     }
 
+    public String isColorGreen() {
+        return find(textSuccessMessage).getCssValue("color");
+    }
+
     public boolean isResultMessageDisplayed() {
         return driver.findElements(By.id("result")).isEmpty();
     }
@@ -51,21 +51,6 @@ public class RadioButtonPage extends BasePage {
             case "No" -> find(noAnswerLabel).click();
             case "Impressive" -> find(impressiveLabel).click();
         }
-    }
-
-    public boolean isAnswerEnabled(String answer) {
-        switch (answer) {
-            case "Yes" -> {
-                return find(yesAnswerLabel).isEnabled();
-            }
-            case "No" -> {
-                return find(noAnswerLabel).isEnabled();
-            }
-            case "Impressive" -> {
-                return find(impressiveLabel).isEnabled();
-            }
-        }
-        return false;
     }
 
     public boolean isAnswerDisable(String answer) {
@@ -82,6 +67,4 @@ public class RadioButtonPage extends BasePage {
         }
         return true;
     }
-
-
 }
