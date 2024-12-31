@@ -135,8 +135,8 @@ public class DraggablePageTests extends BaseTest {
     public void ContainedInBoxAxisRestrictedTabWithSizeOutSideBox() {
         navigateToUrl("dragabble");
 
-        int xOffset = 400;
-        int yOffset = 600;
+        int xOffset = 500;
+        int yOffset = 300;
 
         draggablePage.clickContainerRestrictedTab();
 

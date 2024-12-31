@@ -47,7 +47,7 @@ public class TextBoxPageTests extends BaseTest {
     }
 
     @Test
-    public void SubmitFulledTextBox() {
+    public void SubmitFulledForm() {
         String fullName = "Zhivko Nedyalkov";
         String email = "fbinnzhivko@gmail.com";
         String currentAddress = "Sofia";
@@ -72,7 +72,7 @@ public class TextBoxPageTests extends BaseTest {
     }
 
     @Test(enabled = true)
-    public void ClickSubmitButtonOnEmptyForm() {
+    public void SubmitButtonOnEmptyForm() {
         navigateToUrl("text-box");
         textBoxPage.clickSubmitButton();
 
@@ -96,7 +96,7 @@ public class TextBoxPageTests extends BaseTest {
     }
 
     @Test
-    public void SubmitValidEmail() {
+    public void SubmitOnlyValidEmail() {
         navigateToUrl("text-box");
         String email = "testemail@example.com";
 
@@ -121,7 +121,7 @@ public class TextBoxPageTests extends BaseTest {
     }
 
     @Test
-    public void SubmitValidPermanentAddress() {
+    public void SubmitOnlyValidPermanentAddress() {
         navigateToUrl("text-box");
         String permanentAddress = "1234 Elm Street, Springfield";
 
@@ -133,7 +133,7 @@ public class TextBoxPageTests extends BaseTest {
     }
 
     @Test
-    public void SubmitValidCurrentAddress() {
+    public void SubmitOnlyValidCurrentAddress() {
         navigateToUrl("text-box");
         String currentAddress = "4321 Maple Lane, Metropolis";
 

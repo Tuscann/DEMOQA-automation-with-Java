@@ -64,7 +64,7 @@ public class SelectablePageTests extends BaseTest {
     }
 
     @Test
-    public void SelectAllRowsInList() {
+    public void SelectOneByOneAllFromList() {
         navigateToUrl("selectable");
 
         String searched1Selection = "Cras justo odio";
@@ -73,7 +73,7 @@ public class SelectablePageTests extends BaseTest {
         int position = 0;
         selectablePage.clickElement(position);
         isFirstRowSelected = selectablePage.RowSelected(searched1Selection);
-        Assert.assertTrue(isFirstRowSelected, "Second row is not selected");
+        Assert.assertTrue(isFirstRowSelected, "First row is not selected");
 
         String searched2Selection = "Dapibus ac facilisis in";
         boolean isSecondRowSelected = selectablePage.RowSelected(searched2Selection);

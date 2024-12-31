@@ -145,7 +145,7 @@ public class LinksPageTests extends BaseTest {
     }
 
     @Test
-    public void OpenNewTabDynamicLink() {
+    public void OpenNewTabFromDynamicLink() {
         navigateToUrl("links");
         linksPage.clickDynamicLink();
 

@@ -55,6 +55,7 @@ public class ResizablePage extends BasePage {
     public void changeSizeWithoutLimitations(int xOffset, int yOffset) {
         Actions actions = new Actions(driver);
 
+        delay(100); //TODO
         WebElement resizableBoxWeb = driver.findElement(resizeHandle2);
 
         actions.clickAndHold(resizableBoxWeb)

@@ -103,7 +103,7 @@ public class PracticeFormPageTests extends BaseTest {
     }
 
     @Test
-    public void VerifyCheckBoxesState() {
+    public void VerifyThreeHobbiesState() {
         navigateToUrl("automation-practice-form");
 
         practiceFormPage.clickSportHobbyCheckbox();

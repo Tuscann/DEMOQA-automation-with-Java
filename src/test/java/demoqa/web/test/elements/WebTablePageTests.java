@@ -231,7 +231,7 @@ public class WebTablePageTests extends BaseTest {
     }
 
     @Test
-    public void ClickSubmitOnEmptyForm() {
+    public void SubmitEmptyForm() {
         navigateToUrl("webtables");
         webTablesPage.clickAddButton();
         webTablesPage.clickSubmitButton();

@@ -118,7 +118,7 @@ public class SortablePageTests extends BaseTest {
         };
     }
 
-    @Test(dataProvider = "resizeData", description = "Check order", enabled = true)
+    @Test(dataProvider = "resizeData", description = "Check order in List", enabled = true)
     public void DragAndDropFromListTab(String dragFromPlace, String dropOnPlace, String expectedOrder) {
         navigateToUrl("sortable");
 
@@ -224,7 +224,7 @@ public class SortablePageTests extends BaseTest {
         };
     }
 
-    @Test(dataProvider = "resizeData2", description = "Check order", enabled = true)
+    @Test(dataProvider = "resizeData2", description = "Check order in Grid", enabled = true)
     public void DragAndDropFromGridTab(String dragFromPlace, String dropOnPlace, String expectedOrder) {
         navigateToUrl("sortable");
         sortablePage.clickGridTab();

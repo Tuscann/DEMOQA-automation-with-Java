@@ -11,8 +11,8 @@ public class MenuPageTests extends BaseTest {
         navigateToUrl("menu#");
         String pageHeader = "Menu";
         String mainItem1 = "Main Item 1";
-        String mainItem2 = "Main Item 2";
         menuPage.selectMainItem2();
+        String mainItem2 = "Main Item 2";
         String mainItem2SubItem1 = "Sub Item";
         String mainItem2SubItem2 = "Sub Item";
         String mainItem2SubSubList = "SUB SUB LIST »";
@@ -42,9 +42,8 @@ public class MenuPageTests extends BaseTest {
         Assert.assertEquals(actualMainItem3, mainItem3, "Main Item 3 not correct");
     }
 
-
     @Test
-    public void HoverOverEveryItemMenusAndCheckHoverColor() {
+    public void HoverOverEveryItemInMenuAndCheckHoverColor() {
         navigateToUrl("menu#");
 
         final String colorBeforeSelection = "rgba(36, 175, 21, 1)";
