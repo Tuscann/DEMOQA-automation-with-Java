@@ -48,6 +48,7 @@ public class ButtonsPage extends BasePage {
     }
 
     public String getRightClickMessage() {
+        delay(100); //TODO
         scrollToElementJS(rightClickMessage);
         return find(rightClickMessage).getText();
     }

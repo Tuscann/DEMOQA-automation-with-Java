@@ -107,6 +107,8 @@ public class DraggablePage extends BasePage {
     }
 
     public Point getInitLocationOnlyY() {
+        Actions actions = new Actions(driver);
+        WebElement draggable = driver.findElement(axisRestrictedOnlyY);
         return driver.findElement(axisRestrictedOnlyY).getLocation();
     }
 
