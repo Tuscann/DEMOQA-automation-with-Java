@@ -5,6 +5,8 @@ import org.openqa.selenium.Point;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import static demoqa.base.BasePage.delay;
+
 public class DroppablePageTests extends BaseTest {
 
     @Test
@@ -40,8 +42,8 @@ public class DroppablePageTests extends BaseTest {
         String actualNotAcceptable = droppablePage.getAcceptTabNotAcceptable();
         String actualDropHereAcceptable = droppablePage.getDropHereAcceptable();
         String actualDroppablePreventPropagationTab = droppablePage.getDroppablePreventPropagationTab();
-        droppablePage.clickDroppablePreventPropagationTab();
         String actualDragMePreventPropagation = droppablePage.getDragMePreventPropagation();
+        droppablePage.clickDroppablePreventPropagationTab();
         String actualOuterDroppable1 = droppablePage.getOuterDroppable1Text();
         String actualInnerDroppableNotGreedy = droppablePage.getInnerDroppableNotGreedyText();
         String actualOuterDroppable2 = droppablePage.getOuterDroppable2();
@@ -82,7 +84,7 @@ public class DroppablePageTests extends BaseTest {
         droppablePage.dragAndDrop();
 
         String actualDroppedText = droppablePage.getRevertDraggableTabText();
-        String actualColor = droppablePage.getNewColor();
+        String actualColor = droppablePage.getNewBackgroundColor();
 
         Assert.assertEquals(actualColor, newColor, "Wrong color");
         Assert.assertEquals(actualDroppedText, expectedDroppedText, "Wrong dropped text");
@@ -129,6 +131,7 @@ public class DroppablePageTests extends BaseTest {
         String expectedOuterNotGreedyColor = "rgba(70, 130, 180, 1)";
         String expectedInnerNotGreedyColor = "rgba(70, 130, 180, 1)";
         String expectedDroppedText2 = "Dropped!\nDropped!";
+
         String actualInnerNotGreedyColor = droppablePage.getInnerDroppableNotGreedyColor();
         String actualOuterNotGreedyColor = droppablePage.getOuterDroppableNotGreedyColor();
         String actualOuterDroppableNotGreedyText = droppablePage.getOuterDroppableNotGreedyText();
@@ -147,6 +150,8 @@ public class DroppablePageTests extends BaseTest {
         String expectedInnerGreedyColor = "rgba(70, 130, 180, 1)";
         String expectedOuterGreedyColor = "rgba(0, 0, 0, 0)";
         String expectedOuterDroppableNotGreedyText = "Outer droppable\nDropped!";
+
+        delay(400); //TODO
 
         String actualInnerGreedyColor = droppablePage.getInnerDroppableGreedyColor();
         String actualOuterDroppableGreedyColor = droppablePage.getOuterDroppableGreedyColor();

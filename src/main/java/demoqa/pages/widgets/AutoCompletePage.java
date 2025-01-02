@@ -45,7 +45,7 @@ public class AutoCompletePage extends BasePage {
         find(singleAutoComplete).click();
     }
 
-    public void multiAutoComplete(String color) {
+    public void multiAutoCompleteSelectColor(String color) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
         wait.until(ExpectedConditions.visibilityOfElementLocated(multiAutoComplete))
                 .sendKeys(color);

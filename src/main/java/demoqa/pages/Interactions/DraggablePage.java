@@ -60,6 +60,7 @@ public class DraggablePage extends BasePage {
     }
 
     public String getCursorStyleFirstText() {
+        delay(100); //TODO
         return find(cursorStyleFirstText).getText();
     }
 
@@ -93,23 +94,28 @@ public class DraggablePage extends BasePage {
     }
 
     public Point getInitLocation() {
-        return driver.findElement(simpleDragMe).getLocation();
+        WebElement draggable = driver.findElement(simpleDragMe);
+
+        return draggable.getLocation();
     }
 
     public void dragAndDropByOnPositionDragMe(int xOffset, int yOffset) {
-        Actions actions = new Actions(driver);
         WebElement draggable = driver.findElement(simpleDragMe);
+
+        Actions actions = new Actions(driver);
         actions.dragAndDropBy(draggable, xOffset, yOffset).perform();
     }
 
     public Point getInitLocationOnlyX() {
-        return driver.findElement(axisRestrictedOnlyX).getLocation();
+        WebElement draggable = driver.findElement(axisRestrictedOnlyX);
+
+        return draggable.getLocation();
     }
 
     public Point getInitLocationOnlyY() {
-        Actions actions = new Actions(driver);
         WebElement draggable = driver.findElement(axisRestrictedOnlyY);
-        return driver.findElement(axisRestrictedOnlyY).getLocation();
+
+        return draggable.getLocation();
     }
 
     public void dragAndDropByOnPositionOnlyX(int xOffset, int yOffset) {
@@ -125,7 +131,9 @@ public class DraggablePage extends BasePage {
     }
 
     public Point getInitLocationContainedInBox() {
-        return driver.findElement(containerRestrictedFirstText).getLocation();
+        WebElement draggable = driver.findElement(containerRestrictedFirstText);
+
+        return draggable.getLocation();
     }
 
     public void dragAndDropByOnPositionContainedBox(int xOffset, int yOffset) {
@@ -135,7 +143,9 @@ public class DraggablePage extends BasePage {
     }
 
     public Point getInitLocationContainedInParent() {
-        return driver.findElement(containerRestrictedSecondText).getLocation();
+        WebElement draggable = driver.findElement(containerRestrictedSecondText);
+
+        return draggable.getLocation();
     }
 
     public void dragAndDropByOnPositionContainedParent(int xOffset, int yOffset) {

@@ -5,6 +5,8 @@ import org.openqa.selenium.Point;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import static demoqa.base.BasePage.delay;
+
 public class DraggablePageTests extends BaseTest {
     @Test
     public void VerifyAllTextOnPage() {
@@ -124,6 +126,7 @@ public class DraggablePageTests extends BaseTest {
         Point initialLocation = draggablePage.getInitLocationContainedInBox();
 
         draggablePage.dragAndDropByOnPositionContainedBox(xOffset, yOffset);
+        delay(400); //TODO
 
         Point endPosition = draggablePage.getInitLocationContainedInBox();
 

@@ -8,71 +8,6 @@ import java.util.List;
 
 public class SelectMenuPageTests extends BaseTest {
 
-    @Test()
-    public void SelectSelectValue() {
-        navigateToUrl("select-menu");
-        String expectedSelectedValue = "Group 2, option 2";
-
-        selectMenuPage.selectSelectValue(expectedSelectedValue);
-
-        String actualSelectValue = selectMenuPage.getSelectedValue();
-
-        Assert.assertEquals(actualSelectValue, expectedSelectedValue, "Wrong group");
-    }
-
-    @Test
-    public void SelectSelectOne() {
-        navigateToUrl("select-menu");
-        String expectedSelectedOne = "Prof.";
-
-        selectMenuPage.selectSelectOne(expectedSelectedOne);
-
-        String actualSelectOne = selectMenuPage.getSelectedSelectOne();
-
-        Assert.assertEquals(actualSelectOne, expectedSelectedOne, "Wrong selected one");
-    }
-
-    @Test(enabled = false)
-    public void SelectOldStyleSelectMenu2() {
-        navigateToUrl("select-menu");
-        String expectedColor = "Blue";
-
-        selectMenuPage.selectOldStyleSelectMenuByText(expectedColor);
-
-        String actualColor = selectMenuPage.getOldStyleSelectMenuSelectedValue();
-
-        Assert.assertEquals(actualColor, expectedColor, "Wrong color selected");
-    }
-
-    @Test(enabled = false)
-    public void SelectMultiSelectDropDown() {
-        navigateToUrl("select-menu");
-        String expectedSelectedValue = "Blue";
-
-        selectMenuPage.MultiSelectOne(expectedSelectedValue);
-
-        String actualSelectValue = selectMenuPage.getSelectedValue();
-
-        Assert.assertEquals(actualSelectValue, expectedSelectedValue, "Wrong group");
-    }
-
-    @Test
-    public void SelectStandardMultiSelect() {
-        navigateToUrl("select-menu");
-        selectMenuPage.selectStandardMultiByText("Volvo");
-        selectMenuPage.selectStandardMultiByIndex(1);
-        selectMenuPage.selectStandardMultiByText("Audi");
-        selectMenuPage.selectStandardMultiByIndex(2);
-
-        selectMenuPage.deselectStandardMulti("saab");
-        List<String> actualSelectedOptions = selectMenuPage.getAllSelectedStandardMultiOptions();
-        Assert.assertTrue(actualSelectedOptions.contains("Volvo"));
-        Assert.assertTrue(actualSelectedOptions.contains("Opel"));
-        Assert.assertTrue(actualSelectedOptions.contains("Audi"));
-        Assert.assertFalse(actualSelectedOptions.contains("Saab"),
-                "\n Saab Is Selected As An Option \n");
-    }
-
     @Test
     public void VerifyAllTextOnPage() {
         navigateToUrl("select-menu");
@@ -116,5 +51,138 @@ public class SelectMenuPageTests extends BaseTest {
         Assert.assertEquals(actualMultiselectDropdownPlaceholder, expectedMultiselectDropdownPlaceholder, "Wrong selected menu placeholder");
         Assert.assertEquals(actualStandardMultiSelectLabel, expectedStandardMultiSelectLabel, "Wrong selected menu label");
         Assert.assertEquals(actualStandardMultiSelect, expectedStandardMultiSelect, "Wrong selected menu placeholder");
+    }
+
+    @Test()
+    public void SelectSelectValue() {
+        navigateToUrl("select-menu");
+        for (int i = 0; i < 6; i++) {
+            String expectedSelectedValue = "";
+            if (i == 0) {
+                expectedSelectedValue = "Group 1, option 1";
+            } else if (i == 1) {
+                expectedSelectedValue = "Group 1, option 2";
+            } else if (i == 2) {
+                expectedSelectedValue = "Group 2, option 1";
+            } else if (i == 3) {
+                expectedSelectedValue = "Group 2, option 2";
+            } else if (i == 4) {
+                expectedSelectedValue = "A root option";
+            } else {
+                expectedSelectedValue = "Another root option";
+            }
+
+            selectMenuPage.selectSelectValue(expectedSelectedValue);
+
+            String actualSelectValue = selectMenuPage.getSelectedValue();
+
+            Assert.assertEquals(actualSelectValue, expectedSelectedValue, "\nWrong select value +\n" + expectedSelectedValue);
+        }
+    }
+
+    @Test()
+    public void SelectAllValuesFromSelectOne() {
+        navigateToUrl("select-menu");
+
+        for (int i = 0; i < 6; i++) {
+            String expectedSelectOne = "";
+            if (i == 0) {
+                expectedSelectOne = "Dr.";
+            } else if (i == 1) {
+                expectedSelectOne = "Mr.";
+            } else if (i == 2) {
+                expectedSelectOne = "Mrs.";
+            } else if (i == 3) {
+                expectedSelectOne = "Ms.";
+            } else if (i == 4) {
+                expectedSelectOne = "Prof.";
+            } else {
+                expectedSelectOne = "Other";
+            }
+
+            selectMenuPage.selectSelectOne(expectedSelectOne);
+
+            String actualSelectOne = selectMenuPage.getSelectedSelectOne();
+
+            Assert.assertEquals(actualSelectOne, expectedSelectOne, "\nWrong selected " + expectedSelectOne + "\n");
+        }
+    }
+
+    @Test(enabled = true)
+    public void SelectOldStyleSelectMenu() {
+        navigateToUrl("select-menu");
+
+        for (int i = 0; i < 11; i++) {
+            String expectedColor = "";
+            if (i == 0) {
+                expectedColor = "Red";
+            } else if (i == 1) {
+                expectedColor = "Blue";
+            } else if (i == 2) {
+                expectedColor = "Green";
+            } else if (i == 3) {
+                expectedColor = "Yellow";
+            } else if (i == 4) {
+                expectedColor = "Purple";
+            } else if (i == 5) {
+                expectedColor = "Black";
+            } else if (i == 6) {
+                expectedColor = "White";
+            } else if (i == 7) {
+                expectedColor = "Voilet";
+            } else if (i == 8) {
+                expectedColor = "Indigo";
+            } else if (i == 9) {
+                expectedColor = "Magenta";
+            } else {
+                expectedColor = "Aqua";
+            }
+
+            selectMenuPage.selectOldStyleSelectMenuByText(expectedColor);
+            String actualColor = selectMenuPage.getOldStyleSelectMenuSelectedValue();
+
+            Assert.assertEquals(actualColor, expectedColor, "\nWrong color selected" + expectedColor + "\n");
+        }
+    }
+
+    @Test(enabled = false)
+    public void SelectMultiSelectDropDown() {
+        navigateToUrl("select-menu");
+
+        for (int i = 0; i < 4; i++) {
+            String expectedColor = "";
+            if (i == 0) {
+                expectedColor = "Green";
+            } else if (i == 1) {
+                expectedColor = "Blue";
+            } else if (i == 2) {
+                expectedColor = "Black";
+            } else {
+                expectedColor = "Red";
+            }
+
+            selectMenuPage.multiSelectOne(expectedColor);
+
+            String actualSelectValue = selectMenuPage.getSelectedValue();
+
+            Assert.assertEquals(actualSelectValue, expectedColor, "Wrong group");
+        }
+    }
+
+    @Test
+    public void SelectStandardMultiSelectAllValues() {
+        navigateToUrl("select-menu");
+        selectMenuPage.selectStandardMultiByText("Volvo");
+        selectMenuPage.selectStandardMultiByIndex(1);
+        selectMenuPage.selectStandardMultiByText("Audi");
+        selectMenuPage.selectStandardMultiByIndex(2);
+
+        selectMenuPage.deselectStandardMulti("saab");
+        List<String> actualSelectedOptions = selectMenuPage.getAllSelectedStandardMultiOptions();
+        Assert.assertTrue(actualSelectedOptions.contains("Volvo"));
+        Assert.assertTrue(actualSelectedOptions.contains("Opel"));
+        Assert.assertTrue(actualSelectedOptions.contains("Audi"));
+        Assert.assertFalse(actualSelectedOptions.contains("Saab"),
+                "\n Saab Is Selected As An Option \n");
     }
 }

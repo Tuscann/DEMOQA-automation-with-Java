@@ -29,8 +29,8 @@ public class AutoCompletePageTests extends BaseTest {
 
         String expectedFirstColor = "Red";
         String expectedSecondColor = "Blue";
-        autoCompletePage.multiAutoComplete(expectedFirstColor);
-        autoCompletePage.multiAutoComplete(expectedSecondColor);
+        autoCompletePage.multiAutoCompleteSelectColor(expectedFirstColor);
+        autoCompletePage.multiAutoCompleteSelectColor(expectedSecondColor);
 
         String actualSelectedColors = autoCompletePage.getAllSelectedMultiColorNames();
 
@@ -43,8 +43,8 @@ public class AutoCompletePageTests extends BaseTest {
 
         String expectedFirstColor = "Red";
         String expectedSecondColor = "Blue";
-        autoCompletePage.multiAutoComplete(expectedFirstColor);
-        autoCompletePage.multiAutoComplete(expectedSecondColor);
+        autoCompletePage.multiAutoCompleteSelectColor(expectedFirstColor);
+        autoCompletePage.multiAutoCompleteSelectColor(expectedSecondColor);
         String actualSelectedColors = autoCompletePage.getAllSelectedMultiColorNames();
         Assert.assertEquals(actualSelectedColors, expectedFirstColor + "\n" + expectedSecondColor, "Wrong Colors selected");
 
@@ -52,8 +52,8 @@ public class AutoCompletePageTests extends BaseTest {
 
         expectedFirstColor = "White";
         expectedSecondColor = "Green";
-        autoCompletePage.multiAutoComplete(expectedFirstColor);
-        autoCompletePage.multiAutoComplete(expectedSecondColor);
+        autoCompletePage.multiAutoCompleteSelectColor(expectedFirstColor);
+        autoCompletePage.multiAutoCompleteSelectColor(expectedSecondColor);
         actualSelectedColors = autoCompletePage.getAllSelectedMultiColorNames();
         Assert.assertEquals(actualSelectedColors, expectedFirstColor + "\n" + expectedSecondColor, "Wrong Colors selected");
     }

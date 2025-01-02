@@ -44,7 +44,7 @@ public class DynamicPropertiesPageTests extends BaseTest {
     }
 
     @Test
-    public void checkAfter5secondsAllButtons() {
+    public void CheckAfter5secondsAllButtons() {
         navigateToUrl("dynamic-properties");
 
         String expectedVisibleAfter5SecondsButtonText = "Visible After 5 Seconds";

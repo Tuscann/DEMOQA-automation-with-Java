@@ -67,8 +67,8 @@ public class ProgressBarPage extends BasePage {
 
     public void stopProgressBarOnValue(int targetValue) {
         Wait<WebDriver> wait = new FluentWait<>(driver)
-                .withTimeout(Duration.ofSeconds(20))
-                .pollingEvery(Duration.ofMillis(50))
+                .withTimeout(Duration.ofSeconds(10))
+                .pollingEvery(Duration.ofMillis(10))
                 .ignoring(org.openqa.selenium.NoSuchElementException.class);
 
         wait.until(new ExpectedCondition<Boolean>() {

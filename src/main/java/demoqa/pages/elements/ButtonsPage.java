@@ -43,6 +43,7 @@ public class ButtonsPage extends BasePage {
     }
 
     public String getDoubleClickMessage() {
+        delay(100); //TODO
         scrollToElementJS(doubleClickMessage);
         return find(doubleClickMessage).getText();
     }

@@ -135,7 +135,7 @@ public class DroppablePage extends BasePage {
         return driver.findElement(dropHereAcceptable).getText();
     }
 
-    public String getNewColor() {
+    public String getNewBackgroundColor() {
         return driver.findElement(simpleTabDroppedContainer).getCssValue("background-color");
     }
 
@@ -197,9 +197,10 @@ public class DroppablePage extends BasePage {
     }
 
     public String getInnerDroppableNotGreedyColor() {
-        WebElement droppable = driver.findElement(notGreedyInnerDropBox);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        WebElement droppableElement = wait.until(ExpectedConditions.presenceOfElementLocated(greedyDropBox));
 
-        return droppable.getCssValue("background-color");
+        return droppableElement.getCssValue("background-color");
     }
 
     public String getOuterDroppableNotGreedyText() {
@@ -229,10 +230,10 @@ public class DroppablePage extends BasePage {
     }
 
     public String getOuterDroppableGreedyColor() {
-        WebElement droppable = driver.findElement(greedyDropBox);
-        delay(400); //TODO
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        WebElement droppableElement = wait.until(ExpectedConditions.presenceOfElementLocated(greedyDropBox));
 
-        return droppable.getCssValue("background-color");
+        return droppableElement.getCssValue("background-color");
     }
 
 

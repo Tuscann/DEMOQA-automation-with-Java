@@ -18,7 +18,6 @@ public class DatePickerPageTests extends BaseTest {
         String expectedSelectDateText = "Select Date";
         String expectedDate = LocalDate.now().format(DateTimeFormatter.ofPattern("MM/dd/yyyy"));
         String expectedSelectDateAndTimeText = "Date And Time";
-        String expectedDateAndTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("MMMM dd, yyyy h:mm a"));
 
         String actualDatePickerText = datePickerPage.getDatePickerText();
         String actualSelectDateText = datePickerPage.getSelectDateText();
@@ -30,6 +29,8 @@ public class DatePickerPageTests extends BaseTest {
         Assert.assertEquals(actualSelectDateText, expectedSelectDateText, "Wrong date text");
         Assert.assertEquals(actualSelectDate, expectedDate, "Wrong current date ");
         Assert.assertEquals(actualSelectDateAndTimeText, expectedSelectDateAndTimeText, "Wrong Date and time text");
+
+        String expectedDateAndTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("MMMM d, yyyy h:mm a"));
         Assert.assertEquals(actualDateAndTime, expectedDateAndTime, "Wrong current date and time");
     }
 
@@ -51,7 +52,7 @@ public class DatePickerPageTests extends BaseTest {
         datePickerPage.selectDate(tryToAddDate);
 
         String actualDate = datePickerPage.getSelectedDate();
-        String expectedDate = "01/01/2024";
+        String expectedDate = "01/01/2025";
 
         Assert.assertEquals(actualDate, expectedDate, "Wrong Date");
     }
