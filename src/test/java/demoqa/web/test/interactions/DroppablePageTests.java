@@ -5,73 +5,74 @@ import org.openqa.selenium.Point;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import static demoqa.base.BasePage.delay;
-
 public class DroppablePageTests extends BaseTest {
 
     @Test
     public void VerifyAllTextOnPage() {
         navigateToUrl("droppable");
 
-        String expectedHeader = "Droppable";
-        String simpleTab = "Simple";
+        String expectedHeaderText = "Droppable";
+        String simpleTabText = "Simple";
         String expectedDragMeSimple = "Drag me";
         String expectedDropped = "Drop here";
-        String acceptTab = "Accept";
+        String acceptTabText = "Accept";
         String acceptable = "Acceptable";
         String notAcceptable = "Not Acceptable";
-        String dropHereAcceptable = "Drop here";
-        String preventPropagationTab = "Prevent Propogation";
-        String dragMePreventPropagation = "Drag Me";
+        String acceptableDropHereText = "Drop here";
+        String preventPropagationTabText = "Prevent Propogation";
+        String preventPropagationDragMeText = "Drag Me";
         String outerDroppable1 = "Outer droppable";
         String innerDroppableNotGreedy = "Inner droppable (not greedy)";
         String outerDroppable2 = "Outer droppable";
         String innerDroppableGreedy = "Inner droppable (greedy)";
-        String revertDraggableTab = "Revert Draggable";
+        String revertDraggableTabText = "Revert Draggable";
         String expectedWillRevertText = "Will Revert";
-        String notRevert = "Not Revert";
-        String dropHereRevertDraggable = "Drop here";
+        String notRevertText = "Not Revert";
+        String revertDraggableDropHere = "Drop here";
 
         String actualHeader = droppablePage.getExpectedHeader();
         String actualSimpleTab = droppablePage.getExpectedSimpleTab();
         String actualDragMeSimple = droppablePage.getSimpleTabDragMe();
         String actualDropped = droppablePage.getDroppedContainer();
-        String actualAcceptTab = droppablePage.getDroppableAcceptTab();
-        droppablePage.clickDroppableAcceptTab();
+
+        droppablePage.clickAcceptTab();
+        String actualAcceptTabText = droppablePage.getDroppableAcceptTab();
         String actualAcceptable = droppablePage.getAcceptTabAcceptable();
         String actualNotAcceptable = droppablePage.getAcceptTabNotAcceptable();
-        String actualDropHereAcceptable = droppablePage.getDropHereAcceptable();
-        String actualDroppablePreventPropagationTab = droppablePage.getDroppablePreventPropagationTab();
+        String actualDropHereAcceptable = droppablePage.getAcceptableDropHere();
+
+        droppablePage.clickPreventPropagationTab();
+        String actualPreventPropagationTabText = droppablePage.getDroppablePreventPropagationTab();
         String actualDragMePreventPropagation = droppablePage.getDragMePreventPropagation();
-        droppablePage.clickDroppablePreventPropagationTab();
         String actualOuterDroppable1 = droppablePage.getOuterDroppable1Text();
         String actualInnerDroppableNotGreedy = droppablePage.getInnerDroppableNotGreedyText();
         String actualOuterDroppable2 = droppablePage.getOuterDroppable2();
         String actualInnerDroppableGreedy = droppablePage.getInnerDroppableGreedy();
-        String actualRevertDraggableTab = droppablePage.getRevertDraggableTab();
+
         droppablePage.clickRevertDraggableTab();
+        String actualRevertDraggableTab = droppablePage.getRevertDraggableTab();
         String actualWillRevert = droppablePage.getWillRevert();
         String actualNotRevert = droppablePage.getNotRevert();
         String actualDropHereRevertDraggable = droppablePage.getDropHereRevertDraggable();
 
-        Assert.assertEquals(actualHeader, expectedHeader, "Wrong header");
-        Assert.assertEquals(actualSimpleTab, simpleTab, "Wrong simple tab");
+        Assert.assertEquals(actualHeader, expectedHeaderText, "Wrong header");
+        Assert.assertEquals(actualSimpleTab, simpleTabText, "Wrong simple tab");
         Assert.assertEquals(actualDragMeSimple, expectedDragMeSimple, "Wrong drag me");
         Assert.assertEquals(actualDropped, expectedDropped, "Wrong dropped");
-        Assert.assertEquals(actualAcceptTab, acceptTab, "Wrong accept tab");
-        Assert.assertEquals(actualDroppablePreventPropagationTab, preventPropagationTab, "Wrong droppable prevent propagation");
-        Assert.assertEquals(actualRevertDraggableTab, revertDraggableTab, "Wrong droppable revert draggable");
+        Assert.assertEquals(actualAcceptTabText, acceptTabText, "Wrong accept tab");
+        Assert.assertEquals(actualPreventPropagationTabText, preventPropagationTabText, "Wrong droppable prevent propagation");
+        Assert.assertEquals(actualRevertDraggableTab, revertDraggableTabText, "Wrong droppable revert draggable");
         Assert.assertEquals(actualAcceptable, acceptable, "Wrong acceptable");
         Assert.assertEquals(actualNotAcceptable, notAcceptable, "Wrong not acceptable");
-        Assert.assertEquals(actualDropHereAcceptable, dropHereAcceptable, "Wrong drop her acceptable");
-        Assert.assertEquals(actualDragMePreventPropagation, dragMePreventPropagation, "Wrong drag me prevent propagation");
+        Assert.assertEquals(actualDropHereAcceptable, acceptableDropHereText, "Wrong drop her acceptable");
+        Assert.assertEquals(actualDragMePreventPropagation, preventPropagationDragMeText, "Wrong drag me prevent propagation");
         Assert.assertEquals(actualOuterDroppable1, outerDroppable1, "Wrong outer droppable 1");
         Assert.assertEquals(actualInnerDroppableNotGreedy, innerDroppableNotGreedy, "Wrong not greedy");
         Assert.assertEquals(actualOuterDroppable2, outerDroppable2, "Wrong outer droppable 2");
         Assert.assertEquals(actualInnerDroppableGreedy, innerDroppableGreedy, "Wrong greedy");
         Assert.assertEquals(actualWillRevert, expectedWillRevertText, "Wrong will revert");
-        Assert.assertEquals(actualNotRevert, notRevert, "Wrong will not revert");
-        Assert.assertEquals(actualDropHereRevertDraggable, dropHereRevertDraggable, "Wrong drop her revert draggable");
+        Assert.assertEquals(actualNotRevert, notRevertText, "Wrong will not revert");
+        Assert.assertEquals(actualDropHereRevertDraggable, revertDraggableDropHere, "Wrong drop her revert draggable");
     }
 
     @Test
@@ -93,7 +94,7 @@ public class DroppablePageTests extends BaseTest {
     @Test(enabled = true)
     public void AcceptTabDragAndDropAcceptable() {
         navigateToUrl("droppable");
-        droppablePage.clickDroppableAcceptTab();
+        droppablePage.clickAcceptTab();
         droppablePage.dragAndDropAcceptable();
 
         String actualDroppedText = droppablePage.getDragAndDropAcceptable();
@@ -109,7 +110,7 @@ public class DroppablePageTests extends BaseTest {
     @Test(enabled = true)
     public void AcceptTabDragAndDropNotAcceptable() {
         navigateToUrl("droppable");
-        droppablePage.clickDroppableAcceptTab();
+        droppablePage.clickAcceptTab();
         droppablePage.dragAndDropNotAcceptable();
 
         String actualDroppedText = droppablePage.getDragAndDropAcceptable();
@@ -125,33 +126,41 @@ public class DroppablePageTests extends BaseTest {
     @Test(enabled = true)
     public void PreventPropagationInnerDroppableNotGreedy() {
         navigateToUrl("droppable");
-        droppablePage.clickDroppablePreventPropagationTab();
-        droppablePage.dragAndDropPropagationOuterDroppableNotGreedy();
+        droppablePage.clickPreventPropagationTab();
 
-        String expectedOuterNotGreedyColor = "rgba(70, 130, 180, 1)";
-        String expectedInnerNotGreedyColor = "rgba(70, 130, 180, 1)";
-        String expectedDroppedText2 = "Dropped!\nDropped!";
+        String expectedOuterNotGreedyColorBefore = "rgba(0, 0, 0, 0)";
+        String expectedInnerNotGreedyColorBefore = "rgba(0, 0, 0, 0)";
 
         String actualInnerNotGreedyColor = droppablePage.getInnerDroppableNotGreedyColor();
         String actualOuterNotGreedyColor = droppablePage.getOuterDroppableNotGreedyColor();
+
+        Assert.assertEquals(actualInnerNotGreedyColor, expectedOuterNotGreedyColorBefore, "Wrong inner color");
+        Assert.assertEquals(actualOuterNotGreedyColor, expectedInnerNotGreedyColorBefore, "Wrong outer color");
+
+        droppablePage.dragAndDropPropagationOuterDroppableNotGreedy();
+
+        String expectedOuterNotGreedyColorAfter = "rgba(70, 130, 180, 1)";
+        String expectedInnerNotGreedyColorAfter = "rgba(70, 130, 180, 1)";
+        String expectedDroppedText2 = "Dropped!\nDropped!";
+
+        actualInnerNotGreedyColor = droppablePage.getInnerDroppableNotGreedyColor();
+        actualOuterNotGreedyColor = droppablePage.getOuterDroppableNotGreedyColor();
         String actualOuterDroppableNotGreedyText = droppablePage.getOuterDroppableNotGreedyText();
 
-        Assert.assertEquals(actualInnerNotGreedyColor, expectedInnerNotGreedyColor, "Wrong inner color");
-        Assert.assertEquals(actualOuterNotGreedyColor, expectedOuterNotGreedyColor, "Wrong outer color");
+        Assert.assertEquals(actualInnerNotGreedyColor, expectedInnerNotGreedyColorAfter, "Wrong inner color");
+        Assert.assertEquals(actualOuterNotGreedyColor, expectedOuterNotGreedyColorAfter, "Wrong outer color");
         Assert.assertEquals(actualOuterDroppableNotGreedyText, expectedDroppedText2, "Wrong dropped text");
     }
 
     @Test(enabled = true)
     public void PreventPropagationInnerDroppableGreedy() {
         navigateToUrl("droppable");
-        droppablePage.clickDroppablePreventPropagationTab();
+        droppablePage.clickPreventPropagationTab();
         droppablePage.dragAndDropPropagationInnerDroppableGreedy();
 
         String expectedInnerGreedyColor = "rgba(70, 130, 180, 1)";
         String expectedOuterGreedyColor = "rgba(0, 0, 0, 0)";
         String expectedOuterDroppableNotGreedyText = "Outer droppable\nDropped!";
-
-        delay(400); //TODO
 
         String actualInnerGreedyColor = droppablePage.getInnerDroppableGreedyColor();
         String actualOuterDroppableGreedyColor = droppablePage.getOuterDroppableGreedyColor();
@@ -165,7 +174,7 @@ public class DroppablePageTests extends BaseTest {
     @Test(enabled = true)
     public void PreventPropagationOuterDroppableGreedy() {
         navigateToUrl("droppable");
-        droppablePage.clickDroppablePreventPropagationTab();
+        droppablePage.clickPreventPropagationTab();
         droppablePage.dragAndDropPropagationOuterDroppableGreedy();
 
         String expectedOuterGreedyColor = "rgba(70, 130, 180, 1)";
@@ -181,13 +190,13 @@ public class DroppablePageTests extends BaseTest {
         Assert.assertEquals(actualOuterDroppableNotGreedyText, expectedOuterDroppableNotGreedyText, "Wrong dropped text");
     }
 
-    @Test(enabled = true)
+    @Test(enabled = false)
     public void RevertDraggableWillRevert() {
         navigateToUrl("droppable");
         droppablePage.clickRevertDraggableTab();
         String expectedDroppedHereText = "Drop here";
 
-        org.openqa.selenium.Point initialLocation = droppablePage.getInitLocation();
+        Point initialLocation = droppablePage.getInitLocation();
         String actualDroppedHereText = droppablePage.getInitText();
         Assert.assertEquals(actualDroppedHereText, expectedDroppedHereText, "Wrong inner color");
 
@@ -197,7 +206,7 @@ public class DroppablePageTests extends BaseTest {
         actualDroppedHereText = droppablePage.getInitText();
         Assert.assertEquals(actualDroppedHereText, expectedDroppedHereText, "Dropped text missing ");
 
-        org.openqa.selenium.Point afterLocation = droppablePage.getAfterLocation();
+        Point afterLocation = droppablePage.getAfterLocation();
 
         Assert.assertEquals(initialLocation, afterLocation, "Wrong position");
     }

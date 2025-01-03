@@ -35,7 +35,7 @@ public class ResizablePageTests extends BaseTest {
     }
 
     @Test(dataProvider = "resizeData", description = "Test resizing with different values", enabled = true)
-    public void testResizedBoxWithLimitation(int addX, int addY, int expectedWidth, int expectedHeight) {
+    public void ТestResizedBoxWithLimitation(int addX, int addY, int expectedWidth, int expectedHeight) {
         navigateToUrl("resizable");
 
         resizablePage.changeSize(addX, addY);
@@ -57,7 +57,7 @@ public class ResizablePageTests extends BaseTest {
     }
 
     @Test(dataProvider = "resizeData2", description = "Test resizing with different values", enabled = false)
-    public void testResizedBoxWithoutLimitation(int addX, int addY, int expectedWidth, int expectedHeight) {
+    public void ТestResizedBoxWithoutLimitation(int addX, int addY, int expectedWidth, int expectedHeight) {
         navigateToUrl("resizable");
 
         resizablePage.changeSizeWithoutLimitations(addX, addY);

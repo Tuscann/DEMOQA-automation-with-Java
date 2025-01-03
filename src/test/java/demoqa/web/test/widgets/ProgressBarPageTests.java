@@ -62,14 +62,14 @@ public class ProgressBarPageTests extends BaseTest {
         Assert.assertEquals(actualStartButtonText, startButtonText, "Wrong start button value");
     }
 
-    @Test
+    @Test(enabled = true)
     public void ClickStartStopStartCheckProgressBarEndValue() {
         navigateToUrl("progress-bar");
         String expectedEndProgressBarValueText = "100";
         int stopValue = 4;
 
         progressBarPage.clickStartButton();
-        progressBarPage.stopProgressBarOnValue(stopValue);
+        progressBarPage.stopProgressBarOnValue2(stopValue);
         int actualProgressBarText = progressBarPage.getValueProgressBar();
         progressBarPage.clickStartButton();
         String endProgressBarText = progressBarPage.getValueOfProgressBarOnValue100();
@@ -87,11 +87,11 @@ public class ProgressBarPageTests extends BaseTest {
         String expectedStartColor = "rgba(23, 162, 184, 1)";
         int stopValue = 31;
 
-        progressBarPage.stopProgressBarOnValue(stopValue);
+        progressBarPage.stopProgressBarOnValue2(stopValue);
         int actualValueOfProgressBar = progressBarPage.getValueProgressBar();
         String actualNotGreenColor = progressBarPage.getColorProgressBar();
 
-        Assert.assertEquals(actualValueOfProgressBar, stopValue, "Not " + stopValue + " value");
+        Assert.assertEquals(actualValueOfProgressBar, stopValue, "\nNot " + stopValue + " value\n");
         Assert.assertEquals(actualNotGreenColor, expectedStartColor, "Wrong color value");
     }
 }

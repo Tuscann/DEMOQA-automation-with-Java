@@ -15,8 +15,8 @@ import demoqa.pages.widgets.*;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.edge.EdgeOptions;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.io.FileHandler;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
@@ -75,12 +75,12 @@ public class BaseTest {
 
     @BeforeMethod
     public void setUp() {
-        EdgeOptions options = new EdgeOptions();
+        ChromeOptions options = new ChromeOptions();
         options.addArguments("--headless=new");
         options.addArguments("--disable-gpu");
-        options.addArguments("--window-size=1920,1080"); // Set the window size
+//        options.addArguments("--window-size=1920,1080"); // Set the window size
 
-        driver = new EdgeDriver(options);
+        driver = new ChromeDriver(options);
         driver.manage().window().maximize();
         String DEMOQA_URL = "http://demoqa.com/";
         driver.get(DEMOQA_URL);

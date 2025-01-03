@@ -1,5 +1,6 @@
-package demoqa.web;
+package demoqa.web.test.home;
 
+import demoqa.web.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -74,4 +75,5 @@ public class HomePageTests extends BaseTest {
         Assert.assertEquals(actualInteractionText, expectedInteractionText);
         Assert.assertEquals(actualBooksText, expectedBooksText);
     }
+
 }

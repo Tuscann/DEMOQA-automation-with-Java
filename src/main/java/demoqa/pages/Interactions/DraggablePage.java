@@ -6,6 +6,8 @@ import org.openqa.selenium.Point;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
+import java.time.Duration;
+
 public class DraggablePage extends BasePage {
 
     private final By pageTitle = By.xpath("//h1[@class='text-center'][contains(.,'Dragabble')]");
@@ -94,12 +96,14 @@ public class DraggablePage extends BasePage {
     }
 
     public Point getInitLocation() {
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(1));
         WebElement draggable = driver.findElement(simpleDragMe);
 
         return draggable.getLocation();
     }
 
     public void dragAndDropByOnPositionDragMe(int xOffset, int yOffset) {
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(1));
         WebElement draggable = driver.findElement(simpleDragMe);
 
         Actions actions = new Actions(driver);
@@ -113,20 +117,23 @@ public class DraggablePage extends BasePage {
     }
 
     public Point getInitLocationOnlyY() {
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(1));
         WebElement draggable = driver.findElement(axisRestrictedOnlyY);
 
         return draggable.getLocation();
     }
 
     public void dragAndDropByOnPositionOnlyX(int xOffset, int yOffset) {
-        Actions actions = new Actions(driver);
         WebElement draggable = driver.findElement(axisRestrictedOnlyX);
+
+        Actions actions = new Actions(driver);
         actions.dragAndDropBy(draggable, xOffset, yOffset).perform();
     }
 
     public void dragAndDropByOnPositionOnlyY(int xOffset, int yOffset) {
-        Actions actions = new Actions(driver);
         WebElement draggable = driver.findElement(axisRestrictedOnlyY);
+        Actions actions = new Actions(driver);
+
         actions.dragAndDropBy(draggable, xOffset, yOffset).perform();
     }
 
@@ -167,20 +174,23 @@ public class DraggablePage extends BasePage {
     }
 
     public void dragAndDropInCursorStyleFirstText(int xOffset, int yOffset) {
-        Actions actions = new Actions(driver);
         WebElement draggable = driver.findElement(cursorStyleFirstText);
+
+        Actions actions = new Actions(driver);
         actions.dragAndDropBy(draggable, xOffset, yOffset).perform();
     }
 
     public void dragAndDropInCursorStyleSecondText(int xOffset, int yOffset) {
-        Actions actions = new Actions(driver);
         WebElement draggable = driver.findElement(cursorStyleSecondText);
+
+        Actions actions = new Actions(driver);
         actions.dragAndDropBy(draggable, xOffset, yOffset).perform();
     }
 
     public void dragAndDropInCursorStyleThirdText(int xOffset, int yOffset) {
-        Actions actions = new Actions(driver);
         WebElement draggable = driver.findElement(cursorStyleThirdText);
+
+        Actions actions = new Actions(driver);
         actions.dragAndDropBy(draggable, xOffset, yOffset).perform();
     }
 }

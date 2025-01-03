@@ -13,6 +13,7 @@ import java.time.Duration;
 public class DroppablePage extends BasePage {
 
     private final By droppableHeader = By.xpath("//h1[@class='text-center'][contains(.,'Droppable')]");
+
     private final By simpleTab = By.id("droppableExample-tab-simple");
     private final By simpleTabDragMe = By.id("draggable");
     private final By simpleTabDroppedContainer = By.id("droppable");
@@ -22,7 +23,7 @@ public class DroppablePage extends BasePage {
     private final By acceptDropContainer = By.id("acceptDropContainer");
     private final By acceptTabAcceptable = By.id("acceptable");
     private final By acceptTabNotAcceptable = By.id("notAcceptable");
-    private final By dropHereAcceptable = By.xpath("(//*[@id=\"droppable\"]/p)[2]");
+    private final By acceptableDropHere = By.xpath("(//*[@id=\"droppable\"]/p)[2]");
 
     private final By preventPropagationTab = By.id("droppableExample-tab-preventPropogation");
     private final By preventPropagationDragMe = By.id("dragBox");
@@ -41,16 +42,18 @@ public class DroppablePage extends BasePage {
     private final By notWillRevert = By.id("notRevertable");
     private final By dropHereRevertDraggableText = By.xpath("(//*[@id=\"droppable\"]/p)[3]");
     private final By dropHereRevertDraggable = By.xpath("(//*[@id=\"droppable\"])[3]");
+    private final By dropHereRevertDraggable2 = By.id("droppable");
+
 
     public void clickRevertDraggableTab() {
         click(revertDraggableTab);
     }
 
-    public void clickDroppableAcceptTab() {
+    public void clickAcceptTab() {
         click(acceptTab);
     }
 
-    public void clickDroppablePreventPropagationTab() {
+    public void clickPreventPropagationTab() {
         click(preventPropagationTab);
     }
 
@@ -90,8 +93,8 @@ public class DroppablePage extends BasePage {
         return find(acceptTabNotAcceptable).getText();
     }
 
-    public String getDropHereAcceptable() {
-        return find(dropHereAcceptable).getText();
+    public String getAcceptableDropHere() {
+        return find(acceptableDropHere).getText();
     }
 
     public String getDragMePreventPropagation() {
@@ -115,7 +118,6 @@ public class DroppablePage extends BasePage {
     }
 
     public String getWillRevert() {
-        delay(100); //TODO
         return find(willRevert).getText();
     }
 
@@ -132,7 +134,7 @@ public class DroppablePage extends BasePage {
     }
 
     public String getDragAndDropAcceptable() {
-        return driver.findElement(dropHereAcceptable).getText();
+        return driver.findElement(acceptableDropHere).getText();
     }
 
     public String getNewBackgroundColor() {
@@ -152,7 +154,7 @@ public class DroppablePage extends BasePage {
 
     public void dragAndDropAcceptable() {
         WebElement draggable = driver.findElement(acceptTabAcceptable);
-        WebElement droppable = driver.findElement(dropHereAcceptable);
+        WebElement droppable = driver.findElement(acceptableDropHere);
 
         Actions actions = new Actions(driver);
         actions.dragAndDrop(draggable, droppable).perform();
@@ -163,14 +165,14 @@ public class DroppablePage extends BasePage {
 
     public void dragAndDropNotAcceptable() {
         WebElement draggable = driver.findElement(acceptTabNotAcceptable);
-        WebElement droppable = driver.findElement(dropHereAcceptable);
+        WebElement droppable = driver.findElement(acceptableDropHere);
 
         Actions actions = new Actions(driver);
         actions.dragAndDrop(draggable, droppable).perform();
     }
 
     public String getColorAcceptable() {
-        WebElement droppable = driver.findElement(dropHereAcceptable);
+        WebElement droppable = driver.findElement(acceptableDropHere);
         WebElement droppable2 = driver.findElement(simpleTabDropHere);
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(6));
@@ -188,6 +190,7 @@ public class DroppablePage extends BasePage {
 
         Actions actions = new Actions(driver);
         actions.dragAndDrop(draggable, droppable).perform();
+
     }
 
     public String getOuterDroppableNotGreedyColor() {
@@ -198,7 +201,7 @@ public class DroppablePage extends BasePage {
 
     public String getInnerDroppableNotGreedyColor() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-        WebElement droppableElement = wait.until(ExpectedConditions.presenceOfElementLocated(greedyDropBox));
+        WebElement droppableElement = wait.until(ExpectedConditions.presenceOfElementLocated(notGreedyInnerDropBox));
 
         return droppableElement.getCssValue("background-color");
     }
@@ -219,7 +222,7 @@ public class DroppablePage extends BasePage {
 
     public String getInnerDroppableGreedyColor() {
         WebElement droppable = driver.findElement(preventPropagationGreedyDropBox);
-        delay(400); //TODO
+
         return droppable.getCssValue("background-color");
     }
 
@@ -245,8 +248,10 @@ public class DroppablePage extends BasePage {
         actions.dragAndDrop(draggable, droppable).perform();
     }
 
-    public org.openqa.selenium.Point getInitLocation() {
-        return driver.findElement(willRevert).getLocation();
+    public Point getInitLocation() {
+        WebElement draggable = driver.findElement(willRevert);
+
+        return draggable.getLocation();
     }
 
     public void dragAndDropWillRevert() {
@@ -255,14 +260,21 @@ public class DroppablePage extends BasePage {
 
         Actions actions = new Actions(driver);
         actions.dragAndDrop(draggable, droppable).perform();
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.and(
+                ExpectedConditions.attributeContains(droppable, "class", "drop-box ui-droppable ui-state-highlight")));
+
     }
 
     public String getInitText() {
-        return find(dropHereRevertDraggableText).getText();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        WebElement draggable = wait.until(ExpectedConditions.presenceOfElementLocated(dropHereRevertDraggableText));
+
+        return draggable.getText();
     }
 
     public Point getAfterLocation() {
-        delay(500); //TODO
         WebElement draggable = driver.findElement(willRevert);
 
         return draggable.getLocation();
@@ -277,7 +289,6 @@ public class DroppablePage extends BasePage {
     }
 
     public Point getAfterLocationNot() {
-        delay(100); //TODO
         WebElement draggable = driver.findElement(notWillRevert);
 
         return draggable.getLocation();

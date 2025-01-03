@@ -71,8 +71,8 @@ public class PracticeFormPageTests extends BaseTest {
         String actualSelectCityPlaceholder = practiceFormPage.getCityPlaceholder();
         String actualSubmitButtonText = practiceFormPage.getSubmitButtonText();
 
-        Assert.assertEquals(actualPracticeFromText, practiceFromText, "Wrong practice form text");
-        Assert.assertEquals(actualStudentRegistrationFormText, studentRegistrationFormText, "Wrong registration text");
+        Assert.assertEquals(actualPracticeFromText, practiceFromText, "\nWrong practice form text\n");
+        Assert.assertEquals(actualStudentRegistrationFormText, studentRegistrationFormText, "\nWrong registration text\n");
         Assert.assertEquals(actualNameLabel, nameLabel, "Wrong practice form text");
         Assert.assertEquals(actualFirstNamePlaceholder, firstNamePlaceholder, "Wrong first placeholder");
         Assert.assertEquals(actualLastNamePlaceholder, lastNamePlaceholder, "Wrong last placeholder");
@@ -121,29 +121,21 @@ public class PracticeFormPageTests extends BaseTest {
     }
 
     @Test
-    public void SelectFemaleRadioButton() {
+    public void SelectEveryRadioButton() {
         navigateToUrl("automation-practice-form");
         String gender = "Female";
         practiceFormPage.clickGenderRadioButton(gender);
 
         boolean isFemaleRadioButtonSelected = practiceFormPage.isFemaleRadioButtonSelected();
         Assert.assertTrue(isFemaleRadioButtonSelected, "\n Female radio button is not selected \n");
-    }
 
-    @Test
-    public void SelectMaleRadioButton() {
-        navigateToUrl("automation-practice-form");
-        String gender = "Male";
+        gender = "Male";
         practiceFormPage.clickGenderRadioButton(gender);
 
         boolean isMaleRadioButtonSelected = practiceFormPage.isMaleRadioButtonSelected();
         Assert.assertTrue(isMaleRadioButtonSelected, "\n Male radio button is not selected \n");
-    }
 
-    @Test
-    public void SelectOtherRadioButton() {
-        navigateToUrl("automation-practice-form");
-        String gender = "Other";
+        gender = "Other";
         practiceFormPage.clickGenderRadioButton(gender);
 
         boolean isOtherRadioButtonSelected = practiceFormPage.isOtherRadioButtonSelected();
@@ -154,8 +146,8 @@ public class PracticeFormPageTests extends BaseTest {
     public void SubmitValidPracticeFormAndVerify() {
         navigateToUrl("automation-practice-form");
 
-        String firstName = "Zhivko";
-        String lastName = "Petrov";
+        String expectedFirstName = "Zhivko";
+        String expectedLastName = "Petrov";
         String expectedEmail = "karma@gmail.com";
         String expectedGender = "Female";
         String expectedMobileNumber = "1234567890";
@@ -172,8 +164,8 @@ public class PracticeFormPageTests extends BaseTest {
 
         String filePathOnOperationSystem = practiceFormPage.getFilePathFromResources(expectedPicture);
 
-        practiceFormPage.setFirstName(firstName);
-        practiceFormPage.setLastName(lastName);
+        practiceFormPage.setFirstName(expectedFirstName);
+        practiceFormPage.setLastName(expectedLastName);
         practiceFormPage.setEmail(expectedEmail);
         practiceFormPage.clickGenderRadioButton(expectedGender);
         practiceFormPage.setMobile(expectedMobileNumber);
@@ -199,7 +191,7 @@ public class PracticeFormPageTests extends BaseTest {
         String actualLabel = practiceFormPage.getLabelFromModal();
         String actualValues = practiceFormPage.getValuesFromModal();
 
-        Assert.assertEquals(actualFullName, firstName + " " + lastName, "Wrong full name");
+        Assert.assertEquals(actualFullName, expectedFirstName + " " + expectedLastName, "Wrong full name");
         Assert.assertEquals(actualEmail, expectedEmail, "Wrong email address");
         Assert.assertEquals(actualGender, expectedGender, "Wrong gender");
         Assert.assertEquals(actualMobile, expectedMobileNumber, "Wrong mobile number");
@@ -211,5 +203,12 @@ public class PracticeFormPageTests extends BaseTest {
         Assert.assertEquals(actualStateAndCity, expectedState + " " + expectedCity, "Wrong State and City");
         Assert.assertEquals(actualLabel, expectedLabel, "Wrong label");
         Assert.assertEquals(actualValues, expectedValues, "Wrong values");
+    }
+
+    @Test
+    public void ClickEmptyFormVerifyColors() {
+        navigateToUrl("automation-practice-form");
+        practiceFormPage.clickSubmitButton();
+
     }
 }

@@ -3,9 +3,11 @@ package demoqa.pages.widgets;
 import demoqa.base.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.*;
 
 import java.time.Duration;
+import java.util.Objects;
 
 public class ProgressBarPage extends BasePage {
     private final By progressBarText = By.xpath("//div[contains(@class, 'mb-3')]");
@@ -31,7 +33,9 @@ public class ProgressBarPage extends BasePage {
     }
 
     public Integer getValueProgressBar() {
-        return Integer.parseInt(driver.findElement(progressBarCurrent).getDomAttribute("aria-valuenow"));
+        WebElement element = driver.findElement(progressBarCurrent);
+
+        return Integer.parseInt(Objects.requireNonNull(element.getDomAttribute("aria-valuenow")));
     }
 
     private String getProgressBarValue() {
@@ -65,7 +69,7 @@ public class ProgressBarPage extends BasePage {
         find(startStopButton).click();
     }
 
-    public void stopProgressBarOnValue(int targetValue) {
+    public void stopProgressBarOnValue2(int targetValue) {
         Wait<WebDriver> wait = new FluentWait<>(driver)
                 .withTimeout(Duration.ofSeconds(10))
                 .pollingEvery(Duration.ofMillis(10))
@@ -90,5 +94,36 @@ public class ProgressBarPage extends BasePage {
                 }
             }
         });
+    }
+
+    public int stopProgressBarOnValue(int targetValue) {
+        Wait<WebDriver> wait = new FluentWait<>(driver)
+                .withTimeout(Duration.ofSeconds(10))
+                .pollingEvery(Duration.ofMillis(10))
+                .ignoring(org.openqa.selenium.NoSuchElementException.class);
+        int x = 0;
+
+        wait.until(new ExpectedCondition<Integer>() {
+            public Integer apply(WebDriver driver) {
+                String currentValueStr = getProgressBarValue();
+                if (currentValueStr == null || currentValueStr.isEmpty()) {
+                    return x;
+                }
+                try {
+                    int currentValue = Integer.parseInt(currentValueStr);
+
+                    if (currentValue >= targetValue) { // Click only when the target is reached or exceeded
+                        find(startStopButton).click();
+                        return currentValue; // Return true to stop waiting after click
+                    } else {
+                        return x; // Continue waiting
+                    }
+
+                } catch (NumberFormatException e) {
+                    return x;
+                }
+            }
+        });
+        return x;
     }
 }
