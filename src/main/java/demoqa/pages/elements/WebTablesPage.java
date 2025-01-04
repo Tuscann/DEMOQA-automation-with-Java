@@ -68,11 +68,11 @@ public class WebTablesPage extends BasePage {
         return find(registrationEmailField).getDomAttribute("placeholder");
     }
 
-    public String getPlaceholderUserAge() {
+    public String getAgePlaceholder() {
         return find(registrationAgeField).getDomAttribute("placeholder");
     }
 
-    public String getPlaceholderUserSalary() {
+    public String getSalaryPlaceholder() {
         return find(registrationSalaryField).getDomAttribute("placeholder");
     }
 
@@ -112,7 +112,7 @@ public class WebTablesPage extends BasePage {
         set(searchBox, word);
     }
 
-    public String getPlaceholderDepartment() {
+    public String getDepartmentPlaceholder() {
         return find(registrationDepartmentField).getDomAttribute("placeholder");
     }
 
@@ -229,5 +229,9 @@ public class WebTablesPage extends BasePage {
 
     public String getSubmitButtonText() {
         return find(submitButton).getText();
+    }
+
+    public void clickNexButton() {
+        click(nextButton);
     }
 }

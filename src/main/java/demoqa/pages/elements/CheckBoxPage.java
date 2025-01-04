@@ -21,8 +21,8 @@ public class CheckBoxPage extends BasePage {
     private final By angular = By.xpath("(//span[contains(.,'Angular')])[2]");
     private final By veu = By.xpath("(//span[contains(.,'Veu')])[2]");
     private final By office = By.xpath("(//span[contains(.,'Office')])[2]");
-    private final By publicOffice = By.xpath("(//span[contains(.,'Public')])[2]");
-    private final By privateOffice = By.xpath("(//span[contains(.,'Private')])[2]");
+    private final By officePublic = By.xpath("(//span[contains(.,'Public')])[2]");
+    private final By officePrivate = By.xpath("(//span[contains(.,'Private')])[2]");
     private final By classified = By.xpath("(//span[contains(.,'Classified')])[2]");
     private final By general = By.xpath("(//span[contains(.,'General')])[2]");
     private final By downloads = By.xpath("(//span[contains(.,'Downloads')])[2]");
@@ -69,8 +69,8 @@ public class CheckBoxPage extends BasePage {
         click(office);
     }
 
-    public void clickPublicOffice() {
-        click(publicOffice);
+    public void clickOfficePublic() {
+        click(officePublic);
     }
 
     public void clickWorkSpace() {
@@ -112,7 +112,7 @@ public class CheckBoxPage extends BasePage {
     }
 
     public void clickPrivateOffice() {
-        click(privateOffice);
+        click(officePrivate);
     }
 
     public void clickNotes() {

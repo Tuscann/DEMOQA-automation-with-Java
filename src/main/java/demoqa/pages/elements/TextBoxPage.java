@@ -9,12 +9,15 @@ import static utilities.JavaScriptUtility.scrollToElementJS;
 public class TextBoxPage extends BasePage {
 
     private final By header = By.xpath("//h1[@class='text-center'][contains(.,'Text Box')]");
-    private final By fullName = By.id("userName");
-    private final By email = By.id("userEmail");
-    private final By currentAddress = By.id("currentAddress");
+    private final By fullNameLabel = By.id("userName-label");
+    private final By fullNameField = By.id("userName");
+    private final By emailLabel = By.id("userEmail-label");
+    private final By emailField = By.id("userEmail");
+    private final By currentAddressLabel = By.id("currentAddress-label");
+    private final By currentAddressField = By.id("currentAddress");
+    private final By permanentAddressLabel = By.id("permanentAddress-label");
     private final By permanentAddress = By.id("permanentAddress");
     private final By submitButton = By.id("submit");
-    private final By textBoxText = By.xpath("//h1[contains(.,'Text Box')]");
 
     private final By expectedFullName = By.xpath("//p[@id=\"name\"]");
     private final By expectedEmail = By.xpath("//p[@id=\"email\"]");
@@ -22,37 +25,32 @@ public class TextBoxPage extends BasePage {
     private final By expectedPermanentAddress = By.xpath("//p[@id=\"permanentAddress\"]");
     private final By output = By.id("output");
 
-    private final By labelFullName = By.id("userName-label");
-    private final By labelEmail = By.id("userEmail-label");
-    private final By labelCurrentAddress = By.id("currentAddress-label");
-    private final By labelPermanentAddress = By.id("permanentAddress-label");
-
     public String getFullNameLabel() {
-        return find(labelFullName).getText();
+        return find(fullNameLabel).getText();
     }
 
     public String getEmailLabel() {
-        return find(labelEmail).getText();
+        return find(emailLabel).getText();
     }
 
     public String getCurrentAddressLabel() {
-        return find(labelCurrentAddress).getText();
+        return find(currentAddressLabel).getText();
     }
 
     public String getPermanentAddressLabel() {
-        return find(labelPermanentAddress).getText();
+        return find(permanentAddressLabel).getText();
     }
 
     public String getPlaceholderFullName() {
-        return find(fullName).getDomAttribute("placeholder");
+        return find(fullNameField).getDomAttribute("placeholder");
     }
 
     public String getPlaceholderEmail() {
-        return find(email).getDomAttribute("placeholder");
+        return find(emailField).getDomAttribute("placeholder");
     }
 
     public String getPlaceholderCurrentAddress() {
-        return find(currentAddress).getDomAttribute("placeholder");
+        return find(currentAddressField).getDomAttribute("placeholder");
     }
 
     public String getPlaceholderPermanentAddress() {
@@ -79,26 +77,30 @@ public class TextBoxPage extends BasePage {
         return find(output).getText();
     }
 
-    public String getTextBoxText() {
-        return find(textBoxText).getText();
+    public String getHeaderText() {
+        return find(header).getText();
     }
 
-    public void setFullName(String fullName2) {
-        MoveToElementSelenium(fullName);
-        set(fullName, fullName2);
+    public String getSubmitButtonText() {
+        return find(submitButton).getText();
     }
 
-    public void setEmail(String email2) {
-        scrollToElementJS(email);
-        set(email, email2);
+    public void setFullNameField(String fullName2) {
+        MoveToElementSelenium(fullNameField);
+        set(fullNameField, fullName2);
     }
 
-    public void setCurrentAddress(String currentAddress2) {
-        scrollToElementJS(currentAddress);
-        set(currentAddress, currentAddress2);
+    public void setEmailField(String email2) {
+        scrollToElementJS(emailField);
+        set(emailField, email2);
     }
 
-    public void setPermanentAddress(String permanentAddress2) {
+    public void setCurrentAddressField(String currentAddress2) {
+        scrollToElementJS(currentAddressField);
+        set(currentAddressField, currentAddress2);
+    }
+
+    public void setPermanentAddressField(String permanentAddress2) {
         scrollToElementJS(permanentAddress);
         set(permanentAddress, permanentAddress2);
     }
@@ -111,15 +113,7 @@ public class TextBoxPage extends BasePage {
     public String isBorderRedAroundEmail() {
         delay(500);
 
-        String str = find(email).getCssValue("border");
+        String str = find(emailField).getCssValue("border");
         return str.substring(str.length() - 20);
-    }
-
-    public String getHeaderText() {
-        return find(header).getText();
-    }
-
-    public String getSubmitButtonText() {
-        return find(submitButton).getText();
     }
 }

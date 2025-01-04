@@ -7,17 +7,17 @@ import org.testng.annotations.Test;
 public class CheckBoxPageTests extends BaseTest {
 
     @Test
-    public void SelectCheckBoxNotes() {
+    public void SelectNotesCheckBox() {
         navigateToUrl("checkbox");
         checkBoxPage.clickExpandAll();
         checkBoxPage.clickNotes();
+
+        String actualResultMessage = checkBoxPage.getResultMessage();
+        String expectedResultMessage = "You have selected :\nnotes";
+        Assert.assertEquals(actualResultMessage, expectedResultMessage, "\nNot selected Notes\n");
+
         String header = "Check Box";
         String actualHeader = checkBoxPage.getHeader();
-
-        String actualResult = checkBoxPage.getResultMessage();
-        String expectedResult = "You have selected :\nnotes";
-
-        Assert.assertEquals(actualResult, expectedResult, "Not selected Notes");
         Assert.assertEquals(actualHeader, header, "Wrong Header Message");
     }
 
@@ -36,7 +36,7 @@ public class CheckBoxPageTests extends BaseTest {
                 notes
                 commands""";
 
-        Assert.assertEquals(actualResult, expectedResult, "Not selected Notes");
+        Assert.assertEquals(actualResult, expectedResult, "\nNot selected Notes\n");
     }
 
     @Test
@@ -50,23 +50,23 @@ public class CheckBoxPageTests extends BaseTest {
         String expectedResult = """
                 You have selected :
                 notes""";
-        Assert.assertEquals(actualResult, expectedResult, "Not selected Notes");
+        Assert.assertEquals(actualResult, expectedResult, "\nNot selected Notes\n");
 
         checkBoxPage.clickNotes();
 
-        Assert.assertTrue(checkBoxPage.isResultMessageShown(), "Shown some category");
+        Assert.assertTrue(checkBoxPage.isResultMessageShown(), "\n Shown wrong category\n");
     }
 
     @Test
-    public void VerifyAllCheckBoxesAreDeselected() {
+    public void VerifyResultMessageIsEmptyWithoutSelections() {
         navigateToUrl("checkbox");
         checkBoxPage.clickExpandAll();
 
-        Assert.assertTrue(checkBoxPage.isResultMessageShown(), "Shown some category");
+        Assert.assertTrue(checkBoxPage.isResultMessageShown(), "\nShown some category\n");
     }
 
     @Test
-    public void SelectOnlyCheckBoxCommands() {
+    public void SelectCommandsCheckBox() {
         navigateToUrl("checkbox");
 
         checkBoxPage.clickExpandAll();
@@ -75,23 +75,22 @@ public class CheckBoxPageTests extends BaseTest {
         String actualResult = checkBoxPage.getResultMessage();
         String expectedResult = "You have selected :\ncommands";
 
-        Assert.assertEquals(actualResult, expectedResult, "Not selected Commands");
+        Assert.assertEquals(actualResult, expectedResult, "\nNot selected Commands\n");
     }
 
     @Test
-    public void SelectCheckBoxesNotesAndCommands() {
+    public void SelectNotesAndOfficePublic() {
         navigateToUrl("checkbox");
 
         checkBoxPage.clickExpandAll();
         checkBoxPage.clickNotes();
-        checkBoxPage.clickCommands();
+        checkBoxPage.clickOfficePublic();
 
         String actualResult = checkBoxPage.getResultMessage();
         String expectedResult = """
                 You have selected :
-                desktop
                 notes
-                commands""";
+                public""";
 
         Assert.assertEquals(actualResult, expectedResult, "Not selected 3 checkbox Notes/Commands");
     }
@@ -123,10 +122,9 @@ public class CheckBoxPageTests extends BaseTest {
     }
 
     @Test
-    public void SelectOnlyCheckBoxHome() {
+    public void SelectHomeCheckBox() {
         navigateToUrl("checkbox");
 
-        checkBoxPage.clickExpandAll();
         checkBoxPage.clickHome();
 
         String actualResult = checkBoxPage.getResultMessage();
@@ -150,7 +148,7 @@ public class CheckBoxPageTests extends BaseTest {
                 wordFile
                 excelFile""";
 
-        Assert.assertEquals(actualResult, expectedResult, "Not selected all CheckBoxes");
+        Assert.assertEquals(actualResult, expectedResult, "\nNot selected all CheckBoxes\n");
     }
 
     @Test
@@ -183,7 +181,7 @@ public class CheckBoxPageTests extends BaseTest {
                 wordFile
                 excelFile""";
 
-        Assert.assertEquals(actualResult, expectedResult, "Not selected all CheckBoxes");
+        Assert.assertEquals(actualResult, expectedResult, "\nNot selected all CheckBoxes\n");
     }
 
     @Test
@@ -196,7 +194,7 @@ public class CheckBoxPageTests extends BaseTest {
         checkBoxPage.clickReact();
         checkBoxPage.clickAngular();
         checkBoxPage.clickVeu();
-        checkBoxPage.clickPublicOffice();
+        checkBoxPage.clickOfficePublic();
         checkBoxPage.clickPrivateOffice();
         checkBoxPage.clickClassified();
         checkBoxPage.clickGeneral();
@@ -224,7 +222,7 @@ public class CheckBoxPageTests extends BaseTest {
                 wordFile
                 excelFile""";
 
-        Assert.assertEquals(actualResult, expectedResult, "Not selected all CheckBoxes");
+        Assert.assertEquals(actualResult, expectedResult, "\nNot selected all CheckBoxes\n");
     }
 
     @Test
@@ -237,7 +235,7 @@ public class CheckBoxPageTests extends BaseTest {
         checkBoxPage.clickReact();
         checkBoxPage.clickAngular();
         checkBoxPage.clickVeu();
-        checkBoxPage.clickPublicOffice();
+        checkBoxPage.clickOfficePublic();
         checkBoxPage.clickPrivateOffice();
         checkBoxPage.clickClassified();
         checkBoxPage.clickGeneral();
@@ -265,23 +263,22 @@ public class CheckBoxPageTests extends BaseTest {
                 wordFile
                 excelFile""";
 
-        Assert.assertEquals(actualResult, expectedResult, "Not selected all CheckBoxes");
+        Assert.assertEquals(actualResult, expectedResult, "\nNot selected all CheckBoxes\n");
 
-        checkBoxPage.clickExpandAll();
         checkBoxPage.clickNotes();
         checkBoxPage.clickCommands();
         checkBoxPage.clickReact();
         checkBoxPage.clickAngular();
         checkBoxPage.clickVeu();
-        checkBoxPage.clickPublicOffice();
+        checkBoxPage.clickOfficePublic();
         checkBoxPage.clickPrivateOffice();
         checkBoxPage.clickClassified();
         checkBoxPage.clickGeneral();
         checkBoxPage.clickWordFileDoc();
         checkBoxPage.clickExcelFileDoc();
 
-        boolean isMissingMessageNotShown = checkBoxPage.verifyResultMessageIsMissing();
+        boolean isResultMessageShown = checkBoxPage.verifyResultMessageIsMissing();
 
-        Assert.assertTrue(isMissingMessageNotShown, "Found some selected CheckBoxes");
+        Assert.assertTrue(isResultMessageShown, "\nFound some selected CheckBoxes\n");
     }
 }

@@ -13,7 +13,7 @@ public class RadioButtonPage extends BasePage {
     private final By resultMessage = By.xpath("//p[contains(@class, 'mt-3')]");
     private final By textSuccessMessage = By.xpath("//span[@class='text-success']");
 
-    public String getRadioButtonText() {
+    public String getHeaderText() {
         return find(radioButtonText).getText();
     }
 
@@ -42,14 +42,14 @@ public class RadioButtonPage extends BasePage {
     }
 
     public boolean isResultMessageDisplayed() {
-        return driver.findElements(By.id("result")).isEmpty();
+        return driver.findElements(resultMessage).isEmpty();
     }
 
     public void clickAnswer(String answer) {
         switch (answer) {
             case "Yes" -> find(yesAnswerLabel).click();
-            case "No" -> find(noAnswerLabel).click();
             case "Impressive" -> find(impressiveLabel).click();
+            case "No" -> find(noAnswerLabel).click();
         }
     }
 
@@ -58,11 +58,11 @@ public class RadioButtonPage extends BasePage {
             case "Yes" -> {
                 return find(yesAnswerLabel).isEnabled();
             }
-            case "No" -> {
-                return find(noAnswerLabel).isEnabled();
-            }
             case "Impressive" -> {
                 return find(impressiveLabel).isEnabled();
+            }
+            case "No" -> {
+                return find(noAnswerLabel).isEnabled();
             }
         }
         return true;

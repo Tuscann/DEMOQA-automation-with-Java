@@ -7,6 +7,8 @@ import org.testng.annotations.Test;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+import static demoqa.base.BasePage.delay;
+
 public class PracticeFormPageTests extends BaseTest {
     @Test
     public void VerifyAllTextAndPlaceHolders() {
@@ -206,9 +208,84 @@ public class PracticeFormPageTests extends BaseTest {
     }
 
     @Test
-    public void ClickEmptyFormVerifyColors() {
+    public void ClickSubmitOnEmptyFormAndVerifyColors() {
         navigateToUrl("automation-practice-form");
         practiceFormPage.clickSubmitButton();
+        delay(300); //TODO
 
+        String firstNameBorderColor = practiceFormPage.getColorOfFirstNameBorder();
+        String lastNameBorderColor = practiceFormPage.getColorOfLastNameBorder();
+        String emailBorderColor = practiceFormPage.getColorOfEmail();
+        String maleGenderColor = practiceFormPage.getMaleGenderColor();
+        String femaleGenderColor = practiceFormPage.getFemaleGenderColor();
+        String otherGenderColor = practiceFormPage.getOtherGenderColor();
+        String mobileBorderColor = practiceFormPage.getColorOfMobile();
+        String dateOfBirth = practiceFormPage.getColorOfDateOfBirth();
+        String sportColor = practiceFormPage.getHobbiesSportColor();
+        String readingColor = practiceFormPage.getHobbiesReadingColor();
+        String musicColor = practiceFormPage.getHobbiesMusicColor();
+        String currentAddress = practiceFormPage.getCurrentAddressColor();
+
+        String expectedRedColor = "rgb(220, 53, 69)";
+        String expectedRedColorText = "rgba(220, 53, 69, 1)";
+        String expectedGreenColor = "rgb(40, 167, 69)";
+        String expectedGreenColorText = "rgba(40, 167, 69, 1)";
+
+        Assert.assertEquals(firstNameBorderColor, expectedRedColor, "\nWrong color.Expected Red \n");
+        Assert.assertEquals(lastNameBorderColor, expectedRedColor, "\nWrong color.Expected Red \n");
+        Assert.assertEquals(emailBorderColor, expectedGreenColor, "\nWrong color.Expected Green \n");
+        Assert.assertEquals(maleGenderColor, expectedRedColorText, "\nWrong color.Expected Red \n");
+        Assert.assertEquals(femaleGenderColor, expectedRedColorText, "\nWrong color.Expected Red \n");
+        Assert.assertEquals(otherGenderColor, expectedRedColorText, "\nWrong color.Expected Red \n");
+        Assert.assertEquals(mobileBorderColor, expectedRedColor, "\nWrong color.Expected Red \n");
+        Assert.assertEquals(dateOfBirth, expectedGreenColor, "\nWrong color.Expected Red \n");
+        Assert.assertEquals(sportColor, expectedGreenColorText, "\nWrong color.Expected Green \n");
+        Assert.assertEquals(readingColor, expectedGreenColorText, "\nWrong color.Expected Red \n");
+        Assert.assertEquals(musicColor, expectedGreenColorText, "\nWrong color.Expected Green \n");
+        Assert.assertEquals(currentAddress, expectedGreenColor, "\nWrong color.Expected Green \n");
+    }
+
+    @Test
+    public void VerifyColorsChangeFromRedToGreen() {
+        navigateToUrl("automation-practice-form");
+        practiceFormPage.clickSubmitButton();
+        delay(200); //TODO
+
+        String expectedFirstName = "Zhivko";
+        String expectedLastName = "Petrov";
+        String expectedRedColor = "rgb(220, 53, 69)";
+        String expectedRedColorText = "rgba(220, 53, 69, 1)";
+        String expectedGreenColor = "rgb(40, 167, 69)";
+        String expectedGreenColorText = "rgba(40, 167, 69, 1)";
+        String expectedFemaleGender = "Female";
+        String expectedMobileNumber = "1234567890";
+
+        String firstNameBorderColorBefore = practiceFormPage.getColorOfFirstNameBorder();
+        Assert.assertEquals(firstNameBorderColorBefore, expectedRedColor, "\nWrong color.Expected Red \n");
+        practiceFormPage.setFirstName(expectedFirstName);
+        delay(200); //TODO
+        String firstNameBorderColorAfter = practiceFormPage.getColorOfFirstNameBorder();
+        Assert.assertEquals(firstNameBorderColorAfter, expectedGreenColor, "\nWrong color.Expected Green \n");
+
+        String lastNameBorderColorBefore = practiceFormPage.getColorOfLastNameBorder();
+        Assert.assertEquals(lastNameBorderColorBefore, expectedRedColor, "\nWrong color.Expected Red \n");
+        practiceFormPage.setLastName(expectedLastName);
+        delay(200); //TODO
+        String lastNameBorderColorAfter = practiceFormPage.getColorOfLastNameBorder();
+        Assert.assertEquals(lastNameBorderColorAfter, expectedGreenColor, "\nWrong color.Expected Green \n");
+
+        String femaleGenderColorBefore = practiceFormPage.getFemaleGenderColor();
+        Assert.assertEquals(femaleGenderColorBefore, expectedRedColorText, "\nWrong color.Expected Red \n");
+        practiceFormPage.clickGenderRadioButton(expectedFemaleGender);
+        delay(200); //TODO
+        String femaleGenderColorAfter = practiceFormPage.getFemaleGenderColor();
+        Assert.assertEquals(femaleGenderColorAfter, expectedGreenColorText, "\nWrong color.Expected Green \n");
+
+        String mobileBorderColorBefore = practiceFormPage.getColorOfMobile();
+        Assert.assertEquals(mobileBorderColorBefore, expectedRedColor, "\nWrong color.Expected Red \n");
+        practiceFormPage.setMobile(expectedMobileNumber);
+        delay(200); //TODO
+        String mobileBorderColorAfter = practiceFormPage.getColorOfMobile();
+        Assert.assertEquals(mobileBorderColorAfter, expectedGreenColor, "\nWrong color.Expected Green \n");
     }
 }

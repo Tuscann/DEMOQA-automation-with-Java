@@ -357,4 +357,54 @@ public class PracticeFormPage extends BasePage {
         find(cities).sendKeys(expectedCity);
         find(cities).sendKeys("" + Keys.ENTER);
     }
+
+    public String getColorOfFirstNameBorder() {
+        WebElement xaaa = driver.findElement(firstName);
+
+        return xaaa.getCssValue("border-color");
+    }
+
+    public String getColorOfLastNameBorder() {
+        return driver.findElement(lastName).getCssValue("border-color");
+    }
+
+    public String getColorOfEmail() {
+        return driver.findElement(email).getCssValue("border-color");
+    }
+
+    public String getMaleGenderColor() {
+        return driver.findElement(maleRadioButtonLabel).getCssValue("color");
+    }
+
+    public String getFemaleGenderColor() {
+        return driver.findElement(femaleRadioButtonLabel).getCssValue("color");
+    }
+
+    public String getOtherGenderColor() {
+        return driver.findElement(otherRadioButtonLabel).getCssValue("color");
+    }
+
+    public String getColorOfMobile() {
+        return driver.findElement(mobile).getCssValue("border-color");
+    }
+
+    public String getColorOfDateOfBirth() {
+        return driver.findElement(dateOfBirth).getCssValue("border-color");
+    }
+
+    public String getHobbiesReadingColor() {
+        return driver.findElement(readingLabel).getCssValue("color");
+    }
+
+    public String getHobbiesSportColor() {
+        return driver.findElement(sportsLabel).getCssValue("color");
+    }
+
+    public String getHobbiesMusicColor() {
+        return driver.findElement(musicLabel).getCssValue("color");
+    }
+
+    public String getCurrentAddressColor() {
+        return driver.findElement(currentAddressArea).getCssValue("border-color");
+    }
 }
