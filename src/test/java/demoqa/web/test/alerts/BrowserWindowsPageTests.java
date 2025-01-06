@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 
 public class BrowserWindowsPageTests extends BaseTest {
 
-    @Test
+    @Test(enabled = true)
     public void VerifyAllTextOnPage() {
         navigateToUrl("browser-windows");
 
@@ -20,13 +20,13 @@ public class BrowserWindowsPageTests extends BaseTest {
         String actualNewWindowText = browserWindowsPage.getNewWindowText();
         String actualNewWindowMessageText = browserWindowsPage.getNewWindowMessageText();
 
-        Assert.assertEquals(actualBrowserWindowsText, browserWindowsText, "Missing Browser Windows");
-        Assert.assertEquals(actualNewTabText, newTabText, "Missing New Tab");
-        Assert.assertEquals(actualNewWindowText, newWindow, "Missing New Window");
-        Assert.assertEquals(actualNewWindowMessageText, newWindowMessage, "Missing New Window Message");
+        Assert.assertEquals(actualBrowserWindowsText, browserWindowsText, "\nMissing Browser Windows.\n");
+        Assert.assertEquals(actualNewTabText, newTabText, "\nMissing New Tab.\n");
+        Assert.assertEquals(actualNewWindowText, newWindow, "\nMissing New Window.\n");
+        Assert.assertEquals(actualNewWindowMessageText, newWindowMessage, "\nMissing New Window Message.\n");
     }
 
-    @Test
+    @Test(enabled = true)
     public void ClickNewTabButton() {
         navigateToUrl("browser-windows");
         browserWindowsPage.clickNewTabButton();
@@ -34,10 +34,10 @@ public class BrowserWindowsPageTests extends BaseTest {
         String expectedNewTabUrl = "https://demoqa.com/sample";
         String actualNewTabUrl = browserWindowsPage.getNewTabUrl();
 
-        Assert.assertEquals(actualNewTabUrl, expectedNewTabUrl, "\n Actual & Expected URL Do Not Match \n");
+        Assert.assertEquals(actualNewTabUrl, expectedNewTabUrl, "\n Actual & Expected URL Do Not Match.\n");
     }
 
-    @Test
+    @Test(enabled = true)
     public void ClickNewWindowButton() {
         navigateToUrl("browser-windows");
         browserWindowsPage.clickNewWindowButton();
@@ -45,7 +45,7 @@ public class BrowserWindowsPageTests extends BaseTest {
         String expectedNewTabUrl = "https://demoqa.com/sample";
         String actualNewTabUrl = browserWindowsPage.getNewWindowUrl();
 
-        Assert.assertEquals(actualNewTabUrl, expectedNewTabUrl, "\n Actual & Expected URL Do Not Match \n");
+        Assert.assertEquals(actualNewTabUrl, expectedNewTabUrl, "\n Actual & Expected URL Do Not Match. \n");
     }
 
     @Test(enabled = false)
@@ -54,8 +54,8 @@ public class BrowserWindowsPageTests extends BaseTest {
         browserWindowsPage.clickNewWindowMessageButton();
 
         String expectedBrowserMessage = "Knowledge increases by sharing but not by saving. Please share this website with your friends and in your organization.";
-        String actualBrowserMessage = browserWindowsPage.getNewWindowMessage();
+        String actualBrowserMessage = browserWindowsPage.getBrowserMessage();
 
-        Assert.assertEquals(actualBrowserMessage, expectedBrowserMessage, "\n Wrong message \n");
+        Assert.assertEquals(actualBrowserMessage, expectedBrowserMessage, "\n Wrong message. \n");
     }
 }

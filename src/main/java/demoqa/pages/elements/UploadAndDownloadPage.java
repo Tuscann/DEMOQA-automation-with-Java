@@ -18,15 +18,6 @@ public class UploadAndDownloadPage extends BasePage {
         return find(uploadFilePath).getText();
     }
 
-    public String getFilePathFromResources(String fileName) {
-        File file = new File(System.getProperty("user.dir") + "/resources/screenshots/" + fileName);
-        if (file.exists()) {
-            return file.getAbsolutePath();
-        } else {
-            return null;
-        }
-    }
-
     public String getDownloadButtonText() {
         return find(downloadButton).getText();
     }
@@ -43,6 +34,15 @@ public class UploadAndDownloadPage extends BasePage {
         find(downloadButton).click();
     }
 
+    public String getFilePathFromResources(String fileName) {
+        File file = new File(System.getProperty("user.dir") + "/resources/screenshots/" + fileName);
+        if (file.exists()) {
+            return file.getAbsolutePath();
+        } else {
+            return null;
+        }
+    }
+
     public void uploadFile(String pathOfFile) {
         WebElement fileInput = driver.findElement(chooseFileButton);
 
@@ -52,7 +52,6 @@ public class UploadAndDownloadPage extends BasePage {
     public boolean checkIfFileExists(String fileName) {
         String downloadDir = Paths.get(System.getProperty("user.home"), "Downloads").toString();
 
-        delay(1000); //TODO
         File downloadedFile = new File(downloadDir + File.separator + fileName);
 
         return downloadedFile.exists();

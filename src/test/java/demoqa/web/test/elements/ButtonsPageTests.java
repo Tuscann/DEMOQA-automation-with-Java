@@ -5,7 +5,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class ButtonsPageTests extends BaseTest {
-
+    @Test(enabled = true)
     public void VerifyAllTextOnPage() {
         navigateToUrl("buttons");
 
@@ -14,18 +14,34 @@ public class ButtonsPageTests extends BaseTest {
         String expectedRightClickMeButtonText = "Right Click Me";
         String expectedDynamicClickMeButtonText = "Click Me";
 
-        String buttonText = buttonsPage.getButtonsText();
-        String actualDoubleClickButtonText = buttonsPage.getDoubleButtonText();
-        String actualRightClickMeButtonText = buttonsPage.getRightButtonText();
-        String actualDynamicClickMeButtonText = buttonsPage.getDynamicButtonText();
+        String blueBorderColor = "rgb(0, 123, 255)";
+        String blueBackgroundColor = "rgba(0, 123, 255, 1)";
 
-        Assert.assertEquals(buttonText, expectedHeaderButtonsText, "Wrong name Buttons");
-        Assert.assertEquals(actualDoubleClickButtonText, expectedDoubleClickButtonText, "Wrong name Double Click Me");
-        Assert.assertEquals(actualRightClickMeButtonText, expectedRightClickMeButtonText, "Wrong name Right Click Me");
-        Assert.assertEquals(actualDynamicClickMeButtonText, expectedDynamicClickMeButtonText, "Wrong name Click Me");
+        String actualHeaderButtonText = buttonsPage.getButtonsText();
+
+        String actualDoubleClickButtonText = buttonsPage.getDoubleButtonText();
+        String doubleClickButtonBorderColor = buttonsPage.getDoubleClickButtonBorderColor();
+        String doubleClickButtonBackGroundColor = buttonsPage.getDoubleClickButtonBackGroundColor();
+        String actualRightClickMeButtonText = buttonsPage.getRightButtonText();
+        String rightClickMeButtonBorderColor = buttonsPage.getRightClickMeButtonBorderColor();
+        String rightClickMeButtonBackGroundColor = buttonsPage.getRightClickMeButtonBackGroundColor();
+        String actualClickMeButtonText = buttonsPage.getDynamicButtonText();
+        String clickMeButtonBorderColor = buttonsPage.getClickMeButtonBorderColor();
+        String clickMeButtonBackGroundColor = buttonsPage.getClickMeButtonBackGroundColor();
+
+        Assert.assertEquals(actualHeaderButtonText, expectedHeaderButtonsText, "\nWrong header Buttons.\n");
+        Assert.assertEquals(actualDoubleClickButtonText, expectedDoubleClickButtonText, "\nWrong name Double Click Me.\n");
+        Assert.assertEquals(doubleClickButtonBorderColor, blueBorderColor, "\nExpected border blue color.\n");
+        Assert.assertEquals(doubleClickButtonBackGroundColor, blueBackgroundColor, "\nExpected border blue color.\n");
+        Assert.assertEquals(actualRightClickMeButtonText, expectedRightClickMeButtonText, "\nWrong name Right Click Me.\n");
+        Assert.assertEquals(rightClickMeButtonBorderColor, blueBorderColor, "\nExpected border blue color.");
+        Assert.assertEquals(rightClickMeButtonBackGroundColor, blueBackgroundColor, "\nExpected border blue color.");
+        Assert.assertEquals(actualClickMeButtonText, expectedDynamicClickMeButtonText, "\nWrong name Click Me.\n");
+        Assert.assertEquals(clickMeButtonBorderColor, blueBorderColor, "\nExpected border blue color.\n");
+        Assert.assertEquals(clickMeButtonBackGroundColor, blueBackgroundColor, "\nExpected border blue color.\n");
     }
 
-    @Test
+    @Test(enabled = true)
     public void ClickOnThreeButtonsAndVerifyMessages() {
         navigateToUrl("buttons");
 
@@ -36,7 +52,6 @@ public class ButtonsPageTests extends BaseTest {
         buttonsPage.doubleClickOnButton();
         buttonsPage.rightClickOnButton();
         buttonsPage.clickOnClickMeButton();
-        buttonsPage.getButtonsText();
 
         String actualDoubleClickMessage = buttonsPage.getDoubleClickMessage();
         String actualRightClickMessage = buttonsPage.getRightClickMessage();

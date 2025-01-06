@@ -8,7 +8,7 @@ import static demoqa.base.BasePage.delay;
 
 public class WebTablePageTests extends BaseTest {
 
-    @Test
+    @Test(enabled = true)
     public void VerifyAllTextOnPage() {
         navigateToUrl("webtables");
 
@@ -78,7 +78,7 @@ public class WebTablePageTests extends BaseTest {
 
     }
 
-    @Test
+    @Test(enabled = true)
     public void CheckAllLabelAndPlaceHoldersOnRegistrationForm() {
         navigateToUrl("webtables");
 
@@ -129,7 +129,7 @@ public class WebTablePageTests extends BaseTest {
         Assert.assertEquals(actualSubmitButtonText, expectedSubmitButtonText, "Not submit button text");
     }
 
-    @Test
+    @Test(enabled = true)
     public void UpdateFirstNameAndLastNameOnFirstUser() {
         navigateToUrl("webtables");
         String email = "cierra@example.com";
@@ -148,7 +148,7 @@ public class WebTablePageTests extends BaseTest {
         Assert.assertEquals(actualLastName, expectedLastName, "\n Actual & Expected LastName Do Not Match \n");
     }
 
-    @Test
+    @Test(enabled = true)
     public void UpdateAgeOnFirstUser() {
         navigateToUrl("webtables");
 
@@ -162,7 +162,7 @@ public class WebTablePageTests extends BaseTest {
         Assert.assertEquals(actualAge, expectedAge, "\n Actual & Expected Ages Do Not Match \n");
     }
 
-    @Test
+    @Test(enabled = true)
     public void UpdateEmailOnFirstUser() {
         navigateToUrl("webtables");
         String oldEmail = "cierra@example.com";
@@ -176,7 +176,7 @@ public class WebTablePageTests extends BaseTest {
         Assert.assertEquals(actualEmail, newEmail, "\n Actual & Expected Email Do Not Match \n");
     }
 
-    @Test
+    @Test(enabled = true)
     public void DeleteDefaultThreeRows() {
         navigateToUrl("webtables");
 
@@ -193,7 +193,7 @@ public class WebTablePageTests extends BaseTest {
         Assert.assertEquals(expectedResult, "No rows found", "\nMissing message\n");
     }
 
-    @Test
+    @Test(enabled = true)
     public void AddNewRow() {
         navigateToUrl("webtables");
 
@@ -229,7 +229,7 @@ public class WebTablePageTests extends BaseTest {
         Assert.assertEquals(actualDepartment, expectedDepartment, "\nWrong department\n");
     }
 
-    @Test
+    @Test(enabled = true)
     public void VerifyPreviousAndNextButtonsActive() {
         navigateToUrl("webtables");
 
@@ -272,7 +272,7 @@ public class WebTablePageTests extends BaseTest {
         Assert.assertEquals(actualPageJump, pageJump, "\nPage jump do not match\n");
     }
 
-    @Test
+    @Test(enabled = true)
     public void VerifyPreviousAndNextButtonAreNotActiveAfterLoadPage() {
         navigateToUrl("webtables");
 
@@ -280,7 +280,7 @@ public class WebTablePageTests extends BaseTest {
         Assert.assertFalse(webTablesPage.checkNextButtonIsActive(), "\nNot active Next button.\n");
     }
 
-    @Test
+    @Test(enabled = true)
     public void SearchWithNoExistingCategoryAndCheckResults() {
         navigateToUrl("webtables");
 
@@ -291,7 +291,7 @@ public class WebTablePageTests extends BaseTest {
         Assert.assertEquals(expectedResult, "No rows found", "\nMissing message\n");
     }
 
-    @Test
+    @Test(enabled = true)
     public void SearchWithExistingCategoryAndCheckResults() {
         navigateToUrl("webtables");
 
@@ -319,7 +319,7 @@ public class WebTablePageTests extends BaseTest {
         Assert.assertEquals(actualDepartment, searchedWord, "\nWrong department.\n");
     }
 
-    @Test
+    @Test(enabled = true)
     public void SubmitEmptyFormAndVerifyRedLines() {
         navigateToUrl("webtables");
         webTablesPage.clickAddButton();
@@ -331,7 +331,7 @@ public class WebTablePageTests extends BaseTest {
         Assert.assertTrue(isAllBordersRed);
     }
 
-    @Test
+    @Test(enabled = true)
     public void SelectAllRowsPerPage() {
         navigateToUrl("webtables");
         String expected5rows = "5 rows";
@@ -366,7 +366,7 @@ public class WebTablePageTests extends BaseTest {
         Assert.assertEquals(countOfLines, 100, "Expected 100 rows");
     }
 
-    @Test
+    @Test(enabled = true)
     public void VerifyColorsChangeFromRedToGreen() {
         navigateToUrl("webtables");
         webTablesPage.clickAddButton();

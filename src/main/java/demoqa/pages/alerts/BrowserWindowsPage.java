@@ -63,8 +63,9 @@ public class BrowserWindowsPage extends BasePage {
                 //driver.switchTo().window(newWindow);
                 driver.switchTo().window(window);
 
-                WebElement messageElement = driver2.findElement(By.xpath("/html/body/text()"));
-                actualMessage = messageElement.getText().trim();
+                WebElement textElement = driver.findElement(By.xpath("/html/body/text()"));
+                actualMessage = textElement.getText();
+
                 break;
             }
         }
@@ -86,22 +87,5 @@ public class BrowserWindowsPage extends BasePage {
 
     public String getBrowserWindowsText() {
         return find(header).getText();
-    }
-
-    public String getNewWindowMessage() {
-        String originalWindow = driver.getWindowHandle();
-        Set<String> windowHandles = driver.getWindowHandles();
-
-        String message = "";
-        String newWindow = null;
-        for (String handle : windowHandles) {
-            if (!handle.equals(originalWindow)) {
-                newWindow = handle;
-                driver.switchTo().window(newWindow);
-                message = driver.findElement(By.tagName("body")).getText();
-                break;
-            }
-        }
-        return message;
     }
 }

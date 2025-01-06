@@ -5,7 +5,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class DynamicPropertiesPageTests extends BaseTest {
-    @Test
+    @Test(enabled = true)
     public void VerifyAllTextOnPage() {
         navigateToUrl("dynamic-properties");
 
@@ -28,7 +28,7 @@ public class DynamicPropertiesPageTests extends BaseTest {
         Assert.assertEquals(visibleAfter5SecondsButtonText, expectedVisibleAfter5SecondsButtonText, "Visible after 5 seconds");
     }
 
-    @Test
+    @Test(enabled = true)
     public void VerifyMissingButtonOnPage() {
         navigateToUrl("dynamic-properties");
 
@@ -43,7 +43,7 @@ public class DynamicPropertiesPageTests extends BaseTest {
         Assert.assertFalse(isVisibleAfter5SecondsButton, "Visible after 5 button is visible now");
     }
 
-    @Test
+    @Test(enabled = true)
     public void CheckAfter5secondsAllButtons() {
         navigateToUrl("dynamic-properties");
 

@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 
 public class FramesPageTests extends BaseTest {
 
-    @Test
+    @Test(enabled = true)
     public void VerifyAllTextOnPage() {
         navigateToUrl("frames");
 
@@ -16,27 +16,27 @@ public class FramesPageTests extends BaseTest {
         String actualHeading = framesPage.getFramesHeadingText();
         String actualText = framesPage.getText();
 
-        Assert.assertEquals(actualHeading, expectedHeading, "Wrong heading");
-        Assert.assertEquals(actualText, expectedText, "Wrong text");
+        Assert.assertEquals(actualHeading, expectedHeading, "\nWrong heading.\n");
+        Assert.assertEquals(actualText, expectedText, "\nWrong text.\n");
     }
 
-    @Test
+    @Test(enabled = true)
     public void VerifyHeadingTextInFirstIframe() {
         navigateToUrl("frames");
         String actualText = framesPage.getHeadingTextInFirstIframe();
 
         String expectedHeading = "This is a sample page";
 
-        Assert.assertEquals(actualText, expectedHeading, "Wrong heading");
+        Assert.assertEquals(actualText, expectedHeading, "\nWrong heading in first Iframe.\n");
     }
 
-    @Test
+    @Test(enabled = true)
     public void VerifyHeadingTextInSecondIframe() {
         navigateToUrl("frames");
         String actualText = framesPage.getHeadingTextInSecondIframe();
 
         String expectedHeading = "This is a sample page";
 
-        Assert.assertEquals(actualText, expectedHeading, "Wrong heading");
+        Assert.assertEquals(actualText, expectedHeading, "\nWrong heading in second Iframe.\n");
     }
 }

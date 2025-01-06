@@ -2,6 +2,10 @@ package demoqa.pages.elements;
 
 import demoqa.base.BasePage;
 import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 import static utilities.ActionUtility.MoveToElementSelenium;
 import static utilities.JavaScriptUtility.scrollToElementJS;
@@ -110,10 +114,10 @@ public class TextBoxPage extends BasePage {
         click(submitButton);
     }
 
-    public String isBorderRedAroundEmail() {
-        delay(500);
+    public String isBorderRedAroundEmail(String color) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(6));
+        wait.until(ExpectedConditions.attributeToBe(emailField, "border", color));
 
-        String str = find(emailField).getCssValue("border");
-        return str.substring(str.length() - 20);
+        return find(emailField).getCssValue("border");
     }
 }

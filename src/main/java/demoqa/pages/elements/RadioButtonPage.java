@@ -54,17 +54,12 @@ public class RadioButtonPage extends BasePage {
     }
 
     public boolean isAnswerDisable(String answer) {
+        boolean isDisabled = false;
         switch (answer) {
-            case "Yes" -> {
-                return find(yesAnswerLabel).isEnabled();
-            }
-            case "Impressive" -> {
-                return find(impressiveLabel).isEnabled();
-            }
-            case "No" -> {
-                return find(noAnswerLabel).isEnabled();
-            }
+            case "Yes" -> isDisabled = find(yesAnswerLabel).isEnabled();
+            case "Impressive" -> isDisabled = find(impressiveLabel).isEnabled();
+            case "No" -> isDisabled = find(noAnswerLabel).isEnabled();
         }
-        return true;
+        return isDisabled;
     }
 }

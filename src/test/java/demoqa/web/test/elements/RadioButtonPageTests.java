@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 
 public class RadioButtonPageTests extends BaseTest {
 
-    @Test
+    @Test(enabled = true)
     public void CheckAllTextOnPage() {
         navigateToUrl("radio-button");
 
@@ -30,7 +30,7 @@ public class RadioButtonPageTests extends BaseTest {
         Assert.assertTrue(radioButtonPage.isResultMessageDisplayed());
     }
 
-    @Test
+    @Test(enabled = true)
     public void VerifyAnswerNoIsDisabled() {
         navigateToUrl("radio-button");
         String expectedNoAnswer = "No";
@@ -38,7 +38,7 @@ public class RadioButtonPageTests extends BaseTest {
         Assert.assertTrue(radioButtonPage.isAnswerDisable(expectedNoAnswer));
     }
 
-    @Test
+    @Test(enabled = true)
     public void ChooseAnswerYes() {
         navigateToUrl("radio-button");
 
@@ -51,7 +51,7 @@ public class RadioButtonPageTests extends BaseTest {
         Assert.assertEquals(actualAnswer, "You have selected " + expectedAnswer, "\nNot chosen yes answer\n");
     }
 
-    @Test
+    @Test(enabled = true)
     public void ChooseAnswerImpressive() {
         navigateToUrl("radio-button");
 
@@ -64,7 +64,7 @@ public class RadioButtonPageTests extends BaseTest {
         Assert.assertEquals(actualAnswer, "You have selected " + expectedAnswer, "\nNot chosen Impressive answer\n");
     }
 
-    @Test
+    @Test(enabled = true)
     public void VerifyGreenColorOfMessage() {
         navigateToUrl("radio-button");
 

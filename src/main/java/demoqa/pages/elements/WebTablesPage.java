@@ -42,14 +42,6 @@ public class WebTablesPage extends BasePage {
     private final By tableHeader = By.className("rt-thead");
     private final By tableInformation = By.className("rt-tr-group");
 
-
-    public void clickRowPerPage(String row) {
-        WebElement dropdownElement = driver.findElement(rowsPerPage); // Replace with your locator
-
-        Select dropdown = new Select(dropdownElement);
-        dropdown.selectByVisibleText(row);
-    }
-
     public String getSearchBoxPlaceholder() {
         return find(searchBox).getDomAttribute("placeholder");
     }
@@ -104,6 +96,80 @@ public class WebTablesPage extends BasePage {
 
     public String getNoRowsFound() {
         return find(noRowsFound).getText();
+    }
+
+    public int getCountOfLines() {
+        List<WebElement> webElements = driver.findElements(lineCounts);
+
+        return webElements.size();
+    }
+
+    public String getPageInfo() {
+        return find(pageInfo).getText();
+    }
+
+    public String getPageJump() {
+        return find(pageJump).getDomAttribute("value");
+    }
+
+    public String getButtonAddText() {
+        return find(addNewRecordButton).getText();
+    }
+
+    public String getButtonNextText() {
+        return find(nextButton).getText();
+    }
+
+    public String getButtonPreviousText() {
+        return find(previousButton).getText();
+    }
+
+    public String getTableHeader() {
+        return find(tableHeader).getText();
+    }
+
+    public String getHeader() {
+        return find(header).getText();
+    }
+
+    public String getSubmitButtonText() {
+        return find(submitButton).getText();
+    }
+
+    public String getFirstNameBorderColor() {
+        return find(registrationFirstNameField).getCssValue("border");
+    }
+
+    public String getLastNameBorderColor() {
+        return find(registrationLastNameField).getCssValue("border");
+    }
+
+    public String getEmailBorderColor() {
+        return find(registrationEmailField).getCssValue("border");
+    }
+
+    public String getAgeBorderColor() {
+        return find(registrationAgeField).getCssValue("border");
+    }
+
+    public String getSalaryBorderColor() {
+        return find(registrationSalaryField).getCssValue("border");
+    }
+
+    public String getDepartmentBorderColor() {
+        return find(registrationDepartmentField).getCssValue("border");
+    }
+
+    public String getTableData() {
+        List<WebElement> webElements = driver.findElements(tableInformation);
+
+        List<String> allText = webElements.stream()
+                .map(WebElement::getText)
+                .filter(text -> !text.isEmpty())
+                .map(String::trim)
+                .toList();
+
+        return allText.toString();
     }
 
     public void setAge(String age) {
@@ -249,12 +315,7 @@ public class WebTablesPage extends BasePage {
                 }
             }
         }
-
         return bordersRed;
-    }
-
-    public String getSubmitButtonText() {
-        return find(submitButton).getText();
     }
 
     public void clickNexButton() {
@@ -262,14 +323,6 @@ public class WebTablesPage extends BasePage {
         wait.until(ExpectedConditions.elementToBeClickable(nextButton));
 
         click(nextButton);
-    }
-
-    public String getFirstNameBorderColor() {
-        return find(registrationFirstNameField).getCssValue("border");
-    }
-
-    public String getLastNameBorderColor() {
-        return find(registrationLastNameField).getCssValue("border");
     }
 
     public boolean isFirstNameBorderColorGreen(String color) {
@@ -286,19 +339,11 @@ public class WebTablesPage extends BasePage {
         return find(registrationLastNameField).getCssValue("border").equals(color);
     }
 
-    public String getEmailBorderColor() {
-        return find(registrationEmailField).getCssValue("border");
-    }
-
     public boolean isEmailBorderColorGreen(String color) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(6));
         wait.until(ExpectedConditions.attributeContains(registrationEmailField, "border", color));
 
         return find(registrationEmailField).getCssValue("border").equals(color);
-    }
-
-    public String getAgeBorderColor() {
-        return find(registrationAgeField).getCssValue("border");
     }
 
     public boolean isAgeBorderColorGreen(String color) {
@@ -308,19 +353,11 @@ public class WebTablesPage extends BasePage {
         return find(registrationAgeField).getCssValue("border").equals(color);
     }
 
-    public String getSalaryBorderColor() {
-        return find(registrationSalaryField).getCssValue("border");
-    }
-
     public boolean isSalaryBorderColorGreen(String color) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(6));
         wait.until(ExpectedConditions.attributeContains(registrationSalaryField, "border", color));
 
         return find(registrationSalaryField).getCssValue("border").equals(color);
-    }
-
-    public String getDepartmentBorderColor() {
-        return find(registrationDepartmentField).getCssValue("border");
     }
 
     public boolean isDepartmentBorderColorGreen(String color) {
@@ -330,50 +367,10 @@ public class WebTablesPage extends BasePage {
         return find(registrationDepartmentField).getCssValue("border").equals(color);
     }
 
-    public int getCountOfLines() {
-        List<WebElement> webElements = driver.findElements(lineCounts);
+    public void clickRowPerPage(String row) {
+        WebElement dropdownElement = driver.findElement(rowsPerPage);
 
-        return webElements.size();
-    }
-
-    public String getPageInfo() {
-        return find(pageInfo).getText();
-    }
-
-    public String getPageJump() {
-        return find(pageJump).getDomAttribute("value");
-    }
-
-
-    public String getButtonAddText() {
-        return find(addNewRecordButton).getText();
-    }
-
-    public String getButtonNextText() {
-        return find(nextButton).getText();
-    }
-
-    public String getButtonPreviousText() {
-        return find(previousButton).getText();
-    }
-
-    public String getTableHeader() {
-        return find(tableHeader).getText();
-    }
-
-    public String getTableData() {
-        List<WebElement> webElements = driver.findElements(tableInformation);
-
-        List<String> allText = webElements.stream()
-                .map(WebElement::getText)
-                .filter(text -> !text.isEmpty())
-                .map(String::trim)
-                .toList();
-
-        return allText.toString();
-    }
-
-    public String getHeader() {
-        return find(header).getText();
+        Select dropdown = new Select(dropdownElement);
+        dropdown.selectByVisibleText(row);
     }
 }

@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 
 public class UploadAndDownloadPageTests extends BaseTest {
 
-    @Test
+    @Test(enabled = true)
     public void VerifyAllTextOnPage() {
         navigateToUrl("upload-download");
 
@@ -18,9 +18,9 @@ public class UploadAndDownloadPageTests extends BaseTest {
         String downloadButtonText = uploadAndDownloadPage.getDownloadButtonText();
         String selectAFileText = uploadAndDownloadPage.getSelectAFileText();
 
-        Assert.assertEquals(uploadAndDownloadText, expectedUploadAndDownloadText, "Upload and Download text mismatch");
-        Assert.assertEquals(downloadButtonText, expectedDownloadButtonText, "Download button mismatch");
-        Assert.assertEquals(selectAFileText, expectedSelectAFileText, "Select a file mismatch");
+        Assert.assertEquals(uploadAndDownloadText, expectedUploadAndDownloadText, "\nUpload and Download text mismatch.\n");
+        Assert.assertEquals(downloadButtonText, expectedDownloadButtonText, "\nDownload button mismatch.\n");
+        Assert.assertEquals(selectAFileText, expectedSelectAFileText, "\nSelect a file mismatch.\n");
     }
 
     @Test(enabled = true)
@@ -35,7 +35,7 @@ public class UploadAndDownloadPageTests extends BaseTest {
         String actualFakeUploadFolder = uploadAndDownloadPage.getUploadFilePath();
         String expectedFakeUploadFolder = "C:\\fakepath\\" + pictureName;
 
-        Assert.assertEquals(actualFakeUploadFolder, expectedFakeUploadFolder, "Different upload name");
+        Assert.assertEquals(actualFakeUploadFolder, expectedFakeUploadFolder, "\nDifferent upload name.\n");
     }
 
     @Test(enabled = true)

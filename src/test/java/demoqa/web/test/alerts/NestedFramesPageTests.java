@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 
 public class NestedFramesPageTests extends BaseTest {
 
-    @Test
+    @Test(enabled = true)
     public void VerifyHeadingTextInParentIframe() {
         navigateToUrl("nestedframes");
 
@@ -17,8 +17,8 @@ public class NestedFramesPageTests extends BaseTest {
         nestedFramesPage.selectParentIframe();
         String actualParentText = nestedFramesPage.getParentIframeText();
 
-        Assert.assertEquals(actualParentText, expectedParentText, "Missing Parent frame text");
-        Assert.assertEquals(actualMainText, expectedMainText, "Wrong main text");
+        Assert.assertEquals(actualParentText, expectedParentText, "\nMissing Parent frame text.\n");
+        Assert.assertEquals(actualMainText, expectedMainText, "\nWrong main text.\n");
     }
 
     @Test(enabled = true)
@@ -27,8 +27,8 @@ public class NestedFramesPageTests extends BaseTest {
 
         nestedFramesPage.selectChildIframe();
         String expectedChildIframe = "Child Iframe";
-        String actualChildIframe = nestedFramesPage.getChildText();
+        String actualChildIframe = nestedFramesPage.getChildIframeText();
 
-        Assert.assertEquals(actualChildIframe, expectedChildIframe, "Wrong Child text");
+        Assert.assertEquals(actualChildIframe, expectedChildIframe, "\nWrong Child text.\n");
     }
 }

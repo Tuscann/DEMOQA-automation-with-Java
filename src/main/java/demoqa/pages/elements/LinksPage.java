@@ -2,7 +2,10 @@ package demoqa.pages.elements;
 
 import demoqa.base.BasePage;
 import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -112,7 +115,9 @@ public class LinksPage extends BasePage {
     }
 
     public String getResponse() {
-        delay(500); //TODO
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(responseLink));
+
         return find(responseLink).getText();
     }
 

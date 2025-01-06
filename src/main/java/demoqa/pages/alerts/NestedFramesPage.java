@@ -15,7 +15,7 @@ public class NestedFramesPage extends BasePage {
         return find(mainText).getText();
     }
 
-    public String getChildText() {
+    public String getChildIframeText() {
         return find(childIframeText).getText();
     }
 

@@ -19,6 +19,14 @@ public class FramesPage extends BasePage {
     private final By frame1wrapper = By.id("frame1Wrapper");
     private final By frame2wrapper = By.id("frame2Wrapper");
 
+    public String getFramesHeadingText() {
+        return find(newTabButton).getText();
+    }
+
+    public String getText() {
+        return find(text).getText();
+    }
+
     public String getHeadingTextInFirstIframe() {
         scrollToElementJS(frame1wrapper);
         WebElement firstFrame = driver.findElement(frame1);
@@ -31,13 +39,5 @@ public class FramesPage extends BasePage {
         WebElement secondFrame = driver.findElement(frame2);
         WebElement secondHeadingWebElement = driver.switchTo().frame(secondFrame).findElement(secondHeading);
         return secondHeadingWebElement.getText();
-    }
-
-    public String getFramesHeadingText() {
-        return find(newTabButton).getText();
-    }
-
-    public String getText() {
-        return find(text).getText();
     }
 }

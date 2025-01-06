@@ -6,27 +6,27 @@ import org.testng.annotations.Test;
 
 public class ModalDialogsPagePageTests extends BaseTest {
 
-    @Test
+    @Test(enabled = true)
     public void VerifyAllTextOnPage() {
         navigateToUrl("modal-dialogs");
 
         String modalDialogsText = "Modal Dialogs";
         String clickText = "Click on button to see modal";
-        String smallText = "Small modal";
-        String largeText = "Large modal";
+        String smallButtonText = "Small modal";
+        String largeButtonText = "Large modal";
 
         String actualModalDialogsText = modalDialogsPage.getModalDialogsText();
         String actualClickText = modalDialogsPage.getClickText();
         String actualSmallText = modalDialogsPage.getSmallText();
         String actualLargeText = modalDialogsPage.getLargeText();
 
-        Assert.assertEquals(actualModalDialogsText, modalDialogsText, "Missing modal dialogs text");
-        Assert.assertEquals(actualClickText, clickText, "Missing click text");
-        Assert.assertEquals(actualSmallText, smallText, "Missing small text");
-        Assert.assertEquals(actualLargeText, largeText, "Missing large text");
+        Assert.assertEquals(actualModalDialogsText, modalDialogsText, "\nMissing modal dialogs text.\n");
+        Assert.assertEquals(actualClickText, clickText, "\nMissing click text.\n");
+        Assert.assertEquals(actualSmallText, smallButtonText, "\nMissing small text.\n");
+        Assert.assertEquals(actualLargeText, largeButtonText, "\nMissing large text.\n");
     }
 
-    @Test
+    @Test(enabled = true)
     public void VerifySmallModalDialogText() {
         navigateToUrl("modal-dialogs");
 
@@ -44,7 +44,7 @@ public class ModalDialogsPagePageTests extends BaseTest {
         Assert.assertEquals(actualCloseButtonText, expectedClosButtonText, "Wrong close button text");
     }
 
-    @Test
+    @Test(enabled = true)
     public void VerifyLargeModalDialogText() {
         navigateToUrl("modal-dialogs");
 

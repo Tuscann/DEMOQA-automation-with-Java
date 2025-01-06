@@ -359,9 +359,9 @@ public class PracticeFormPage extends BasePage {
     }
 
     public String getColorOfFirstNameBorder() {
-        WebElement xaaa = driver.findElement(firstName);
+        WebElement webElement = driver.findElement(firstName);
 
-        return xaaa.getCssValue("border-color");
+        return webElement.getCssValue("border-color");
     }
 
     public String getColorOfLastNameBorder() {

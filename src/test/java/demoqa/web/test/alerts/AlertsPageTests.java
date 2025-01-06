@@ -13,28 +13,28 @@ public class AlertsPageTests extends BaseTest {
         // Arrange
         navigateToUrl("alerts");
 
-        String alertText1 = "Alerts";
-        String alertText2 = "Click Button to see alert";
-        String alertText3 = "On button click, alert will appear after 5 seconds";
-        String alertTex4 = "On button click, confirm box will appear";
-        String alertTex5 = "On button click, prompt box will appear";
+        String alertHeaderText = "Alerts";
+        String firstText = "Click Button to see alert";
+        String secondText = "On button click, alert will appear after 5 seconds";
+        String thirdText = "On button click, confirm box will appear";
+        String fourText = "On button click, prompt box will appear";
 
         // Act
+        String actualHeaderText = alertsPage.getHeaderText();
         String actualFirstText = alertsPage.getFirstText();
         String actualSecondText = alertsPage.getSecondText();
         String actualThirdText = alertsPage.getThirdText();
         String actualFourText = alertsPage.getFourthText();
-        String actualFiveText = alertsPage.getFiveText();
 
         // Assert
-        Assert.assertEquals(actualFirstText, alertText1, "\n Alert Title Do Not Match \n");
-        Assert.assertEquals(actualSecondText, alertText2, "\n Alert Second Text Do Not Match \n");
-        Assert.assertEquals(actualThirdText, alertText3, "\n Alert Third Text Do Not Match \n");
-        Assert.assertEquals(actualFourText, alertTex4, "\n Alert Four Text Do Not Match \n");
-        Assert.assertEquals(actualFiveText, alertTex5, "\n Alert Five Text Do Not Match \n");
+        Assert.assertEquals(actualHeaderText, alertHeaderText, "\n Alert Title Do Not Match. \n");
+        Assert.assertEquals(actualFirstText, firstText, "\n Alert Second Text Do Not Match. \n");
+        Assert.assertEquals(actualSecondText, secondText, "\n Alert Third Text Do Not Match. \n");
+        Assert.assertEquals(actualThirdText, thirdText, "\n Alert Four Text Do Not Match. \n");
+        Assert.assertEquals(actualFourText, fourText, "\n Alert Five Text Do Not Match. \n");
     }
 
-    @Test
+    @Test(enabled = true)
     public void CheckTextOfInformationAlert() {
         // Arrange
         navigateToUrl("alerts");
@@ -45,7 +45,7 @@ public class AlertsPageTests extends BaseTest {
         String actualAlertText = getAlertText();
 
         // Assert
-        Assert.assertEquals(actualAlertText, expectedAlertText, "\n Actual & Expected Messages Do Not Match \n");
+        Assert.assertEquals(actualAlertText, expectedAlertText, "\n Actual & Expected Messages Do Not Match. \n");
     }
 
     @Test(enabled = true)
@@ -59,10 +59,10 @@ public class AlertsPageTests extends BaseTest {
         String actualAlertText = getAlertText();
 
         // Assert
-        Assert.assertEquals(actualAlertText, expectedAlertText, "/n Different PromptAlertAfter message /n");
+        Assert.assertEquals(actualAlertText, expectedAlertText, "\n Different Prompt Alert message. \n");
     }
 
-    @Test
+    @Test(enabled = true)
     public void CheckTextOfConfirmationAlertCancel() {
         // Arrange
         navigateToUrl("alerts");
@@ -74,10 +74,10 @@ public class AlertsPageTests extends BaseTest {
         String actualConfirmationResult = alertsPage.getConfirmationResult();
 
         // Assert
-        Assert.assertEquals(actualConfirmationResult, expectedConfirmationResult, "\n You Did Not Select Cancel \n");
+        Assert.assertEquals(actualConfirmationResult, expectedConfirmationResult, "\n You Did Not Select Cancel. \n");
     }
 
-    @Test
+    @Test(enabled = true)
     public void VerifyTextOfConfirmationAlertYes() {
         // Arrange
         navigateToUrl("alerts");
@@ -89,11 +89,10 @@ public class AlertsPageTests extends BaseTest {
         String actualConfirmationResult = alertsPage.getConfirmationResult();
 
         // Assert
-        Assert.assertEquals(actualConfirmationResult, expectedConfirmationResult,
-                "\n You Did Not Select OK \n");
+        Assert.assertEquals(actualConfirmationResult, expectedConfirmationResult, "\n You Did Not Select OK. \n");
     }
 
-    @Test
+    @Test(enabled = true)
     public void VerifyTextOfPromptAlertAccept() {
         // Arrange
         navigateToUrl("alerts");
@@ -107,11 +106,10 @@ public class AlertsPageTests extends BaseTest {
         String actualResult = alertsPage.getPromptAlertResult();
 
         // Assert
-        Assert.assertEquals(actualResult, expectedResult,
-                "\n Actual & Expected Results Do Not Match \n");
+        Assert.assertEquals(actualResult, expectedResult, "\n Actual & Expected Results Do Not Match. \n");
     }
 
-    @Test
+    @Test(enabled = true)
     public void VerifyTextOfPromptAlertClose() {
         // Arrange
         navigateToUrl("alerts");
@@ -123,6 +121,6 @@ public class AlertsPageTests extends BaseTest {
         boolean isAlertResultMissing = alertsPage.verifyNoAlertResult();
 
         // Assert
-        Assert.assertTrue(isAlertResultMissing, "\n Show result \n");
+        Assert.assertTrue(isAlertResultMissing, "\n Show result. \n");
     }
 }

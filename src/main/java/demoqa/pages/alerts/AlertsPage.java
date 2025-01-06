@@ -15,30 +15,30 @@ public class AlertsPage extends BasePage {
     private final By confirmationResult = By.id("confirmResult");
     private final By promptResult = By.id("promptResult");
 
-    private final By alert1Title = By.xpath("//h1[contains(.,'Alerts')]");
-    private final By alert2Title = By.xpath("//span[contains(.,'Click Button to see alert')]");
-    private final By alert3Title = By.xpath("//span[contains(.,'On button click, alert will appear after 5 seconds')]");
-    private final By alert4Title = By.xpath("//span[contains(.,'On button click, confirm box will appear')]");
-    private final By alert5Title = By.xpath("//span[contains(.,'On button click, prompt box will appear')]");
+    private final By alertHeaderTitle = By.xpath("//h1[contains(.,'Alerts')]");
+    private final By alertFirstTitle = By.xpath("//span[contains(.,'Click Button to see alert')]");
+    private final By alertSecondTitle = By.xpath("//span[contains(.,'On button click, alert will appear after 5 seconds')]");
+    private final By alertThirdTitle = By.xpath("//span[contains(.,'On button click, confirm box will appear')]");
+    private final By alertFourTitle = By.xpath("//span[contains(.,'On button click, prompt box will appear')]");
+
+    public String getHeaderText() {
+        return find(alertHeaderTitle).getText();
+    }
 
     public String getFirstText() {
-        return find(alert1Title).getText();
+        return find(alertFirstTitle).getText();
     }
 
     public String getSecondText() {
-        return find(alert2Title).getText();
+        return find(alertSecondTitle).getText();
     }
 
     public String getThirdText() {
-        return find(alert3Title).getText();
+        return find(alertThirdTitle).getText();
     }
 
     public String getFourthText() {
-        return find(alert4Title).getText();
-    }
-
-    public String getFiveText() {
-        return find(alert5Title).getText();
+        return find(alertFourTitle).getText();
     }
 
     public String getPromptAlertResult() {

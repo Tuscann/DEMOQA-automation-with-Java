@@ -38,7 +38,6 @@ public class DynamicPropertiesPage extends BasePage {
     }
 
     public String getVisibleAfter5SecondsButtonTextAfter5seconds() {
-
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(6));
         wait.until(ExpectedConditions.visibilityOfElementLocated(this.visibleAfter5SecondsButton));
 
@@ -46,7 +45,6 @@ public class DynamicPropertiesPage extends BasePage {
     }
 
     public boolean checkButtonWillEnable5Seconds() {
-
         WebElement enableAfterButton = driver.findElement(willEnable5SecondsButton);
 
         return enableAfterButton.isEnabled();

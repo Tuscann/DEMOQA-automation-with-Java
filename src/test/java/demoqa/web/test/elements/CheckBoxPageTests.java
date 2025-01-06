@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 
 public class CheckBoxPageTests extends BaseTest {
 
-    @Test
+    @Test(enabled = true)
     public void SelectNotesCheckBox() {
         navigateToUrl("checkbox");
         checkBoxPage.clickExpandAll();
@@ -21,7 +21,7 @@ public class CheckBoxPageTests extends BaseTest {
         Assert.assertEquals(actualHeader, header, "Wrong Header Message");
     }
 
-    @Test
+    @Test(enabled = true)
     public void SelectDesktopWithHomeAndCommandsNotes() {
         navigateToUrl("checkbox");
 
@@ -39,7 +39,7 @@ public class CheckBoxPageTests extends BaseTest {
         Assert.assertEquals(actualResult, expectedResult, "\nNot selected Notes\n");
     }
 
-    @Test
+    @Test(enabled = true)
     public void DeSelectCheckBoxNotes() {
         navigateToUrl("checkbox");
 
@@ -57,7 +57,7 @@ public class CheckBoxPageTests extends BaseTest {
         Assert.assertTrue(checkBoxPage.isResultMessageShown(), "\n Shown wrong category\n");
     }
 
-    @Test
+    @Test(enabled = true)
     public void VerifyResultMessageIsEmptyWithoutSelections() {
         navigateToUrl("checkbox");
         checkBoxPage.clickExpandAll();
@@ -65,7 +65,7 @@ public class CheckBoxPageTests extends BaseTest {
         Assert.assertTrue(checkBoxPage.isResultMessageShown(), "\nShown some category\n");
     }
 
-    @Test
+    @Test(enabled = true)
     public void SelectCommandsCheckBox() {
         navigateToUrl("checkbox");
 
@@ -78,7 +78,7 @@ public class CheckBoxPageTests extends BaseTest {
         Assert.assertEquals(actualResult, expectedResult, "\nNot selected Commands\n");
     }
 
-    @Test
+    @Test(enabled = true)
     public void SelectNotesAndOfficePublic() {
         navigateToUrl("checkbox");
 
@@ -95,7 +95,7 @@ public class CheckBoxPageTests extends BaseTest {
         Assert.assertEquals(actualResult, expectedResult, "Not selected 3 checkbox Notes/Commands");
     }
 
-    @Test
+    @Test(enabled = true)
     public void CollapsedWithSelectedCategories() {
         navigateToUrl("checkbox");
 
@@ -121,7 +121,7 @@ public class CheckBoxPageTests extends BaseTest {
         Assert.assertEquals(actualResult, expectedResult, "Not selected 3 checkbox Notes/Commands");
     }
 
-    @Test
+    @Test(enabled = true)
     public void SelectHomeCheckBox() {
         navigateToUrl("checkbox");
 
@@ -151,7 +151,7 @@ public class CheckBoxPageTests extends BaseTest {
         Assert.assertEquals(actualResult, expectedResult, "\nNot selected all CheckBoxes\n");
     }
 
-    @Test
+    @Test(enabled = true)
     public void SelectDesktopAndDocumentsAndDownloadsCheckBoxes() {
         navigateToUrl("checkbox");
 
@@ -184,7 +184,7 @@ public class CheckBoxPageTests extends BaseTest {
         Assert.assertEquals(actualResult, expectedResult, "\nNot selected all CheckBoxes\n");
     }
 
-    @Test
+    @Test(enabled = true)
     public void SelectAllCheckBoxesOneByOne() {
         navigateToUrl("checkbox");
 
@@ -225,7 +225,7 @@ public class CheckBoxPageTests extends BaseTest {
         Assert.assertEquals(actualResult, expectedResult, "\nNot selected all CheckBoxes\n");
     }
 
-    @Test
+    @Test(enabled = true)
     public void SelectAllCheckBoxesOneByOneAndDeselectAll() {
         navigateToUrl("checkbox");
 

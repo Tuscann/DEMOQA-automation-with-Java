@@ -109,14 +109,14 @@ public class TextBoxPageTests extends BaseTest {
     @Test(enabled = true)
     public void TryToSubmitUnValidEmailAndCheckRedLine() {
         navigateToUrl("text-box");
-        String email = "a";
+        String email = "InvalidEmailFormat";
         textBoxPage.setEmailField(email);
         textBoxPage.clickSubmitButton();
 
-        String redColor = "solid rgb(255, 0, 0)";
-        String actualColor = textBoxPage.isBorderRedAroundEmail();
+        String expectedRedColor = "1px solid rgb(255, 0, 0)";
+        String actualRedColor = textBoxPage.isBorderRedAroundEmail(expectedRedColor);
 
-        Assert.assertEquals(actualColor, redColor, "\nNot same red color\n");
+        Assert.assertEquals(actualRedColor, expectedRedColor, "\nNot same red color\n");
     }
 
     @Test(enabled = true)

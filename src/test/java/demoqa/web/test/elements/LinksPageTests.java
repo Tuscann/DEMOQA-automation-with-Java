@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 
 public class LinksPageTests extends BaseTest {
 
-    @Test
+    @Test(enabled = true)
     public void VerifyAllTextOnPage() {
         navigateToUrl("links");
 
@@ -35,32 +35,32 @@ public class LinksPageTests extends BaseTest {
         String actualForbiddenText = linksPage.getForbiddenRequestLinkText();
         String actualNotFoundText = linksPage.getNotFoundRequestLinkText();
 
-        Assert.assertEquals(actualLinksHeader, expectedLinksHeader, "Different Header text");
-        Assert.assertEquals(actualFollowingLinksWillOpenNewTab, expectedFollowingLinksWillOpenNewTab, "Different new tab text");
-        Assert.assertEquals(actualHomeText, expectedHomeText, "Different home text");
-        Assert.assertEquals(actualFollowingLinksWillSendAnApiCall, expectedFollowingLinksWillSendAnApiCall, "Different api call text");
-        Assert.assertEquals(actualCreatedText, expectedCreatedText, "Different created text");
-        Assert.assertEquals(actualNoContentText, expectedNoContentText, "Different no content text");
-        Assert.assertEquals(actualMovedText, expectedMovedText, "Different moved text");
-        Assert.assertEquals(actualBadRequestText, expectedBadRequestText, "Different bad request text");
-        Assert.assertEquals(actualUnauthorizedText, expectedUnauthorizedText, "Different Unauthorized text");
-        Assert.assertEquals(actualForbiddenText, expectedForbiddenText, "Different Forbidden text");
-        Assert.assertEquals(actualNotFoundText, expectedNotFoundText, "Different NotFound text");
+        Assert.assertEquals(actualLinksHeader, expectedLinksHeader, "\nDifferent Header text.\n");
+        Assert.assertEquals(actualFollowingLinksWillOpenNewTab, expectedFollowingLinksWillOpenNewTab, "\nDifferent new tab text.\n");
+        Assert.assertEquals(actualHomeText, expectedHomeText, "\nDifferent home text.\n");
+        Assert.assertEquals(actualFollowingLinksWillSendAnApiCall, expectedFollowingLinksWillSendAnApiCall, "\nDifferent api call text.\n");
+        Assert.assertEquals(actualCreatedText, expectedCreatedText, "\nDifferent created text.\n");
+        Assert.assertEquals(actualNoContentText, expectedNoContentText, "\nDifferent no content text.\n");
+        Assert.assertEquals(actualMovedText, expectedMovedText, "\nDifferent moved text\n");
+        Assert.assertEquals(actualBadRequestText, expectedBadRequestText, "\nDifferent bad request text.\n");
+        Assert.assertEquals(actualUnauthorizedText, expectedUnauthorizedText, "\nDifferent Unauthorized text.\n");
+        Assert.assertEquals(actualForbiddenText, expectedForbiddenText, "\nDifferent Forbidden text.\n");
+        Assert.assertEquals(actualNotFoundText, expectedNotFoundText, "\nDifferent NotFound text.\n");
     }
 
-    @Test
+    @Test(enabled = true)
     public void ClickOnLinkCreatedRequest() {
         navigateToUrl("links");
         linksPage.clickCreatedRequestLink();
-        String actualResponse = linksPage.getResponse();
+        String actualResponseText = linksPage.getResponse();
 
-        Assert.assertTrue(actualResponse.contains("201")
-                        && actualResponse.contains("Created"),
-                "\n Link has responded with staus" + actualResponse +
+        Assert.assertTrue(actualResponseText.contains("201")
+                        && actualResponseText.contains("Created"),
+                "\n Link has responded with staus" + actualResponseText +
                         ")\n and status text Created \n");
     }
 
-    @Test
+    @Test(enabled = true)
     public void ClickOnLinkNoContentRequest() {
         navigateToUrl("links");
         linksPage.clickNoContentRequestLink();
@@ -72,7 +72,7 @@ public class LinksPageTests extends BaseTest {
                         ")\n and status text Created \n");
     }
 
-    @Test
+    @Test(enabled = true)
     public void ClickOnLinkMovedRequest() {
         navigateToUrl("links");
         linksPage.clickMovedRequestLink();
@@ -84,7 +84,7 @@ public class LinksPageTests extends BaseTest {
                         ")\n and status text Created \n");
     }
 
-    @Test
+    @Test(enabled = true)
     public void ClickOnLinkBadRequest() {
         navigateToUrl("links");
         linksPage.clickBadRequestLink();
@@ -96,7 +96,7 @@ public class LinksPageTests extends BaseTest {
                         ")\n Does Not Contain '400' and 'Bad Request' \n");
     }
 
-    @Test
+    @Test(enabled = true)
     public void ClickOnLinkUnAuthorizedRequest() {
         navigateToUrl("links");
         linksPage.clickUnauthorizedRequestLink();
@@ -108,7 +108,7 @@ public class LinksPageTests extends BaseTest {
                         ")\n and status text Created \n");
     }
 
-    @Test
+    @Test(enabled = true)
     public void ClickOnLinkForbiddenRequest() {
         navigateToUrl("links");
         linksPage.clickForbiddenRequestLink();
@@ -120,7 +120,7 @@ public class LinksPageTests extends BaseTest {
                         ")\n and status text Created \n");
     }
 
-    @Test
+    @Test(enabled = true)
     public void ClickOnLinkNotFoundRequest() {
         navigateToUrl("links");
         linksPage.clickNotFoundRequestLink();
@@ -132,7 +132,7 @@ public class LinksPageTests extends BaseTest {
                         ")\n and status text Created \n");
     }
 
-    @Test
+    @Test(enabled = true)
     public void OpenNewTabFromSimpleLink() {
         navigateToUrl("links");
         linksPage.clickSimpleTab();
@@ -140,11 +140,10 @@ public class LinksPageTests extends BaseTest {
         String urlNewTab = linksPage.getUrl();
         String expectedUrlNewTab = "https://demoqa.com/";
 
-        Assert.assertEquals(urlNewTab, expectedUrlNewTab,
-                "\n Actual & Expected New Tab Url Do Not Match \n");
+        Assert.assertEquals(urlNewTab, expectedUrlNewTab, "\n Actual & Expected New Tab Url Do Not Match.\n");
     }
 
-    @Test
+    @Test(enabled = true)
     public void OpenNewTabFromDynamicLink() {
         navigateToUrl("links");
         linksPage.clickDynamicLink();
@@ -153,6 +152,6 @@ public class LinksPageTests extends BaseTest {
         String expectedUrlNewTab = "https://demoqa.com/";
 
         Assert.assertEquals(urlNewTab, expectedUrlNewTab,
-                "\n Actual & Expected New Tab Url Do Not Match \n");
+                "\n Actual & Expected New Tab Url Do Not Match.\n");
     }
 }
