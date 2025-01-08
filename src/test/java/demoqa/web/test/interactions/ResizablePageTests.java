@@ -42,7 +42,7 @@ public class ResizablePageTests extends BaseTest {
 
         String actualNewSize = resizablePage.getNewSizeBox();
 
-        Assert.assertEquals(actualNewSize, "(" + expectedWidth + ", " + expectedHeight + ")", "Wrong new size");
+        Assert.assertEquals(actualNewSize, "(" + expectedWidth + ", " + expectedHeight + ")", "\nWrong new size.\n");
     }
 
     @DataProvider(name = "resizeData2")
@@ -64,6 +64,6 @@ public class ResizablePageTests extends BaseTest {
 
         String actualNewSize = resizablePage.getNewSizeBox2();
 
-        Assert.assertEquals(actualNewSize, "(" + expectedWidth + ", " + expectedHeight + ")", "Wrong new size");
+        Assert.assertEquals(actualNewSize, "(" + expectedWidth + ", " + expectedHeight + ")", "\nWrong new size.\n");
     }
 }

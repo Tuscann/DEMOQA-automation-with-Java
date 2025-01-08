@@ -47,6 +47,9 @@ public class WebTablesPage extends BasePage {
     }
 
     public String getRegistrationFormText() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(6));
+        wait.until(ExpectedConditions.visibilityOf(find(registrationFormText)));
+
         return find(registrationFormText).getText();
     }
 

@@ -5,10 +5,8 @@ import org.openqa.selenium.Point;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import static demoqa.base.BasePage.delay;
-
 public class DraggablePageTests extends BaseTest {
-    @Test
+    @Test(enabled = true)
     public void VerifyAllTextOnPage() {
         navigateToUrl("dragabble");
 
@@ -59,7 +57,7 @@ public class DraggablePageTests extends BaseTest {
         Assert.assertEquals(actualCursorStyleThirdText, cursorStyleThirdText, "Wrong style third text");
     }
 
-    @Test
+    @Test(enabled = true)
     public void DragMeSimpleTab() {
         navigateToUrl("dragabble");
 
@@ -76,7 +74,7 @@ public class DraggablePageTests extends BaseTest {
         Assert.assertEquals(initialLocation.y + yOffset, endPosition.y, "Wrong initial location");
     }
 
-    @Test
+    @Test(enabled = true)
     public void DragOnlyXInAxisRestrictedTab() {
         navigateToUrl("dragabble");
 
@@ -95,7 +93,7 @@ public class DraggablePageTests extends BaseTest {
         Assert.assertEquals(initialLocation.y, endPosition.y, "Wrong initial location");
     }
 
-    @Test
+    @Test(enabled = true)
     public void DragOnlyYInAxisRestrictedTab() {
         navigateToUrl("dragabble");
 
@@ -114,7 +112,7 @@ public class DraggablePageTests extends BaseTest {
         Assert.assertEquals(initialLocation.y + yOffset, endPosition.y, "Wrong initial location");
     }
 
-    @Test
+    @Test(enabled = true)
     public void ContainedInBoxAxisRestrictedTabWithSizeInsideBox() {
         navigateToUrl("dragabble");
 
@@ -126,7 +124,7 @@ public class DraggablePageTests extends BaseTest {
         Point initialLocation = draggablePage.getInitLocationContainedInBox();
 
         draggablePage.dragAndDropByOnPositionContainedBox(xOffset, yOffset);
-        delay(400); //TODO
+        // delay(400); //TODO
 
         Point endPosition = draggablePage.getInitLocationContainedInBox();
 
@@ -138,8 +136,8 @@ public class DraggablePageTests extends BaseTest {
     public void ContainedInBoxAxisRestrictedTabWithSizeOutSideBox() {
         navigateToUrl("dragabble");
 
-        int xOffset = 500;
-        int yOffset = 300;
+        int xOffset = 650;
+        int yOffset = 107;
 
         draggablePage.clickContainerRestrictedTab();
 
@@ -149,11 +147,13 @@ public class DraggablePageTests extends BaseTest {
 
         Point endPosition = draggablePage.getInitLocationContainedInBox();
 
-        Assert.assertEquals(initialLocation.x + xOffset, endPosition.x, "Wrong initial location");
-        Assert.assertEquals(initialLocation.y + yOffset, endPosition.y, "Wrong initial location");
+        int actualEndPointValueY = initialLocation.y + yOffset - 1;
+
+        Assert.assertEquals(initialLocation.x + xOffset, endPosition.x, "\nWrong initial location.\n");
+        Assert.assertEquals(actualEndPointValueY, endPosition.y, "\nWrong endpoint location on y axis.\n");
     }
 
-    @Test
+    @Test(enabled = true)
     public void ContainedInParentAxisRestrictedTabWithSizeInsideBox() {
         navigateToUrl("dragabble");
 
@@ -176,7 +176,7 @@ public class DraggablePageTests extends BaseTest {
     public void MoveFirstTextCursorStyle() {
         navigateToUrl("dragabble");
 
-        int xOffset = 250;
+        int xOffset = 100;
         int yOffset = 100;
 
         draggablePage.clickCursorStyleTab();

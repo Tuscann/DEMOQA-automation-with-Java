@@ -262,9 +262,7 @@ public class DroppablePage extends BasePage {
         actions.dragAndDrop(draggable, droppable).perform();
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-        wait.until(ExpectedConditions.and(
-                ExpectedConditions.attributeContains(droppable, "class", "drop-box ui-droppable ui-state-highlight")));
-
+        wait.until(ExpectedConditions.attributeToBe(droppable, "background-color", "rgba(70, 130, 180, 1)"));
     }
 
     public String getInitText() {
@@ -272,12 +270,6 @@ public class DroppablePage extends BasePage {
         WebElement draggable = wait.until(ExpectedConditions.presenceOfElementLocated(dropHereRevertDraggableText));
 
         return draggable.getText();
-    }
-
-    public Point getAfterLocation() {
-        WebElement draggable = driver.findElement(willRevert);
-
-        return draggable.getLocation();
     }
 
     public void dragAndDropWillNotRevert() {

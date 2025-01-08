@@ -113,11 +113,11 @@ public class WebTablePageTests extends BaseTest {
         String actualPlaceholderDepartment = webTablesPage.getDepartmentPlaceholder();
         String actualSubmitButtonText = webTablesPage.getSubmitButtonText();
 
-        Assert.assertEquals(actualRegistrationText, expectedRegistrationFormText, "\nWrong registration name text");
-        Assert.assertEquals(actualFirstNameLabel, expectedFirstNameLabel, "\nNot first name label");
-        Assert.assertEquals(actualLastNameLabel, expectedLastNameLabel, "Not second name label");
-        Assert.assertEquals(actualEmailLabel, expectedEmailLabel, "Not email label");
-        Assert.assertEquals(actualAgeLabel, expectedAgeLabel, "Not age label");
+        Assert.assertEquals(actualRegistrationText, expectedRegistrationFormText, "\nWrong registration name text.\n");
+        Assert.assertEquals(actualFirstNameLabel, expectedFirstNameLabel, "\nNot first name label.\n");
+        Assert.assertEquals(actualLastNameLabel, expectedLastNameLabel, "Not second name label.\n");
+        Assert.assertEquals(actualEmailLabel, expectedEmailLabel, "\nNot email label.\n");
+        Assert.assertEquals(actualAgeLabel, expectedAgeLabel, "\nNot age label.\n");
         Assert.assertEquals(actualSalaryLabel, expectedSalaryLabel, "Not salary label");
         Assert.assertEquals(actualDepartmentLabel, expectedDepartmentLabel, "Not department label");
         Assert.assertEquals(actualPlaceholderFirstName, expectedFirstNamePlaceholder, "Not first name label");

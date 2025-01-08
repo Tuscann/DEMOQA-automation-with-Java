@@ -115,8 +115,8 @@ public class SortablePage extends BasePage {
 
     public void moveOverGrid(String gridOne, String gridSix) {
 
-        WebElement draggable = null;
-        WebElement droppable = null;
+        WebElement draggable;
+        WebElement droppable;
 
         draggable = switch (gridOne) {
             case "One" -> driver.findElement(this.gridOne);
@@ -128,7 +128,7 @@ public class SortablePage extends BasePage {
             case "Seven" -> driver.findElement(this.gridSeven);
             case "Eight" -> driver.findElement(this.gridEight);
             case "Nine" -> driver.findElement(this.gridNine);
-            default -> draggable;
+            default -> null;
         };
 
         droppable = switch (gridSix) {
@@ -141,7 +141,7 @@ public class SortablePage extends BasePage {
             case "Seven" -> driver.findElement(this.gridSeven);
             case "Eight" -> driver.findElement(this.gridEight);
             case "Nine" -> driver.findElement(this.gridNine);
-            default -> droppable;
+            default -> null;
         };
 
         Actions actions = new Actions(driver);
@@ -150,8 +150,8 @@ public class SortablePage extends BasePage {
 
     public void moveOverList(String listOne, String listSix) {
 
-        WebElement draggable = null;
-        WebElement droppable = null;
+        WebElement draggable;
+        WebElement droppable;
 
         draggable = switch (listOne) {
             case "One" -> driver.findElement(this.listOne);
@@ -160,7 +160,7 @@ public class SortablePage extends BasePage {
             case "Four" -> driver.findElement(this.listFour);
             case "Five" -> driver.findElement(this.listFive);
             case "Six" -> driver.findElement(this.listSix);
-            default -> draggable;
+            default -> null;
         };
 
         droppable = switch (listSix) {
@@ -170,7 +170,7 @@ public class SortablePage extends BasePage {
             case "Four" -> driver.findElement(this.listFour);
             case "Five" -> driver.findElement(this.listFive);
             case "Six" -> driver.findElement(this.listSix);
-            default -> droppable;
+            default -> null;
         };
 
         Actions actions = new Actions(driver);

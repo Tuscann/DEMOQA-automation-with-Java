@@ -49,8 +49,8 @@ public class SortablePageTests extends BaseTest {
         String actualGridEight = sortablePage.getGridEight();
         String actualGridNine = sortablePage.getGridNine();
 
-        Assert.assertEquals(actualPageTitle, pageTitle, "Wrong page title");
-        Assert.assertEquals(actualListTab, listTab, "Wrong page tab");
+        Assert.assertEquals(actualPageTitle, pageTitle, "\nWrong page title.\n");
+        Assert.assertEquals(actualListTab, listTab, "\nWrong page tab.\n");
         Assert.assertEquals(actualListOne, listOne, "Wrong page one");
         Assert.assertEquals(actualListTwo, listTwo, "Wrong page two");
         Assert.assertEquals(actualListThree, listThree, "Wrong page three");
@@ -64,9 +64,9 @@ public class SortablePageTests extends BaseTest {
         Assert.assertEquals(actualGridFour, gridFour, "Wrong page four");
         Assert.assertEquals(actualGridFive, gridFive, "Wrong page five");
         Assert.assertEquals(actualGridSix, gridSix, "Wrong page six");
-        Assert.assertEquals(actualGridSeven, gridSeven, "Wrong page seven");
-        Assert.assertEquals(actualGridEight, gridEight, "Wrong page eight");
-        Assert.assertEquals(actualGridNine, gridNine, "Wrong page nine");
+        Assert.assertEquals(actualGridSeven, gridSeven, "\nWrong page seven.\n");
+        Assert.assertEquals(actualGridEight, gridEight, "\nWrong page eight.\n");
+        Assert.assertEquals(actualGridNine, gridNine, "\nWrong page nine.\n");
     }
 
     @DataProvider(name = "resizeData")
@@ -125,7 +125,7 @@ public class SortablePageTests extends BaseTest {
         sortablePage.moveOverList(dragFromPlace, dropOnPlace);
         String actualListSix = sortablePage.getListOrder();
 
-        Assert.assertEquals(actualListSix, expectedOrder, "Wrong order");
+        Assert.assertEquals(actualListSix, expectedOrder, "\nWrong order in the list.\n");
     }
 
     @DataProvider(name = "resizeData2")
@@ -232,6 +232,6 @@ public class SortablePageTests extends BaseTest {
         sortablePage.moveOverGrid(dragFromPlace, dropOnPlace);
         String actualListSix = sortablePage.getGridOrder();
 
-        Assert.assertEquals(actualListSix, expectedOrder, "Wrong order");
+        Assert.assertEquals(actualListSix, expectedOrder, "\nWrong order in the grid.\n");
     }
 }

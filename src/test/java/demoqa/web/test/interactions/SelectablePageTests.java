@@ -6,7 +6,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class SelectablePageTests extends BaseTest {
-    @Test
+    @Test(enabled = true)
     public void VerifyAllTextOnPage() {
         navigateToUrl("selectable");
 
@@ -45,10 +45,10 @@ public class SelectablePageTests extends BaseTest {
         String actualGridEight = selectablePage.getGridEight();
         String actualGridNine = selectablePage.getGridNine();
 
-        Assert.assertEquals(actualPageTitle, pageTitle, "Wrong page title");
-        Assert.assertEquals(actualListTab, listTab, "Wrong page tab");
-        Assert.assertEquals(actualListFirstText, listFirstText, "Wrong page one");
-        Assert.assertEquals(actualListSecondText, listSecondText, "Wrong page two");
+        Assert.assertEquals(actualPageTitle, pageTitle, "\nWrong page title.\n");
+        Assert.assertEquals(actualListTab, listTab, "\nWrong page tab name. \n");
+        Assert.assertEquals(actualListFirstText, listFirstText, "\nWrong page one.\n");
+        Assert.assertEquals(actualListSecondText, listSecondText, "\nWrong page two.\n");
         Assert.assertEquals(actualListThirdText, listThirdText, "Wrong page three");
         Assert.assertEquals(actualListFourText, listFourText, "Wrong page four");
         Assert.assertEquals(actualGridTab, gridTab, "Wrong page tab");
@@ -63,41 +63,41 @@ public class SelectablePageTests extends BaseTest {
         Assert.assertEquals(actualGridNine, gridNine, "Wrong page nine");
     }
 
-    @Test
+    @Test(enabled = true)
     public void SelectOneByOneAllFromList() {
         navigateToUrl("selectable");
 
         String searched1Selection = "Cras justo odio";
-        boolean isFirstRowSelected = selectablePage.RowSelected(searched1Selection);
-        Assert.assertFalse(isFirstRowSelected, "First row is selected");
+        boolean isRowSelected = selectablePage.RowSelected(searched1Selection);
+        Assert.assertFalse(isRowSelected, "\nFirst row is selected.\n");
         int position = 0;
         selectablePage.clickElement(position);
-        isFirstRowSelected = selectablePage.RowSelected(searched1Selection);
-        Assert.assertTrue(isFirstRowSelected, "First row is not selected");
+        isRowSelected = selectablePage.RowSelected(searched1Selection);
+        Assert.assertTrue(isRowSelected, "\nFirst row is not selected.\n");
 
         String searched2Selection = "Dapibus ac facilisis in";
-        boolean isSecondRowSelected = selectablePage.RowSelected(searched2Selection);
-        Assert.assertFalse(isSecondRowSelected, "Second row is selected");
+        isRowSelected = selectablePage.RowSelected(searched2Selection);
+        Assert.assertFalse(isRowSelected, "\nSecond row is selected.\n");
         position = 1;
         selectablePage.clickElement(position);
-        isSecondRowSelected = selectablePage.RowSelected(searched2Selection);
-        Assert.assertTrue(isSecondRowSelected, "Second row is not selected");
+        isRowSelected = selectablePage.RowSelected(searched2Selection);
+        Assert.assertTrue(isRowSelected, "\nSecond row is not selected.\n");
 
         String searched3Selection = "Morbi leo risus";
-        boolean isThirdRowSelected = selectablePage.RowSelected(searched3Selection);
-        Assert.assertFalse(isThirdRowSelected, "Third row is selected");
+        isRowSelected = selectablePage.RowSelected(searched3Selection);
+        Assert.assertFalse(isRowSelected, "\nThird row is selected.\n");
         position = 2;
         selectablePage.clickElement(position);
-        isThirdRowSelected = selectablePage.RowSelected(searched3Selection);
-        Assert.assertTrue(isThirdRowSelected, "Third row is not selected");
+        isRowSelected = selectablePage.RowSelected(searched3Selection);
+        Assert.assertTrue(isRowSelected, "\nThird row is not selected.\n");
 
         String searched4Selection = "Porta ac consectetur ac";
-        boolean isFourRowSelected = selectablePage.RowSelected(searched4Selection);
-        Assert.assertFalse(isFourRowSelected, "Four row is selected");
+        isRowSelected = selectablePage.RowSelected(searched4Selection);
+        Assert.assertFalse(isRowSelected, "\nFour row is selected.\n");
         position = 3;
         selectablePage.clickElement(position);
-        isFourRowSelected = selectablePage.RowSelected(searched4Selection);
-        Assert.assertTrue(isFourRowSelected, "Four row is not selected");
+        isRowSelected = selectablePage.RowSelected(searched4Selection);
+        Assert.assertTrue(isRowSelected, "\nFour row is not selected.\n");
     }
 
     @Test(enabled = true)
@@ -130,7 +130,7 @@ public class SelectablePageTests extends BaseTest {
 
             selectablePage.selectPositionFromGrid(searched1Selection);
             isSelected = selectablePage.isPositionFromGridSelected(searched1Selection);
-            Assert.assertTrue(isSelected, searched1Selection + " is not selected");
+            Assert.assertTrue(isSelected, searched1Selection + " is not selected.\n");
         }
     }
 }

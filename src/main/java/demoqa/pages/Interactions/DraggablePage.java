@@ -61,17 +61,29 @@ public class DraggablePage extends BasePage {
         return find(cursorStyleTab).getText();
     }
 
-    public String getCursorStyleFirstText() {
-        delay(100); //TODO
-        return find(cursorStyleFirstText).getText();
-    }
-
     public String getCursorStyleSecondText() {
         return find(cursorStyleSecondText).getText();
     }
 
     public String getCursorStyleThirdText() {
         return find(cursorStyleThirdText).getText();
+    }
+
+    public Point getInitLocationFirstText() {
+        return driver.findElement(cursorStyleFirstText).getLocation();
+    }
+
+    public Point getInitLocationSecondText() {
+        return driver.findElement(cursorStyleSecondText).getLocation();
+    }
+
+    public Point getInitLocationThirdText() {
+        return driver.findElement(cursorStyleThirdText).getLocation();
+    }
+
+    public String getCursorStyleFirstText() {
+        delay(100); //TODO
+        return find(cursorStyleFirstText).getText();
     }
 
     public String getAxisRestrictedOnlyX() {
@@ -159,18 +171,6 @@ public class DraggablePage extends BasePage {
         Actions actions = new Actions(driver);
         WebElement draggable = driver.findElement(containerRestrictedSecondText);
         actions.dragAndDropBy(draggable, xOffset, yOffset).perform();
-    }
-
-    public Point getInitLocationFirstText() {
-        return driver.findElement(cursorStyleFirstText).getLocation();
-    }
-
-    public Point getInitLocationSecondText() {
-        return driver.findElement(cursorStyleSecondText).getLocation();
-    }
-
-    public Point getInitLocationThirdText() {
-        return driver.findElement(cursorStyleThirdText).getLocation();
     }
 
     public void dragAndDropInCursorStyleFirstText(int xOffset, int yOffset) {
