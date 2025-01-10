@@ -8,7 +8,7 @@ import java.util.List;
 
 public class SelectMenuPageTests extends BaseTest {
 
-    @Test
+    @Test(enabled = true)
     public void VerifyAllTextOnPage() {
         navigateToUrl("select-menu");
 
@@ -47,14 +47,14 @@ public class SelectMenuPageTests extends BaseTest {
         Assert.assertEquals(actualSelectTitlePlaceholder, expectedSelectTitlePlaceholder, "Wrong selected title placeholder");
         Assert.assertEquals(actualOldStyleSelectMenuLabel, expectedOldStyleSelectMenuLabel, "Wrong selected menu label");
         Assert.assertEquals(actualOldStyleSelectMenuPlaceholder, expectedOldStyleSelectMenuPlaceholder, "Wrong selected menu placeholder");
-        Assert.assertEquals(actualMultiselectDropdownLabel, expectedMultiselectDropdownLabel, "Wrong selected menu label");
+        Assert.assertEquals(actualMultiselectDropdownLabel, expectedMultiselectDropdownLabel, "\nWrong selected menu label");
         Assert.assertEquals(actualMultiselectDropdownPlaceholder, expectedMultiselectDropdownPlaceholder, "Wrong selected menu placeholder");
-        Assert.assertEquals(actualStandardMultiSelectLabel, expectedStandardMultiSelectLabel, "Wrong selected menu label");
-        Assert.assertEquals(actualStandardMultiSelect, expectedStandardMultiSelect, "Wrong selected menu placeholder");
+        Assert.assertEquals(actualStandardMultiSelectLabel, expectedStandardMultiSelectLabel, "\nWrong selected menu label");
+        Assert.assertEquals(actualStandardMultiSelect, expectedStandardMultiSelect, "\nWrong selected menu placeholder");
     }
 
-    @Test()
-    public void SelectSelectValue() {
+    @Test(enabled = true)
+    public void SelectAllValuesFromSelectValue() {
         navigateToUrl("select-menu");
         for (int i = 0; i < 6; i++) {
             String expectedSelectedValue = "";
@@ -80,7 +80,7 @@ public class SelectMenuPageTests extends BaseTest {
         }
     }
 
-    @Test()
+    @Test(enabled = true)
     public void SelectAllValuesFromSelectOne() {
         navigateToUrl("select-menu");
 
@@ -169,8 +169,8 @@ public class SelectMenuPageTests extends BaseTest {
         }
     }
 
-    @Test
-    public void SelectStandardMultiSelectAllValues() {
+    @Test(enabled = true)
+    public void SelectAllValuesFromStandardMultiSelect() {
         navigateToUrl("select-menu");
         selectMenuPage.selectStandardMultiByText("Volvo");
         selectMenuPage.selectStandardMultiByIndex(1);
@@ -182,7 +182,6 @@ public class SelectMenuPageTests extends BaseTest {
         Assert.assertTrue(actualSelectedOptions.contains("Volvo"));
         Assert.assertTrue(actualSelectedOptions.contains("Opel"));
         Assert.assertTrue(actualSelectedOptions.contains("Audi"));
-        Assert.assertFalse(actualSelectedOptions.contains("Saab"),
-                "\n Saab Is Selected As An Option \n");
+        Assert.assertFalse(actualSelectedOptions.contains("Saab"), "\n Saab Is Selected As An Option \n");
     }
 }

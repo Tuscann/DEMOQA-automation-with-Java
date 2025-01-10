@@ -14,40 +14,84 @@ public class ToolTipsPage extends BasePage {
 
     private final By practiceToolTipsText = By.xpath("//*[@id='buttonToolTopContainer']/p");
     private final By hoverMeToSeeButton = By.id("toolTipButton");
+    private final By buttonTooltip = By.id("buttonToolTip");
     private final By hoverMeTextField = By.id("toolTipTextField");
-    private final By text = By.xpath("//*[@id='texToolTopContainer']");
+    private final By header = By.xpath("//h1[@class='text-center'][contains(.,'Tool Tips')]");
+    private final By mainText = By.id("texToolTopContainer");
 
-    public String getText() {
-        return find(text).getText();
-    }
+    private final By contrary = By.xpath("//a[@href='javascript:void(0)'][contains(.,'Contrary')]");
+    private final By section = By.xpath("//a[@href='javascript:void(0)'][contains(.,'1.10.32')]");
 
-    public String getPracticeToolTipsText() {
-        return find(text).getText();
-    }
+    private final By buttonToolTip = By.xpath("//*[@id=\"buttonToolTip\"]/div[2]");
+    private final By practiceTextFieldToolTip = By.xpath("//*[@id=\"textFieldToolTip\"]/div[2]");
+    private final By contraryToolTip = By.xpath("//*[@id=\"contraryTexToolTip\"]/div[2]");
+    private final By sectionToolTip = By.xpath("//*[@id=\"sectionToolTip\"]/div[2]");
 
-    public String hoverMeToSeeButtonText() {
-        return find(hoverMeToSeeButton).getText();
-    }
-
-    public String hoverMeTextFieldText() {
-        return find(hoverMeTextField).getText();
-    }
-
-    public String hoverOnHoverMeToSeeButton() {
-        return find(hoverMeToSeeButton).getText();
-    }
-
-    public String getHoverButtonText() {
-
+    public String getHoverOverHoverMeToSeeButtonReturnToolTipText() {
         Actions actions = new Actions(driver);
-        actions.moveToElement(driver.findElement(hoverMeToSeeButton)).perform();
+        WebElement tooltipElement = driver.findElement(hoverMeToSeeButton);
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        actions.moveToElement(tooltipElement).perform();
 
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(driver.findElement(hoverMeToSeeButton).getDomAttribute("aria-describedby"))));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(6));
+        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(buttonToolTip));
 
-        WebElement tooltipElement = driver.findElement(By.id(driver.findElement(hoverMeToSeeButton).getDomAttribute("aria-describedby")));
+        return find(buttonToolTip).getText();
+    }
 
-        return tooltipElement.getText();
+    public String getHoverOverHoverMeToSeeTextFieldReturnToolTipText() {
+        Actions actions = new Actions(driver);
+        WebElement tooltipElement = driver.findElement(hoverMeTextField);
+
+        actions.moveToElement(tooltipElement).perform();
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(4));
+        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(practiceTextFieldToolTip));
+
+        return find(practiceTextFieldToolTip).getText();
+    }
+
+    public String getHoverOverContraryReturnToolTipText() {
+        Actions actions = new Actions(driver);
+        WebElement tooltipElement = driver.findElement(contrary);
+
+        actions.moveToElement(tooltipElement).perform();
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(4));
+        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(contraryToolTip));
+
+        return find(contraryToolTip).getText();
+    }
+
+    public String getHoverOverSectionText() {
+        Actions actions = new Actions(driver);
+        WebElement tooltipElement = driver.findElement(section);
+
+        actions.moveToElement(tooltipElement).perform();
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(4));
+        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(sectionToolTip));
+
+        return find(sectionToolTip).getText();
+    }
+
+    public String getHeaderText() {
+        return find(header).getText();
+    }
+
+    public String getPracticeToolTips() {
+        return find(practiceToolTipsText).getText();
+    }
+
+    public String getHoverMeButtonButton() {
+        return find(hoverMeToSeeButton).getText();
+    }
+
+    public String getHoverMeToSeeButtonPlaceholder() {
+        return find(hoverMeTextField).getDomAttribute("placeholder");
+    }
+
+    public String getMainText() {
+        return find(mainText).getText();
     }
 }

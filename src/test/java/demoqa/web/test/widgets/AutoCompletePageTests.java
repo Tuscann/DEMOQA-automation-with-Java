@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 
 public class AutoCompletePageTests extends BaseTest {
 
-    @Test
+    @Test(enabled = true)
     public void VerifyAllTextOnPage() {
         navigateToUrl("auto-complete");
 
@@ -23,7 +23,7 @@ public class AutoCompletePageTests extends BaseTest {
         Assert.assertEquals(actualTypeSingleText, expectedTypeSingleText, "Wrong Type single color name");
     }
 
-    @Test
+    @Test(enabled = true)
     public void SelectTwoColorsMultiple() {
         navigateToUrl("auto-complete");
 
@@ -37,7 +37,7 @@ public class AutoCompletePageTests extends BaseTest {
         Assert.assertEquals(actualSelectedColors, expectedFirstColor + "\n" + expectedSecondColor, "Wrong Colors selected");
     }
 
-    @Test
+    @Test(enabled = true)
     public void SelectTwoColorsAndDeleteTwoMultiple() {
         navigateToUrl("auto-complete");
 
@@ -58,7 +58,7 @@ public class AutoCompletePageTests extends BaseTest {
         Assert.assertEquals(actualSelectedColors, expectedFirstColor + "\n" + expectedSecondColor, "Wrong Colors selected");
     }
 
-    @Test
+    @Test(enabled = true)
     public void SelectOneColorClearAddNewColorSingle() {
         navigateToUrl("auto-complete");
 
@@ -76,7 +76,7 @@ public class AutoCompletePageTests extends BaseTest {
         Assert.assertEquals(actualSelectedColors, expectedFirstColor, "Wrong " + expectedFirstColor + "Color selected");
     }
 
-    @Test
+    @Test(enabled = true)
     public void SelectOneColorSingle() {
         navigateToUrl("auto-complete");
 
@@ -84,6 +84,6 @@ public class AutoCompletePageTests extends BaseTest {
         autoCompletePage.singleAutoComplete(expectedFirstColor);
         String actualSelectedColors = autoCompletePage.getAllSingleColorNames();
 
-        Assert.assertEquals(actualSelectedColors, expectedFirstColor, "Wrong Color selected");
+        Assert.assertEquals(actualSelectedColors, expectedFirstColor, "\nWrong green color selected.\n");
     }
 }

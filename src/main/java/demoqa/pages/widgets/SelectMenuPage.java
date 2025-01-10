@@ -4,6 +4,7 @@ import demoqa.base.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 
 import java.util.List;
@@ -21,6 +22,8 @@ public class SelectMenuPage extends BasePage {
     private final By selectMenuLabel = By.xpath("//h1[@class='text-center'][contains(.,'Select Menu')]");
     private final By selectedValueLabel = By.xpath("//div[@class='col-md-6 col-sm-12'][contains(.,'Select Value')]");
     private final By selectedValuePlaceholder = By.xpath("//div[@class=' css-1wa3eu0-placeholder'][contains(.,'Select Option')]");
+    private final By selectDropDown = By.xpath("//div[@class=' css-1hwfws3'][contains(.,'Select...')]");
+
 
     private final By multiSelectDropDown = By.xpath("(//div[contains(@class,' css-1wa3eu0-placeholder')])[3]");
     private final By multiSelectDropDown2 = By.xpath("//div[contains(@class,' css-2b097c-container')]");
@@ -100,10 +103,22 @@ public class SelectMenuPage extends BasePage {
 
     public void multiSelectOne(String color) {
 
-        WebElement dropdown = driver.findElement(multiSelectDropDown);
-        dropdown.click();
-//      find(multiSelectDropDown).click();
-//        dropdown.sendKeys(option); // Type the option text
+    
+        WebElement selectMyElement = driver.findElement(selectDropDown);
+        selectMyElement.click();
+
+        Actions keyDown = new Actions(driver);
+        keyDown.sendKeys(Keys.chord(Keys.DOWN, Keys.DOWN)).perform();
+
+
+//        WebElement dropdown = driver.findElement(selectDropDown);
+//        dropdown.click();
+////      find(multiSelectDropDown).click();
+//
+//        Select selectElement = new Select(dropdown);
+//        selectElement.selectByValue(color);
+//
+//        dropdown.sendKeys(color); // Type the option text
 //        dropdown.sendKeys(Keys.ENTER); // Select the option
 //        scrollToElementJS(multiSelectDropDown);
 

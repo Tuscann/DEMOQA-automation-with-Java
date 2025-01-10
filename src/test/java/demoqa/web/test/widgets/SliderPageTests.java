@@ -32,7 +32,7 @@ public class SliderPageTests extends BaseTest {
         Assert.assertEquals(actualValue, expectedValue, "Actual value is not equal to expected value");
     }
 
-    @Test
+    @Test(enabled = true)
     public void CheckDefaultValueSlider() {
         navigateToUrl("slider");
 

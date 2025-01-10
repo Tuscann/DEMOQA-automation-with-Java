@@ -23,7 +23,7 @@ public class ProgressBarPageTests extends BaseTest {
         Assert.assertEquals(actualStartButtonText, expectedStartButtonText, "Wrong button value");
     }
 
-    @Test
+    @Test(enabled = true)
     public void ClickStartButtonAndCheckProgressBarEndValue() {
         navigateToUrl("progress-bar");
         String expectedText = "100";
@@ -40,14 +40,14 @@ public class ProgressBarPageTests extends BaseTest {
         String actualGreenColor = progressBarPage.getColorProgressBar();
         String textOfResetButton = progressBarPage.getResetButtonText();
 
-        Assert.assertEquals(actualText, expectedText, "Not 100% value");
-        Assert.assertEquals(actualGreenColor, expectedGreenColor, "Wrong color value");
-        Assert.assertEquals(actualNotGreenColor, expectedStartColor, "Wrong color value");
-        Assert.assertEquals(textOfResetButton, resetButtonText, "Not reset Button");
-        Assert.assertEquals(actualStartStopButtonText, stopButtonText, "Not stop Button");
+        Assert.assertEquals(actualText, expectedText, "\nNot 100% value.\n");
+        Assert.assertEquals(actualGreenColor, expectedGreenColor, "\nWrong color value.\n");
+        Assert.assertEquals(actualNotGreenColor, expectedStartColor, "\nWrong color value.\n");
+        Assert.assertEquals(textOfResetButton, resetButtonText, "\nNot reset Button.\n");
+        Assert.assertEquals(actualStartStopButtonText, stopButtonText, "\nNot stop Button.\n");
     }
 
-    @Test
+    @Test(enabled = true)
     public void ClickResetButton() {
         navigateToUrl("progress-bar");
         String expectedText = "100";
@@ -58,8 +58,8 @@ public class ProgressBarPageTests extends BaseTest {
         progressBarPage.clickResetButton();
         String actualStartButtonText = progressBarPage.getStartStopButtonText();
 
-        Assert.assertEquals(actualText, expectedText, "Not 100% value");
-        Assert.assertEquals(actualStartButtonText, startButtonText, "Wrong start button value");
+        Assert.assertEquals(actualText, expectedText, "\nNot 100% value.\n");
+        Assert.assertEquals(actualStartButtonText, startButtonText, "\nWrong start button value.\n");
     }
 
     @Test(enabled = true)

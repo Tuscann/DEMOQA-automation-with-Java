@@ -25,10 +25,10 @@ public class DatePickerPageTests extends BaseTest {
         String actualSelectDateAndTimeText = datePickerPage.getSelectedDateAndTimeText();
         String actualDateAndTime = datePickerPage.getSelectedDateAndTime();
 
-        Assert.assertEquals(actualDatePickerText, expectedDatePickerText, "Wrong Date Picker");
-        Assert.assertEquals(actualSelectDateText, expectedSelectDateText, "Wrong date text");
-        Assert.assertEquals(actualSelectDate, expectedDate, "Wrong current date ");
-        Assert.assertEquals(actualSelectDateAndTimeText, expectedSelectDateAndTimeText, "Wrong Date and time text");
+        Assert.assertEquals(actualDatePickerText, expectedDatePickerText, "\nWrong Date Picker.\n");
+        Assert.assertEquals(actualSelectDateText, expectedSelectDateText, "\nWrong date text.\n");
+        Assert.assertEquals(actualSelectDate, expectedDate, "\nWrong current date.\n");
+        Assert.assertEquals(actualSelectDateAndTimeText, expectedSelectDateAndTimeText, "\nWrong Date and time text.\n");
 
         String expectedDateAndTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("MMMM d, yyyy h:mm a"));
         Assert.assertEquals(actualDateAndTime, expectedDateAndTime, "Wrong current date and time");

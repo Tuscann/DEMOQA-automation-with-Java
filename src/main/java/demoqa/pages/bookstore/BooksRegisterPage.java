@@ -81,7 +81,8 @@ public class BooksRegisterPage extends BasePage {
 
     public String getErrorMessage() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(12));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("name")));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(errorMessage));
+        
         return find(errorMessage).getText();
     }
 
@@ -110,6 +111,8 @@ public class BooksRegisterPage extends BasePage {
     }
 
     public void clickIamRobotButton() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(4));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(IamRobotButton));
         click(IamRobotButton);
     }
 

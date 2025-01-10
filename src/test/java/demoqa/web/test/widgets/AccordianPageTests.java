@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 
 public class AccordianPageTests extends BaseTest {
 
-    @Test
+    @Test(enabled = true)
     public void VerifyAllTextOnPage() {
         navigateToUrl("accordian");
         String expectedHeading = "Accordian";
@@ -19,13 +19,13 @@ public class AccordianPageTests extends BaseTest {
         String actualSectionTwoHeadingText = accordianPage.getSectionTwoHeadingText();
         String actualSectionThreeHeadingText = accordianPage.getSectionThreeHeadingText();
 
-        Assert.assertEquals(actualHeading, expectedHeading, "Wrong heading");
-        Assert.assertEquals(actualSectionOneHeadingText, expectedOneHeadingText, "Wrong one heading text");
-        Assert.assertEquals(actualSectionTwoHeadingText, expectedTwoHeadingText, "Wrong two heading text");
-        Assert.assertEquals(actualSectionThreeHeadingText, expectedThreeHeadingText, "Wrong three heading text");
+        Assert.assertEquals(actualHeading, expectedHeading, "\nWrong heading.\n");
+        Assert.assertEquals(actualSectionOneHeadingText, expectedOneHeadingText, "\nWrong one heading text.\n");
+        Assert.assertEquals(actualSectionTwoHeadingText, expectedTwoHeadingText, "\nWrong two heading text.\n");
+        Assert.assertEquals(actualSectionThreeHeadingText, expectedThreeHeadingText, "\nWrong three heading text.\n");
     }
 
-    @Test
+    @Test(enabled = true)
     public void SelectFirstHeading() {
         navigateToUrl("accordian");
         accordianPage.clickOneHeading();
@@ -33,10 +33,10 @@ public class AccordianPageTests extends BaseTest {
         String actualText = accordianPage.getSectionOneText();
         String expectedText = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";
 
-        Assert.assertEquals(actualText, expectedText, "Wrong first paragraph");
+        Assert.assertEquals(actualText, expectedText, "\nWrong first paragraph.\n");
     }
 
-    @Test
+    @Test(enabled = true)
     public void SelectSecondHeading() {
         navigateToUrl("accordian");
         accordianPage.clickTwoHeading();
@@ -46,10 +46,10 @@ public class AccordianPageTests extends BaseTest {
 
                 "The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from \"de Finibus Bonorum et Malorum\" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.";
 
-        Assert.assertEquals(actualText, expectedText, "Wrong second paragraph");
+        Assert.assertEquals(actualText, expectedText, "\nWrong second paragraph.\n");
     }
 
-    @Test
+    @Test(enabled = true)
     public void SelectThirdHeading() {
         navigateToUrl("accordian");
         accordianPage.clickThreeHeading();
@@ -57,6 +57,6 @@ public class AccordianPageTests extends BaseTest {
         String actualText = accordianPage.getSectionThreeText();
         String expectedText = "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).";
 
-        Assert.assertEquals(actualText, expectedText, "Wrong third paragraph");
+        Assert.assertEquals(actualText, expectedText, "\nWrong third paragraph.\n");
     }
 }

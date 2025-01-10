@@ -31,18 +31,18 @@ public class MenuPageTests extends BaseTest {
         String actualMainItem2SubSubListSubItem2 = menuPage.getMainItem2SubSubListSubItem2();
         String actualMainItem3 = menuPage.getMainItem3();
 
-        Assert.assertEquals(actualPageHeader, pageHeader, "Page header not correct");
-        Assert.assertEquals(actualMainItem1, mainItem1, "Main Item 1 not correct");
-        Assert.assertEquals(actualMainItem2, mainItem2, "Main Item 2 not correct");
-        Assert.assertEquals(actualMainItem2SubItem1, mainItem2SubItem1, "Main Item 1 sub item 1 not correct");
-        Assert.assertEquals(actualMainItem2SubItem2, mainItem2SubItem2, "Main Item 1 sub item 2 not correct");
-        Assert.assertEquals(actualMainItem2SubSubList, mainItem2SubSubList, "Main 2 SubList");
-        Assert.assertEquals(actualMainItem2SubSubListSubItem1, mainItem2SubSubListSubItem1, "SubSubListSubItem1 not correct");
-        Assert.assertEquals(actualMainItem2SubSubListSubItem2, mainItem2SubSubListSubItem2, "SubSubListSubItem2 not correct");
+        Assert.assertEquals(actualPageHeader, pageHeader, "\nPage header not correct.\n");
+        Assert.assertEquals(actualMainItem1, mainItem1, "\nMain Item 1 not correct.\n");
+        Assert.assertEquals(actualMainItem2, mainItem2, "\nMain Item 2 not correct.\n");
+        Assert.assertEquals(actualMainItem2SubItem1, mainItem2SubItem1, "\nMain Item 1 sub item 1 not correct.\n");
+        Assert.assertEquals(actualMainItem2SubItem2, mainItem2SubItem2, "\nMain Item 1 sub item 2 not correct.\n");
+        Assert.assertEquals(actualMainItem2SubSubList, mainItem2SubSubList, "\nMain 2 SubList.\n");
+        Assert.assertEquals(actualMainItem2SubSubListSubItem1, mainItem2SubSubListSubItem1, "\nSubSubListSubItem1 not correct.\n");
+        Assert.assertEquals(actualMainItem2SubSubListSubItem2, mainItem2SubSubListSubItem2, "\nSubSubListSubItem2 not correct.\n");
         Assert.assertEquals(actualMainItem3, mainItem3, "Main Item 3 not correct");
     }
 
-    @Test
+    @Test(enabled = true)
     public void HoverOverEveryItemInMenuAndCheckHoverColor() {
         navigateToUrl("menu#");
 
@@ -50,17 +50,17 @@ public class MenuPageTests extends BaseTest {
         final String colorAfterSelection = "rgba(0, 63, 32, 1)";
 
         String actualColorSelected = menuPage.takeBackgroundColorMainItem1();
-        Assert.assertEquals(actualColorSelected, colorBeforeSelection, "Not normal green");
+        Assert.assertEquals(actualColorSelected, colorBeforeSelection, "\nNot normal green.\n");
         menuPage.selectMainItem1();
         actualColorSelected = menuPage.takeBackgroundColorMainItem1();
-        Assert.assertEquals(actualColorSelected, colorAfterSelection, "Not dark green");
+        Assert.assertEquals(actualColorSelected, colorAfterSelection, "\nNot dark green.\n");
 
 
         actualColorSelected = menuPage.takeBackgroundColorMainItem2();
-        Assert.assertEquals(actualColorSelected, colorBeforeSelection, "Not normal green");
+        Assert.assertEquals(actualColorSelected, colorBeforeSelection, "\nNot normal green.\n");
         menuPage.selectMainItem2();
         actualColorSelected = menuPage.takeBackgroundColorMainItem2();
-        Assert.assertEquals(actualColorSelected, colorAfterSelection, "Not dark green");
+        Assert.assertEquals(actualColorSelected, colorAfterSelection, "\nNot dark green.\n");
 
 
         actualColorSelected = menuPage.takeBackgroundColorMainItem2SubItem1();

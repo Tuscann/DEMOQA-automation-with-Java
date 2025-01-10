@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 
 public class TabsPageTests extends BaseTest {
 
-    @Test
+    @Test(enabled = true)
     public void SelectWhatTabAndCheckText() {
         navigateToUrl("tabs");
 
@@ -14,10 +14,10 @@ public class TabsPageTests extends BaseTest {
 
         tabsPage.clickWhatTab();
         String actualText = tabsPage.getWhatTabInternalText();
-        Assert.assertEquals(actualText, expectedWhatInternalText, "Wrong what text");
+        Assert.assertEquals(actualText, expectedWhatInternalText, "\nWrong what text.\n");
     }
 
-    @Test
+    @Test(enabled = true)
     public void SelectOriginTabAndCheckText() {
         navigateToUrl("tabs");
 
@@ -25,20 +25,20 @@ public class TabsPageTests extends BaseTest {
                 "The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from \"de Finibus Bonorum et Malorum\" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.";
         tabsPage.clickOriginTab();
         String actualText = tabsPage.getOriginTabInternalText();
-        Assert.assertEquals(actualText, expectedWhatInternalText, "Wrong origin text");
+        Assert.assertEquals(actualText, expectedWhatInternalText, "\nWrong origin text.\n");
     }
 
-    @Test
+    @Test(enabled = true)
     public void SelectUseTabAndCheckText() {
         navigateToUrl("tabs");
 
         String expectedWhatInternalText = "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).";
         tabsPage.clickUseTab();
         String actualText = tabsPage.getUseTabInternalText();
-        Assert.assertEquals(actualText, expectedWhatInternalText, "Wrong use text");
+        Assert.assertEquals(actualText, expectedWhatInternalText, "\nWrong use text.\n");
     }
 
-    @Test
+    @Test(enabled = true)
     public void CheckAllTextOnPage() {
         navigateToUrl("tabs");
 
@@ -56,11 +56,11 @@ public class TabsPageTests extends BaseTest {
         String actualUseText = tabsPage.getUseTabText();
         String actualMoreText = tabsPage.getMoreTabText();
 
-        Assert.assertEquals(actualHead, expectedHead, "Wrong Tabs text");
-        Assert.assertEquals(actualString, expectedString, "Wrong Details about Lorem Ipsum text");
-        Assert.assertEquals(actualWhatText, expectedWhatText, "Wrong what text");
-        Assert.assertEquals(actualOriginText, expectedOriginText, "Wrong origin text");
-        Assert.assertEquals(actualUseText, expectedUseText, "Wrong use text");
-        Assert.assertEquals(actualMoreText, expectedMoreText, "Wrong more text");
+        Assert.assertEquals(actualHead, expectedHead, "\nWrong Tabs text.\n");
+        Assert.assertEquals(actualString, expectedString, "\nWrong Details about Lorem Ipsum text.\n");
+        Assert.assertEquals(actualWhatText, expectedWhatText, "\nWrong what text.\n");
+        Assert.assertEquals(actualOriginText, expectedOriginText, "\nWrong origin text.\n");
+        Assert.assertEquals(actualUseText, expectedUseText, "\nWrong use text.\n");
+        Assert.assertEquals(actualMoreText, expectedMoreText, "\nWrong more text.\n");
     }
 }
