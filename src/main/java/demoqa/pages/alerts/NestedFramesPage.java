@@ -8,6 +8,7 @@ public class NestedFramesPage extends BasePage {
     private final By parentIframe = By.id("frame1");
     private final By parentIframeText = By.xpath("//*[text()=\"Parent frame\"]");
     private final By childIframeText = By.xpath("//body/p");
+    private final By headingText = By.xpath("//h1[@class='text-center'][contains(.,'Nested Frames')]");
 
     private final By mainText = By.xpath("//*[contains(text(),\"Sample\")]");
 
@@ -23,6 +24,10 @@ public class NestedFramesPage extends BasePage {
         return find(parentIframeText).getText();
     }
 
+    public String getHeadingText() {
+        return find(headingText).getText();
+    }
+
     public void selectParentIframe() {
         driver.switchTo().frame(find(parentIframe));
     }
@@ -30,4 +35,5 @@ public class NestedFramesPage extends BasePage {
     public void selectChildIframe() {
         driver.switchTo().frame(driver.findElement(parentIframe)).switchTo().frame(0);
     }
+
 }

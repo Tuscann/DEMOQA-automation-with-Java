@@ -49,18 +49,18 @@ public class SelectablePageTests extends BaseTest {
         Assert.assertEquals(actualListTab, listTab, "\nWrong page tab name. \n");
         Assert.assertEquals(actualListFirstText, listFirstText, "\nWrong page one.\n");
         Assert.assertEquals(actualListSecondText, listSecondText, "\nWrong page two.\n");
-        Assert.assertEquals(actualListThirdText, listThirdText, "Wrong page three");
-        Assert.assertEquals(actualListFourText, listFourText, "Wrong page four");
-        Assert.assertEquals(actualGridTab, gridTab, "Wrong page tab");
-        Assert.assertEquals(actualGridOne, gridOne, "Wrong page one");
-        Assert.assertEquals(actualGridTwo, gridTwo, "Wrong page two");
-        Assert.assertEquals(actualGridThree, gridThree, "Wrong page three");
-        Assert.assertEquals(actualGridFour, gridFour, "Wrong page four");
-        Assert.assertEquals(actualGridFive, gridFive, "Wrong page five");
-        Assert.assertEquals(actualGridSix, gridSix, "Wrong page six");
-        Assert.assertEquals(actualGridSeven, gridSeven, "Wrong page seven");
-        Assert.assertEquals(actualGridEight, gridEight, "Wrong page eight");
-        Assert.assertEquals(actualGridNine, gridNine, "Wrong page nine");
+        Assert.assertEquals(actualListThirdText, listThirdText, "\nWrong page three.\n");
+        Assert.assertEquals(actualListFourText, listFourText, "\nWrong page four.\n");
+        Assert.assertEquals(actualGridTab, gridTab, "\nWrong page tab.\n");
+        Assert.assertEquals(actualGridOne, gridOne, "\nWrong page one.\n");
+        Assert.assertEquals(actualGridTwo, gridTwo, "\nWrong page two.\n");
+        Assert.assertEquals(actualGridThree, gridThree, "\nWrong page three.\n");
+        Assert.assertEquals(actualGridFour, gridFour, "\nWrong page four.\n");
+        Assert.assertEquals(actualGridFive, gridFive, "\nWrong page five.\n");
+        Assert.assertEquals(actualGridSix, gridSix, "\nWrong page six.\n");
+        Assert.assertEquals(actualGridSeven, gridSeven, "\nWrong page seven.\n");
+        Assert.assertEquals(actualGridEight, gridEight, "\nWrong page eight.\n");
+        Assert.assertEquals(actualGridNine, gridNine, "\nWrong page nine.\n");
     }
 
     @Test(enabled = true)

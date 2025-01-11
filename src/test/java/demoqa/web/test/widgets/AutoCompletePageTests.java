@@ -18,9 +18,9 @@ public class AutoCompletePageTests extends BaseTest {
         String actualTypeMultipleText = autoCompletePage.getMultipleContainerText();
         String actualTypeSingleText = autoCompletePage.getAutoCompleteSingleText();
 
-        Assert.assertEquals(actualText, expectedText, "Wrong Auto Complete");
-        Assert.assertEquals(actualTypeMultipleText, expectedTypeMultipleText, "Wrong Type multiple color names");
-        Assert.assertEquals(actualTypeSingleText, expectedTypeSingleText, "Wrong Type single color name");
+        Assert.assertEquals(actualText, expectedText, "\nWrong Auto Complete.\n");
+        Assert.assertEquals(actualTypeMultipleText, expectedTypeMultipleText, "\nWrong Type multiple color names.\n");
+        Assert.assertEquals(actualTypeSingleText, expectedTypeSingleText, "\nWrong Type single color name.\n");
     }
 
     @Test(enabled = true)
@@ -34,7 +34,7 @@ public class AutoCompletePageTests extends BaseTest {
 
         String actualSelectedColors = autoCompletePage.getAllSelectedMultiColorNames();
 
-        Assert.assertEquals(actualSelectedColors, expectedFirstColor + "\n" + expectedSecondColor, "Wrong Colors selected");
+        Assert.assertEquals(actualSelectedColors, expectedFirstColor + "\n" + expectedSecondColor, "\nWrong Colors selected.\n");
     }
 
     @Test(enabled = true)
@@ -46,7 +46,7 @@ public class AutoCompletePageTests extends BaseTest {
         autoCompletePage.multiAutoCompleteSelectColor(expectedFirstColor);
         autoCompletePage.multiAutoCompleteSelectColor(expectedSecondColor);
         String actualSelectedColors = autoCompletePage.getAllSelectedMultiColorNames();
-        Assert.assertEquals(actualSelectedColors, expectedFirstColor + "\n" + expectedSecondColor, "Wrong Colors selected");
+        Assert.assertEquals(actualSelectedColors, expectedFirstColor + "\n" + expectedSecondColor, "\nWrong Colors selected.\n");
 
         autoCompletePage.clickCloseButton();
 
@@ -55,7 +55,7 @@ public class AutoCompletePageTests extends BaseTest {
         autoCompletePage.multiAutoCompleteSelectColor(expectedFirstColor);
         autoCompletePage.multiAutoCompleteSelectColor(expectedSecondColor);
         actualSelectedColors = autoCompletePage.getAllSelectedMultiColorNames();
-        Assert.assertEquals(actualSelectedColors, expectedFirstColor + "\n" + expectedSecondColor, "Wrong Colors selected");
+        Assert.assertEquals(actualSelectedColors, expectedFirstColor + "\n" + expectedSecondColor, "\nWrong Colors selected.\n");
     }
 
     @Test(enabled = true)
@@ -66,14 +66,14 @@ public class AutoCompletePageTests extends BaseTest {
         autoCompletePage.singleAutoComplete(expectedFirstColor);
         String actualSelectedColors = autoCompletePage.getAllSingleColorNames();
 
-        Assert.assertEquals(actualSelectedColors, expectedFirstColor, "Wrong " + expectedFirstColor + " Color selected");
+        Assert.assertEquals(actualSelectedColors, expectedFirstColor, "\nWrong " + expectedFirstColor + " Color selected\n");
 
         expectedFirstColor = "Blue";
         autoCompletePage.clickSingleAutoComplete();
         autoCompletePage.singleAutoComplete(expectedFirstColor);
         actualSelectedColors = autoCompletePage.getAllSingleColorNames();
 
-        Assert.assertEquals(actualSelectedColors, expectedFirstColor, "Wrong " + expectedFirstColor + "Color selected");
+        Assert.assertEquals(actualSelectedColors, expectedFirstColor, "\nWrong " + expectedFirstColor + "Color selected\n");
     }
 
     @Test(enabled = true)

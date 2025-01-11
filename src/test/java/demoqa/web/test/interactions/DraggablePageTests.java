@@ -42,19 +42,19 @@ public class DraggablePageTests extends BaseTest {
         String actualCursorStyleSecondText = draggablePage.getCursorStyleSecondText();
         String actualCursorStyleThirdText = draggablePage.getCursorStyleThirdText();
 
-        Assert.assertEquals(actualPageTitle, pageTitle, "Wrong page title");
-        Assert.assertEquals(actualSimpleTabTitle, simpleTabTitle, "Wrong Simple page title");
-        Assert.assertEquals(actualSimpleDragMe, simpleDragMe, "Wrong simple page title");
-        Assert.assertEquals(actualAxisRestrictedTab, axisRestrictedTab, "Wrong axis restricted tab");
-        Assert.assertEquals(actualAxisRestrictedOnlyX, axisRestrictedOnlyX, "Wrong axis restricted only x");
-        Assert.assertEquals(actualAxisRestrictedOnlyY, axisRestrictedOnlyY, "Wrong axis restricted only Y");
-        Assert.assertEquals(actualContainerRestrictedTab, containerRestrictedTab, "Wrong container restricted tab");
-        Assert.assertEquals(actualContainerRestrictedFirstText, containerRestrictedFirstText, "Wrong container restricted first text");
-        Assert.assertEquals(actualContainerRestrictedSecondText, containerRestrictedSecondText, "Wrong container second text");
-        Assert.assertEquals(actualCursorStyleTab, cursorStyleTab, "Wrong cursor style tab");
-        Assert.assertEquals(actualCursorStyleFirstText, cursorStyleFirstText, "Wrong style first text");
-        Assert.assertEquals(actualCursorStyleSecondText, cursorStyleSecondText, "Wrong style second text");
-        Assert.assertEquals(actualCursorStyleThirdText, cursorStyleThirdText, "Wrong style third text");
+        Assert.assertEquals(actualPageTitle, pageTitle, "\nWrong page title.\n");
+        Assert.assertEquals(actualSimpleTabTitle, simpleTabTitle, "\nWrong Simple page title.\n");
+        Assert.assertEquals(actualSimpleDragMe, simpleDragMe, "\nWrong simple page title.\n");
+        Assert.assertEquals(actualAxisRestrictedTab, axisRestrictedTab, "\nWrong axis restricted tab.\n");
+        Assert.assertEquals(actualAxisRestrictedOnlyX, axisRestrictedOnlyX, "\nWrong axis restricted only X.\n");
+        Assert.assertEquals(actualAxisRestrictedOnlyY, axisRestrictedOnlyY, "\nWrong axis restricted only Y.\n");
+        Assert.assertEquals(actualContainerRestrictedTab, containerRestrictedTab, "Wrong container restricted tab.\n");
+        Assert.assertEquals(actualContainerRestrictedFirstText, containerRestrictedFirstText, "\nWrong container restricted first text.\n");
+        Assert.assertEquals(actualContainerRestrictedSecondText, containerRestrictedSecondText, "\nWrong container second text.\n");
+        Assert.assertEquals(actualCursorStyleTab, cursorStyleTab, "\nWrong cursor style tab.\n");
+        Assert.assertEquals(actualCursorStyleFirstText, cursorStyleFirstText, "\nWrong style first text.\n");
+        Assert.assertEquals(actualCursorStyleSecondText, cursorStyleSecondText, "\nWrong style second text.\n");
+        Assert.assertEquals(actualCursorStyleThirdText, cursorStyleThirdText, "\nWrong style third text.\n");
     }
 
     @Test(enabled = true)
@@ -70,8 +70,8 @@ public class DraggablePageTests extends BaseTest {
 
         Point endPosition = draggablePage.getInitLocation();
 
-        Assert.assertEquals(initialLocation.x + xOffset, endPosition.x, "Wrong initial location");
-        Assert.assertEquals(initialLocation.y + yOffset, endPosition.y, "Wrong initial location");
+        Assert.assertEquals(initialLocation.x + xOffset, endPosition.x, "\nWrong initial location X.\n");
+        Assert.assertEquals(initialLocation.y + yOffset, endPosition.y, "\nWrong initial location Y.\n");
     }
 
     @Test(enabled = true)
@@ -89,8 +89,8 @@ public class DraggablePageTests extends BaseTest {
 
         Point endPosition = draggablePage.getInitLocationOnlyX();
 
-        Assert.assertEquals(initialLocation.x + xOffset, endPosition.x, "Wrong initial location");
-        Assert.assertEquals(initialLocation.y, endPosition.y, "Wrong initial location");
+        Assert.assertEquals(initialLocation.x + xOffset, endPosition.x, "\nWrong initial location X.\n");
+        Assert.assertEquals(initialLocation.y, endPosition.y, "\nWrong initial location Y.\n");
     }
 
     @Test(enabled = true)
@@ -108,8 +108,8 @@ public class DraggablePageTests extends BaseTest {
 
         Point endPosition = draggablePage.getInitLocationOnlyY();
 
-        Assert.assertEquals(initialLocation.x, endPosition.x, "Wrong initial location");
-        Assert.assertEquals(initialLocation.y + yOffset, endPosition.y, "Wrong initial location");
+        Assert.assertEquals(initialLocation.x, endPosition.x, "\nWrong initial location X.\n");
+        Assert.assertEquals(initialLocation.y + yOffset, endPosition.y, "\nWrong initial location Y.\n");
     }
 
     @Test(enabled = true)
@@ -122,14 +122,12 @@ public class DraggablePageTests extends BaseTest {
         draggablePage.clickContainerRestrictedTab();
 
         Point initialLocation = draggablePage.getInitLocationContainedInBox();
-
         draggablePage.dragAndDropByOnPositionContainedBox(xOffset, yOffset);
-        // delay(400); //TODO
 
         Point endPosition = draggablePage.getInitLocationContainedInBox();
 
-        Assert.assertEquals(initialLocation.x + xOffset, endPosition.x, "Wrong initial location");
-        Assert.assertEquals(initialLocation.y + yOffset, endPosition.y, "Wrong initial location");
+        Assert.assertEquals(initialLocation.x + xOffset, endPosition.x, "\nWrong initial location X.\n");
+        Assert.assertEquals(initialLocation.y + yOffset, endPosition.y, "\nWrong initial location Y.\n");
     }
 
     @Test(enabled = false)
@@ -149,7 +147,7 @@ public class DraggablePageTests extends BaseTest {
 
         int actualEndPointValueY = initialLocation.y + yOffset - 1;
 
-        Assert.assertEquals(initialLocation.x + xOffset, endPosition.x, "\nWrong initial location.\n");
+        Assert.assertEquals(initialLocation.x + xOffset, endPosition.x, "\nWrong initial location X axis.\n");
         Assert.assertEquals(actualEndPointValueY, endPosition.y, "\nWrong endpoint location on y axis.\n");
     }
 
@@ -168,8 +166,8 @@ public class DraggablePageTests extends BaseTest {
 
         Point endPosition = draggablePage.getInitLocationContainedInParent();
 
-        Assert.assertEquals(initialLocation.x + xOffset, endPosition.x, "Wrong initial location");
-        Assert.assertEquals(initialLocation.y + yOffset, endPosition.y, "Wrong initial location");
+        Assert.assertEquals(initialLocation.x + xOffset, endPosition.x, "\nWrong initial location X.\n");
+        Assert.assertEquals(initialLocation.y + yOffset, endPosition.y, "\nWrong initial location Y.\n");
     }
 
     @Test(enabled = false)
@@ -187,8 +185,8 @@ public class DraggablePageTests extends BaseTest {
 
         Point endPosition = draggablePage.getInitLocationFirstText();
 
-        Assert.assertEquals(initialLocation.x + xOffset, endPosition.x, "Wrong initial location");
-        Assert.assertEquals(initialLocation.y + yOffset, endPosition.y, "Wrong initial location");
+        Assert.assertEquals(initialLocation.x + xOffset, endPosition.x, "\nWrong initial location X.\n");
+        Assert.assertEquals(initialLocation.y + yOffset, endPosition.y, "\nWrong initial location Y.\n");
     }
 
     @Test(enabled = false)
@@ -206,8 +204,8 @@ public class DraggablePageTests extends BaseTest {
 
         Point endPosition = draggablePage.getInitLocationSecondText();
 
-        Assert.assertEquals(initialLocation.x + xOffset, endPosition.x, "Wrong initial location");
-        Assert.assertEquals(initialLocation.y + yOffset, endPosition.y, "Wrong initial location");
+        Assert.assertEquals(initialLocation.x + xOffset, endPosition.x, "\nWrong initial location X.\n");
+        Assert.assertEquals(initialLocation.y + yOffset, endPosition.y, "\nWrong initial location Y.\n");
     }
 
     @Test(enabled = false)
@@ -225,8 +223,7 @@ public class DraggablePageTests extends BaseTest {
 
         Point endPosition = draggablePage.getInitLocationThirdText();
 
-        Assert.assertEquals(initialLocation.x + xOffset, endPosition.x, "Wrong initial location");
-        Assert.assertEquals(initialLocation.y + yOffset, endPosition.y, "Wrong initial location");
+        Assert.assertEquals(initialLocation.x + xOffset, endPosition.x, "\nWrong initial location X.\n");
+        Assert.assertEquals(initialLocation.y + yOffset, endPosition.y, "\nWrong initial location Y.\n");
     }
-
 }

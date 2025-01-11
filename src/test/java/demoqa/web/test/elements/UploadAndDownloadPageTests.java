@@ -48,6 +48,6 @@ public class UploadAndDownloadPageTests extends BaseTest {
 
         boolean fileExists = uploadAndDownloadPage.checkIfFileExists(expectedFileName);
 
-        Assert.assertTrue(fileExists, "File '" + expectedFileName + "' was not downloaded.");
+        Assert.assertTrue(fileExists, "\nFile '" + expectedFileName + "' was not downloaded.\n");
     }
 }

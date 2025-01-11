@@ -29,7 +29,6 @@ public class ToolTipsPageTests extends BaseTest {
         Assert.assertEquals(actualMainText, mainText, "\nMissing main text.\n");
     }
 
-
     @Test(enabled = true)
     public void HoverOver4ToolTips() {
         navigateToUrl("tool-tips");

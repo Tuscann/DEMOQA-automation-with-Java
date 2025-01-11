@@ -75,33 +75,33 @@ public class PracticeFormPageTests extends BaseTest {
 
         Assert.assertEquals(actualPracticeFromText, practiceFromText, "\nWrong practice form text\n");
         Assert.assertEquals(actualStudentRegistrationFormText, studentRegistrationFormText, "\nWrong registration text\n");
-        Assert.assertEquals(actualNameLabel, nameLabel, "Wrong practice form text");
-        Assert.assertEquals(actualFirstNamePlaceholder, firstNamePlaceholder, "Wrong first placeholder");
-        Assert.assertEquals(actualLastNamePlaceholder, lastNamePlaceholder, "Wrong last placeholder");
-        Assert.assertEquals(actualEmailLabel, emailLabel, "Wrong email placeholder");
-        Assert.assertEquals(actualPlaceholderEmail, expectedPlaceholderEmail, "Wrong email placeholder");
-        Assert.assertEquals(actualGenderLabel, genderLabel, "Wrong gender placeholder");
-        Assert.assertEquals(actualMaleRadioButtonText, expectedMaleRadioButtonText, "Wrong male placeholder");
-        Assert.assertEquals(actualFemaleRadioButtonText, expectedFemaleRadioButtonText, "Wrong female placeholder");
-        Assert.assertEquals(actualOtherRadioButtonText, otherRadioButtonText, "Wrong other placeholder");
-        Assert.assertEquals(actualMobileNumberLabel, expectedMobileNumberLabel, "Wrong mobile number placeholder");
-        Assert.assertEquals(actualMobileNumberPlaceholder, expectedMobileNumberPlaceholder, "Wrong mobile number placeholder");
-        Assert.assertEquals(actualDateOfBirthLabel, expectedDateOfBirthLabel, "Wrong date of birth label");
-        Assert.assertEquals(actualDateOfBirthPlaceholder, expectedDateOfBirthPlaceholder, "Wrong date of birth placeholder");
-        Assert.assertEquals(actualSubjectsLabel, expectedSubjectsLabel, "Wrong subject placeholder");
+        Assert.assertEquals(actualNameLabel, nameLabel, "\nWrong practice form text.\n");
+        Assert.assertEquals(actualFirstNamePlaceholder, firstNamePlaceholder, "\nWrong first placeholder.\n");
+        Assert.assertEquals(actualLastNamePlaceholder, lastNamePlaceholder, "\nWrong last placeholder.\n");
+        Assert.assertEquals(actualEmailLabel, emailLabel, "\nWrong email placeholder");
+        Assert.assertEquals(actualPlaceholderEmail, expectedPlaceholderEmail, "\nWrong email placeholder");
+        Assert.assertEquals(actualGenderLabel, genderLabel, "\nWrong gender placeholder.\n");
+        Assert.assertEquals(actualMaleRadioButtonText, expectedMaleRadioButtonText, "\nWrong male placeholder.\n");
+        Assert.assertEquals(actualFemaleRadioButtonText, expectedFemaleRadioButtonText, "\nWrong female placeholder.\n");
+        Assert.assertEquals(actualOtherRadioButtonText, otherRadioButtonText, "\nWrong other placeholder.\n");
+        Assert.assertEquals(actualMobileNumberLabel, expectedMobileNumberLabel, "\nWrong mobile number placeholder.\n");
+        Assert.assertEquals(actualMobileNumberPlaceholder, expectedMobileNumberPlaceholder, "\nWrong mobile number placeholder");
+        Assert.assertEquals(actualDateOfBirthLabel, expectedDateOfBirthLabel, "\nWrong date of birth label.\n");
+        Assert.assertEquals(actualDateOfBirthPlaceholder, expectedDateOfBirthPlaceholder, "\nWrong date of birth placeholder");
+        Assert.assertEquals(actualSubjectsLabel, expectedSubjectsLabel, "\nWrong subject placeholder.\n");
         Assert.assertNull(actualSubjectsPlaceholder);
-        Assert.assertEquals(actualHobbiesLabel, expectedHobbiesLabel, "Wrong hobbies placeholder");
-        Assert.assertEquals(actualHobbySportText, expectedHobbySportText, "Wrong hobby sport text");
-        Assert.assertEquals(actualHobbyReadingText, expectedHobbyReadingText, "Wrong hobby reading text");
-        Assert.assertEquals(actualHobbyMusicText, expectedHobbyMusicText, "Wrong hobby music text");
-        Assert.assertEquals(actualPictureLabelText, expectedPictureLabelText, "Wrong picture text");
-        Assert.assertEquals(actualSelectPictureText, expectedSelectPictureText, "Wrong select picture");
-        Assert.assertEquals(actualCurrentAddressLabel, expectedCurrentAddressLabel, "Wrong current address label");
-        Assert.assertEquals(actualCurrentAddressPlaceholder, expectedCurrentAddressPlaceholder, "Wrong current address placeholder");
-        Assert.assertEquals(actualStateAndCityLabel, expectedStateAndCityLabel, "Wrong state and City label");
-        Assert.assertEquals(actualSelectStatePlaceholder, expectedSelectStatePlaceholder, "Wrong select state placeholder");
-        Assert.assertEquals(actualSelectCityPlaceholder, expectedSelectCityPlaceholder, "Wrong select city placeholder");
-        Assert.assertEquals(actualSubmitButtonText, expectedSubmitButtonText, "Wrong submit button text");
+        Assert.assertEquals(actualHobbiesLabel, expectedHobbiesLabel, "\nWrong hobbies placeholder.\n");
+        Assert.assertEquals(actualHobbySportText, expectedHobbySportText, "\nWrong hobby sport text.\n");
+        Assert.assertEquals(actualHobbyReadingText, expectedHobbyReadingText, "\nWrong hobby reading text.\n");
+        Assert.assertEquals(actualHobbyMusicText, expectedHobbyMusicText, "\nWrong hobby music text.\n");
+        Assert.assertEquals(actualPictureLabelText, expectedPictureLabelText, "\nWrong picture text.\n");
+        Assert.assertEquals(actualSelectPictureText, expectedSelectPictureText, "\nWrong select picture.\n");
+        Assert.assertEquals(actualCurrentAddressLabel, expectedCurrentAddressLabel, "\nWrong current address label");
+        Assert.assertEquals(actualCurrentAddressPlaceholder, expectedCurrentAddressPlaceholder, "\nWrong current address placeholder");
+        Assert.assertEquals(actualStateAndCityLabel, expectedStateAndCityLabel, "\nWrong state and City label");
+        Assert.assertEquals(actualSelectStatePlaceholder, expectedSelectStatePlaceholder, "\nWrong select state placeholder");
+        Assert.assertEquals(actualSelectCityPlaceholder, expectedSelectCityPlaceholder, "\nWrong select city placeholder");
+        Assert.assertEquals(actualSubmitButtonText, expectedSubmitButtonText, "\nWrong submit button text.\n");
     }
 
     @Test
@@ -117,9 +117,9 @@ public class PracticeFormPageTests extends BaseTest {
         boolean isSportsCheckBoxSelected = practiceFormPage.isSportCheckBSelected();
         boolean isMusicCheckBoxSelected = practiceFormPage.isMusicCheckBoxSelected();
 
-        Assert.assertTrue(isSportsCheckBoxSelected, "\n Sports checkbox is not unselected \n");
-        Assert.assertFalse(isReadingCheckBoxSelected, "\n Reading checkbox is not unselected \n");
-        Assert.assertTrue(isMusicCheckBoxSelected, "\n Music checkbox is not unselected \n");
+        Assert.assertTrue(isSportsCheckBoxSelected, "\nSports checkbox is not unselected.\n");
+        Assert.assertFalse(isReadingCheckBoxSelected, "\nReading checkbox is not unselected.\n");
+        Assert.assertTrue(isMusicCheckBoxSelected, "\nMusic checkbox is not unselected.\n");
     }
 
     @Test
@@ -129,19 +129,19 @@ public class PracticeFormPageTests extends BaseTest {
         practiceFormPage.clickGenderRadioButton(gender);
 
         boolean isFemaleRadioButtonSelected = practiceFormPage.isFemaleRadioButtonSelected();
-        Assert.assertTrue(isFemaleRadioButtonSelected, "\n Female radio button is not selected \n");
+        Assert.assertTrue(isFemaleRadioButtonSelected, "\nFemale radio button is not selected.\n");
 
         gender = "Male";
         practiceFormPage.clickGenderRadioButton(gender);
 
         boolean isMaleRadioButtonSelected = practiceFormPage.isMaleRadioButtonSelected();
-        Assert.assertTrue(isMaleRadioButtonSelected, "\n Male radio button is not selected \n");
+        Assert.assertTrue(isMaleRadioButtonSelected, "\nMale radio button is not selected.\n");
 
         gender = "Other";
         practiceFormPage.clickGenderRadioButton(gender);
 
         boolean isOtherRadioButtonSelected = practiceFormPage.isOtherRadioButtonSelected();
-        Assert.assertTrue(isOtherRadioButtonSelected, "\n Other radio button is not selected \n");
+        Assert.assertTrue(isOtherRadioButtonSelected, "\nOther radio button is not selected.\n");
     }
 
     @Test
@@ -193,18 +193,18 @@ public class PracticeFormPageTests extends BaseTest {
         String actualLabel = practiceFormPage.getLabelFromModal();
         String actualValues = practiceFormPage.getValuesFromModal();
 
-        Assert.assertEquals(actualFullName, expectedFirstName + " " + expectedLastName, "Wrong full name");
-        Assert.assertEquals(actualEmail, expectedEmail, "Wrong email address");
-        Assert.assertEquals(actualGender, expectedGender, "Wrong gender");
-        Assert.assertEquals(actualMobile, expectedMobileNumber, "Wrong mobile number");
-        Assert.assertEquals(actualDaterOfBirth, expectedDateOfBirth, "Wrong date of birth");
-        Assert.assertEquals(actualSubjects, expectedSubject, "Wrong subjects");
-        Assert.assertEquals(actualHobbies, expectedHobbies, "Wrong hobbies");
-        Assert.assertEquals(actualPicture, expectedPicture, "Wrong name of picture");
-        Assert.assertEquals(actualCurrentAddress, expectedCurrentAddress, "Wrong current address");
-        Assert.assertEquals(actualStateAndCity, expectedState + " " + expectedCity, "Wrong State and City");
-        Assert.assertEquals(actualLabel, expectedLabel, "Wrong label");
-        Assert.assertEquals(actualValues, expectedValues, "Wrong values");
+        Assert.assertEquals(actualFullName, expectedFirstName + " " + expectedLastName, "\nWrong full name.\n");
+        Assert.assertEquals(actualEmail, expectedEmail, "\nWrong email address.\n");
+        Assert.assertEquals(actualGender, expectedGender, "\nWrong gender.\n");
+        Assert.assertEquals(actualMobile, expectedMobileNumber, "\nWrong mobile number.\n");
+        Assert.assertEquals(actualDaterOfBirth, expectedDateOfBirth, "Wrong date of birth.\n");
+        Assert.assertEquals(actualSubjects, expectedSubject, "\nWrong subjects.\n");
+        Assert.assertEquals(actualHobbies, expectedHobbies, "\nWrong hobbies.\n");
+        Assert.assertEquals(actualPicture, expectedPicture, "\nWrong name of picture.\n");
+        Assert.assertEquals(actualCurrentAddress, expectedCurrentAddress, "\nWrong current address.\n");
+        Assert.assertEquals(actualStateAndCity, expectedState + " " + expectedCity, "Wrong State and City.\n");
+        Assert.assertEquals(actualLabel, expectedLabel, "\nWrong label.\n");
+        Assert.assertEquals(actualValues, expectedValues, "\nWrong values.\n");
     }
 
     @Test

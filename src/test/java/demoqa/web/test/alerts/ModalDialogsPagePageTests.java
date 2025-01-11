@@ -39,9 +39,9 @@ public class ModalDialogsPagePageTests extends BaseTest {
         String actualSmallBodyText = modalDialogsPage.getSmallModalText();
         String actualCloseButtonText = modalDialogsPage.getSmallCloseButtonText();
 
-        Assert.assertEquals(actualSmallModalHeader, expectedSmallModalText, "Wrong modal header text");
-        Assert.assertEquals(actualSmallBodyText, expectedSmallBodyText, "Wrong modal header text");
-        Assert.assertEquals(actualCloseButtonText, expectedClosButtonText, "Wrong close button text");
+        Assert.assertEquals(actualSmallModalHeader, expectedSmallModalText, "\nWrong modal header text.\n");
+        Assert.assertEquals(actualSmallBodyText, expectedSmallBodyText, "\nWrong modal header text.\n");
+        Assert.assertEquals(actualCloseButtonText, expectedClosButtonText, "\nWrong close button text.\n");
     }
 
     @Test(enabled = true)
@@ -57,8 +57,8 @@ public class ModalDialogsPagePageTests extends BaseTest {
         String actualBodyText = modalDialogsPage.getLargeModalText();
         String actualCloseButtonText = modalDialogsPage.getLargeCloseButtonText();
 
-        Assert.assertEquals(actualLargeModalHeader, expectedLargeModalText, "Wrong modal header text");
-        Assert.assertEquals(actualBodyText, expectedLargeBodyText, "Wrong modal header text");
-        Assert.assertEquals(actualCloseButtonText, expectedClosButtonText, "Wrong close button text");
+        Assert.assertEquals(actualLargeModalHeader, expectedLargeModalText, "\nWrong modal header text.\n");
+        Assert.assertEquals(actualBodyText, expectedLargeBodyText, "\nWrong modal header text.\n");
+        Assert.assertEquals(actualCloseButtonText, expectedClosButtonText, "\nWrong close button text.\n");
     }
 }

@@ -49,90 +49,6 @@ public class LinksPageTests extends BaseTest {
     }
 
     @Test(enabled = true)
-    public void ClickOnLinkCreatedRequest() {
-        navigateToUrl("links");
-        linksPage.clickCreatedRequestLink();
-        String actualResponseText = linksPage.getResponse();
-
-        Assert.assertTrue(actualResponseText.contains("201")
-                        && actualResponseText.contains("Created"),
-                "\n Link has responded with staus" + actualResponseText +
-                        ")\n and status text Created \n");
-    }
-
-    @Test(enabled = true)
-    public void ClickOnLinkNoContentRequest() {
-        navigateToUrl("links");
-        linksPage.clickNoContentRequestLink();
-        String actualResponse = linksPage.getResponse();
-
-        Assert.assertTrue(actualResponse.contains("204")
-                        && actualResponse.contains("No Content"),
-                "\n Link has responded with staus" + actualResponse +
-                        ")\n and status text Created \n");
-    }
-
-    @Test(enabled = true)
-    public void ClickOnLinkMovedRequest() {
-        navigateToUrl("links");
-        linksPage.clickMovedRequestLink();
-        String actualResponse = linksPage.getResponse();
-
-        Assert.assertTrue(actualResponse.contains("301")
-                        && actualResponse.contains("Moved Permanently"),
-                "\n Link has responded with staus" + actualResponse +
-                        ")\n and status text Created \n");
-    }
-
-    @Test(enabled = true)
-    public void ClickOnLinkBadRequest() {
-        navigateToUrl("links");
-        linksPage.clickBadRequestLink();
-        String actualResponse = linksPage.getResponse();
-
-        Assert.assertTrue(actualResponse.contains("400")
-                        && actualResponse.contains("Bad Request"),
-                "\n Actual Response (" + actualResponse +
-                        ")\n Does Not Contain '400' and 'Bad Request' \n");
-    }
-
-    @Test(enabled = true)
-    public void ClickOnLinkUnAuthorizedRequest() {
-        navigateToUrl("links");
-        linksPage.clickUnauthorizedRequestLink();
-        String actualResponse = linksPage.getResponse();
-
-        Assert.assertTrue(actualResponse.contains("401")
-                        && actualResponse.contains("Unauthorized"),
-                "\n Link has responded with staus" + actualResponse +
-                        ")\n and status text Created \n");
-    }
-
-    @Test(enabled = true)
-    public void ClickOnLinkForbiddenRequest() {
-        navigateToUrl("links");
-        linksPage.clickForbiddenRequestLink();
-        String actualResponse = linksPage.getResponse();
-
-        Assert.assertTrue(actualResponse.contains("403")
-                        && actualResponse.contains("Forbidden"),
-                "\n Link has responded with staus" + actualResponse +
-                        ")\n and status text Created \n");
-    }
-
-    @Test(enabled = true)
-    public void ClickOnLinkNotFoundRequest() {
-        navigateToUrl("links");
-        linksPage.clickNotFoundRequestLink();
-        String actualResponse = linksPage.getResponse();
-
-        Assert.assertTrue(actualResponse.contains("404")
-                        && actualResponse.contains("Not Found"),
-                "\n Link has responded with staus" + actualResponse +
-                        ")\n and status text Created \n");
-    }
-
-    @Test(enabled = true)
     public void OpenNewTabFromSimpleLink() {
         navigateToUrl("links");
         linksPage.clickSimpleTab();
@@ -153,5 +69,89 @@ public class LinksPageTests extends BaseTest {
 
         Assert.assertEquals(urlNewTab, expectedUrlNewTab,
                 "\n Actual & Expected New Tab Url Do Not Match.\n");
+    }
+
+    @Test(enabled = true)
+    public void ClickOnkCreatedLink() {
+        navigateToUrl("links");
+        linksPage.clickCreatedRequestLink();
+        String actualResponseText = linksPage.getResponse();
+
+        Assert.assertTrue(actualResponseText.contains("201")
+                        && actualResponseText.contains("Created"),
+                "\n Link has responded with staus" + actualResponseText +
+                        ")\n and status text Created \n");
+    }
+
+    @Test(enabled = true)
+    public void ClickOnNoContentLink() {
+        navigateToUrl("links");
+        linksPage.clickNoContentRequestLink();
+        String actualResponse = linksPage.getResponse();
+
+        Assert.assertTrue(actualResponse.contains("204")
+                        && actualResponse.contains("No Content"),
+                "\n Link has responded with staus" + actualResponse +
+                        ")\n and status text Created \n");
+    }
+
+    @Test(enabled = true)
+    public void ClickOnMovedLink() {
+        navigateToUrl("links");
+        linksPage.clickMovedRequestLink();
+        String actualResponse = linksPage.getResponse();
+
+        Assert.assertTrue(actualResponse.contains("301")
+                        && actualResponse.contains("Moved Permanently"),
+                "\n Link has responded with staus" + actualResponse +
+                        ")\n and status text Created \n");
+    }
+
+    @Test(enabled = true)
+    public void ClickOnBadRequestLink() {
+        navigateToUrl("links");
+        linksPage.clickBadRequestLink();
+        String actualResponse = linksPage.getResponse();
+
+        Assert.assertTrue(actualResponse.contains("400")
+                        && actualResponse.contains("Bad Request"),
+                "\n Actual Response (" + actualResponse +
+                        ")\n Does Not Contain '400' and 'Bad Request' \n");
+    }
+
+    @Test(enabled = true)
+    public void ClickOnUnAuthorizedLink() {
+        navigateToUrl("links");
+        linksPage.clickUnauthorizedRequestLink();
+        String actualResponse = linksPage.getResponse();
+
+        Assert.assertTrue(actualResponse.contains("401")
+                        && actualResponse.contains("Unauthorized"),
+                "\n Link has responded with staus" + actualResponse +
+                        ")\n and status text Created \n");
+    }
+
+    @Test(enabled = true)
+    public void ClickOnForbiddenLink() {
+        navigateToUrl("links");
+        linksPage.clickForbiddenRequestLink();
+        String actualResponse = linksPage.getResponse();
+
+        Assert.assertTrue(actualResponse.contains("403")
+                        && actualResponse.contains("Forbidden"),
+                "\n Link has responded with staus" + actualResponse +
+                        ")\n and status text Created \n");
+    }
+
+    @Test(enabled = true)
+    public void ClickOnNotFoundLink() {
+        navigateToUrl("links");
+        linksPage.clickNotFoundRequestLink();
+        String actualResponse = linksPage.getResponse();
+
+        Assert.assertTrue(actualResponse.contains("404")
+                        && actualResponse.contains("Not Found"),
+                "\n Link has responded with staus" + actualResponse +
+                        ")\n and status text Created \n");
     }
 }

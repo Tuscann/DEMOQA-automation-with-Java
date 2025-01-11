@@ -41,7 +41,7 @@ public class DroppablePage extends BasePage {
     private final By willRevert = By.id("revertable");
     private final By notWillRevert = By.id("notRevertable");
     private final By dropHereRevertDraggableText = By.xpath("(//*[@id=\"droppable\"]/p)[3]");
-    private final By dropHereRevertDraggable = By.xpath("(//*[@id=\"droppable\"])[3]");
+    private final By dropHereRevertDraggable = By.xpath("(//div[@id='droppable'])[3]");
     private final By dropHereRevertDraggable2 = By.id("droppable");
 
 
@@ -133,7 +133,7 @@ public class DroppablePage extends BasePage {
         return driver.findElement(simpleTabDroppedContainer).getText();
     }
 
-    public String getDragAndDropAcceptable() {
+    public String getDragAndDropAcceptableText() {
         return driver.findElement(acceptableDropHere).getText();
     }
 
@@ -282,6 +282,13 @@ public class DroppablePage extends BasePage {
 
     public Point getAfterLocationNot() {
         WebElement draggable = driver.findElement(notWillRevert);
+
+        return draggable.getLocation();
+    }
+
+    public Point getEndLocation() {
+        delay(400); //TODO
+        WebElement draggable = driver.findElement(willRevert);
 
         return draggable.getLocation();
     }

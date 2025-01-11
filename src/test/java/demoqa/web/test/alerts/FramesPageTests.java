@@ -10,33 +10,33 @@ public class FramesPageTests extends BaseTest {
     public void VerifyAllTextOnPage() {
         navigateToUrl("frames");
 
-        String expectedHeading = "Frames";
+        String expectedHeadingText = "Frames";
         String expectedText = "Sample Iframe page There are 2 Iframes in this page. Use browser inspecter or firebug to check out the HTML source. In total you can switch between the parent frame, which is this window, and the two frames below";
 
-        String actualHeading = framesPage.getFramesHeadingText();
+        String actualHeadingText = framesPage.getFramesHeadingText();
         String actualText = framesPage.getText();
 
-        Assert.assertEquals(actualHeading, expectedHeading, "\nWrong heading.\n");
+        Assert.assertEquals(actualHeadingText, expectedHeadingText, "\nWrong heading.\n");
         Assert.assertEquals(actualText, expectedText, "\nWrong text.\n");
     }
 
     @Test(enabled = true)
     public void VerifyHeadingTextInFirstIframe() {
         navigateToUrl("frames");
-        String actualText = framesPage.getHeadingTextInFirstIframe();
+        String actualFirstIFrameHeadingText = framesPage.getHeadingTextInFirstIframe();
 
-        String expectedHeading = "This is a sample page";
+        String expectedFirstIFrameHeadingText = "This is a sample page";
 
-        Assert.assertEquals(actualText, expectedHeading, "\nWrong heading in first Iframe.\n");
+        Assert.assertEquals(actualFirstIFrameHeadingText, expectedFirstIFrameHeadingText, "\nWrong heading in first Iframe.\n");
     }
 
     @Test(enabled = true)
     public void VerifyHeadingTextInSecondIframe() {
         navigateToUrl("frames");
-        String actualText = framesPage.getHeadingTextInSecondIframe();
+        String actualSecondIFrameHeadingText = framesPage.getHeadingTextInSecondIframe();
 
-        String expectedHeading = "This is a sample page";
+        String expectedSecondIFrameHeadingText = "This is a sample page";
 
-        Assert.assertEquals(actualText, expectedHeading, "\nWrong heading in second Iframe.\n");
+        Assert.assertEquals(actualSecondIFrameHeadingText, expectedSecondIFrameHeadingText, "\nWrong heading in second Iframe.\n");
     }
 }

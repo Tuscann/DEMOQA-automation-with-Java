@@ -55,53 +55,46 @@ public class MenuPageTests extends BaseTest {
         actualColorSelected = menuPage.takeBackgroundColorMainItem1();
         Assert.assertEquals(actualColorSelected, colorAfterSelection, "\nNot dark green.\n");
 
-
         actualColorSelected = menuPage.takeBackgroundColorMainItem2();
         Assert.assertEquals(actualColorSelected, colorBeforeSelection, "\nNot normal green.\n");
         menuPage.selectMainItem2();
         actualColorSelected = menuPage.takeBackgroundColorMainItem2();
         Assert.assertEquals(actualColorSelected, colorAfterSelection, "\nNot dark green.\n");
 
-
         actualColorSelected = menuPage.takeBackgroundColorMainItem2SubItem1();
-        Assert.assertEquals(actualColorSelected, colorBeforeSelection, "Not normal green");
+        Assert.assertEquals(actualColorSelected, colorBeforeSelection, "\nNot normal green.\n");
         menuPage.selectMainItem2SubItem1();
         actualColorSelected = menuPage.takeBackgroundColorMainItem2SubItem1();
-        Assert.assertEquals(actualColorSelected, colorAfterSelection, "Not dark green");
-
+        Assert.assertEquals(actualColorSelected, colorAfterSelection, "\nNot dark green.\n");
 
         actualColorSelected = menuPage.takeBackgroundColorMainItem2SubItem2();
-        Assert.assertEquals(actualColorSelected, colorBeforeSelection, "Not normal green");
+        Assert.assertEquals(actualColorSelected, colorBeforeSelection, "\nNot normal green.\n");
         menuPage.selectMainItem2SubItem2();
         actualColorSelected = menuPage.takeBackgroundColorMainItem2SubItem2();
-        Assert.assertEquals(actualColorSelected, colorAfterSelection, "Not dark green");
-
+        Assert.assertEquals(actualColorSelected, colorAfterSelection, "\nNot dark green.\n");
 
         actualColorSelected = menuPage.takeBackgroundColorMainItem2SubSubsLIst();
-        Assert.assertEquals(actualColorSelected, colorBeforeSelection, "Not normal green");
+        Assert.assertEquals(actualColorSelected, colorBeforeSelection, "\nNot normal green.\n");
         menuPage.selectMainItem2SubSubList();
         actualColorSelected = menuPage.takeBackgroundColorMainItem2SubSubsLIst();
-        Assert.assertEquals(actualColorSelected, colorAfterSelection, "Not dark green");
-
+        Assert.assertEquals(actualColorSelected, colorAfterSelection, "\nNot dark green.\n");
 
         actualColorSelected = menuPage.takeBackgroundColorMainItem2SubSubsLIstSubSubItem1();
-        Assert.assertEquals(actualColorSelected, colorBeforeSelection, "Not normal green");
+        Assert.assertEquals(actualColorSelected, colorBeforeSelection, "\nNot normal green.\n");
         menuPage.selectMainItem2SubSubsLIstSubSubItem1();
         actualColorSelected = menuPage.takeBackgroundColorMainItem2SubSubsLIstSubSubItem1();
-        Assert.assertEquals(actualColorSelected, colorAfterSelection, "Not dark green");
-
+        Assert.assertEquals(actualColorSelected, colorAfterSelection, "\nNot dark green.\n");
 
         actualColorSelected = menuPage.takeBackgroundColorMainItem2SubSubsLIstSubSubItem2();
-        Assert.assertEquals(actualColorSelected, colorBeforeSelection, "Not normal green");
+        Assert.assertEquals(actualColorSelected, colorBeforeSelection, "\nNot normal green.\n");
         menuPage.selectMainItem2SubSubsLIstSubSubItem2();
         actualColorSelected = menuPage.takeBackgroundColorMainItem2SubSubsLIstSubSubItem2();
-        Assert.assertEquals(actualColorSelected, colorAfterSelection, "Not dark green");
-
+        Assert.assertEquals(actualColorSelected, colorAfterSelection, "\nNot dark green.\n");
 
         actualColorSelected = menuPage.takeBackgroundColorMainItem3();
-        Assert.assertEquals(actualColorSelected, colorBeforeSelection, "Not normal green");
+        Assert.assertEquals(actualColorSelected, colorBeforeSelection, "\nNot normal green.\n");
         menuPage.selectMainItem3();
         actualColorSelected = menuPage.takeBackgroundColorMainItem3();
-        Assert.assertEquals(actualColorSelected, colorAfterSelection, "Not dark green");
+        Assert.assertEquals(actualColorSelected, colorAfterSelection, "\nNot dark green.\n");
     }
 }

@@ -240,7 +240,7 @@ public class WebTablePageTests extends BaseTest {
         String salary = "2500";
         String department = "QA";
 
-        Assert.assertFalse(webTablesPage.checkNextButtonIsActive(), "Active Next button");
+        Assert.assertFalse(webTablesPage.checkNextButtonIsActive(), "\nActive Next button.\n");
 
         String expected5rows = "5 rows";
         webTablesPage.clickRowPerPage(expected5rows);
@@ -257,19 +257,19 @@ public class WebTablePageTests extends BaseTest {
 
         String pageJump = "1";
         String actualPageJump = webTablesPage.getPageJump();
-        Assert.assertEquals(actualPageJump, pageJump, "\nPage jump do not match\n");
+        Assert.assertEquals(actualPageJump, pageJump, "\nPage jump do not match.\n");
 
         String pageInfo = "Page of 2";
         String actualPageInfo = webTablesPage.getPageInfo();
-        Assert.assertEquals(actualPageInfo, pageInfo, "\nPage info do not match\n");
+        Assert.assertEquals(actualPageInfo, pageInfo, "\nPage info do not match.\n");
 
-        Assert.assertTrue(webTablesPage.checkNextButtonIsActive(), "Not active Next button");
+        Assert.assertTrue(webTablesPage.checkNextButtonIsActive(), "\nNot active Next button.\n");
         webTablesPage.clickNexButton();
-        Assert.assertTrue(webTablesPage.checkPreviousButtonIsActive(), "\nNot active Previous button\n");
+        Assert.assertTrue(webTablesPage.checkPreviousButtonIsActive(), "\nNot active Previous button.\n");
 
         pageJump = "2";
         actualPageJump = webTablesPage.getPageJump();
-        Assert.assertEquals(actualPageJump, pageJump, "\nPage jump do not match\n");
+        Assert.assertEquals(actualPageJump, pageJump, "\nPage jump do not match.\n");
     }
 
     @Test(enabled = true)
@@ -288,7 +288,7 @@ public class WebTablePageTests extends BaseTest {
         webTablesPage.searchWithWord(searchedWord);
         String expectedResult = webTablesPage.getNoRowsFound();
 
-        Assert.assertEquals(expectedResult, "No rows found", "\nMissing message\n");
+        Assert.assertEquals(expectedResult, "No rows found", "\nMissing message.\n");
     }
 
     @Test(enabled = true)
@@ -343,27 +343,27 @@ public class WebTablePageTests extends BaseTest {
 
         webTablesPage.clickRowPerPage(expected5rows);
         int countOfLines = webTablesPage.getCountOfLines();
-        Assert.assertEquals(countOfLines, 5, "Expected 5 rows");
+        Assert.assertEquals(countOfLines, 5, "\nExpected 5 rows.\n");
 
         webTablesPage.clickRowPerPage(expected10rows);
         countOfLines = webTablesPage.getCountOfLines();
-        Assert.assertEquals(countOfLines, 10, "Expected 10 rows");
+        Assert.assertEquals(countOfLines, 10, "\nExpected 10 rows.\n");
 
         webTablesPage.clickRowPerPage(expected20rows);
         countOfLines = webTablesPage.getCountOfLines();
-        Assert.assertEquals(countOfLines, 20, "Expected 20 rows");
+        Assert.assertEquals(countOfLines, 20, "\nExpected 20 rows.\n");
 
         webTablesPage.clickRowPerPage(expected25rows);
         countOfLines = webTablesPage.getCountOfLines();
-        Assert.assertEquals(countOfLines, 25, "Expected 25 rows");
+        Assert.assertEquals(countOfLines, 25, "\nExpected 25 rows.\n");
 
         webTablesPage.clickRowPerPage(expected50rows);
         countOfLines = webTablesPage.getCountOfLines();
-        Assert.assertEquals(countOfLines, 50, "Expected 50 rows");
+        Assert.assertEquals(countOfLines, 50, "\nExpected 50 rows.\n");
 
         webTablesPage.clickRowPerPage(expected100rows);
         countOfLines = webTablesPage.getCountOfLines();
-        Assert.assertEquals(countOfLines, 100, "Expected 100 rows");
+        Assert.assertEquals(countOfLines, 100, "\nExpected 100 rows.\n");
     }
 
     @Test(enabled = true)
@@ -384,27 +384,27 @@ public class WebTablePageTests extends BaseTest {
         String expectedGreenColor = "1px solid rgb(40, 167, 69)";
 
         String actualFirstNameBorderColorBefore = webTablesPage.getFirstNameBorderColor();
-        Assert.assertEquals(actualFirstNameBorderColorBefore, expectedRedColor, "\n Wrong color expected red\n");
+        Assert.assertEquals(actualFirstNameBorderColorBefore, expectedRedColor, "\nWrong color expected red.\n");
         webTablesPage.setFirstName(expectedFirstName);
         Assert.assertTrue(webTablesPage.isFirstNameBorderColorGreen(expectedGreenColor));
 
         String actualLastNameBorderColorBefore = webTablesPage.getLastNameBorderColor();
-        Assert.assertEquals(actualLastNameBorderColorBefore, expectedRedColor, "\n Wrong color expected red\n");
+        Assert.assertEquals(actualLastNameBorderColorBefore, expectedRedColor, "\nWrong color expected red.\n");
         webTablesPage.setLastName(expectedLastName);
         Assert.assertTrue(webTablesPage.isLastNameBorderColorGreen(expectedGreenColor));
 
         String actualEmailColorBefore = webTablesPage.getEmailBorderColor();
-        Assert.assertEquals(actualEmailColorBefore, expectedRedColor, "\n Wrong color expected red\n");
+        Assert.assertEquals(actualEmailColorBefore, expectedRedColor, "\nWrong color expected red.\n");
         webTablesPage.setEmail(expectedEmail);
         Assert.assertTrue(webTablesPage.isEmailBorderColorGreen(expectedGreenColor));
 
         String actualAgeColorBefore = webTablesPage.getAgeBorderColor();
-        Assert.assertEquals(actualAgeColorBefore, expectedRedColor, "\n Wrong color expected red\n");
+        Assert.assertEquals(actualAgeColorBefore, expectedRedColor, "\nWrong color expected red.\n");
         webTablesPage.setAge(expectedAge);
         Assert.assertTrue(webTablesPage.isAgeBorderColorGreen(expectedGreenColor));
 
         String actualSalaryColorBefore = webTablesPage.getSalaryBorderColor();
-        Assert.assertEquals(actualSalaryColorBefore, expectedRedColor, "\n Wrong color expected red\n");
+        Assert.assertEquals(actualSalaryColorBefore, expectedRedColor, "\nWrong color expected red.\n");
         webTablesPage.setSalary(expectedSalary);
         Assert.assertTrue(webTablesPage.isSalaryBorderColorGreen(expectedGreenColor));
 

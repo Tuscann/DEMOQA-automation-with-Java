@@ -57,8 +57,8 @@ public class ButtonsPageTests extends BaseTest {
         String actualRightClickMessage = buttonsPage.getRightClickMessage();
         String actualClickMeMessage = buttonsPage.getClickMeClickMessage();
 
-        Assert.assertEquals(actualDoubleClickMessage, expectedDoubleClickMessage, "Wrong double click message");
-        Assert.assertEquals(actualRightClickMessage, expectedRightClickMessage, "Wrong right click message");
-        Assert.assertEquals(actualClickMeMessage, expectedDynamicClickMessage, "Wrong dynamic click message");
+        Assert.assertEquals(actualDoubleClickMessage, expectedDoubleClickMessage, "\nWrong double click message.\n");
+        Assert.assertEquals(actualRightClickMessage, expectedRightClickMessage, "\nWrong right click message.\n");
+        Assert.assertEquals(actualClickMeMessage, expectedDynamicClickMessage, "\nWrong dynamic click message.\n");
     }
 }

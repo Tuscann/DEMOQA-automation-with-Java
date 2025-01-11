@@ -10,7 +10,7 @@ import java.time.format.DateTimeFormatter;
 
 public class DatePickerPageTests extends BaseTest {
 
-    @Test
+    @Test(enabled = true)
     public void VerifyAllTextOnPage() {
         navigateToUrl("date-picker");
 
@@ -34,7 +34,7 @@ public class DatePickerPageTests extends BaseTest {
         Assert.assertEquals(actualDateAndTime, expectedDateAndTime, "Wrong current date and time");
     }
 
-    @Test
+    @Test(enabled = true)
     public void SelectNewDate() {
         navigateToUrl("date-picker");
         String expectedDate = "10/26/2024";
@@ -42,10 +42,10 @@ public class DatePickerPageTests extends BaseTest {
 
         String actualDate = datePickerPage.getSelectedDate();
 
-        Assert.assertEquals(actualDate, expectedDate, "Wrong Date");
+        Assert.assertEquals(actualDate, expectedDate, "\nWrong Date\n");
     }
 
-    @Test
+    @Test(enabled = true)
     public void TryToSelectNoExistingDate() {
         navigateToUrl("date-picker");
         String tryToAddDate = "14/32/2021";
@@ -54,20 +54,20 @@ public class DatePickerPageTests extends BaseTest {
         String actualDate = datePickerPage.getSelectedDate();
         String expectedDate = "01/01/2025";
 
-        Assert.assertEquals(actualDate, expectedDate, "Wrong Date");
+        Assert.assertEquals(actualDate, expectedDate, "\nWrong Date.\n");
     }
 
-    @Test
+    @Test(enabled = true)
     public void SelectValidNewDateAndTime() {
         navigateToUrl("date-picker");
         String expectedDateAndTime = "December 19, 2024 10:12 PM";
         datePickerPage.selectDateAndTime(expectedDateAndTime);
         String actualDateAndTime = datePickerPage.getSelectedDateAndTime();
 
-        Assert.assertEquals(actualDateAndTime, expectedDateAndTime, "Wrong Date and time");
+        Assert.assertEquals(actualDateAndTime, expectedDateAndTime, "\nWrong Date and time.\n");
     }
 
-    @Test
+    @Test(enabled = true)
     public void TryToSelectNoExistingDateAndTime() {
         navigateToUrl("date-picker");
         String tryToAddDate = "December 34, 2024 10:12 PM";
@@ -76,6 +76,6 @@ public class DatePickerPageTests extends BaseTest {
         String actualDate = datePickerPage.getSelectedDateAndTime();
         String expectedDateAndTime = "December 20, 2034 12:00 AM";
 
-        Assert.assertEquals(actualDate, expectedDateAndTime, "Wrong Date");
+        Assert.assertEquals(actualDate, expectedDateAndTime, "\nWrong Date.\n");
     }
 }

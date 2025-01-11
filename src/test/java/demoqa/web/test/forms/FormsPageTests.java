@@ -15,7 +15,7 @@ public class FormsPageTests extends BaseTest {
         String expectedString = formsPage.getText();
 
         // Assert
-        Assert.assertEquals(expectedString, actualString, "\n Wrong text \n");
+        Assert.assertEquals(expectedString, actualString, "\nWrong text.\n");
     }
 
     @Test(enabled = true)
@@ -25,6 +25,6 @@ public class FormsPageTests extends BaseTest {
         String expectedUrl = "https://demoqa.com/automation-practice-form";
         formsPage.clickPracticeForm();
         String actualUrl = practiceFormPage.checkUrl();
-        Assert.assertEquals(actualUrl, expectedUrl, "\n Wrong URL not automation-practice-form \n");
+        Assert.assertEquals(actualUrl, expectedUrl, "\nWrong URL not automation-practice-form.\n");
     }
 }

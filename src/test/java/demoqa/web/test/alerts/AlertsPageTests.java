@@ -35,7 +35,7 @@ public class AlertsPageTests extends BaseTest {
     }
 
     @Test(enabled = true)
-    public void CheckTextOfInformationAlert() {
+    public void VerifyTextOfInformationAlert() {
         // Arrange
         navigateToUrl("alerts");
         String expectedAlertText = "You clicked a button";
@@ -49,7 +49,7 @@ public class AlertsPageTests extends BaseTest {
     }
 
     @Test(enabled = true)
-    public void CheckTextOfPromptAlertAfter5seconds() {
+    public void VerifyTextOfPromptAlertAfter5seconds() {
         // Arrange
         navigateToUrl("alerts");
         String expectedAlertText = "This alert appeared after 5 seconds";
@@ -63,7 +63,7 @@ public class AlertsPageTests extends BaseTest {
     }
 
     @Test(enabled = true)
-    public void CheckTextOfConfirmationAlertCancel() {
+    public void VerifyTextOfConfirmationAlertCancel() {
         // Arrange
         navigateToUrl("alerts");
         String expectedConfirmationResult = "You selected Cancel";

@@ -12,7 +12,7 @@ public class InteractionPageTests extends BaseTest {
 
         String expectedString = "Please select an item from left to start practice.";
         String actualString = interactionsPage.getMainText();
-        Assert.assertEquals(actualString, expectedString, "Wrong text");
+        Assert.assertEquals(actualString, expectedString, "\nWrong text.\n");
 
         String expectedUrl = "https://demoqa.com/sortable";
         interactionsPage.clickSortable();

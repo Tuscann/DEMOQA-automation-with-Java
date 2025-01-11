@@ -21,11 +21,11 @@ public class DynamicPropertiesPageTests extends BaseTest {
         String colorChangeButton = dynamicPropertiesPage.getColorChangeButtonText();
         String visibleAfter5SecondsButtonText = dynamicPropertiesPage.getVisibleAfter5SecondsButtonTextAfter5seconds();
 
-        Assert.assertEquals(dynamicPropertiesText, expectedPropertiesText, "Wrong dynamic properties text");
-        Assert.assertEquals(randomIdText, expectedRandomIdText, "Wrong random id text");
-        Assert.assertEquals(willEnable5SecondsButtonText, expectedWillEnable5SecondsButtonText, "Wrong will enable 5 seconds");
-        Assert.assertEquals(colorChangeButton, expectedColorChangeText, "Wrong color change text");
-        Assert.assertEquals(visibleAfter5SecondsButtonText, expectedVisibleAfter5SecondsButtonText, "Visible after 5 seconds");
+        Assert.assertEquals(dynamicPropertiesText, expectedPropertiesText, "\nWrong dynamic properties text.\n");
+        Assert.assertEquals(randomIdText, expectedRandomIdText, "\nWrong random id text");
+        Assert.assertEquals(willEnable5SecondsButtonText, expectedWillEnable5SecondsButtonText, "\nWrong will enable 5 seconds");
+        Assert.assertEquals(colorChangeButton, expectedColorChangeText, "\nWrong color change text.\n");
+        Assert.assertEquals(visibleAfter5SecondsButtonText, expectedVisibleAfter5SecondsButtonText, "\nVisible after 5 seconds");
     }
 
     @Test(enabled = true)
@@ -55,9 +55,9 @@ public class DynamicPropertiesPageTests extends BaseTest {
         boolean isEnableButton = dynamicPropertiesPage.checkButtonWillEnable5Seconds();
         boolean isVisibleAfter5SecondsButton = dynamicPropertiesPage.checkButtonVisibleAfter5Seconds();
 
-        Assert.assertTrue(isEnableButton, "Enable button is not enable");
-        Assert.assertEquals(colorOFColorChangeButton, expectedColor, "Not white color on change text");
-        Assert.assertTrue(isVisibleAfter5SecondsButton, "Visible after 5 button is visible now");
-        Assert.assertEquals(visibleAfter5SecondsButtonText, expectedVisibleAfter5SecondsButtonText, "Visible after 5 seconds");
+        Assert.assertTrue(isEnableButton, "\nEnable button is not enable.\n");
+        Assert.assertEquals(colorOFColorChangeButton, expectedColor, "\nNot white color on change text.\n");
+        Assert.assertTrue(isVisibleAfter5SecondsButton, "\nVisible after 5 button is visible now.\n");
+        Assert.assertEquals(visibleAfter5SecondsButtonText, expectedVisibleAfter5SecondsButtonText, "\nVisible after 5 seconds.\n");
     }
 }
