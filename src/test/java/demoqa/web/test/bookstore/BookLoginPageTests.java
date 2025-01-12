@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 
 public class BookLoginPageTests extends BaseTest {
 
-    @Test
+    @Test(enabled = true)
     public void VerifyAllTextOnPage() {
         navigateToUrl("login");
 
@@ -30,15 +30,15 @@ public class BookLoginPageTests extends BaseTest {
         String actualLoginButtonText = booksLoginPage.getLoginButtonText();
         String actualNewUserButtonText = booksLoginPage.getNewUserButtonText();
 
-        Assert.assertEquals(actualLoginHeaderText, loginHeaderText, "Wrong login header text");
-        Assert.assertEquals(actualWelcomeText, welcomeText, "Wrong welcome text");
-        Assert.assertEquals(actualLoginInBookStoreText, loginInBookStoreText, "Wrong login in book store");
-        Assert.assertEquals(actualUsername, username, "Wrong username");
-        Assert.assertEquals(actualUsernamePlaceholder, usernamePlaceholder, "Wrong username placeholder");
-        Assert.assertEquals(actualPassword, password, "Wrong password");
-        Assert.assertEquals(actualPasswordPlaceholder, passwordPlaceholder, "Wrong password placeholder");
-        Assert.assertEquals(actualLoginButtonText, loginButtonText, "Wrong login button text");
-        Assert.assertEquals(actualNewUserButtonText, newUserButtonText, "Wrong new user button text");
+        Assert.assertEquals(actualLoginHeaderText, loginHeaderText, "\nWrong login header text.\n");
+        Assert.assertEquals(actualWelcomeText, welcomeText, "\nWrong welcome text.\n");
+        Assert.assertEquals(actualLoginInBookStoreText, loginInBookStoreText, "\nWrong login in book store.\n");
+        Assert.assertEquals(actualUsername, username, "\nWrong username.\n");
+        Assert.assertEquals(actualUsernamePlaceholder, usernamePlaceholder, "\nWrong username placeholder.\n");
+        Assert.assertEquals(actualPassword, password, "\nWrong password.\n");
+        Assert.assertEquals(actualPasswordPlaceholder, passwordPlaceholder, "\nWrong password placeholder.\n");
+        Assert.assertEquals(actualLoginButtonText, loginButtonText, "\nWrong login button text.\n");
+        Assert.assertEquals(actualNewUserButtonText, newUserButtonText, "\nWrong new user button text.\n");
     }
 
     @Test(enabled = true)
@@ -54,7 +54,7 @@ public class BookLoginPageTests extends BaseTest {
         booksLoginPage.clickLoginButton();
 
         String actualProfile = booksLoginPage.getProfile();
-        Assert.assertEquals(actualProfile, expectedUsername, "Not same username");
+        Assert.assertEquals(actualProfile, expectedUsername, "\nNot same username.\n");
     }
 
     @Test(enabled = true)
@@ -72,7 +72,7 @@ public class BookLoginPageTests extends BaseTest {
         String actualMessage = booksLoginPage.getErrorMessage();
         String expectedMessage = "Invalid username or password!";
 
-        Assert.assertEquals(actualMessage, expectedMessage, "Wrong username or password");
+        Assert.assertEquals(actualMessage, expectedMessage, "\nWrong username or password.\n");
     }
 
     @Test(enabled = true)
@@ -90,7 +90,7 @@ public class BookLoginPageTests extends BaseTest {
         String actualMessage = booksLoginPage.getErrorMessage();
         String expectedMessage = "Invalid username or password!";
 
-        Assert.assertEquals(actualMessage, expectedMessage, "Wrong username or password");
+        Assert.assertEquals(actualMessage, expectedMessage, "\nWrong username or password.\n");
     }
 
     @Test(enabled = true)
@@ -109,7 +109,7 @@ public class BookLoginPageTests extends BaseTest {
         String actualErrorMessage = booksLoginPage.getErrorMessage();
         String expectedErrorMessage = "Invalid username or password!";
 
-        Assert.assertEquals(actualErrorMessage, expectedErrorMessage, "Wrong password message");
+        Assert.assertEquals(actualErrorMessage, expectedErrorMessage, "\nWrong password message.\n");
     }
 
     @Test(enabled = true)
@@ -125,13 +125,13 @@ public class BookLoginPageTests extends BaseTest {
         booksLoginPage.clickLoginButton();
 
         String actualProfile = booksLoginPage.getProfile();
-        Assert.assertEquals(actualProfile, expectedUsername, "Not same username");
+        Assert.assertEquals(actualProfile, expectedUsername, "\nNot same username.\n");
 
         booksLoginPage.clickLogoutButton();
 
         String expectedLoginText = "Login in Book Store";
         String actualLoginText = booksLoginPage.getLoginText();
-        Assert.assertEquals(actualLoginText, expectedLoginText, "Not same login text");
+        Assert.assertEquals(actualLoginText, expectedLoginText, "\nNot same login text.\n");
     }
 
     @Test(enabled = true)
@@ -148,7 +148,7 @@ public class BookLoginPageTests extends BaseTest {
 
         String expectedUrl = "https://demoqa.com/books";
         String actualUrl = booksPage.checkUrl();
-        Assert.assertEquals(actualUrl, expectedUrl, "Not same books url");
+        Assert.assertEquals(actualUrl, expectedUrl, "\nNot same books url.\n");
     }
 
     @Test(enabled = true)
@@ -163,11 +163,11 @@ public class BookLoginPageTests extends BaseTest {
         booksLoginPage.setPassword(password);
         booksLoginPage.clickLoginButton();
         booksProfilePage.clickGoToBookStoreButton();
-        booksProfilePage.clickLoginLink2();
+        booksProfilePage.clickLeftLoginLink2();
 
-        String expectedUrl = "You are already logged in. View your profile.";
+        String expectedText = "You are already logged in. View your profile.";
         String actualLabel = booksLoginPage.getLoadingLabel();
 
-        Assert.assertEquals(actualLabel, expectedUrl, "Not same label");
+        Assert.assertEquals(actualLabel, expectedText, "\nNot same label.\n");
     }
 }

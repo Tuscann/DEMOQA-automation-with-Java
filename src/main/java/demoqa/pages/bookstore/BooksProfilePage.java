@@ -34,7 +34,7 @@ public class BooksProfilePage extends BasePage {
         click(loginLink);
     }
 
-    public void clickLoginLink2() {
+    public void clickLeftLoginLink2() {
         click(loginLink2);
     }
 

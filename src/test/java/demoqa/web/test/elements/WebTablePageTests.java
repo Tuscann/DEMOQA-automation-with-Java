@@ -4,8 +4,6 @@ import demoqa.web.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import static demoqa.base.BasePage.delay;
-
 public class WebTablePageTests extends BaseTest {
 
     @Test(enabled = true)
@@ -371,7 +369,6 @@ public class WebTablePageTests extends BaseTest {
         navigateToUrl("webtables");
         webTablesPage.clickAddButton();
         webTablesPage.clickSubmitButton();
-        delay(200); //TODO
 
         String expectedFirstName = "Zhivko";
         String expectedLastName = "Petrov";

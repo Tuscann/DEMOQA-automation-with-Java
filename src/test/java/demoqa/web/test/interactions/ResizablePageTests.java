@@ -56,11 +56,11 @@ public class ResizablePageTests extends BaseTest {
         };
     }
 
-    @Test(dataProvider = "resizeData2", description = "Test resizing with different values", enabled = false)
-    public void ТestResizedBoxWithoutLimitation(int addX, int addY, int expectedWidth, int expectedHeight) {
+    @Test(dataProvider = "resizeData2", description = "Test resizing with different values", enabled = true)
+    public void ТestResizedBoxWithoutLimitation(int addAmountOnXAxis, int addAmountOnYAxis, int expectedWidth, int expectedHeight) {
         navigateToUrl("resizable");
 
-        resizablePage.changeSizeWithoutLimitations(addX, addY);
+        resizablePage.changeSizeWithoutLimitations(addAmountOnXAxis, addAmountOnYAxis);
 
         String actualNewSize = resizablePage.getNewSizeBox2();
 

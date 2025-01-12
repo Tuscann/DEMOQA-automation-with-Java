@@ -140,6 +140,8 @@ public class WebTablesPage extends BasePage {
     }
 
     public String getFirstNameBorderColor() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.attributeToBe(registrationFirstNameField, "border-color", "rgb(220, 53, 69)"));
         return find(registrationFirstNameField).getCssValue("border");
     }
 
@@ -212,7 +214,6 @@ public class WebTablesPage extends BasePage {
     }
 
     public void clickSubmitButton() {
-        delay(200); //TODO
         click(submitButton);
     }
 

@@ -358,13 +358,19 @@ public class PracticeFormPage extends BasePage {
         find(cities).sendKeys("" + Keys.ENTER);
     }
 
-    public String getColorOfFirstNameBorder() {
+    public String getColorOfFirstNameBorder(String expectedColor) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.attributeToBe(firstName, "border-color", expectedColor));
+
         WebElement webElement = driver.findElement(firstName);
 
         return webElement.getCssValue("border-color");
     }
 
-    public String getColorOfLastNameBorder() {
+    public String getColorOfLastNameBorder(String expectedColor) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.attributeToBe(lastName, "border-color", expectedColor));
+
         return driver.findElement(lastName).getCssValue("border-color");
     }
 
@@ -384,7 +390,9 @@ public class PracticeFormPage extends BasePage {
         return driver.findElement(otherRadioButtonLabel).getCssValue("color");
     }
 
-    public String getColorOfMobile() {
+    public String getColorOfMobile(String expectedColor) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.attributeToBe(mobile, "border-color", expectedColor));
         return driver.findElement(mobile).getCssValue("border-color");
     }
 

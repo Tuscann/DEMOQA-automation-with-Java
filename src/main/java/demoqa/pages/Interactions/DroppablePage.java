@@ -286,8 +286,8 @@ public class DroppablePage extends BasePage {
         return draggable.getLocation();
     }
 
-    public Point getEndLocation() {
-        delay(400); //TODO
+    public Point getEndLocation(int initialLocationX, int initialLocationY) {
+        delay(500); //TODO
         WebElement draggable = driver.findElement(willRevert);
 
         return draggable.getLocation();

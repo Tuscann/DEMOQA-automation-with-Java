@@ -51,13 +51,13 @@ public class HomePageTests extends BaseTest {
 
     @Test(enabled = true)
     public void VerifyAllTextOnPage() {
-        String expectedFooterText = "© 2013-2020 TOOLSQA.COM | ALL RIGHTS RESERVED.";
         String expectedElementsText = "Elements";
         String expectedFormsText = "Forms";
         String expectedAlertsText = "Alerts, Frame & Windows";
         String expectedWidgetsText = "Widgets";
         String expectedInteractionText = "Interactions";
         String expectedBooksText = "Book Store Application";
+        String expectedFooterText = "© 2013-2020 TOOLSQA.COM | ALL RIGHTS RESERVED.";
 
         String actualFooterText = homePage.getFooterText();
         String actualElementsText = homePage.getElementsText();
@@ -67,12 +67,12 @@ public class HomePageTests extends BaseTest {
         String actualInteractionText = homePage.getInteractionsText();
         String actualBooksText = homePage.getBookStoreApplicationText();
 
-        Assert.assertEquals(actualFooterText, expectedFooterText, "\nExpected footer.\n");
         Assert.assertEquals(actualElementsText, expectedElementsText, "\nExpected elements.\n");
         Assert.assertEquals(actualFormsText, expectedFormsText, "\nExpected forms.\n");
         Assert.assertEquals(actualAlertsText, expectedAlertsText, "\nExpected Alerts.\n");
         Assert.assertEquals(actualWidgetsText, expectedWidgetsText, "\nExpected widgets.\n");
         Assert.assertEquals(actualInteractionText, expectedInteractionText, "\nExpected interaction.\n");
         Assert.assertEquals(actualBooksText, expectedBooksText, "\nExpected books.\n");
+        Assert.assertEquals(actualFooterText, expectedFooterText, "\nExpected footer.\n");
     }
 }

@@ -4,34 +4,34 @@ import demoqa.web.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class BooksPageTest extends BaseTest {
+public class BooksPageTests extends BaseTest {
 
-    @Test
+    @Test(enabled = true)
     public void CheckAllFourPagesLinks() {
         navigateToUrl("books");
 
         String expectedUrl = "https://demoqa.com/login";
         booksPage.clickLoginLink();
         String actualUrl = booksPage.checkUrl();
-        Assert.assertEquals(actualUrl, expectedUrl);
+        Assert.assertEquals(actualUrl, expectedUrl, "\nExpected login url.\n");
 
         expectedUrl = "https://demoqa.com/books";
         booksPage.clickBookStoreLink();
         actualUrl = booksPage.checkUrl();
-        Assert.assertEquals(actualUrl, expectedUrl);
+        Assert.assertEquals(actualUrl, expectedUrl, "\nExpected book store link.\n");
 
         expectedUrl = "https://demoqa.com/profile";
         booksPage.clickProfileLink();
         actualUrl = booksPage.checkUrl();
-        Assert.assertEquals(actualUrl, expectedUrl);
+        Assert.assertEquals(actualUrl, expectedUrl, "\nExpected profile link.\n");
 
         expectedUrl = "https://demoqa.com/swagger/";
         booksPage.clickBookStoreAPILink();
         actualUrl = booksPage.checkUrl();
-        Assert.assertEquals(actualUrl, expectedUrl);
+        Assert.assertEquals(actualUrl, expectedUrl, "\nExpected book store API link.\n");
     }
 
-    @Test
+    @Test(enabled = true)
     public void GetFirstRowOfTable() {
         navigateToUrl("books");
 
@@ -43,10 +43,10 @@ public class BooksPageTest extends BaseTest {
 
         String actualTopRow = booksPage.getTopRowTable();
 
-        Assert.assertEquals(actualTopRow, expectedTopRow);
+        Assert.assertEquals(actualTopRow, expectedTopRow, "\nExpected table header.\n");
     }
 
-    @Test
+    @Test(enabled = true)
     public void CheckCountOfDefaultBooks() {
         navigateToUrl("books");
 
@@ -54,10 +54,10 @@ public class BooksPageTest extends BaseTest {
 
         int actualBooksCount = booksPage.getCountFoundBooks();
 
-        Assert.assertEquals(actualBooksCount, expectedBooksCount);
+        Assert.assertEquals(actualBooksCount, expectedBooksCount, "\nExpected books count.\n");
     }
 
-    @Test
+    @Test(enabled = true)
     public void ClickLoginButton() {
         navigateToUrl("books");
 
@@ -68,23 +68,23 @@ public class BooksPageTest extends BaseTest {
         Assert.assertEquals(actualUrl, expectedUrl);
     }
 
-    @Test
+    @Test(enabled = true)
     public void SearchAndFindOneBook() {
         navigateToUrl("books");
 
         String searchedBook = "Understanding ECMAScript 6";
 
         booksPage.searchBooksWithWord(searchedBook);
-        String expectedBooksCount = """
+        String expectedBooks = """
                 Understanding ECMAScript 6
                 Nicholas C. Zakas
                 No Starch Press""";
         String actualFindBooks = booksPage.getAllFoundBooks();
 
-        Assert.assertEquals(actualFindBooks, expectedBooksCount);
+        Assert.assertEquals(actualFindBooks, expectedBooks, "\nExpected not books found.\n");
     }
 
-    @Test
+    @Test(enabled = true)
     public void SearchAndFindNoBook() {
         navigateToUrl("books");
 
@@ -94,10 +94,10 @@ public class BooksPageTest extends BaseTest {
         String expectedMessage = "No rows found";
         String actualMessage = booksPage.noRowsFound();
 
-        Assert.assertEquals(actualMessage, expectedMessage);
+        Assert.assertEquals(actualMessage, expectedMessage, "\nExpected message not found.\n");
     }
 
-    @Test
+    @Test(enabled = true)
     public void ClickNextAndPreviousButtons() {
         navigateToUrl("books");
 
@@ -114,7 +114,7 @@ public class BooksPageTest extends BaseTest {
 
         int expectedBooksCount = 3;
         int actualBooksCount = booksPage.getCountFoundBooks();
-        Assert.assertEquals(actualBooksCount, expectedBooksCount);
+        Assert.assertEquals(actualBooksCount, expectedBooksCount, "\nFound not 3 books.\n");
 
         isActivePreviousButton = booksPage.checkPreviousButtonIsActive();
         isActiveNextButton = booksPage.checkNextButtonIsActive();
@@ -126,13 +126,16 @@ public class BooksPageTest extends BaseTest {
 
         expectedBooksCount = 5;
         actualBooksCount = booksPage.getCountFoundBooks();
-        Assert.assertEquals(actualBooksCount, expectedBooksCount);
+        Assert.assertEquals(actualBooksCount, expectedBooksCount, "\nFound not 5 books.\n");
 
-        Assert.assertTrue(isActivePreviousButton);
-        Assert.assertFalse(isActiveNextButton);
+        isActivePreviousButton = booksPage.checkPreviousButtonIsActive();
+        isActiveNextButton = booksPage.checkNextButtonIsActive();
+
+        Assert.assertFalse(isActivePreviousButton);
+        Assert.assertTrue(isActiveNextButton);
     }
 
-    @Test
+    @Test(enabled = true)
     public void ClickAllRowsPerPage() {
         navigateToUrl("books");
 
@@ -141,7 +144,7 @@ public class BooksPageTest extends BaseTest {
 
         int expectedBooksCount = 5;
         int actualBooksCount = booksPage.getCountFoundBooks();
-        Assert.assertEquals(actualBooksCount, expectedBooksCount);
+        Assert.assertEquals(actualBooksCount, expectedBooksCount, "\nCount is not 5 times.\n");
 
         boolean isActivePreviousButton = booksPage.checkPreviousButtonIsActive();
         boolean isActiveNextButton = booksPage.checkNextButtonIsActive();
@@ -153,7 +156,7 @@ public class BooksPageTest extends BaseTest {
 
         expectedBooksCount = 10;
         actualBooksCount = booksPage.getCountOfAllRows();
-        Assert.assertEquals(actualBooksCount, expectedBooksCount);
+        Assert.assertEquals(actualBooksCount, expectedBooksCount, "\nCount is not 10 times.\n");
 
         isActivePreviousButton = booksPage.checkPreviousButtonIsActive();
         isActiveNextButton = booksPage.checkNextButtonIsActive();
@@ -165,38 +168,38 @@ public class BooksPageTest extends BaseTest {
 
         expectedBooksCount = 20;
         actualBooksCount = booksPage.getCountOfAllRows();
-        Assert.assertEquals(actualBooksCount, expectedBooksCount);
+        Assert.assertEquals(actualBooksCount, expectedBooksCount, "\nCount is not 20 times.\n");
 
         booksPerPage = "25 rows";
         booksPage.chooseBooksPerPage(booksPerPage);
 
         expectedBooksCount = 25;
         actualBooksCount = booksPage.getCountOfAllRows();
-        Assert.assertEquals(actualBooksCount, expectedBooksCount);
+        Assert.assertEquals(actualBooksCount, expectedBooksCount, "\nCount is not 25 times.\n");
 
         booksPerPage = "50 rows";
         booksPage.chooseBooksPerPage(booksPerPage);
 
         expectedBooksCount = 50;
         actualBooksCount = booksPage.getCountOfAllRows();
-        Assert.assertEquals(actualBooksCount, expectedBooksCount);
+        Assert.assertEquals(actualBooksCount, expectedBooksCount, "\nCount is not 50 times.\n");
 
         booksPerPage = "100 rows";
         booksPage.chooseBooksPerPage(booksPerPage);
 
         expectedBooksCount = 100;
         actualBooksCount = booksPage.getCountOfAllRows();
-        Assert.assertEquals(actualBooksCount, expectedBooksCount);
+        Assert.assertEquals(actualBooksCount, expectedBooksCount, "\nCount is not 100 times.\n");
     }
 
-    @Test
+    @Test(enabled = true)
     public void OrderBooksByTitleByAuthorByPublisherDescending() {
         navigateToUrl("books");
 
         booksPage.clickTitle();
         booksPage.clickTitle();
 
-        String expectedBooksCount = """
+        String expectedBooks = """
                 Understanding ECMAScript 6
                 Nicholas C. Zakas
                 No Starch Press
@@ -224,12 +227,12 @@ public class BooksPageTest extends BaseTest {
                 """;
         String actualFindBooks = booksPage.getFoundBooks();
 
-        Assert.assertEquals(actualFindBooks, expectedBooksCount);
+        Assert.assertEquals(actualFindBooks, expectedBooks, "\nExpected books.\n");
 
         booksPage.clickAuthor();
         booksPage.clickAuthor();
 
-        expectedBooksCount = """
+        expectedBooks = """
                 Git Pocket Guide
                 Richard E. Silverman
                 O'Reilly Media
@@ -257,12 +260,12 @@ public class BooksPageTest extends BaseTest {
                 """;
         actualFindBooks = booksPage.getFoundBooks();
 
-        Assert.assertEquals(actualFindBooks, expectedBooksCount);
+        Assert.assertEquals(actualFindBooks, expectedBooks, "\nExpected books.\n");
 
         booksPage.clickPublisher();
         booksPage.clickPublisher();
 
-        expectedBooksCount = """
+        expectedBooks = """
                 Programming JavaScript Applications
                 Eric Elliott
                 O'Reilly Media
@@ -290,16 +293,16 @@ public class BooksPageTest extends BaseTest {
                 """;
         actualFindBooks = booksPage.getFoundBooks();
 
-        Assert.assertEquals(actualFindBooks, expectedBooksCount);
+        Assert.assertEquals(actualFindBooks, expectedBooks, "\nExpected books.\n");
     }
 
-    @Test
+    @Test(enabled = true)
     public void OrderBooksByTitleByAuthorByPublisherAscending() {
         navigateToUrl("books");
 
         booksPage.clickTitle();
 
-        String expectedBooksCount = """
+        String expectedBooks = """
                 Git Pocket Guide
                 Richard E. Silverman
                 O'Reilly Media
@@ -327,11 +330,11 @@ public class BooksPageTest extends BaseTest {
                 """;
         String actualFindBooks = booksPage.getFoundBooks();
 
-        Assert.assertEquals(actualFindBooks, expectedBooksCount);
+        Assert.assertEquals(actualFindBooks, expectedBooks, "\nExpected books.\n");
 
         booksPage.clickAuthor();
 
-        expectedBooksCount = """
+        expectedBooks = """
                 Learning JavaScript Design Patterns
                 Addy Osmani
                 O'Reilly Media
@@ -359,12 +362,11 @@ public class BooksPageTest extends BaseTest {
                 """;
         actualFindBooks = booksPage.getFoundBooks();
 
-        Assert.assertEquals(actualFindBooks, expectedBooksCount);
-
+        Assert.assertEquals(actualFindBooks, expectedBooks, "\nExpected books.\n");
 
         booksPage.clickPublisher();
 
-        expectedBooksCount = """
+        expectedBooks = """
                 Eloquent JavaScript, Second Edition
                 Marijn Haverbeke
                 No Starch Press
@@ -392,17 +394,17 @@ public class BooksPageTest extends BaseTest {
                 """;
         actualFindBooks = booksPage.getFoundBooks();
 
-        Assert.assertEquals(actualFindBooks, expectedBooksCount);
+        Assert.assertEquals(actualFindBooks, expectedBooks, "\nExpected books.\n");
     }
 
-    @Test
+    @Test(enabled = true)
     public void SearchAndOrderResultAscendingBooks() {
         navigateToUrl("books");
 
         String searchedBook = "javascript";
 
         booksPage.searchBooksWithWord(searchedBook);
-        String expectedBooksCount = """
+        String expectedBooks = """
                 Learning JavaScript Design Patterns
                 Addy Osmani
                 O'Reilly Media
@@ -418,11 +420,11 @@ public class BooksPageTest extends BaseTest {
                 """;
         String actualFindBooks = booksPage.getFoundBooks();
 
-        Assert.assertEquals(actualFindBooks, expectedBooksCount);
+        Assert.assertEquals(actualFindBooks, expectedBooks, "\nWrong found books.\n");
 
         booksPage.clickTitle();
 
-        expectedBooksCount = """
+        expectedBooks = """
                 Learning JavaScript Design Patterns
                 Addy Osmani
                 O'Reilly Media
@@ -438,11 +440,11 @@ public class BooksPageTest extends BaseTest {
                 """;
         actualFindBooks = booksPage.getFoundBooks();
 
-        Assert.assertEquals(actualFindBooks, expectedBooksCount);
+        Assert.assertEquals(actualFindBooks, expectedBooks, "\nWrong found books.\n");
 
         booksPage.clickAuthor();
 
-        expectedBooksCount = """
+        expectedBooks = """
                 Learning JavaScript Design Patterns
                 Addy Osmani
                 O'Reilly Media
@@ -458,11 +460,11 @@ public class BooksPageTest extends BaseTest {
                 """;
         actualFindBooks = booksPage.getFoundBooks();
 
-        Assert.assertEquals(actualFindBooks, expectedBooksCount);
+        Assert.assertEquals(actualFindBooks, expectedBooks, "\nWrong found books.\n");
 
         booksPage.clickPublisher();
 
-        expectedBooksCount = """
+        expectedBooks = """
                 Eloquent JavaScript, Second Edition
                 Marijn Haverbeke
                 No Starch Press
@@ -478,17 +480,17 @@ public class BooksPageTest extends BaseTest {
                 """;
         actualFindBooks = booksPage.getFoundBooks();
 
-        Assert.assertEquals(actualFindBooks, expectedBooksCount);
+        Assert.assertEquals(actualFindBooks, expectedBooks, "\nWrong found books.\n");
     }
 
-    @Test
+    @Test(enabled = true)
     public void SearchForBookAndOrderResultDescendingBooks() {
         navigateToUrl("books");
 
         String searchedBook = "javascript";
 
         booksPage.searchBooksWithWord(searchedBook);
-        String expectedBooksCount = """
+        String expectedBooks = """
                 Learning JavaScript Design Patterns
                 Addy Osmani
                 O'Reilly Media
@@ -503,13 +505,12 @@ public class BooksPageTest extends BaseTest {
                 No Starch Press
                 """;
         String actualFindBooks = booksPage.getFoundBooks();
-
-        Assert.assertEquals(actualFindBooks, expectedBooksCount);
+        Assert.assertEquals(actualFindBooks, expectedBooks, "\nWrong found books.\n");
 
         booksPage.clickTitle();
         booksPage.clickTitle();
 
-        expectedBooksCount = """
+        expectedBooks = """
                 Eloquent JavaScript, Second Edition
                 Marijn Haverbeke
                 No Starch Press
@@ -524,13 +525,12 @@ public class BooksPageTest extends BaseTest {
                 O'Reilly Media
                 """;
         actualFindBooks = booksPage.getFoundBooks();
-
-        Assert.assertEquals(actualFindBooks, expectedBooksCount);
+        Assert.assertEquals(actualFindBooks, expectedBooks, "\nWrong found books.\n");
 
         booksPage.clickAuthor();
         booksPage.clickAuthor();
 
-        expectedBooksCount = """
+        expectedBooks = """
                 Eloquent JavaScript, Second Edition
                 Marijn Haverbeke
                 No Starch Press
@@ -545,13 +545,12 @@ public class BooksPageTest extends BaseTest {
                 O'Reilly Media
                 """;
         actualFindBooks = booksPage.getFoundBooks();
-
-        Assert.assertEquals(actualFindBooks, expectedBooksCount);
+        Assert.assertEquals(actualFindBooks, expectedBooks, "\nWrong found books.\n");
 
         booksPage.clickPublisher();
         booksPage.clickPublisher();
 
-        expectedBooksCount = """
+        expectedBooks = """
                 Programming JavaScript Applications
                 Eric Elliott
                 O'Reilly Media
@@ -566,7 +565,6 @@ public class BooksPageTest extends BaseTest {
                 No Starch Press
                 """;
         actualFindBooks = booksPage.getFoundBooks();
-
-        Assert.assertEquals(actualFindBooks, expectedBooksCount);
+        Assert.assertEquals(actualFindBooks, expectedBooks, "\nWrong found books.\n");
     }
 }

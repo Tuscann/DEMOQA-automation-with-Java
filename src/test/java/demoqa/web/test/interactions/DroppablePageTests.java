@@ -206,7 +206,7 @@ public class DroppablePageTests extends BaseTest {
         actualDroppedHereText = droppablePage.getInitText();
         Assert.assertEquals(actualDroppedHereText, expectedDroppedHereText, "\nDropped text missing.\n");
 
-        Point afterLocation = droppablePage.getEndLocation();
+        Point afterLocation = droppablePage.getEndLocation(initialLocation.x, initialLocation.y);
 
         Assert.assertEquals(initialLocation, afterLocation, "\nWrong position.\n");
     }

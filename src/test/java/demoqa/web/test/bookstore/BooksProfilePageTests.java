@@ -4,7 +4,7 @@ import demoqa.web.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class BooksProfilePageTest extends BaseTest {
+public class BooksProfilePageTests extends BaseTest {
 
     @Test(enabled = true)
     public void VerifyMessageText() {
@@ -14,7 +14,7 @@ public class BooksProfilePageTest extends BaseTest {
 
         String actualMessage = booksProfilePage.getLoggingWrapper();
 
-        Assert.assertEquals(actualMessage, expectedErrorMessage, "Wrong password message");
+        Assert.assertEquals(actualMessage, expectedErrorMessage, "\nWrong error message.\n");
     }
 
     @Test(enabled = true)
@@ -26,7 +26,7 @@ public class BooksProfilePageTest extends BaseTest {
 
         String actualUrl = booksProfilePage.getLoginLink();
 
-        Assert.assertEquals(actualUrl, expectedLoginUrl, "Wrong password message");
+        Assert.assertEquals(actualUrl, expectedLoginUrl, "\nWrong url.\n");
     }
 
     @Test(enabled = true)
@@ -38,6 +38,6 @@ public class BooksProfilePageTest extends BaseTest {
         booksProfilePage.clickRegisterLink();
         String actualUrl = booksProfilePage.getLoginLink();
 
-        Assert.assertEquals(actualUrl, expectedLoginUrl, "Wrong password message");
+        Assert.assertEquals(actualUrl, expectedLoginUrl, "\nWrong password message.\n");
     }
 }

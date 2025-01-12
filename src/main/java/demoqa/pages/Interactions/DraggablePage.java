@@ -5,6 +5,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
@@ -49,7 +51,9 @@ public class DraggablePage extends BasePage {
     }
 
     public String getContainerRestrictedFirstText() {
-        delay(100); //TODO
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(4));
+        wait.until(ExpectedConditions.elementToBeClickable(containerRestrictedFirstText));
+
         return find(containerRestrictedFirstText).getText();
     }
 
@@ -82,12 +86,14 @@ public class DraggablePage extends BasePage {
     }
 
     public String getCursorStyleFirstText() {
-        delay(100); //TODO
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(4));
+        wait.until(ExpectedConditions.elementToBeClickable(cursorStyleFirstText));
         return find(cursorStyleFirstText).getText();
     }
 
     public String getAxisRestrictedOnlyX() {
-        delay(100); //TODO
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(4));
+        wait.until(ExpectedConditions.elementToBeClickable(axisRestrictedOnlyX));
         return find(axisRestrictedOnlyX).getText();
     }
 

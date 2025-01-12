@@ -37,22 +37,22 @@ public class BookRegisterPageTests extends BaseTest {
         String actualRegisterButtonText = booksRegisterPage.getTextOfRegisterButton();
         String actualBackToLoginButtonText = booksRegisterPage.getTextOfBackToLoginButton();
 
-        Assert.assertEquals(actualFirstNamePlaceholder, expectedFirstNamePlaceholder);
-        Assert.assertEquals(actualLastNamePlaceholder, expectedLastNamePlaceholder);
-        Assert.assertEquals(actualUserNamePlaceholder, expectedUserNamePlaceholder);
-        Assert.assertEquals(actualPasswordPlaceholder, expectedPasswordPlaceholder);
-        Assert.assertEquals(actualTitleText, expectedTitle);
-        Assert.assertEquals(actualFirstText, expectedFirstText);
-        Assert.assertEquals(actualFirstNameLabel, expectedFirstNameLabel);
-        Assert.assertEquals(actualLastNameLabel, expectedLastNameLabel);
-        Assert.assertEquals(actualUserNameLabel, expectedUserNameLabel);
-        Assert.assertEquals(actualPasswordLabel, expectedPasswordLabel);
+        Assert.assertEquals(actualFirstNamePlaceholder, expectedFirstNamePlaceholder, "\nWrong first name placeholder.\n");
+        Assert.assertEquals(actualLastNamePlaceholder, expectedLastNamePlaceholder, "\nWrong last name placeholder.\n");
+        Assert.assertEquals(actualUserNamePlaceholder, expectedUserNamePlaceholder, "\nWrong username placeholder.\n");
+        Assert.assertEquals(actualPasswordPlaceholder, expectedPasswordPlaceholder, "\nWrong password placeholder.\n");
+        Assert.assertEquals(actualTitleText, expectedTitle, "\nWrong title placeholder.\n");
+        Assert.assertEquals(actualFirstText, expectedFirstText, "\nWrong first text placeholder.\n");
+        Assert.assertEquals(actualFirstNameLabel, expectedFirstNameLabel, "\nWrong first name label placeholder.\n");
+        Assert.assertEquals(actualLastNameLabel, expectedLastNameLabel, "\nWrong last name label placeholder.\n");
+        Assert.assertEquals(actualUserNameLabel, expectedUserNameLabel, "\nWrong username label placeholder.\n");
+        Assert.assertEquals(actualPasswordLabel, expectedPasswordLabel, "\nWrong password label placeholder.\n");
 
-        Assert.assertEquals(actualRegisterButtonText, expectedRegisterButtonName);
-        Assert.assertEquals(actualBackToLoginButtonText, expectedBackToLoginButtonName);
+        Assert.assertEquals(actualRegisterButtonText, expectedRegisterButtonName, "\nMissing register button.\n");
+        Assert.assertEquals(actualBackToLoginButtonText, expectedBackToLoginButtonName, "\nMissing backtologin button.\n");
     }
 
-    @Test
+    @Test(enabled = true)
     public void TryToLoginWithoutReCaptcha() {
         navigateToUrl("register");
 
@@ -70,6 +70,6 @@ public class BookRegisterPageTests extends BaseTest {
         booksRegisterPage.clickRegisterButton();
         String actualErrorMessage = booksRegisterPage.getErrorMessage();
 
-        Assert.assertEquals(actualErrorMessage, expectedErrorMessage, "Wrong error message");
+        Assert.assertEquals(actualErrorMessage, expectedErrorMessage, "\nWrong error message.\n");
     }
 }
