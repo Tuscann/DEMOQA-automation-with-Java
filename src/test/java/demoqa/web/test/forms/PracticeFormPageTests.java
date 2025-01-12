@@ -8,7 +8,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class PracticeFormPageTests extends BaseTest {
-    @Test
+    @Test(enabled = true)
     public void VerifyAllTextAndPlaceHolders() {
         navigateToUrl("automation-practice-form");
 
@@ -102,7 +102,7 @@ public class PracticeFormPageTests extends BaseTest {
         Assert.assertEquals(actualSubmitButtonText, expectedSubmitButtonText, "\nWrong submit button text.\n");
     }
 
-    @Test
+    @Test(enabled = true)
     public void VerifyThreeHobbiesState() {
         navigateToUrl("automation-practice-form");
 
@@ -120,7 +120,7 @@ public class PracticeFormPageTests extends BaseTest {
         Assert.assertTrue(isMusicCheckBoxSelected, "\nMusic checkbox is not unselected.\n");
     }
 
-    @Test
+    @Test(enabled = true)
     public void SelectEveryRadioButton() {
         navigateToUrl("automation-practice-form");
         String gender = "Female";
@@ -142,7 +142,7 @@ public class PracticeFormPageTests extends BaseTest {
         Assert.assertTrue(isOtherRadioButtonSelected, "\nOther radio button is not selected.\n");
     }
 
-    @Test
+    @Test(enabled = true)
     public void SubmitValidPracticeFormAndVerify() {
         navigateToUrl("automation-practice-form");
 
@@ -205,7 +205,7 @@ public class PracticeFormPageTests extends BaseTest {
         Assert.assertEquals(actualValues, expectedValues, "\nWrong values.\n");
     }
 
-    @Test
+    @Test(enabled = true)
     public void ClickSubmitOnEmptyFormAndVerifyColors() {
         navigateToUrl("automation-practice-form");
         practiceFormPage.clickSubmitButton();
@@ -242,7 +242,7 @@ public class PracticeFormPageTests extends BaseTest {
         Assert.assertEquals(currentAddress, expectedGreenColor, "\nWrong color.Expected Green \n");
     }
 
-    @Test
+    @Test(enabled = true)
     public void VerifyColorsChangeFromRedToGreen() {
         navigateToUrl("automation-practice-form");
         practiceFormPage.clickSubmitButton();

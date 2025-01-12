@@ -91,7 +91,7 @@ public class ProgressBarPageTests extends BaseTest {
         int actualValueOfProgressBar = progressBarPage.getValueProgressBar();
         String actualNotGreenColor = progressBarPage.getColorProgressBar();
 
-        Assert.assertEquals(actualValueOfProgressBar, stopValue, "\nNot " + stopValue + " value\n");
-        Assert.assertEquals(actualNotGreenColor, expectedStartColor, "Wrong color value");
+        Assert.assertEquals(actualValueOfProgressBar, stopValue, "\nNot " + stopValue + " value.\n");
+        Assert.assertEquals(actualNotGreenColor, expectedStartColor, "\nWrong color value.\n");
     }
 }

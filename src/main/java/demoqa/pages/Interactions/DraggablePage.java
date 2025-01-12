@@ -82,6 +82,7 @@ public class DraggablePage extends BasePage {
     }
 
     public Point getInitLocationThirdText() {
+        delay(300); //TODO
         return driver.findElement(cursorStyleThirdText).getLocation();
     }
 
@@ -197,6 +198,6 @@ public class DraggablePage extends BasePage {
         WebElement draggable = driver.findElement(cursorStyleThirdText);
 
         Actions actions = new Actions(driver);
-        actions.dragAndDropBy(draggable, xOffset, yOffset).perform();
+        actions.dragAndDropBy(draggable, xOffset, yOffset).build().perform();
     }
 }

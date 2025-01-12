@@ -5,6 +5,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class DynamicPropertiesPageTests extends BaseTest {
+
     @Test(enabled = true)
     public void VerifyAllTextOnPage() {
         navigateToUrl("dynamic-properties");

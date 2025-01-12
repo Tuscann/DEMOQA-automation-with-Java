@@ -56,6 +56,6 @@ public class BrowserWindowsPageTests extends BaseTest {
         String expectedBrowserMessage = "Knowledge increases by sharing but not by saving. Please share this website with your friends and in your organization.";
         String actualBrowserMessage = browserWindowsPage.getBrowserMessage();
 
-        Assert.assertEquals(actualBrowserMessage, expectedBrowserMessage, "\n Wrong message. \n");
+        Assert.assertEquals(actualBrowserMessage, expectedBrowserMessage, "\nWrong message.\n");
     }
 }

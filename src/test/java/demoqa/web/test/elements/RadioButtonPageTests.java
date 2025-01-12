@@ -22,11 +22,11 @@ public class RadioButtonPageTests extends BaseTest {
         String actualImpressiveAnswerLabel = radioButtonPage.getImpressiveAnswerLabel();
         String actualNoAnswerLabel = radioButtonPage.getNoAnswerLabel();
 
-        Assert.assertEquals(actualRadioButtonText, expectedRadioButtonText, "\nNot found " + expectedRadioButtonText);
-        Assert.assertEquals(actualYesAnswerLabelText, expectedYesAnswerLabel, "\nNot found " + expectedYesAnswerLabel);
-        Assert.assertEquals(actualNoAnswerLabel, expectedNoAnswerLabel, "\nNot found " + expectedNoAnswerLabel);
-        Assert.assertEquals(actualQuestionText, expectedActualQuestionText, "\nNot found " + expectedActualQuestionText);
-        Assert.assertEquals(actualImpressiveAnswerLabel, expectedImpressiveAnswerLabel, "\nNot found " + expectedImpressiveAnswerLabel);
+        Assert.assertEquals(actualRadioButtonText, expectedRadioButtonText, "\nNot found " + expectedRadioButtonText + ".\n");
+        Assert.assertEquals(actualYesAnswerLabelText, expectedYesAnswerLabel, "\nNot found " + expectedYesAnswerLabel + ".\n");
+        Assert.assertEquals(actualNoAnswerLabel, expectedNoAnswerLabel, "\nNot found " + expectedNoAnswerLabel + ".\n");
+        Assert.assertEquals(actualQuestionText, expectedActualQuestionText, "\nNot found " + expectedActualQuestionText + ".\n");
+        Assert.assertEquals(actualImpressiveAnswerLabel, expectedImpressiveAnswerLabel, "\nNot found " + expectedImpressiveAnswerLabel + ".\n");
         Assert.assertTrue(radioButtonPage.isResultMessageDisplayed());
     }
 
@@ -45,10 +45,11 @@ public class RadioButtonPageTests extends BaseTest {
         String expectedAnswer = "Yes";
         radioButtonPage.clickAnswer(expectedAnswer);
 
-        String actualAnswer = radioButtonPage.getResultMessage();
+        String actualYesAnswer = radioButtonPage.getResultMessage();
+        String expectedYesAnswer = "You have selected " + expectedAnswer;
 
         Assert.assertFalse(radioButtonPage.isResultMessageDisplayed());
-        Assert.assertEquals(actualAnswer, "You have selected " + expectedAnswer, "\nNot chosen yes answer.\n");
+        Assert.assertEquals(actualYesAnswer, expectedYesAnswer, "\nNot chosen yes answer.\n");
     }
 
     @Test(enabled = true)
@@ -59,9 +60,10 @@ public class RadioButtonPageTests extends BaseTest {
         radioButtonPage.clickAnswer(expectedAnswer);
 
         String actualAnswer = radioButtonPage.getResultMessage();
+        String expectedImpressiveAnswer = "You have selected " + expectedAnswer;
 
         Assert.assertFalse(radioButtonPage.isResultMessageDisplayed());
-        Assert.assertEquals(actualAnswer, "You have selected " + expectedAnswer, "\nNot chosen Impressive answer.\n");
+        Assert.assertEquals(actualAnswer, expectedImpressiveAnswer, "\nNot chosen Impressive answer.\n");
     }
 
     @Test(enabled = true)
@@ -71,15 +73,15 @@ public class RadioButtonPageTests extends BaseTest {
         String expectedAnswer = "Impressive";
         radioButtonPage.clickAnswer(expectedAnswer);
 
-        String greenColor = "rgba(40, 167, 69, 1)";
+        String expectedGreenColor = "rgba(40, 167, 69, 1)";
         String actualColor = radioButtonPage.isColorGreen();
 
-        Assert.assertEquals(actualColor, greenColor, "\nNot green color for Impressive answer.\n");
+        Assert.assertEquals(actualColor, expectedGreenColor, "\nNot green color for Impressive answer.\n");
 
         expectedAnswer = "Yes";
         radioButtonPage.clickAnswer(expectedAnswer);
         actualColor = radioButtonPage.isColorGreen();
 
-        Assert.assertEquals(actualColor, greenColor, "\nNot green color For Yes answer.\n");
+        Assert.assertEquals(actualColor, expectedGreenColor, "\nNot green color For Yes answer.\n");
     }
 }

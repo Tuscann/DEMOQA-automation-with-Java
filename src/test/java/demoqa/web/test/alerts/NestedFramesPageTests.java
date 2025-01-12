@@ -20,7 +20,6 @@ public class NestedFramesPageTests extends BaseTest {
         Assert.assertEquals(actualMainText, expectedMainText, "\nWrong main text.\n");
     }
 
-
     @Test(enabled = true)
     public void VerifyHeadingTextInParentIframe() {
         navigateToUrl("nestedframes");

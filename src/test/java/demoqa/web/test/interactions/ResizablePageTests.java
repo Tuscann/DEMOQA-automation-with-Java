@@ -18,9 +18,9 @@ public class ResizablePageTests extends BaseTest {
         String actualResizableBoxWithRestrictionText = resizablePage.getResizableBoxWithRestrictionText();
         String actualResizableText = resizablePage.getResizableText();
 
-        Assert.assertEquals(actualPageTitle, pageTitle, "Wrong page title");
-        Assert.assertEquals(actualResizableBoxWithRestrictionText, resizableBoxWithRestrictionText, "Wrong resizable text");
-        Assert.assertEquals(actualResizableText, resizableText, "Wrong resizable text");
+        Assert.assertEquals(actualPageTitle, pageTitle, "\nWrong page title.\n");
+        Assert.assertEquals(actualResizableBoxWithRestrictionText, resizableBoxWithRestrictionText, "\nWrong resizable text.\n");
+        Assert.assertEquals(actualResizableText, resizableText, "\nWrong resizable text.\n");
     }
 
     @DataProvider(name = "resizeData")
@@ -49,7 +49,7 @@ public class ResizablePageTests extends BaseTest {
     public Object[][] resizeDataProvider2() {
         return new Object[][]{
                 {300, 100, 500, 300}, // Test case 1: Test max limit Width and height
-                //    {309, 109, 509, 309}, // Test case 2: More than limits
+                {309, 109, 509, 309}, // Test case 2: More than limits
                 {0, 0, 200, 200},     // Test case 3: No change
                 {-180, -180, 20, 20}, // Test case 4: More than min values
                 {-200, -200, 20, 20}  // Test case 5: More than Min limit 20
