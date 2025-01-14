@@ -16,6 +16,8 @@ public class AuthorizationApi {
                 .statusCode(201)
                 .extract().as(User.class);
     }
+
+
 //
 //    public Token getToken(Credentials credentials) {
 //        return given(jsonRequestSpec)
