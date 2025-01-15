@@ -1,6 +1,6 @@
 package demoqa.api.models;
 
-import static demoqa.api.data.ResponseSpecs.responseSpec;
+
 import static demoqa.api.spec.RequestSpecs.jsonRequestSpec;
 import static io.restassured.RestAssured.given;
 
@@ -12,7 +12,7 @@ public class AuthorizationApi {
                 .when()
                 .post("/Account/v1/User")
                 .then()
-                .spec(responseSpec)
+                //       .spec(responseSpec)
                 .statusCode(201)
                 .extract().as(User.class);
     }

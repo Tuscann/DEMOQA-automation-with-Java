@@ -11,7 +11,7 @@ import java.util.List;
 
 public class BooksTests extends BaseTestApi {
 
-    @Test(testName = "Get all books", suiteName = "api", enabled = true)
+    @Test(testName = "Count all books", suiteName = "api", enabled = true)
     void GetAllBooks() throws IOException, InterruptedException {
         TodoClient todoClient = new TodoClient();
         List<Book> books = todoClient.FindAllBooks();
@@ -21,7 +21,7 @@ public class BooksTests extends BaseTestApi {
         Assert.assertEquals(books.size(), expectedBookCount);
     }
 
-    @Test(testName = "Get Books and verify first book properties.", suiteName = "api", enabled = true)
+    @Test(testName = "Get All Books and verify first book properties.", suiteName = "api", enabled = true)
     void VerifyFirstBookFromBooks() throws IOException, InterruptedException {
         TodoClient client = new TodoClient();
         List<Book> books = client.FindAllBooks();
