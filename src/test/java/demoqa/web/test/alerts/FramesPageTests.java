@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 
 public class FramesPageTests extends BaseTest {
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Verify all text on page")
     public void VerifyAllTextOnPage() {
         navigateToUrl("frames");
 
@@ -16,11 +16,13 @@ public class FramesPageTests extends BaseTest {
         String actualHeadingText = framesPage.getFramesHeadingText();
         String actualText = framesPage.getText();
 
-        Assert.assertEquals(actualHeadingText, expectedHeadingText, "\nWrong heading.\n");
-        Assert.assertEquals(actualText, expectedText, "\nWrong text.\n");
+        softAssert.assertEquals(actualHeadingText, expectedHeadingText, "\nWrong heading.\n");
+        softAssert.assertEquals(actualText, expectedText, "\nWrong text.\n");
+
+        softAssert.assertAll();
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Verify heading in first Iframe")
     public void VerifyHeadingTextInFirstIframe() {
         navigateToUrl("frames");
         String actualFirstIFrameHeadingText = framesPage.getHeadingTextInFirstIframe();
@@ -30,7 +32,7 @@ public class FramesPageTests extends BaseTest {
         Assert.assertEquals(actualFirstIFrameHeadingText, expectedFirstIFrameHeadingText, "\nWrong heading in first Iframe.\n");
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Verify heading in second Iframe")
     public void VerifyHeadingTextInSecondIframe() {
         navigateToUrl("frames");
         String actualSecondIFrameHeadingText = framesPage.getHeadingTextInSecondIframe();

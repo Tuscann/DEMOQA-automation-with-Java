@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 
 public class BrowserWindowsPageTests extends BaseTest {
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Verify all text on page")
     public void VerifyAllTextOnPage() {
         navigateToUrl("browser-windows");
 
@@ -20,13 +20,15 @@ public class BrowserWindowsPageTests extends BaseTest {
         String actualNewWindowText = browserWindowsPage.getNewWindowText();
         String actualNewWindowMessageText = browserWindowsPage.getNewWindowMessageText();
 
-        Assert.assertEquals(actualBrowserWindowsText, browserWindowsText, "\nMissing Browser Windows.\n");
-        Assert.assertEquals(actualNewTabText, newTabText, "\nMissing New Tab.\n");
-        Assert.assertEquals(actualNewWindowText, newWindow, "\nMissing New Window.\n");
-        Assert.assertEquals(actualNewWindowMessageText, newWindowMessage, "\nMissing New Window Message.\n");
+        softAssert.assertEquals(actualBrowserWindowsText, browserWindowsText, "\nMissing Browser Windows.\n");
+        softAssert.assertEquals(actualNewTabText, newTabText, "\nMissing New Tab.\n");
+        softAssert.assertEquals(actualNewWindowText, newWindow, "\nMissing New Window.\n");
+        softAssert.assertEquals(actualNewWindowMessageText, newWindowMessage, "\nMissing New Window Message.\n");
+
+        softAssert.assertAll();
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Click on new tab button")
     public void ClickNewTabButton() {
         navigateToUrl("browser-windows");
         browserWindowsPage.clickNewTabButton();
@@ -37,7 +39,7 @@ public class BrowserWindowsPageTests extends BaseTest {
         Assert.assertEquals(actualNewTabUrl, expectedNewTabUrl, "\n Actual & Expected URL Do Not Match.\n");
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Click on new window button")
     public void ClickNewWindowButton() {
         navigateToUrl("browser-windows");
         browserWindowsPage.clickNewWindowButton();
@@ -48,7 +50,7 @@ public class BrowserWindowsPageTests extends BaseTest {
         Assert.assertEquals(actualNewTabUrl, expectedNewTabUrl, "\n Actual & Expected URL Do Not Match. \n");
     }
 
-    @Test(enabled = false)
+    @Test(enabled = false, testName = "Click on new window message button")
     public void ClickNewWindowMessage() {
         navigateToUrl("browser-windows");
         browserWindowsPage.clickNewWindowMessageButton();

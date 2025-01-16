@@ -8,7 +8,7 @@ import java.util.List;
 
 public class SelectMenuPageTests extends BaseTest {
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Verify all text on the page")
     public void VerifyAllTextOnPage() {
         navigateToUrl("select-menu");
 
@@ -40,37 +40,32 @@ public class SelectMenuPageTests extends BaseTest {
         String actualStandardMultiSelectLabel = selectMenuPage.getStandardMultiSelectLabel();
         String actualStandardMultiSelect = selectMenuPage.getStandardMultiSelect();
 
-        Assert.assertEquals(actualSelectMenuText, expectedSelectMenuText, "Wrong selected menu text");
-        Assert.assertEquals(actualSelectedValueLabel, expectedSelectedValueLabel, "Wrong selected value label");
-        Assert.assertEquals(actualSelectedValuePlaceholder, expectedSelectedValuePlaceholder, "Wrong selected value placeholder");
-        Assert.assertEquals(actualSelectTitleLabel, expectedSelectTitleLabel, "Wrong selected title label");
-        Assert.assertEquals(actualSelectTitlePlaceholder, expectedSelectTitlePlaceholder, "Wrong selected title placeholder");
-        Assert.assertEquals(actualOldStyleSelectMenuLabel, expectedOldStyleSelectMenuLabel, "Wrong selected menu label");
-        Assert.assertEquals(actualOldStyleSelectMenuPlaceholder, expectedOldStyleSelectMenuPlaceholder, "Wrong selected menu placeholder");
-        Assert.assertEquals(actualMultiselectDropdownLabel, expectedMultiselectDropdownLabel, "\nWrong selected menu label");
-        Assert.assertEquals(actualMultiselectDropdownPlaceholder, expectedMultiselectDropdownPlaceholder, "Wrong selected menu placeholder");
-        Assert.assertEquals(actualStandardMultiSelectLabel, expectedStandardMultiSelectLabel, "\nWrong selected menu label");
-        Assert.assertEquals(actualStandardMultiSelect, expectedStandardMultiSelect, "\nWrong selected menu placeholder");
+        softAssert.assertEquals(actualSelectMenuText, expectedSelectMenuText, "Wrong selected menu text");
+        softAssert.assertEquals(actualSelectedValueLabel, expectedSelectedValueLabel, "Wrong selected value label");
+        softAssert.assertEquals(actualSelectedValuePlaceholder, expectedSelectedValuePlaceholder, "Wrong selected value placeholder");
+        softAssert.assertEquals(actualSelectTitleLabel, expectedSelectTitleLabel, "Wrong selected title label");
+        softAssert.assertEquals(actualSelectTitlePlaceholder, expectedSelectTitlePlaceholder, "Wrong selected title placeholder");
+        softAssert.assertEquals(actualOldStyleSelectMenuLabel, expectedOldStyleSelectMenuLabel, "Wrong selected menu label");
+        softAssert.assertEquals(actualOldStyleSelectMenuPlaceholder, expectedOldStyleSelectMenuPlaceholder, "Wrong selected menu placeholder");
+        softAssert.assertEquals(actualMultiselectDropdownLabel, expectedMultiselectDropdownLabel, "\nWrong selected menu label");
+        softAssert.assertEquals(actualMultiselectDropdownPlaceholder, expectedMultiselectDropdownPlaceholder, "Wrong selected menu placeholder");
+        softAssert.assertEquals(actualStandardMultiSelectLabel, expectedStandardMultiSelectLabel, "\nWrong selected menu label");
+        softAssert.assertEquals(actualStandardMultiSelect, expectedStandardMultiSelect, "\nWrong selected menu placeholder");
+        softAssert.assertAll();
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Select all values from Select value menu")
     public void SelectAllValuesFromSelectValue() {
         navigateToUrl("select-menu");
         for (int i = 0; i < 6; i++) {
-            String expectedSelectedValue = "";
-            if (i == 0) {
-                expectedSelectedValue = "Group 1, option 1";
-            } else if (i == 1) {
-                expectedSelectedValue = "Group 1, option 2";
-            } else if (i == 2) {
-                expectedSelectedValue = "Group 2, option 1";
-            } else if (i == 3) {
-                expectedSelectedValue = "Group 2, option 2";
-            } else if (i == 4) {
-                expectedSelectedValue = "A root option";
-            } else {
-                expectedSelectedValue = "Another root option";
-            }
+            String expectedSelectedValue = switch (i) {
+                case 0 -> "Group 1, option 1";
+                case 1 -> "Group 1, option 2";
+                case 2 -> "Group 2, option 1";
+                case 3 -> "Group 2, option 2";
+                case 4 -> "A root option";
+                default -> "Another root option";
+            };
 
             selectMenuPage.selectSelectValue(expectedSelectedValue);
 
@@ -80,25 +75,20 @@ public class SelectMenuPageTests extends BaseTest {
         }
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Select all values from Select One menu")
     public void SelectAllValuesFromSelectOne() {
         navigateToUrl("select-menu");
 
         for (int i = 0; i < 6; i++) {
-            String expectedSelectOne = "";
-            if (i == 0) {
-                expectedSelectOne = "Dr.";
-            } else if (i == 1) {
-                expectedSelectOne = "Mr.";
-            } else if (i == 2) {
-                expectedSelectOne = "Mrs.";
-            } else if (i == 3) {
-                expectedSelectOne = "Ms.";
-            } else if (i == 4) {
-                expectedSelectOne = "Prof.";
-            } else {
-                expectedSelectOne = "Other";
-            }
+            String expectedSelectOne = switch (i) {
+                case 0 -> "Dr.";
+                case 1 -> "Mr.";
+                case 2 -> "Mrs.";
+                case 3 -> "Ms.";
+                case 4 -> "Prof.";
+                case 5 -> "Other.";
+                default -> "Error";
+            };
 
             selectMenuPage.selectSelectOne(expectedSelectOne);
 
@@ -108,68 +98,55 @@ public class SelectMenuPageTests extends BaseTest {
         }
     }
 
-    @Test(enabled = true)
-    public void SelectOldStyleSelectMenu() {
+    @Test(enabled = true, testName = "Select all values from old Style select menu")
+    public void SelectAllValuesFromOldStyleSelectMenu() {
         navigateToUrl("select-menu");
 
         for (int i = 0; i < 11; i++) {
-            String expectedColor = "";
-            if (i == 0) {
-                expectedColor = "Red";
-            } else if (i == 1) {
-                expectedColor = "Blue";
-            } else if (i == 2) {
-                expectedColor = "Green";
-            } else if (i == 3) {
-                expectedColor = "Yellow";
-            } else if (i == 4) {
-                expectedColor = "Purple";
-            } else if (i == 5) {
-                expectedColor = "Black";
-            } else if (i == 6) {
-                expectedColor = "White";
-            } else if (i == 7) {
-                expectedColor = "Voilet";
-            } else if (i == 8) {
-                expectedColor = "Indigo";
-            } else if (i == 9) {
-                expectedColor = "Magenta";
-            } else {
-                expectedColor = "Aqua";
-            }
+            String expectedColor = switch (i) {
+                case 0 -> "Red";
+                case 1 -> "Blue";
+                case 2 -> "Green";
+                case 3 -> "Yellow";
+                case 4 -> "Purple";
+                case 5 -> "Black";
+                case 6 -> "White";
+                case 7 -> "Voilet";
+                case 8 -> "Indigo";
+                case 9 -> "Magenta";
+                case 10 -> "Aqua";
+                default -> "Error";
+            };
 
             selectMenuPage.selectOldStyleSelectMenuByText(expectedColor);
             String actualColor = selectMenuPage.getOldStyleSelectMenuSelectedValue();
 
-            Assert.assertEquals(actualColor, expectedColor, "\nWrong color selected" + expectedColor + "\n");
+            Assert.assertEquals(actualColor, expectedColor, "\nWrong color selected" + expectedColor + ".\n");
         }
     }
 
-    @Test(enabled = false)
+    @Test(enabled = false, testName = "Select all values from Multi Select DropDown menu")
     public void SelectMultiSelectDropDown() {
         navigateToUrl("select-menu");
 
         for (int i = 0; i < 4; i++) {
-            String expectedColor = "";
-            if (i == 0) {
-                expectedColor = "Green";
-            } else if (i == 1) {
-                expectedColor = "Blue";
-            } else if (i == 2) {
-                expectedColor = "Black";
-            } else {
-                expectedColor = "Red";
-            }
+            String expectedColor = switch (i) {
+                case 0 -> "Green";
+                case 1 -> "Blue";
+                case 2 -> "Black";
+                case 3 -> "Red";
+                default -> "Error";
+            };
 
             selectMenuPage.multiSelectOne(expectedColor);
 
             String actualSelectValue = selectMenuPage.getSelectedValue();
 
-            Assert.assertEquals(actualSelectValue, expectedColor, "Wrong group");
+            Assert.assertEquals(actualSelectValue, expectedColor, "\nWrong group" + expectedColor + ".\n");
         }
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Select all values from standard Multi Select menu")
     public void SelectAllValuesFromStandardMultiSelect() {
         navigateToUrl("select-menu");
         selectMenuPage.selectStandardMultiByText("Volvo");
@@ -179,9 +156,11 @@ public class SelectMenuPageTests extends BaseTest {
 
         selectMenuPage.deselectStandardMulti("saab");
         List<String> actualSelectedOptions = selectMenuPage.getAllSelectedStandardMultiOptions();
-        Assert.assertTrue(actualSelectedOptions.contains("Volvo"));
-        Assert.assertTrue(actualSelectedOptions.contains("Opel"));
-        Assert.assertTrue(actualSelectedOptions.contains("Audi"));
-        Assert.assertFalse(actualSelectedOptions.contains("Saab"), "\n Saab Is Selected As An Option \n");
+        softAssert.assertTrue(actualSelectedOptions.contains("Volvo"));
+        softAssert.assertTrue(actualSelectedOptions.contains("Opel"));
+        softAssert.assertTrue(actualSelectedOptions.contains("Audi"));
+        softAssert.assertFalse(actualSelectedOptions.contains("Saab"), "\n Saab Is Selected As An Option \n");
+
+        softAssert.assertAll();
     }
 }

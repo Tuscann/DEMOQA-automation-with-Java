@@ -3,8 +3,10 @@ package demoqa.pages.widgets;
 
 import demoqa.base.BasePage;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -26,6 +28,11 @@ public class ToolTipsPage extends BasePage {
     private final By practiceTextFieldToolTip = By.xpath("//*[@id=\"textFieldToolTip\"]/div[2]");
     private final By contraryToolTip = By.xpath("//*[@id=\"contraryTexToolTip\"]/div[2]");
     private final By sectionToolTip = By.xpath("//*[@id=\"sectionToolTip\"]/div[2]");
+
+    public ToolTipsPage(WebDriver driver) {
+        super(driver);
+        PageFactory.initElements(driver, this);
+    }
 
     public String getHoverOverHoverMeToSeeButtonReturnToolTipText() {
         Actions actions = new Actions(driver);

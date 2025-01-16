@@ -3,6 +3,8 @@ package demoqa.pages.widgets;
 import demoqa.base.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -14,6 +16,11 @@ public class DatePickerPage extends BasePage {
     private final By datePickerText = By.xpath("//h1[contains(.,'Date Picker')]");
     private final By selectDateText = By.xpath("(//div[@class='col-md-3 col-sm-12'])[1]");
     private final By dateAndTimeText = By.xpath("(//div[@class='col-md-3 col-sm-12'])[2]");
+
+    public DatePickerPage(WebDriver driver) {
+        super(driver);
+        PageFactory.initElements(driver, this);
+    }
 
     public String getSelectDateText() {
         return find(selectDateText).getText();

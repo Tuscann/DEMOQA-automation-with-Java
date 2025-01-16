@@ -7,16 +7,16 @@ import org.openqa.selenium.WebElement;
 public class BasePage {
     public static WebDriver driver;
 
+    public BasePage(WebDriver driver) {
+        BasePage.driver = driver;
+    }
+
     public static void delay(int milliseconds) {
         try {
             Thread.sleep(milliseconds);
         } catch (InterruptedException exc) {
             exc.printStackTrace();
         }
-    }
-
-    public void setDriver(WebDriver driver) {
-        BasePage.driver = driver;
     }
 
     protected WebElement find(By locator) {

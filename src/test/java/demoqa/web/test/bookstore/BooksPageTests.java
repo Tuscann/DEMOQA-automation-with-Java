@@ -6,7 +6,20 @@ import org.testng.annotations.Test;
 
 public class BooksPageTests extends BaseTest {
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Verify show/hide left dropdown menu.")
+    public void ClickLeftDropdownMenu() {
+        navigateToUrl("books");
+
+        boolean TextBoxIsVisible = booksPage.verifyLoginIsVisible();
+        Assert.assertTrue(TextBoxIsVisible, "\nDropDown login in not shown.\n");
+
+        booksPage.clickBookStoreApplicationLink();
+
+        TextBoxIsVisible = booksPage.verifyLoginIsNotVisible();
+        Assert.assertFalse(TextBoxIsVisible, "\nDropDown Login in shown.\n");
+    }
+
+    @Test(enabled = true, testName = "Click on 4 links on left side")
     public void CheckAllFourPagesLinks() {
         navigateToUrl("books");
 
@@ -31,7 +44,7 @@ public class BooksPageTests extends BaseTest {
         Assert.assertEquals(actualUrl, expectedUrl, "\nExpected book store API link.\n");
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Verify table header columns.")
     public void GetFirstRowOfTable() {
         navigateToUrl("books");
 
@@ -46,8 +59,8 @@ public class BooksPageTests extends BaseTest {
         Assert.assertEquals(actualTopRow, expectedTopRow, "\nExpected table header.\n");
     }
 
-    @Test(enabled = true)
-    public void CheckCountOfDefaultBooks() {
+    @Test(enabled = true, testName = "Verify default count of books 8.")
+    public void VerifyCountOfDefaultBooks() {
         navigateToUrl("books");
 
         int expectedBooksCount = 8;
@@ -57,7 +70,7 @@ public class BooksPageTests extends BaseTest {
         Assert.assertEquals(actualBooksCount, expectedBooksCount, "\nExpected books count.\n");
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Click login button and verify link.")
     public void ClickLoginButton() {
         navigateToUrl("books");
 
@@ -65,10 +78,10 @@ public class BooksPageTests extends BaseTest {
 
         String expectedUrl = "https://demoqa.com/login";
         String actualUrl = booksPage.checkUrl();
-        Assert.assertEquals(actualUrl, expectedUrl);
+        Assert.assertEquals(actualUrl, expectedUrl, "\n Expected url to be login \n");
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Search for book and verify book")
     public void SearchAndFindOneBook() {
         navigateToUrl("books");
 
@@ -84,7 +97,7 @@ public class BooksPageTests extends BaseTest {
         Assert.assertEquals(actualFindBooks, expectedBooks, "\nExpected not books found.\n");
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Search for book and verify no books are found.")
     public void SearchAndFindNoBook() {
         navigateToUrl("books");
 
@@ -97,7 +110,7 @@ public class BooksPageTests extends BaseTest {
         Assert.assertEquals(actualMessage, expectedMessage, "\nExpected message not found.\n");
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Verify Next and Previous buttons can clickable.")
     public void ClickNextAndPreviousButtons() {
         navigateToUrl("books");
 
@@ -135,7 +148,7 @@ public class BooksPageTests extends BaseTest {
         Assert.assertTrue(isActiveNextButton);
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Click all rows per page.")
     public void ClickAllRowsPerPage() {
         navigateToUrl("books");
 
@@ -192,7 +205,7 @@ public class BooksPageTests extends BaseTest {
         Assert.assertEquals(actualBooksCount, expectedBooksCount, "\nCount is not 100 times.\n");
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Order books by Title,Author,Publisher in descending order.")
     public void OrderBooksByTitleByAuthorByPublisherDescending() {
         navigateToUrl("books");
 
@@ -296,7 +309,7 @@ public class BooksPageTests extends BaseTest {
         Assert.assertEquals(actualFindBooks, expectedBooks, "\nExpected books.\n");
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Order books by Title,Author,Publisher in ascending order.")
     public void OrderBooksByTitleByAuthorByPublisherAscending() {
         navigateToUrl("books");
 

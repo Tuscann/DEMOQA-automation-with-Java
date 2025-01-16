@@ -10,10 +10,6 @@ public class ElementsPageTests extends BaseTest {
     public void CheckAllNinePagesLinks() {
         navigateToUrl("elements");
 
-        String actualString = "Please select an item from left to start practice.";
-        String expectedString = elementsPage.getText();
-        Assert.assertEquals(expectedString, actualString, "\nWrong text is shown.\n");
-
         String expectedUrl = "https://demoqa.com/text-box";
         elementsPage.clickTextBox();
         String actualUrl = elementsPage.checkUrl();
@@ -58,5 +54,23 @@ public class ElementsPageTests extends BaseTest {
         elementsPage.clickDynamicProperties();
         actualUrl = elementsPage.checkUrl();
         Assert.assertEquals(actualUrl, expectedUrl, "\nWrong url is shown.\n");
+    }
+
+
+    @Test(enabled = true)
+    public void ClickLeftDropdownMenu() {
+        navigateToUrl("elements");
+
+        String actualString = "Please select an item from left to start practice.";
+        String expectedString = elementsPage.getText();
+        Assert.assertEquals(expectedString, actualString, "\nWrong text is shown.\n");
+
+        boolean TextBoxIsVisible = elementsPage.verifyTextBoxIsVisible();
+        Assert.assertTrue(TextBoxIsVisible, "\nDropDown in not shown.\n");
+
+        elementsPage.clickElements();
+
+        TextBoxIsVisible = elementsPage.verifyTextBoxIsNotVisible();
+        Assert.assertFalse(TextBoxIsVisible, "\nDropDown in shown.\n");
     }
 }

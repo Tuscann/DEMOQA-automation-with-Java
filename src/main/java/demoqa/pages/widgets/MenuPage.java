@@ -2,8 +2,10 @@ package demoqa.pages.widgets;
 
 import demoqa.base.BasePage;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.PageFactory;
 
 public class MenuPage extends BasePage {
 
@@ -23,6 +25,11 @@ public class MenuPage extends BasePage {
     private final By mainItemSecondLi = By.xpath("//*[@id=\"nav\"]/li[2]");
     private final By mainItemThirdLi = By.xpath("//*[@id=\"nav\"]/li[3]");
     private final By subSub = By.xpath("//*[@id=\"nav\"]/li[2]/ul/li[3]");
+
+    public MenuPage(WebDriver driver) {
+        super(driver);
+        PageFactory.initElements(driver, this);
+    }
 
 
     public void selectMainItem1() {

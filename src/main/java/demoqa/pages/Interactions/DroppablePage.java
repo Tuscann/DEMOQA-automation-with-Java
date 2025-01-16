@@ -3,8 +3,10 @@ package demoqa.pages.Interactions;
 import demoqa.base.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Point;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -44,6 +46,10 @@ public class DroppablePage extends BasePage {
     private final By dropHereRevertDraggable = By.xpath("(//div[@id='droppable'])[3]");
     private final By dropHereRevertDraggable2 = By.id("droppable");
 
+    public DroppablePage(WebDriver driver) {
+        super(driver);
+        PageFactory.initElements(driver, this);
+    }
 
     public void clickRevertDraggableTab() {
         click(revertDraggableTab);

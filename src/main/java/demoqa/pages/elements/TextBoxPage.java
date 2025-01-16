@@ -2,6 +2,8 @@ package demoqa.pages.elements;
 
 import demoqa.base.BasePage;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -28,6 +30,11 @@ public class TextBoxPage extends BasePage {
     private final By expectedCurrentAddress = By.xpath("//p[@id=\"currentAddress\"]");
     private final By expectedPermanentAddress = By.xpath("//p[@id=\"permanentAddress\"]");
     private final By output = By.id("output");
+
+    public TextBoxPage(WebDriver driver) {
+        super(driver);
+        PageFactory.initElements(driver, this);
+    }
 
     public String getFullNameLabel() {
         return find(fullNameLabel).getText();

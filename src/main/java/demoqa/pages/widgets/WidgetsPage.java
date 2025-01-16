@@ -2,6 +2,8 @@ package demoqa.pages.widgets;
 
 import demoqa.base.BasePage;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.PageFactory;
 
 import static utilities.JavaScriptUtility.scrollToElementJS;
 
@@ -15,6 +17,11 @@ public class WidgetsPage extends BasePage {
     private final By selectToolTips = By.xpath("//li[@id='item-6']/span[text()='Tool Tips']");
     private final By selectMenu = By.xpath("//li[@id='item-7']/span[text()='Menu']");
     private final By selectSelectMenu = By.xpath("//li[@id='item-8']/span[text()='Select Menu']");
+
+    public WidgetsPage(WebDriver driver) {
+        super(driver);
+        PageFactory.initElements(driver, this);
+    }
 
     public void clickAccordion() {
         scrollToElementJS(selectAccordion);

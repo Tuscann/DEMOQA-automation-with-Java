@@ -2,7 +2,9 @@ package demoqa.pages;
 
 import demoqa.base.BasePage;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
 
@@ -20,6 +22,11 @@ public class HomePage extends BasePage {
 
     private final By clickHomePageItem = By.xpath("(//div[@class='card-up'])");
     private final By footer = By.xpath("//span[contains(.,'© 2013-2020 TOOLSQA.COM | ALL RIGHTS RESERVED.')]");
+
+    public HomePage(WebDriver driver) {
+        super(driver);
+        PageFactory.initElements(driver, this);
+    }
 
     public String getElementsText() {
         return find(elementsCard).getText();

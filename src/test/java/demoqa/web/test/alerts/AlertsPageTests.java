@@ -8,7 +8,7 @@ import static utilities.SwitchToUtility.*;
 
 public class AlertsPageTests extends BaseTest {
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Verify all text on page")
     public void VerifyAllTextOnPage() {
         // Arrange
         navigateToUrl("alerts");
@@ -27,14 +27,16 @@ public class AlertsPageTests extends BaseTest {
         String actualFourText = alertsPage.getFourthText();
 
         // Assert
-        Assert.assertEquals(actualHeaderText, alertHeaderText, "\n Alert Title Do Not Match. \n");
-        Assert.assertEquals(actualFirstText, firstText, "\n Alert Second Text Do Not Match. \n");
-        Assert.assertEquals(actualSecondText, secondText, "\n Alert Third Text Do Not Match. \n");
-        Assert.assertEquals(actualThirdText, thirdText, "\n Alert Four Text Do Not Match. \n");
-        Assert.assertEquals(actualFourText, fourText, "\n Alert Five Text Do Not Match. \n");
+        softAssert.assertEquals(actualHeaderText, alertHeaderText, "\n Alert Title Do Not Match. \n");
+        softAssert.assertEquals(actualFirstText, firstText, "\n Alert Second Text Do Not Match. \n");
+        softAssert.assertEquals(actualSecondText, secondText, "\n Alert Third Text Do Not Match. \n");
+        softAssert.assertEquals(actualThirdText, thirdText, "\n Alert Four Text Do Not Match. \n");
+        softAssert.assertEquals(actualFourText, fourText, "\n Alert Five Text Do Not Match. \n");
+
+        softAssert.assertAll();
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Verify text of Information Alert")
     public void VerifyTextOfInformationAlert() {
         // Arrange
         navigateToUrl("alerts");
@@ -48,7 +50,7 @@ public class AlertsPageTests extends BaseTest {
         Assert.assertEquals(actualAlertText, expectedAlertText, "\n Actual & Expected Messages Do Not Match. \n");
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Verify  text of Prompt Alert after 5 seconds")
     public void VerifyTextOfPromptAlertAfter5seconds() {
         // Arrange
         navigateToUrl("alerts");
@@ -59,10 +61,10 @@ public class AlertsPageTests extends BaseTest {
         String actualAlertText = getAlertText();
 
         // Assert
-        Assert.assertEquals(actualAlertText, expectedAlertText, "\n Different Prompt Alert message. \n");
+        Assert.assertEquals(actualAlertText, expectedAlertText, "\nDifferent Prompt Alert message. \n");
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Verify You selected Cancel on confirmation alert")
     public void VerifyTextOfConfirmationAlertCancel() {
         // Arrange
         navigateToUrl("alerts");
@@ -77,7 +79,7 @@ public class AlertsPageTests extends BaseTest {
         Assert.assertEquals(actualConfirmationResult, expectedConfirmationResult, "\n You Did Not Select Cancel. \n");
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Verify You selected Ok on confirmation Alert")
     public void VerifyTextOfConfirmationAlertYes() {
         // Arrange
         navigateToUrl("alerts");
@@ -89,10 +91,10 @@ public class AlertsPageTests extends BaseTest {
         String actualConfirmationResult = alertsPage.getConfirmationResult();
 
         // Assert
-        Assert.assertEquals(actualConfirmationResult, expectedConfirmationResult, "\n You Did Not Select OK. \n");
+        Assert.assertEquals(actualConfirmationResult, expectedConfirmationResult, "\nYou Did Not Select OK.\n");
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Verify text of message after of Prompt Alert")
     public void VerifyTextOfPromptAlertAccept() {
         // Arrange
         navigateToUrl("alerts");
@@ -106,11 +108,25 @@ public class AlertsPageTests extends BaseTest {
         String actualResult = alertsPage.getPromptAlertResult();
 
         // Assert
-        Assert.assertEquals(actualResult, expectedResult, "\n Actual & Expected Results Do Not Match. \n");
+        Assert.assertEquals(actualResult, expectedResult, "\nActual & Expected Results Do Not Match.\n");
     }
 
-    @Test(enabled = true)
-    public void VerifyTextOfPromptAlertClose() {
+    @Test(enabled = true, testName = "Verify text of message after OK of Prompt Alert")
+    public void VerifyTextOfPromptAlertOK() {
+        // Arrange
+        navigateToUrl("alerts");
+
+        // Act
+        alertsPage.clickPromptAlertButton();
+        acceptAlert();
+        boolean isAlertResultMissing = alertsPage.verifyNoAlertResult();
+
+        // Assert
+        Assert.assertTrue(isAlertResultMissing, "\nResult alert is not shown.\n");
+    }
+
+    @Test(enabled = true, testName = "Verify text of message after Close Prompt Alert")
+    public void VerifyTextOfPromptAlertCancel() {
         // Arrange
         navigateToUrl("alerts");
 
@@ -121,6 +137,6 @@ public class AlertsPageTests extends BaseTest {
         boolean isAlertResultMissing = alertsPage.verifyNoAlertResult();
 
         // Assert
-        Assert.assertTrue(isAlertResultMissing, "\n Show result. \n");
+        Assert.assertTrue(isAlertResultMissing, "\nResult alert is not shown.\n");
     }
 }

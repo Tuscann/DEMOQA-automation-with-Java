@@ -4,6 +4,7 @@ import demoqa.base.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.*;
 
 import java.time.Duration;
@@ -15,6 +16,11 @@ public class ProgressBarPage extends BasePage {
     private final By resetButton = By.id("resetButton");
     private final By progressBarCurrent = By.xpath("//div[@role='progressbar']");
     private final By header = By.xpath("//h1[@class='text-center'][contains(.,'Progress Bar')]");
+
+    public ProgressBarPage(WebDriver driver) {
+        super(driver);
+        PageFactory.initElements(driver, this);
+    }
 
     public String getHeaderText() {
         return find(header).getText();

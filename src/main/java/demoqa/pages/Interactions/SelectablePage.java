@@ -2,7 +2,9 @@ package demoqa.pages.Interactions;
 
 import demoqa.base.BasePage;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
 
@@ -33,6 +35,11 @@ public class SelectablePage extends BasePage {
     private final By gridSeven = By.xpath("//li[@class='list-group-item list-group-item-action'][contains(.,'Seven')]");
     private final By gridEight = By.xpath("//li[@class='list-group-item list-group-item-action'][contains(.,'Eight')]");
     private final By gridNine = By.xpath("//li[@class='list-group-item list-group-item-action'][contains(.,'Nine')]");
+
+    public SelectablePage(WebDriver driver) {
+        super(driver);
+        PageFactory.initElements(driver, this);
+    }
 
     public String getPageTitleText() {
         return find(pageTitle).getText();

@@ -2,6 +2,8 @@ package demoqa.pages.elements;
 
 import demoqa.base.BasePage;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.PageFactory;
 
 public class RadioButtonPage extends BasePage {
 
@@ -12,6 +14,11 @@ public class RadioButtonPage extends BasePage {
     private final By noAnswerLabel = By.xpath("//label[@for='noRadio']");
     private final By resultMessage = By.xpath("//p[contains(@class, 'mt-3')]");
     private final By textSuccessMessage = By.xpath("//span[@class='text-success']");
+
+    public RadioButtonPage(WebDriver driver) {
+        super(driver);
+        PageFactory.initElements(driver, this);
+    }
 
     public String getHeaderText() {
         return find(radioButtonText).getText();

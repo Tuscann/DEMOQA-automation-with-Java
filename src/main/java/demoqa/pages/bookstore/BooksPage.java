@@ -2,9 +2,14 @@ package demoqa.pages.bookstore;
 
 import demoqa.base.BasePage;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.List;
 
 import static utilities.JavaScriptUtility.scrollToElementJS;
@@ -23,10 +28,17 @@ public class BooksPage extends BasePage {
     private final By nextButton = By.xpath("//button[contains(.,'Next')]");
     private final By previousButton = By.xpath("//button[contains(.,'Previous')]");
     private final By noRowsFound = By.className("rt-noData");
+    private final By bookStoreApplication = By.xpath("//div[@class='header-text'][contains(.,'Book Store Application')]");
+    private final By collapseDiv = By.xpath("//div[contains(@class,'element-list collapse')]");
 
     private final By title = By.xpath("(//div[contains(@class,'rt-resizable-header-content')])[2]");
     private final By author = By.xpath("(//div[contains(@class,'rt-resizable-header-content')])[3]");
     private final By publisher = By.xpath("(//div[contains(@class,'rt-resizable-header-content')])[4]");
+
+    public BooksPage(WebDriver driver) {
+        super(driver);
+        PageFactory.initElements(driver, this);
+    }
 
     public void clickTitle() {
         click(title);
@@ -77,9 +89,9 @@ public class BooksPage extends BasePage {
         click(loginButton);
     }
 
-    public void clickBookStoreLink() {
-        scrollToElementJS(bookStoreLink);
-        click(bookStoreLink);
+    public void clickBookStoreApplicationLink() {
+        scrollToElementJS(bookStoreApplication);
+        click(bookStoreApplication);
     }
 
     public void clickProfileLink() {
@@ -135,5 +147,23 @@ public class BooksPage extends BasePage {
 
     public String noRowsFound() {
         return find(noRowsFound).getText();
+    }
+
+    public boolean verifyLoginIsNotVisible() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(6));
+        wait.until(ExpectedConditions.invisibilityOf(find(profileLink)));
+
+        String classAttribute = find(collapseDiv).getDomAttribute("class");
+
+        return classAttribute.equals("element-list collapse show");
+    }
+
+    public boolean verifyLoginIsVisible() {
+        return find(bookStoreApplication).isDisplayed();
+
+    }
+
+    public void clickBookStoreLink() {
+        click(bookStoreLink);
     }
 }

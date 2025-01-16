@@ -2,7 +2,9 @@ package demoqa.pages.elements;
 
 import demoqa.base.BasePage;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -41,6 +43,11 @@ public class WebTablesPage extends BasePage {
     private final By pageJump = By.xpath("//input[@aria-label='jump to page']");
     private final By tableHeader = By.className("rt-thead");
     private final By tableInformation = By.className("rt-tr-group");
+
+    public WebTablesPage(WebDriver driver) {
+        super(driver);
+        PageFactory.initElements(driver, this);
+    }
 
     public String getSearchBoxPlaceholder() {
         return find(searchBox).getDomAttribute("placeholder");

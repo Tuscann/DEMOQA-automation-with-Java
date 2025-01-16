@@ -2,6 +2,8 @@ package demoqa.pages.bookstore;
 
 import demoqa.base.BasePage;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -29,6 +31,11 @@ public class BooksLoginPage extends BasePage {
     private final By passwordLabel = By.id("password-label");
 
     private final By loginText = By.xpath("//h5[contains(.,'Login in Book Store')]");
+
+    public BooksLoginPage(WebDriver driver) {
+        super(driver);
+        PageFactory.initElements(driver, this);
+    }
 
     public String getLoadingLabel() {
         return find(loadingLabel).getText();

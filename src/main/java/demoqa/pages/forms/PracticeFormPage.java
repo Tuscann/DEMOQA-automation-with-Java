@@ -3,7 +3,9 @@ package demoqa.pages.forms;
 import demoqa.base.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -66,6 +68,11 @@ public class PracticeFormPage extends BasePage {
     private final By pictureForm = By.xpath("//td[contains(.,'Picture')]/following-sibling::*[1]");
     private final By addressForm = By.xpath("//td[contains(.,'Address')]/following-sibling::*[1]");
     private final By stateAndCityForm = By.xpath("//td[contains(.,'State')]/following-sibling::*[1]");
+
+    public PracticeFormPage(WebDriver driver) {
+        super(driver);
+        PageFactory.initElements(driver, this);
+    }
 
     public String getSelectPictureLabel() {
         return find(selectPictureLabel).getText();

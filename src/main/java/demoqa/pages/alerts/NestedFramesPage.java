@@ -1,39 +1,54 @@
 package demoqa.pages.alerts;
 
 import demoqa.base.BasePage;
-import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class NestedFramesPage extends BasePage {
 
-    private final By parentIframe = By.id("frame1");
-    private final By parentIframeText = By.xpath("//*[text()=\"Parent frame\"]");
-    private final By childIframeText = By.xpath("//body/p");
-    private final By headingText = By.xpath("//h1[@class='text-center'][contains(.,'Nested Frames')]");
+    @FindBy(id = "frame1")
+    WebElement parentIframe;
 
-    private final By mainText = By.xpath("//*[contains(text(),\"Sample\")]");
+    @FindBy(xpath = "//*[text()=\"Parent frame\"]")
+    WebElement parentIframeText;
+
+    @FindBy(xpath = "//body/p")
+    WebElement childIframeText;
+
+    @FindBy(xpath = "//h1[@class='text-center'][contains(.,'Nested Frames')]")
+    WebElement headingText;
+
+    @FindBy(xpath = "//*[contains(text(),\"Sample\")]")
+    WebElement mainText;
+
+    public NestedFramesPage(WebDriver driver) {
+        super(driver);
+        PageFactory.initElements(driver, this);
+    }
 
     public String getMainText() {
-        return find(mainText).getText();
+        return mainText.getText();
     }
 
     public String getChildIframeText() {
-        return find(childIframeText).getText();
+        return childIframeText.getText();
     }
 
     public String getParentIframeText() {
-        return find(parentIframeText).getText();
+        return parentIframeText.getText();
     }
 
     public String getHeadingText() {
-        return find(headingText).getText();
+        return headingText.getText();
     }
 
     public void selectParentIframe() {
-        driver.switchTo().frame(find(parentIframe));
+        driver.switchTo().frame(parentIframe);
     }
 
     public void selectChildIframe() {
-        driver.switchTo().frame(driver.findElement(parentIframe)).switchTo().frame(0);
+        driver.switchTo().frame(parentIframe).switchTo().frame(0);
     }
-
 }

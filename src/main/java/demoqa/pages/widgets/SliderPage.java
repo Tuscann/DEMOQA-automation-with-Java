@@ -2,7 +2,9 @@ package demoqa.pages.widgets;
 
 import demoqa.base.BasePage;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -17,6 +19,11 @@ public class SliderPage extends BasePage {
     private final By sliderContainer = By.xpath("//div[@id='sliderContainer']//input[@type='range']");
     private final By sliderValue = By.id("sliderValue");
     private final By slider = By.className("range-slider__wrap");
+
+    public SliderPage(WebDriver driver) {
+        super(driver);
+        PageFactory.initElements(driver, this);
+    }
 
     public String getSliderValue() {
         return getDomAttribute(sliderValue, "value");

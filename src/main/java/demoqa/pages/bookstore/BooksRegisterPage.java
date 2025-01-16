@@ -2,6 +2,8 @@ package demoqa.pages.bookstore;
 
 import demoqa.base.BasePage;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -30,6 +32,11 @@ public class BooksRegisterPage extends BasePage {
     private final By lastNameLabel = By.xpath("//label[@id='lastname-label']");
     private final By userNameLabel = By.xpath("//label[@id='userName-label']");
     private final By passwordLabel = By.xpath("//label[@id='password-label']");
+
+    public BooksRegisterPage(WebDriver driver) {
+        super(driver);
+        PageFactory.initElements(driver, this);
+    }
 
     public String getFirstNamePlaceholderText() {
         return find(firstNameField).getDomAttribute("placeholder");
@@ -82,7 +89,7 @@ public class BooksRegisterPage extends BasePage {
     public String getErrorMessage() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(12));
         wait.until(ExpectedConditions.visibilityOfElementLocated(errorMessage));
-        
+
         return find(errorMessage).getText();
     }
 

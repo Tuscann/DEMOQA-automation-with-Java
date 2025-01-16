@@ -2,7 +2,9 @@ package demoqa.pages.elements;
 
 import demoqa.base.BasePage;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
 
@@ -32,6 +34,11 @@ public class CheckBoxPage extends BasePage {
     private final By expandAll = By.cssSelector(".rct-option.rct-option-expand-all");
     private final By collapseAll = By.cssSelector(".rct-option.rct-option-collapse-all");
     private final By resultMessage = By.id("result");
+
+    public CheckBoxPage(WebDriver driver) {
+        super(driver);
+        PageFactory.initElements(driver, this);
+    }
 
     public boolean isResultMessageShown() {
         return driver.findElements(By.id("result")).isEmpty();

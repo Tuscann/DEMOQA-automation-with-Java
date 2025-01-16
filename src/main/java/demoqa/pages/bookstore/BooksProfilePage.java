@@ -2,6 +2,8 @@ package demoqa.pages.bookstore;
 
 import demoqa.base.BasePage;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -17,6 +19,11 @@ public class BooksProfilePage extends BasePage {
     private final By profile = By.id("userName-value");
     private final By deleteAccountButton = By.xpath("(//button[@id='submit'])[2]");
     private final By deleteAllBooksButton = By.xpath("(//button[@type='button'][contains(.,'Delete All Books')])[1]");
+
+    public BooksProfilePage(WebDriver driver) {
+        super(driver);
+        PageFactory.initElements(driver, this);
+    }
 
     public String getUsername() {
         return find(username).getText();

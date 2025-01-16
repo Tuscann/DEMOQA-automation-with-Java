@@ -2,6 +2,8 @@ package demoqa.pages.widgets;
 
 import demoqa.base.BasePage;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -20,6 +22,11 @@ public class TabsPage extends BasePage {
 
     private final By underTitle = By.xpath("//*[contains(text(),\"Details about\")]");
     private final By tabsText = By.xpath("//h1[contains(.,'Tabs')]");
+
+    public TabsPage(WebDriver driver) {
+        super(driver);
+        PageFactory.initElements(driver, this);
+    }
 
     public String getTabsText() {
         return find(tabsText).getText();

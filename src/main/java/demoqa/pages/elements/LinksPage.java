@@ -2,6 +2,8 @@ package demoqa.pages.elements;
 
 import demoqa.base.BasePage;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -26,6 +28,11 @@ public class LinksPage extends BasePage {
     private final By forbiddenRequestLink = By.id("forbidden");
     private final By notFoundRequestLink = By.id("invalid-url");
     private final By responseLink = By.id("linkResponse");
+
+    public LinksPage(WebDriver driver) {
+        super(driver);
+        PageFactory.initElements(driver, this);
+    }
 
     public String getLinksText() {
         return find(linksText).getText();

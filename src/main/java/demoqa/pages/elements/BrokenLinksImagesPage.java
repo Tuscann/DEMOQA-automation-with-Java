@@ -2,6 +2,8 @@ package demoqa.pages.elements;
 
 import demoqa.base.BasePage;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.PageFactory;
 
 public class BrokenLinksImagesPage extends BasePage {
 
@@ -12,6 +14,11 @@ public class BrokenLinksImagesPage extends BasePage {
     private final By brokenLinkText = By.xpath("//p[contains(.,'Broken Link')]");
     private final By clickHereValidLinkText = By.xpath("//a[contains(.,'Click Here for Valid Link')]");
     private final By clickHereBrokenLinkText = By.xpath("//a[contains(.,'Click Here for Broken Link')]");
+
+    public BrokenLinksImagesPage(WebDriver driver) {
+        super(driver);
+        PageFactory.initElements(driver, this);
+    }
 
     public String getHeaderText() {
         return find(headerText).getText();

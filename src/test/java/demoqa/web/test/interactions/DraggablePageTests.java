@@ -2,7 +2,6 @@ package demoqa.web.test.interactions;
 
 import demoqa.web.BaseTest;
 import org.openqa.selenium.Point;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class DraggablePageTests extends BaseTest {
@@ -42,19 +41,21 @@ public class DraggablePageTests extends BaseTest {
         String actualCursorStyleSecondText = draggablePage.getCursorStyleSecondText();
         String actualCursorStyleThirdText = draggablePage.getCursorStyleThirdText();
 
-        Assert.assertEquals(actualPageTitle, pageTitle, "\nWrong page title.\n");
-        Assert.assertEquals(actualSimpleTabTitle, simpleTabTitle, "\nWrong Simple page title.\n");
-        Assert.assertEquals(actualSimpleDragMe, simpleDragMe, "\nWrong simple page title.\n");
-        Assert.assertEquals(actualAxisRestrictedTab, axisRestrictedTab, "\nWrong axis restricted tab.\n");
-        Assert.assertEquals(actualAxisRestrictedOnlyX, axisRestrictedOnlyX, "\nWrong axis restricted only X.\n");
-        Assert.assertEquals(actualAxisRestrictedOnlyY, axisRestrictedOnlyY, "\nWrong axis restricted only Y.\n");
-        Assert.assertEquals(actualContainerRestrictedTab, containerRestrictedTab, "Wrong container restricted tab.\n");
-        Assert.assertEquals(actualContainerRestrictedFirstText, containerRestrictedFirstText, "\nWrong container restricted first text.\n");
-        Assert.assertEquals(actualContainerRestrictedSecondText, containerRestrictedSecondText, "\nWrong container second text.\n");
-        Assert.assertEquals(actualCursorStyleTab, cursorStyleTab, "\nWrong cursor style tab.\n");
-        Assert.assertEquals(actualCursorStyleFirstText, cursorStyleFirstText, "\nWrong style first text.\n");
-        Assert.assertEquals(actualCursorStyleSecondText, cursorStyleSecondText, "\nWrong style second text.\n");
-        Assert.assertEquals(actualCursorStyleThirdText, cursorStyleThirdText, "\nWrong style third text.\n");
+        softAssert.assertEquals(actualPageTitle, pageTitle, "\nWrong page title.\n");
+        softAssert.assertEquals(actualSimpleTabTitle, simpleTabTitle, "\nWrong Simple page title.\n");
+        softAssert.assertEquals(actualSimpleDragMe, simpleDragMe, "\nWrong simple page title.\n");
+        softAssert.assertEquals(actualAxisRestrictedTab, axisRestrictedTab, "\nWrong axis restricted tab.\n");
+        softAssert.assertEquals(actualAxisRestrictedOnlyX, axisRestrictedOnlyX, "\nWrong axis restricted only X.\n");
+        softAssert.assertEquals(actualAxisRestrictedOnlyY, axisRestrictedOnlyY, "\nWrong axis restricted only Y.\n");
+        softAssert.assertEquals(actualContainerRestrictedTab, containerRestrictedTab, "Wrong container restricted tab.\n");
+        softAssert.assertEquals(actualContainerRestrictedFirstText, containerRestrictedFirstText, "\nWrong container restricted first text.\n");
+        softAssert.assertEquals(actualContainerRestrictedSecondText, containerRestrictedSecondText, "\nWrong container second text.\n");
+        softAssert.assertEquals(actualCursorStyleTab, cursorStyleTab, "\nWrong cursor style tab.\n");
+        softAssert.assertEquals(actualCursorStyleFirstText, cursorStyleFirstText, "\nWrong style first text.\n");
+        softAssert.assertEquals(actualCursorStyleSecondText, cursorStyleSecondText, "\nWrong style second text.\n");
+        softAssert.assertEquals(actualCursorStyleThirdText, cursorStyleThirdText, "\nWrong style third text.\n");
+
+        softAssert.assertAll();
     }
 
     @Test(enabled = true)
@@ -70,8 +71,10 @@ public class DraggablePageTests extends BaseTest {
 
         Point endPosition = draggablePage.getInitLocation();
 
-        Assert.assertEquals(initialLocation.x + xOffset, endPosition.x, "\nWrong initial location X.\n");
-        Assert.assertEquals(initialLocation.y + yOffset, endPosition.y, "\nWrong initial location Y.\n");
+        softAssert.assertEquals(initialLocation.x + xOffset, endPosition.x, "\nWrong initial location X.\n");
+        softAssert.assertEquals(initialLocation.y + yOffset, endPosition.y, "\nWrong initial location Y.\n");
+
+        softAssert.assertAll();
     }
 
     @Test(enabled = true)
@@ -89,8 +92,10 @@ public class DraggablePageTests extends BaseTest {
 
         Point endPosition = draggablePage.getInitLocationOnlyX();
 
-        Assert.assertEquals(initialLocation.x + xOffset, endPosition.x, "\nWrong initial location X.\n");
-        Assert.assertEquals(initialLocation.y, endPosition.y, "\nWrong initial location Y.\n");
+        softAssert.assertEquals(initialLocation.x + xOffset, endPosition.x, "\nWrong initial location X.\n");
+        softAssert.assertEquals(initialLocation.y, endPosition.y, "\nWrong initial location Y.\n");
+
+        softAssert.assertAll();
     }
 
     @Test(enabled = true)
@@ -108,8 +113,10 @@ public class DraggablePageTests extends BaseTest {
 
         Point endPosition = draggablePage.getInitLocationOnlyY();
 
-        Assert.assertEquals(initialLocation.x, endPosition.x, "\nWrong initial location X.\n");
-        Assert.assertEquals(initialLocation.y + yOffset, endPosition.y, "\nWrong initial location Y.\n");
+        softAssert.assertEquals(initialLocation.x, endPosition.x, "\nWrong initial location X.\n");
+        softAssert.assertEquals(initialLocation.y + yOffset, endPosition.y, "\nWrong initial location Y.\n");
+
+        softAssert.assertAll();
     }
 
     @Test(enabled = true)
@@ -126,8 +133,10 @@ public class DraggablePageTests extends BaseTest {
 
         Point endPosition = draggablePage.getInitLocationContainedInBox();
 
-        Assert.assertEquals(initialLocation.x + xOffset, endPosition.x, "\nWrong initial location X.\n");
-        Assert.assertEquals(initialLocation.y + yOffset, endPosition.y, "\nWrong initial location Y.\n");
+        softAssert.assertEquals(initialLocation.x + xOffset, endPosition.x, "\nWrong initial location X.\n");
+        softAssert.assertEquals(initialLocation.y + yOffset, endPosition.y, "\nWrong initial location Y.\n");
+
+        softAssert.assertAll();
     }
 
     @Test(enabled = true)
@@ -145,8 +154,10 @@ public class DraggablePageTests extends BaseTest {
 
         Point endPosition = draggablePage.getInitLocationContainedInBox();
 
-        Assert.assertEquals(initialLocation.x + xOffset, endPosition.x, "\nWrong point location X axis.\n");
-        Assert.assertEquals(initialLocation.y + yOffset - 1, endPosition.y, "\nWrong point location on y axis.\n");
+        softAssert.assertEquals(initialLocation.x + xOffset, endPosition.x, "\nWrong point location X axis.\n");
+        softAssert.assertEquals(initialLocation.y + yOffset - 1, endPosition.y, "\nWrong point location on y axis.\n");
+
+        softAssert.assertAll();
     }
 
     @Test(enabled = true)
@@ -164,8 +175,10 @@ public class DraggablePageTests extends BaseTest {
 
         Point endPosition = draggablePage.getInitLocationContainedInParent();
 
-        Assert.assertEquals(initialLocation.x + xOffset, endPosition.x, "\nWrong initial location X.\n");
-        Assert.assertEquals(initialLocation.y + yOffset, endPosition.y, "\nWrong initial location Y.\n");
+        softAssert.assertEquals(initialLocation.x + xOffset, endPosition.x, "\nWrong initial location X.\n");
+        softAssert.assertEquals(initialLocation.y + yOffset, endPosition.y, "\nWrong initial location Y.\n");
+
+        softAssert.assertAll();
     }
 
     @Test(enabled = false)
@@ -183,8 +196,10 @@ public class DraggablePageTests extends BaseTest {
 
         Point endPosition = draggablePage.getInitLocationFirstText();
 
-        Assert.assertEquals(initialLocation.x + xOffset, endPosition.x, "\nWrong initial location X.\n");
-        Assert.assertEquals(initialLocation.y + yOffset, endPosition.y, "\nWrong initial location Y.\n");
+        softAssert.assertEquals(initialLocation.x + xOffset, endPosition.x, "\nWrong initial location X.\n");
+        softAssert.assertEquals(initialLocation.y + yOffset, endPosition.y, "\nWrong initial location Y.\n");
+
+        softAssert.assertAll();
     }
 
     @Test(enabled = false)
@@ -202,8 +217,10 @@ public class DraggablePageTests extends BaseTest {
 
         Point endPosition = draggablePage.getInitLocationSecondText();
 
-        Assert.assertEquals(initialLocation.x + xOffset, endPosition.x, "\nWrong initial location X.\n");
-        Assert.assertEquals(initialLocation.y + yOffset, endPosition.y, "\nWrong initial location Y.\n");
+        softAssert.assertEquals(initialLocation.x + xOffset, endPosition.x, "\nWrong initial location X.\n");
+        softAssert.assertEquals(initialLocation.y + yOffset, endPosition.y, "\nWrong initial location Y.\n");
+
+        softAssert.assertAll();
     }
 
     @Test(enabled = true)
@@ -221,7 +238,9 @@ public class DraggablePageTests extends BaseTest {
 
         Point endPosition = draggablePage.getInitLocationThirdText();
 
-        Assert.assertEquals(initialLocation.x + xOffset, endPosition.x, "\nWrong initial location X.\n");
-        Assert.assertEquals(initialLocation.y + yOffset - 50, endPosition.y, "\nWrong initial location Y.\n");
+        softAssert.assertEquals(initialLocation.x + xOffset, endPosition.x, "\nWrong initial location X.\n");
+        softAssert.assertEquals(initialLocation.y + yOffset - 50, endPosition.y, "\nWrong initial location Y.\n");
+
+        softAssert.assertAll();
     }
 }

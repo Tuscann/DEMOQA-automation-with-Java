@@ -4,6 +4,8 @@ import demoqa.base.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,22 +13,30 @@ import java.util.Set;
 
 public class BrowserWindowsPage extends BasePage {
 
-    public static WebDriver driver2;
-    private final By header = By.xpath(" //h1[@class='text-center'][contains(.,'Browser Windows')]");
-    private final By newTabButton = By.id("tabButton");
-    private final By newWindowButton = By.id("windowButton");
-    private final By newWindowMessageButton = By.id("messageWindowButton");
+    @FindBy(xpath = "//h1[@class='text-center'][contains(.,'Browser Windows')]")
+    WebElement header;
+    @FindBy(id = "tabButton")
+    WebElement newTabButton;
+    @FindBy(id = "windowButton")
+    WebElement newWindowButton;
+    @FindBy(id = "messageWindowButton")
+    WebElement newWindowMessageButton;
+
+    public BrowserWindowsPage(WebDriver driver) {
+        super(driver);
+        PageFactory.initElements(driver, this);
+    }
 
     public void clickNewTabButton() {
-        click(newTabButton);
+        newTabButton.click();
     }
 
     public void clickNewWindowButton() {
-        click(newWindowButton);
+        newWindowButton.click();
     }
 
     public void clickNewWindowMessageButton() {
-        click(newWindowMessageButton);
+        newWindowMessageButton.click();
     }
 
     public String getNewTabUrl() {
@@ -56,11 +66,8 @@ public class BrowserWindowsPage extends BasePage {
         Set<String> allWindows = driver.getWindowHandles();
 
         String actualMessage = "";
-        String newWindow = null;
         for (String window : allWindows) {
             if (!window.equals(originalWindow)) {
-                newWindow = window;
-                //driver.switchTo().window(newWindow);
                 driver.switchTo().window(window);
 
                 WebElement textElement = driver.findElement(By.xpath("/html/body/text()"));
@@ -74,18 +81,18 @@ public class BrowserWindowsPage extends BasePage {
     }
 
     public String getNewTabText() {
-        return find(newTabButton).getText();
+        return newTabButton.getText();
     }
 
     public String getNewWindowText() {
-        return find(newWindowButton).getText();
+        return newWindowButton.getText();
     }
 
     public String getNewWindowMessageText() {
-        return find(newWindowMessageButton).getText();
+        return newWindowMessageButton.getText();
     }
 
     public String getBrowserWindowsText() {
-        return find(header).getText();
+        return header.getText();
     }
 }

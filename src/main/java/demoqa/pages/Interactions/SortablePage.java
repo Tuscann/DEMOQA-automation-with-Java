@@ -2,8 +2,10 @@ package demoqa.pages.Interactions;
 
 import demoqa.base.BasePage;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.PageFactory;
 
 public class SortablePage extends BasePage {
 
@@ -28,6 +30,11 @@ public class SortablePage extends BasePage {
 
     private final By listOrder = By.id("demo-tabpane-list");
     private final By gridOrder = By.id("demo-tabpane-grid");
+
+    public SortablePage(WebDriver driver) {
+        super(driver);
+        PageFactory.initElements(driver, this);
+    }
 
     public void clickGridTab() {
         click(gridTab);

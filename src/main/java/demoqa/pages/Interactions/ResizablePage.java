@@ -3,8 +3,10 @@ package demoqa.pages.Interactions;
 import demoqa.base.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.PageFactory;
 
 public class ResizablePage extends BasePage {
     private final By pageTitle = By.xpath("//h1[@class='text-center'][contains(.,'Resizable')]");
@@ -14,6 +16,11 @@ public class ResizablePage extends BasePage {
     private final By resizableWithoutRestriction = By.id("resizable");
     private final By resizeHandle = By.xpath("(//span[contains(@class,'react-resizable-handle react-resizable-handle-se')])[1]");
     private final By resizeHandle2 = By.xpath("(//span[contains(@class,'react-resizable-handle react-resizable-handle-se')])[2]");
+
+    public ResizablePage(WebDriver driver) {
+        super(driver);
+        PageFactory.initElements(driver, this);
+    }
 
     public String getPageTitleText() {
         return find(pageTitle).getText();

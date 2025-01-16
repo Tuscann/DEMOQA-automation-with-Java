@@ -2,6 +2,8 @@ package demoqa.pages.widgets;
 
 import demoqa.base.BasePage;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -17,6 +19,11 @@ public class AccordianPage extends BasePage {
     private final By sectionTwoContent = By.id("section2Content");
     private final By sectionThreeContent = By.id("section3Content");
     private final By heading = By.xpath("//h1[contains(.,'Accordian')]");
+
+    public AccordianPage(WebDriver driver) {
+        super(driver);
+        PageFactory.initElements(driver, this);
+    }
 
     public String getHeading() {
         return find(heading).getText();

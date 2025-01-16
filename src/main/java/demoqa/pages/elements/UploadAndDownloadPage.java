@@ -2,7 +2,9 @@ package demoqa.pages.elements;
 
 import demoqa.base.BasePage;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.PageFactory;
 
 import java.io.File;
 import java.nio.file.Paths;
@@ -13,6 +15,11 @@ public class UploadAndDownloadPage extends BasePage {
     private final By uploadFilePath = By.id("uploadedFilePath");
     private final By selectAFileLabel = By.xpath("//label[@for='uploadFile'][contains(.,'Select a file')]");
     private final By uploadAndDownloadLabel = By.xpath("//h1[@class='text-center'][contains(.,'Upload and Download')]");
+
+    public UploadAndDownloadPage(WebDriver driver) {
+        super(driver);
+        PageFactory.initElements(driver, this);
+    }
 
     public String getUploadFilePath() {
         return find(uploadFilePath).getText();

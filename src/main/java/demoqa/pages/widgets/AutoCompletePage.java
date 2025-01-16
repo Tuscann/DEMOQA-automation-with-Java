@@ -3,6 +3,8 @@ package demoqa.pages.widgets;
 import demoqa.base.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -16,6 +18,11 @@ public class AutoCompletePage extends BasePage {
     private final By autoCompleteSingleText = By.id("autoCompleteSingle");
     private final By closeButton = By.xpath(" //div[@aria-hidden='true']");
     private final By allSelectedMultiColorNames = By.xpath("//div[contains(@class,'value-container--has-value css-1hwfws3')]");
+
+    public AutoCompletePage(WebDriver driver) {
+        super(driver);
+        PageFactory.initElements(driver, this);
+    }
 
     public String getMultipleContainerText() {
         return find(multipleContainerText).getText();

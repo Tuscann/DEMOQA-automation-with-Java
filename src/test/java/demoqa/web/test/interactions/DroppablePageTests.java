@@ -55,24 +55,26 @@ public class DroppablePageTests extends BaseTest {
         String actualNotRevert = droppablePage.getNotRevert();
         String actualDropHereRevertDraggable = droppablePage.getDropHereRevertDraggable();
 
-        Assert.assertEquals(actualHeader, expectedHeaderText, "\nWrong header.\n");
-        Assert.assertEquals(actualSimpleTab, simpleTabText, "\nWrong simple tab.\n");
-        Assert.assertEquals(actualDragMeSimple, expectedDragMeSimple, "\nWrong drag me.\n");
-        Assert.assertEquals(actualDropped, expectedDropped, "\nWrong dropped.\n");
-        Assert.assertEquals(actualAcceptTabText, acceptTabText, "\nWrong accept tab.\n");
-        Assert.assertEquals(actualPreventPropagationTabText, preventPropagationTabText, "\nWrong droppable prevent propagation.\n");
-        Assert.assertEquals(actualRevertDraggableTab, revertDraggableTabText, "\nWrong droppable revert draggable.\n");
-        Assert.assertEquals(actualAcceptable, acceptable, "\nWrong acceptable.\n");
-        Assert.assertEquals(actualNotAcceptable, notAcceptable, "\nWrong not acceptable.\n");
-        Assert.assertEquals(actualDropHereAcceptable, acceptableDropHereText, "\nWrong drop her acceptable.\n");
-        Assert.assertEquals(actualDragMePreventPropagation, preventPropagationDragMeText, "\nWrong drag me prevent propagation.\n");
-        Assert.assertEquals(actualOuterDroppable1, outerDroppable1, "\nWrong outer droppable 1.\n");
-        Assert.assertEquals(actualInnerDroppableNotGreedy, innerDroppableNotGreedy, "\nWrong not greedy.\n");
-        Assert.assertEquals(actualOuterDroppable2, outerDroppable2, "\nWrong outer droppable 2.\n");
-        Assert.assertEquals(actualInnerDroppableGreedy, innerDroppableGreedy, "\nWrong greedy.\n");
-        Assert.assertEquals(actualWillRevert, expectedWillRevertText, "\nWrong will revert.\n");
-        Assert.assertEquals(actualNotRevert, notRevertText, "\nWrong will not revert.\n");
-        Assert.assertEquals(actualDropHereRevertDraggable, revertDraggableDropHere, "\nWrong drop her revert draggable.\n");
+        softAssert.assertEquals(actualHeader, expectedHeaderText, "\nWrong header.\n");
+        softAssert.assertEquals(actualSimpleTab, simpleTabText, "\nWrong simple tab.\n");
+        softAssert.assertEquals(actualDragMeSimple, expectedDragMeSimple, "\nWrong drag me.\n");
+        softAssert.assertEquals(actualDropped, expectedDropped, "\nWrong dropped.\n");
+        softAssert.assertEquals(actualAcceptTabText, acceptTabText, "\nWrong accept tab.\n");
+        softAssert.assertEquals(actualPreventPropagationTabText, preventPropagationTabText, "\nWrong droppable prevent propagation.\n");
+        softAssert.assertEquals(actualRevertDraggableTab, revertDraggableTabText, "\nWrong droppable revert draggable.\n");
+        softAssert.assertEquals(actualAcceptable, acceptable, "\nWrong acceptable.\n");
+        softAssert.assertEquals(actualNotAcceptable, notAcceptable, "\nWrong not acceptable.\n");
+        softAssert.assertEquals(actualDropHereAcceptable, acceptableDropHereText, "\nWrong drop her acceptable.\n");
+        softAssert.assertEquals(actualDragMePreventPropagation, preventPropagationDragMeText, "\nWrong drag me prevent propagation.\n");
+        softAssert.assertEquals(actualOuterDroppable1, outerDroppable1, "\nWrong outer droppable 1.\n");
+        softAssert.assertEquals(actualInnerDroppableNotGreedy, innerDroppableNotGreedy, "\nWrong not greedy.\n");
+        softAssert.assertEquals(actualOuterDroppable2, outerDroppable2, "\nWrong outer droppable 2.\n");
+        softAssert.assertEquals(actualInnerDroppableGreedy, innerDroppableGreedy, "\nWrong greedy.\n");
+        softAssert.assertEquals(actualWillRevert, expectedWillRevertText, "\nWrong will revert.\n");
+        softAssert.assertEquals(actualNotRevert, notRevertText, "\nWrong will not revert.\n");
+        softAssert.assertEquals(actualDropHereRevertDraggable, revertDraggableDropHere, "\nWrong drop her revert draggable.\n");
+
+        softAssert.assertAll();
     }
 
     @Test(enabled = true)

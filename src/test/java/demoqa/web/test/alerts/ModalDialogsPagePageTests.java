@@ -1,12 +1,11 @@
 package demoqa.web.test.alerts;
 
 import demoqa.web.BaseTest;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class ModalDialogsPagePageTests extends BaseTest {
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "verify all text on page")
     public void VerifyAllTextOnPage() {
         navigateToUrl("modal-dialogs");
 
@@ -20,13 +19,15 @@ public class ModalDialogsPagePageTests extends BaseTest {
         String actualSmallText = modalDialogsPage.getSmallText();
         String actualLargeText = modalDialogsPage.getLargeText();
 
-        Assert.assertEquals(actualModalDialogsText, modalDialogsText, "\nMissing modal dialogs text.\n");
-        Assert.assertEquals(actualClickText, clickText, "\nMissing click text.\n");
-        Assert.assertEquals(actualSmallText, smallButtonText, "\nMissing small text.\n");
-        Assert.assertEquals(actualLargeText, largeButtonText, "\nMissing large text.\n");
+        softAssert.assertEquals(actualModalDialogsText, modalDialogsText, "\nMissing modal dialogs text.\n");
+        softAssert.assertEquals(actualClickText, clickText, "\nMissing click text.\n");
+        softAssert.assertEquals(actualSmallText, smallButtonText, "\nMissing small text.\n");
+        softAssert.assertEquals(actualLargeText, largeButtonText, "\nMissing large text.\n");
+
+        softAssert.assertAll();
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Verify small modal dialog text")
     public void VerifySmallModalDialogText() {
         navigateToUrl("modal-dialogs");
 
@@ -39,12 +40,14 @@ public class ModalDialogsPagePageTests extends BaseTest {
         String actualSmallBodyText = modalDialogsPage.getSmallModalText();
         String actualCloseButtonText = modalDialogsPage.getSmallCloseButtonText();
 
-        Assert.assertEquals(actualSmallModalHeader, expectedSmallModalText, "\nWrong modal header text.\n");
-        Assert.assertEquals(actualSmallBodyText, expectedSmallBodyText, "\nWrong modal header text.\n");
-        Assert.assertEquals(actualCloseButtonText, expectedClosButtonText, "\nWrong close button text.\n");
+        softAssert.assertEquals(actualSmallModalHeader, expectedSmallModalText, "\nWrong modal header text.\n");
+        softAssert.assertEquals(actualSmallBodyText, expectedSmallBodyText, "\nWrong modal header text.\n");
+        softAssert.assertEquals(actualCloseButtonText, expectedClosButtonText, "\nWrong close button text.\n");
+
+        softAssert.assertAll();
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Verify large modal dialog text")
     public void VerifyLargeModalDialogText() {
         navigateToUrl("modal-dialogs");
 
@@ -57,8 +60,10 @@ public class ModalDialogsPagePageTests extends BaseTest {
         String actualBodyText = modalDialogsPage.getLargeModalText();
         String actualCloseButtonText = modalDialogsPage.getLargeCloseButtonText();
 
-        Assert.assertEquals(actualLargeModalHeader, expectedLargeModalText, "\nWrong modal header text.\n");
-        Assert.assertEquals(actualBodyText, expectedLargeBodyText, "\nWrong modal header text.\n");
-        Assert.assertEquals(actualCloseButtonText, expectedClosButtonText, "\nWrong close button text.\n");
+        softAssert.assertEquals(actualLargeModalHeader, expectedLargeModalText, "\nWrong modal header text.\n");
+        softAssert.assertEquals(actualBodyText, expectedLargeBodyText, "\nWrong modal header text.\n");
+        softAssert.assertEquals(actualCloseButtonText, expectedClosButtonText, "\nWrong close button text.\n");
+
+        softAssert.assertAll();
     }
 }

@@ -1,72 +1,91 @@
 package demoqa.pages.alerts;
 
 import demoqa.base.BasePage;
-import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+import java.util.List;
 
 import static utilities.JavaScriptUtility.scrollToElementJS;
 
 public class AlertsPage extends BasePage {
 
-    private final By informationAlertButton = By.id("alertButton");
-    private final By confirmationAlertButton = By.id("confirmButton");
-    private final By confirmationTimeAlertButton = By.id("timerAlertButton");
-    private final By promptAlertButton = By.id("promtButton");
+    @FindBy(id = "alertButton")
+    WebElement informationAlertButton;
+    @FindBy(id = "confirmButton")
+    WebElement confirmationAlertButton;
+    @FindBy(id = "timerAlertButton")
+    WebElement confirmationTimeAlertButton;
+    @FindBy(id = "promtButton")
+    WebElement promptAlertButton;
+    @FindBy(id = "confirmResult")
+    WebElement confirmationResult;
+    @FindBy(id = "promptResult")
+    List<WebElement> promptResult;
+    @FindBy(xpath = "//h1[contains(.,'Alerts')]")
+    WebElement alertHeaderTitle;
+    @FindBy(xpath = "//span[contains(.,'Click Button to see alert')]")
+    WebElement alertFirstTitle;
+    @FindBy(xpath = "//span[contains(.,'On button click, alert will appear after 5 seconds')]")
+    WebElement alertSecondTitle;
+    @FindBy(xpath = "//span[contains(.,'On button click, confirm box will appear')]")
+    WebElement alertThirdTitle;
+    @FindBy(xpath = "//span[contains(.,'On button click, prompt box will appear')]")
+    WebElement alertFourTitle;
 
-    private final By confirmationResult = By.id("confirmResult");
-    private final By promptResult = By.id("promptResult");
-
-    private final By alertHeaderTitle = By.xpath("//h1[contains(.,'Alerts')]");
-    private final By alertFirstTitle = By.xpath("//span[contains(.,'Click Button to see alert')]");
-    private final By alertSecondTitle = By.xpath("//span[contains(.,'On button click, alert will appear after 5 seconds')]");
-    private final By alertThirdTitle = By.xpath("//span[contains(.,'On button click, confirm box will appear')]");
-    private final By alertFourTitle = By.xpath("//span[contains(.,'On button click, prompt box will appear')]");
+    public AlertsPage(WebDriver driver) {
+        super(driver);
+        PageFactory.initElements(driver, this);
+    }
 
     public String getHeaderText() {
-        return find(alertHeaderTitle).getText();
+        return alertHeaderTitle.getText();
     }
 
     public String getFirstText() {
-        return find(alertFirstTitle).getText();
+        return alertFirstTitle.getText();
     }
 
     public String getSecondText() {
-        return find(alertSecondTitle).getText();
+        return alertSecondTitle.getText();
     }
 
     public String getThirdText() {
-        return find(alertThirdTitle).getText();
+        return alertThirdTitle.getText();
     }
 
     public String getFourthText() {
-        return find(alertFourTitle).getText();
+        return alertFourTitle.getText();
     }
 
     public String getPromptAlertResult() {
-        return find(promptResult).getText();
+        return promptResult.getFirst().getText();
     }
 
     public String getConfirmationResult() {
-        return find(confirmationResult).getText();
+        return confirmationResult.getText();
     }
 
     public void clickInformationAlertButton() {
-        click(informationAlertButton);
+        informationAlertButton.click();
     }
 
     public void clickConfirmationAlertButton() {
-        click(confirmationAlertButton);
+        confirmationAlertButton.click();
     }
 
     public void clickPromptAlertButton() {
-        click(promptAlertButton);
+        promptAlertButton.click();
     }
 
     public boolean verifyNoAlertResult() {
-        return driver.findElements(promptResult).isEmpty();
+        return promptResult.isEmpty();
     }
 
     public void clickConfirmationTimeAlertButton() {
         scrollToElementJS(confirmationTimeAlertButton);
-        click(confirmationTimeAlertButton);
+        confirmationTimeAlertButton.click();
     }
 }

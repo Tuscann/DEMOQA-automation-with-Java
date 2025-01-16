@@ -12,6 +12,12 @@ public class JavaScriptUtility extends Utility {
         ((JavascriptExecutor) driver).executeScript(jsScript, element);
     }
 
+    public static void scrollToElementJS(WebElement webElement) {
+
+        String jsScript = "arguments[0].scrollIntoView();";
+        ((JavascriptExecutor) driver).executeScript(jsScript, webElement);
+    }
+
     public static void clickJS(By locator) {
         WebElement element = driver.findElement(locator);
         JavascriptExecutor executor = (JavascriptExecutor) driver;

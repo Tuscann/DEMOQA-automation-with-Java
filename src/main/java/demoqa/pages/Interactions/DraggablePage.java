@@ -3,8 +3,10 @@ package demoqa.pages.Interactions;
 import demoqa.base.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Point;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -25,6 +27,11 @@ public class DraggablePage extends BasePage {
     private final By cursorStyleFirstText = By.id("cursorCenter");
     private final By cursorStyleSecondText = By.id("cursorTopLeft");
     private final By cursorStyleThirdText = By.id("cursorBottom");
+
+    public DraggablePage(WebDriver driver) {
+        super(driver);
+        PageFactory.initElements(driver, this);
+    }
 
     public String getPageTitle() {
         return find(pageTitle).getText();

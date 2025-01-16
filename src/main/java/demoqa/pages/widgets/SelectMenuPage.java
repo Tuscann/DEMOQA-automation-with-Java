@@ -3,8 +3,10 @@ package demoqa.pages.widgets;
 import demoqa.base.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
 import java.util.List;
@@ -24,7 +26,6 @@ public class SelectMenuPage extends BasePage {
     private final By selectedValuePlaceholder = By.xpath("//div[@class=' css-1wa3eu0-placeholder'][contains(.,'Select Option')]");
     private final By selectDropDown = By.xpath("//div[@class=' css-1hwfws3'][contains(.,'Select...')]");
 
-
     private final By multiSelectDropDown = By.xpath("(//div[contains(@class,' css-1wa3eu0-placeholder')])[3]");
     private final By multiSelectDropDown2 = By.xpath("//div[contains(@class,' css-2b097c-container')]");
 
@@ -39,6 +40,11 @@ public class SelectMenuPage extends BasePage {
     private final By expectedMultiselectDropdownLabel = By.xpath("//b[contains(.,'Multiselect drop down')]");
     private final By expectedMultiselectDropdownPlaceholder = By.xpath("//div[@class=' css-1wa3eu0-placeholder'][contains(.,'Select...')]");
     private final By expectedStandardMultiSelectLabel = By.xpath("//b[contains(.,'Standard multi select')]");
+
+    public SelectMenuPage(WebDriver driver) {
+        super(driver);
+        PageFactory.initElements(driver, this);
+    }
 
     public String getSelectedSelectOne() {
         return find(selectedOne).getText();
@@ -103,7 +109,7 @@ public class SelectMenuPage extends BasePage {
 
     public void multiSelectOne(String color) {
 
-    
+
         WebElement selectMyElement = driver.findElement(selectDropDown);
         selectMyElement.click();
 

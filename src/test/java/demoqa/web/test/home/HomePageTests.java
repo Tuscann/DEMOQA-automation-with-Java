@@ -1,55 +1,56 @@
 package demoqa.web.test.home;
 
 import demoqa.web.BaseTest;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class HomePageTests extends BaseTest {
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "")
     public void ClickAndVerifyAllLinks() {
         String expectedUrl = "https://demoqa.com/elements";
         homePage.goToElements();
         String actualUrl = elementsPage.checkUrl();
-        Assert.assertEquals(actualUrl, expectedUrl, "\nExpected elements page.\n");
+        softAssert.assertEquals(actualUrl, expectedUrl, "\nExpected elements page.\n");
 
         homePage.navigateBack();
 
         expectedUrl = "https://demoqa.com/forms";
         homePage.goToForms();
         actualUrl = elementsPage.checkUrl();
-        Assert.assertEquals(actualUrl, expectedUrl, "\nExpected forms page.\n");
+        softAssert.assertEquals(actualUrl, expectedUrl, "\nExpected forms page.\n");
 
         homePage.navigateBack();
 
         expectedUrl = "https://demoqa.com/alertsWindows";
         homePage.goToAlertsFramesWindowsCard();
         actualUrl = elementsPage.checkUrl();
-        Assert.assertEquals(actualUrl, expectedUrl, "\nExpected alerts page.\n");
+        softAssert.assertEquals(actualUrl, expectedUrl, "\nExpected alerts page.\n");
 
         homePage.navigateBack();
 
         expectedUrl = "https://demoqa.com/widgets";
         homePage.goToWidgets();
         actualUrl = elementsPage.checkUrl();
-        Assert.assertEquals(actualUrl, expectedUrl, "\nExpected widgets page.\n");
+        softAssert.assertEquals(actualUrl, expectedUrl, "\nExpected widgets page.\n");
 
         homePage.navigateBack();
 
         expectedUrl = "https://demoqa.com/interaction";
         homePage.goToInteractions();
         actualUrl = elementsPage.checkUrl();
-        Assert.assertEquals(actualUrl, expectedUrl, "\nExpected Interaction page.\n");
+        softAssert.assertEquals(actualUrl, expectedUrl, "\nExpected Interaction page.\n");
 
         homePage.navigateBack();
 
         expectedUrl = "https://demoqa.com/books";
         homePage.goToBooks();
         actualUrl = elementsPage.checkUrl();
-        Assert.assertEquals(actualUrl, expectedUrl, "\nExpected books page.\n");
+        softAssert.assertEquals(actualUrl, expectedUrl, "\nExpected books page.\n");
+
+        softAssert.assertAll();
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Verify all text on page")
     public void VerifyAllTextOnPage() {
         String expectedElementsText = "Elements";
         String expectedFormsText = "Forms";
@@ -67,12 +68,14 @@ public class HomePageTests extends BaseTest {
         String actualInteractionText = homePage.getInteractionsText();
         String actualBooksText = homePage.getBookStoreApplicationText();
 
-        Assert.assertEquals(actualElementsText, expectedElementsText, "\nExpected elements.\n");
-        Assert.assertEquals(actualFormsText, expectedFormsText, "\nExpected forms.\n");
-        Assert.assertEquals(actualAlertsText, expectedAlertsText, "\nExpected Alerts.\n");
-        Assert.assertEquals(actualWidgetsText, expectedWidgetsText, "\nExpected widgets.\n");
-        Assert.assertEquals(actualInteractionText, expectedInteractionText, "\nExpected interaction.\n");
-        Assert.assertEquals(actualBooksText, expectedBooksText, "\nExpected books.\n");
-        Assert.assertEquals(actualFooterText, expectedFooterText, "\nExpected footer.\n");
+        softAssert.assertEquals(actualElementsText, expectedElementsText, "\nExpected elements.\n");
+        softAssert.assertEquals(actualFormsText, expectedFormsText, "\nExpected forms.\n");
+        softAssert.assertEquals(actualAlertsText, expectedAlertsText, "\nExpected Alerts.\n");
+        softAssert.assertEquals(actualWidgetsText, expectedWidgetsText, "\nExpected widgets.\n");
+        softAssert.assertEquals(actualInteractionText, expectedInteractionText, "\nExpected interaction.\n");
+        softAssert.assertEquals(actualBooksText, expectedBooksText, "\nExpected books.\n");
+        softAssert.assertEquals(actualFooterText, expectedFooterText, "\nExpected footer.\n");
+
+        softAssert.assertAll();
     }
 }

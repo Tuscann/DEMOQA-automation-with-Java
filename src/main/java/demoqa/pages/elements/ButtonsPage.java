@@ -1,8 +1,11 @@
 package demoqa.pages.elements;
 
 import demoqa.base.BasePage;
-import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -11,90 +14,104 @@ import java.time.Duration;
 import static utilities.JavaScriptUtility.scrollToElementJS;
 
 public class ButtonsPage extends BasePage {
-    private final By buttons = By.xpath("//h1[contains(.,'Buttons')]");
-    private final By doubleClickMeButton = By.id("doubleClickBtn");
-    private final By rightClickMeButton = By.id("rightClickBtn");
-    private final By clickMeButton = By.xpath("(//button[contains(.,'Click Me')])[3]");
 
-    private final By doubleClickMessage = By.id("doubleClickMessage");
-    private final By rightClickMessage = By.id("rightClickMessage");
-    private final By clickMeButtonMessage = By.id("dynamicClickMessage");
+    @FindBy(xpath = "//h1[contains(.,'Buttons')]")
+    WebElement buttons;
+    @FindBy(id = "doubleClickBtn")
+    WebElement doubleClickMeButton;
+    @FindBy(id = "rightClickBtn")
+    WebElement rightClickMeButton;
+    @FindBy(xpath = "(//button[contains(.,'Click Me')])[3]")
+    WebElement clickMeButton;
+    @FindBy(id = "doubleClickMessage")
+    WebElement doubleClickMessage;
+    @FindBy(id = "rightClickMessage")
+    WebElement rightClickMessage;
+    @FindBy(id = "dynamicClickMessage")
+    WebElement clickMeButtonMessage;
+
+    public ButtonsPage(WebDriver driver) {
+        super(driver);
+        PageFactory.initElements(driver, this);
+    }
+
 
     public String getDoubleButtonText() {
-        return find(doubleClickMeButton).getText();
+        return doubleClickMeButton.getText();
     }
 
     public String getRightButtonText() {
-        return find(rightClickMeButton).getText();
+        return rightClickMeButton.getText();
     }
 
     public String getDynamicButtonText() {
-        return find(clickMeButton).getText();
+        return clickMeButton.getText();
     }
 
     public String getButtonsText() {
-        return find(buttons).getText();
+        String getheadertext = buttons.getText();
+        return getheadertext;
     }
 
     public String getClickMeClickMessage() {
-        return find(clickMeButtonMessage).getText();
+        return clickMeButtonMessage.getText();
     }
 
     public String getDoubleClickButtonBackGroundColor() {
-        return find(doubleClickMeButton).getCssValue("background-color");
+        return doubleClickMeButton.getCssValue("background-color");
     }
 
     public String getDoubleClickButtonBorderColor() {
-        return find(doubleClickMeButton).getCssValue("border-color");
+        return doubleClickMeButton.getCssValue("border-color");
     }
 
     public String getRightClickMeButtonBorderColor() {
-        return find(rightClickMeButton).getCssValue("border-color");
+        return rightClickMeButton.getCssValue("border-color");
     }
 
     public String getRightClickMeButtonBackGroundColor() {
-        return find(rightClickMeButton).getCssValue("background-color");
+        return rightClickMeButton.getCssValue("background-color");
     }
 
     public String getClickMeButtonBackGroundColor() {
-        return find(clickMeButton).getCssValue("background-color");
+        return clickMeButton.getCssValue("background-color");
     }
 
     public String getClickMeButtonBorderColor() {
-        return find(clickMeButton).getCssValue("border-color");
+        return clickMeButton.getCssValue("border-color");
     }
 
     public void doubleClickOnButton() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(6));
-        wait.until(ExpectedConditions.visibilityOf(driver.findElement(doubleClickMeButton)));
+        wait.until(ExpectedConditions.visibilityOf(doubleClickMeButton));
 
         Actions actions = new Actions(driver);
-        actions.doubleClick(driver.findElement(doubleClickMeButton)).perform();
+        actions.doubleClick(doubleClickMeButton).perform();
     }
 
     public String getDoubleClickMessage() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(6));
-        wait.until(ExpectedConditions.visibilityOf(driver.findElement(doubleClickMeButton)));
+        wait.until(ExpectedConditions.visibilityOf(doubleClickMeButton));
 
         scrollToElementJS(doubleClickMessage);
-        return find(doubleClickMessage).getText();
+        return doubleClickMessage.getText();
     }
 
     public String getRightClickMessage() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(6));
-        wait.until(ExpectedConditions.visibilityOf(driver.findElement(rightClickMessage)));
+        wait.until(ExpectedConditions.visibilityOf(rightClickMessage));
 
         scrollToElementJS(rightClickMessage);
-        return find(rightClickMessage).getText();
+        return rightClickMessage.getText();
     }
 
     public void rightClickOnButton() {
         Actions actions = new Actions(driver);
-        actions.contextClick(driver.findElement(rightClickMeButton)).perform();
+        actions.contextClick(rightClickMeButton).perform();
     }
 
     public void clickOnClickMeButton() {
         scrollToElementJS(clickMeButton);
-        click(clickMeButton);
+        clickMeButton.click();
     }
 }
