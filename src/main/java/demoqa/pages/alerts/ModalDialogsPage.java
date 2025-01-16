@@ -11,6 +11,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 public class ModalDialogsPage extends BasePage {
+
     @FindBy(id = "showSmallModal")
     WebElement smallModalButton;
     @FindBy(id = "showLargeModal")

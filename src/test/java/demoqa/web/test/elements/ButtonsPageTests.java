@@ -42,7 +42,7 @@ public class ButtonsPageTests extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Click on three buttons and verify messages")
     public void ClickOnThreeButtonsAndVerifyMessages() {
         navigateToUrl("buttons");
 

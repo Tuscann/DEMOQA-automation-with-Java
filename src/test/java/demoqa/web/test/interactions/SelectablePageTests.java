@@ -45,22 +45,24 @@ public class SelectablePageTests extends BaseTest {
         String actualGridEight = selectablePage.getGridEight();
         String actualGridNine = selectablePage.getGridNine();
 
-        Assert.assertEquals(actualPageTitle, pageTitle, "\nWrong page title.\n");
-        Assert.assertEquals(actualListTab, listTab, "\nWrong page tab name. \n");
-        Assert.assertEquals(actualListFirstText, listFirstText, "\nWrong page one.\n");
-        Assert.assertEquals(actualListSecondText, listSecondText, "\nWrong page two.\n");
-        Assert.assertEquals(actualListThirdText, listThirdText, "\nWrong page three.\n");
-        Assert.assertEquals(actualListFourText, listFourText, "\nWrong page four.\n");
-        Assert.assertEquals(actualGridTab, gridTab, "\nWrong page tab.\n");
-        Assert.assertEquals(actualGridOne, gridOne, "\nWrong page one.\n");
-        Assert.assertEquals(actualGridTwo, gridTwo, "\nWrong page two.\n");
-        Assert.assertEquals(actualGridThree, gridThree, "\nWrong page three.\n");
-        Assert.assertEquals(actualGridFour, gridFour, "\nWrong page four.\n");
-        Assert.assertEquals(actualGridFive, gridFive, "\nWrong page five.\n");
-        Assert.assertEquals(actualGridSix, gridSix, "\nWrong page six.\n");
-        Assert.assertEquals(actualGridSeven, gridSeven, "\nWrong page seven.\n");
-        Assert.assertEquals(actualGridEight, gridEight, "\nWrong page eight.\n");
-        Assert.assertEquals(actualGridNine, gridNine, "\nWrong page nine.\n");
+        softAssert.assertEquals(actualPageTitle, pageTitle, "\nWrong page title.\n");
+        softAssert.assertEquals(actualListTab, listTab, "\nWrong page tab name. \n");
+        softAssert.assertEquals(actualListFirstText, listFirstText, "\nWrong page one.\n");
+        softAssert.assertEquals(actualListSecondText, listSecondText, "\nWrong page two.\n");
+        softAssert.assertEquals(actualListThirdText, listThirdText, "\nWrong page three.\n");
+        softAssert.assertEquals(actualListFourText, listFourText, "\nWrong page four.\n");
+        softAssert.assertEquals(actualGridTab, gridTab, "\nWrong page tab.\n");
+        softAssert.assertEquals(actualGridOne, gridOne, "\nWrong page one.\n");
+        softAssert.assertEquals(actualGridTwo, gridTwo, "\nWrong page two.\n");
+        softAssert.assertEquals(actualGridThree, gridThree, "\nWrong page three.\n");
+        softAssert.assertEquals(actualGridFour, gridFour, "\nWrong page four.\n");
+        softAssert.assertEquals(actualGridFive, gridFive, "\nWrong page five.\n");
+        softAssert.assertEquals(actualGridSix, gridSix, "\nWrong page six.\n");
+        softAssert.assertEquals(actualGridSeven, gridSeven, "\nWrong page seven.\n");
+        softAssert.assertEquals(actualGridEight, gridEight, "\nWrong page eight.\n");
+        softAssert.assertEquals(actualGridNine, gridNine, "\nWrong page nine.\n");
+
+        softAssert.assertAll();
     }
 
     @Test(enabled = true)
@@ -69,35 +71,37 @@ public class SelectablePageTests extends BaseTest {
 
         String searched1Selection = "Cras justo odio";
         boolean isRowSelected = selectablePage.RowSelected(searched1Selection);
-        Assert.assertFalse(isRowSelected, "\nFirst row is selected.\n");
+        softAssert.assertFalse(isRowSelected, "\nFirst row is selected.\n");
         int position = 0;
         selectablePage.clickElement(position);
         isRowSelected = selectablePage.RowSelected(searched1Selection);
-        Assert.assertTrue(isRowSelected, "\nFirst row is not selected.\n");
+        softAssert.assertTrue(isRowSelected, "\nFirst row is not selected.\n");
 
         String searched2Selection = "Dapibus ac facilisis in";
         isRowSelected = selectablePage.RowSelected(searched2Selection);
-        Assert.assertFalse(isRowSelected, "\nSecond row is selected.\n");
+        softAssert.assertFalse(isRowSelected, "\nSecond row is selected.\n");
         position = 1;
         selectablePage.clickElement(position);
         isRowSelected = selectablePage.RowSelected(searched2Selection);
-        Assert.assertTrue(isRowSelected, "\nSecond row is not selected.\n");
+        softAssert.assertTrue(isRowSelected, "\nSecond row is not selected.\n");
 
         String searched3Selection = "Morbi leo risus";
         isRowSelected = selectablePage.RowSelected(searched3Selection);
-        Assert.assertFalse(isRowSelected, "\nThird row is selected.\n");
+        softAssert.assertFalse(isRowSelected, "\nThird row is selected.\n");
         position = 2;
         selectablePage.clickElement(position);
         isRowSelected = selectablePage.RowSelected(searched3Selection);
-        Assert.assertTrue(isRowSelected, "\nThird row is not selected.\n");
+        softAssert.assertTrue(isRowSelected, "\nThird row is not selected.\n");
 
         String searched4Selection = "Porta ac consectetur ac";
         isRowSelected = selectablePage.RowSelected(searched4Selection);
-        Assert.assertFalse(isRowSelected, "\nFour row is selected.\n");
+        softAssert.assertFalse(isRowSelected, "\nFour row is selected.\n");
         position = 3;
         selectablePage.clickElement(position);
         isRowSelected = selectablePage.RowSelected(searched4Selection);
-        Assert.assertTrue(isRowSelected, "\nFour row is not selected.\n");
+        softAssert.assertTrue(isRowSelected, "\nFour row is not selected.\n");
+
+        softAssert.assertAll();
     }
 
     @Test(enabled = true)
@@ -108,25 +112,18 @@ public class SelectablePageTests extends BaseTest {
         String searched1Selection;
         boolean isSelected;
         for (int i = 0; i < 9; i++) {
-            if (i == 0) {
-                searched1Selection = "One";
-            } else if (i == 1) {
-                searched1Selection = "Two";
-            } else if (i == 2) {
-                searched1Selection = "Three";
-            } else if (i == 3) {
-                searched1Selection = "Four";
-            } else if (i == 4) {
-                searched1Selection = "Five";
-            } else if (i == 5) {
-                searched1Selection = "Six";
-            } else if (i == 6) {
-                searched1Selection = "Seven";
-            } else if (i == 7) {
-                searched1Selection = "Eight";
-            } else {
-                searched1Selection = "Nine";
-            }
+            searched1Selection = switch (i) {
+                case 0 -> "One";
+                case 1 -> "Two";
+                case 2 -> "Three";
+                case 3 -> "Four";
+                case 4 -> "Five";
+                case 5 -> "Six";
+                case 6 -> "Seven";
+                case 7 -> "Eight";
+                case 8 -> "Nine";
+                default -> "Error";
+            };
 
             selectablePage.selectPositionFromGrid(searched1Selection);
             isSelected = selectablePage.isPositionFromGridSelected(searched1Selection);

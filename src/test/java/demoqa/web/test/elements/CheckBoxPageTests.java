@@ -14,11 +14,13 @@ public class CheckBoxPageTests extends BaseTest {
 
         String actualResultMessage = checkBoxPage.getResultMessage();
         String expectedResultMessage = "You have selected :\nnotes";
-        Assert.assertEquals(actualResultMessage, expectedResultMessage, "\nNot selected Notes\n");
+        softAssert.assertEquals(actualResultMessage, expectedResultMessage, "\nNot selected Notes\n");
 
         String header = "Check Box";
         String actualHeader = checkBoxPage.getHeader();
-        Assert.assertEquals(actualHeader, header, "\nWrong Header Message.\n");
+        softAssert.assertEquals(actualHeader, header, "\nWrong Header Message.\n");
+
+        softAssert.assertAll();
     }
 
     @Test(enabled = true)
@@ -50,11 +52,13 @@ public class CheckBoxPageTests extends BaseTest {
         String expectedResult = """
                 You have selected :
                 notes""";
-        Assert.assertEquals(actualResult, expectedResult, "\nNot selected Notes.\n");
+        softAssert.assertEquals(actualResult, expectedResult, "\nNot selected Notes.\n");
 
         checkBoxPage.clickNotes();
 
-        Assert.assertTrue(checkBoxPage.isResultMessageShown(), "\nShown wrong category.\n");
+        softAssert.assertTrue(checkBoxPage.isResultMessageShown(), "\nShown wrong category.\n");
+
+        softAssert.assertAll();
     }
 
     @Test(enabled = true)
@@ -222,7 +226,7 @@ public class CheckBoxPageTests extends BaseTest {
                 wordFile
                 excelFile""";
 
-        Assert.assertEquals(actualResult, expectedResult, "\nNot selected all CheckBoxes.\n");
+        softAssert.assertEquals(actualResult, expectedResult, "\nNot selected all CheckBoxes.\n");
     }
 
     @Test(enabled = true)
@@ -263,7 +267,7 @@ public class CheckBoxPageTests extends BaseTest {
                 wordFile
                 excelFile""";
 
-        Assert.assertEquals(actualResult, expectedResult, "\nNot selected all CheckBoxes.\n");
+        softAssert.assertEquals(actualResult, expectedResult, "\nNot selected all CheckBoxes.\n");
 
         checkBoxPage.clickNotes();
         checkBoxPage.clickCommands();
@@ -279,6 +283,8 @@ public class CheckBoxPageTests extends BaseTest {
 
         boolean isResultMessageShown = checkBoxPage.verifyResultMessageIsMissing();
 
-        Assert.assertTrue(isResultMessageShown, "\nFound some selected CheckBoxes.\n");
+        softAssert.assertTrue(isResultMessageShown, "\nFound some selected CheckBoxes.\n");
+
+        softAssert.assertAll();
     }
 }

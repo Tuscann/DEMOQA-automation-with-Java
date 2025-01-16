@@ -32,16 +32,18 @@ public class TextBoxPageTests extends BaseTest {
         String permanentAddressLabel = textBoxPage.getPermanentAddressLabel();
         String actualSubmitButtonText = textBoxPage.getSubmitButtonText();
 
-        Assert.assertEquals(actualHeader, header, "\nWrong header.\n");
-        Assert.assertEquals(fullNameLabel, expectedFullNameLabel, "\nNot same label Full Name.\n");
-        Assert.assertEquals(placeholderFullName, expectedFullNamePlaceholder, "\nNot same placeholder Full Name.\n");
-        Assert.assertEquals(emailLabel, expectedFEmailLabel, "\nNot same label Email.\n");
-        Assert.assertEquals(placeholderEmail, expectedEmailPlaceholder, "\nNot same placeholder Email.\n");
-        Assert.assertEquals(currentAddressLabel, expectedCurrentAddressLabel, "\nNot same label Current Address.\n");
-        Assert.assertEquals(placeholderCurrentAddress, expectedCurrentAddressPlaceholder, "\nNot same placeholder Current Address.\n");
-        Assert.assertEquals(permanentAddressLabel, expectedPermanentAddressLabel, "\nNot same label Permanent Address.\n");
-        Assert.assertEquals(actualPlaceholderPermanentAddress, expectedPermanentAddressPlaceholder, "Not same placeholder Permanent Address.\n");
-        Assert.assertEquals(actualSubmitButtonText, submitButtonText, "\nWrong submit button text.\n");
+        softAssert.assertEquals(actualHeader, header, "\nWrong header.\n");
+        softAssert.assertEquals(fullNameLabel, expectedFullNameLabel, "\nNot same label Full Name.\n");
+        softAssert.assertEquals(placeholderFullName, expectedFullNamePlaceholder, "\nNot same placeholder Full Name.\n");
+        softAssert.assertEquals(emailLabel, expectedFEmailLabel, "\nNot same label Email.\n");
+        softAssert.assertEquals(placeholderEmail, expectedEmailPlaceholder, "\nNot same placeholder Email.\n");
+        softAssert.assertEquals(currentAddressLabel, expectedCurrentAddressLabel, "\nNot same label Current Address.\n");
+        softAssert.assertEquals(placeholderCurrentAddress, expectedCurrentAddressPlaceholder, "\nNot same placeholder Current Address.\n");
+        softAssert.assertEquals(permanentAddressLabel, expectedPermanentAddressLabel, "\nNot same label Permanent Address.\n");
+        softAssert.assertEquals(actualPlaceholderPermanentAddress, expectedPermanentAddressPlaceholder, "Not same placeholder Permanent Address.\n");
+        softAssert.assertEquals(actualSubmitButtonText, submitButtonText, "\nWrong submit button text.\n");
+
+        softAssert.assertAll();
     }
 
     @Test(enabled = true)
@@ -64,10 +66,12 @@ public class TextBoxPageTests extends BaseTest {
         String actualCurrentAddress = textBoxPage.getExpectedCurrentAddress();
         String actualPermanentAddress = textBoxPage.getExpectedPermanentAddress();
 
-        Assert.assertEquals(actualFullName, "Name:" + expectedFullName, "\nNot same Full Name.\n");
-        Assert.assertEquals(actualEmail, "Email:" + expectedEmail, "\nNot same Email.\n");
-        Assert.assertEquals(actualCurrentAddress, "Current Address :" + expectedCurrentAddress, "\nNot same current Address.\n");
-        Assert.assertEquals(actualPermanentAddress, "Permananet Address :" + expectedPermanentAddress, "\nNot same permanent Address.\n");
+        softAssert.assertEquals(actualFullName, "Name:" + expectedFullName, "\nNot same Full Name.\n");
+        softAssert.assertEquals(actualEmail, "Email:" + expectedEmail, "\nNot same Email.\n");
+        softAssert.assertEquals(actualCurrentAddress, "Current Address :" + expectedCurrentAddress, "\nNot same current Address.\n");
+        softAssert.assertEquals(actualPermanentAddress, "Permananet Address :" + expectedPermanentAddress, "\nNot same permanent Address.\n");
+
+        softAssert.assertAll();
     }
 
     @Test(enabled = true)
@@ -163,10 +167,10 @@ public class TextBoxPageTests extends BaseTest {
         String actualCurrentAddress = textBoxPage.getExpectedCurrentAddress();
         String actualPermanentAddress = textBoxPage.getExpectedPermanentAddress();
 
-        Assert.assertEquals(actualFullName, "Name:" + fullName, "\nNot same Full Name.\n");
-        Assert.assertEquals(actualEmail, "Email:" + email, "\nNot same Email.\n");
-        Assert.assertEquals(actualCurrentAddress, "Current Address :" + currentAddress, "\nNot same current Address.\n");
-        Assert.assertEquals(actualPermanentAddress, "Permananet Address :" + permanentAddress, "\nNot same permanent Address.\n");
+        softAssert.assertEquals(actualFullName, "Name:" + fullName, "\nNot same Full Name.\n");
+        softAssert.assertEquals(actualEmail, "Email:" + email, "\nNot same Email.\n");
+        softAssert.assertEquals(actualCurrentAddress, "Current Address :" + currentAddress, "\nNot same current Address.\n");
+        softAssert.assertEquals(actualPermanentAddress, "Permananet Address :" + permanentAddress, "\nNot same permanent Address.\n");
 
         fullName = "Petar Kamenov";
         email = "da@gmail.com";
@@ -184,9 +188,11 @@ public class TextBoxPageTests extends BaseTest {
         actualCurrentAddress = textBoxPage.getExpectedCurrentAddress();
         actualPermanentAddress = textBoxPage.getExpectedPermanentAddress();
 
-        Assert.assertEquals(actualFullName, "Name:" + fullName, "\nNot same Full Namen\n");
-        Assert.assertEquals(actualEmail, "Email:" + email, "\nNot same Email.\n");
-        Assert.assertEquals(actualCurrentAddress, "Current Address :" + currentAddress, "\nNot same current Address.\n");
-        Assert.assertEquals(actualPermanentAddress, "Permananet Address :" + permanentAddress, "\nNot same permanent Address.\n");
+        softAssert.assertEquals(actualFullName, "Name:" + fullName, "\nNot same Full Name.\n");
+        softAssert.assertEquals(actualEmail, "Email:" + email, "\nNot same Email.\n");
+        softAssert.assertEquals(actualCurrentAddress, "Current Address :" + currentAddress, "\nNot same current Address.\n");
+        softAssert.assertEquals(actualPermanentAddress, "Permananet Address :" + permanentAddress, "\nNot same permanent Address.\n");
+
+        softAssert.assertAll();
     }
 }

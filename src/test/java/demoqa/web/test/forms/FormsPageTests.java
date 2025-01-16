@@ -5,7 +5,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class FormsPageTests extends BaseTest {
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Verify all text on page")
     public void CheckAllTextOnPage() {
         // Arrange
         navigateToUrl("forms");
@@ -18,7 +18,7 @@ public class FormsPageTests extends BaseTest {
         Assert.assertEquals(expectedString, actualString, "\nWrong text.\n");
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Verify practice form link")
     public void VerifyPracticeFormLink() {
         navigateToUrl("forms");
 

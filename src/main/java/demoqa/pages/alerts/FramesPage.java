@@ -11,7 +11,6 @@ import static utilities.JavaScriptUtility.scrollToElementJS;
 
 public class FramesPage extends BasePage {
 
-    // @FindBy(id = "sampleHeading")
     private final By firstHeading = By.id("sampleHeading");
     private final By secondHeading = By.id("sampleHeading");
     @FindBy(xpath = "//h1[contains(.,'Frames')]")

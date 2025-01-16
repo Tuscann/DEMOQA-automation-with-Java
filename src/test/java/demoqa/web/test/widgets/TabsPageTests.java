@@ -7,6 +7,34 @@ import org.testng.annotations.Test;
 public class TabsPageTests extends BaseTest {
 
     @Test(enabled = true)
+    public void CheckAllTextOnPage() {
+        navigateToUrl("tabs");
+
+        String expectedHead = "Tabs";
+        String expectedString = "Details about Lorem Ipsum";
+        String expectedWhatText = "What";
+        String expectedOriginText = "Origin";
+        String expectedUseText = "Use";
+        String expectedMoreText = "More";
+
+        String actualHead = tabsPage.getTabsText();
+        String actualString = tabsPage.getUnderTitleText();
+        String actualWhatText = tabsPage.getWhatTabText();
+        String actualOriginText = tabsPage.getOriginTabText();
+        String actualUseText = tabsPage.getUseTabText();
+        String actualMoreText = tabsPage.getMoreTabText();
+
+        softAssert.assertEquals(actualHead, expectedHead, "\nWrong Tabs text.\n");
+        softAssert.assertEquals(actualString, expectedString, "\nWrong Details about Lorem Ipsum text.\n");
+        softAssert.assertEquals(actualWhatText, expectedWhatText, "\nWrong what text.\n");
+        softAssert.assertEquals(actualOriginText, expectedOriginText, "\nWrong origin text.\n");
+        softAssert.assertEquals(actualUseText, expectedUseText, "\nWrong use text.\n");
+        softAssert.assertEquals(actualMoreText, expectedMoreText, "\nWrong more text.\n");
+
+        softAssert.assertAll();
+    }
+
+    @Test(enabled = true)
     public void SelectWhatTabAndCheckText() {
         navigateToUrl("tabs");
 
@@ -36,31 +64,5 @@ public class TabsPageTests extends BaseTest {
         tabsPage.clickUseTab();
         String actualText = tabsPage.getUseTabInternalText();
         Assert.assertEquals(actualText, expectedWhatInternalText, "\nWrong use text.\n");
-    }
-
-    @Test(enabled = true)
-    public void CheckAllTextOnPage() {
-        navigateToUrl("tabs");
-
-        String expectedHead = "Tabs";
-        String expectedString = "Details about Lorem Ipsum";
-        String expectedWhatText = "What";
-        String expectedOriginText = "Origin";
-        String expectedUseText = "Use";
-        String expectedMoreText = "More";
-
-        String actualHead = tabsPage.getTabsText();
-        String actualString = tabsPage.getUnderTitleText();
-        String actualWhatText = tabsPage.getWhatTabText();
-        String actualOriginText = tabsPage.getOriginTabText();
-        String actualUseText = tabsPage.getUseTabText();
-        String actualMoreText = tabsPage.getMoreTabText();
-
-        Assert.assertEquals(actualHead, expectedHead, "\nWrong Tabs text.\n");
-        Assert.assertEquals(actualString, expectedString, "\nWrong Details about Lorem Ipsum text.\n");
-        Assert.assertEquals(actualWhatText, expectedWhatText, "\nWrong what text.\n");
-        Assert.assertEquals(actualOriginText, expectedOriginText, "\nWrong origin text.\n");
-        Assert.assertEquals(actualUseText, expectedUseText, "\nWrong use text.\n");
-        Assert.assertEquals(actualMoreText, expectedMoreText, "\nWrong more text.\n");
     }
 }

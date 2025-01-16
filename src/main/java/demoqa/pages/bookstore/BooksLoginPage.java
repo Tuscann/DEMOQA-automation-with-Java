@@ -1,8 +1,9 @@
 package demoqa.pages.bookstore;
 
 import demoqa.base.BasePage;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -13,24 +14,40 @@ import static utilities.JavaScriptUtility.scrollToElementJS;
 
 public class BooksLoginPage extends BasePage {
 
-    private final By header = By.xpath("//h1[@class='text-center'][contains(.,'Login')]");
-    private final By welcomeText = By.xpath("//h2[contains(.,'Welcome,')]");
-    private final By loginInBookStore = By.xpath("//h5[contains(.,'Login in Book Store')]");
-    private final By username = By.id("userName");
-    private final By password = By.id("password");
-    private final By loginButton = By.id("login");
-    private final By newUserButton = By.id("newUser");
-    private final By errorMessage = By.id("name");
-    private final By profile = By.id("userName-value");
-    private final By logoutButton = By.xpath("//button[contains(.,'Log out')]");
-    private final By goToBookStoreButton = By.xpath("//button[@id='gotoStore']");
-    private final By deleteAccountButton = By.xpath("//button[@type='button'][contains(.,'Delete Account')]");
-    private final By deleteAllBooksButton = By.xpath("(//button[@type='button'][contains(.,'Delete All Books')])[1]");
-    private final By loadingLabel = By.id("loading-label");
-    private final By usernameLabel = By.id("userName-label");
-    private final By passwordLabel = By.id("password-label");
-
-    private final By loginText = By.xpath("//h5[contains(.,'Login in Book Store')]");
+    @FindBy(xpath = "//button[contains(.,'Log out')]")
+    WebElement logoutButton;
+    @FindBy(xpath = "//button[@id='gotoStore']")
+    WebElement goToBookStoreButton;
+    @FindBy(xpath = "//button[@type='button'][contains(.,'Delete Account')]")
+    WebElement deleteAccountButton;
+    @FindBy(xpath = "(//button[@type='button'][contains(.,'Delete All Books')])[1]")
+    WebElement deleteAllBooksButton;
+    @FindBy(id = "loadingLabel")
+    WebElement loadingLabel;
+    @FindBy(id = "userName-label")
+    WebElement usernameLabel;
+    @FindBy(id = "passwordLabel")
+    WebElement passwordLabel;
+    @FindBy(xpath = "//h5[contains(.,'Login in Book Store')]")
+    WebElement loginText;
+    @FindBy(xpath = "//h1[@class='text-center'][contains(.,'Login')]")
+    WebElement header;
+    @FindBy(xpath = "//h2[contains(.,'Welcome,')]")
+    WebElement welcomeText;
+    @FindBy(xpath = "//h5[contains(.,'Login in Book Store')]")
+    WebElement loginInBookStore;
+    @FindBy(id = "userName")
+    WebElement username;
+    @FindBy(id = "password")
+    WebElement password;
+    @FindBy(id = "login")
+    WebElement loginButton;
+    @FindBy(id = "newUser")
+    WebElement newUserButton;
+    @FindBy(id = "name")
+    WebElement errorMessage;
+    @FindBy(id = "userName-value")
+    WebElement profile;
 
     public BooksLoginPage(WebDriver driver) {
         super(driver);
@@ -38,95 +55,95 @@ public class BooksLoginPage extends BasePage {
     }
 
     public String getLoadingLabel() {
-        return find(loadingLabel).getText();
+        return loadingLabel.getText();
     }
 
     public String getLoginText() {
-        return find(loginText).getText();
+        return loginText.getText();
     }
 
     public String getUsernamePlaceholder() {
-        return find(username).getDomAttribute("placeholder");
+        return username.getDomAttribute("placeholder");
     }
 
     public String getPasswordPlaceholder() {
-        return find(password).getDomAttribute("placeholder");
+        return password.getDomAttribute("placeholder");
     }
 
     public String getPasswordLabel() {
-        return find(passwordLabel).getText();
+        return passwordLabel.getText();
     }
 
     public String getUsernameLabel() {
-        return find(usernameLabel).getText();
+        return usernameLabel.getText();
     }
 
     public String getLoginHeaderText() {
-        return find(header).getText();
+        return header.getText();
     }
 
     public String getWelcomeText() {
-        return find(welcomeText).getText();
+        return welcomeText.getText();
     }
 
     public String getLoginInBookStoreText() {
-        return find(loginInBookStore).getText();
+        return loginInBookStore.getText();
     }
 
     public String getLoginButtonText() {
-        return find(loginButton).getText();
+        return loginButton.getText();
     }
 
     public String getNewUserButtonText() {
-        return find(newUserButton).getText();
+        return newUserButton.getText();
     }
 
     public void clickGoToBookStoreButton() {
-        find(goToBookStoreButton).click();
+        goToBookStoreButton.click();
     }
 
     public void clickDeleteAccountButton() {
-        find(deleteAccountButton).click();
+        deleteAccountButton.click();
     }
 
     public void clickDeleteAllBooksButton() {
-        find(deleteAllBooksButton).click();
+        deleteAllBooksButton.click();
     }
 
     public void clickLogoutButton() {
-        find(logoutButton).click();
+        logoutButton.click();
     }
 
     public String getErrorMessage() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(12));
         wait.until(ExpectedConditions.elementToBeClickable(errorMessage));
-        return find(errorMessage).getText();
+        return errorMessage.getText();
     }
 
     public void clickUsername() {
         scrollToElementJS(username);
-        click(username);
+        username.click();
     }
 
     public void clickPassword() {
-        click(password);
+        password.click();
     }
 
     public void clickLoginButton() {
         scrollToElementJS(loginButton);
-        find(loginButton).click();
+        loginButton.click();
     }
 
     public String getProfile() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(12));
         wait.until(ExpectedConditions.urlToBe("https://demoqa.com/profile"));
         wait.until(ExpectedConditions.elementToBeClickable(profile));
-        return find(profile).getText();
+        return profile.getText();
     }
 
     public void clickNewUserButton() {
         scrollToElementJS(newUserButton);
-        click(newUserButton);
+        newUserButton.click();
     }
 
     public void setUsername(String username2) {
@@ -136,6 +153,5 @@ public class BooksLoginPage extends BasePage {
     public void setPassword(String password2) {
         set(password, password2);
     }
-
 
 }

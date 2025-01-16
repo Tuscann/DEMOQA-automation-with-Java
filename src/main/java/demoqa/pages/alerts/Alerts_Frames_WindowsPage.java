@@ -41,7 +41,6 @@ public class Alerts_Frames_WindowsPage extends BasePage {
     }
 
     public void clickBrowserWindows() {
-        //  scrollToElementJS(browserWindowsMenuItem);
         browserWindowsMenuItem.click();
     }
 

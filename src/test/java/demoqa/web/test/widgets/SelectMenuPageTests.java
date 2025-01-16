@@ -54,7 +54,7 @@ public class SelectMenuPageTests extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(enabled = true, testName = "Select all values from Select value menu")
+    @Test(enabled = true, testName = "Select all values from select value menu")
     public void SelectAllValuesFromSelectValue() {
         navigateToUrl("select-menu");
         for (int i = 0; i < 6; i++) {
@@ -75,7 +75,7 @@ public class SelectMenuPageTests extends BaseTest {
         }
     }
 
-    @Test(enabled = true, testName = "Select all values from Select One menu")
+    @Test(enabled = true, testName = "Select all values from select One menu")
     public void SelectAllValuesFromSelectOne() {
         navigateToUrl("select-menu");
 
@@ -86,7 +86,7 @@ public class SelectMenuPageTests extends BaseTest {
                 case 2 -> "Mrs.";
                 case 3 -> "Ms.";
                 case 4 -> "Prof.";
-                case 5 -> "Other.";
+                case 5 -> "Other";
                 default -> "Error";
             };
 
@@ -98,7 +98,7 @@ public class SelectMenuPageTests extends BaseTest {
         }
     }
 
-    @Test(enabled = true, testName = "Select all values from old Style select menu")
+    @Test(enabled = true, testName = "Select all values from old style select menu")
     public void SelectAllValuesFromOldStyleSelectMenu() {
         navigateToUrl("select-menu");
 
@@ -125,7 +125,7 @@ public class SelectMenuPageTests extends BaseTest {
         }
     }
 
-    @Test(enabled = false, testName = "Select all values from Multi Select DropDown menu")
+    @Test(enabled = false, testName = "Select all values from multi select dropdown menu")
     public void SelectMultiSelectDropDown() {
         navigateToUrl("select-menu");
 
@@ -146,7 +146,7 @@ public class SelectMenuPageTests extends BaseTest {
         }
     }
 
-    @Test(enabled = true, testName = "Select all values from standard Multi Select menu")
+    @Test(enabled = true, testName = "Select all values from standard multi select menu")
     public void SelectAllValuesFromStandardMultiSelect() {
         navigateToUrl("select-menu");
         selectMenuPage.selectStandardMultiByText("Volvo");

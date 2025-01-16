@@ -1,7 +1,6 @@
 package demoqa.web.test.widgets;
 
 import demoqa.web.BaseTest;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class MenuPageTests extends BaseTest {
@@ -31,15 +30,17 @@ public class MenuPageTests extends BaseTest {
         String actualMainItem2SubSubListSubItem2 = menuPage.getMainItem2SubSubListSubItem2();
         String actualMainItem3 = menuPage.getMainItem3();
 
-        Assert.assertEquals(actualPageHeader, pageHeader, "\nPage header not correct.\n");
-        Assert.assertEquals(actualMainItem1, mainItem1, "\nMain Item 1 not correct.\n");
-        Assert.assertEquals(actualMainItem2, mainItem2, "\nMain Item 2 not correct.\n");
-        Assert.assertEquals(actualMainItem2SubItem1, mainItem2SubItem1, "\nMain Item 1 sub item 1 not correct.\n");
-        Assert.assertEquals(actualMainItem2SubItem2, mainItem2SubItem2, "\nMain Item 1 sub item 2 not correct.\n");
-        Assert.assertEquals(actualMainItem2SubSubList, mainItem2SubSubList, "\nMain 2 SubList.\n");
-        Assert.assertEquals(actualMainItem2SubSubListSubItem1, mainItem2SubSubListSubItem1, "\nSubSubListSubItem1 not correct.\n");
-        Assert.assertEquals(actualMainItem2SubSubListSubItem2, mainItem2SubSubListSubItem2, "\nSubSubListSubItem2 not correct.\n");
-        Assert.assertEquals(actualMainItem3, mainItem3, "Main Item 3 not correct");
+        softAssert.assertEquals(actualPageHeader, pageHeader, "\nPage header not correct.\n");
+        softAssert.assertEquals(actualMainItem1, mainItem1, "\nMain Item 1 not correct.\n");
+        softAssert.assertEquals(actualMainItem2, mainItem2, "\nMain Item 2 not correct.\n");
+        softAssert.assertEquals(actualMainItem2SubItem1, mainItem2SubItem1, "\nMain Item 1 sub item 1 not correct.\n");
+        softAssert.assertEquals(actualMainItem2SubItem2, mainItem2SubItem2, "\nMain Item 1 sub item 2 not correct.\n");
+        softAssert.assertEquals(actualMainItem2SubSubList, mainItem2SubSubList, "\nMain 2 SubList.\n");
+        softAssert.assertEquals(actualMainItem2SubSubListSubItem1, mainItem2SubSubListSubItem1, "\nSubSubListSubItem1 not correct.\n");
+        softAssert.assertEquals(actualMainItem2SubSubListSubItem2, mainItem2SubSubListSubItem2, "\nSubSubListSubItem2 not correct.\n");
+        softAssert.assertEquals(actualMainItem3, mainItem3, "\nMain Item 3 not correct.\n");
+
+        softAssert.assertAll();
     }
 
     @Test(enabled = true)
@@ -50,51 +51,53 @@ public class MenuPageTests extends BaseTest {
         final String colorAfterSelection = "rgba(0, 63, 32, 1)";
 
         String actualColorSelected = menuPage.takeBackgroundColorMainItem1();
-        Assert.assertEquals(actualColorSelected, colorBeforeSelection, "\nNot normal green.\n");
+        softAssert.assertEquals(actualColorSelected, colorBeforeSelection, "\nNot normal green.\n");
         menuPage.selectMainItem1();
         actualColorSelected = menuPage.takeBackgroundColorMainItem1();
-        Assert.assertEquals(actualColorSelected, colorAfterSelection, "\nNot dark green.\n");
+        softAssert.assertEquals(actualColorSelected, colorAfterSelection, "\nNot dark green.\n");
 
         actualColorSelected = menuPage.takeBackgroundColorMainItem2();
-        Assert.assertEquals(actualColorSelected, colorBeforeSelection, "\nNot normal green.\n");
+        softAssert.assertEquals(actualColorSelected, colorBeforeSelection, "\nNot normal green.\n");
         menuPage.selectMainItem2();
         actualColorSelected = menuPage.takeBackgroundColorMainItem2();
-        Assert.assertEquals(actualColorSelected, colorAfterSelection, "\nNot dark green.\n");
+        softAssert.assertEquals(actualColorSelected, colorAfterSelection, "\nNot dark green.\n");
 
         actualColorSelected = menuPage.takeBackgroundColorMainItem2SubItem1();
-        Assert.assertEquals(actualColorSelected, colorBeforeSelection, "\nNot normal green.\n");
+        softAssert.assertEquals(actualColorSelected, colorBeforeSelection, "\nNot normal green.\n");
         menuPage.selectMainItem2SubItem1();
         actualColorSelected = menuPage.takeBackgroundColorMainItem2SubItem1();
-        Assert.assertEquals(actualColorSelected, colorAfterSelection, "\nNot dark green.\n");
+        softAssert.assertEquals(actualColorSelected, colorAfterSelection, "\nNot dark green.\n");
 
         actualColorSelected = menuPage.takeBackgroundColorMainItem2SubItem2();
-        Assert.assertEquals(actualColorSelected, colorBeforeSelection, "\nNot normal green.\n");
+        softAssert.assertEquals(actualColorSelected, colorBeforeSelection, "\nNot normal green.\n");
         menuPage.selectMainItem2SubItem2();
         actualColorSelected = menuPage.takeBackgroundColorMainItem2SubItem2();
-        Assert.assertEquals(actualColorSelected, colorAfterSelection, "\nNot dark green.\n");
+        softAssert.assertEquals(actualColorSelected, colorAfterSelection, "\nNot dark green.\n");
 
         actualColorSelected = menuPage.takeBackgroundColorMainItem2SubSubsLIst();
-        Assert.assertEquals(actualColorSelected, colorBeforeSelection, "\nNot normal green.\n");
+        softAssert.assertEquals(actualColorSelected, colorBeforeSelection, "\nNot normal green.\n");
         menuPage.selectMainItem2SubSubList();
         actualColorSelected = menuPage.takeBackgroundColorMainItem2SubSubsLIst();
-        Assert.assertEquals(actualColorSelected, colorAfterSelection, "\nNot dark green.\n");
+        softAssert.assertEquals(actualColorSelected, colorAfterSelection, "\nNot dark green.\n");
 
         actualColorSelected = menuPage.takeBackgroundColorMainItem2SubSubsLIstSubSubItem1();
-        Assert.assertEquals(actualColorSelected, colorBeforeSelection, "\nNot normal green.\n");
+        softAssert.assertEquals(actualColorSelected, colorBeforeSelection, "\nNot normal green.\n");
         menuPage.selectMainItem2SubSubsLIstSubSubItem1();
         actualColorSelected = menuPage.takeBackgroundColorMainItem2SubSubsLIstSubSubItem1();
-        Assert.assertEquals(actualColorSelected, colorAfterSelection, "\nNot dark green.\n");
+        softAssert.assertEquals(actualColorSelected, colorAfterSelection, "\nNot dark green.\n");
 
         actualColorSelected = menuPage.takeBackgroundColorMainItem2SubSubsLIstSubSubItem2();
-        Assert.assertEquals(actualColorSelected, colorBeforeSelection, "\nNot normal green.\n");
+        softAssert.assertEquals(actualColorSelected, colorBeforeSelection, "\nNot normal green.\n");
         menuPage.selectMainItem2SubSubsLIstSubSubItem2();
         actualColorSelected = menuPage.takeBackgroundColorMainItem2SubSubsLIstSubSubItem2();
-        Assert.assertEquals(actualColorSelected, colorAfterSelection, "\nNot dark green.\n");
+        softAssert.assertEquals(actualColorSelected, colorAfterSelection, "\nNot dark green.\n");
 
         actualColorSelected = menuPage.takeBackgroundColorMainItem3();
-        Assert.assertEquals(actualColorSelected, colorBeforeSelection, "\nNot normal green.\n");
+        softAssert.assertEquals(actualColorSelected, colorBeforeSelection, "\nNot normal green.\n");
         menuPage.selectMainItem3();
         actualColorSelected = menuPage.takeBackgroundColorMainItem3();
-        Assert.assertEquals(actualColorSelected, colorAfterSelection, "\nNot dark green.\n");
+        softAssert.assertEquals(actualColorSelected, colorAfterSelection, "\nNot dark green.\n");
+
+        softAssert.assertAll();
     }
 }

@@ -7,7 +7,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class PracticeFormPageTests extends BaseTest {
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Verify all text and placeholders")
     public void VerifyAllTextAndPlaceHolders() {
         navigateToUrl("automation-practice-form");
 
@@ -103,7 +103,7 @@ public class PracticeFormPageTests extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Verify three hobbies state")
     public void VerifyThreeHobbiesState() {
         navigateToUrl("automation-practice-form");
 
@@ -123,7 +123,7 @@ public class PracticeFormPageTests extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Select there radio button for gender")
     public void SelectEveryRadioButton() {
         navigateToUrl("automation-practice-form");
 
@@ -146,7 +146,7 @@ public class PracticeFormPageTests extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Submit valid practice form and verify")
     public void SubmitValidPracticeFormAndVerify() {
         navigateToUrl("automation-practice-form");
 
@@ -211,7 +211,7 @@ public class PracticeFormPageTests extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Click submit button on empty form And verify colors")
     public void ClickSubmitOnEmptyFormAndVerifyColors() {
         navigateToUrl("automation-practice-form");
         practiceFormPage.clickSubmitButton();
@@ -250,7 +250,7 @@ public class PracticeFormPageTests extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Verify colors change from red to green")
     public void VerifyColorsChangeFromRedToGreen() {
         navigateToUrl("automation-practice-form");
         practiceFormPage.clickSubmitButton();

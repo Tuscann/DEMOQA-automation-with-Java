@@ -10,16 +10,12 @@ public class NestedFramesPage extends BasePage {
 
     @FindBy(id = "frame1")
     WebElement parentIframe;
-
     @FindBy(xpath = "//*[text()=\"Parent frame\"]")
     WebElement parentIframeText;
-
     @FindBy(xpath = "//body/p")
     WebElement childIframeText;
-
     @FindBy(xpath = "//h1[@class='text-center'][contains(.,'Nested Frames')]")
     WebElement headingText;
-
     @FindBy(xpath = "//*[contains(text(),\"Sample\")]")
     WebElement mainText;
 

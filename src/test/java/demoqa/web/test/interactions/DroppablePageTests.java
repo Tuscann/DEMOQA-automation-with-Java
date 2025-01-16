@@ -2,7 +2,6 @@ package demoqa.web.test.interactions;
 
 import demoqa.web.BaseTest;
 import org.openqa.selenium.Point;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class DroppablePageTests extends BaseTest {
@@ -89,8 +88,10 @@ public class DroppablePageTests extends BaseTest {
         String actualDroppedText = droppablePage.getRevertDraggableTabText();
         String actualColor = droppablePage.getNewBackgroundColor();
 
-        Assert.assertEquals(actualColor, newColor, "\nWrong color.\n");
-        Assert.assertEquals(actualDroppedText, expectedDroppedText, "\nWrong dropped text.\n");
+        softAssert.assertEquals(actualColor, newColor, "\nWrong color.\n");
+        softAssert.assertEquals(actualDroppedText, expectedDroppedText, "\nWrong dropped text.\n");
+
+        softAssert.assertAll();
     }
 
     @Test(enabled = true)
@@ -105,8 +106,10 @@ public class DroppablePageTests extends BaseTest {
         String expectedDroppedText = "Dropped!";
         String actualColor = droppablePage.getColorAcceptable();
 
-        Assert.assertEquals(actualDroppedText, expectedDroppedText, "\nWrong dropped text.\n");
-        Assert.assertEquals(actualColor, newColor, "\nWrong color.\n");
+        softAssert.assertEquals(actualDroppedText, expectedDroppedText, "\nWrong dropped text.\n");
+        softAssert.assertEquals(actualColor, newColor, "\nWrong color.\n");
+
+        softAssert.assertAll();
     }
 
     @Test(enabled = true)
@@ -121,8 +124,10 @@ public class DroppablePageTests extends BaseTest {
         String expectedDroppedText = "Drop here";
         String actualColor = droppablePage.getColorNotAcceptable();
 
-        Assert.assertEquals(actualDroppedText, expectedDroppedText, "\nWrong dropped text.\n");
-        Assert.assertEquals(actualColor, newColor, "\nNot white color.\n");
+        softAssert.assertEquals(actualDroppedText, expectedDroppedText, "\nWrong dropped text.\n");
+        softAssert.assertEquals(actualColor, newColor, "\nNot white color.\n");
+
+        softAssert.assertAll();
     }
 
     @Test(enabled = true)
@@ -136,8 +141,8 @@ public class DroppablePageTests extends BaseTest {
         String actualInnerNotGreedyColor = droppablePage.getInnerDroppableNotGreedyColor();
         String actualOuterNotGreedyColor = droppablePage.getOuterDroppableNotGreedyColor();
 
-        Assert.assertEquals(actualInnerNotGreedyColor, expectedOuterNotGreedyColorBefore, "\nWrong inner color.\n");
-        Assert.assertEquals(actualOuterNotGreedyColor, expectedInnerNotGreedyColorBefore, "\nWrong outer color.\n");
+        softAssert.assertEquals(actualInnerNotGreedyColor, expectedOuterNotGreedyColorBefore, "\nWrong inner color.\n");
+        softAssert.assertEquals(actualOuterNotGreedyColor, expectedInnerNotGreedyColorBefore, "\nWrong outer color.\n");
 
         droppablePage.dragAndDropPropagationOuterDroppableNotGreedy();
 
@@ -149,9 +154,11 @@ public class DroppablePageTests extends BaseTest {
         actualOuterNotGreedyColor = droppablePage.getOuterDroppableNotGreedyColor();
         String actualOuterDroppableNotGreedyText = droppablePage.getOuterDroppableNotGreedyText();
 
-        Assert.assertEquals(actualInnerNotGreedyColor, expectedInnerNotGreedyColorAfter, "\nWrong inner color.\n");
-        Assert.assertEquals(actualOuterNotGreedyColor, expectedOuterNotGreedyColorAfter, "\nWrong outer color.\n");
-        Assert.assertEquals(actualOuterDroppableNotGreedyText, expectedDroppedText2, "\nWrong dropped text.\n");
+        softAssert.assertEquals(actualInnerNotGreedyColor, expectedInnerNotGreedyColorAfter, "\nWrong inner color.\n");
+        softAssert.assertEquals(actualOuterNotGreedyColor, expectedOuterNotGreedyColorAfter, "\nWrong outer color.\n");
+        softAssert.assertEquals(actualOuterDroppableNotGreedyText, expectedDroppedText2, "\nWrong dropped text.\n");
+
+        softAssert.assertAll();
     }
 
     @Test(enabled = true)
@@ -168,9 +175,11 @@ public class DroppablePageTests extends BaseTest {
         String actualOuterDroppableGreedyColor = droppablePage.getOuterDroppableGreedyColor();
         String actualOuterDroppableNotGreedyText = droppablePage.getOuterDroppableGreedyText();
 
-        Assert.assertEquals(actualInnerGreedyColor, expectedInnerGreedyColor, "\nWrong inner color.\n");
-        Assert.assertEquals(actualOuterDroppableGreedyColor, expectedOuterGreedyColor, "\nWrong outer color.\n");
-        Assert.assertEquals(actualOuterDroppableNotGreedyText, expectedOuterDroppableNotGreedyText, "\nWrong dropped text.\n");
+        softAssert.assertEquals(actualInnerGreedyColor, expectedInnerGreedyColor, "\nWrong inner color.\n");
+        softAssert.assertEquals(actualOuterDroppableGreedyColor, expectedOuterGreedyColor, "\nWrong outer color.\n");
+        softAssert.assertEquals(actualOuterDroppableNotGreedyText, expectedOuterDroppableNotGreedyText, "\nWrong dropped text.\n");
+
+        softAssert.assertAll();
     }
 
     @Test(enabled = true)
@@ -187,9 +196,11 @@ public class DroppablePageTests extends BaseTest {
         String actualOuterDroppableGreedyColor = droppablePage.getOuterDroppableGreedyColor();
         String actualOuterDroppableNotGreedyText = droppablePage.getOuterDroppableGreedyText();
 
-        Assert.assertEquals(actualInnerGreedyColor, expectedInnerGreedyColor, "\nWrong inner color.\n");
-        Assert.assertEquals(actualOuterDroppableGreedyColor, expectedOuterGreedyColor, "\nWrong outer color.\n");
-        Assert.assertEquals(actualOuterDroppableNotGreedyText, expectedOuterDroppableNotGreedyText, "\nWrong dropped text.\n");
+        softAssert.assertEquals(actualInnerGreedyColor, expectedInnerGreedyColor, "\nWrong inner color.\n");
+        softAssert.assertEquals(actualOuterDroppableGreedyColor, expectedOuterGreedyColor, "\nWrong outer color.\n");
+        softAssert.assertEquals(actualOuterDroppableNotGreedyText, expectedOuterDroppableNotGreedyText, "\nWrong dropped text.\n");
+
+        softAssert.assertAll();
     }
 
     @Test(enabled = true)
@@ -200,17 +211,19 @@ public class DroppablePageTests extends BaseTest {
 
         Point initialLocation = droppablePage.getInitLocation();
         String actualDroppedHereText = droppablePage.getInitText();
-        Assert.assertEquals(actualDroppedHereText, expectedDroppedHereText, "\nWrong inner color.\n");
+        softAssert.assertEquals(actualDroppedHereText, expectedDroppedHereText, "\nWrong inner color.\n");
 
         droppablePage.dragAndDropWillRevert();
 
         expectedDroppedHereText = "Dropped!";
         actualDroppedHereText = droppablePage.getInitText();
-        Assert.assertEquals(actualDroppedHereText, expectedDroppedHereText, "\nDropped text missing.\n");
+        softAssert.assertEquals(actualDroppedHereText, expectedDroppedHereText, "\nDropped text missing.\n");
 
         Point afterLocation = droppablePage.getEndLocation(initialLocation.x, initialLocation.y);
 
-        Assert.assertEquals(initialLocation, afterLocation, "\nWrong position.\n");
+        softAssert.assertEquals(initialLocation, afterLocation, "\nWrong position.\n");
+
+        softAssert.assertAll();
     }
 
     @Test(enabled = true)
@@ -221,16 +234,18 @@ public class DroppablePageTests extends BaseTest {
 
         Point initialLocation = droppablePage.getInitLocation();
         String actualDroppedHereText = droppablePage.getInitText();
-        Assert.assertEquals(actualDroppedHereText, expectedDroppedHereText, "\nWrong inner color.\n");
+        softAssert.assertEquals(actualDroppedHereText, expectedDroppedHereText, "\nWrong inner color.\n");
 
         droppablePage.dragAndDropWillNotRevert();
 
         expectedDroppedHereText = "Dropped!";
         actualDroppedHereText = droppablePage.getInitText();
-        Assert.assertEquals(actualDroppedHereText, expectedDroppedHereText, "\nDropped text missing.\n");
+        softAssert.assertEquals(actualDroppedHereText, expectedDroppedHereText, "\nDropped text missing.\n");
 
         Point afterLocation = droppablePage.getAfterLocationNot();
 
-        Assert.assertNotEquals(initialLocation, afterLocation, "\nWrong position.\n");
+        softAssert.assertNotEquals(initialLocation, afterLocation, "\nWrong position.\n");
+
+        softAssert.assertAll();
     }
 }

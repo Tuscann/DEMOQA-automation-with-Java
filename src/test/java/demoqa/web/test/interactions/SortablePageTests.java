@@ -49,24 +49,26 @@ public class SortablePageTests extends BaseTest {
         String actualGridEight = sortablePage.getGridEight();
         String actualGridNine = sortablePage.getGridNine();
 
-        Assert.assertEquals(actualPageTitle, pageTitle, "\nWrong page title.\n");
-        Assert.assertEquals(actualListTab, listTab, "\nWrong page tab.\n");
-        Assert.assertEquals(actualListOne, listOne, "Wrong page one");
-        Assert.assertEquals(actualListTwo, listTwo, "Wrong page two");
-        Assert.assertEquals(actualListThree, listThree, "Wrong page three");
-        Assert.assertEquals(actualListFour, listFour, "Wrong page four");
-        Assert.assertEquals(actualListFive, listFive, "Wrong page five");
-        Assert.assertEquals(actualListSix, listSix, "Wrong page six");
-        Assert.assertEquals(actualGridTab, gridTab, "Wrong page tab");
-        Assert.assertEquals(actualGridOne, gridOne, "Wrong page one");
-        Assert.assertEquals(actualGridTwo, gridTwo, "Wrong page two");
-        Assert.assertEquals(actualGridThree, gridThree, "Wrong page three");
-        Assert.assertEquals(actualGridFour, gridFour, "Wrong page four");
-        Assert.assertEquals(actualGridFive, gridFive, "Wrong page five");
-        Assert.assertEquals(actualGridSix, gridSix, "Wrong page six");
-        Assert.assertEquals(actualGridSeven, gridSeven, "\nWrong page seven.\n");
-        Assert.assertEquals(actualGridEight, gridEight, "\nWrong page eight.\n");
-        Assert.assertEquals(actualGridNine, gridNine, "\nWrong page nine.\n");
+        softAssert.assertEquals(actualPageTitle, pageTitle, "\nWrong page title.\n");
+        softAssert.assertEquals(actualListTab, listTab, "\nWrong page tab.\n");
+        softAssert.assertEquals(actualListOne, listOne, "Wrong page one");
+        softAssert.assertEquals(actualListTwo, listTwo, "Wrong page two");
+        softAssert.assertEquals(actualListThree, listThree, "Wrong page three");
+        softAssert.assertEquals(actualListFour, listFour, "Wrong page four");
+        softAssert.assertEquals(actualListFive, listFive, "Wrong page five");
+        softAssert.assertEquals(actualListSix, listSix, "Wrong page six");
+        softAssert.assertEquals(actualGridTab, gridTab, "Wrong page tab");
+        softAssert.assertEquals(actualGridOne, gridOne, "Wrong page one");
+        softAssert.assertEquals(actualGridTwo, gridTwo, "Wrong page two");
+        softAssert.assertEquals(actualGridThree, gridThree, "Wrong page three");
+        softAssert.assertEquals(actualGridFour, gridFour, "Wrong page four");
+        softAssert.assertEquals(actualGridFive, gridFive, "Wrong page five");
+        softAssert.assertEquals(actualGridSix, gridSix, "Wrong page six");
+        softAssert.assertEquals(actualGridSeven, gridSeven, "\nWrong page seven.\n");
+        softAssert.assertEquals(actualGridEight, gridEight, "\nWrong page eight.\n");
+        softAssert.assertEquals(actualGridNine, gridNine, "\nWrong page nine.\n");
+
+        softAssert.assertAll();
     }
 
     @DataProvider(name = "resizeData")

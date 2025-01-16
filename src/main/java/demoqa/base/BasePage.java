@@ -23,6 +23,12 @@ public class BasePage {
         return driver.findElement(locator);
     }
 
+
+    protected void set(WebElement locator, String text) {
+        locator.clear();
+        locator.sendKeys(text);
+    }
+
     protected void set(By locator, String text) {
         find(locator).clear();
         find(locator).sendKeys(text);

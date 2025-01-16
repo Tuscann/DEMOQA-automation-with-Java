@@ -23,4 +23,9 @@ public class JavaScriptUtility extends Utility {
         JavascriptExecutor executor = (JavascriptExecutor) driver;
         executor.executeScript("arguments[0].click();", element);
     }
+
+    public static void clickJS(WebElement webElement) {
+        JavascriptExecutor executor = (JavascriptExecutor) driver;
+        executor.executeScript("arguments[0].click();", webElement);
+    }
 }

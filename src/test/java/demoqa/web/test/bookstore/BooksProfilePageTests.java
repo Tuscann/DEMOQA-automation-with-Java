@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 
 public class BooksProfilePageTests extends BaseTest {
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Verify message text")
     public void VerifyMessageText() {
         navigateToUrl("profile");
 
@@ -17,7 +17,7 @@ public class BooksProfilePageTests extends BaseTest {
         Assert.assertEquals(actualMessage, expectedErrorMessage, "\nWrong error message.\n");
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Verify login link")
     public void VerifyLoginLink() {
         navigateToUrl("profile");
 
@@ -29,7 +29,7 @@ public class BooksProfilePageTests extends BaseTest {
         Assert.assertEquals(actualUrl, expectedLoginUrl, "\nWrong url.\n");
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Verify register link")
     public void VerifyRegisterLink() {
         navigateToUrl("profile");
 

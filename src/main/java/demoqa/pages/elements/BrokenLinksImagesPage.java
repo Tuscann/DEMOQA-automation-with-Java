@@ -1,19 +1,27 @@
 package demoqa.pages.elements;
 
 import demoqa.base.BasePage;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class BrokenLinksImagesPage extends BasePage {
 
-    private final By headerText = By.xpath("//h1[@class='text-center'][contains(.,'Broken Links - Images')] ");
-    private final By validImageText = By.xpath("//p[contains(.,'Valid image')]");
-    private final By brokenImageText = By.xpath("//p[contains(.,'Broken image')]");
-    private final By validLinkText = By.xpath("//p[contains(.,'Valid Link')]");
-    private final By brokenLinkText = By.xpath("//p[contains(.,'Broken Link')]");
-    private final By clickHereValidLinkText = By.xpath("//a[contains(.,'Click Here for Valid Link')]");
-    private final By clickHereBrokenLinkText = By.xpath("//a[contains(.,'Click Here for Broken Link')]");
+    @FindBy(xpath = "//h1[@class='text-center'][contains(.,'Broken Links - Images')]")
+    WebElement headerText;
+    @FindBy(xpath = "//p[contains(.,'Valid image')]")
+    WebElement validImageText;
+    @FindBy(xpath = "//p[contains(.,'Broken image')]")
+    WebElement brokenImageText;
+    @FindBy(xpath = "//p[contains(.,'Valid Link')]")
+    WebElement validLinkText;
+    @FindBy(xpath = "//p[contains(.,'Broken Link')]")
+    WebElement brokenLinkText;
+    @FindBy(xpath = "//a[contains(.,'Click Here for Valid Link')]")
+    WebElement clickHereValidLinkText;
+    @FindBy(xpath = "//a[contains(.,'Click Here for Broken Link')]")
+    WebElement clickHereBrokenLinkText;
 
     public BrokenLinksImagesPage(WebDriver driver) {
         super(driver);
@@ -21,31 +29,31 @@ public class BrokenLinksImagesPage extends BasePage {
     }
 
     public String getHeaderText() {
-        return find(headerText).getText();
+        return headerText.getText();
     }
 
     public String getValidImageText() {
-        return find(validImageText).getText();
+        return validImageText.getText();
     }
 
     public String getBrokenImageText() {
-        return find(brokenImageText).getText();
+        return brokenImageText.getText();
     }
 
     public String getValidLinkText() {
-        return find(validLinkText).getText();
+        return validLinkText.getText();
     }
 
     public String getBrokenLinkText() {
-        return find(brokenLinkText).getText();
+        return brokenLinkText.getText();
     }
 
     public String getClickHereValidLinkText() {
-        return find(clickHereValidLinkText).getText();
+        return clickHereValidLinkText.getText();
     }
 
     public String getClickHereBrokenLinkText() {
-        return find(clickHereBrokenLinkText).getText();
+        return clickHereBrokenLinkText.getText();
     }
 
     public String getCurrentUrl() {
@@ -53,10 +61,10 @@ public class BrokenLinksImagesPage extends BasePage {
     }
 
     public void ClickOnClickHereValidLink() {
-        click(clickHereValidLinkText);
+        clickHereValidLinkText.click();
     }
 
     public void ClickOnClickHereBrokenLink() {
-        click(clickHereBrokenLinkText);
+        clickHereBrokenLinkText.click();
     }
 }

@@ -4,6 +4,7 @@ import demoqa.base.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -15,25 +16,35 @@ import java.util.List;
 import static utilities.JavaScriptUtility.scrollToElementJS;
 
 public class BooksPage extends BasePage {
-    private final By loginLink = By.xpath("//span[@class='text'][contains(.,'Login')]");
-    private final By bookStoreLink = By.xpath("//span[@class='text'][contains(.,'Book Store')]");
-    private final By profileLink = By.xpath("//span[@class='text'][contains(.,'Profile')]");
-    private final By BookStoreAPILink = By.xpath("//span[contains(.,'Book Store API')]");
-    private final By searchBox = By.id("searchBox");
-    private final By searchIcon = By.id("basic-addon2");
-    private final By loginButton = By.id("login");
-    private final By topRowTable = By.className("rt-tr");
-    private final By allRows = By.className("rt-tr-group");
-    private final By rowPerPage = By.xpath("//select");
     private final By nextButton = By.xpath("//button[contains(.,'Next')]");
     private final By previousButton = By.xpath("//button[contains(.,'Previous')]");
     private final By noRowsFound = By.className("rt-noData");
     private final By bookStoreApplication = By.xpath("//div[@class='header-text'][contains(.,'Book Store Application')]");
     private final By collapseDiv = By.xpath("//div[contains(@class,'element-list collapse')]");
-
     private final By title = By.xpath("(//div[contains(@class,'rt-resizable-header-content')])[2]");
     private final By author = By.xpath("(//div[contains(@class,'rt-resizable-header-content')])[3]");
-    private final By publisher = By.xpath("(//div[contains(@class,'rt-resizable-header-content')])[4]");
+    @FindBy(xpath = "//span[@class='text'][contains(.,'Login')]")
+    WebElement loginLink;
+    @FindBy(xpath = "//span[@class='text'][contains(.,'Book Store')]")
+    WebElement bookStoreLink;
+    @FindBy(xpath = "//span[@class='text'][contains(.,'Profile')]")
+    WebElement profileLink;
+    @FindBy(xpath = "//span[contains(.,'Book Store API')]")
+    WebElement BookStoreAPILink;
+    @FindBy(id = "searchBox")
+    WebElement searchBox;
+    @FindBy(id = "basic-addon2")
+    WebElement searchIcon;
+    @FindBy(id = "login")
+    WebElement loginButton;
+    @FindBy(className = "rt-tr")
+    WebElement topRowTable;
+    @FindBy(className = "rt-tr-group")
+    List<WebElement> allRows;
+    @FindBy(xpath = "//select")
+    WebElement rowPerPage;
+    @FindBy(xpath = "(//div[contains(@class,'rt-resizable-header-content')])[4]")
+    WebElement publisher;
 
     public BooksPage(WebDriver driver) {
         super(driver);
@@ -49,7 +60,7 @@ public class BooksPage extends BasePage {
     }
 
     public void clickPublisher() {
-        click(publisher);
+        publisher.click();
     }
 
     public void clickNextButton() {
@@ -71,22 +82,21 @@ public class BooksPage extends BasePage {
     }
 
     public void chooseBooksPerPage(String booksPerPage) {
-        WebElement dropdownElement = driver.findElement(rowPerPage);
-        Select dropdown = new Select(dropdownElement);
+        Select dropdown = new Select(rowPerPage);
         dropdown.selectByVisibleText(booksPerPage);
     }
 
     public String getTopRowTable() {
-        return find(topRowTable).getText();
+        return topRowTable.getText();
     }
 
     public void clickLoginLink() {
         scrollToElementJS(loginLink);
-        click(loginLink);
+        loginLink.click();
     }
 
     public void clickLoginButton() {
-        click(loginButton);
+        loginButton.click();
     }
 
     public void clickBookStoreApplicationLink() {
@@ -95,25 +105,22 @@ public class BooksPage extends BasePage {
     }
 
     public void clickProfileLink() {
-        click(profileLink);
+        profileLink.click();
     }
 
     public void clickBookStoreAPILink() {
-        click(BookStoreAPILink);
+        BookStoreAPILink.click();
     }
 
 
     public int getCountOfAllRows() {
-        List<WebElement> elements = driver.findElements(allRows);
 
-        return elements.size();
+        return allRows.size();
     }
 
     public int getCountFoundBooks() {
-        List<WebElement> elements = driver.findElements(allRows);
-
         int count = 0;
-        for (WebElement element : elements) {
+        for (WebElement element : allRows) {
             var x = element.getText();
             if (!element.getText().equals("    ")) {
                 count++;
@@ -124,21 +131,18 @@ public class BooksPage extends BasePage {
     }
 
     public String getFoundBooks() {
-        List<WebElement> elements = driver.findElements(allRows);
-
         StringBuilder all = new StringBuilder();
-        for (WebElement element : elements) {
+        for (WebElement element : allRows) {
             String x = element.getText();
             if (!element.getText().equals("    ")) {
                 all.append(x).append("\n");
             }
         }
-
         return all.toString();
     }
 
     public String getAllFoundBooks() {
-        return find(allRows).getText();
+        return allRows.getFirst().getText();
     }
 
     public void searchBooksWithWord(String searchedBook) {
@@ -151,7 +155,7 @@ public class BooksPage extends BasePage {
 
     public boolean verifyLoginIsNotVisible() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(6));
-        wait.until(ExpectedConditions.invisibilityOf(find(profileLink)));
+        wait.until(ExpectedConditions.invisibilityOf(profileLink));
 
         String classAttribute = find(collapseDiv).getDomAttribute("class");
 
@@ -160,10 +164,9 @@ public class BooksPage extends BasePage {
 
     public boolean verifyLoginIsVisible() {
         return find(bookStoreApplication).isDisplayed();
-
     }
 
     public void clickBookStoreLink() {
-        click(bookStoreLink);
+        bookStoreLink.click();
     }
 }

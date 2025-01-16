@@ -30,15 +30,17 @@ public class BookLoginPageTests extends BaseTest {
         String actualLoginButtonText = booksLoginPage.getLoginButtonText();
         String actualNewUserButtonText = booksLoginPage.getNewUserButtonText();
 
-        Assert.assertEquals(actualLoginHeaderText, loginHeaderText, "\nWrong login header text.\n");
-        Assert.assertEquals(actualWelcomeText, welcomeText, "\nWrong welcome text.\n");
-        Assert.assertEquals(actualLoginInBookStoreText, loginInBookStoreText, "\nWrong login in book store.\n");
-        Assert.assertEquals(actualUsername, username, "\nWrong username.\n");
-        Assert.assertEquals(actualUsernamePlaceholder, usernamePlaceholder, "\nWrong username placeholder.\n");
-        Assert.assertEquals(actualPassword, password, "\nWrong password.\n");
-        Assert.assertEquals(actualPasswordPlaceholder, passwordPlaceholder, "\nWrong password placeholder.\n");
-        Assert.assertEquals(actualLoginButtonText, loginButtonText, "\nWrong login button text.\n");
-        Assert.assertEquals(actualNewUserButtonText, newUserButtonText, "\nWrong new user button text.\n");
+        softAssert.assertEquals(actualLoginHeaderText, loginHeaderText, "\nWrong login header text.\n");
+        softAssert.assertEquals(actualWelcomeText, welcomeText, "\nWrong welcome text.\n");
+        softAssert.assertEquals(actualLoginInBookStoreText, loginInBookStoreText, "\nWrong login in book store.\n");
+        softAssert.assertEquals(actualUsername, username, "\nWrong username.\n");
+        softAssert.assertEquals(actualUsernamePlaceholder, usernamePlaceholder, "\nWrong username placeholder.\n");
+        softAssert.assertEquals(actualPassword, password, "\nWrong password.\n");
+        softAssert.assertEquals(actualPasswordPlaceholder, passwordPlaceholder, "\nWrong password placeholder.\n");
+        softAssert.assertEquals(actualLoginButtonText, loginButtonText, "\nWrong login button text.\n");
+        softAssert.assertEquals(actualNewUserButtonText, newUserButtonText, "\nWrong new user button text.\n");
+
+        softAssert.assertAll();
     }
 
     @Test(enabled = true)
@@ -125,13 +127,15 @@ public class BookLoginPageTests extends BaseTest {
         booksLoginPage.clickLoginButton();
 
         String actualProfile = booksLoginPage.getProfile();
-        Assert.assertEquals(actualProfile, expectedUsername, "\nNot same username.\n");
+        softAssert.assertEquals(actualProfile, expectedUsername, "\nNot same username.\n");
 
         booksLoginPage.clickLogoutButton();
 
         String expectedLoginText = "Login in Book Store";
         String actualLoginText = booksLoginPage.getLoginText();
-        Assert.assertEquals(actualLoginText, expectedLoginText, "\nNot same login text.\n");
+        softAssert.assertEquals(actualLoginText, expectedLoginText, "\nNot same login text.\n");
+
+        softAssert.assertAll();
     }
 
     @Test(enabled = true)

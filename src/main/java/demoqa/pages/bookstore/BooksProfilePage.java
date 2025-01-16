@@ -3,6 +3,8 @@ package demoqa.pages.bookstore;
 import demoqa.base.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -10,15 +12,23 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 public class BooksProfilePage extends BasePage {
-    private final By username = By.id("userName-value");
-    private final By notLoggingWrapper = By.id("notLoggin-label");
-    private final By loginLink = By.xpath("//a[@href='/login'][contains(.,'login')]");
-    private final By loginLink2 = By.xpath("//span[@class='text'][contains(.,'Login')]");
-    private final By registerLink = By.xpath("//a[@href='/register']");
-    private final By goToBookStoreButton = By.id("gotoStore");
-    private final By profile = By.id("userName-value");
     private final By deleteAccountButton = By.xpath("(//button[@id='submit'])[2]");
     private final By deleteAllBooksButton = By.xpath("(//button[@type='button'][contains(.,'Delete All Books')])[1]");
+
+    @FindBy(id = "userName-value")
+    WebElement username;
+    @FindBy(id = "notLoggin-label")
+    WebElement notLoggingWrapper;
+    @FindBy(xpath = "//a[@href='/login'][contains(.,'login')]")
+    WebElement loginLink;
+    @FindBy(id = "//span[@class='text'][contains(.,'Login')]")
+    WebElement loginLink2;
+    @FindBy(xpath = "//a[@href='/register']")
+    WebElement registerLink;
+    @FindBy(id = "gotoStore")
+    WebElement goToBookStoreButton;
+    @FindBy(id = "userName-value")
+    WebElement profile;
 
     public BooksProfilePage(WebDriver driver) {
         super(driver);
@@ -26,7 +36,7 @@ public class BooksProfilePage extends BasePage {
     }
 
     public String getUsername() {
-        return find(username).getText();
+        return username.getText();
     }
 
     public String getLoginLink() {
@@ -34,31 +44,29 @@ public class BooksProfilePage extends BasePage {
     }
 
     public String getLoggingWrapper() {
-        return find(notLoggingWrapper).getText();
+        return notLoggingWrapper.getText();
     }
 
     public void clickLoginLink() {
-        click(loginLink);
+        loginLink.click();
     }
 
     public void clickLeftLoginLink2() {
-        click(loginLink2);
+        loginLink2.click();
     }
 
     public void clickRegisterLink() {
-        click(registerLink);
+        registerLink.click();
     }
 
     public void clickUsername() {
-        click(username);
+        username.click();
     }
-
 
     public void clickGoToBookStoreButton() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(12));
         wait.until(ExpectedConditions.urlToBe("https://demoqa.com/profile"));
         wait.until(ExpectedConditions.elementToBeClickable(profile));
-        click(goToBookStoreButton);
+        goToBookStoreButton.click();
     }
-
 }

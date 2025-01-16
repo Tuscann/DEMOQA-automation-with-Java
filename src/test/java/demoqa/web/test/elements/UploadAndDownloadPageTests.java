@@ -18,9 +18,11 @@ public class UploadAndDownloadPageTests extends BaseTest {
         String downloadButtonText = uploadAndDownloadPage.getDownloadButtonText();
         String selectAFileText = uploadAndDownloadPage.getSelectAFileText();
 
-        Assert.assertEquals(uploadAndDownloadText, expectedUploadAndDownloadText, "\nUpload and Download text mismatch.\n");
-        Assert.assertEquals(downloadButtonText, expectedDownloadButtonText, "\nDownload button mismatch.\n");
-        Assert.assertEquals(selectAFileText, expectedSelectAFileText, "\nSelect a file mismatch.\n");
+        softAssert.assertEquals(uploadAndDownloadText, expectedUploadAndDownloadText, "\nUpload and Download text mismatch.\n");
+        softAssert.assertEquals(downloadButtonText, expectedDownloadButtonText, "\nDownload button mismatch.\n");
+        softAssert.assertEquals(selectAFileText, expectedSelectAFileText, "\nSelect a file mismatch.\n");
+
+        softAssert.assertAll();
     }
 
     @Test(enabled = true)

@@ -62,8 +62,10 @@ public class RadioButtonPageTests extends BaseTest {
         String actualAnswer = radioButtonPage.getResultMessage();
         String expectedImpressiveAnswer = "You have selected " + expectedAnswer;
 
-        Assert.assertFalse(radioButtonPage.isResultMessageDisplayed());
-        Assert.assertEquals(actualAnswer, expectedImpressiveAnswer, "\nNot chosen Impressive answer.\n");
+        softAssert.assertFalse(radioButtonPage.isResultMessageDisplayed());
+        softAssert.assertEquals(actualAnswer, expectedImpressiveAnswer, "\nNot chosen Impressive answer.\n");
+
+        softAssert.assertAll();
     }
 
     @Test(enabled = true)
@@ -76,12 +78,14 @@ public class RadioButtonPageTests extends BaseTest {
         String expectedGreenColor = "rgba(40, 167, 69, 1)";
         String actualColor = radioButtonPage.isColorGreen();
 
-        Assert.assertEquals(actualColor, expectedGreenColor, "\nNot green color for Impressive answer.\n");
+        softAssert.assertEquals(actualColor, expectedGreenColor, "\nNot green color for Impressive answer.\n");
 
         expectedAnswer = "Yes";
         radioButtonPage.clickAnswer(expectedAnswer);
         actualColor = radioButtonPage.isColorGreen();
 
-        Assert.assertEquals(actualColor, expectedGreenColor, "\nNot green color For Yes answer.\n");
+        softAssert.assertEquals(actualColor, expectedGreenColor, "\nNot green color For Yes answer.\n");
+
+        softAssert.assertAll();
     }
 }

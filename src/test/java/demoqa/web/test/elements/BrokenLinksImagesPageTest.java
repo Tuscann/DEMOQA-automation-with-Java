@@ -5,7 +5,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class BrokenLinksImagesPageTest extends BaseTest {
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Verify all text on page")
     public void VerifyAllTextOnPage() {
         navigateToUrl("broken");
 
@@ -25,16 +25,18 @@ public class BrokenLinksImagesPageTest extends BaseTest {
         String actualBrokenLinkText = brokenLinksImagesPage.getBrokenLinkText();
         String actualClickHereBrokenLinkText = brokenLinksImagesPage.getClickHereBrokenLinkText();
 
-        Assert.assertEquals(actualHeaderText, expectedHeader, "\nWrong header text.\n");
-        Assert.assertEquals(actualClickHereValidLinkText, expectedClickHereValidLinkText, "\nWrong click link text.\n");
-        Assert.assertEquals(actualBrokenImageText, expectedBrokenImageText, "\nWrong image text.\n");
-        Assert.assertEquals(actualValidLinkText, expectedValidLinkText, "\nWrong link text.\n");
-        Assert.assertEquals(actualValidImageText, expectedValidImageText, "\nWrong valid image text.\n");
-        Assert.assertEquals(actualBrokenLinkText, expectedBrokenLinkText, "\nWrong broken link text.\n");
-        Assert.assertEquals(actualClickHereBrokenLinkText, expectedClickHereBrokenLinkText, "\nWrong click link text.\n");
+        softAssert.assertEquals(actualHeaderText, expectedHeader, "\nWrong header text.\n");
+        softAssert.assertEquals(actualClickHereValidLinkText, expectedClickHereValidLinkText, "\nWrong click link text.\n");
+        softAssert.assertEquals(actualBrokenImageText, expectedBrokenImageText, "\nWrong image text.\n");
+        softAssert.assertEquals(actualValidLinkText, expectedValidLinkText, "\nWrong link text.\n");
+        softAssert.assertEquals(actualValidImageText, expectedValidImageText, "\nWrong valid image text.\n");
+        softAssert.assertEquals(actualBrokenLinkText, expectedBrokenLinkText, "\nWrong broken link text.\n");
+        softAssert.assertEquals(actualClickHereBrokenLinkText, expectedClickHereBrokenLinkText, "\nWrong click link text.\n");
+
+        softAssert.assertAll();
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Click on click here for valid link")
     public void ClickOnClickHereForValidLink() {
         navigateToUrl("broken");
 
@@ -46,7 +48,7 @@ public class BrokenLinksImagesPageTest extends BaseTest {
         Assert.assertEquals(currentUrl, expectedUrl, "\nWrong url is shown.\n");
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Click on click here for broken link")
     public void ClickOnClickHereForBrokenLink() {
         navigateToUrl("broken");
 

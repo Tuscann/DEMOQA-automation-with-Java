@@ -35,17 +35,19 @@ public class LinksPageTests extends BaseTest {
         String actualForbiddenText = linksPage.getForbiddenRequestLinkText();
         String actualNotFoundText = linksPage.getNotFoundRequestLinkText();
 
-        Assert.assertEquals(actualLinksHeader, expectedLinksHeader, "\nDifferent Header text.\n");
-        Assert.assertEquals(actualFollowingLinksWillOpenNewTab, expectedFollowingLinksWillOpenNewTab, "\nDifferent new tab text.\n");
-        Assert.assertEquals(actualHomeText, expectedHomeText, "\nDifferent home text.\n");
-        Assert.assertEquals(actualFollowingLinksWillSendAnApiCall, expectedFollowingLinksWillSendAnApiCall, "\nDifferent api call text.\n");
-        Assert.assertEquals(actualCreatedText, expectedCreatedText, "\nDifferent created text.\n");
-        Assert.assertEquals(actualNoContentText, expectedNoContentText, "\nDifferent no content text.\n");
-        Assert.assertEquals(actualMovedText, expectedMovedText, "\nDifferent moved text\n");
-        Assert.assertEquals(actualBadRequestText, expectedBadRequestText, "\nDifferent bad request text.\n");
-        Assert.assertEquals(actualUnauthorizedText, expectedUnauthorizedText, "\nDifferent Unauthorized text.\n");
-        Assert.assertEquals(actualForbiddenText, expectedForbiddenText, "\nDifferent Forbidden text.\n");
-        Assert.assertEquals(actualNotFoundText, expectedNotFoundText, "\nDifferent NotFound text.\n");
+        softAssert.assertEquals(actualLinksHeader, expectedLinksHeader, "\nDifferent Header text.\n");
+        softAssert.assertEquals(actualFollowingLinksWillOpenNewTab, expectedFollowingLinksWillOpenNewTab, "\nDifferent new tab text.\n");
+        softAssert.assertEquals(actualHomeText, expectedHomeText, "\nDifferent home text.\n");
+        softAssert.assertEquals(actualFollowingLinksWillSendAnApiCall, expectedFollowingLinksWillSendAnApiCall, "\nDifferent api call text.\n");
+        softAssert.assertEquals(actualCreatedText, expectedCreatedText, "\nDifferent created text.\n");
+        softAssert.assertEquals(actualNoContentText, expectedNoContentText, "\nDifferent no content text.\n");
+        softAssert.assertEquals(actualMovedText, expectedMovedText, "\nDifferent moved text\n");
+        softAssert.assertEquals(actualBadRequestText, expectedBadRequestText, "\nDifferent bad request text.\n");
+        softAssert.assertEquals(actualUnauthorizedText, expectedUnauthorizedText, "\nDifferent Unauthorized text.\n");
+        softAssert.assertEquals(actualForbiddenText, expectedForbiddenText, "\nDifferent Forbidden text.\n");
+        softAssert.assertEquals(actualNotFoundText, expectedNotFoundText, "\nDifferent NotFound text.\n");
+
+        softAssert.assertAll();
     }
 
     @Test(enabled = true)

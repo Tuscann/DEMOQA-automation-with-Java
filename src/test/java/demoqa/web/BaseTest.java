@@ -77,8 +77,8 @@ public class BaseTest {
     @BeforeMethod
     public void setUp() {
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless=new");
-        options.addArguments("--disable-gpu");
+//        options.addArguments("--headless=new");
+//        options.addArguments("--disable-gpu");
 //        options.addArguments("--window-size=1920,1080"); // Set the window size
 
         driver = new ChromeDriver(options);
@@ -127,7 +127,7 @@ public class BaseTest {
         datePickerPage = new DatePickerPage(driver);
         sliderPage = new SliderPage(driver);
         progressBarPage = new ProgressBarPage(driver);
-//
+
 //        basePage.setDriver(driver);
         setUtilityDriver();
     }

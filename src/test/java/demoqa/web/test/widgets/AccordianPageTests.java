@@ -23,6 +23,8 @@ public class AccordianPageTests extends BaseTest {
         Assert.assertEquals(actualSectionOneHeadingText, expectedOneHeadingText, "\nWrong one heading text.\n");
         Assert.assertEquals(actualSectionTwoHeadingText, expectedTwoHeadingText, "\nWrong two heading text.\n");
         Assert.assertEquals(actualSectionThreeHeadingText, expectedThreeHeadingText, "\nWrong three heading text.\n");
+
+
     }
 
     @Test(enabled = true)

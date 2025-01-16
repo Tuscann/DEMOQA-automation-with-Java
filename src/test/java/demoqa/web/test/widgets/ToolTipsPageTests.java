@@ -1,12 +1,11 @@
 package demoqa.web.test.widgets;
 
 import demoqa.web.BaseTest;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class ToolTipsPageTests extends BaseTest {
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Verify all text on page")
     public void VerifyAllTextOnPage() {
         navigateToUrl("tool-tips");
 
@@ -22,31 +21,35 @@ public class ToolTipsPageTests extends BaseTest {
         String actualHoverMeToSeeButtonPlaceholder = toolTipsPage.getHoverMeToSeeButtonPlaceholder();
         String actualMainText = toolTipsPage.getMainText();
 
-        Assert.assertEquals(actualHeader, header, "\nMissing header.\n");
-        Assert.assertEquals(actualPracticeToolTipsText, practiceToolTips, "\nMissing practice ToolTips.\n");
-        Assert.assertEquals(actualHoverMeToSeeButtonText, hoverMeButtonButton, "\nMissing hover me to see.\n");
-        Assert.assertEquals(actualHoverMeToSeeButtonPlaceholder, textFieldPlaceholder, "\nHover placeholder.\n");
-        Assert.assertEquals(actualMainText, mainText, "\nMissing main text.\n");
+        softAssert.assertEquals(actualHeader, header, "\nMissing header.\n");
+        softAssert.assertEquals(actualPracticeToolTipsText, practiceToolTips, "\nMissing practice ToolTips.\n");
+        softAssert.assertEquals(actualHoverMeToSeeButtonText, hoverMeButtonButton, "\nMissing hover me to see.\n");
+        softAssert.assertEquals(actualHoverMeToSeeButtonPlaceholder, textFieldPlaceholder, "\nHover placeholder.\n");
+        softAssert.assertEquals(actualMainText, mainText, "\nMissing main text.\n");
+
+        softAssert.assertAll();
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Verify over 4 tooltips")
     public void HoverOver4ToolTips() {
         navigateToUrl("tool-tips");
 
         String actualTooltipText = toolTipsPage.getHoverOverHoverMeToSeeButtonReturnToolTipText();
         String expectedTooltipText = "You hovered over the Button";
-        Assert.assertEquals(actualTooltipText, expectedTooltipText, "\nMissing tooltip.\n");
+        softAssert.assertEquals(actualTooltipText, expectedTooltipText, "\nMissing tooltip.\n");
 
         String actualHoverMeToSeeTextField = toolTipsPage.getHoverOverHoverMeToSeeTextFieldReturnToolTipText();
         expectedTooltipText = "You hovered over the text field";
-        Assert.assertEquals(actualHoverMeToSeeTextField, expectedTooltipText, "\nMissing tooltip text feild.\n");
+        softAssert.assertEquals(actualHoverMeToSeeTextField, expectedTooltipText, "\nMissing tooltip text feild.\n");
 
         String actualContraryTextField = toolTipsPage.getHoverOverContraryReturnToolTipText();
         expectedTooltipText = "You hovered over the Contrary";
-        Assert.assertEquals(actualContraryTextField, expectedTooltipText, "\nMissing tooltip contrary.\n");
+        softAssert.assertEquals(actualContraryTextField, expectedTooltipText, "\nMissing tooltip contrary.\n");
 
         String actualSection = toolTipsPage.getHoverOverSectionText();
         expectedTooltipText = "You hovered over the 1.10.32";
-        Assert.assertEquals(actualSection, expectedTooltipText, "\nMissing tooltip contrary.\n");
+        softAssert.assertEquals(actualSection, expectedTooltipText, "\nMissing tooltip contrary.\n");
+
+        softAssert.assertAll();
     }
 }

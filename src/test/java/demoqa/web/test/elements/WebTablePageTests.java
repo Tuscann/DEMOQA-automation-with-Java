@@ -56,16 +56,18 @@ public class WebTablePageTests extends BaseTest {
         String actualTableData = webTablesPage.getTableData();
         String actualSearchBoxPlaceholder = webTablesPage.getSearchBoxPlaceholder();
 
-        Assert.assertEquals(header, expectedHeader, "\nWrong header value.\n");
-        Assert.assertEquals(buttonAddText, expectedButtonAddText, "\nExpected add button.\n");
-        Assert.assertEquals(actualButtonNextText, buttonNextText, "\nExpected next button.\n");
-        Assert.assertEquals(actualButtonPreviousText, buttonPreviousText, "\nExpected previous button.\n");
-        Assert.assertEquals(actualPageJump, pageJump, "\nPage jump do not match.\n");
-        Assert.assertEquals(actualPageInfo, expectedPageInfo, "\nPage info do not match.\n");
-        Assert.assertEquals(countOfLines, 10, "\nExpected 10 rows.\n");
-        Assert.assertEquals(actualTableHeader, tableHeader, "\nActual table header do not match.\n");
-        Assert.assertEquals(actualTableData, expectedTableHeader, "Actual table data do not match.\n");
-        Assert.assertEquals(actualSearchBoxPlaceholder, searchBoxText, "Actual table data do not match.\n");
+        softAssert.assertEquals(header, expectedHeader, "\nWrong header value.\n");
+        softAssert.assertEquals(buttonAddText, expectedButtonAddText, "\nExpected add button.\n");
+        softAssert.assertEquals(actualButtonNextText, buttonNextText, "\nExpected next button.\n");
+        softAssert.assertEquals(actualButtonPreviousText, buttonPreviousText, "\nExpected previous button.\n");
+        softAssert.assertEquals(actualPageJump, pageJump, "\nPage jump do not match.\n");
+        softAssert.assertEquals(actualPageInfo, expectedPageInfo, "\nPage info do not match.\n");
+        softAssert.assertEquals(countOfLines, 10, "\nExpected 10 rows.\n");
+        softAssert.assertEquals(actualTableHeader, tableHeader, "\nActual table header do not match.\n");
+        softAssert.assertEquals(actualTableData, expectedTableHeader, "Actual table data do not match.\n");
+        softAssert.assertEquals(actualSearchBoxPlaceholder, searchBoxText, "Actual table data do not match.\n");
+
+        softAssert.assertAll();
     }
 
     @Test(enabled = true)
@@ -103,20 +105,22 @@ public class WebTablePageTests extends BaseTest {
         String actualPlaceholderDepartment = webTablesPage.getDepartmentPlaceholder();
         String actualSubmitButtonText = webTablesPage.getSubmitButtonText();
 
-        Assert.assertEquals(actualRegistrationText, expectedRegistrationFormText, "\nWrong registration name text.\n");
-        Assert.assertEquals(actualFirstNameLabel, expectedFirstNameLabel, "\nNot first name label.\n");
-        Assert.assertEquals(actualLastNameLabel, expectedLastNameLabel, "Not second name label.\n");
-        Assert.assertEquals(actualEmailLabel, expectedEmailLabel, "\nNot email label.\n");
-        Assert.assertEquals(actualAgeLabel, expectedAgeLabel, "\nNot age label.\n");
-        Assert.assertEquals(actualSalaryLabel, expectedSalaryLabel, "\nNot salary label.\n");
-        Assert.assertEquals(actualDepartmentLabel, expectedDepartmentLabel, "\nNot department label.\n");
-        Assert.assertEquals(actualPlaceholderFirstName, expectedFirstNamePlaceholder, "\nNot first name label.\n");
-        Assert.assertEquals(actualPlaceholderLastName, expectedPlaceholderLastName, "\nNot second name label.\n");
-        Assert.assertEquals(actualPlaceholderEmail, expectedPlaceholderEmail, "\nNot email label.\n");
-        Assert.assertEquals(actualPlaceholderAge, expectedPlaceholderAge, "\nNot age label.\n");
-        Assert.assertEquals(actualPlaceholderSalary, expectedPlaceholderSalary, "\nNot salary label.\n");
-        Assert.assertEquals(actualPlaceholderDepartment, expectedPlaceholderDepartment, "\nNot department label.\n");
-        Assert.assertEquals(actualSubmitButtonText, expectedSubmitButtonText, "\nNot submit button text.\n");
+        softAssert.assertEquals(actualRegistrationText, expectedRegistrationFormText, "\nWrong registration name text.\n");
+        softAssert.assertEquals(actualFirstNameLabel, expectedFirstNameLabel, "\nNot first name label.\n");
+        softAssert.assertEquals(actualLastNameLabel, expectedLastNameLabel, "Not second name label.\n");
+        softAssert.assertEquals(actualEmailLabel, expectedEmailLabel, "\nNot email label.\n");
+        softAssert.assertEquals(actualAgeLabel, expectedAgeLabel, "\nNot age label.\n");
+        softAssert.assertEquals(actualSalaryLabel, expectedSalaryLabel, "\nNot salary label.\n");
+        softAssert.assertEquals(actualDepartmentLabel, expectedDepartmentLabel, "\nNot department label.\n");
+        softAssert.assertEquals(actualPlaceholderFirstName, expectedFirstNamePlaceholder, "\nNot first name label.\n");
+        softAssert.assertEquals(actualPlaceholderLastName, expectedPlaceholderLastName, "\nNot second name label.\n");
+        softAssert.assertEquals(actualPlaceholderEmail, expectedPlaceholderEmail, "\nNot email label.\n");
+        softAssert.assertEquals(actualPlaceholderAge, expectedPlaceholderAge, "\nNot age label.\n");
+        softAssert.assertEquals(actualPlaceholderSalary, expectedPlaceholderSalary, "\nNot salary label.\n");
+        softAssert.assertEquals(actualPlaceholderDepartment, expectedPlaceholderDepartment, "\nNot department label.\n");
+        softAssert.assertEquals(actualSubmitButtonText, expectedSubmitButtonText, "\nNot submit button text.\n");
+
+        softAssert.assertAll();
     }
 
     @Test(enabled = true)
@@ -191,7 +195,7 @@ public class WebTablePageTests extends BaseTest {
         Assert.assertEquals(actualSalary, expectedSalary, "\n Actual & Expected Salary Do Not Match.\n");
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Update department on first user")
     public void UpdateDepartmentOnFirstUser() {
         navigateToUrl("webtables");
         String oldEmail = "cierra@example.com";
@@ -205,7 +209,7 @@ public class WebTablePageTests extends BaseTest {
         Assert.assertEquals(actualDepartment, expectedDepartment, "\n Actual & Expected Department Do Not Match \n");
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Delete default three rows")
     public void DeleteDefaultThreeRows() {
         navigateToUrl("webtables");
 
@@ -222,7 +226,7 @@ public class WebTablePageTests extends BaseTest {
         Assert.assertEquals(expectedResult, "No rows found", "\nMissing message\n");
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Add new user")
     public void AddNewUser() {
         navigateToUrl("webtables");
 
@@ -251,15 +255,17 @@ public class WebTablePageTests extends BaseTest {
         String actualSalary = webTablesPage.getTableSalary(expectedEmail);
         String actualDepartment = webTablesPage.getTableDepartment(expectedEmail);
 
-        Assert.assertEquals(actualFirstName, expectedFirstName, "\nWrong first name.\n");
-        Assert.assertEquals(actualLastName, expectedLastName, "\nWrong last name.\n");
-        Assert.assertEquals(actualAge, expectedAge, "\nWrong age.\n");
-        Assert.assertEquals(actualEmail, expectedEmail, "\nWrong email.\n");
-        Assert.assertEquals(actualSalary, expectedSalary, "\nWrong salary.\n");
-        Assert.assertEquals(actualDepartment, expectedDepartment, "\nWrong department.\n");
+        softAssert.assertEquals(actualFirstName, expectedFirstName, "\nWrong first name.\n");
+        softAssert.assertEquals(actualLastName, expectedLastName, "\nWrong last name.\n");
+        softAssert.assertEquals(actualAge, expectedAge, "\nWrong age.\n");
+        softAssert.assertEquals(actualEmail, expectedEmail, "\nWrong email.\n");
+        softAssert.assertEquals(actualSalary, expectedSalary, "\nWrong salary.\n");
+        softAssert.assertEquals(actualDepartment, expectedDepartment, "\nWrong department.\n");
+
+        softAssert.assertAll();
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Verify previous and next buttons active")
     public void VerifyPreviousAndNextButtonsActive() {
         navigateToUrl("webtables");
 
@@ -270,7 +276,7 @@ public class WebTablePageTests extends BaseTest {
         String salary = "2500";
         String department = "QA";
 
-        Assert.assertFalse(webTablesPage.checkNextButtonIsActive(), "\nActive Next button.\n");
+        softAssert.assertFalse(webTablesPage.checkNextButtonIsActive(), "\nActive Next button.\n");
 
         String expected5rows = "5 rows";
         webTablesPage.clickRowPerPage(expected5rows);
@@ -287,30 +293,34 @@ public class WebTablePageTests extends BaseTest {
 
         String pageJump = "1";
         String actualPageJump = webTablesPage.getPageJump();
-        Assert.assertEquals(actualPageJump, pageJump, "\nPage jump do not match.\n");
+        softAssert.assertEquals(actualPageJump, pageJump, "\nPage jump do not match.\n");
 
         String pageInfo = "Page of 2";
         String actualPageInfo = webTablesPage.getPageInfo();
-        Assert.assertEquals(actualPageInfo, pageInfo, "\nPage info do not match.\n");
+        softAssert.assertEquals(actualPageInfo, pageInfo, "\nPage info do not match.\n");
 
         Assert.assertTrue(webTablesPage.checkNextButtonIsActive(), "\nNot active Next button.\n");
         webTablesPage.clickNexButton();
-        Assert.assertTrue(webTablesPage.checkPreviousButtonIsActive(), "\nNot active Previous button.\n");
+        softAssert.assertTrue(webTablesPage.checkPreviousButtonIsActive(), "\nNot active Previous button.\n");
 
         pageJump = "2";
         actualPageJump = webTablesPage.getPageJump();
-        Assert.assertEquals(actualPageJump, pageJump, "\nPage jump do not match.\n");
+        softAssert.assertEquals(actualPageJump, pageJump, "\nPage jump do not match.\n");
+
+        softAssert.assertAll();
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Verify previous and next button are not active after load page")
     public void VerifyPreviousAndNextButtonAreNotActiveAfterLoadPage() {
         navigateToUrl("webtables");
 
-        Assert.assertFalse(webTablesPage.checkPreviousButtonIsActive(), "\nNot active Previous button.\n");
-        Assert.assertFalse(webTablesPage.checkNextButtonIsActive(), "\nNot active Next button.\n");
+        softAssert.assertFalse(webTablesPage.checkPreviousButtonIsActive(), "\nNot active Previous button.\n");
+        softAssert.assertFalse(webTablesPage.checkNextButtonIsActive(), "\nNot active Next button.\n");
+
+        softAssert.assertAll();
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Search with no existing category and check results")
     public void SearchWithNoExistingCategoryAndCheckResults() {
         navigateToUrl("webtables");
 
@@ -322,7 +332,7 @@ public class WebTablePageTests extends BaseTest {
         Assert.assertEquals(actualResult, expectedResult, "\nMissing message.\n");
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Search with existing category and check results")
     public void SearchWithExistingCategoryAndCheckResults() {
         navigateToUrl("webtables");
 
@@ -342,15 +352,17 @@ public class WebTablePageTests extends BaseTest {
         String actualSalary = webTablesPage.getTableSalary(expectedEmail);
         String actualDepartment = webTablesPage.getTableDepartment(expectedEmail);
 
-        Assert.assertEquals(actualFirstName, expectedFirstName, "\nWrong first name.\n");
-        Assert.assertEquals(actualLastName, expectedLastName, "\nWrong last name.\n");
-        Assert.assertEquals(actualAge, expectedAge, "\nWrong age.\n");
-        Assert.assertEquals(actualEmail, expectedEmail, "\nWrong email.\n");
-        Assert.assertEquals(actualSalary, expectedSalary, "\nWrong salary.\n");
-        Assert.assertEquals(actualDepartment, searchedWord, "\nWrong department.\n");
+        softAssert.assertEquals(actualFirstName, expectedFirstName, "\nWrong first name.\n");
+        softAssert.assertEquals(actualLastName, expectedLastName, "\nWrong last name.\n");
+        softAssert.assertEquals(actualAge, expectedAge, "\nWrong age.\n");
+        softAssert.assertEquals(actualEmail, expectedEmail, "\nWrong email.\n");
+        softAssert.assertEquals(actualSalary, expectedSalary, "\nWrong salary.\n");
+        softAssert.assertEquals(actualDepartment, searchedWord, "\nWrong department.\n");
+
+        softAssert.assertAll();
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Submit empty Form and verify all red lines")
     public void SubmitEmptyFormAndVerifyAllRedLines() {
         navigateToUrl("webtables");
         String redColor = "1px solid rgb(220, 53, 69)";
@@ -363,7 +375,7 @@ public class WebTablePageTests extends BaseTest {
         Assert.assertTrue(isAllBordersRed);
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Select all rows per page")
     public void SelectAllRowsPerPage() {
         navigateToUrl("webtables");
         String expected5rows = "5 rows";
@@ -375,30 +387,32 @@ public class WebTablePageTests extends BaseTest {
 
         webTablesPage.clickRowPerPage(expected5rows);
         int countOfLines = webTablesPage.getCountOfLines();
-        Assert.assertEquals(countOfLines, 5, "\nExpected 5 rows.\n");
+        softAssert.assertEquals(countOfLines, 5, "\nExpected 5 rows.\n");
 
         webTablesPage.clickRowPerPage(expected10rows);
         countOfLines = webTablesPage.getCountOfLines();
-        Assert.assertEquals(countOfLines, 10, "\nExpected 10 rows.\n");
+        softAssert.assertEquals(countOfLines, 10, "\nExpected 10 rows.\n");
 
         webTablesPage.clickRowPerPage(expected20rows);
         countOfLines = webTablesPage.getCountOfLines();
-        Assert.assertEquals(countOfLines, 20, "\nExpected 20 rows.\n");
+        softAssert.assertEquals(countOfLines, 20, "\nExpected 20 rows.\n");
 
         webTablesPage.clickRowPerPage(expected25rows);
         countOfLines = webTablesPage.getCountOfLines();
-        Assert.assertEquals(countOfLines, 25, "\nExpected 25 rows.\n");
+        softAssert.assertEquals(countOfLines, 25, "\nExpected 25 rows.\n");
 
         webTablesPage.clickRowPerPage(expected50rows);
         countOfLines = webTablesPage.getCountOfLines();
-        Assert.assertEquals(countOfLines, 50, "\nExpected 50 rows.\n");
+        softAssert.assertEquals(countOfLines, 50, "\nExpected 50 rows.\n");
 
         webTablesPage.clickRowPerPage(expected100rows);
         countOfLines = webTablesPage.getCountOfLines();
-        Assert.assertEquals(countOfLines, 100, "\nExpected 100 rows.\n");
+        softAssert.assertEquals(countOfLines, 100, "\nExpected 100 rows.\n");
+
+        softAssert.assertAll();
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Verify colors change from red to green")
     public void VerifyColorsChangeFromRedToGreen() {
         navigateToUrl("webtables");
         webTablesPage.clickAddButton();
@@ -415,35 +429,37 @@ public class WebTablePageTests extends BaseTest {
         String expectedGreenColor = "1px solid rgb(40, 167, 69)";
 
         String actualFirstNameBorderColorBefore = webTablesPage.getFirstNameBorderColor();
-        Assert.assertEquals(actualFirstNameBorderColorBefore, expectedRedColor, "\nWrong color expected red.\n");
+        softAssert.assertEquals(actualFirstNameBorderColorBefore, expectedRedColor, "\nWrong color expected red.\n");
         webTablesPage.setFirstName(expectedFirstName);
-        Assert.assertTrue(webTablesPage.isFirstNameBorderColorGreen(expectedGreenColor));
+        softAssert.assertTrue(webTablesPage.isFirstNameBorderColorGreen(expectedGreenColor));
 
         String actualLastNameBorderColorBefore = webTablesPage.getLastNameBorderColor();
-        Assert.assertEquals(actualLastNameBorderColorBefore, expectedRedColor, "\nWrong color expected red.\n");
+        softAssert.assertEquals(actualLastNameBorderColorBefore, expectedRedColor, "\nWrong color expected red.\n");
         webTablesPage.setLastName(expectedLastName);
-        Assert.assertTrue(webTablesPage.isLastNameBorderColorGreen(expectedGreenColor));
+        softAssert.assertTrue(webTablesPage.isLastNameBorderColorGreen(expectedGreenColor));
 
         String actualEmailColorBefore = webTablesPage.getEmailBorderColor();
-        Assert.assertEquals(actualEmailColorBefore, expectedRedColor, "\nWrong color expected red.\n");
+        softAssert.assertEquals(actualEmailColorBefore, expectedRedColor, "\nWrong color expected red.\n");
         webTablesPage.setEmail(expectedEmail);
-        Assert.assertTrue(webTablesPage.isEmailBorderColorGreen(expectedGreenColor));
+        softAssert.assertTrue(webTablesPage.isEmailBorderColorGreen(expectedGreenColor));
 
         String actualAgeColorBefore = webTablesPage.getAgeBorderColor();
-        Assert.assertEquals(actualAgeColorBefore, expectedRedColor, "\nWrong color expected red.\n");
+        softAssert.assertEquals(actualAgeColorBefore, expectedRedColor, "\nWrong color expected red.\n");
         webTablesPage.setAge(expectedAge);
-        Assert.assertTrue(webTablesPage.isAgeBorderColorGreen(expectedGreenColor));
+        softAssert.assertTrue(webTablesPage.isAgeBorderColorGreen(expectedGreenColor));
 
         String actualSalaryColorBefore = webTablesPage.getSalaryBorderColor();
-        Assert.assertEquals(actualSalaryColorBefore, expectedRedColor, "\nWrong color expected red.\n");
+        softAssert.assertEquals(actualSalaryColorBefore, expectedRedColor, "\nWrong color expected red.\n");
         webTablesPage.setSalary(expectedSalary);
-        Assert.assertTrue(webTablesPage.isSalaryBorderColorGreen(expectedGreenColor));
+        softAssert.assertTrue(webTablesPage.isSalaryBorderColorGreen(expectedGreenColor));
 
         String actualDepartmentColorBefore = webTablesPage.getDepartmentBorderColor();
-        Assert.assertEquals(actualDepartmentColorBefore, expectedRedColor, "\n Wrong color expected red\n");
+        softAssert.assertEquals(actualDepartmentColorBefore, expectedRedColor, "\n Wrong color expected red.\n");
         webTablesPage.setDepartment(expectedDepartment);
-        Assert.assertTrue(webTablesPage.isDepartmentBorderColorGreen(expectedGreenColor));
+        softAssert.assertTrue(webTablesPage.isDepartmentBorderColorGreen(expectedGreenColor));
 
         webTablesPage.clickSubmitButton();
+
+        softAssert.assertAll();
     }
 }

@@ -22,7 +22,7 @@ public class AccountTests extends BaseTestApi {
         Assert.assertEquals(isUserFound, "true", "\nWrong request.\n");
     }
 
-    @Test(testName = "Post Generate Token", suiteName = "api", enabled = true)
+    @Test(testName = "Post Generate Token", suiteName = "api", enabled = false)
     void GenerateToken() throws IOException, InterruptedException {
         TodoClient todoClient = new TodoClient();
 

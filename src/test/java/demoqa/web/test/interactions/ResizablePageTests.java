@@ -18,9 +18,11 @@ public class ResizablePageTests extends BaseTest {
         String actualResizableBoxWithRestrictionText = resizablePage.getResizableBoxWithRestrictionText();
         String actualResizableText = resizablePage.getResizableText();
 
-        Assert.assertEquals(actualPageTitle, pageTitle, "\nWrong page title.\n");
-        Assert.assertEquals(actualResizableBoxWithRestrictionText, resizableBoxWithRestrictionText, "\nWrong resizable text.\n");
-        Assert.assertEquals(actualResizableText, resizableText, "\nWrong resizable text.\n");
+        softAssert.assertEquals(actualPageTitle, pageTitle, "\nWrong page title.\n");
+        softAssert.assertEquals(actualResizableBoxWithRestrictionText, resizableBoxWithRestrictionText, "\nWrong resizable text.\n");
+        softAssert.assertEquals(actualResizableText, resizableText, "\nWrong resizable text.\n");
+
+        softAssert.assertAll();
     }
 
     @DataProvider(name = "resizeData")

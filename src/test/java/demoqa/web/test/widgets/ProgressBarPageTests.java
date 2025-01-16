@@ -40,11 +40,13 @@ public class ProgressBarPageTests extends BaseTest {
         String actualGreenColor = progressBarPage.getColorProgressBar();
         String textOfResetButton = progressBarPage.getResetButtonText();
 
-        Assert.assertEquals(actualText, expectedText, "\nNot 100% value.\n");
-        Assert.assertEquals(actualGreenColor, expectedGreenColor, "\nWrong color value.\n");
-        Assert.assertEquals(actualNotGreenColor, expectedStartColor, "\nWrong color value.\n");
-        Assert.assertEquals(textOfResetButton, resetButtonText, "\nNot reset Button.\n");
-        Assert.assertEquals(actualStartStopButtonText, stopButtonText, "\nNot stop Button.\n");
+        softAssert.assertEquals(actualText, expectedText, "\nNot 100% value.\n");
+        softAssert.assertEquals(actualGreenColor, expectedGreenColor, "\nWrong color value.\n");
+        softAssert.assertEquals(actualNotGreenColor, expectedStartColor, "\nWrong color value.\n");
+        softAssert.assertEquals(textOfResetButton, resetButtonText, "\nNot reset Button.\n");
+        softAssert.assertEquals(actualStartStopButtonText, stopButtonText, "\nNot stop Button.\n");
+
+        softAssert.assertAll();
     }
 
     @Test(enabled = true)
@@ -58,8 +60,10 @@ public class ProgressBarPageTests extends BaseTest {
         progressBarPage.clickResetButton();
         String actualStartButtonText = progressBarPage.getStartStopButtonText();
 
-        Assert.assertEquals(actualText, expectedText, "\nNot 100% value.\n");
-        Assert.assertEquals(actualStartButtonText, startButtonText, "\nWrong start button value.\n");
+        softAssert.assertEquals(actualText, expectedText, "\nNot 100% value.\n");
+        softAssert.assertEquals(actualStartButtonText, startButtonText, "\nWrong start button value.\n");
+
+        softAssert.assertAll();
     }
 
     @Test(enabled = true)
@@ -74,8 +78,10 @@ public class ProgressBarPageTests extends BaseTest {
         progressBarPage.clickStartButton();
         String endProgressBarText = progressBarPage.getValueOfProgressBarOnValue100();
 
-        Assert.assertEquals(actualProgressBarText, stopValue, "\n Not stop on 1\n");
-        Assert.assertEquals(endProgressBarText, expectedEndProgressBarValueText, "Not 100% value");
+        softAssert.assertEquals(actualProgressBarText, stopValue, "\n Not stop on 1\n");
+        softAssert.assertEquals(endProgressBarText, expectedEndProgressBarValueText, "\nNot 100% value.\n");
+
+        softAssert.assertAll();
     }
 
     @Test(enabled = true)
@@ -91,7 +97,9 @@ public class ProgressBarPageTests extends BaseTest {
         int actualValueOfProgressBar = progressBarPage.getValueProgressBar();
         String actualNotGreenColor = progressBarPage.getColorProgressBar();
 
-        Assert.assertEquals(actualValueOfProgressBar, stopValue, "\nNot " + stopValue + " value.\n");
-        Assert.assertEquals(actualNotGreenColor, expectedStartColor, "\nWrong color value.\n");
+        softAssert.assertEquals(actualValueOfProgressBar, stopValue, "\nNot " + stopValue + " value.\n");
+        softAssert.assertEquals(actualNotGreenColor, expectedStartColor, "\nWrong color value.\n");
+
+        softAssert.assertAll();
     }
 }

@@ -37,19 +37,21 @@ public class BookRegisterPageTests extends BaseTest {
         String actualRegisterButtonText = booksRegisterPage.getTextOfRegisterButton();
         String actualBackToLoginButtonText = booksRegisterPage.getTextOfBackToLoginButton();
 
-        Assert.assertEquals(actualFirstNamePlaceholder, expectedFirstNamePlaceholder, "\nWrong first name placeholder.\n");
-        Assert.assertEquals(actualLastNamePlaceholder, expectedLastNamePlaceholder, "\nWrong last name placeholder.\n");
-        Assert.assertEquals(actualUserNamePlaceholder, expectedUserNamePlaceholder, "\nWrong username placeholder.\n");
-        Assert.assertEquals(actualPasswordPlaceholder, expectedPasswordPlaceholder, "\nWrong password placeholder.\n");
-        Assert.assertEquals(actualTitleText, expectedTitle, "\nWrong title placeholder.\n");
-        Assert.assertEquals(actualFirstText, expectedFirstText, "\nWrong first text placeholder.\n");
-        Assert.assertEquals(actualFirstNameLabel, expectedFirstNameLabel, "\nWrong first name label placeholder.\n");
-        Assert.assertEquals(actualLastNameLabel, expectedLastNameLabel, "\nWrong last name label placeholder.\n");
-        Assert.assertEquals(actualUserNameLabel, expectedUserNameLabel, "\nWrong username label placeholder.\n");
-        Assert.assertEquals(actualPasswordLabel, expectedPasswordLabel, "\nWrong password label placeholder.\n");
+        softAssert.assertEquals(actualFirstNamePlaceholder, expectedFirstNamePlaceholder, "\nWrong first name placeholder.\n");
+        softAssert.assertEquals(actualLastNamePlaceholder, expectedLastNamePlaceholder, "\nWrong last name placeholder.\n");
+        softAssert.assertEquals(actualUserNamePlaceholder, expectedUserNamePlaceholder, "\nWrong username placeholder.\n");
+        softAssert.assertEquals(actualPasswordPlaceholder, expectedPasswordPlaceholder, "\nWrong password placeholder.\n");
+        softAssert.assertEquals(actualTitleText, expectedTitle, "\nWrong title placeholder.\n");
+        softAssert.assertEquals(actualFirstText, expectedFirstText, "\nWrong first text placeholder.\n");
+        softAssert.assertEquals(actualFirstNameLabel, expectedFirstNameLabel, "\nWrong first name label placeholder.\n");
+        softAssert.assertEquals(actualLastNameLabel, expectedLastNameLabel, "\nWrong last name label placeholder.\n");
+        softAssert.assertEquals(actualUserNameLabel, expectedUserNameLabel, "\nWrong username label placeholder.\n");
+        softAssert.assertEquals(actualPasswordLabel, expectedPasswordLabel, "\nWrong password label placeholder.\n");
 
-        Assert.assertEquals(actualRegisterButtonText, expectedRegisterButtonName, "\nMissing register button.\n");
-        Assert.assertEquals(actualBackToLoginButtonText, expectedBackToLoginButtonName, "\nMissing backtologin button.\n");
+        softAssert.assertEquals(actualRegisterButtonText, expectedRegisterButtonName, "\nMissing register button.\n");
+        softAssert.assertEquals(actualBackToLoginButtonText, expectedBackToLoginButtonName, "\nMissing backtologin button.\n");
+
+        softAssert.assertAll();
     }
 
     @Test(enabled = true)
