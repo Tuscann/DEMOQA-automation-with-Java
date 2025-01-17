@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 
 public class TabsPageTests extends BaseTest {
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Verify all text on page")
     public void CheckAllTextOnPage() {
         navigateToUrl("tabs");
 
@@ -34,7 +34,7 @@ public class TabsPageTests extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Select what tab and check text")
     public void SelectWhatTabAndCheckText() {
         navigateToUrl("tabs");
 
@@ -45,7 +45,7 @@ public class TabsPageTests extends BaseTest {
         Assert.assertEquals(actualText, expectedWhatInternalText, "\nWrong what text.\n");
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Select origin tab and check text")
     public void SelectOriginTabAndCheckText() {
         navigateToUrl("tabs");
 
@@ -56,7 +56,7 @@ public class TabsPageTests extends BaseTest {
         Assert.assertEquals(actualText, expectedWhatInternalText, "\nWrong origin text.\n");
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Select use tab and check text")
     public void SelectUseTabAndCheckText() {
         navigateToUrl("tabs");
 

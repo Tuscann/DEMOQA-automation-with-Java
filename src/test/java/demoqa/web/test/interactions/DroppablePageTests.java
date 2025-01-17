@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 
 public class DroppablePageTests extends BaseTest {
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Verify all text on page")
     public void VerifyAllTextOnPage() {
         navigateToUrl("droppable");
 
@@ -76,7 +76,7 @@ public class DroppablePageTests extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Simple drag and drop")
     public void SimpleDragAndDrop() {
         navigateToUrl("droppable");
 
@@ -94,7 +94,7 @@ public class DroppablePageTests extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Accept tab drag and drop acceptable")
     public void AcceptTabDragAndDropAcceptable() {
         navigateToUrl("droppable");
         droppablePage.clickAcceptTab();
@@ -112,7 +112,7 @@ public class DroppablePageTests extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Accept tab drag and drop not acceptable")
     public void AcceptTabDragAndDropNotAcceptable() {
         navigateToUrl("droppable");
         droppablePage.clickAcceptTab();
@@ -130,7 +130,7 @@ public class DroppablePageTests extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Prevent propagation outer droppable not greedy")
     public void PreventPropagationInnerDroppableNotGreedy() {
         navigateToUrl("droppable");
         droppablePage.clickPreventPropagationTab();
@@ -161,7 +161,7 @@ public class DroppablePageTests extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Prevent propagation inner droppable greedy")
     public void PreventPropagationInnerDroppableGreedy() {
         navigateToUrl("droppable");
         droppablePage.clickPreventPropagationTab();
@@ -182,7 +182,7 @@ public class DroppablePageTests extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Prevent propagation outer droppable greedy")
     public void PreventPropagationOuterDroppableGreedy() {
         navigateToUrl("droppable");
         droppablePage.clickPreventPropagationTab();
@@ -203,7 +203,7 @@ public class DroppablePageTests extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Revert draggable will revert")
     public void RevertDraggableWillRevert() {
         navigateToUrl("droppable");
         droppablePage.clickRevertDraggableTab();
@@ -226,7 +226,7 @@ public class DroppablePageTests extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Revert draggable will not revert")
     public void RevertDraggableWillNotRevert() {
         navigateToUrl("droppable");
         droppablePage.clickRevertDraggableTab();

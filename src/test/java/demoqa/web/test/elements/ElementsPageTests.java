@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 
 public class ElementsPageTests extends BaseTest {
 
-    @Test(enabled = true, testName = "Check All nine pages links")
+    @Test(enabled = true, testName = "Check nine pages links")
     public void CheckAllNinePagesLinks() {
         navigateToUrl("elements");
 
@@ -57,7 +57,6 @@ public class ElementsPageTests extends BaseTest {
 
         softAssert.assertAll();
     }
-
 
     @Test(enabled = true, testName = "Click left dropdown menu")
     public void ClickLeftDropdownMenu() {

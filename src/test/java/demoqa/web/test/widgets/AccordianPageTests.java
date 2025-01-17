@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 
 public class AccordianPageTests extends BaseTest {
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Verify all text on page")
     public void VerifyAllTextOnPage() {
         navigateToUrl("accordian");
         String expectedHeading = "Accordian";
@@ -19,15 +19,15 @@ public class AccordianPageTests extends BaseTest {
         String actualSectionTwoHeadingText = accordianPage.getSectionTwoHeadingText();
         String actualSectionThreeHeadingText = accordianPage.getSectionThreeHeadingText();
 
-        Assert.assertEquals(actualHeading, expectedHeading, "\nWrong heading.\n");
-        Assert.assertEquals(actualSectionOneHeadingText, expectedOneHeadingText, "\nWrong one heading text.\n");
-        Assert.assertEquals(actualSectionTwoHeadingText, expectedTwoHeadingText, "\nWrong two heading text.\n");
-        Assert.assertEquals(actualSectionThreeHeadingText, expectedThreeHeadingText, "\nWrong three heading text.\n");
+        softAssert.assertEquals(actualHeading, expectedHeading, "\nWrong heading.\n");
+        softAssert.assertEquals(actualSectionOneHeadingText, expectedOneHeadingText, "\nWrong one heading text.\n");
+        softAssert.assertEquals(actualSectionTwoHeadingText, expectedTwoHeadingText, "\nWrong two heading text.\n");
+        softAssert.assertEquals(actualSectionThreeHeadingText, expectedThreeHeadingText, "\nWrong three heading text.\n");
 
-
+        softAssert.assertAll();
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Select first heading")
     public void SelectFirstHeading() {
         navigateToUrl("accordian");
         accordianPage.clickOneHeading();
@@ -38,7 +38,7 @@ public class AccordianPageTests extends BaseTest {
         Assert.assertEquals(actualText, expectedText, "\nWrong first paragraph.\n");
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Select second heading")
     public void SelectSecondHeading() {
         navigateToUrl("accordian");
         accordianPage.clickTwoHeading();
@@ -50,7 +50,7 @@ public class AccordianPageTests extends BaseTest {
         Assert.assertEquals(actualText, expectedText, "\nWrong second paragraph.\n");
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Select third heading")
     public void SelectThirdHeading() {
         navigateToUrl("accordian");
         accordianPage.clickThreeHeading();

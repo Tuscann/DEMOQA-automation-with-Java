@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 
 public class DynamicPropertiesPageTests extends BaseTest {
 
-    @Test(enabled = true, testName = "Verify all text on Page")
+    @Test(enabled = true, testName = "Verify all text on page")
     public void VerifyAllTextOnPage() {
         navigateToUrl("dynamic-properties");
 
@@ -29,7 +29,7 @@ public class DynamicPropertiesPageTests extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Verify missing button on page")
     public void VerifyMissingButtonOnPage() {
         navigateToUrl("dynamic-properties");
 
@@ -46,7 +46,7 @@ public class DynamicPropertiesPageTests extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Check after 5 seconds all buttons")
     public void CheckAfter5secondsAllButtons() {
         navigateToUrl("dynamic-properties");
 

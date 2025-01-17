@@ -6,7 +6,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 public class SortablePageTests extends BaseTest {
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Verify all text on page")
     public void VerifyAllTextOnPage() {
         navigateToUrl("sortable");
 
@@ -120,7 +120,7 @@ public class SortablePageTests extends BaseTest {
         };
     }
 
-    @Test(dataProvider = "resizeData", description = "Check order in List", enabled = true)
+    @Test(dataProvider = "resizeData", description = "Check order in List", enabled = true, testName = "Check order in List")
     public void DragAndDropFromListTab(String dragFromPlace, String dropOnPlace, String expectedOrder) {
         navigateToUrl("sortable");
 
@@ -226,7 +226,7 @@ public class SortablePageTests extends BaseTest {
         };
     }
 
-    @Test(dataProvider = "resizeData2", description = "Check order in Grid", enabled = true)
+    @Test(dataProvider = "resizeData2", description = "Check order in Grid", enabled = true, testName = "Check order in Grid")
     public void DragAndDropFromGridTab(String dragFromPlace, String dropOnPlace, String expectedOrder) {
         navigateToUrl("sortable");
         sortablePage.clickGridTab();

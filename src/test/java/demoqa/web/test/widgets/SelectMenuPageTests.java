@@ -75,7 +75,7 @@ public class SelectMenuPageTests extends BaseTest {
         }
     }
 
-    @Test(enabled = true, testName = "Select all values from select One menu")
+    @Test(enabled = true, testName = "Select all values from select one menu")
     public void SelectAllValuesFromSelectOne() {
         navigateToUrl("select-menu");
 

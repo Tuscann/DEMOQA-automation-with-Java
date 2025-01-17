@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 
 public class LinksPageTests extends BaseTest {
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Verify all text on page")
     public void VerifyAllTextOnPage() {
         navigateToUrl("links");
 
@@ -50,7 +50,7 @@ public class LinksPageTests extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Open new tab from simple link")
     public void OpenNewTabFromSimpleLink() {
         navigateToUrl("links");
         linksPage.clickSimpleTab();
@@ -61,10 +61,10 @@ public class LinksPageTests extends BaseTest {
         Assert.assertEquals(urlNewTab, expectedUrlNewTab, "\n Actual & Expected New Tab Url Do Not Match.\n");
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Open new tab from dynamic link")
     public void OpenNewTabFromDynamicLink() {
         navigateToUrl("links");
-        linksPage.clickDynamicLink();
+        linksPage.clickDynamicTab();
 
         String urlNewTab = linksPage.getUrl();
         String expectedUrlNewTab = "https://demoqa.com/";
@@ -73,10 +73,10 @@ public class LinksPageTests extends BaseTest {
                 "\n Actual & Expected New Tab Url Do Not Match.\n");
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Click on created link")
     public void ClickOnkCreatedLink() {
         navigateToUrl("links");
-        linksPage.clickCreatedRequestLink();
+        linksPage.clickCreatedLink();
         String actualResponseText = linksPage.getResponse();
 
         Assert.assertTrue(actualResponseText.contains("201")
@@ -85,7 +85,7 @@ public class LinksPageTests extends BaseTest {
                         ")\n and status text Created \n");
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Click on no content link")
     public void ClickOnNoContentLink() {
         navigateToUrl("links");
         linksPage.clickNoContentRequestLink();
@@ -97,10 +97,10 @@ public class LinksPageTests extends BaseTest {
                         ")\n and status text Created \n");
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Click on moved link")
     public void ClickOnMovedLink() {
         navigateToUrl("links");
-        linksPage.clickMovedRequestLink();
+        linksPage.clickMovedLink();
         String actualResponse = linksPage.getResponse();
 
         Assert.assertTrue(actualResponse.contains("301")
@@ -109,7 +109,7 @@ public class LinksPageTests extends BaseTest {
                         ")\n and status text Created \n");
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Click on bad request link")
     public void ClickOnBadRequestLink() {
         navigateToUrl("links");
         linksPage.clickBadRequestLink();
@@ -121,10 +121,10 @@ public class LinksPageTests extends BaseTest {
                         ")\n Does Not Contain '400' and 'Bad Request' \n");
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Click on unauthorized link")
     public void ClickOnUnAuthorizedLink() {
         navigateToUrl("links");
-        linksPage.clickUnauthorizedRequestLink();
+        linksPage.clickUnauthorizedLink();
         String actualResponse = linksPage.getResponse();
 
         Assert.assertTrue(actualResponse.contains("401")
@@ -133,10 +133,10 @@ public class LinksPageTests extends BaseTest {
                         ")\n and status text Created \n");
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Click on forbidden link")
     public void ClickOnForbiddenLink() {
         navigateToUrl("links");
-        linksPage.clickForbiddenRequestLink();
+        linksPage.clickForbiddenLink();
         String actualResponse = linksPage.getResponse();
 
         Assert.assertTrue(actualResponse.contains("403")
@@ -145,10 +145,10 @@ public class LinksPageTests extends BaseTest {
                         ")\n and status text Created \n");
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Click on not found link")
     public void ClickOnNotFoundLink() {
         navigateToUrl("links");
-        linksPage.clickNotFoundRequestLink();
+        linksPage.clickNotFoundLink();
         String actualResponse = linksPage.getResponse();
 
         Assert.assertTrue(actualResponse.contains("404")

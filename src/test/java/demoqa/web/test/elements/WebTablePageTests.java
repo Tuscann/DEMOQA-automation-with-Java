@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 
 public class WebTablePageTests extends BaseTest {
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Verify all text on page")
     public void VerifyAllTextOnPage() {
         navigateToUrl("webtables");
 
@@ -70,7 +70,7 @@ public class WebTablePageTests extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Verify all label and place holders on registration form")
     public void VerifyAllLabelAndPlaceHoldersOnRegistrationForm() {
         navigateToUrl("webtables");
 
@@ -123,7 +123,7 @@ public class WebTablePageTests extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Update first name on first user")
     public void UpdateFirstNameOnFirstUser() {
         navigateToUrl("webtables");
         String email = "cierra@example.com";
@@ -138,7 +138,7 @@ public class WebTablePageTests extends BaseTest {
         Assert.assertEquals(actualFirstName, expectedFirstName, "\n Actual & Expected FirstName Do Not Match.\n");
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Update last name on first user")
     public void UpdateLastNameOnFirstUser() {
         navigateToUrl("webtables");
         String email = "cierra@example.com";
@@ -153,7 +153,7 @@ public class WebTablePageTests extends BaseTest {
         Assert.assertEquals(actualLastName, expectedLastName, "\n Actual & Expected LastName Do Not Match.\n");
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Update email on first user")
     public void UpdateEmailOnFirstUser() {
         navigateToUrl("webtables");
         String oldEmail = "cierra@example.com";
@@ -167,7 +167,7 @@ public class WebTablePageTests extends BaseTest {
         Assert.assertEquals(actualEmail, newEmail, "\n Actual & Expected Email Do Not Match \n");
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Update age on first user")
     public void UpdateAgeOnFirstUser() {
         navigateToUrl("webtables");
         String oldEmail = "cierra@example.com";
@@ -181,7 +181,7 @@ public class WebTablePageTests extends BaseTest {
         Assert.assertEquals(actualEmail, newEmail, "\n Actual & Expected Email Do Not Match \n");
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Update salary on first user")
     public void UpdateSalaryOnFirstUser() {
         navigateToUrl("webtables");
         String oldEmail = "cierra@example.com";
@@ -362,7 +362,7 @@ public class WebTablePageTests extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(enabled = true, testName = "Submit empty Form and verify all red lines")
+    @Test(enabled = true, testName = "Submit empty form and verify all red lines")
     public void SubmitEmptyFormAndVerifyAllRedLines() {
         navigateToUrl("webtables");
         String redColor = "1px solid rgb(220, 53, 69)";

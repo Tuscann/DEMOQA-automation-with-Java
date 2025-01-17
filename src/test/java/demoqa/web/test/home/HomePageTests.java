@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 
 public class HomePageTests extends BaseTest {
 
-    @Test(enabled = true, testName = "")
+    @Test(enabled = true, testName = "Click and verify all links")
     public void ClickAndVerifyAllLinks() {
         String expectedUrl = "https://demoqa.com/elements";
         homePage.goToElements();

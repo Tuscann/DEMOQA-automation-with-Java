@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 
 public class MenuPageTests extends BaseTest {
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Verify all text on page")
     public void CheckAllTextOnPage() {
         navigateToUrl("menu#");
         String pageHeader = "Menu";
@@ -43,7 +43,7 @@ public class MenuPageTests extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Hover over every item in menu and check hover color")
     public void HoverOverEveryItemInMenuAndCheckHoverColor() {
         navigateToUrl("menu#");
 

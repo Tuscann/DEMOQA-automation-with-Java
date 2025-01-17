@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 
 public class BookRegisterPageTests extends BaseTest {
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Verify all text on Page")
     public void VerifyAllTextOnPage() {
         navigateToUrl("register");
 
@@ -54,7 +54,7 @@ public class BookRegisterPageTests extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Try to login without recaptcha")
     public void TryToLoginWithoutReCaptcha() {
         navigateToUrl("register");
 

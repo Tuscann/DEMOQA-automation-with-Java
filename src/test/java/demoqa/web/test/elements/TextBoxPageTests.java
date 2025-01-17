@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 
 public class TextBoxPageTests extends BaseTest {
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Verify all placeholders and all labels")
     public void VerifyAllPlaceholdersAndAllLabels() {
         navigateToUrl("text-box");
 
@@ -46,7 +46,7 @@ public class TextBoxPageTests extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Submit fill form")
     public void SubmitFillForm() {
         navigateToUrl("text-box");
 
@@ -74,7 +74,7 @@ public class TextBoxPageTests extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Submit empty form")
     public void SubmitEmptyForm() {
         navigateToUrl("text-box");
         textBoxPage.clickSubmitButton();
@@ -84,7 +84,7 @@ public class TextBoxPageTests extends BaseTest {
         Assert.assertEquals(actualOutput, expectedOutput, "\nNot empty output.\n");
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Submit only full name")
     public void SubmitOnlyFullName() {
         navigateToUrl("text-box");
 
@@ -98,7 +98,7 @@ public class TextBoxPageTests extends BaseTest {
         Assert.assertEquals(actualOutput, expectedOutput, "\nMissing Full Name.\n");
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Submit only valid email")
     public void SubmitOnlyValidEmail() {
         navigateToUrl("text-box");
         String email = "testemail@example.com";
@@ -110,7 +110,7 @@ public class TextBoxPageTests extends BaseTest {
         Assert.assertEquals(actualEmail, "Email:" + email, "\nEmail does not match\n");
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Try to submit non valid email and check red line")
     public void TryToSubmitUnValidEmailAndCheckRedLine() {
         navigateToUrl("text-box");
         String email = "InvalidEmailFormat";
@@ -123,7 +123,7 @@ public class TextBoxPageTests extends BaseTest {
         Assert.assertEquals(actualRedColor, expectedRedColor, "\nNot same red color\n");
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Submit only valid current address")
     public void SubmitOnlyValidCurrentAddress() {
         navigateToUrl("text-box");
         String currentAddress = "4321 Maple Lane, Metropolis";
@@ -135,7 +135,7 @@ public class TextBoxPageTests extends BaseTest {
         Assert.assertEquals(actualCurrentAddress, "Current Address :" + currentAddress, "\nCurrent address does not match.\n");
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Submit only valid permanent address")
     public void SubmitOnlyValidPermanentAddress() {
         navigateToUrl("text-box");
         String permanentAddress = "1234 Elm Street, Springfield";
@@ -147,7 +147,7 @@ public class TextBoxPageTests extends BaseTest {
         Assert.assertEquals(actualPermanentAddress, "Permananet Address :" + permanentAddress, "\nPermanent address does not match.\n");
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Update all fields after submit")
     public void UpdateAllFieldsAfterSubmit() {
         navigateToUrl("text-box");
 

@@ -1,9 +1,9 @@
 package demoqa.pages.elements;
 
 import demoqa.base.BasePage;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
@@ -12,28 +12,71 @@ import static utilities.JavaScriptUtility.scrollToElementJS;
 
 public class CheckBoxPage extends BasePage {
 
-    private final By header = By.xpath("//h1[@class='text-center'][contains(.,'Check Box')]");
-    private final By home = By.xpath("(//span[contains(.,'Home')])[2]");
-    private final By desktop = By.xpath("(//span[contains(.,'Desktop')])[2]");
-    private final By notes = By.xpath("(//span[contains(.,'Notes')])[2]");
-    private final By commands = By.xpath("(//span[contains(.,'Commands')])[2]");
-    private final By documents = By.xpath("(//span[contains(.,'Documents')])[2]");
-    private final By workSpace = By.xpath("(//span[contains(.,'WorkSpace')])[2]");
-    private final By react = By.xpath("(//span[contains(.,'React')])[2]");
-    private final By angular = By.xpath("(//span[contains(.,'Angular')])[2]");
-    private final By veu = By.xpath("(//span[contains(.,'Veu')])[2]");
-    private final By office = By.xpath("(//span[contains(.,'Office')])[2]");
-    private final By officePublic = By.xpath("(//span[contains(.,'Public')])[2]");
-    private final By officePrivate = By.xpath("(//span[contains(.,'Private')])[2]");
-    private final By classified = By.xpath("(//span[contains(.,'Classified')])[2]");
-    private final By general = By.xpath("(//span[contains(.,'General')])[2]");
-    private final By downloads = By.xpath("(//span[contains(.,'Downloads')])[2]");
-    private final By wordFileDoc = By.xpath("(//span[contains(.,'Word File.doc')])[2]");
-    private final By excelFileDoc = By.xpath("(//span[contains(.,'Excel File.doc')])[2]");
+    @FindBy(xpath = "//h1[@class='text-center'][contains(.,'Check Box')]")
+    private WebElement header;
 
-    private final By expandAll = By.cssSelector(".rct-option.rct-option-expand-all");
-    private final By collapseAll = By.cssSelector(".rct-option.rct-option-collapse-all");
-    private final By resultMessage = By.id("result");
+    @FindBy(xpath = "(//span[contains(.,'Home')])[2]")
+    private WebElement home;
+
+    @FindBy(xpath = "(//span[contains(.,'Desktop')])[2]")
+    private WebElement desktop;
+
+    @FindBy(xpath = "(//span[contains(.,'Notes')])[2]")
+    private WebElement notes;
+
+    @FindBy(xpath = "(//span[contains(.,'Commands')])[2]")
+    private WebElement commands;
+
+    @FindBy(xpath = "(//span[contains(.,'Documents')])[2]")
+    private WebElement documents;
+
+    @FindBy(xpath = "(//span[contains(.,'WorkSpace')])[2]")
+    private WebElement workSpace;
+
+    @FindBy(xpath = "(//span[contains(.,'React')])[2]")
+    private WebElement react;
+
+    @FindBy(xpath = "(//span[contains(.,'Angular')])[2]")
+    private WebElement angular;
+
+    @FindBy(xpath = "(//span[contains(.,'Veu')])[2]")
+    private WebElement veu;
+
+    @FindBy(xpath = "(//span[contains(.,'Office')])[2]")
+    private WebElement office;
+
+    @FindBy(xpath = "(//span[contains(.,'Public')])[2]")
+    private WebElement officePublic;
+
+    @FindBy(xpath = "(//span[contains(.,'Private')])[2]")
+    private WebElement officePrivate;
+
+    @FindBy(xpath = "(//span[contains(.,'Classified')])[2]")
+    private WebElement classified;
+
+    @FindBy(xpath = "(//span[contains(.,'General')])[2]")
+    private WebElement general;
+
+    @FindBy(xpath = "(//span[contains(.,'Downloads')])[2]")
+    private WebElement downloads;
+
+    @FindBy(xpath = "(//span[contains(.,'Word File.doc')])[2]")
+    private WebElement wordFileDoc;
+
+    @FindBy(xpath = "(//span[contains(.,'Excel File.doc')])[2]")
+    private WebElement excelFileDoc;
+
+    @FindBy(css = ".rct-option.rct-option-expand-all")
+    private WebElement expandAll;
+
+    @FindBy(css = ".rct-option.rct-option-collapse-all")
+    private WebElement collapseAll;
+
+    @FindBy(id = "result")
+    private WebElement resultMessage;
+
+    @FindBy(id = "result")
+    private List<WebElement> resultMessageList;
 
     public CheckBoxPage(WebDriver driver) {
         super(driver);
@@ -41,100 +84,100 @@ public class CheckBoxPage extends BasePage {
     }
 
     public boolean isResultMessageShown() {
-        return driver.findElements(By.id("result")).isEmpty();
+        return resultMessageList.isEmpty();
     }
 
     public String getResultMessage() {
-        return find(resultMessage).getText();
+        return resultMessage.getText();
     }
 
     public String getHeader() {
-        return find(header).getText();
+        return header.getText();
     }
 
     public void clickExpandAll() {
-        click(expandAll);
+        expandAll.click();
     }
 
     public void clickCollapseAll() {
-        click(collapseAll);
+        collapseAll.click();
     }
 
     public void clickDesktop() {
-        click(desktop);
+        desktop.click();
     }
 
     public void clickDocuments() {
-        click(documents);
+        documents.click();
     }
 
     public void clickVeu() {
-        click(veu);
+        veu.click();
     }
 
     public void clickOffice() {
-        click(office);
+        office.click();
     }
 
     public void clickOfficePublic() {
-        click(officePublic);
+        officePublic.click();
     }
 
     public void clickWorkSpace() {
-        click(workSpace);
+        workSpace.click();
     }
 
     public void clickReact() {
         scrollToElementJS(react);
-        click(react);
+        react.click();
     }
 
     public void clickAngular() {
-        click(angular);
+        angular.click();
     }
 
     public void clickDownloads() {
         scrollToElementJS(downloads);
-        click(downloads);
+        downloads.click();
     }
 
     public void clickWordFileDoc() {
-        click(wordFileDoc);
+        scrollToElementJS(wordFileDoc);
+        wordFileDoc.click();
     }
 
     public void clickExcelFileDoc() {
-        click(excelFileDoc);
-    }
-
-    public void clickClassified() {
-        click(classified);
-    }
-
-    public void clickGeneral() {
-        click(general);
+        scrollToElementJS(excelFileDoc);
+        excelFileDoc.click();
     }
 
     public void clickHome() {
-        click(home);
-    }
-
-    public void clickPrivateOffice() {
-        click(officePrivate);
+        home.click();
     }
 
     public void clickNotes() {
         scrollToElementJS(notes);
-        click(notes);
+        notes.click();
     }
 
     public void clickCommands() {
         scrollToElementJS(commands);
-        click(commands);
+        commands.click();
+    }
+
+    public void clickOfficePrivate() {
+        officePrivate.click();
+    }
+
+    public void clickClassified() {
+        classified.click();
+    }
+
+    public void clickGeneral() {
+        general.click();
     }
 
     public boolean verifyResultMessageIsMissing() {
-        List<WebElement> elements = driver.findElements(resultMessage);
-
-        return elements.isEmpty();
+        return resultMessageList.isEmpty();
     }
 }

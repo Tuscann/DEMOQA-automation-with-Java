@@ -35,7 +35,6 @@ public class ButtonsPage extends BasePage {
         PageFactory.initElements(driver, this);
     }
 
-
     public String getDoubleButtonText() {
         return doubleClickMeButton.getText();
     }
@@ -49,8 +48,7 @@ public class ButtonsPage extends BasePage {
     }
 
     public String getButtonsText() {
-        String getheadertext = buttons.getText();
-        return getheadertext;
+        return buttons.getText();
     }
 
     public String getClickMeClickMessage() {

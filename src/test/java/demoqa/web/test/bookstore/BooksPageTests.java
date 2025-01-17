@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 
 public class BooksPageTests extends BaseTest {
 
-    @Test(enabled = true, testName = "Verify show/hide left dropdown menu.")
+    @Test(enabled = true, testName = "Verify show/hide left dropdown menu")
     public void ClickLeftDropdownMenu() {
         navigateToUrl("books");
 
@@ -47,7 +47,7 @@ public class BooksPageTests extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(enabled = true, testName = "Verify table header columns.")
+    @Test(enabled = true, testName = "Verify table header columns")
     public void GetFirstRowOfTable() {
         navigateToUrl("books");
 
@@ -62,7 +62,7 @@ public class BooksPageTests extends BaseTest {
         Assert.assertEquals(actualTopRow, expectedTopRow, "\nExpected table header.\n");
     }
 
-    @Test(enabled = true, testName = "Verify default count of books 8.")
+    @Test(enabled = true, testName = "Verify default count of books 8")
     public void VerifyCountOfDefaultBooks() {
         navigateToUrl("books");
 
@@ -73,7 +73,7 @@ public class BooksPageTests extends BaseTest {
         Assert.assertEquals(actualBooksCount, expectedBooksCount, "\nExpected books count.\n");
     }
 
-    @Test(enabled = true, testName = "Click login button and verify link.")
+    @Test(enabled = true, testName = "Click login button and verify link")
     public void ClickLoginButton() {
         navigateToUrl("books");
 
@@ -100,7 +100,7 @@ public class BooksPageTests extends BaseTest {
         Assert.assertEquals(actualFindBooks, expectedBooks, "\nExpected not books found.\n");
     }
 
-    @Test(enabled = true, testName = "Search for book and verify no books are found.")
+    @Test(enabled = true, testName = "Search for book and verify no books are found")
     public void SearchAndFindNoBook() {
         navigateToUrl("books");
 
@@ -113,7 +113,7 @@ public class BooksPageTests extends BaseTest {
         Assert.assertEquals(actualMessage, expectedMessage, "\nExpected message not found.\n");
     }
 
-    @Test(enabled = true, testName = "Verify Next and Previous buttons can clickable.")
+    @Test(enabled = true, testName = "Verify next and previous buttons can clickable")
     public void ClickNextAndPreviousButtons() {
         navigateToUrl("books");
 
@@ -153,7 +153,7 @@ public class BooksPageTests extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(enabled = true, testName = "Click all rows per page.")
+    @Test(enabled = true, testName = "Click all rows per page")
     public void ClickAllRowsPerPage() {
         navigateToUrl("books");
 
@@ -212,7 +212,7 @@ public class BooksPageTests extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(enabled = true, testName = "Order books by Title,Author,Publisher in descending order.")
+    @Test(enabled = true, testName = "Order books by title,author,publisher in descending order")
     public void OrderBooksByTitleByAuthorByPublisherDescending() {
         navigateToUrl("books");
 
@@ -316,7 +316,7 @@ public class BooksPageTests extends BaseTest {
         softAssert.assertEquals(actualFindBooks, expectedBooks, "\nExpected books.\n");
     }
 
-    @Test(enabled = true, testName = "Order books by Title,Author,Publisher in ascending order.")
+    @Test(enabled = true, testName = "Order books by title,author,publisher in ascending order")
     public void OrderBooksByTitleByAuthorByPublisherAscending() {
         navigateToUrl("books");
 

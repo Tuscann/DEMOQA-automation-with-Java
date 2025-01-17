@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 
 public class UploadAndDownloadPageTests extends BaseTest {
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Verify all text on page")
     public void VerifyAllTextOnPage() {
         navigateToUrl("upload-download");
 
@@ -25,7 +25,7 @@ public class UploadAndDownloadPageTests extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Upload file and verify image name")
     public void UploadFileVerifyImageName() {
         navigateToUrl("upload-download");
 
@@ -40,7 +40,7 @@ public class UploadAndDownloadPageTests extends BaseTest {
         Assert.assertEquals(actualFakeUploadFolder, expectedFakeUploadFolder, "\nDifferent upload name.\n");
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Click download button and verify is download file")
     public void ClickDownloadButtonAndVerifyIsDownloadFile() {
         navigateToUrl("upload-download");
 

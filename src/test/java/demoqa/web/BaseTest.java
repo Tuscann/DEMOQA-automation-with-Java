@@ -2,7 +2,6 @@ package demoqa.web;
 
 import demoqa.base.BasePage;
 import demoqa.pages.HomePage;
-import demoqa.pages.Interactions.*;
 import demoqa.pages.alerts.*;
 import demoqa.pages.bookstore.BooksLoginPage;
 import demoqa.pages.bookstore.BooksPage;
@@ -11,6 +10,7 @@ import demoqa.pages.bookstore.BooksRegisterPage;
 import demoqa.pages.elements.*;
 import demoqa.pages.forms.FormsPage;
 import demoqa.pages.forms.PracticeFormPage;
+import demoqa.pages.interactions.*;
 import demoqa.pages.widgets.*;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -77,8 +77,8 @@ public class BaseTest {
     @BeforeMethod
     public void setUp() {
         ChromeOptions options = new ChromeOptions();
-//        options.addArguments("--headless=new");
-//        options.addArguments("--disable-gpu");
+        options.addArguments("--headless=new");
+        options.addArguments("--disable-gpu");
 //        options.addArguments("--window-size=1920,1080"); // Set the window size
 
         driver = new ChromeDriver(options);

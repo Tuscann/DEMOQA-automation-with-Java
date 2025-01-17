@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 
 public class SliderPageTests extends BaseTest {
 
-    @Test(enabled = false)
+    @Test(enabled = false, testName = "Start and stop on value")
     public void StartAndStopOnValue() throws InterruptedException {
         navigateToUrl("slider");
         int targetValue = 70;
@@ -18,7 +18,7 @@ public class SliderPageTests extends BaseTest {
 //        Assert.assertEquals(actualValue, stopValue, "Different values");
     }
 
-    @Test(enabled = false)
+    @Test(enabled = false, testName = "Test slider result zero")
     public void TestSliderResultZero() throws InterruptedException {
         int x = 90;
         int y = 0;
@@ -32,7 +32,7 @@ public class SliderPageTests extends BaseTest {
         Assert.assertEquals(actualValue, expectedValue, "Actual value is not equal to expected value");
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Check default value slider")
     public void CheckDefaultValueSlider() {
         navigateToUrl("slider");
 

@@ -10,7 +10,7 @@ import java.time.format.DateTimeFormatter;
 
 public class DatePickerPageTests extends BaseTest {
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Verify all text on page")
     public void VerifyAllTextOnPage() {
         navigateToUrl("date-picker");
 
@@ -36,7 +36,7 @@ public class DatePickerPageTests extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Select new date")
     public void SelectNewDate() {
         navigateToUrl("date-picker");
         String expectedDate = "10/26/2024";
@@ -47,7 +47,7 @@ public class DatePickerPageTests extends BaseTest {
         Assert.assertEquals(actualDate, expectedDate, "\nWrong Date\n");
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Try to select no existing date")
     public void TryToSelectNoExistingDate() {
         navigateToUrl("date-picker");
         String tryToAddDate = "14/32/2021";
@@ -59,7 +59,7 @@ public class DatePickerPageTests extends BaseTest {
         Assert.assertEquals(actualDate, expectedDate, "\nWrong Date.\n");
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Select valid new date and time")
     public void SelectValidNewDateAndTime() {
         navigateToUrl("date-picker");
         String expectedDateAndTime = "December 19, 2024 10:12 PM";
@@ -69,7 +69,7 @@ public class DatePickerPageTests extends BaseTest {
         Assert.assertEquals(actualDateAndTime, expectedDateAndTime, "\nWrong Date and time.\n");
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Try to select no existing date and time")
     public void TryToSelectNoExistingDateAndTime() {
         navigateToUrl("date-picker");
         String tryToAddDate = "December 34, 2024 10:12 PM";

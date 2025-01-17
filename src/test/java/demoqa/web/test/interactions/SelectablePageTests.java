@@ -6,7 +6,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class SelectablePageTests extends BaseTest {
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Verify all text on page")
     public void VerifyAllTextOnPage() {
         navigateToUrl("selectable");
 
@@ -65,7 +65,7 @@ public class SelectablePageTests extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Select one by one all from list")
     public void SelectOneByOneAllFromList() {
         navigateToUrl("selectable");
 
@@ -104,7 +104,7 @@ public class SelectablePageTests extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Select one by one all from grid")
     public void SelectOneByOneAllFromGrid() {
         navigateToUrl("selectable");
         selectablePage.clickGridTab();

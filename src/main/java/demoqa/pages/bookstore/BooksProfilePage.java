@@ -21,7 +21,7 @@ public class BooksProfilePage extends BasePage {
     WebElement notLoggingWrapper;
     @FindBy(xpath = "//a[@href='/login'][contains(.,'login')]")
     WebElement loginLink;
-    @FindBy(id = "//span[@class='text'][contains(.,'Login')]")
+    @FindBy(xpath = "//span[@class='text'][contains(.,'Login')]")
     WebElement loginLink2;
     @FindBy(xpath = "//a[@href='/register']")
     WebElement registerLink;

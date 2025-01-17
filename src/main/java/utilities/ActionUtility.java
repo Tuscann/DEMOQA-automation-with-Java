@@ -26,4 +26,12 @@ public class ActionUtility extends Utility {
         actions.perform();
 
     }
+
+    public static void MoveToElementSelenium(WebElement keys) {
+
+        Actions actions = new Actions(driver);
+        actions.moveToElement(keys);
+        actions.perform();
+
+    }
 }

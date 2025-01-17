@@ -6,7 +6,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 public class ResizablePageTests extends BaseTest {
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Verify all text on page")
     public void VerifyAllTextOnPage() {
         navigateToUrl("resizable");
 
@@ -36,7 +36,7 @@ public class ResizablePageTests extends BaseTest {
         };
     }
 
-    @Test(dataProvider = "resizeData", description = "Test resizing with different values", enabled = true)
+    @Test(dataProvider = "resizeData", description = "Test resizing with different values", enabled = true, testName = "Resizing with different values")
     public void ТestResizedBoxWithLimitation(int addX, int addY, int expectedWidth, int expectedHeight) {
         navigateToUrl("resizable");
 
@@ -58,7 +58,7 @@ public class ResizablePageTests extends BaseTest {
         };
     }
 
-    @Test(dataProvider = "resizeData2", description = "Test resizing with different values", enabled = true)
+    @Test(dataProvider = "resizeData2", description = "Test resizing with different values", enabled = true, testName = "Resizing with different values")
     public void ТestResizedBoxWithoutLimitation(int addAmountOnXAxis, int addAmountOnYAxis, int expectedWidth, int expectedHeight) {
         navigateToUrl("resizable");
 

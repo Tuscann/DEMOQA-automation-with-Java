@@ -1,12 +1,11 @@
 package demoqa.web.test.widgets;
 
 import demoqa.web.BaseTest;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class ProgressBarPageTests extends BaseTest {
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Verify all text on page")
     public void VerifyAllTextOnPage() {
         navigateToUrl("progress-bar");
 
@@ -18,12 +17,14 @@ public class ProgressBarPageTests extends BaseTest {
         String actualProgressButtonText = progressBarPage.getProgressBarText();
         String actualStartButtonText = progressBarPage.getStartStopButtonText();
 
-        Assert.assertEquals(actualHeaderText, expectedHeaderText, "Wrong header value");
-        Assert.assertEquals(actualProgressButtonText, expectedProgressBarText, "Wrong button value");
-        Assert.assertEquals(actualStartButtonText, expectedStartButtonText, "Wrong button value");
+        softAssert.assertEquals(actualHeaderText, expectedHeaderText, "\nWrong header value.\n");
+        softAssert.assertEquals(actualProgressButtonText, expectedProgressBarText, "\nWrong button value.\n");
+        softAssert.assertEquals(actualStartButtonText, expectedStartButtonText, "\nWrong button value.\n");
+
+        softAssert.assertAll();
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Click start button and check progress bar end value")
     public void ClickStartButtonAndCheckProgressBarEndValue() {
         navigateToUrl("progress-bar");
         String expectedText = "100";
@@ -49,7 +50,7 @@ public class ProgressBarPageTests extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Click reset button")
     public void ClickResetButton() {
         navigateToUrl("progress-bar");
         String expectedText = "100";
@@ -66,7 +67,7 @@ public class ProgressBarPageTests extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Click start stop start check progress bar end value")
     public void ClickStartStopStartCheckProgressBarEndValue() {
         navigateToUrl("progress-bar");
         String expectedEndProgressBarValueText = "100";
@@ -84,7 +85,7 @@ public class ProgressBarPageTests extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Stop on 31 progress of progressbar")
     public void StopOn31ProgressOfProgressbar() {
         navigateToUrl("progress-bar");
 

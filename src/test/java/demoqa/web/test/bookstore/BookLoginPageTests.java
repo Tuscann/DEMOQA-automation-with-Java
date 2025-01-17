@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 
 public class BookLoginPageTests extends BaseTest {
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Verify all text on page")
     public void VerifyAllTextOnPage() {
         navigateToUrl("login");
 
@@ -43,7 +43,7 @@ public class BookLoginPageTests extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Login with valid username and valid password")
     public void LoginWithValidUsernameAndValidPassword() {
         navigateToUrl("login");
 
@@ -59,7 +59,7 @@ public class BookLoginPageTests extends BaseTest {
         Assert.assertEquals(actualProfile, expectedUsername, "\nNot same username.\n");
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Try to login with wrong username")
     public void TryToLoginWithWrongUsername() {
         navigateToUrl("login");
         String expectedUsername = "username";
@@ -77,7 +77,7 @@ public class BookLoginPageTests extends BaseTest {
         Assert.assertEquals(actualMessage, expectedMessage, "\nWrong username or password.\n");
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Try to login with wrong username and wrong password")
     public void TryToLoginWithWrongUsernameAndWrongPassword() {
         navigateToUrl("login");
         String expectedUsername = "karma";
@@ -95,7 +95,7 @@ public class BookLoginPageTests extends BaseTest {
         Assert.assertEquals(actualMessage, expectedMessage, "\nWrong username or password.\n");
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Try to login with wrong password")
     public void TryToLoginWithWrongPassword() {
         navigateToUrl("login");
 
@@ -114,7 +114,7 @@ public class BookLoginPageTests extends BaseTest {
         Assert.assertEquals(actualErrorMessage, expectedErrorMessage, "\nWrong password message.\n");
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Click logout after login")
     public void ClickLogoutAfterLogin() {
         navigateToUrl("login");
 
@@ -138,8 +138,8 @@ public class BookLoginPageTests extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(enabled = true)
-    public void ClickButtonGotoBookStore() {
+    @Test(enabled = true, testName = "Click on button gotobookstore")
+    public void ClickOnButtonGotoBookStore() {
         navigateToUrl("login");
 
         String expectedUsername = "fbinnzhivko";
@@ -155,7 +155,7 @@ public class BookLoginPageTests extends BaseTest {
         Assert.assertEquals(actualUrl, expectedUrl, "\nNot same books url.\n");
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Verify login page after login")
     public void VerifyLoginPageAfterLogin() {
         navigateToUrl("login");
 

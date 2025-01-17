@@ -26,15 +26,15 @@ public class BooksTests extends BaseTestApi {
         TodoClient client = new TodoClient();
         List<Book> books = client.FindAllBooks();
 
-        String actualIsbn = books.getFirst().isbn();
-        String actualTitle = books.getFirst().title();
-        String actualSubTitle = books.getFirst().subTitle();
-        String actualAuthor = books.getFirst().author();
-        String actualPublish_date = books.getFirst().publish_date();
-        String actualPublisher = books.getFirst().publisher();
-        String actualPages = books.getFirst().pages();
-        String actualDescription = books.getFirst().description();
-        String actualWebsite = books.getFirst().website();
+        String actualIsbn = books.get(0).isbn();
+        String actualTitle = books.get(0).title();
+        String actualSubTitle = books.get(0).subTitle();
+        String actualAuthor = books.get(0).author();
+        String actualPublish_date = books.get(0).publish_date();
+        String actualPublisher = books.get(0).publisher();
+        String actualPages = books.get(0).pages();
+        String actualDescription = books.get(0).description();
+        String actualWebsite = books.get(0).website();
 
         String expectedIsbn = "9781449325862";
         String expectedTitle = "Git Pocket Guide";

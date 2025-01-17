@@ -3,17 +3,26 @@ package demoqa.pages.elements;
 import demoqa.base.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class RadioButtonPage extends BasePage {
 
-    private final By radioButtonText = By.xpath("//h1[contains(.,'Radio Button')]");
-    private final By question = By.xpath("//div[@class='mb-3'][contains(.,'Do you like the site?')]");
-    private final By yesAnswerLabel = By.xpath("//label[@for='yesRadio']");
-    private final By impressiveLabel = By.xpath("//label[@for='impressiveRadio']");
-    private final By noAnswerLabel = By.xpath("//label[@for='noRadio']");
-    private final By resultMessage = By.xpath("//p[contains(@class, 'mt-3')]");
-    private final By textSuccessMessage = By.xpath("//span[@class='text-success']");
+    @FindBy(xpath = "//h1[contains(.,'Radio Button')]")
+    private WebElement radioButtonText;
+    @FindBy(xpath = "//div[@class='mb-3'][contains(.,'Do you like the site?')]")
+    private WebElement question;
+    @FindBy(xpath = "//label[@for='yesRadio']")
+    private WebElement yesAnswerLabel;
+    @FindBy(xpath = "//label[@for='impressiveRadio']")
+    private WebElement impressiveLabel;
+    @FindBy(xpath = "//label[@for='noRadio']")
+    private WebElement noAnswerLabel;
+    @FindBy(xpath = "//p[contains(@class, 'mt-3')]")
+    private WebElement resultMessage;
+    @FindBy(xpath = "//span[@class='text-success']")
+    private WebElement textSuccessMessage;
 
     public RadioButtonPage(WebDriver driver) {
         super(driver);
@@ -21,51 +30,54 @@ public class RadioButtonPage extends BasePage {
     }
 
     public String getHeaderText() {
-        return find(radioButtonText).getText();
+        return radioButtonText.getText();
     }
 
     public String getQuestionText() {
-        return find(question).getText();
+        return question.getText();
     }
 
     public String getYesAnswerLabel() {
-        return find(yesAnswerLabel).getText();
+        return yesAnswerLabel.getText();
     }
 
     public String getImpressiveAnswerLabel() {
-        return find(impressiveLabel).getText();
+        return impressiveLabel.getText();
     }
 
     public String getNoAnswerLabel() {
-        return find(noAnswerLabel).getText();
+        return noAnswerLabel.getText();
     }
 
     public String getResultMessage() {
-        return find(resultMessage).getText();
+        return resultMessage.getText();
     }
 
     public String isColorGreen() {
-        return find(textSuccessMessage).getCssValue("color");
+        return textSuccessMessage.getCssValue("color");
     }
 
     public boolean isResultMessageDisplayed() {
-        return driver.findElements(resultMessage).isEmpty();
+        final By message = By.xpath("//p[contains(@class, 'mt-3')]");
+
+        var dasd = driver.findElements(message);
+        return !driver.findElements(message).isEmpty();
     }
 
     public void clickAnswer(String answer) {
         switch (answer) {
-            case "Yes" -> find(yesAnswerLabel).click();
-            case "Impressive" -> find(impressiveLabel).click();
-            case "No" -> find(noAnswerLabel).click();
+            case "Yes" -> yesAnswerLabel.click();
+            case "Impressive" -> impressiveLabel.click();
+            case "No" -> noAnswerLabel.click();
         }
     }
 
     public boolean isAnswerDisable(String answer) {
         boolean isDisabled = false;
         switch (answer) {
-            case "Yes" -> isDisabled = find(yesAnswerLabel).isEnabled();
-            case "Impressive" -> isDisabled = find(impressiveLabel).isEnabled();
-            case "No" -> isDisabled = find(noAnswerLabel).isEnabled();
+            case "Yes" -> isDisabled = yesAnswerLabel.isEnabled();
+            case "Impressive" -> isDisabled = impressiveLabel.isEnabled();
+            case "No" -> isDisabled = noAnswerLabel.isEnabled();
         }
         return isDisabled;
     }

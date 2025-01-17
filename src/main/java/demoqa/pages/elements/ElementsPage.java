@@ -1,8 +1,9 @@
 package demoqa.pages.elements;
 
 import demoqa.base.BasePage;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -13,19 +14,41 @@ import static utilities.JavaScriptUtility.scrollToElementJS;
 
 public class ElementsPage extends BasePage {
 
-    private final By textBox = By.xpath("//li[@id='item-0']/span[text()='Text Box']");
-    private final By checkBox = By.xpath("//li[@id='item-1']/span[text()='Check Box']");
-    private final By radioButton = By.xpath("//li[@id='item-2']/span[text()='Radio Button']");
-    private final By webTables = By.xpath("//li[@id='item-3']/span[text()='Web Tables']");
-    private final By Buttons = By.xpath("//li[@id='item-4']/span[text()='Buttons']");
-    private final By links = By.xpath("//li[@id='item-5']/span[text()='Links']");
-    private final By brokenLinksImages = By.xpath("//li[@id='item-6']/span[text()='Broken Links - Images']");
-    private final By uploadAndDownload = By.xpath("//li[@id='item-7']/span[text()='Upload and Download']");
-    private final By dynamicPropertiesMenuItem = By.xpath("//li[@id='item-8']/span[text()='Dynamic Properties']");
-    private final By text = By.xpath("(//div[contains(.,'Please select an item from left to start practice.')])[5]");
-    private final By elements = By.xpath("(//div[@class='header-wrapper'][contains(.,'Elements')])");
+    @FindBy(xpath = "//li[@id='item-0']/span[text()='Text Box']")
+    private WebElement textBox;
 
-    private final By textBox1 = By.xpath("//div[contains(@class,'element-list collapse')]");
+    @FindBy(xpath = "//li[@id='item-1']/span[text()='Check Box']")
+    private WebElement checkBox;
+
+    @FindBy(xpath = "//li[@id='item-2']/span[text()='Radio Button']")
+    private WebElement radioButton;
+
+    @FindBy(xpath = "//li[@id='item-3']/span[text()='Web Tables']")
+    private WebElement webTables;
+
+    @FindBy(xpath = "//li[@id='item-4']/span[text()='Buttons']")
+    private WebElement buttons;
+
+    @FindBy(xpath = "//li[@id='item-5']/span[text()='Links']")
+    private WebElement links;
+
+    @FindBy(xpath = "//li[@id='item-6']/span[text()='Broken Links - Images']")
+    private WebElement brokenLinksImages;
+
+    @FindBy(xpath = "//li[@id='item-7']/span[text()='Upload and Download']")
+    private WebElement uploadAndDownload;
+
+    @FindBy(xpath = "//li[@id='item-8']/span[text()='Dynamic Properties']")
+    private WebElement dynamicPropertiesMenuItem;
+
+    @FindBy(xpath = "(//div[contains(.,'Please select an item from left to start practice.')])[5]")
+    private WebElement text;
+
+    @FindBy(xpath = "(//div[@class='header-wrapper'][contains(.,'Elements')])")
+    private WebElement elements;
+
+    @FindBy(xpath = "//div[contains(@class,'element-list collapse')]")
+    private WebElement collapseDiv;
 
     public ElementsPage(WebDriver driver) {
         super(driver);
@@ -33,60 +56,59 @@ public class ElementsPage extends BasePage {
     }
 
     public String getText() {
-        return find(text).getText();
+        return text.getText();
     }
 
     public void clickTextBox() {
-        click(textBox);
+        textBox.click();
     }
 
     public void clickCheckBox() {
-        click(checkBox);
+        checkBox.click();
     }
 
     public void clickRadioButton() {
-        click(radioButton);
+        radioButton.click();
     }
 
     public void clickWebTables() {
-        click(webTables);
+        webTables.click();
     }
 
     public void clickButtons() {
-        click(Buttons);
+        buttons.click();
     }
 
     public void clickBrokenLinksImages() {
-        click(brokenLinksImages);
+        brokenLinksImages.click();
     }
 
     public void clickUploadAndDownload() {
-        click(uploadAndDownload);
+        uploadAndDownload.click();
     }
 
     public void clickDynamicProperties() {
-        click(dynamicPropertiesMenuItem);
+        dynamicPropertiesMenuItem.click();
     }
 
     public void clickLinks() {
         scrollToElementJS(links);
-        click(links);
+        links.click();
     }
 
     public boolean verifyTextBoxIsVisible() {
-        return find(textBox).isDisplayed();
+        return textBox.isDisplayed();
     }
 
     public void clickElements() {
-        click(elements);
+        elements.click();
     }
 
     public boolean verifyTextBoxIsNotVisible() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(6));
-        wait.until(ExpectedConditions.invisibilityOf(find(textBox)));
+        wait.until(ExpectedConditions.invisibilityOf(textBox));
 
-        String classAttribute = find(textBox1).getDomAttribute("class");
-
+        String classAttribute = collapseDiv.getDomAttribute("class");
         return classAttribute.equals("element-list collapse show");
     }
 }

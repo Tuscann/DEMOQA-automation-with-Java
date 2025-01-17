@@ -5,7 +5,7 @@ import org.openqa.selenium.Point;
 import org.testng.annotations.Test;
 
 public class DraggablePageTests extends BaseTest {
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Verify all text on page")
     public void VerifyAllTextOnPage() {
         navigateToUrl("dragabble");
 
@@ -58,7 +58,7 @@ public class DraggablePageTests extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Drag me simple tab")
     public void DragMeSimpleTab() {
         navigateToUrl("dragabble");
 
@@ -77,7 +77,7 @@ public class DraggablePageTests extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Drag only x in axis restricted tab")
     public void DragOnlyXInAxisRestrictedTab() {
         navigateToUrl("dragabble");
 
@@ -98,7 +98,7 @@ public class DraggablePageTests extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Drag only y in axis restricted tab")
     public void DragOnlyYInAxisRestrictedTab() {
         navigateToUrl("dragabble");
 
@@ -119,7 +119,7 @@ public class DraggablePageTests extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Contained in box axis restricted tab with size inside box")
     public void ContainedInBoxAxisRestrictedTabWithSizeInsideBox() {
         navigateToUrl("dragabble");
 
@@ -139,7 +139,7 @@ public class DraggablePageTests extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Contained in box axis restricted tab with size out side box")
     public void ContainedInBoxAxisRestrictedTabWithSizeOutSideBox() {
         navigateToUrl("dragabble");
 
@@ -160,7 +160,7 @@ public class DraggablePageTests extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Contained in parent axis restricted tab with size inside box")
     public void ContainedInParentAxisRestrictedTabWithSizeInsideBox() {
         navigateToUrl("dragabble");
 
@@ -181,7 +181,7 @@ public class DraggablePageTests extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(enabled = false)
+    @Test(enabled = false, testName = "Move first text cursor style")
     public void MoveFirstTextCursorStyle() {
         navigateToUrl("dragabble");
 
@@ -202,7 +202,7 @@ public class DraggablePageTests extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(enabled = false)
+    @Test(enabled = false, testName = "Move second text cursor style")
     public void MoveSecondTextCursorStyle() {
         navigateToUrl("dragabble");
 
@@ -223,7 +223,7 @@ public class DraggablePageTests extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Move third text cursor style")
     public void MoveThirdTextCursorStyle() {
         navigateToUrl("dragabble");
 

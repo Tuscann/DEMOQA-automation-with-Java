@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 public class InteractionPageTests extends BaseTest {
 
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Click left dropdown menu")
     public void ClickLeftDropdownMenu() {
         navigateToUrl("interaction");
 
@@ -26,7 +26,7 @@ public class InteractionPageTests extends BaseTest {
     }
 
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Verify nine pages links")
     public void CheckAllNinePagesLinks() {
         navigateToUrl("interaction");
 

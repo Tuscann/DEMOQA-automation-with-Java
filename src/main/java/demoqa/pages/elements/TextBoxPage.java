@@ -1,8 +1,9 @@
 package demoqa.pages.elements;
 
 import demoqa.base.BasePage;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -14,22 +15,50 @@ import static utilities.JavaScriptUtility.scrollToElementJS;
 
 public class TextBoxPage extends BasePage {
 
-    private final By header = By.xpath("//h1[@class='text-center'][contains(.,'Text Box')]");
-    private final By fullNameLabel = By.id("userName-label");
-    private final By fullNameField = By.id("userName");
-    private final By emailLabel = By.id("userEmail-label");
-    private final By emailField = By.id("userEmail");
-    private final By currentAddressLabel = By.id("currentAddress-label");
-    private final By currentAddressField = By.id("currentAddress");
-    private final By permanentAddressLabel = By.id("permanentAddress-label");
-    private final By permanentAddress = By.id("permanentAddress");
-    private final By submitButton = By.id("submit");
+    @FindBy(xpath = "//h1[@class='text-center'][contains(.,'Text Box')]")
+    private WebElement header;
 
-    private final By expectedFullName = By.xpath("//p[@id=\"name\"]");
-    private final By expectedEmail = By.xpath("//p[@id=\"email\"]");
-    private final By expectedCurrentAddress = By.xpath("//p[@id=\"currentAddress\"]");
-    private final By expectedPermanentAddress = By.xpath("//p[@id=\"permanentAddress\"]");
-    private final By output = By.id("output");
+    @FindBy(id = "userName-label")
+    private WebElement fullNameLabel;
+
+    @FindBy(id = "userName")
+    private WebElement fullNameField;
+
+    @FindBy(id = "userEmail-label")
+    private WebElement emailLabel;
+
+    @FindBy(id = "userEmail")
+    private WebElement emailField;
+
+    @FindBy(id = "currentAddress-label")
+    private WebElement currentAddressLabel;
+
+    @FindBy(id = "currentAddress")
+    private WebElement currentAddressField;
+
+    @FindBy(id = "permanentAddress-label")
+    private WebElement permanentAddressLabel;
+
+    @FindBy(id = "permanentAddress")
+    private WebElement permanentAddress;
+
+    @FindBy(id = "submit")
+    private WebElement submitButton;
+
+    @FindBy(xpath = "//p[@id='name']")
+    private WebElement expectedFullName;
+
+    @FindBy(xpath = "//p[@id='email']")
+    private WebElement expectedEmail;
+
+    @FindBy(xpath = "//p[@id=\"currentAddress\"]")
+    private WebElement expectedCurrentAddress;
+
+    @FindBy(xpath = "//p[@id=\"permanentAddress\"]")
+    private WebElement expectedPermanentAddress;
+
+    @FindBy(id = "output")
+    private WebElement output;
 
     public TextBoxPage(WebDriver driver) {
         super(driver);
@@ -37,63 +66,63 @@ public class TextBoxPage extends BasePage {
     }
 
     public String getFullNameLabel() {
-        return find(fullNameLabel).getText();
+        return fullNameLabel.getText();
     }
 
     public String getEmailLabel() {
-        return find(emailLabel).getText();
+        return emailLabel.getText();
     }
 
     public String getCurrentAddressLabel() {
-        return find(currentAddressLabel).getText();
+        return currentAddressLabel.getText();
     }
 
     public String getPermanentAddressLabel() {
-        return find(permanentAddressLabel).getText();
+        return permanentAddressLabel.getText();
     }
 
     public String getPlaceholderFullName() {
-        return find(fullNameField).getDomAttribute("placeholder");
+        return fullNameField.getDomAttribute("placeholder");
     }
 
     public String getPlaceholderEmail() {
-        return find(emailField).getDomAttribute("placeholder");
+        return emailField.getDomAttribute("placeholder");
     }
 
     public String getPlaceholderCurrentAddress() {
-        return find(currentAddressField).getDomAttribute("placeholder");
+        return currentAddressField.getDomAttribute("placeholder");
     }
 
     public String getPlaceholderPermanentAddress() {
-        return find(permanentAddress).getText();
+        return permanentAddress.getText();
     }
 
     public String getExpectedFullName() {
-        return find(expectedFullName).getText();
+        return expectedFullName.getText();
     }
 
     public String getExpectedEmail() {
-        return find(expectedEmail).getText();
+        return expectedEmail.getText();
     }
 
     public String getExpectedCurrentAddress() {
-        return find(expectedCurrentAddress).getText();
+        return expectedCurrentAddress.getText();
     }
 
     public String getExpectedPermanentAddress() {
-        return find(expectedPermanentAddress).getText();
+        return expectedPermanentAddress.getText();
     }
 
     public String getOutput() {
-        return find(output).getText();
+        return output.getText();
     }
 
     public String getHeaderText() {
-        return find(header).getText();
+        return header.getText();
     }
 
     public String getSubmitButtonText() {
-        return find(submitButton).getText();
+        return submitButton.getText();
     }
 
     public void setFullNameField(String fullName2) {
@@ -118,13 +147,13 @@ public class TextBoxPage extends BasePage {
 
     public void clickSubmitButton() {
         scrollToElementJS(submitButton);
-        click(submitButton);
+        submitButton.click();
     }
 
     public String isBorderRedAroundEmail(String color) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(6));
         wait.until(ExpectedConditions.attributeToBe(emailField, "border", color));
 
-        return find(emailField).getCssValue("border");
+        return emailField.getCssValue("border");
     }
 }

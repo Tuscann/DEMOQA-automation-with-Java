@@ -1,33 +1,58 @@
 package demoqa.pages.elements;
 
 import demoqa.base.BasePage;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.ArrayList;
-import java.util.List;
 
 import static utilities.JavaScriptUtility.scrollToElementJS;
 
 public class LinksPage extends BasePage {
 
-    private final By linksText = By.xpath("//h1[@class='text-center'][contains(.,'Links')]");
-    private final By newTab = By.xpath("//strong[contains(.,'Following links will open new tab')]");
-    private final By simpleLink = By.id("simpleLink");
-    private final By dynamicLink = By.id("dynamicLink");
-    private final By apiCallText = By.xpath("//strong[contains(.,'Following links will send an api call')]");
-    private final By createdRequestLink = By.id("created");
-    private final By noContentRequestLink = By.id("no-content");
-    private final By movedRequestLink = By.id("moved");
-    private final By badRequestLink = By.id("bad-request");
-    private final By unauthorizedRequestLink = By.id("unauthorized");
-    private final By forbiddenRequestLink = By.id("forbidden");
-    private final By notFoundRequestLink = By.id("invalid-url");
-    private final By responseLink = By.id("linkResponse");
+    @FindBy(xpath = "//h1[@class='text-center'][contains(.,'Links')]")
+    private WebElement linksText;
+
+    @FindBy(xpath = "//strong[contains(.,'Following links will open new tab')]")
+    private WebElement newTab;
+
+    @FindBy(id = "simpleLink")
+    private WebElement simpleLink;
+
+    @FindBy(id = "dynamicLink")
+    private WebElement dynamicLink;
+
+    @FindBy(xpath = "//strong[contains(.,'Following links will send an api call')]")
+    private WebElement apiCallText;
+
+    @FindBy(id = "created")
+    private WebElement createdRequestLink;
+
+    @FindBy(id = "no-content")
+    private WebElement noContentRequestLink;
+
+    @FindBy(id = "moved")
+    private WebElement movedRequestLink;
+
+    @FindBy(id = "bad-request")
+    private WebElement badRequestLink;
+
+    @FindBy(id = "unauthorized")
+    private WebElement unauthorizedRequestLink;
+
+    @FindBy(id = "forbidden")
+    private WebElement forbiddenRequestLink;
+
+    @FindBy(id = "invalid-url")
+    private WebElement notFoundRequestLink;
+
+    @FindBy(id = "linkResponse")
+    private WebElement responseLink;
 
     public LinksPage(WebDriver driver) {
         super(driver);
@@ -35,102 +60,110 @@ public class LinksPage extends BasePage {
     }
 
     public String getLinksText() {
-        return find(linksText).getText();
+        return linksText.getText();
     }
 
     public String getNewTabText() {
-        return find(newTab).getText();
+        return newTab.getText();
     }
 
     public String getSimpleLinkText() {
-        return find(simpleLink).getText();
+        return simpleLink.getText();
     }
 
     public String getApiCallText() {
-        return find(apiCallText).getText();
+        return apiCallText.getText();
     }
 
     public String getCreatedRequestLinkText() {
-        return find(createdRequestLink).getText();
+        return createdRequestLink.getText();
     }
 
     public String getNoContentRequestLinkText() {
-        return find(noContentRequestLink).getText();
+        return noContentRequestLink.getText();
     }
 
     public String getMovedRequestLinkText() {
-        return find(movedRequestLink).getText();
+        return movedRequestLink.getText();
     }
 
     public String getBadRequestLinkText() {
-        return find(badRequestLink).getText();
+        return badRequestLink.getText();
     }
 
     public String getUnauthorizedRequestLinkText() {
-        return find(unauthorizedRequestLink).getText();
+        return unauthorizedRequestLink.getText();
     }
 
     public String getForbiddenRequestLinkText() {
-        return find(forbiddenRequestLink).getText();
+        return forbiddenRequestLink.getText();
     }
 
     public String getNotFoundRequestLinkText() {
-        return find(notFoundRequestLink).getText();
+        return notFoundRequestLink.getText();
     }
 
     public void clickSimpleTab() {
-        click(simpleLink);
+        scrollToElementJS(simpleLink);
+        simpleLink.click();
+        ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(1));
+    }
+
+    public void clickDynamicTab() {
+        scrollToElementJS(dynamicLink);
+        dynamicLink.click();
+        ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(1));
     }
 
     public void clickDynamicLink() {
-        click(dynamicLink);
+        scrollToElementJS(dynamicLink);
+        dynamicLink.click();
     }
 
-    public void clickBadRequestLink() {
-        scrollToElementJS(badRequestLink);
-        click(badRequestLink);
-    }
-
-    public void clickCreatedRequestLink() {
+    public void clickCreatedLink() {
         scrollToElementJS(createdRequestLink);
-        click(createdRequestLink);
-    }
-
-    public void clickMovedRequestLink() {
-        scrollToElementJS(movedRequestLink);
-        click(movedRequestLink);
+        createdRequestLink.click();
     }
 
     public void clickNoContentRequestLink() {
         scrollToElementJS(noContentRequestLink);
-        click(noContentRequestLink);
+        noContentRequestLink.click();
     }
 
-    public void clickForbiddenRequestLink() {
-        scrollToElementJS(forbiddenRequestLink);
-        click(forbiddenRequestLink);
+    public void clickMovedLink() {
+        scrollToElementJS(movedRequestLink);
+        movedRequestLink.click();
     }
 
-    public void clickNotFoundRequestLink() {
-        scrollToElementJS(notFoundRequestLink);
-        click(notFoundRequestLink);
+    public void clickBadRequestLink() {
+        scrollToElementJS(badRequestLink);
+        badRequestLink.click();
     }
 
-    public void clickUnauthorizedRequestLink() {
+    public void clickUnauthorizedLink() {
         scrollToElementJS(unauthorizedRequestLink);
-        click(unauthorizedRequestLink);
+        unauthorizedRequestLink.click();
+    }
+
+    public void clickForbiddenLink() {
+        scrollToElementJS(forbiddenRequestLink);
+        forbiddenRequestLink.click();
+    }
+
+    public void clickNotFoundLink() {
+        scrollToElementJS(notFoundRequestLink);
+        notFoundRequestLink.click();
     }
 
     public String getResponse() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(responseLink));
-
-        return find(responseLink).getText();
+        wait.until(ExpectedConditions.visibilityOf(responseLink));
+        return responseLink.getText();
     }
 
     public String getUrl() {
-        List<String> tabs = new ArrayList<>(driver.getWindowHandles());
-        driver.switchTo().window(tabs.get(1));
         return driver.getCurrentUrl();
     }
 }

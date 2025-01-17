@@ -22,11 +22,11 @@ public class BooksLoginPage extends BasePage {
     WebElement deleteAccountButton;
     @FindBy(xpath = "(//button[@type='button'][contains(.,'Delete All Books')])[1]")
     WebElement deleteAllBooksButton;
-    @FindBy(id = "loadingLabel")
+    @FindBy(id = "loading-label")
     WebElement loadingLabel;
     @FindBy(id = "userName-label")
     WebElement usernameLabel;
-    @FindBy(id = "passwordLabel")
+    @FindBy(id = "password-label")
     WebElement passwordLabel;
     @FindBy(xpath = "//h5[contains(.,'Login in Book Store')]")
     WebElement loginText;

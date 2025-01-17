@@ -4,6 +4,7 @@ import demoqa.base.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -16,33 +17,83 @@ import static utilities.JavaScriptUtility.scrollToElementJS;
 
 public class WebTablesPage extends BasePage {
 
-    private final By header = By.xpath("//h1[@class='text-center'][contains(.,'Web Tables')]");
-    private final By registrationFormText = By.xpath("//div[@id='registration-form-modal']");
-    private final By registrationFirstNameLabel = By.id("firstName-label");
-    private final By registrationFirstNameField = By.id("firstName");
-    private final By registrationLastNameLabel = By.id("lastName-label");
-    private final By registrationLastNameField = By.id("lastName");
-    private final By registrationEmailLabel = By.id("userEmail-label");
-    private final By registrationEmailField = By.id("userEmail");
-    private final By registrationAgeLabel = By.id("age-label");
-    private final By registrationAgeField = By.id("age");
-    private final By registrationSalaryLabel = By.id("salary-label");
-    private final By registrationSalaryField = By.id("salary");
-    private final By registrationDepartmentLabel = By.id("department-label");
-    private final By registrationDepartmentField = By.id("department");
-    private final By submitButton = By.id("submit");
-    private final By addNewRecordButton = By.id("addNewRecordButton");
-    private final By searchBox = By.id("searchBox");
-    private final By nextButton = By.xpath("//button[contains(.,'Next')]");
-    private final By previousButton = By.xpath("//button[contains(.,'Previous')]");
-    private final By noRowsFound = By.xpath("//*[@id=\"app\"]/div/div/div/div[2]/div[2]/div[3]/div[3]");
+    @FindBy(xpath = "//h1[@class='text-center'][contains(.,'Web Tables')]")
+    private WebElement header;
 
-    private final By rowsPerPage = By.xpath("//select[@aria-label='rows per page']");
-    private final By lineCounts = By.className("rt-tr-group");
-    private final By pageInfo = By.className("-pageInfo");
-    private final By pageJump = By.xpath("//input[@aria-label='jump to page']");
-    private final By tableHeader = By.className("rt-thead");
-    private final By tableInformation = By.className("rt-tr-group");
+    @FindBy(xpath = "//div[@id='registration-form-modal']")
+    private WebElement registrationFormText;
+
+    @FindBy(id = "firstName-label")
+    private WebElement registrationFirstNameLabel;
+
+    @FindBy(id = "firstName")
+    private WebElement registrationFirstNameField;
+
+    @FindBy(id = "lastName-label")
+    private WebElement registrationLastNameLabel;
+
+    @FindBy(id = "lastName")
+    private WebElement registrationLastNameField;
+
+    @FindBy(id = "userEmail-label")
+    private WebElement registrationEmailLabel;
+
+    @FindBy(id = "userEmail")
+    private WebElement registrationEmailField;
+
+    @FindBy(id = "age-label")
+    private WebElement registrationAgeLabel;
+
+    @FindBy(id = "age")
+    private WebElement registrationAgeField;
+
+    @FindBy(id = "salary-label")
+    private WebElement registrationSalaryLabel;
+
+    @FindBy(id = "salary")
+    private WebElement registrationSalaryField;
+
+    @FindBy(id = "department-label")
+    private WebElement registrationDepartmentLabel;
+
+    @FindBy(id = "department")
+    private WebElement registrationDepartmentField;
+
+    @FindBy(id = "submit")
+    private WebElement submitButton;
+
+    @FindBy(id = "addNewRecordButton")
+    private WebElement addNewRecordButton;
+
+    @FindBy(id = "searchBox")
+    private WebElement searchBox;
+
+    @FindBy(xpath = "//button[contains(.,'Next')]")
+    private WebElement nextButton;
+
+    @FindBy(xpath = "//button[contains(.,'Previous')]")
+    private WebElement previousButton;
+
+    @FindBy(xpath = "//*[@id=\"app\"]/div/div/div/div[2]/div[2]/div[3]/div[3]")
+    private WebElement noRowsFound;
+
+    @FindBy(xpath = "//select[@aria-label='rows per page']")
+    private WebElement rowsPerPage;
+
+    @FindBy(className = "rt-tr-group")
+    private List<WebElement> lineCounts;
+
+    @FindBy(className = "-pageInfo")
+    private WebElement pageInfo;
+
+    @FindBy(xpath = "//input[@aria-label='jump to page']")
+    private WebElement pageJump;
+
+    @FindBy(className = "rt-thead")
+    private WebElement tableHeader;
+
+    @FindBy(className = "rt-tr-group")
+    private List<WebElement> tableInformation;
 
     public WebTablesPage(WebDriver driver) {
         super(driver);
@@ -50,317 +101,297 @@ public class WebTablesPage extends BasePage {
     }
 
     public String getSearchBoxPlaceholder() {
-        return find(searchBox).getDomAttribute("placeholder");
+        return searchBox.getDomProperty("placeholder");
     }
 
-
     public String getRegistrationFirstNameLabel() {
-        return find(registrationFirstNameLabel).getText();
+        return registrationFirstNameLabel.getText();
     }
 
     public String getRegistrationLastNameLabel() {
-        return find(registrationLastNameLabel).getText();
+        return registrationLastNameLabel.getText();
     }
 
     public String getRegistrationEmailLabel() {
-        return find(registrationEmailLabel).getText();
+        return registrationEmailLabel.getText();
     }
 
     public String getRegistrationAgeLabel() {
-        return find(registrationAgeLabel).getText();
+        return registrationAgeLabel.getText();
     }
 
     public String getRegistrationSalaryLabel() {
-        return find(registrationSalaryLabel).getText();
+        return registrationSalaryLabel.getText();
     }
 
     public String getDepartmentLabel() {
-        return find(registrationDepartmentLabel).getText();
+        return registrationDepartmentLabel.getText();
     }
 
     public String getPlaceholderFirstName() {
-        return find(registrationFirstNameField).getDomAttribute("placeholder");
+        return registrationFirstNameField.getDomProperty("placeholder");
     }
 
     public String getPlaceholderLastName() {
-        return find(registrationLastNameField).getDomAttribute("placeholder");
+        return registrationLastNameField.getDomProperty("placeholder");
     }
 
     public String getPlaceholderUserEmail() {
-        return find(registrationEmailField).getDomAttribute("placeholder");
+        return registrationEmailField.getDomProperty("placeholder");
     }
 
     public String getAgePlaceholder() {
-        return find(registrationAgeField).getDomAttribute("placeholder");
+        return registrationAgeField.getDomProperty("placeholder");
     }
 
     public String getSalaryPlaceholder() {
-        return find(registrationSalaryField).getDomAttribute("placeholder");
+        return registrationSalaryField.getDomProperty("placeholder");
     }
 
     public String getNoRowsFound() {
-        return find(noRowsFound).getText();
+        return noRowsFound.getText();
     }
 
     public String getLastNameBorderColor() {
-        return find(registrationLastNameField).getCssValue("border");
+        return registrationLastNameField.getCssValue("border");
     }
 
     public String getEmailBorderColor() {
-        return find(registrationEmailField).getCssValue("border");
+        return registrationEmailField.getCssValue("border");
     }
 
     public String getAgeBorderColor() {
-        return find(registrationAgeField).getCssValue("border");
+        return registrationAgeField.getCssValue("border");
     }
 
     public String getSalaryBorderColor() {
-        return find(registrationSalaryField).getCssValue("border");
+        return registrationSalaryField.getCssValue("border");
     }
 
     public String getDepartmentBorderColor() {
-        return find(registrationDepartmentField).getCssValue("border");
+        return registrationDepartmentField.getCssValue("border");
     }
 
     public String getPageInfo() {
-        return find(pageInfo).getText();
+        return pageInfo.getText();
     }
 
     public String getPageJump() {
-        return find(pageJump).getDomAttribute("value");
+        return pageJump.getDomProperty("value");
     }
 
     public String getButtonAddText() {
-        return find(addNewRecordButton).getText();
+        return addNewRecordButton.getText();
     }
 
     public String getButtonNextText() {
-        return find(nextButton).getText();
+        return nextButton.getText();
     }
 
     public String getButtonPreviousText() {
-        return find(previousButton).getText();
+        return previousButton.getText();
     }
 
     public String getTableHeader() {
-        return find(tableHeader).getText();
+        return tableHeader.getText();
     }
 
     public String getHeader() {
-        return find(header).getText();
+        return header.getText();
     }
 
     public String getSubmitButtonText() {
-        return find(submitButton).getText();
+        return submitButton.getText();
     }
 
     public int getCountOfLines() {
-        List<WebElement> webElements = driver.findElements(lineCounts);
-
-        return webElements.size();
+        return lineCounts.size();
     }
 
     public String getFirstNameBorderColor() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.attributeToBe(registrationFirstNameField, "border-color", "rgb(220, 53, 69)"));
-        return find(registrationFirstNameField).getCssValue("border");
+        return registrationFirstNameField.getCssValue("border");
     }
 
     public String getRegistrationFormText() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(6));
-        wait.until(ExpectedConditions.visibilityOf(find(registrationFormText)));
-
-        return find(registrationFormText).getText();
+        wait.until(ExpectedConditions.visibilityOf(registrationFormText));
+        return registrationFormText.getText();
     }
 
     public String getTableData() {
-        List<WebElement> webElements = driver.findElements(tableInformation);
-
-        List<String> allText = webElements.stream()
+        return tableInformation.stream()
                 .map(WebElement::getText)
                 .filter(text -> !text.isEmpty())
                 .map(String::trim)
-                .toList();
-
-        return allText.toString();
+                .toList()
+                .toString();
     }
 
     public void setAge(String age) {
-        set(registrationAgeField, age);
+        registrationAgeField.clear();
+        registrationAgeField.sendKeys(age);
     }
 
     public void setFirstName(String name) {
-        set(registrationFirstNameField, name);
+        registrationFirstNameField.clear();
+        registrationFirstNameField.sendKeys(name);
     }
 
     public void setEmail(String email) {
-        set(registrationEmailField, email);
+        registrationEmailField.clear();
+        registrationEmailField.sendKeys(email);
     }
 
     public void setSalary(String salary) {
-        set(registrationSalaryField, salary);
+        registrationSalaryField.clear();
+        registrationSalaryField.sendKeys(salary);
     }
 
     public void setDepartment(String department) {
-        set(registrationDepartmentField, department);
+        registrationDepartmentField.clear();
+        registrationDepartmentField.sendKeys(department);
     }
 
     public void setLastName(String name) {
-        set(registrationLastNameField, name);
+        registrationLastNameField.clear();
+        registrationLastNameField.sendKeys(name);
     }
 
     public void clickAddButton() {
-        click(addNewRecordButton);
+        addNewRecordButton.click();
     }
 
     public void searchWithWord(String word) {
-        set(searchBox, word);
+        searchBox.clear();
+        searchBox.sendKeys(word);
     }
 
     public String getDepartmentPlaceholder() {
-        return find(registrationDepartmentField).getDomAttribute("placeholder");
+        return registrationDepartmentField.getDomAttribute("placeholder");
     }
 
     public void clickSubmitButton() {
-        click(submitButton);
+        submitButton.click();
     }
 
     public void clickEdit(String email) {
-        By edit = By.xpath("//div[text()='" + email + "']//following::span[@title='Edit']");
-        scrollToElementJS(edit);
-        click(edit);
+        WebElement editButton = driver.findElement(By.xpath("//div[text()='" + email + "']//following::span[@title='Edit']"));
+        scrollToElementJS(editButton);
+        editButton.click();
     }
 
     public void clickDeleteByEmail(String email) {
-        By delete = By.xpath("//div[text()='" + email + "']//following::span[@title='Delete']");
-        scrollToElementJS(delete);
-        click(delete);
+        WebElement deleteButton = driver.findElement(By.xpath("//div[text()='" + email + "']//following::span[@title='Delete']"));
+        scrollToElementJS(deleteButton);
+        deleteButton.click();
     }
 
     public String getTableAge(String email) {
-        By tableAge = By.xpath("//div[text()='" + email + "']//preceding::div[1]");
-        return find(tableAge).getText();
+        WebElement ageCell = driver.findElement(By.xpath("//div[text()='" + email + "']//preceding::div[1]"));
+        return ageCell.getText();
     }
 
     public String getTableFirstName(String email) {
-        By tableFirstName = By.xpath("//div[text()='" + email + "']//preceding::div[3]");
-        return find(tableFirstName).getText();
+        WebElement firstNameCell = driver.findElement(By.xpath("//div[text()='" + email + "']//preceding::div[3]"));
+        return firstNameCell.getText();
     }
 
     public String getTableLastName(String email) {
-        By tableLastName = By.xpath("//div[text()='" + email + "']//preceding::div[2]");
-        return find(tableLastName).getText();
+        WebElement lastNameCell = driver.findElement(By.xpath("//div[text()='" + email + "']//preceding::div[2]"));
+        return lastNameCell.getText();
     }
 
     public String getTableEmail(String email) {
-        By tableEmail = By.xpath("//div[@class='rt-td'][contains(., '" + email + "')]");
-        return find(tableEmail).getText();
+        WebElement emailCell = driver.findElement(By.xpath("//div[@class='rt-td'][contains(., '" + email + "')]"));
+        return emailCell.getText();
     }
 
     public String getTableSalary(String email) {
-        By tableSalary = By.xpath("//div[text()='" + email + "']//following-sibling::div[1]");
-        return find(tableSalary).getText();
+        WebElement salaryCell = driver.findElement(By.xpath("//div[text()='" + email + "']//following-sibling::div[1]"));
+        return salaryCell.getText();
     }
 
     public String getTableDepartment(String email) {
-        By tableDepartment = By.xpath("//div[text()='" + email + "']//following-sibling::div[2]");
-        return find(tableDepartment).getText();
+        WebElement departmentCell = driver.findElement(By.xpath("//div[text()='" + email + "']//following-sibling::div[2]"));
+        return departmentCell.getText();
     }
 
     public boolean checkPreviousButtonIsActive() {
         scrollToElementJS(previousButton);
-        return find(previousButton).isEnabled();
+        return previousButton.isEnabled();
     }
 
     public boolean checkNextButtonIsActive() {
         scrollToElementJS(previousButton);
-        return find(nextButton).isEnabled();
+        return nextButton.isEnabled();
     }
 
     public boolean isAllBordersRed(String color) {
         delay(500); //TODO
 
-        boolean bordersRed = false;
+        WebElement[] fields = {
+                registrationFirstNameField,
+                registrationLastNameField,
+                registrationEmailField,
+                registrationAgeField,
+                registrationSalaryField,
+                registrationDepartmentField
+        };
 
-        for (int i = 0; i < 6; i++) {
-            String endColor;
-
-            if (i == 0) {
-                endColor = find(registrationFirstNameField).getCssValue("border");
-            } else if (i == 1) {
-                endColor = find(registrationLastNameField).getCssValue("border");
-            } else if (i == 2) {
-                endColor = find(registrationEmailField).getCssValue("border");
-            } else if (i == 3) {
-                endColor = find(registrationAgeField).getCssValue("border");
-            } else if (i == 4) {
-                endColor = find(registrationSalaryField).getCssValue("border");
-            } else {
-                endColor = find(registrationDepartmentField).getCssValue("border");
-            }
-            if (endColor.equals(color)) {
-                bordersRed = true;
-            } else {
-                bordersRed = false;
-                break;
+        for (WebElement field : fields) {
+            if (!field.getCssValue("border").equals(color)) {
+                return false;
             }
         }
-        return bordersRed;
+        return true;
     }
 
     public void clickNexButton() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(6));
         wait.until(ExpectedConditions.elementToBeClickable(nextButton));
-
-        click(nextButton);
+        nextButton.click();
     }
 
     public boolean isFirstNameBorderColorGreen(String color) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(6));
         wait.until(ExpectedConditions.attributeContains(registrationFirstNameField, "border", color));
-
-        return find(registrationFirstNameField).getCssValue("border").equals(color);
+        return registrationFirstNameField.getCssValue("border").equals(color);
     }
 
     public boolean isLastNameBorderColorGreen(String color) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(6));
         wait.until(ExpectedConditions.attributeContains(registrationLastNameField, "border", color));
-
-        return find(registrationLastNameField).getCssValue("border").equals(color);
+        return registrationLastNameField.getCssValue("border").equals(color);
     }
 
     public boolean isEmailBorderColorGreen(String color) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(6));
         wait.until(ExpectedConditions.attributeContains(registrationEmailField, "border", color));
-
-        return find(registrationEmailField).getCssValue("border").equals(color);
+        return registrationEmailField.getCssValue("border").equals(color);
     }
 
     public boolean isAgeBorderColorGreen(String color) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(6));
         wait.until(ExpectedConditions.attributeContains(registrationAgeField, "border", color));
-
-        return find(registrationAgeField).getCssValue("border").equals(color);
+        return registrationAgeField.getCssValue("border").equals(color);
     }
 
     public boolean isSalaryBorderColorGreen(String color) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(6));
         wait.until(ExpectedConditions.attributeContains(registrationSalaryField, "border", color));
-
-        return find(registrationSalaryField).getCssValue("border").equals(color);
+        return registrationSalaryField.getCssValue("border").equals(color);
     }
 
     public boolean isDepartmentBorderColorGreen(String color) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(6));
         wait.until(ExpectedConditions.attributeContains(registrationDepartmentField, "border", color));
-
-        return find(registrationDepartmentField).getCssValue("border").equals(color);
+        return registrationDepartmentField.getCssValue("border").equals(color);
     }
 
     public void clickRowPerPage(String row) {
-        WebElement dropdownElement = driver.findElement(rowsPerPage);
-
-        Select dropdown = new Select(dropdownElement);
+        Select dropdown = new Select(rowsPerPage);
         dropdown.selectByVisibleText(row);
     }
 }

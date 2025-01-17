@@ -1,8 +1,9 @@
 package demoqa.pages.bookstore;
 
 import demoqa.base.BasePage;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -12,26 +13,59 @@ import java.time.Duration;
 import static utilities.JavaScriptUtility.scrollToElementJS;
 
 public class BooksRegisterPage extends BasePage {
-    private final By firstName = By.id("firstname");
-    private final By lastName = By.id("lastname");
-    private final By username = By.id("userName");
-    private final By password = By.id("password");
-    private final By registerButton = By.id("register");
-    private final By backToLoginButton = By.id("gotologin");
-    private final By IamRobotButton = By.id("g-recaptcha");
-    private final By errorMessage = By.id("name");
+    @FindBy(id = "firstname")
+    private WebElement firstName;
 
-    private final By firstNameField = By.xpath("//input[@id='firstname']");
-    private final By lastNameField = By.xpath("//input[@id='lastname']");
-    private final By userNameField = By.xpath("//input[@id='userName']");
-    private final By passwordNameField = By.xpath("//input[@id='password']");
+    @FindBy(id = "lastname")
+    private WebElement lastName;
 
-    private final By title = By.xpath("//h1[contains(.,'Register')]");
-    private final By firstText = By.xpath("//h4[contains(.,'Register to Book Store')]");
-    private final By firstNameLabel = By.xpath("//label[@id='firstname-label']");
-    private final By lastNameLabel = By.xpath("//label[@id='lastname-label']");
-    private final By userNameLabel = By.xpath("//label[@id='userName-label']");
-    private final By passwordLabel = By.xpath("//label[@id='password-label']");
+    @FindBy(id = "userName")
+    private WebElement username;
+
+    @FindBy(id = "password")
+    private WebElement password;
+
+    @FindBy(id = "register")
+    private WebElement registerButton;
+
+    @FindBy(id = "gotologin")
+    private WebElement backToLoginButton;
+
+    @FindBy(id = "g-recaptcha")
+    private WebElement iamRobotButton;
+
+    @FindBy(id = "name")
+    private WebElement errorMessage;
+
+    @FindBy(xpath = "//input[@id='firstname']")
+    private WebElement firstNameField;
+
+    @FindBy(xpath = "//input[@id='lastname']")
+    private WebElement lastNameField;
+
+    @FindBy(xpath = "//input[@id='userName']")
+    private WebElement userNameField;
+
+    @FindBy(xpath = "//input[@id='password']")
+    private WebElement passwordNameField;
+
+    @FindBy(xpath = "//h1[contains(.,'Register')]")
+    private WebElement title;
+
+    @FindBy(xpath = "//h4[contains(.,'Register to Book Store')]")
+    private WebElement firstText;
+
+    @FindBy(xpath = "//label[@id='firstname-label']")
+    private WebElement firstNameLabel;
+
+    @FindBy(xpath = "//label[@id='lastname-label']")
+    private WebElement lastNameLabel;
+
+    @FindBy(xpath = "//label[@id='userName-label']")
+    private WebElement userNameLabel;
+
+    @FindBy(xpath = "//label[@id='password-label']")
+    private WebElement passwordLabel;
 
     public BooksRegisterPage(WebDriver driver) {
         super(driver);
@@ -39,97 +73,95 @@ public class BooksRegisterPage extends BasePage {
     }
 
     public String getFirstNamePlaceholderText() {
-        return find(firstNameField).getDomAttribute("placeholder");
+        return firstNameField.getDomAttribute("placeholder");
     }
 
     public String getLastNamePlaceholderText() {
-        return find(lastNameField).getDomAttribute("placeholder");
+        return lastNameField.getDomAttribute("placeholder");
     }
 
     public String getUsernamePlaceholderText() {
-        return find(userNameField).getDomAttribute("placeholder");
+        return userNameField.getDomAttribute("placeholder");
     }
 
     public String getPasswordPlaceholderText() {
-        return find(passwordNameField).getDomAttribute("placeholder");
+        return passwordNameField.getDomAttribute("placeholder");
     }
 
     public String getTitle() {
-        return find(title).getText();
+        return title.getText();
     }
 
     public String getFirstText() {
-        return find(firstText).getText();
+        return firstText.getText();
     }
 
     public String getTextOfRegisterButton() {
-        return find(registerButton).getText();
+        return registerButton.getText();
     }
 
     public String getTextOfBackToLoginButton() {
-        return find(backToLoginButton).getText();
+        return backToLoginButton.getText();
     }
 
     public String getFirstNameLabel() {
-        return find(firstNameLabel).getText();
+        return firstNameLabel.getText();
     }
 
     public String getLastNameLabel() {
-        return find(lastNameLabel).getText();
+        return lastNameLabel.getText();
     }
 
     public String getUsernameLabel() {
-        return find(userNameLabel).getText();
+        return userNameLabel.getText();
     }
 
     public String getPasswordLabel() {
-        return find(passwordLabel).getText();
+        return passwordLabel.getText();
     }
 
     public String getErrorMessage() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(12));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(errorMessage));
-
-        return find(errorMessage).getText();
+        wait.until(ExpectedConditions.visibilityOf(errorMessage));
+        return errorMessage.getText();
     }
 
-    public void setFirstName(String firstName2) {
+    public void setFirstName(String firstNameText) {
         scrollToElementJS(firstName);
-        click(firstName);
-        set(firstName, firstName2);
+        firstName.click();
+        firstName.sendKeys(firstNameText);
     }
 
-    public void setLastName(String lastName2) {
+    public void setLastName(String lastNameText) {
         scrollToElementJS(lastName);
-        click(lastName);
-        set(lastName, lastName2);
+        lastName.click();
+        lastName.sendKeys(lastNameText);
     }
 
-    public void setUsername(String username) {
-        scrollToElementJS(this.username);
-        click(this.username);
-        set(this.username, username);
+    public void setUsername(String usernameText) {
+        scrollToElementJS(username);
+        username.click();
+        username.sendKeys(usernameText);
     }
 
-    public void setPassword(String password) {
-        scrollToElementJS(this.password);
-        click(this.password);
-        set(this.password, password);
+    public void setPassword(String passwordText) {
+        scrollToElementJS(password);
+        password.click();
+        password.sendKeys(passwordText);
     }
 
     public void clickIamRobotButton() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(4));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(IamRobotButton));
-        click(IamRobotButton);
+        wait.until(ExpectedConditions.visibilityOf(iamRobotButton));
+        iamRobotButton.click();
     }
 
     public void clickRegisterButton() {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(12));
-        //TODO
-        click(registerButton);
+        registerButton.click();
     }
 
     public void clickBackToLoginButton() {
-        click(backToLoginButton);
+        backToLoginButton.click();
     }
 }

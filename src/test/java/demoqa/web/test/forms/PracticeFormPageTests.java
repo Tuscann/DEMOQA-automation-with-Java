@@ -211,7 +211,7 @@ public class PracticeFormPageTests extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(enabled = true, testName = "Click submit button on empty form And verify colors")
+    @Test(enabled = true, testName = "Click submit button on empty form and verify colors")
     public void ClickSubmitOnEmptyFormAndVerifyColors() {
         navigateToUrl("automation-practice-form");
         practiceFormPage.clickSubmitButton();

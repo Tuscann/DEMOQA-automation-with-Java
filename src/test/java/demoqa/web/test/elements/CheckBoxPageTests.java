@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 
 public class CheckBoxPageTests extends BaseTest {
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Select notes checkbox")
     public void SelectNotesCheckBox() {
         navigateToUrl("checkbox");
         checkBoxPage.clickExpandAll();
@@ -23,7 +23,7 @@ public class CheckBoxPageTests extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Select desktop home commands checkboxes")
     public void SelectDesktopWithHomeAndCommandsNotes() {
         navigateToUrl("checkbox");
 
@@ -41,8 +41,8 @@ public class CheckBoxPageTests extends BaseTest {
         Assert.assertEquals(actualResult, expectedResult, "\nNot selected Notes.\n");
     }
 
-    @Test(enabled = true)
-    public void DeSelectCheckBoxNotes() {
+    @Test(enabled = true, testName = "Deselect notes checkbox")
+    public void DeSelectNotesCheckBox() {
         navigateToUrl("checkbox");
 
         checkBoxPage.clickExpandAll();
@@ -61,7 +61,7 @@ public class CheckBoxPageTests extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Verify result message is empty without selections")
     public void VerifyResultMessageIsEmptyWithoutSelections() {
         navigateToUrl("checkbox");
         checkBoxPage.clickExpandAll();
@@ -69,7 +69,7 @@ public class CheckBoxPageTests extends BaseTest {
         Assert.assertTrue(checkBoxPage.isResultMessageShown(), "\nShown some category\n");
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Select commands checkbox")
     public void SelectCommandsCheckBox() {
         navigateToUrl("checkbox");
 
@@ -82,8 +82,8 @@ public class CheckBoxPageTests extends BaseTest {
         Assert.assertEquals(actualResult, expectedResult, "\nNot selected Commands.\n");
     }
 
-    @Test(enabled = true)
-    public void SelectNotesAndOfficePublic() {
+    @Test(enabled = true, testName = "Select notes and office public checkbox")
+    public void SelectNotesAndOfficePublicCheckBox() {
         navigateToUrl("checkbox");
 
         checkBoxPage.clickExpandAll();
@@ -99,7 +99,7 @@ public class CheckBoxPageTests extends BaseTest {
         Assert.assertEquals(actualResult, expectedResult, "Not selected 3 checkbox Notes/Commands");
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Collapsed with selected categories")
     public void CollapsedWithSelectedCategories() {
         navigateToUrl("checkbox");
 
@@ -125,7 +125,7 @@ public class CheckBoxPageTests extends BaseTest {
         Assert.assertEquals(actualResult, expectedResult, "\nNot selected 3 checkbox Notes/Commands.\n");
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Select home checkbox")
     public void SelectHomeCheckBox() {
         navigateToUrl("checkbox");
 
@@ -155,7 +155,7 @@ public class CheckBoxPageTests extends BaseTest {
         Assert.assertEquals(actualResult, expectedResult, "\nNot selected all CheckBoxes.\n");
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Select desktop documents and downloads checkboxes")
     public void SelectDesktopAndDocumentsAndDownloadsCheckBoxes() {
         navigateToUrl("checkbox");
 
@@ -188,7 +188,7 @@ public class CheckBoxPageTests extends BaseTest {
         Assert.assertEquals(actualResult, expectedResult, "\nNot selected all CheckBoxes\n");
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Select all checkboxes one by one")
     public void SelectAllCheckBoxesOneByOne() {
         navigateToUrl("checkbox");
 
@@ -199,7 +199,7 @@ public class CheckBoxPageTests extends BaseTest {
         checkBoxPage.clickAngular();
         checkBoxPage.clickVeu();
         checkBoxPage.clickOfficePublic();
-        checkBoxPage.clickPrivateOffice();
+        checkBoxPage.clickOfficePrivate();
         checkBoxPage.clickClassified();
         checkBoxPage.clickGeneral();
         checkBoxPage.clickWordFileDoc();
@@ -229,7 +229,7 @@ public class CheckBoxPageTests extends BaseTest {
         softAssert.assertEquals(actualResult, expectedResult, "\nNot selected all CheckBoxes.\n");
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Select all checkboxes one by one and deselect all")
     public void SelectAllCheckBoxesOneByOneAndDeselectAll() {
         navigateToUrl("checkbox");
 
@@ -240,7 +240,7 @@ public class CheckBoxPageTests extends BaseTest {
         checkBoxPage.clickAngular();
         checkBoxPage.clickVeu();
         checkBoxPage.clickOfficePublic();
-        checkBoxPage.clickPrivateOffice();
+        checkBoxPage.clickOfficePrivate();
         checkBoxPage.clickClassified();
         checkBoxPage.clickGeneral();
         checkBoxPage.clickWordFileDoc();
@@ -275,7 +275,7 @@ public class CheckBoxPageTests extends BaseTest {
         checkBoxPage.clickAngular();
         checkBoxPage.clickVeu();
         checkBoxPage.clickOfficePublic();
-        checkBoxPage.clickPrivateOffice();
+        checkBoxPage.clickOfficePrivate();
         checkBoxPage.clickClassified();
         checkBoxPage.clickGeneral();
         checkBoxPage.clickWordFileDoc();

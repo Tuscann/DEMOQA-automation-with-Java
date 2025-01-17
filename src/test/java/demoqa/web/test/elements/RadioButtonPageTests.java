@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 
 public class RadioButtonPageTests extends BaseTest {
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Check all text on page")
     public void CheckAllTextOnPage() {
         navigateToUrl("radio-button");
 
@@ -22,15 +22,17 @@ public class RadioButtonPageTests extends BaseTest {
         String actualImpressiveAnswerLabel = radioButtonPage.getImpressiveAnswerLabel();
         String actualNoAnswerLabel = radioButtonPage.getNoAnswerLabel();
 
-        Assert.assertEquals(actualRadioButtonText, expectedRadioButtonText, "\nNot found " + expectedRadioButtonText + ".\n");
-        Assert.assertEquals(actualYesAnswerLabelText, expectedYesAnswerLabel, "\nNot found " + expectedYesAnswerLabel + ".\n");
-        Assert.assertEquals(actualNoAnswerLabel, expectedNoAnswerLabel, "\nNot found " + expectedNoAnswerLabel + ".\n");
-        Assert.assertEquals(actualQuestionText, expectedActualQuestionText, "\nNot found " + expectedActualQuestionText + ".\n");
-        Assert.assertEquals(actualImpressiveAnswerLabel, expectedImpressiveAnswerLabel, "\nNot found " + expectedImpressiveAnswerLabel + ".\n");
-        Assert.assertTrue(radioButtonPage.isResultMessageDisplayed());
+        softAssert.assertEquals(actualRadioButtonText, expectedRadioButtonText, "\nNot found " + expectedRadioButtonText + ".\n");
+        softAssert.assertEquals(actualYesAnswerLabelText, expectedYesAnswerLabel, "\nNot found " + expectedYesAnswerLabel + ".\n");
+        softAssert.assertEquals(actualNoAnswerLabel, expectedNoAnswerLabel, "\nNot found " + expectedNoAnswerLabel + ".\n");
+        softAssert.assertEquals(actualQuestionText, expectedActualQuestionText, "\nNot found " + expectedActualQuestionText + ".\n");
+        softAssert.assertEquals(actualImpressiveAnswerLabel, expectedImpressiveAnswerLabel, "\nNot found " + expectedImpressiveAnswerLabel + ".\n");
+        softAssert.assertFalse(radioButtonPage.isResultMessageDisplayed());
+
+        softAssert.assertAll();
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Verify answer no is disabled")
     public void VerifyAnswerNoIsDisabled() {
         navigateToUrl("radio-button");
         String expectedNoAnswer = "No";
@@ -38,7 +40,7 @@ public class RadioButtonPageTests extends BaseTest {
         Assert.assertTrue(radioButtonPage.isAnswerDisable(expectedNoAnswer));
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Choose answer yes")
     public void ChooseAnswerYes() {
         navigateToUrl("radio-button");
 
@@ -48,11 +50,13 @@ public class RadioButtonPageTests extends BaseTest {
         String actualYesAnswer = radioButtonPage.getResultMessage();
         String expectedYesAnswer = "You have selected " + expectedAnswer;
 
-        Assert.assertFalse(radioButtonPage.isResultMessageDisplayed());
-        Assert.assertEquals(actualYesAnswer, expectedYesAnswer, "\nNot chosen yes answer.\n");
+        softAssert.assertTrue(radioButtonPage.isResultMessageDisplayed());
+        softAssert.assertEquals(actualYesAnswer, expectedYesAnswer, "\nNot chosen yes answer.\n");
+
+        softAssert.assertAll();
     }
 
-    @Test(enabled = true)
+    @Test(enabled = true, testName = "Choose answer impressive")
     public void ChooseAnswerImpressive() {
         navigateToUrl("radio-button");
 
@@ -62,14 +66,14 @@ public class RadioButtonPageTests extends BaseTest {
         String actualAnswer = radioButtonPage.getResultMessage();
         String expectedImpressiveAnswer = "You have selected " + expectedAnswer;
 
-        softAssert.assertFalse(radioButtonPage.isResultMessageDisplayed());
+        softAssert.assertTrue(radioButtonPage.isResultMessageDisplayed());
         softAssert.assertEquals(actualAnswer, expectedImpressiveAnswer, "\nNot chosen Impressive answer.\n");
 
         softAssert.assertAll();
     }
 
-    @Test(enabled = true)
-    public void VerifyGreenColorOfMessage() {
+    @Test(enabled = true, testName = "Verify green color of result message")
+    public void VerifyGreenColorOfResultMessage() {
         navigateToUrl("radio-button");
 
         String expectedAnswer = "Impressive";
