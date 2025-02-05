@@ -1,7 +1,6 @@
 package demoqa.pages.bookstore;
 
 import demoqa.base.BasePage;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -12,9 +11,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 public class BooksProfilePage extends BasePage {
-    private final By deleteAccountButton = By.xpath("(//button[@id='submit'])[2]");
-    private final By deleteAllBooksButton = By.xpath("(//button[@type='button'][contains(.,'Delete All Books')])[1]");
-
     @FindBy(id = "userName-value")
     WebElement username;
     @FindBy(id = "notLoggin-label")

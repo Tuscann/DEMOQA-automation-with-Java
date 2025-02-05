@@ -155,8 +155,13 @@ public class PracticeFormPageTests extends BaseTest {
         String expectedEmail = "karma@gmail.com";
         String expectedGender = "Female";
         String expectedMobileNumber = "1234567890";
-        String expectedDateOfBirth = LocalDate.now().format(DateTimeFormatter.ofPattern("dd MMMM,yyyy"));
-        String DateOfBirth = LocalDate.now().format(DateTimeFormatter.ofPattern("MM/dd/yyyy"));
+
+        String dateOfBirth = "1 Feb 2024";
+        DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("d MMM yyyy");
+        DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("dd MMMM,yyyy");
+        LocalDate date = LocalDate.parse(dateOfBirth, inputFormatter);
+        String expectedDateOfBirth = date.format(outputFormatter);
+
         String expectedSubject = "Hindi";
         String expectedHobbies = "Sports";
         String expectedPicture = "zhivko.jpg";
@@ -173,7 +178,7 @@ public class PracticeFormPageTests extends BaseTest {
         practiceFormPage.setEmail(expectedEmail);
         practiceFormPage.clickGenderRadioButton(expectedGender);
         practiceFormPage.setMobile(expectedMobileNumber);
-        practiceFormPage.setDateOfBirth(DateOfBirth);
+        practiceFormPage.setDateOfBirth(dateOfBirth);
         practiceFormPage.setSubject(expectedSubject);
         practiceFormPage.clickSportHobbyCheckbox();
         practiceFormPage.uploadFile(filePathOnOperationSystem);

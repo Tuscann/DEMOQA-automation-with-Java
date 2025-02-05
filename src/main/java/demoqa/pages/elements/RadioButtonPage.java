@@ -60,7 +60,6 @@ public class RadioButtonPage extends BasePage {
     public boolean isResultMessageDisplayed() {
         final By message = By.xpath("//p[contains(@class, 'mt-3')]");
 
-        var dasd = driver.findElements(message);
         return !driver.findElements(message).isEmpty();
     }
 

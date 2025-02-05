@@ -282,10 +282,27 @@ public class PracticeFormPage extends BasePage {
         }
     }
 
-    public void setDateOfBirth(String dateOfBirth) {
+    public void setDateOfBirth(String expectedDateOfBirth) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.visibilityOf(this.dateOfBirth))
-                .sendKeys(Keys.chord(Keys.CONTROL, "a"), dateOfBirth, Keys.chord(Keys.ENTER));
+        WebElement dateOfBirthInput = wait.until(ExpectedConditions.visibilityOf(this.dateOfBirth));
+
+
+        dateOfBirthInput.sendKeys(Keys.BACK_SPACE);
+        dateOfBirthInput.sendKeys(Keys.BACK_SPACE);
+        dateOfBirthInput.sendKeys(Keys.BACK_SPACE);
+        dateOfBirthInput.sendKeys(Keys.BACK_SPACE);
+        dateOfBirthInput.sendKeys(Keys.BACK_SPACE);
+        dateOfBirthInput.sendKeys(Keys.BACK_SPACE);
+        dateOfBirthInput.sendKeys(Keys.BACK_SPACE);
+        dateOfBirthInput.sendKeys(Keys.BACK_SPACE);
+        dateOfBirthInput.sendKeys(Keys.BACK_SPACE);
+        dateOfBirthInput.sendKeys(Keys.BACK_SPACE);
+        //dateOfBirthInput.sendKeys(Keys.DELETE);
+        // dateOfBirthInput.sendKeys(Keys.BACK_SPACE);
+
+        // dateOfBirthInput.sendKeys(Keys.CONTROL + "a" + Keys.DELETE);
+        dateOfBirthInput.sendKeys(expectedDateOfBirth);        // Enter the new date
+        dateOfBirthInput.sendKeys(Keys.ENTER);         // Press Enter (if needed)
     }
 
     public boolean isFemaleRadioButtonSelected() {

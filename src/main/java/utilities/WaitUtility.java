@@ -17,6 +17,7 @@ public class WaitUtility extends Utility {
     }
 
     public static void fluentWaitUntilVisible(int seconds, By locator) {
+        @SuppressWarnings("rawtypes")
         FluentWait fluentWait = new FluentWait(driver)
                 .withTimeout(Duration.ofSeconds(seconds))
                 .pollingEvery(Duration.ofMillis(500))

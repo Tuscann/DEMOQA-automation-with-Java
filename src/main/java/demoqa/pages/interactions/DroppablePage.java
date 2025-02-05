@@ -22,7 +22,6 @@ public class DroppablePage extends BasePage {
     private final By simpleTabDropHere = By.xpath("(//*[@id=\"droppable\"])[2]");
 
     private final By acceptTab = By.id("droppableExample-tab-accept");
-    private final By acceptDropContainer = By.id("acceptDropContainer");
     private final By acceptTabAcceptable = By.id("acceptable");
     private final By acceptTabNotAcceptable = By.id("notAcceptable");
     private final By acceptableDropHere = By.xpath("(//*[@id=\"droppable\"]/p)[2]");

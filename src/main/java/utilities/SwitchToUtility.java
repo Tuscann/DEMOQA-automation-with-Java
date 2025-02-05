@@ -15,7 +15,6 @@ public class SwitchToUtility extends Utility {
     }
 
     public static String getAlertText() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         Alert alert;
         String az = "";
 
