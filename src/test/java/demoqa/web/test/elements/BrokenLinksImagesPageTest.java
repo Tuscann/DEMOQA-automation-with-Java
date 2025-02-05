@@ -52,7 +52,7 @@ public class BrokenLinksImagesPageTest extends BaseTest {
     public void ClickOnClickHereForBrokenLink() {
         navigateToUrl("broken");
 
-        brokenLinksImagesPage.ClickOnClickHereBrokenLink();
+        brokenLinksImagesPage.clickOnClickHereBrokenLink();
 
         String expectedUrl = "https://the-internet.herokuapp.com/status_codes/500";
         String currentUrl = brokenLinksImagesPage.getCurrentUrl();

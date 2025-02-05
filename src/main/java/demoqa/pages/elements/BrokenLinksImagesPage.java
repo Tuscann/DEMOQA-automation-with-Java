@@ -6,6 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import static utilities.JavaScriptUtility.scrollToElementJS;
+
 public class BrokenLinksImagesPage extends BasePage {
 
     @FindBy(xpath = "//h1[@class='text-center'][contains(.,'Broken Links - Images')]")
@@ -64,7 +66,8 @@ public class BrokenLinksImagesPage extends BasePage {
         clickHereValidLinkText.click();
     }
 
-    public void ClickOnClickHereBrokenLink() {
+    public void clickOnClickHereBrokenLink() {
+        scrollToElementJS(clickHereBrokenLinkText);
         clickHereBrokenLinkText.click();
     }
 }

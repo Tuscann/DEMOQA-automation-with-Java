@@ -147,6 +147,7 @@ public class BooksLoginPage extends BasePage {
     }
 
     public void setUsername(String username2) {
+        scrollToElementJS(username);
         set(username, username2);
     }
 

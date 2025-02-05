@@ -10,6 +10,8 @@ import org.openqa.selenium.support.ui.*;
 import java.time.Duration;
 import java.util.Objects;
 
+import static utilities.JavaScriptUtility.scrollToElementJS;
+
 public class ProgressBarPage extends BasePage {
     private final By progressBarText = By.xpath("//div[contains(@class, 'mb-3')]");
     private final By startStopButton = By.id("startStopButton");
@@ -64,6 +66,7 @@ public class ProgressBarPage extends BasePage {
     }
 
     public void clickStartButton() {
+        scrollToElementJS(progressBarText);
         find(startStopButton).click();
     }
 

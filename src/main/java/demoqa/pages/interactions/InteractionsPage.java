@@ -5,6 +5,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
+import static utilities.JavaScriptUtility.scrollToElementJS;
+
 public class InteractionsPage extends BasePage {
     private final By sortable = By.xpath("//li[@id='item-0']/span[text()='Sortable']");
     private final By selectable = By.xpath("//li[@id='item-1']/span[text()='Selectable']");
@@ -19,22 +21,27 @@ public class InteractionsPage extends BasePage {
     }
 
     public void clickSortable() {
+        scrollToElementJS(sortable);
         click(sortable);
     }
 
     public void clickSelectable() {
+        scrollToElementJS(selectable);
         click(selectable);
     }
 
     public void clickResizable() {
+        scrollToElementJS(resizable);
         click(resizable);
     }
 
     public void clickDroppable() {
+        scrollToElementJS(droppable);
         click(droppable);
     }
 
     public void clickDraggable() {
+        scrollToElementJS(draggable);
         click(draggable);
     }
 

@@ -10,6 +10,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
+import static utilities.JavaScriptUtility.scrollToElementJS;
+
 public class BooksProfilePage extends BasePage {
     @FindBy(id = "userName-value")
     WebElement username;
@@ -63,6 +65,7 @@ public class BooksProfilePage extends BasePage {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(12));
         wait.until(ExpectedConditions.urlToBe("https://demoqa.com/profile"));
         wait.until(ExpectedConditions.elementToBeClickable(profile));
+        scrollToElementJS(goToBookStoreButton);
         goToBookStoreButton.click();
     }
 }
