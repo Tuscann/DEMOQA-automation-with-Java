@@ -12,7 +12,9 @@ import java.io.IOException;
 
 public class AccountTests extends BaseTestApi {
 
-    @Test(testName = "Post Authorized user", suiteName = "api", enabled = true)
+    User testUser = new User();
+
+    @Test(testName = "Authorized user with POST", suiteName = "api", enabled = true)
     void AuthorizeUser() throws IOException, InterruptedException {
         TodoClient todoClient = new TodoClient();
 
@@ -24,7 +26,19 @@ public class AccountTests extends BaseTestApi {
         Assert.assertEquals(isUserFound, "true", "\nWrong request.\n");
     }
 
-    @Test(testName = "Generate Token with post", suiteName = "api", enabled = true)
+    @Test(testName = "Try to authorized non existing user with POST", suiteName = "api", enabled = true)
+    void tryToAuthorizeUser() throws IOException, InterruptedException {
+        TodoClient todoClient = new TodoClient();
+
+        String expectedUsername = "fbinnzhivko6123";
+        String password = "Karma1987!@";
+
+        String response = todoClient.AuthorizeUser(expectedUsername, password);
+
+        Assert.assertEquals(response, "{\"code\":\"1207\",\"message\":\"User not found!\"}", "\nWrong response from API.\n");
+    }
+
+    @Test(testName = "Generate Token with POST", suiteName = "api", enabled = true)
     void GenerateToken() throws IOException, InterruptedException {
         TodoClient todoClient = new TodoClient();
 
@@ -46,7 +60,7 @@ public class AccountTests extends BaseTestApi {
         softAssert.assertAll();
     }
 
-    @Test(testName = "Generate new user post", suiteName = "api", enabled = true)
+    @Test(testName = "Generate new valid user with POST", suiteName = "api", enabled = true)
     void GenerateNewUser() throws IOException, InterruptedException {
         TodoClient todoClient = new TodoClient();
 
@@ -67,7 +81,7 @@ public class AccountTests extends BaseTestApi {
         softAssert.assertAll();
     }
 
-    @Test(testName = "Try to generate new user with existing user post", suiteName = "api", enabled = true)
+    @Test(testName = "Try to generate new user with existing user with POST", suiteName = "api", enabled = true)
     void GenerateNewUserWithExistingUser() throws IOException, InterruptedException {
         TodoClient todoClient = new TodoClient();
 
@@ -84,5 +98,65 @@ public class AccountTests extends BaseTestApi {
         softAssert.assertTrue(errorResponse.getMessage().contains("User exists"), "Error message should indicate user exists");
 
         softAssert.assertAll();
+    }
+
+    @Test(testName = "Try to delete user with not authorized user with DELETE", suiteName = "api", enabled = true)
+    void TryToDeleteUser() throws IOException, InterruptedException {
+        TodoClient todoClient = new TodoClient();
+
+        String userId = "9e8aef1f-7ee6-4fc5-a75e-3d4701627871";
+
+        Object response = todoClient.DeleteUser(userId);
+
+        softAssert.assertNotNull(response, "API response should not be null");
+        softAssert.assertTrue(response instanceof ErrorResponse, "Response should be an error for existing user");
+
+        ErrorResponse errorResponse = (ErrorResponse) response;
+        softAssert.assertEquals(errorResponse.getCode(), "1200", "Error code should be 1200 for user exists");
+        softAssert.assertTrue(errorResponse.getMessage().contains("User not authorized!"), "Error message should indicate user exists");
+
+        softAssert.assertAll();
+    }
+
+    @Test(testName = "Try to get user information with not authorized user with GET", suiteName = "api", enabled = true)
+    void GetInformation() throws IOException, InterruptedException {
+        TodoClient todoClient = new TodoClient();
+
+        String userId = "9e8aef1f-7ee6-4fc5-a75e-3d4701627871";
+
+        Object response = todoClient.GetUserByUUID(userId);
+
+        softAssert.assertNotNull(response, "API response should not be null");
+        softAssert.assertTrue(response instanceof ErrorResponse, "Response should be an error for existing user");
+
+        ErrorResponse errorResponse = (ErrorResponse) response;
+        softAssert.assertEquals(errorResponse.getCode(), "1200", "Error code should be 1200 for user exists");
+        softAssert.assertTrue(errorResponse.getMessage().contains("User not authorized!"), "Error message should indicate user exists");
+
+        softAssert.assertAll();
+    }
+
+    @Test(testName = "Try to2", suiteName = "api", enabled = false)
+    void GetInformation2() throws IOException, InterruptedException {
+        TodoClient todoClient = new TodoClient();
+
+        String username = "fbinnzhivko";
+        String password = "Karma1987!@";
+
+        String isUserFound = todoClient.AuthorizeUser(username, password);
+
+        String userId = "e90df422-7f2b-4f51-be1b-c92541eb370f";
+
+        Object response = todoClient.GetUserByUUID(userId);
+
+        softAssert.assertNotNull(response, "API response should not be null");
+        softAssert.assertTrue(response instanceof ErrorResponse, "Response should be an error for existing user");
+
+        ErrorResponse errorResponse = (ErrorResponse) response;
+        softAssert.assertEquals(errorResponse.getCode(), "1200", "Error code should be 1200 for user exists");
+        softAssert.assertTrue(errorResponse.getMessage().contains("User not authorized!"), "Error message should indicate user exists");
+
+        softAssert.assertAll();
+
     }
 }

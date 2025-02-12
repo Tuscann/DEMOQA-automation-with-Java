@@ -96,7 +96,37 @@ public class TodoClient {
                 .POST(HttpRequest.BodyPublishers.ofString(requestBody))
                 .build();
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-        
+
+        try {
+            return objectMapper.readValue(response.body(), User.class);
+        } catch (Exception e) {
+            return objectMapper.readValue(response.body(), ErrorResponse.class);
+        }
+    }
+
+    public Object DeleteUser(String userId) throws IOException, InterruptedException {
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(BASE_URL + "/Account/v1/User/" + userId))
+                .header("Content-Type", "application/x-www-form-urlencoded")
+                .DELETE()
+                .build();
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+        try {
+            return objectMapper.readValue(response.body(), User.class);
+        } catch (Exception e) {
+            return objectMapper.readValue(response.body(), ErrorResponse.class);
+        }
+    }
+
+    public Object GetUserByUUID(String userId) throws IOException, InterruptedException {
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(BASE_URL + "/Account/v1/User/" + userId))
+                .header("Content-Type", "application/x-www-form-urlencoded")
+                .GET()
+                .build();
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
         try {
             return objectMapper.readValue(response.body(), User.class);
         } catch (Exception e) {

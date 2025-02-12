@@ -1,35 +1,73 @@
 package demoqa.pages.interactions;
 
 import demoqa.base.BasePage;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class SortablePage extends BasePage {
 
-    private final By pageTitle = By.xpath("//h1[@class='text-center'][contains(.,'Sortable')]");
-    private final By listTab = By.id("demo-tab-list");
-    private final By listOne = By.xpath("(//div[@class='list-group-item list-group-item-action'][contains(.,'One')])[1]");
-    private final By listTwo = By.xpath("(//div[@class='list-group-item list-group-item-action'][contains(.,'Two')])[1]");
-    private final By listThree = By.xpath("(//div[@class='list-group-item list-group-item-action'][contains(.,'Three')])[1]");
-    private final By listFour = By.xpath("(//div[@class='list-group-item list-group-item-action'][contains(.,'Four')])[1]");
-    private final By listFive = By.xpath("(//div[@class='list-group-item list-group-item-action'][contains(.,'Five')])[1]");
-    private final By listSix = By.xpath("(//div[@class='list-group-item list-group-item-action'][contains(.,'Six')])[1]");
-    private final By gridTab = By.id("demo-tab-grid");
-    private final By gridOne = By.xpath("(//div[@class='list-group-item list-group-item-action'][contains(.,'One')])[2]");
-    private final By gridTwo = By.xpath("(//div[@class='list-group-item list-group-item-action'][contains(.,'Two')])[2]");
-    private final By gridThree = By.xpath("(//div[@class='list-group-item list-group-item-action'][contains(.,'Three')])[2]");
-    private final By gridFour = By.xpath("(//div[@class='list-group-item list-group-item-action'][contains(.,'Four')])[2]");
-    private final By gridFive = By.xpath("(//div[@class='list-group-item list-group-item-action'][contains(.,'Five')])[2]");
-    private final By gridSix = By.xpath("(//div[@class='list-group-item list-group-item-action'][contains(.,'Six')])[2]");
-    private final By gridSeven = By.xpath("(//div[@class='list-group-item list-group-item-action'][contains(.,'Seven')])");
-    private final By gridEight = By.xpath("//div[@class='list-group-item list-group-item-action'][contains(.,'Eight')]");
-    private final By gridNine = By.xpath("//div[@class='list-group-item list-group-item-action'][contains(.,'Nine')]");
+    @FindBy(xpath = "//h1[@class='text-center'][contains(.,'Sortable')]")
+    private WebElement pageTitle;
 
-    private final By listOrder = By.id("demo-tabpane-list");
-    private final By gridOrder = By.id("demo-tabpane-grid");
+    @FindBy(id = "demo-tab-list")
+    private WebElement listTab;
+
+    @FindBy(xpath = "(//div[@class='list-group-item list-group-item-action'][contains(.,'One')])[1]")
+    private WebElement listOne;
+
+    @FindBy(xpath = "(//div[@class='list-group-item list-group-item-action'][contains(.,'Two')])[1]")
+    private WebElement listTwo;
+
+    @FindBy(xpath = "(//div[@class='list-group-item list-group-item-action'][contains(.,'Three')])[1]")
+    private WebElement listThree;
+
+    @FindBy(xpath = "(//div[@class='list-group-item list-group-item-action'][contains(.,'Four')])[1]")
+    private WebElement listFour;
+
+    @FindBy(xpath = "(//div[@class='list-group-item list-group-item-action'][contains(.,'Five')])[1]")
+    private WebElement listFive;
+
+    @FindBy(xpath = "(//div[@class='list-group-item list-group-item-action'][contains(.,'Six')])[1]")
+    private WebElement listSix;
+
+    @FindBy(id = "demo-tab-grid")
+    private WebElement gridTab;
+
+    @FindBy(xpath = "(//div[@class='list-group-item list-group-item-action'][contains(.,'One')])[2]")
+    private WebElement gridOne;
+
+    @FindBy(xpath = "(//div[@class='list-group-item list-group-item-action'][contains(.,'Two')])[2]")
+    private WebElement gridTwo;
+
+    @FindBy(xpath = "(//div[@class='list-group-item list-group-item-action'][contains(.,'Three')])[2]")
+    private WebElement gridThree;
+
+    @FindBy(xpath = "(//div[@class='list-group-item list-group-item-action'][contains(.,'Four')])[2]")
+    private WebElement gridFour;
+
+    @FindBy(xpath = "(//div[@class='list-group-item list-group-item-action'][contains(.,'Five')])[2]")
+    private WebElement gridFive;
+
+    @FindBy(xpath = "(//div[@class='list-group-item list-group-item-action'][contains(.,'Six')])[2]")
+    private WebElement gridSix;
+
+    @FindBy(xpath = "(//div[@class='list-group-item list-group-item-action'][contains(.,'Seven')])")
+    private WebElement gridSeven;
+
+    @FindBy(xpath = "//div[@class='list-group-item list-group-item-action'][contains(.,'Eight')]")
+    private WebElement gridEight;
+
+    @FindBy(xpath = "//div[@class='list-group-item list-group-item-action'][contains(.,'Nine')]")
+    private WebElement gridNine;
+
+    @FindBy(id = "demo-tabpane-list")
+    private WebElement listOrder;
+
+    @FindBy(id = "demo-tabpane-grid")
+    private WebElement gridOrder;
 
     public SortablePage(WebDriver driver) {
         super(driver);
@@ -37,150 +75,133 @@ public class SortablePage extends BasePage {
     }
 
     public void clickGridTab() {
-        click(gridTab);
+        gridTab.click();
     }
 
     public String getPageTitle() {
-        return find(pageTitle).getText();
+        return pageTitle.getText();
     }
 
     public String getListTab() {
-        return find(listTab).getText();
+        return listTab.getText();
     }
 
     public String getListOne() {
-        return find(listOne).getText();
+        return listOne.getText();
     }
 
     public String getListTwo() {
-        return find(listTwo).getText();
+        return listTwo.getText();
     }
 
     public String getListThree() {
-        return find(listThree).getText();
+        return listThree.getText();
     }
 
     public String getListFour() {
-        return find(listFour).getText();
+        return listFour.getText();
     }
 
     public String getListFive() {
-        return find(listFive).getText();
+        return listFive.getText();
     }
 
     public String getListSix() {
-        return find(listSix).getText();
+        return listSix.getText();
     }
 
     public String getGridTab() {
-        return find(gridTab).getText();
+        return gridTab.getText();
     }
 
     public String getGridOne() {
-        return find(gridOne).getText();
+        return gridOne.getText();
     }
 
     public String getGridTwo() {
-        return find(gridTwo).getText();
+        return gridTwo.getText();
     }
 
     public String getGridThree() {
-        return find(gridThree).getText();
+        return gridThree.getText();
     }
 
     public String getGridFour() {
-        return find(gridFour).getText();
+        return gridFour.getText();
     }
 
     public String getGridFive() {
-        return find(gridFive).getText();
+        return gridFive.getText();
     }
 
     public String getGridSix() {
-        return find(gridSix).getText();
+        return gridSix.getText();
     }
 
     public String getGridSeven() {
-        return find(gridSeven).getText();
+        return gridSeven.getText();
     }
 
     public String getGridEight() {
-        return find(gridEight).getText();
+        return gridEight.getText();
     }
 
     public String getGridNine() {
-        return find(gridNine).getText();
+        return gridNine.getText();
     }
 
     public String getListOrder() {
-        return find(listOrder).getText();
+        return listOrder.getText();
     }
 
     public String getGridOrder() {
-        return find(gridOrder).getText();
+        return gridOrder.getText();
     }
 
     public void moveOverGrid(String gridOne, String gridSix) {
+        WebElement draggable = getGridElementByName(gridOne);
+        WebElement droppable = getGridElementByName(gridSix);
 
-        WebElement draggable;
-        WebElement droppable;
-
-        draggable = switch (gridOne) {
-            case "One" -> driver.findElement(this.gridOne);
-            case "Two" -> driver.findElement(this.gridTwo);
-            case "Three" -> driver.findElement(this.gridThree);
-            case "Four" -> driver.findElement(this.gridFour);
-            case "Five" -> driver.findElement(this.gridFive);
-            case "Six" -> driver.findElement(this.gridSix);
-            case "Seven" -> driver.findElement(this.gridSeven);
-            case "Eight" -> driver.findElement(this.gridEight);
-            case "Nine" -> driver.findElement(this.gridNine);
-            default -> null;
-        };
-
-        droppable = switch (gridSix) {
-            case "One" -> driver.findElement(this.gridOne);
-            case "Two" -> driver.findElement(this.gridTwo);
-            case "Three" -> driver.findElement(this.gridThree);
-            case "Four" -> driver.findElement(this.gridFour);
-            case "Five" -> driver.findElement(this.gridFive);
-            case "Six" -> driver.findElement(this.gridSix);
-            case "Seven" -> driver.findElement(this.gridSeven);
-            case "Eight" -> driver.findElement(this.gridEight);
-            case "Nine" -> driver.findElement(this.gridNine);
-            default -> null;
-        };
-
-        Actions actions = new Actions(driver);
-        actions.dragAndDrop(draggable, droppable).perform();
+        if (draggable != null && droppable != null) {
+            Actions actions = new Actions(driver);
+            actions.dragAndDrop(draggable, droppable).perform();
+        }
     }
 
     public void moveOverList(String listOne, String listSix) {
+        WebElement draggable = getListElementByName(listOne);
+        WebElement droppable = getListElementByName(listSix);
 
-        WebElement draggable;
-        WebElement droppable;
+        if (draggable != null && droppable != null) {
+            Actions actions = new Actions(driver);
+            actions.dragAndDrop(draggable, droppable).perform();
+        }
+    }
 
-        draggable = switch (listOne) {
-            case "One" -> driver.findElement(this.listOne);
-            case "Two" -> driver.findElement(this.listTwo);
-            case "Three" -> driver.findElement(this.listThree);
-            case "Four" -> driver.findElement(this.listFour);
-            case "Five" -> driver.findElement(this.listFive);
-            case "Six" -> driver.findElement(this.listSix);
+    private WebElement getGridElementByName(String name) {
+        return switch (name) {
+            case "One" -> gridOne;
+            case "Two" -> gridTwo;
+            case "Three" -> gridThree;
+            case "Four" -> gridFour;
+            case "Five" -> gridFive;
+            case "Six" -> gridSix;
+            case "Seven" -> gridSeven;
+            case "Eight" -> gridEight;
+            case "Nine" -> gridNine;
             default -> null;
         };
+    }
 
-        droppable = switch (listSix) {
-            case "One" -> driver.findElement(this.listOne);
-            case "Two" -> driver.findElement(this.listTwo);
-            case "Three" -> driver.findElement(this.listThree);
-            case "Four" -> driver.findElement(this.listFour);
-            case "Five" -> driver.findElement(this.listFive);
-            case "Six" -> driver.findElement(this.listSix);
+    private WebElement getListElementByName(String name) {
+        return switch (name) {
+            case "One" -> listOne;
+            case "Two" -> listTwo;
+            case "Three" -> listThree;
+            case "Four" -> listFour;
+            case "Five" -> listFive;
+            case "Six" -> listSix;
             default -> null;
         };
-
-        Actions actions = new Actions(driver);
-        actions.dragAndDrop(draggable, droppable).perform();
     }
 }

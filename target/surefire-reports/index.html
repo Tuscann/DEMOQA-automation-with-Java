@@ -103,7 +103,7 @@
                     <div class="method-list-content passed suite-Surefire_suite">
                       <span>
                         <img src="passed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Surefire_suite" title="demoqa.web.test.forms.PracticeFormPageTests" class="method navigator-link" hash-for-method="VerifyAllTextAndPlaceHolders">VerifyAllTextAndPlaceHolders</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-Surefire_suite" title="demoqa.api.tests.AccountTests" class="method navigator-link" hash-for-method="tryToAuthorizeUser">tryToAuthorizeUser</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content passed suite-Surefire_suite -->
@@ -121,14 +121,14 @@
           <div class="suite-Surefire_suite-class-passed">
             <div class="main-panel-header rounded-window-top">
               <img src="passed.png"/>
-              <span class="class-name">demoqa.web.test.forms.PracticeFormPageTests</span>
+              <span class="class-name">demoqa.api.tests.AccountTests</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="VerifyAllTextAndPlaceHolders">
-                  </a> <!-- VerifyAllTextAndPlaceHolders -->
-                  <span class="method-name">VerifyAllTextAndPlaceHolders</span>
+                  <a name="tryToAuthorizeUser">
+                  </a> <!-- tryToAuthorizeUser -->
+                  <span class="method-name">tryToAuthorizeUser</span>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
@@ -149,7 +149,7 @@
       &lt;/method-selector&gt;
     &lt;/method-selectors&gt;
     &lt;classes&gt;
-      &lt;class name=&quot;demoqa.web.test.forms.PracticeFormPageTests&quot;/&gt;
+      &lt;class name=&quot;demoqa.api.tests.AccountTests&quot;/&gt;
     &lt;/classes&gt;
   &lt;/test&gt; &lt;!-- Surefire test --&gt;
 &lt;/suite&gt; &lt;!-- Surefire suite --&gt;
@@ -191,9 +191,9 @@ data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
 data.addRows(1);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'VerifyAllTextAndPlaceHolders')
-data.setCell(0, 2, 'demoqa.web.test.forms.PracticeFormPageTests')
-data.setCell(0, 3, 1087);
+data.setCell(0, 1, 'tryToAuthorizeUser')
+data.setCell(0, 2, 'demoqa.api.tests.AccountTests')
+data.setCell(0, 3, 1451);
 window.suiteTableData['Surefire_suite']= { tableData: data, tableDiv: 'times-div-Surefire_suite'}
 return data;
 }
@@ -213,21 +213,25 @@ return data;
         </div> <!-- panel -->
         <div panel-name="ignored-methods-Surefire_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">5 ignored methods</span>
+            <span class="header-content">7 ignored methods</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="ignored-class-div">
-              <span class="ignored-class-name">demoqa.web.test.forms.PracticeFormPageTests</span>
+              <span class="ignored-class-name">demoqa.api.tests.AccountTests</span>
               <div class="ignored-methods-div">
-                <span class="ignored-method-name">VerifyColorsChangeFromRedToGreen</span>
+                <span class="ignored-method-name">TryToDeleteUser</span>
                 <br/>
-                <span class="ignored-method-name">VerifyThreeHobbiesState</span>
+                <span class="ignored-method-name">AuthorizeUser</span>
                 <br/>
-                <span class="ignored-method-name">SubmitValidPracticeFormAndVerify</span>
+                <span class="ignored-method-name">GenerateNewUser</span>
                 <br/>
-                <span class="ignored-method-name">ClickSubmitOnEmptyFormAndVerifyColors</span>
+                <span class="ignored-method-name">GetInformation</span>
                 <br/>
-                <span class="ignored-method-name">SelectEveryRadioButton</span>
+                <span class="ignored-method-name">GenerateNewUserWithExistingUser</span>
+                <br/>
+                <span class="ignored-method-name">GenerateToken</span>
+                <br/>
+                <span class="ignored-method-name">GetInformation2</span>
                 <br/>
               </div> <!-- ignored-methods-div -->
             </div> <!-- ignored-class-div -->
@@ -239,23 +243,15 @@ return data;
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="chronological-class">
-              <div class="chronological-class-name">demoqa.web.test.forms.PracticeFormPageTests</div> <!-- chronological-class-name -->
+              <div class="chronological-class-name">demoqa.api.tests.AccountTests</div> <!-- chronological-class-name -->
               <div class="configuration-method before">
                 <span class="method-name">setUp</span>
                 <span class="method-start">0 ms</span>
               </div> <!-- configuration-method before -->
               <div class="test-method">
-                <span class="method-name">VerifyAllTextAndPlaceHolders</span>
-                <span class="method-start">4111 ms</span>
+                <span class="method-name">tryToAuthorizeUser</span>
+                <span class="method-start">20 ms</span>
               </div> <!-- test-method -->
-              <div class="configuration-method after">
-                <span class="method-name">takeFailedResultScreenshot([TestResult name=VerifyAllTextAndPlaceHolders status=SUCCESS method=PracticeFormPageTests.VerifyAllT...)</span>
-                <span class="method-start">5200 ms</span>
-              </div> <!-- configuration-method after -->
-              <div class="configuration-method after">
-                <span class="method-name">tearDown</span>
-                <span class="method-start">5201 ms</span>
-              </div> <!-- configuration-method after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
       </div> <!-- main-panel-root -->
