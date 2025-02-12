@@ -4,37 +4,86 @@ import demoqa.base.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
 
 public class SelectablePage extends BasePage {
-    private final By pageTitle = By.xpath("//h1[@class='text-center'][contains(.,'Selectable')]");
-    private final By firstRowSelect = By.xpath("(//li[@class='mt-2 list-group-item list-group-item-action'])[1]");
-    private final By secondRowSelect = By.xpath("(//li[@class='mt-2 list-group-item list-group-item-action'])[2]");
-    private final By thirdRowSelect = By.xpath("(//li[@class='mt-2 list-group-item list-group-item-action'])[3]");
-    private final By fourRowSelect = By.xpath("(//li[@class='mt-2 list-group-item list-group-item-action'])[4]");
-    private final By firstRowDeselect = By.xpath("(//li[@class='mt-2 list-group-item active list-group-item-action'])[1]");
-    private final By secondRowDeselect = By.xpath("(//li[@class='mt-2 list-group-item active list-group-item-action'])[2]");
-    private final By thirdRowDeselect = By.xpath("(//li[@class='mt-2 list-group-item active list-group-item-action'])[3]");
-    private final By fourRowDeselect = By.xpath("(//li[@class='mt-2 list-group-item active list-group-item-action'])[4]");
-    private final By allList = By.xpath("//*[contains(@class,\"mt-2\")]");
+    @FindBy(xpath = "//h1[@class='text-center'][contains(.,'Selectable')]")
+    private WebElement pageTitle;
 
-    private final By listTabText = By.id("demo-tab-list");
-    private final By listFirstText = By.xpath("//li[@class='mt-2 list-group-item list-group-item-action'][contains(.,'Cras justo odio')]");
-    private final By listSecondText = By.xpath("//li[@class='mt-2 list-group-item list-group-item-action'][contains(.,'Dapibus ac facilisis in')]");
-    private final By listThirdText = By.xpath("//li[@class='mt-2 list-group-item list-group-item-action'][contains(.,'Morbi leo risus')]");
-    private final By listFourText = By.xpath("//li[contains(.,'Porta ac consectetur ac')]");
-    private final By gridTabText = By.id("demo-tab-grid");
-    private final By gridOne = By.xpath("//li[@class='list-group-item list-group-item-action'][contains(.,'One')]");
-    private final By gridTwo = By.xpath("//li[@class='list-group-item list-group-item-action'][contains(.,'Two')]");
-    private final By gridThree = By.xpath("//li[@class='list-group-item list-group-item-action'][contains(.,'Three')]");
-    private final By gridFour = By.xpath("//li[@class='list-group-item list-group-item-action'][contains(.,'Four')]");
-    private final By gridFive = By.xpath("//li[@class='list-group-item list-group-item-action'][contains(.,'Five')]");
-    private final By gridSix = By.xpath("//li[@class='list-group-item list-group-item-action'][contains(.,'Six')]");
-    private final By gridSeven = By.xpath("//li[@class='list-group-item list-group-item-action'][contains(.,'Seven')]");
-    private final By gridEight = By.xpath("//li[@class='list-group-item list-group-item-action'][contains(.,'Eight')]");
-    private final By gridNine = By.xpath("//li[@class='list-group-item list-group-item-action'][contains(.,'Nine')]");
+    @FindBy(xpath = "(//li[@class='mt-2 list-group-item list-group-item-action'])[1]")
+    private WebElement firstRowSelect;
+
+    @FindBy(xpath = "(//li[@class='mt-2 list-group-item list-group-item-action'])[2]")
+    private WebElement secondRowSelect;
+
+    @FindBy(xpath = "(//li[@class='mt-2 list-group-item list-group-item-action'])[3]")
+    private WebElement thirdRowSelect;
+
+    @FindBy(xpath = "(//li[@class='mt-2 list-group-item list-group-item-action'])[4]")
+    private WebElement fourRowSelect;
+
+    @FindBy(xpath = "(//li[@class='mt-2 list-group-item active list-group-item-action'])[1]")
+    private WebElement firstRowDeselect;
+
+    @FindBy(xpath = "(//li[@class='mt-2 list-group-item active list-group-item-action'])[2]")
+    private WebElement secondRowDeselect;
+
+    @FindBy(xpath = "(//li[@class='mt-2 list-group-item active list-group-item-action'])[3]")
+    private WebElement thirdRowDeselect;
+
+    @FindBy(xpath = "(//li[@class='mt-2 list-group-item active list-group-item-action'])[4]")
+    private WebElement fourRowDeselect;
+
+    @FindBy(xpath = "//*[contains(@class,'mt-2')]")
+    private List<WebElement> allList;
+
+    @FindBy(id = "demo-tab-list")
+    private WebElement listTabText;
+
+    @FindBy(xpath = "//li[@class='mt-2 list-group-item list-group-item-action'][contains(.,'Cras justo odio')]")
+    private WebElement listFirstText;
+
+    @FindBy(xpath = "//li[@class='mt-2 list-group-item list-group-item-action'][contains(.,'Dapibus ac facilisis in')]")
+    private WebElement listSecondText;
+
+    @FindBy(xpath = "//li[@class='mt-2 list-group-item list-group-item-action'][contains(.,'Morbi leo risus')]")
+    private WebElement listThirdText;
+
+    @FindBy(xpath = "//li[contains(.,'Porta ac consectetur ac')]")
+    private WebElement listFourText;
+
+    @FindBy(id = "demo-tab-grid")
+    private WebElement gridTabText;
+
+    @FindBy(xpath = "//li[@class='list-group-item list-group-item-action'][contains(.,'One')]")
+    private WebElement gridOne;
+
+    @FindBy(xpath = "//li[@class='list-group-item list-group-item-action'][contains(.,'Two')]")
+    private WebElement gridTwo;
+
+    @FindBy(xpath = "//li[@class='list-group-item list-group-item-action'][contains(.,'Three')]")
+    private WebElement gridThree;
+
+    @FindBy(xpath = "//li[@class='list-group-item list-group-item-action'][contains(.,'Four')]")
+    private WebElement gridFour;
+
+    @FindBy(xpath = "//li[@class='list-group-item list-group-item-action'][contains(.,'Five')]")
+    private WebElement gridFive;
+
+    @FindBy(xpath = "//li[@class='list-group-item list-group-item-action'][contains(.,'Six')]")
+    private WebElement gridSix;
+
+    @FindBy(xpath = "//li[@class='list-group-item list-group-item-action'][contains(.,'Seven')]")
+    private WebElement gridSeven;
+
+    @FindBy(xpath = "//li[@class='list-group-item list-group-item-action'][contains(.,'Eight')]")
+    private WebElement gridEight;
+
+    @FindBy(xpath = "//li[@class='list-group-item list-group-item-action'][contains(.,'Nine')]")
+    private WebElement gridNine;
 
     public SelectablePage(WebDriver driver) {
         super(driver);
@@ -42,78 +91,73 @@ public class SelectablePage extends BasePage {
     }
 
     public String getPageTitleText() {
-        return find(pageTitle).getText();
+        return pageTitle.getText();
     }
 
     public String getListTabText() {
-        return find(listTabText).getText();
+        return listTabText.getText();
     }
 
     public String getListFirstText() {
-        return find(listFirstText).getText();
+        return listFirstText.getText();
     }
 
     public String getListSecondText() {
-        return find(listSecondText).getText();
+        return listSecondText.getText();
     }
 
     public String getListThirdText() {
-        return find(listThirdText).getText();
+        return listThirdText.getText();
     }
 
     public String getListFourText() {
-        return find(listFourText).getText();
+        return listFourText.getText();
     }
 
     public String getGridText() {
-        return find(gridTabText).getText();
+        return gridTabText.getText();
     }
 
     public void clickGridTab() {
-        find(gridTabText).click();
+        gridTabText.click();
     }
 
     public void clickElement(int index) {
-        List<WebElement> inputField = driver.findElements(allList);
-
-        for (int i = 0; i < inputField.size(); i++) {
-            if (i == index) {
-                inputField.get(i).click();
-                break;
-            }
+        if (index >= 0 && index < allList.size()) {
+            allList.get(index).click();
         }
     }
 
     public void selectFirstRow() {
-        find(firstRowSelect).click();
+        firstRowSelect.click();
     }
 
     public void selectSecondRow() {
-        find(secondRowSelect).click();
+        secondRowSelect.click();
     }
 
     public void selectThirdRow() {
-        find(thirdRowSelect).click();
+        thirdRowSelect.click();
     }
 
     public void selectFourRow() {
-        find(fourRowSelect).click();
+        fourRowSelect.click();
     }
 
     public void deselectFirstRow() {
-        find(firstRowDeselect).click();
+        firstRowDeselect.click();
     }
 
     public void deselectSecondRow() {
-        find(secondRowDeselect).click();
+        secondRowDeselect.click();
     }
 
     public void deselectThirdRow() {
-        find(thirdRowDeselect).click();
+        thirdRowDeselect.click();
     }
 
     public void deselectFourRow() {
-        find(fourRowDeselect).click();
+        fourRowDeselect.click();
     }
 
     public boolean RowSelected(String searchedSelection) {
@@ -126,52 +170,52 @@ public class SelectablePage extends BasePage {
     }
 
     public String getGridOneText() {
-        return find(gridOne).getText();
+        return gridOne.getText();
     }
 
     public String getGridTwoText() {
-        return find(gridTwo).getText();
+        return gridTwo.getText();
     }
 
     public String getGridThreeText() {
-        return find(gridThree).getText();
+        return gridThree.getText();
     }
 
     public String getGridFourText() {
-        return find(gridFour).getText();
+        return gridFour.getText();
     }
 
     public String getGridFive() {
-        return find(gridFive).getText();
+        return gridFive.getText();
     }
 
     public String getGridSix() {
-        return find(gridSix).getText();
+        return gridSix.getText();
     }
 
     public String getGridSeven() {
-        return find(gridSeven).getText();
+        return gridSeven.getText();
     }
 
     public String getGridEight() {
-        return find(gridEight).getText();
+        return gridEight.getText();
     }
 
     public String getGridNine() {
-        return find(gridNine).getText();
+        return gridNine.getText();
     }
 
     public void selectPositionFromGrid(String searched1Selection) {
         switch (searched1Selection) {
-            case "One" -> find(gridOne).click();
-            case "Two" -> find(gridTwo).click();
-            case "Three" -> find(gridThree).click();
-            case "Four" -> find(gridFour).click();
-            case "Five" -> find(gridFive).click();
-            case "Six" -> find(gridSix).click();
-            case "Seven" -> find(gridSeven).click();
-            case "Eight" -> find(gridEight).click();
-            case "Nine" -> find(gridNine).click();
+            case "One" -> gridOne.click();
+            case "Two" -> gridTwo.click();
+            case "Three" -> gridThree.click();
+            case "Four" -> gridFour.click();
+            case "Five" -> gridFive.click();
+            case "Six" -> gridSix.click();
+            case "Seven" -> gridSeven.click();
+            case "Eight" -> gridEight.click();
+            case "Nine" -> gridNine.click();
         }
     }
 

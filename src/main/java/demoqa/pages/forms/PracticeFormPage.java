@@ -1,7 +1,6 @@
 package demoqa.pages.forms;
 
 import demoqa.base.BasePage;
-import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -18,193 +17,191 @@ import static utilities.JavaScriptUtility.scrollToElementJS;
 
 public class PracticeFormPage extends BasePage {
 
-    private final By readingHobbyCheckbox = By.id("hobbies-checkbox-2");
-    private final By musicHobbyCheckbox = By.id("hobbies-checkbox-3");
-    private final By uploadPicture = By.id("uploadPicture");
-    private final By currentAddressArea = By.id("currentAddress");
-    private final By states22 = By.id("react-select-3-input");
-    private final By cities = By.id("react-select-4-input");
-    private final By selectState = By.xpath("//div[@class=' css-1wa3eu0-placeholder'][contains(.,'Select State')]");
-    private final By selectCity = By.xpath("//div[@class=' css-1wa3eu0-placeholder'][contains(.,'Select City')]");
-    private final By submitButton = By.id("submit");
-    private final By labelForm = By.xpath("//th[contains(.,'Label')]");
-    private final By valuesForm = By.xpath("//th[contains(.,'Label')]/following-sibling::*[1]");
-    private final By studentNameForm = By.xpath("//td[contains(.,'Student Name')]/following-sibling::*[1]");
-    private final By emailForm = By.xpath("//td[contains(.,'Student Email')]/following-sibling::*[1]");
-    private final By genderForm = By.xpath("//td[contains(.,'Gender')]/following-sibling::*[1]");
-    private final By mobileForm = By.xpath("//td[contains(.,'Mobile')]/following-sibling::*[1]");
-    private final By dateOfBirthForm = By.xpath("//td[contains(.,'Date of Birth')]/following-sibling::*[1]");
-    private final By subjectsForm = By.xpath("//td[contains(.,'Subjects')]/following-sibling::*[1]");
-    private final By hobbiesForm = By.xpath("//td[contains(.,'Hobbies')]/following-sibling::*[1]");
-    private final By pictureForm = By.xpath("//td[contains(.,'Picture')]/following-sibling::*[1]");
-    private final By addressForm = By.xpath("//td[contains(.,'Address')]/following-sibling::*[1]");
-    private final By stateAndCityForm = By.xpath("//td[contains(.,'State')]/following-sibling::*[1]");
     @FindBy(xpath = "/html/body/div[4]/div/div/div[2]/p")
     public WebElement pLoremIpsumSimplyDummy;
+    @FindBy(id = "hobbies-checkbox-2")
+    private WebElement readingHobbyCheckbox;
+    @FindBy(id = "hobbies-checkbox-3")
+    private WebElement musicHobbyCheckbox;
+    @FindBy(id = "uploadPicture")
+    private WebElement uploadPicture;
+    @FindBy(id = "currentAddress")
+    private WebElement currentAddressArea;
+    @FindBy(id = "react-select-3-input")
+    private WebElement states22;
+    @FindBy(id = "react-select-4-input")
+    private WebElement cities;
+    @FindBy(xpath = "//div[@class=' css-1wa3eu0-placeholder'][contains(.,'Select State')]")
+    private WebElement selectState;
+    @FindBy(xpath = "//div[@class=' css-1wa3eu0-placeholder'][contains(.,'Select City')]")
+    private WebElement selectCity;
+    @FindBy(id = "submit")
+    private WebElement submitButton;
+    @FindBy(xpath = "//th[contains(.,'Label')]")
+    private WebElement labelForm;
+    @FindBy(xpath = "//th[contains(.,'Label')]/following-sibling::*[1]")
+    private WebElement valuesForm;
+    @FindBy(xpath = "//td[contains(.,'Student Name')]/following-sibling::*[1]")
+    private WebElement studentNameForm;
+    @FindBy(xpath = "//td[contains(.,'Student Email')]/following-sibling::*[1]")
+    private WebElement emailForm;
+    @FindBy(xpath = "//td[contains(.,'Gender')]/following-sibling::*[1]")
+    private WebElement genderForm;
+    @FindBy(xpath = "//td[contains(.,'Mobile')]/following-sibling::*[1]")
+    private WebElement mobileForm;
+    @FindBy(xpath = "//td[contains(.,'Date of Birth')]/following-sibling::*[1]")
+    private WebElement dateOfBirthForm;
+    @FindBy(xpath = "//td[contains(.,'Subjects')]/following-sibling::*[1]")
+    private WebElement subjectsForm;
+    @FindBy(xpath = "//td[contains(.,'Hobbies')]/following-sibling::*[1]")
+    private WebElement hobbiesForm;
+    @FindBy(xpath = "//td[contains(.,'Picture')]/following-sibling::*[1]")
+    private WebElement pictureForm;
+    @FindBy(xpath = "//td[contains(.,'Address')]/following-sibling::*[1]")
+    private WebElement addressForm;
+    @FindBy(xpath = "//td[contains(.,'State')]/following-sibling::*[1]")
+    private WebElement stateAndCityForm;
     @FindBy(xpath = "//label[@class='form-label'][contains(.,'Hobbies')]")
-    WebElement hobbiesLabel;
-    @FindBy(xpath = "//label[@class='form-label'][contains(.,'Picture')]")
-    WebElement pictureLabel;
-    @FindBy(xpath = "//label[@for='hobbies-checkbox-1'][contains(.,'Sports')]")
-    WebElement sportsLabel;
-    @FindBy(xpath = "//label[@for='hobbies-checkbox-2'][contains(.,'Reading')]")
-    WebElement readingLabel;
-    @FindBy(xpath = "//label[@for='hobbies-checkbox-3'][contains(.,'Music')]")
-    WebElement musicLabel;
-    @FindBy(xpath = "//label[@for='uploadPicture'][contains(.,'Select picture')]")
-    WebElement selectPictureLabel;
-    @FindBy(id = "currentAddress-label")
-    WebElement currentAddressLabel;
-    @FindBy(id = "stateCity-label")
-    WebElement stateAndCityLabel;
-    @FindBy(id = "firstName")
-    WebElement firstName;
-    @FindBy(id = "lastName")
-    WebElement lastName;
-    @FindBy(id = "userEmail")
-    WebElement email;
-    @FindBy(id = "gender-radio-1")
-    WebElement maleRadioButton;
-    @FindBy(id = "gender-radio-2")
-    WebElement femaleRadioButton;
-    @FindBy(id = "gender-radio-3")
-    WebElement otherRadioButton;
-    @FindBy(id = "userNumber")
-    WebElement mobile;
-    @FindBy(id = "dateOfBirthInput")
-    WebElement dateOfBirth;
-    @FindBy(id = "subjectsInput")
-    WebElement subjects;
-    @FindBy(id = "hobbies-checkbox-1")
-    WebElement sportHobbyCheckbox;
-    @FindBy(xpath = "//h1[@class='text-center'][contains(.,'Practice Form')]")
-    WebElement practiceFormLabel;
-    @FindBy(xpath = "//h5[contains(.,'Student Registration Form')]")
-    WebElement studentRegistrationFormLabel;
-    @FindBy(id = "userName-label")
-    WebElement nameLabel;
-    @FindBy(id = "userEmail-label")
-    WebElement userEmailLabel;
-    @FindBy(xpath = "(//div[contains(.,'Gender')])[8]")
-    WebElement genderLabel;
-    @FindBy(xpath = "//label[@for='gender-radio-1'][contains(.,'Male')]")
-    WebElement maleRadioButtonLabel;
-    @FindBy(xpath = "//label[@for='gender-radio-2'][contains(.,'Female')]")
-    WebElement femaleRadioButtonLabel;
-    @FindBy(xpath = "//label[@for='gender-radio-3'][contains(.,'Other')]")
-    WebElement otherRadioButtonLabel;
-    @FindBy(id = "dateOfBirth-label")
-    WebElement dateOfBirthLabel;
-    @FindBy(id = "userNumber-label")
-    WebElement mobileNumberLabel;
-    @FindBy(id = "subjects-label")
-    WebElement subjectsLabel;
+    private WebElement hobbiesLabel;
 
+    @FindBy(xpath = "//label[@class='form-label'][contains(.,'Picture')]")
+    private WebElement pictureLabel;
+
+    @FindBy(xpath = "//label[@for='hobbies-checkbox-1'][contains(.,'Sports')]")
+    private WebElement sportsLabel;
+
+    @FindBy(xpath = "//label[@for='hobbies-checkbox-2'][contains(.,'Reading')]")
+    private WebElement readingLabel;
+
+    @FindBy(xpath = "//label[@for='hobbies-checkbox-3'][contains(.,'Music')]")
+    private WebElement musicLabel;
+
+    @FindBy(xpath = "//label[@for='uploadPicture'][contains(.,'Select picture')]")
+    private WebElement selectPictureLabel;
+
+    @FindBy(id = "currentAddress-label")
+    private WebElement currentAddressLabel;
+
+    @FindBy(id = "stateCity-label")
+    private WebElement stateAndCityLabel;
+
+    @FindBy(id = "firstName")
+    private WebElement firstName;
+
+    @FindBy(id = "lastName")
+    private WebElement lastName;
+
+    @FindBy(id = "userEmail")
+    private WebElement email;
+
+    @FindBy(id = "gender-radio-1")
+    private WebElement maleRadioButton;
+
+    @FindBy(id = "gender-radio-2")
+    private WebElement femaleRadioButton;
+
+    @FindBy(id = "gender-radio-3")
+    private WebElement otherRadioButton;
+
+    @FindBy(id = "userNumber")
+    private WebElement mobile;
+
+    @FindBy(id = "dateOfBirthInput")
+    private WebElement dateOfBirth;
+
+    @FindBy(id = "subjectsInput")
+    private WebElement subjects;
+
+    @FindBy(id = "hobbies-checkbox-1")
+    private WebElement sportHobbyCheckbox;
+
+    @FindBy(xpath = "//h1[@class='text-center'][contains(.,'Practice Form')]")
+    private WebElement practiceFormLabel;
+
+    @FindBy(xpath = "//h5[contains(.,'Student Registration Form')]")
+    private WebElement studentRegistrationFormLabel;
+
+    @FindBy(id = "userName-label")
+    private WebElement nameLabel;
+
+    @FindBy(id = "userEmail-label")
+    private WebElement userEmailLabel;
+
+    @FindBy(xpath = "(//div[contains(.,'Gender')])[8]")
+    private WebElement genderLabel;
+
+    @FindBy(xpath = "//label[@for='gender-radio-1'][contains(.,'Male')]")
+    private WebElement maleRadioButtonLabel;
+
+    @FindBy(xpath = "//label[@for='gender-radio-2'][contains(.,'Female')]")
+    private WebElement femaleRadioButtonLabel;
+
+    @FindBy(xpath = "//label[@for='gender-radio-3'][contains(.,'Other')]")
+    private WebElement otherRadioButtonLabel;
+
+    @FindBy(id = "dateOfBirth-label")
+    private WebElement dateOfBirthLabel;
+
+    @FindBy(id = "userNumber-label")
+    private WebElement mobileNumberLabel;
+
+    @FindBy(id = "subjects-label")
+    private WebElement subjectsLabel;
 
     public PracticeFormPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
     }
 
-    public String getSelectPictureLabel() {
-        return selectPictureLabel.getText();
-    }
-
-    public String getHobbiesLabel() {
-        return hobbiesLabel.getText();
-    }
-
-    public String getPictureLabel() {
-        return pictureLabel.getText();
-    }
-
-    public String getReadingLabel() {
-        return readingLabel.getText();
-    }
-
-    public String getMusicLabel() {
-        return musicLabel.getText();
-    }
-
-    public String getMobileNumberLabel() {
-        return mobileNumberLabel.getText();
-    }
-
-    public String getMaleGenderText() {
-        return maleRadioButtonLabel.getText();
-    }
-
-    public String getFemaleGenderText() {
-        return femaleRadioButtonLabel.getText();
-    }
-
-    public String getOtherRadioButtonGenderText() {
-        return otherRadioButtonLabel.getText();
-    }
-
-    public String getGenderLabel() {
-        return genderLabel.getText();
-    }
-
-    public String getNameLabel() {
-        return nameLabel.getText();
-    }
-
-    public String getPracticeFormLabel() {
-        return practiceFormLabel.getText();
-    }
-
-    public String getStudentRegistrationFormLabel() {
-        return studentRegistrationFormLabel.getText();
-    }
-
+    // Rest of the methods remain the same, just replace `find(By)` with the corresponding WebElement field.
+    // For example:
     public String getStudentNameFromModal() {
         delay(1500);
-        return find(studentNameForm).getText();
+        return studentNameForm.getText();
     }
 
     public String getEmailFromModal() {
-        return find(emailForm).getText();
+        return emailForm.getText();
     }
 
     public String getLabelFromModal() {
-        return find(labelForm).getText();
+        return labelForm.getText();
     }
 
     public String getValuesFromModal() {
-        return find(valuesForm).getText();
+        return valuesForm.getText();
     }
 
     public String getHobbiesFromModal() {
-        return find(hobbiesForm).getText();
+        return hobbiesForm.getText();
     }
 
     public String getPictureFromModal() {
-        return find(pictureForm).getText();
+        return pictureForm.getText();
     }
 
     public String getCurrentAddressFromModal() {
-        return find(addressForm).getText();
+        return addressForm.getText();
     }
 
     public String getStateAndCityFromModal() {
-        return find(stateAndCityForm).getText();
+        return stateAndCityForm.getText();
     }
 
     public String getGenderFromModal() {
-        return find(genderForm).getText();
+        return genderForm.getText();
     }
 
     public String getMobileFromModal() {
-        return find(mobileForm).getText();
+        return mobileForm.getText();
     }
 
     public String getDateOfBirthFromModal() {
-        return find(dateOfBirthForm).getText();
+        return dateOfBirthForm.getText();
     }
 
     public String getSubjectsFromModal() {
-        return find(subjectsForm).getText();
+        return subjectsForm.getText();
     }
 
     public String getFirstNamePlaceholderText() {
@@ -228,15 +225,15 @@ public class PracticeFormPage extends BasePage {
     }
 
     public String getCurrentAddressPlaceholder() {
-        return find(currentAddressArea).getDomAttribute("placeholder");
+        return currentAddressArea.getDomAttribute("placeholder");
     }
 
     public String getSelectStatePlaceholder() {
-        return find(selectState).getText();
+        return selectState.getText();
     }
 
     public String getCityPlaceholder() {
-        return find(selectCity).getText();
+        return selectCity.getText();
     }
 
     public String getPlaceholderSubjects() {
@@ -270,7 +267,7 @@ public class PracticeFormPage extends BasePage {
     }
 
     public void setCurrentAddress(String currentAddress) {
-        click(this.currentAddressArea);
+        currentAddressArea.click();
         set(this.currentAddressArea, currentAddress);
     }
 
@@ -286,23 +283,9 @@ public class PracticeFormPage extends BasePage {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement dateOfBirthInput = wait.until(ExpectedConditions.visibilityOf(this.dateOfBirth));
 
-
-        dateOfBirthInput.sendKeys(Keys.BACK_SPACE);
-        dateOfBirthInput.sendKeys(Keys.BACK_SPACE);
-        dateOfBirthInput.sendKeys(Keys.BACK_SPACE);
-        dateOfBirthInput.sendKeys(Keys.BACK_SPACE);
-        dateOfBirthInput.sendKeys(Keys.BACK_SPACE);
-        dateOfBirthInput.sendKeys(Keys.BACK_SPACE);
-        dateOfBirthInput.sendKeys(Keys.BACK_SPACE);
-        dateOfBirthInput.sendKeys(Keys.BACK_SPACE);
-        dateOfBirthInput.sendKeys(Keys.BACK_SPACE);
-        dateOfBirthInput.sendKeys(Keys.BACK_SPACE);
-        //dateOfBirthInput.sendKeys(Keys.DELETE);
-        // dateOfBirthInput.sendKeys(Keys.BACK_SPACE);
-
-        // dateOfBirthInput.sendKeys(Keys.CONTROL + "a" + Keys.DELETE);
-        dateOfBirthInput.sendKeys(expectedDateOfBirth);        // Enter the new date
-        dateOfBirthInput.sendKeys(Keys.ENTER);         // Press Enter (if needed)
+        dateOfBirthInput.sendKeys(Keys.CONTROL + "a");
+        dateOfBirthInput.sendKeys(expectedDateOfBirth);
+        dateOfBirthInput.sendKeys(Keys.ENTER);
     }
 
     public boolean isFemaleRadioButtonSelected() {
@@ -325,21 +308,21 @@ public class PracticeFormPage extends BasePage {
     }
 
     public void clickReadingHobbyCheckbox() {
-        if (!find(readingHobbyCheckbox).isSelected()) {
+        if (!readingHobbyCheckbox.isSelected()) {
             scrollToElementJS(readingHobbyCheckbox);
             clickJS(readingHobbyCheckbox);
         }
     }
 
     public void clickMusicHobbyCheckbox() {
-        if (!find(musicHobbyCheckbox).isSelected()) {
+        if (!musicHobbyCheckbox.isSelected()) {
             scrollToElementJS(musicHobbyCheckbox);
             clickJS(musicHobbyCheckbox);
         }
     }
 
     public void unClickReadingHobbyCheckbox() {
-        if (find(readingHobbyCheckbox).isSelected()) {
+        if (readingHobbyCheckbox.isSelected()) {
             scrollToElementJS(readingHobbyCheckbox);
             clickJS(readingHobbyCheckbox);
         }
@@ -347,15 +330,15 @@ public class PracticeFormPage extends BasePage {
 
     public void clickSubmitButton() {
         scrollToElementJS(submitButton);
-        click(submitButton);
+        submitButton.click();
     }
 
     public boolean isReadingCheckBoxSelected() {
-        return find(readingHobbyCheckbox).isSelected();
+        return readingHobbyCheckbox.isSelected();
     }
 
     public boolean isMusicCheckBoxSelected() {
-        return find(musicHobbyCheckbox).isSelected();
+        return musicHobbyCheckbox.isSelected();
     }
 
     public boolean isSportCheckBSelected() {
@@ -387,7 +370,7 @@ public class PracticeFormPage extends BasePage {
     }
 
     public String getSubmitButtonText() {
-        return find(submitButton).getText();
+        return submitButton.getText();
     }
 
     public String getFilePathFromResources(String fileName) {
@@ -399,19 +382,17 @@ public class PracticeFormPage extends BasePage {
     }
 
     public void uploadFile(String pathOfFile) {
-        WebElement fileInput = driver.findElement(uploadPicture);
-
-        fileInput.sendKeys(pathOfFile);
+        uploadPicture.sendKeys(pathOfFile);
     }
 
     public void setState(String expectedState) {
-        find(states22).sendKeys(expectedState);
-        find(states22).sendKeys("" + Keys.ENTER);
+        states22.sendKeys(expectedState);
+        states22.sendKeys("" + Keys.ENTER);
     }
 
     public void setCity(String expectedCity) {
-        find(cities).sendKeys(expectedCity);
-        find(cities).sendKeys("" + Keys.ENTER);
+        cities.sendKeys(expectedCity);
+        cities.sendKeys("" + Keys.ENTER);
     }
 
     public String getColorOfFirstNameBorder(String expectedColor) {
@@ -467,6 +448,58 @@ public class PracticeFormPage extends BasePage {
     }
 
     public String getCurrentAddressColor() {
-        return driver.findElement(currentAddressArea).getCssValue("border-color");
+        return currentAddressArea.getCssValue("border-color");
+    }
+
+    public String getPracticeFormLabel() {
+        return practiceFormLabel.getText();
+    }
+
+    public String getStudentRegistrationFormLabel() {
+        return studentRegistrationFormLabel.getText();
+    }
+
+    public String getNameLabel() {
+        return nameLabel.getText();
+    }
+
+    public String getGenderLabel() {
+        return genderLabel.getText();
+    }
+
+    public String getMobileNumberLabel() {
+        return mobileNumberLabel.getText();
+    }
+
+    public String getMaleGenderText() {
+        return maleRadioButtonLabel.getText();
+    }
+
+    public String getFemaleGenderText() {
+        return femaleRadioButtonLabel.getText();
+    }
+
+    public String getOtherRadioButtonGenderText() {
+        return otherRadioButtonLabel.getText();
+    }
+
+    public String getHobbiesLabel() {
+        return hobbiesLabel.getText();
+    }
+
+    public String getPictureLabel() {
+        return pictureLabel.getText();
+    }
+
+    public String getReadingLabel() {
+        return readingLabel.getText();
+    }
+
+    public String getMusicLabel() {
+        return musicLabel.getText();
+    }
+
+    public String getSelectPictureLabel() {
+        return selectPictureLabel.getText();
     }
 }

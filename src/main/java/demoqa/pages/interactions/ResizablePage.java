@@ -1,21 +1,34 @@
 package demoqa.pages.interactions;
 
 import demoqa.base.BasePage;
-import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class ResizablePage extends BasePage {
-    private final By pageTitle = By.xpath("//h1[@class='text-center'][contains(.,'Resizable')]");
-    private final By resizableBoxWithRestrictionText = By.xpath("//div[@class='text'][contains(.,'Resizable box, starting at 200x200. Min size is 150x150, max is 500x300.')]");
-    private final By resizable = By.xpath("//h1[@class='text-center'][contains(.,'Resizable')]");
-    private final By resizableBoxWithRestriction = By.id("resizableBoxWithRestriction");
-    private final By resizableWithoutRestriction = By.id("resizable");
-    private final By resizeHandle = By.xpath("(//span[contains(@class,'react-resizable-handle react-resizable-handle-se')])[1]");
-    private final By resizeHandle2 = By.xpath("(//span[contains(@class,'react-resizable-handle react-resizable-handle-se')])[2]");
+    @FindBy(xpath = "//h1[@class='text-center'][contains(.,'Resizable')]")
+    private WebElement pageTitle;
+
+    @FindBy(xpath = "//div[@class='text'][contains(.,'Resizable box, starting at 200x200. Min size is 150x150, max is 500x300.')]")
+    private WebElement resizableBoxWithRestrictionText;
+
+    @FindBy(xpath = "//h1[@class='text-center'][contains(.,'Resizable')]")
+    private WebElement resizable;
+
+    @FindBy(id = "resizableBoxWithRestriction")
+    private WebElement resizableBoxWithRestriction;
+
+    @FindBy(id = "resizable")
+    private WebElement resizableWithoutRestriction;
+
+    @FindBy(xpath = "(//span[contains(@class,'react-resizable-handle react-resizable-handle-se')])[1]")
+    private WebElement resizeHandle;
+
+    @FindBy(xpath = "(//span[contains(@class,'react-resizable-handle react-resizable-handle-se')])[2]")
+    private WebElement resizeHandle2;
 
     public ResizablePage(WebDriver driver) {
         super(driver);
@@ -23,48 +36,38 @@ public class ResizablePage extends BasePage {
     }
 
     public String getPageTitleText() {
-        return find(pageTitle).getText();
+        return pageTitle.getText();
     }
 
     public String getResizableBoxWithRestrictionText() {
-        return find(resizableBoxWithRestrictionText).getText();
+        return resizableBoxWithRestrictionText.getText();
     }
 
     public String getResizableText() {
-        return find(resizable).getText();
+        return resizable.getText();
     }
 
     public void changeSize(int xOffset, int yOffset) {
         Actions actions = new Actions(driver);
-
-        WebElement resizableBoxWeb = driver.findElement(resizeHandle);
-
-        actions.clickAndHold(resizableBoxWeb)
+        actions.clickAndHold(resizeHandle)
                 .moveByOffset(xOffset, yOffset)
                 .release()
                 .perform();
     }
 
     public String getNewSizeBox() {
-        WebElement resizableBox = driver.findElement(resizableBoxWithRestriction);
-        Dimension initialSize = resizableBox.getSize();
-
+        Dimension initialSize = resizableBoxWithRestriction.getSize();
         return initialSize.toString();
     }
 
     public String getNewSizeBox2() {
-        WebElement resizableBox = driver.findElement(resizableWithoutRestriction);
-        Dimension initialSize = resizableBox.getSize();
-
+        Dimension initialSize = resizableWithoutRestriction.getSize();
         return initialSize.toString();
     }
 
     public void changeSizeWithoutLimitations(int xOffset, int yOffset) {
         Actions actions = new Actions(driver);
-
-        WebElement resizableBoxWeb = driver.findElement(resizeHandle2);
-
-        actions.clickAndHold(resizableBoxWeb)
+        actions.clickAndHold(resizeHandle2)
                 .moveByOffset(xOffset, yOffset)
                 .release()
                 .perform();

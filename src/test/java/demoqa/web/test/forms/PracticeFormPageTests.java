@@ -156,7 +156,7 @@ public class PracticeFormPageTests extends BaseTest {
         String expectedGender = "Female";
         String expectedMobileNumber = "1234567890";
 
-        String dateOfBirth = "1 Feb 2024";
+        String dateOfBirth = "01 Feb 2025";
         DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("d MMM yyyy");
         DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("dd MMMM,yyyy");
         LocalDate date = LocalDate.parse(dateOfBirth, inputFormatter);
