@@ -2,6 +2,7 @@ package demoqa.pages.elements;
 
 import demoqa.base.BasePage;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -153,22 +154,37 @@ public class WebTablesPage extends BasePage {
     }
 
     public String getLastNameBorderColor() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(6));
+        wait.until(ExpectedConditions.visibilityOf(registrationLastNameField));
+        delay(200); // Small delay to ensure validation state is applied
         return registrationLastNameField.getCssValue("border");
     }
 
     public String getEmailBorderColor() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(6));
+        wait.until(ExpectedConditions.visibilityOf(registrationEmailField));
+        delay(200); // Small delay to ensure validation state is applied
         return registrationEmailField.getCssValue("border");
     }
 
     public String getAgeBorderColor() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(6));
+        wait.until(ExpectedConditions.visibilityOf(registrationAgeField));
+        delay(200); // Small delay to ensure validation state is applied
         return registrationAgeField.getCssValue("border");
     }
 
     public String getSalaryBorderColor() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(6));
+        wait.until(ExpectedConditions.visibilityOf(registrationSalaryField));
+        delay(200); // Small delay to ensure validation state is applied
         return registrationSalaryField.getCssValue("border");
     }
 
     public String getDepartmentBorderColor() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(6));
+        wait.until(ExpectedConditions.visibilityOf(registrationDepartmentField));
+        delay(200); // Small delay to ensure validation state is applied
         return registrationDepartmentField.getCssValue("border");
     }
 
@@ -209,8 +225,9 @@ public class WebTablesPage extends BasePage {
     }
 
     public String getFirstNameBorderColor() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.attributeToBe(registrationFirstNameField, "border-color", "rgb(220, 53, 69)"));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(6));
+        wait.until(ExpectedConditions.visibilityOf(registrationFirstNameField));
+        delay(500); // Small delay to ensure validation state is applied
         return registrationFirstNameField.getCssValue("border");
     }
 
@@ -393,5 +410,59 @@ public class WebTablesPage extends BasePage {
     public void clickRowPerPage(String row) {
         Select dropdown = new Select(rowsPerPage);
         dropdown.selectByVisibleText(row);
+    }
+
+    public void deleteFirstName() {
+        registrationFirstNameField.click();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(4));
+
+        wait.until(ExpectedConditions.visibilityOf(registrationFirstNameField))
+                .sendKeys(Keys.chord(Keys.CONTROL, "a"), Keys.chord(Keys.DELETE));
+    }
+
+    public void clickLastName() {
+        registrationLastNameField.click();
+    }
+
+    public void deleteLastName() {
+        registrationLastNameField.click();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(4));
+
+        wait.until(ExpectedConditions.visibilityOf(registrationLastNameField))
+                .sendKeys(Keys.chord(Keys.CONTROL, "a"), Keys.chord(Keys.DELETE));
+    }
+
+    public void deleteEmail() {
+        registrationEmailField.click();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(4));
+
+        wait.until(ExpectedConditions.visibilityOf(registrationEmailField))
+                .sendKeys(Keys.chord(Keys.CONTROL, "a"), Keys.chord(Keys.DELETE));
+    }
+
+    public void deleteAge() {
+        registrationAgeField.click();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(4));
+
+        wait.until(ExpectedConditions.visibilityOf(registrationAgeField))
+                .sendKeys(Keys.chord(Keys.CONTROL, "a"), Keys.chord(Keys.DELETE));
+    }
+
+    public void deleteSalary() {
+        registrationSalaryField.click();
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(4));
+
+        wait.until(ExpectedConditions.visibilityOf(registrationSalaryField))
+                .sendKeys(Keys.chord(Keys.CONTROL, "a"), Keys.chord(Keys.DELETE));
+    }
+
+    public void deleteDepartment() {
+        registrationDepartmentField.click();
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(4));
+
+        wait.until(ExpectedConditions.visibilityOf(registrationDepartmentField))
+                .sendKeys(Keys.chord(Keys.CONTROL, "a"), Keys.chord(Keys.DELETE));
     }
 }

@@ -17,6 +17,7 @@ public class WebTablePageTests extends BaseTest {
         String pageJump = "1";
         String expectedPageInfo = "Page of 1";
         String expected10rows = "10 rows";
+        int expectedRows = 10;
         String tableHeader = """
                 First Name
                 Last Name
@@ -52,7 +53,7 @@ public class WebTablePageTests extends BaseTest {
         String actualPageJump = webTablesPage.getPageJump();
         String actualPageInfo = webTablesPage.getPageInfo();
         webTablesPage.clickRowPerPage(expected10rows);
-        int countOfLines = webTablesPage.getCountOfLines();
+        int actualCountOfLines = webTablesPage.getCountOfLines();
         String actualTableData = webTablesPage.getTableData();
         String actualSearchBoxPlaceholder = webTablesPage.getSearchBoxPlaceholder();
 
@@ -62,7 +63,7 @@ public class WebTablePageTests extends BaseTest {
         softAssert.assertEquals(actualButtonPreviousText, buttonPreviousText, "\nExpected previous button.\n");
         softAssert.assertEquals(actualPageJump, pageJump, "\nPage jump do not match.\n");
         softAssert.assertEquals(actualPageInfo, expectedPageInfo, "\nPage info do not match.\n");
-        softAssert.assertEquals(countOfLines, 10, "\nExpected 10 rows.\n");
+        softAssert.assertEquals(actualCountOfLines, expectedRows, "\nExpected 10 rows.\n");
         softAssert.assertEquals(actualTableHeader, tableHeader, "\nActual table header do not match.\n");
         softAssert.assertEquals(actualTableData, expectedTableHeader, "Actual table data do not match.\n");
         softAssert.assertEquals(actualSearchBoxPlaceholder, searchBoxText, "Actual table data do not match.\n");
@@ -412,8 +413,8 @@ public class WebTablePageTests extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(enabled = true, testName = "Verify colors change from red to green")
-    public void VerifyColorsChangeFromRedToGreen() {
+    @Test(enabled = true, testName = "Verify border color change from red to green after add")
+    public void VerifyColorsChangeFromRedToGreenAfterAdd() {
         navigateToUrl("webtables");
         webTablesPage.clickAddButton();
         webTablesPage.clickSubmitButton();

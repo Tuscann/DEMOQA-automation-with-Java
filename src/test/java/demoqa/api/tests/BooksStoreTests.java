@@ -1,6 +1,5 @@
 package demoqa.api.tests;
 
-import demoqa.api.BaseTestApi;
 import demoqa.api.models.Book;
 import demoqa.api.spec.TodoClient;
 import org.testng.Assert;
@@ -9,7 +8,7 @@ import org.testng.annotations.Test;
 import java.io.IOException;
 import java.util.List;
 
-public class BooksTests extends BaseTestApi {
+public class BooksStoreTests extends BaseTestApi {
 
     @Test(testName = "Count all books", suiteName = "api", enabled = true)
     void GetAllBooks() throws IOException, InterruptedException {
@@ -26,15 +25,15 @@ public class BooksTests extends BaseTestApi {
         TodoClient client = new TodoClient();
         List<Book> books = client.FindAllBooks();
 
-        String actualIsbn = books.get(0).isbn();
-        String actualTitle = books.get(0).title();
-        String actualSubTitle = books.get(0).subTitle();
-        String actualAuthor = books.get(0).author();
-        String actualPublish_date = books.get(0).publish_date();
-        String actualPublisher = books.get(0).publisher();
-        String actualPages = books.get(0).pages();
-        String actualDescription = books.get(0).description();
-        String actualWebsite = books.get(0).website();
+        String actualIsbn = books.getFirst().isbn();
+        String actualTitle = books.getFirst().title();
+        String actualSubTitle = books.getFirst().subTitle();
+        String actualAuthor = books.getFirst().author();
+        String actualPublish_date = books.getFirst().publish_date();
+        String actualPublisher = books.getFirst().publisher();
+        String actualPages = books.getFirst().pages();
+        String actualDescription = books.getFirst().description();
+        String actualWebsite = books.getFirst().website();
 
         String expectedIsbn = "9781449325862";
         String expectedTitle = "Git Pocket Guide";
@@ -46,15 +45,17 @@ public class BooksTests extends BaseTestApi {
         String expectedDescription = "This pocket guide is the perfect on-the-job companion to Git, the distributed version control system. It provides a compact, readable introduction to Git for new users, as well as a reference to common commands and procedures for those of you with Git exp";
         String expectedWebsite = "http://chimera.labs.oreilly.com/books/1230000000561/index.html";
 
-        Assert.assertEquals(actualIsbn, expectedIsbn, "\n Wrong ISBN.\n");
-        Assert.assertEquals(actualTitle, expectedTitle, "\nWrong Title.\n");
-        Assert.assertEquals(actualSubTitle, expectedSubTitle, "\nWrong Subtitle.\n");
-        Assert.assertEquals(actualAuthor, expectedAuthor, "\nWrong Author.\n");
-        Assert.assertEquals(actualPublish_date, expectedPublish_date, "\nWrong Publish Date.\n");
-        Assert.assertEquals(actualPublisher, expectedPublisher, "\nWrong Publisher.\n");
-        Assert.assertEquals(actualPages, expectedPages, "\nWrong Pages.\n");
-        Assert.assertEquals(actualDescription, expectedDescription, "\nWrong Description.\n");
-        Assert.assertEquals(actualWebsite, expectedWebsite, "\nWrong Website.\n");
+        softAssert.assertEquals(actualIsbn, expectedIsbn, "\n Wrong ISBN.\n");
+        softAssert.assertEquals(actualTitle, expectedTitle, "\nWrong Title.\n");
+        softAssert.assertEquals(actualSubTitle, expectedSubTitle, "\nWrong Subtitle.\n");
+        softAssert.assertEquals(actualAuthor, expectedAuthor, "\nWrong Author.\n");
+        softAssert.assertEquals(actualPublish_date, expectedPublish_date, "\nWrong Publish Date.\n");
+        softAssert.assertEquals(actualPublisher, expectedPublisher, "\nWrong Publisher.\n");
+        softAssert.assertEquals(actualPages, expectedPages, "\nWrong Pages.\n");
+        softAssert.assertEquals(actualDescription, expectedDescription, "\nWrong Description.\n");
+        softAssert.assertEquals(actualWebsite, expectedWebsite, "\nWrong Website.\n");
+
+        softAssert.assertAll();
     }
 
     @Test(testName = "Get Book By ISBN", suiteName = "api", enabled = true)
@@ -84,14 +85,16 @@ public class BooksTests extends BaseTestApi {
         String expectedDescription = "This pocket guide is the perfect on-the-job companion to Git, the distributed version control system. It provides a compact, readable introduction to Git for new users, as well as a reference to common commands and procedures for those of you with Git exp";
         String expectedWebsite = "http://chimera.labs.oreilly.com/books/1230000000561/index.html";
 
-        Assert.assertEquals(actualIsbn, expectedIsbn, "\n Wrong ISBN.\n");
-        Assert.assertEquals(actualTitle, expectedTitle, "\nWrong Title.\n");
-        Assert.assertEquals(actualSubTitle, expectedSubTitle, "\nWrong Subtitle.\n");
-        Assert.assertEquals(actualAuthor, expectedAuthor, "\nWrong Author.\n");
-        Assert.assertEquals(actualPublish_date, expectedPublish_date, "\nWrong Publish Date.\n");
-        Assert.assertEquals(actualPublisher, expectedPublisher, "\nWrong Publisher.\n");
-        Assert.assertEquals(actualPages, expectedPages, "\nWrong Pages.\n");
-        Assert.assertEquals(actualDescription, expectedDescription, "\nWrong Description.\n");
-        Assert.assertEquals(actualWebsite, expectedWebsite, "\nWrong Website.\n");
+        softAssert.assertEquals(actualIsbn, expectedIsbn, "\n Wrong ISBN.\n");
+        softAssert.assertEquals(actualTitle, expectedTitle, "\nWrong Title.\n");
+        softAssert.assertEquals(actualSubTitle, expectedSubTitle, "\nWrong Subtitle.\n");
+        softAssert.assertEquals(actualAuthor, expectedAuthor, "\nWrong Author.\n");
+        softAssert.assertEquals(actualPublish_date, expectedPublish_date, "\nWrong Publish Date.\n");
+        softAssert.assertEquals(actualPublisher, expectedPublisher, "\nWrong Publisher.\n");
+        softAssert.assertEquals(actualPages, expectedPages, "\nWrong Pages.\n");
+        softAssert.assertEquals(actualDescription, expectedDescription, "\nWrong Description.\n");
+        softAssert.assertEquals(actualWebsite, expectedWebsite, "\nWrong Website.\n");
+
+        softAssert.assertAll();
     }
 }
