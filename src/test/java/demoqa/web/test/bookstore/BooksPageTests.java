@@ -314,6 +314,8 @@ public class BooksPageTests extends BaseTest {
         actualFindBooks = booksPage.getFoundBooks();
 
         softAssert.assertEquals(actualFindBooks, expectedBooks, "\nExpected books.\n");
+
+        softAssert.assertAll();
     }
 
     @Test(enabled = true, testName = "Order books by title,author,publisher in ascending order")

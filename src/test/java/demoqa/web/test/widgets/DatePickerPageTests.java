@@ -36,7 +36,7 @@ public class DatePickerPageTests extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(enabled = true, testName = "Select new date")
+    @Test(enabled = true, testName = "Select valid new date")
     public void SelectNewDate() {
         navigateToUrl("date-picker");
         String expectedDate = "10/26/2024";

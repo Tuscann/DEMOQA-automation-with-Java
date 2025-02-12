@@ -5,26 +5,24 @@ import org.testng.annotations.Test;
 
 public class InteractionPageTests extends BaseTest {
 
-
     @Test(enabled = true, testName = "Click left dropdown menu")
     public void ClickLeftDropdownMenu() {
         navigateToUrl("interaction");
 
-//        String expectedString = "Please select an item from left to start practice.";
-//        String actualString = interactionsPage.getMainText();
-//        softAssert.assertEquals(actualString, expectedString, "\nWrong text.\n");
-//
-//        boolean TextBoxIsVisible = interactionsPage.verifySortableIsVisible();
-//        softAssert.assertTrue(TextBoxIsVisible, "\nFrames is not shown.\n");
-//
-//        interactionsPage.clickInteractions();
-//
-//        TextBoxIsVisible = interactionsPage.verifyFramesIsNotVisible();
-//        softAssert.assertFalse(TextBoxIsVisible, "\nFrames is shown.\n");
-//
-//        softAssert.assertAll();
-    }
+        String expectedString = "Please select an item from left to start practice.";
+        String actualString = interactionsPage.getMainText();
+        softAssert.assertEquals(actualString, expectedString, "\nWrong text.\n");
 
+        boolean TextBoxIsVisible = interactionsPage.verifySortableIsVisible();
+        softAssert.assertTrue(TextBoxIsVisible, "\nFrames is not shown.\n");
+
+        interactionsPage.clickInteractions();
+
+        TextBoxIsVisible = interactionsPage.verifyFramesIsNotVisible();
+        softAssert.assertFalse(TextBoxIsVisible, "\nFrames is shown.\n");
+
+        softAssert.assertAll();
+    }
 
     @Test(enabled = true, testName = "Verify nine pages links")
     public void CheckAllNinePagesLinks() {

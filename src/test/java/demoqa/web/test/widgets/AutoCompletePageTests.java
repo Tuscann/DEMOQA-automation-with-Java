@@ -70,14 +70,16 @@ public class AutoCompletePageTests extends BaseTest {
         autoCompletePage.singleAutoComplete(expectedFirstColor);
         String actualSelectedColors = autoCompletePage.getAllSingleColorNames();
 
-        Assert.assertEquals(actualSelectedColors, expectedFirstColor, "\nWrong " + expectedFirstColor + " Color selected\n");
+        softAssert.assertEquals(actualSelectedColors, expectedFirstColor, "\nWrong " + expectedFirstColor + " Color selected\n");
 
         expectedFirstColor = "Blue";
         autoCompletePage.clickSingleAutoComplete();
         autoCompletePage.singleAutoComplete(expectedFirstColor);
         actualSelectedColors = autoCompletePage.getAllSingleColorNames();
 
-        Assert.assertEquals(actualSelectedColors, expectedFirstColor, "\nWrong " + expectedFirstColor + "Color selected\n");
+        softAssert.assertEquals(actualSelectedColors, expectedFirstColor, "\nWrong " + expectedFirstColor + "Color selected\n");
+
+        softAssert.assertAll();
     }
 
     @Test(enabled = true, testName = "Select one color single")

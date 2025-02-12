@@ -1,7 +1,6 @@
 package demoqa.pages.interactions;
 
 import demoqa.base.BasePage;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -28,6 +27,12 @@ public class InteractionsPage extends BasePage {
     @FindBy(xpath = "(//div[contains(.,'Please select an item from left to start practice.')])[5]")
     private WebElement text;
 
+    @FindBy(xpath = "//div[@class='header-text'][contains(.,'Interactions')]")
+    private WebElement interactionsHeader;
+
+    @FindBy(xpath = "//span[text()='Frames']")
+    private WebElement frames;
+
     public InteractionsPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
@@ -53,12 +58,30 @@ public class InteractionsPage extends BasePage {
         droppable.click();
     }
 
-    public void clickDraggable() {
-        scrollToElementJS(draggable);
-        draggable.click();
+    public boolean verifySortableIsVisible() {
+        return sortable.isDisplayed();
+    }
+
+    public void clickInteractions() {
+        scrollToElementJS(interactionsHeader);
+        interactionsHeader.click();
+    }
+
+    public boolean verifyFramesIsNotVisible() {
+        try {
+            frames.isDisplayed();
+            return false;  // If we get here, the element is visible
+        } catch (org.openqa.selenium.NoSuchElementException e) {
+            return true;  // Element is not visible
+        }
     }
 
     public String getMainText() {
         return text.getText();
+    }
+
+    public void clickDraggable() {
+        scrollToElementJS(draggable);
+        draggable.click();
     }
 }

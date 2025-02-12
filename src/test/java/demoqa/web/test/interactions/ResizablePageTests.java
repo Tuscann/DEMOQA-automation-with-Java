@@ -68,4 +68,33 @@ public class ResizablePageTests extends BaseTest {
 
         Assert.assertEquals(actualNewSize, "(" + expectedWidth + ", " + expectedHeight + ")", "\nWrong new size.\n");
     }
+
+    @DataProvider(name = "diagonalResizeData")
+    public Object[][] diagonalResizeDataProvider() {
+        return new Object[][]{
+                {100, 100, 300, 300},  // Diagonal resize within limits
+                {400, 400, 500, 300},  // Diagonal resize beyond max limits
+                {-100, -100, 150, 150}, // Diagonal resize to min limits
+        };
+    }
+
+    @Test(dataProvider = "diagonalResizeData", description = "Test diagonal resizing", enabled = true, testName = "Diagonal resizing test")
+    public void testDiagonalResizing(int addX, int addY, int expectedWidth, int expectedHeight) {
+        navigateToUrl("resizable");
+
+        resizablePage.changeSize(addX, addY);
+        String actualNewSize = resizablePage.getNewSizeBox();
+
+        Assert.assertEquals(actualNewSize, "(" + expectedWidth + ", " + expectedHeight + ")", "\nWrong size after diagonal resize.\n");
+    }
+
+    @Test(description = "Test resize handle visibility", enabled = true, testName = "Resize handle visibility test")
+    public void testResizeHandleVisibility() {
+        navigateToUrl("resizable");
+
+        softAssert.assertTrue(resizablePage.isResizeHandleVisible(), "\nResize handle should be visible.\n");
+        softAssert.assertTrue(resizablePage.isResizeHandle2Visible(), "\nSecond resize handle should be visible.\n");
+
+        softAssert.assertAll();
+    }
 }

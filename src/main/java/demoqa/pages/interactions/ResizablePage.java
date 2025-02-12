@@ -72,4 +72,20 @@ public class ResizablePage extends BasePage {
                 .release()
                 .perform();
     }
+
+    public boolean isResizeHandleVisible() {
+        try {
+            return resizeHandle.isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public boolean isResizeHandle2Visible() {
+        try {
+            return resizeHandle2.isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
+    }
 }

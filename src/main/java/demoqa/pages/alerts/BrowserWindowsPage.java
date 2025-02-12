@@ -6,7 +6,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -63,21 +66,57 @@ public class BrowserWindowsPage extends BasePage {
 
     public String getBrowserMessage() {
         String originalWindow = driver.getWindowHandle();
-        Set<String> allWindows = driver.getWindowHandles();
+        String expectedMessage = "Knowledge increases by sharing but not by saving. Please share this website with your friends and in your organization.";
 
-        String actualMessage = "";
+        try {
+            // Wait for the new window to appear
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+
+        // Get all window handles
+        Set<String> allWindows = driver.getWindowHandles();
+        String newWindow = null;
+
+        // Find the new window handle
         for (String window : allWindows) {
             if (!window.equals(originalWindow)) {
-                driver.switchTo().window(window);
-
-                WebElement textElement = driver.findElement(By.xpath("/html/body/text()"));
-                actualMessage = textElement.getText();
-
+                newWindow = window;
                 break;
             }
         }
 
-        return actualMessage;
+        // If no new window was found, return empty string
+        if (newWindow == null) {
+            return "";
+        }
+
+        try {
+            // Switch to the new window
+            driver.switchTo().window(newWindow);
+
+            // Wait for the text to be present in the body
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+            WebElement body = wait.until(ExpectedConditions.presenceOfElementLocated(By.tagName("body")));
+            String message = body.getText().trim();
+
+            // If we found the message, return it
+            if (message.equals(expectedMessage)) {
+                return message;
+            }
+            return "";
+        } catch (Exception e) {
+            // If anything goes wrong (window closed, etc), return empty string
+            return "";
+        } finally {
+            try {
+                // Always try to switch back to the original window
+                driver.switchTo().window(originalWindow);
+            } catch (Exception e) {
+                // If we can't switch back, the test will fail anyway
+            }
+        }
     }
 
     public String getNewTabText() {

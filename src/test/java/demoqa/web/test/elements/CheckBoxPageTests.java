@@ -227,6 +227,7 @@ public class CheckBoxPageTests extends BaseTest {
                 excelFile""";
 
         softAssert.assertEquals(actualResult, expectedResult, "\nNot selected all CheckBoxes.\n");
+        softAssert.assertAll();
     }
 
     @Test(enabled = true, testName = "Select all checkboxes one by one and deselect all")
