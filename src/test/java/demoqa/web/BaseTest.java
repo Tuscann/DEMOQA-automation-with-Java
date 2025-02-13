@@ -79,7 +79,7 @@ public class BaseTest {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--headless=new");
         options.addArguments("--disable-gpu");
-        options.addArguments("--window-size=1920,1080"); // Set the window size
+//        options.addArguments("--window-size=1920,1080"); // Set the window size
 
         driver = new ChromeDriver(options);
         driver.manage().window().maximize();

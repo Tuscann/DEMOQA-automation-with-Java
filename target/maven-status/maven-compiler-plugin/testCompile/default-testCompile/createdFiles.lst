@@ -8,11 +8,11 @@ demoqa/api/tests/BaseTestApi.class
 demoqa/web/test/interactions/ResizablePageTests.class
 demoqa/api/models/Book.class
 demoqa/api/tests/AccountTests.class
-demoqa/web/test/widgets/TabsPageTests.class
 demoqa/web/test/interactions/SortablePageTests.class
+demoqa/web/test/widgets/TabsPageTests.class
 demoqa/web/test/widgets/DatePickerPageTests.class
-demoqa/web/test/widgets/WidgetsPageTests.class
 demoqa/web/test/interactions/DraggablePageTests.class
+demoqa/web/test/widgets/WidgetsPageTests.class
 demoqa/api/models/ErrorResponse.class
 demoqa/api/models/Token.class
 demoqa/web/test/forms/FormsPageTests.class

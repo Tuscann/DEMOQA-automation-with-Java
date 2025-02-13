@@ -3,14 +3,14 @@
 <suite name="Failed suite [Surefire suite]" verbose="0">
   <test thread-count="5" name="Surefire test(failed)" verbose="0">
     <classes>
-      <class name="demoqa.web.test.widgets.SelectMenuPageTests">
+      <class name="demoqa.web.test.widgets.DatePickerPageTests">
         <methods>
           <include name="takeFailedResultScreenshot"/>
           <include name="tearDown"/>
           <include name="setUp"/>
-          <include name="SelectMultiSelectDropDown"/>
+          <include name="SelectValidNewDateAndTime"/>
         </methods>
-      </class> <!-- demoqa.web.test.widgets.SelectMenuPageTests -->
+      </class> <!-- demoqa.web.test.widgets.DatePickerPageTests -->
     </classes>
   </test> <!-- Surefire test(failed) -->
 </suite> <!-- Failed suite [Surefire suite] -->
