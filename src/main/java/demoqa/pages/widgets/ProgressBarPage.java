@@ -1,9 +1,9 @@
 package demoqa.pages.widgets;
 
 import demoqa.base.BasePage;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.*;
 
@@ -13,69 +13,74 @@ import java.util.Objects;
 import static utilities.JavaScriptUtility.scrollToElementJS;
 
 public class ProgressBarPage extends BasePage {
-    private final By progressBarText = By.xpath("//div[contains(@class, 'mb-3')]");
-    private final By startStopButton = By.id("startStopButton");
-    private final By resetButton = By.id("resetButton");
-    private final By progressBarCurrent = By.xpath("//div[@role='progressbar']");
-    private final By header = By.xpath("//h1[@class='text-center'][contains(.,'Progress Bar')]");
-
+    @FindBy(xpath = "//div[contains(@class, 'mb-3')]")
+    private WebElement progressBarText;
+    
+    @FindBy(id = "startStopButton")
+    private WebElement startStopButton;
+    
+    @FindBy(id = "resetButton")
+    private WebElement resetButton;
+    
+    @FindBy(xpath = "//div[@role='progressbar']")
+    private WebElement progressBarCurrent;
+    
+    @FindBy(xpath = "//h1[@class='text-center'][contains(.,'Progress Bar')]")
+    private WebElement header;
     public ProgressBarPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
     }
 
     public String getHeaderText() {
-        return find(header).getText();
+        return header.getText();
     }
-
+    
     public String getProgressBarText() {
-        return find(progressBarText).getText();
+        return progressBarText.getText();
     }
-
+    
     public String getStartStopButtonText() {
-        return find(startStopButton).getText();
+        return startStopButton.getText();
     }
-
+    
     public String getResetButtonText() {
-        return find(resetButton).getText();
+        return resetButton.getText();
     }
-
+    
     public Integer getValueProgressBar() {
-        WebElement element = driver.findElement(progressBarCurrent);
-
-        return Integer.parseInt(Objects.requireNonNull(element.getDomAttribute("aria-valuenow")));
+        return Integer.parseInt(Objects.requireNonNull(progressBarCurrent.getAttribute("aria-valuenow")));
     }
-
+    
     private String getProgressBarValue() {
         try {
-            return driver.findElement(progressBarCurrent).getDomAttribute("aria-valuenow");
+            return progressBarCurrent.getDomAttribute("aria-valuenow");
         } catch (org.openqa.selenium.NoSuchElementException e) {
-            return null; // Return null if the element is not found
+            return null;
         }
     }
-
+    
     public String getColorProgressBar() {
-        return driver.findElement(progressBarCurrent).getCssValue("background-color");
+        return progressBarCurrent.getCssValue("background-color");
     }
-
+    
     public String getValueOfProgressBarOnValue100() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20)); // Adjust timeout as needed
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
         wait.until(ExpectedConditions.attributeToBe(progressBarCurrent, "aria-valuenow", "100"));
-
-        return driver.findElement(progressBarCurrent).getDomAttribute("aria-valuenow");
+        return progressBarCurrent.getDomAttribute("aria-valuenow");
     }
-
+    
     public void clickStartButton() {
         scrollToElementJS(progressBarText);
-        find(startStopButton).click();
+        startStopButton.click();
     }
-
+    
     public void clickResetButton() {
-        find(resetButton).click();
+        resetButton.click();
     }
-
+    
     public void clickStopButton() {
-        find(startStopButton).click();
+        startStopButton.click();
     }
 
     public void stopProgressBarOnValue2(int targetValue) {
@@ -94,7 +99,7 @@ public class ProgressBarPage extends BasePage {
                     int currentValue = Integer.parseInt(currentValueStr);
 
                     if (currentValue >= targetValue) { // Click only when the target is reached or exceeded
-                        find(startStopButton).click();
+                        startStopButton.click();
                         return true; // Return true to stop waiting after click
                     }
                     return false; // Continue waiting
@@ -122,7 +127,7 @@ public class ProgressBarPage extends BasePage {
                     int currentValue = Integer.parseInt(currentValueStr);
 
                     if (currentValue >= targetValue) { // Click only when the target is reached or exceeded
-                        find(startStopButton).click();
+                        startStopButton.click();
                         return currentValue; // Return true to stop waiting after click
                     } else {
                         return x; // Continue waiting

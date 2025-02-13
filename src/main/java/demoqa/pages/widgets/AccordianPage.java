@@ -1,8 +1,9 @@
 package demoqa.pages.widgets;
 
 import demoqa.base.BasePage;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -12,13 +13,26 @@ import java.time.Duration;
 import static utilities.JavaScriptUtility.scrollToElementJS;
 
 public class AccordianPage extends BasePage {
-    private final By sectionOneHeading = By.id("section1Heading");
-    private final By sectionTwoHeading = By.id("section2Heading");
-    private final By sectionThreeHeading = By.id("section3Heading");
-    private final By sectionOneContent = By.id("section1Content");
-    private final By sectionTwoContent = By.id("section2Content");
-    private final By sectionThreeContent = By.id("section3Content");
-    private final By heading = By.xpath("//h1[contains(.,'Accordian')]");
+    @FindBy(id = "section1Heading")
+    private WebElement sectionOneHeading;
+
+    @FindBy(id = "section2Heading")
+    private WebElement sectionTwoHeading;
+
+    @FindBy(id = "section3Heading")
+    private WebElement sectionThreeHeading;
+
+    @FindBy(id = "section1Content")
+    private WebElement sectionOneContent;
+
+    @FindBy(id = "section2Content")
+    private WebElement sectionTwoContent;
+
+    @FindBy(id = "section3Content")
+    private WebElement sectionThreeContent;
+
+    @FindBy(xpath = "//h1[contains(.,'Accordian')]")
+    private WebElement heading;
 
     public AccordianPage(WebDriver driver) {
         super(driver);
@@ -26,54 +40,54 @@ public class AccordianPage extends BasePage {
     }
 
     public String getHeading() {
-        return find(heading).getText();
+        return heading.getText();
     }
 
     public String getSectionOneHeadingText() {
-        return find(sectionOneHeading).getText();
+        return sectionOneHeading.getText();
     }
 
     public String getSectionTwoHeadingText() {
-        return find(sectionTwoHeading).getText();
+        return sectionTwoHeading.getText();
     }
 
     public String getSectionThreeHeadingText() {
-        return find(sectionThreeHeading).getText();
+        return sectionThreeHeading.getText();
     }
 
     public String getSectionOneText() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
-        wait.until(ExpectedConditions.invisibilityOf(sectionTwoContent.findElement(driver)));
-        wait.until(ExpectedConditions.invisibilityOf(sectionThreeContent.findElement(driver)));
-        return find(sectionOneContent).getText();
+        wait.until(ExpectedConditions.invisibilityOf(sectionTwoContent));
+        wait.until(ExpectedConditions.invisibilityOf(sectionThreeContent));
+        return sectionOneContent.getText();
     }
 
     public String getSectionTwoText() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
-        wait.until(ExpectedConditions.invisibilityOf(sectionOneContent.findElement(driver)));
-        wait.until(ExpectedConditions.invisibilityOf(sectionThreeContent.findElement(driver)));
-        return find(sectionTwoContent).getText();
+        wait.until(ExpectedConditions.invisibilityOf(sectionOneContent));
+        wait.until(ExpectedConditions.invisibilityOf(sectionThreeContent));
+        return sectionTwoContent.getText();
     }
 
     public String getSectionThreeText() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
-        wait.until(ExpectedConditions.invisibilityOf(sectionOneContent.findElement(driver)));
-        wait.until(ExpectedConditions.invisibilityOf(sectionTwoContent.findElement(driver)));
-        return find(sectionThreeContent).getText();
+        wait.until(ExpectedConditions.invisibilityOf(sectionOneContent));
+        wait.until(ExpectedConditions.invisibilityOf(sectionTwoContent));
+        return sectionThreeContent.getText();
     }
 
     public void clickOneHeading() {
-        click(sectionOneHeading);
-        click(sectionOneHeading);
+        sectionOneHeading.click();
+        sectionOneHeading.click();
     }
 
     public void clickTwoHeading() {
         scrollToElementJS(sectionTwoHeading);
-        click(sectionTwoHeading);
+        sectionTwoHeading.click();
     }
 
     public void clickThreeHeading() {
         scrollToElementJS(sectionTwoHeading);
-        click(sectionThreeHeading);
+        sectionThreeHeading.click();
     }
 }

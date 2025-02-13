@@ -1,9 +1,10 @@
 package demoqa.pages.widgets;
 
 import demoqa.base.BasePage;
-import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -11,13 +12,26 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 public class AutoCompletePage extends BasePage {
-    private final By multiAutoComplete = By.id("autoCompleteMultipleInput");
-    private final By singleAutoComplete = By.id("autoCompleteSingleInput");
-    private final By text = By.xpath("//h1[contains(.,'Auto Complete')]");
-    private final By multipleContainerText = By.id("autoCompleteMultiple");
-    private final By autoCompleteSingleText = By.id("autoCompleteSingle");
-    private final By closeButton = By.xpath(" //div[@aria-hidden='true']");
-    private final By allSelectedMultiColorNames = By.xpath("//div[contains(@class,'value-container--has-value css-1hwfws3')]");
+    @FindBy(id = "autoCompleteMultipleInput")
+    private WebElement multiAutoComplete;
+
+    @FindBy(id = "autoCompleteSingleInput")
+    private WebElement singleAutoComplete;
+
+    @FindBy(xpath = "//h1[contains(.,'Auto Complete')]")
+    private WebElement text;
+
+    @FindBy(id = "autoCompleteMultiple")
+    private WebElement multipleContainerText;
+
+    @FindBy(id = "autoCompleteSingle")
+    private WebElement autoCompleteSingleText;
+
+    @FindBy(xpath = "//div[@aria-hidden='true']")
+    private WebElement closeButton;
+
+    @FindBy(xpath = "//div[contains(@class,'value-container--has-value css-1hwfws3')]")
+    private WebElement allSelectedMultiColorNames;
 
     public AutoCompletePage(WebDriver driver) {
         super(driver);
@@ -25,46 +39,46 @@ public class AutoCompletePage extends BasePage {
     }
 
     public String getMultipleContainerText() {
-        return find(multipleContainerText).getText();
+        return multipleContainerText.getText();
     }
 
     public String getText() {
-        return find(text).getText();
+        return text.getText();
     }
 
     public String getAllSelectedMultiColorNames() {
-        return find(allSelectedMultiColorNames).getText();
+        return allSelectedMultiColorNames.getText();
     }
 
     public String getAutoCompleteSingleText() {
-        return find(autoCompleteSingleText).getText();
+        return autoCompleteSingleText.getText();
     }
 
     public String getAllSingleColorNames() {
-        return find(allSelectedMultiColorNames).getText();
+        return allSelectedMultiColorNames.getText();
     }
 
     public void clickCloseButton() {
-        find(closeButton).click();
+        closeButton.click();
     }
 
     public void clickSingleAutoComplete() {
-        find(singleAutoComplete).click();
+        singleAutoComplete.click();
     }
 
     public void multiAutoCompleteSelectColor(String color) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(multiAutoComplete))
+        wait.until(ExpectedConditions.visibilityOf(multiAutoComplete))
                 .sendKeys(color);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(multiAutoComplete))
+        wait.until(ExpectedConditions.visibilityOf(multiAutoComplete))
                 .sendKeys(Keys.chord("" + Keys.ENTER));
     }
 
     public void singleAutoComplete(String color) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(singleAutoComplete))
+        wait.until(ExpectedConditions.visibilityOf(singleAutoComplete))
                 .sendKeys(color);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(singleAutoComplete))
+        wait.until(ExpectedConditions.visibilityOf(singleAutoComplete))
                 .sendKeys(Keys.chord("" + Keys.ENTER));
     }
 }

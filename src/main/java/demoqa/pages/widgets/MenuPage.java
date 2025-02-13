@@ -1,180 +1,170 @@
 package demoqa.pages.widgets;
 
 import demoqa.base.BasePage;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class MenuPage extends BasePage {
 
-    private final By header = By.xpath(" //h1[@class='text-center'][contains(.,'Menu')]");
-    private final By mainItem1 = By.xpath("//a[@href='#'][contains(.,'Main Item 1')]");
-    private final By mainItem2 = By.xpath("//a[@href='#'][contains(.,'Main Item 2')]");
-    private final By mainItem3 = By.xpath("//a[@href='#'][contains(.,'Main Item 3')]");
+    @FindBy(xpath = "//h1[@class='text-center'][contains(.,'Menu')]")
+    private WebElement header;
 
-    private final By mainItem2SubItem1 = By.xpath("//*[@id=\"nav\"]/li[2]/ul/li[1]");
-    private final By mainItem2SubItem2 = By.xpath("//*[@id=\"nav\"]/li[2]/ul/li[2]");
-    private final By mainItem2SubItem3 = By.xpath("//*[@id=\"nav\"]/li[2]/ul/li[3]/a");
+    @FindBy(xpath = "//a[@href='#'][contains(.,'Main Item 1')]")
+    private WebElement mainItem1;
 
-    private final By mainItem2SubSubListSubSubItem1 = By.xpath("//*[@id=\"nav\"]/li[2]/ul/li[3]/ul/li[1]");
-    private final By mainItem2SubSubListSubSubItem2 = By.xpath("//*[@id=\"nav\"]/li[2]/ul/li[3]/ul/li[2]");
+    @FindBy(xpath = "//a[@href='#'][contains(.,'Main Item 2')]")
+    private WebElement mainItem2;
 
-    private final By mainItemFirstLi = By.xpath("//*[@id=\"nav\"]/li[1]");
-    private final By mainItemSecondLi = By.xpath("//*[@id=\"nav\"]/li[2]");
-    private final By mainItemThirdLi = By.xpath("//*[@id=\"nav\"]/li[3]");
-    private final By subSub = By.xpath("//*[@id=\"nav\"]/li[2]/ul/li[3]");
+    @FindBy(xpath = "//a[@href='#'][contains(.,'Main Item 3')]")
+    private WebElement mainItem3;
+
+    @FindBy(xpath = "//*[@id='nav']/li[2]/ul/li[1]")
+    private WebElement mainItem2SubItem1;
+
+    @FindBy(xpath = "//*[@id='nav']/li[2]/ul/li[2]")
+    private WebElement mainItem2SubItem2;
+
+    @FindBy(xpath = "//*[@id='nav']/li[2]/ul/li[3]/a")
+    private WebElement mainItem2SubItem3;
+
+    @FindBy(xpath = "//*[@id='nav']/li[2]/ul/li[3]/ul/li[1]")
+    private WebElement mainItem2SubSubListSubSubItem1;
+
+    @FindBy(xpath = "//*[@id='nav']/li[2]/ul/li[3]/ul/li[2]")
+    private WebElement mainItem2SubSubListSubSubItem2;
+
+    @FindBy(xpath = "//*[@id='nav']/li[1]")
+    private WebElement mainItemFirstLi;
+
+    @FindBy(xpath = "//*[@id='nav']/li[2]")
+    private WebElement mainItemSecondLi;
+
+    @FindBy(xpath = "//*[@id='nav']/li[3]")
+    private WebElement mainItemThirdLi;
+
+    @FindBy(xpath = "//*[@id='nav']/li[2]/ul/li[3]")
+    private WebElement subSub;
 
     public MenuPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
     }
 
-
     public void selectMainItem1() {
         Actions actions = new Actions(driver);
-
-        WebElement selectedMainItem1 = driver.findElement(mainItem1);
-        actions.moveToElement(selectedMainItem1).perform();
+        actions.moveToElement(mainItem1).perform();
     }
 
     public void selectMainItem2() {
         Actions actions = new Actions(driver);
-
-        WebElement selectedMainItem2 = driver.findElement(mainItem2);
-        actions.moveToElement(selectedMainItem2).perform();
+        actions.moveToElement(mainItem2).perform();
     }
 
     public void selectMainItem2SubSubList() {
         Actions actions = new Actions(driver);
-
-        WebElement selectedMainItem2 = driver.findElement(mainItem2);
-        actions.moveToElement(selectedMainItem2).perform();
-
-        WebElement subSubList2Item = driver.findElement(subSub);
-        actions.moveToElement(subSubList2Item).perform();
+        actions.moveToElement(mainItem2).perform();
+        actions.moveToElement(subSub).perform();
     }
 
     public String takeBackgroundColorMainItem1() {
-        return find(mainItemFirstLi).getCssValue("background-color");
+        return mainItemFirstLi.getCssValue("background-color");
     }
 
     public String takeBackgroundColorMainItem2() {
-        return find(mainItemSecondLi).getCssValue("background-color");
+        return mainItemSecondLi.getCssValue("background-color");
     }
 
     public String takeBackgroundColorMainItem2SubSubsLIst() {
-        return find(subSub).getCssValue("background-color");
+        return subSub.getCssValue("background-color");
     }
 
     public String takeBackgroundColorMainItem2SubSubsLIstSubSubItem1() {
-        return find(mainItem2SubSubListSubSubItem1).getCssValue("background-color");
+        return mainItem2SubSubListSubSubItem1.getCssValue("background-color");
     }
 
     public String takeBackgroundColorMainItem2SubSubsLIstSubSubItem2() {
-        return find(mainItem2SubSubListSubSubItem2).getCssValue("background-color");
+        return mainItem2SubSubListSubSubItem2.getCssValue("background-color");
     }
 
     public String takeBackgroundColorMainItem3() {
-        return find(mainItemThirdLi).getCssValue("background-color");
+        return mainItemThirdLi.getCssValue("background-color");
     }
 
     public void selectMainItem3() {
         Actions actions = new Actions(driver);
-
-        WebElement selectedMainItem3 = driver.findElement(mainItem3);
-        actions.moveToElement(selectedMainItem3).perform();
+        actions.moveToElement(mainItem3).perform();
     }
 
     public void selectMainItem2SubSubsLIstSubSubItem1() {
         Actions actions = new Actions(driver);
-
-        WebElement selectedMainItem2 = driver.findElement(mainItem2);
-        actions.moveToElement(selectedMainItem2).perform();
-
-        WebElement subSubList2Item = driver.findElement(subSub);
-        actions.moveToElement(subSubList2Item).perform();
-
-        WebElement subSubList2ItemSubSubItem1 = driver.findElement(mainItem2SubSubListSubSubItem1);
-        actions.moveToElement(subSubList2ItemSubSubItem1).perform();
+        actions.moveToElement(mainItem2).perform();
+        actions.moveToElement(subSub).perform();
+        actions.moveToElement(mainItem2SubSubListSubSubItem1).perform();
     }
-
 
     public void selectMainItem2SubSubsLIstSubSubItem2() {
         Actions actions = new Actions(driver);
-
-        WebElement selectedMainItem2 = driver.findElement(mainItem2);
-        actions.moveToElement(selectedMainItem2).perform();
-
-        WebElement subSubList2Item = driver.findElement(subSub);
-        actions.moveToElement(subSubList2Item).perform();
-
-        WebElement subSubList2ItemSubSubItem1 = driver.findElement(mainItem2SubSubListSubSubItem2);
-        actions.moveToElement(subSubList2ItemSubSubItem1).perform();
+        actions.moveToElement(mainItem2).perform();
+        actions.moveToElement(subSub).perform();
+        actions.moveToElement(mainItem2SubSubListSubSubItem2).perform();
     }
 
     public String takeBackgroundColorMainItem2SubItem1() {
-        return find(mainItem2SubItem1).getCssValue("background-color");
+        return mainItem2SubItem1.getCssValue("background-color");
     }
 
     public String takeBackgroundColorMainItem2SubItem2() {
-        return find(mainItem2SubItem2).getCssValue("background-color");
+        return mainItem2SubItem2.getCssValue("background-color");
     }
 
     public void selectMainItem2SubItem1() {
         Actions actions = new Actions(driver);
-
-        WebElement selectedMainItem2 = driver.findElement(mainItem2);
-        actions.moveToElement(selectedMainItem2).perform();
-
-        WebElement mainItem2SubItem1Element = driver.findElement(mainItem2SubItem1);
-        actions.moveToElement(mainItem2SubItem1Element).perform();
+        actions.moveToElement(mainItem2).perform();
+        actions.moveToElement(mainItem2SubItem1).perform();
     }
 
     public void selectMainItem2SubItem2() {
         Actions actions = new Actions(driver);
-
-        WebElement selectedMainItem2 = driver.findElement(mainItem2);
-        actions.moveToElement(selectedMainItem2).perform();
-
-        WebElement mainItem2SubItem2Element = driver.findElement(mainItem2SubItem2);
-        actions.moveToElement(mainItem2SubItem2Element).perform();
+        actions.moveToElement(mainItem2).perform();
+        actions.moveToElement(mainItem2SubItem2).perform();
     }
 
     public String getHeaderText() {
-        return find(header).getText();
+        return header.getText();
     }
 
     public String getMainItem1() {
-        return find(mainItem1).getText();
+        return mainItem1.getText();
     }
 
     public String getMainItem2() {
-        return find(mainItem2).getText();
+        return mainItem2.getText();
     }
 
     public String getMainItem3() {
-        return find(mainItem3).getText();
+        return mainItem3.getText();
     }
 
     public String getMainItem2SubItem1() {
-        return find(mainItem2SubItem1).getText();
+        return mainItem2SubItem1.getText();
     }
 
     public String getMainItem2SubItem2() {
-        return find(mainItem2SubItem2).getText();
+        return mainItem2SubItem2.getText();
     }
 
     public String getMainItem2SubSubList() {
-        return find(mainItem2SubItem3).getText();
+        return mainItem2SubItem3.getText();
     }
 
     public String getMainItem2SubSubListSubItem1() {
-        return find(mainItem2SubSubListSubSubItem1).getText();
+        return mainItem2SubSubListSubSubItem1.getText();
     }
 
     public String getMainItem2SubSubListSubItem2() {
-        return find(mainItem2SubSubListSubSubItem2).getText();
+        return mainItem2SubSubListSubSubItem2.getText();
     }
 }

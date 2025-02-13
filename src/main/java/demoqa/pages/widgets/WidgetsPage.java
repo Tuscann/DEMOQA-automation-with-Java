@@ -1,7 +1,6 @@
 package demoqa.pages.widgets;
 
 import demoqa.base.BasePage;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -11,22 +10,38 @@ import static utilities.JavaScriptUtility.scrollToElementJS;
 
 public class WidgetsPage extends BasePage {
 
+    @FindBy(xpath = "//li[@id='item-1']/span[text()='Auto Complete']")
+    private WebElement selectAutoComplete;
 
-    private final By selectAutoComplete = By.xpath("//li[@id='item-1']/span[text()='Auto Complete']");
-    private final By datePickerMenuItem = By.xpath("//li[@id='item-2']/span[text()='Date Picker']");
-    private final By sliderMenuItem = By.xpath("//li[@id='item-3']/span[text()='Slider']");
-    private final By progressBarMenuItem = By.xpath("//li[@id='item-4']/span[text()='Progress Bar']");
-    private final By selectTabs = By.xpath("//li[@id='item-5']/span[text()='Tabs']");
-    private final By selectToolTips = By.xpath("//li[@id='item-6']/span[text()='Tool Tips']");
-    private final By selectMenu = By.xpath("//li[@id='item-7']/span[text()='Menu']");
-    private final By selectSelectMenu = By.xpath("//li[@id='item-8']/span[text()='Select Menu']");
+    @FindBy(xpath = "//li[@id='item-2']/span[text()='Date Picker']")
+    private WebElement datePickerMenuItem;
+
+    @FindBy(xpath = "//li[@id='item-3']/span[text()='Slider']")
+    private WebElement sliderMenuItem;
+
+    @FindBy(xpath = "//li[@id='item-4']/span[text()='Progress Bar']")
+    private WebElement progressBarMenuItem;
+
+    @FindBy(xpath = "//li[@id='item-5']/span[text()='Tabs']")
+    private WebElement selectTabs;
+
+    @FindBy(xpath = "//li[@id='item-6']/span[text()='Tool Tips']")
+    private WebElement selectToolTips;
+
+    @FindBy(xpath = "//li[@id='item-7']/span[text()='Menu']")
+    private WebElement selectMenu;
+
+    @FindBy(xpath = "//li[@id='item-8']/span[text()='Select Menu']")
+    private WebElement selectSelectMenu;
+
     @FindBy(xpath = "//li[@id='item-0']/span[text()='Accordian']")
-    WebElement selectAccordion;
+    private WebElement selectAccordion;
+
     @FindBy(xpath = "//div[@class='header-text'][contains(.,'Widgets')]")
-    WebElement widgets;
+    private WebElement widgets;
 
     @FindBy(xpath = "//div[@class='col-12 mt-4 col-md-6'][contains(.,'Please select an item from left to start practice.')]")
-    WebElement text;
+    private WebElement text;
 
     public WidgetsPage(WebDriver driver) {
         super(driver);
@@ -40,42 +55,42 @@ public class WidgetsPage extends BasePage {
 
     public void clickAutoComplete() {
         scrollToElementJS(selectAutoComplete);
-        click(selectAutoComplete);
+        selectAutoComplete.click();
     }
 
     public void clickDatePicker() {
         scrollToElementJS(datePickerMenuItem);
-        click(datePickerMenuItem);
+        datePickerMenuItem.click();
     }
 
     public void clickSlider() {
         scrollToElementJS(sliderMenuItem);
-        click(sliderMenuItem);
+        sliderMenuItem.click();
     }
 
     public void clickProgressBar() {
         scrollToElementJS(progressBarMenuItem);
-        click(progressBarMenuItem);
+        progressBarMenuItem.click();
     }
 
     public void clickTabs() {
         scrollToElementJS(selectTabs);
-        click(selectTabs);
+        selectTabs.click();
     }
 
     public void clickToolTips() {
         scrollToElementJS(selectToolTips);
-        click(selectToolTips);
+        selectToolTips.click();
     }
 
     public void clickMenu() {
         scrollToElementJS(selectMenu);
-        click(selectMenu);
+        selectMenu.click();
     }
 
     public void clickSelectMenu() {
         scrollToElementJS(selectSelectMenu);
-        click(selectSelectMenu);
+        selectSelectMenu.click();
     }
 
     public String getMainText() {

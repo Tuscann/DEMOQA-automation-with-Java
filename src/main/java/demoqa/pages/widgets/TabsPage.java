@@ -1,8 +1,9 @@
 package demoqa.pages.widgets;
 
 import demoqa.base.BasePage;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -11,17 +12,32 @@ import java.time.Duration;
 
 public class TabsPage extends BasePage {
 
-    private final By whatTab = By.id("demo-tab-what");
-    private final By originTab = By.id("demo-tab-origin");
-    private final By useTab = By.id("demo-tab-use");
-    private final By moreTab = By.id("demo-tab-more");
+    @FindBy(id = "demo-tab-what")
+    private WebElement whatTab;
 
-    private final By whatTabInternalText = By.id("demo-tabpane-what");
-    private final By originTabInternalText = By.id("demo-tabpane-origin");
-    private final By useTabInternalText = By.id("demo-tabpane-use");
+    @FindBy(id = "demo-tab-origin")
+    private WebElement originTab;
 
-    private final By underTitle = By.xpath("//*[contains(text(),\"Details about\")]");
-    private final By tabsText = By.xpath("//h1[contains(.,'Tabs')]");
+    @FindBy(id = "demo-tab-use")
+    private WebElement useTab;
+
+    @FindBy(id = "demo-tab-more")
+    private WebElement moreTab;
+
+    @FindBy(id = "demo-tabpane-what")
+    private WebElement whatTabInternalText;
+
+    @FindBy(id = "demo-tabpane-origin")
+    private WebElement originTabInternalText;
+
+    @FindBy(id = "demo-tabpane-use")
+    private WebElement useTabInternalText;
+
+    @FindBy(xpath = "//*[contains(text(),\"Details about\")]")
+    private WebElement underTitle;
+
+    @FindBy(xpath = "//h1[contains(.,'Tabs')]")
+    private WebElement tabsText;
 
     public TabsPage(WebDriver driver) {
         super(driver);
@@ -29,58 +45,57 @@ public class TabsPage extends BasePage {
     }
 
     public String getTabsText() {
-        return find(tabsText).getText();
+        return tabsText.getText();
     }
 
     public String getUnderTitleText() {
-        return find(underTitle).getText();
+        return underTitle.getText();
     }
 
     public String getWhatTabText() {
-        return find(whatTab).getText();
+        return whatTab.getText();
     }
 
     public String getOriginTabText() {
-        return find(originTab).getText();
+        return originTab.getText();
     }
 
     public String getUseTabText() {
-        return find(useTab).getText();
+        return useTab.getText();
     }
 
     public String getMoreTabText() {
-        return find(moreTab).getText();
+        return moreTab.getText();
     }
 
     public String getWhatTabInternalText() {
-        return find(whatTabInternalText).getText();
+        return whatTabInternalText.getText();
     }
 
     public String getOriginTabInternalText() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(4));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(originTabInternalText));
+        wait.until(ExpectedConditions.visibilityOf(originTabInternalText));
 
-        return find(originTabInternalText).getText();
+        return originTabInternalText.getText();
     }
 
     public String getUseTabInternalText() {
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(4));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(useTabInternalText));
+        wait.until(ExpectedConditions.visibilityOf(useTabInternalText));
 
-        return find(useTabInternalText).getText();
+        return useTabInternalText.getText();
     }
 
     public void clickWhatTab() {
-        find(whatTab).click();
+        whatTab.click();
     }
 
     public void clickOriginTab() {
-        find(originTab).click();
+        originTab.click();
     }
 
     public void clickUseTab() {
-        find(useTab).click();
+        useTab.click();
     }
-
 }
