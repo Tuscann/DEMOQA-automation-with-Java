@@ -161,7 +161,7 @@ public class BooksPage extends BasePage {
     }
 
     public String getAllFoundBooks() {
-        return allRows.get(0).getText();
+        return allRows.getFirst().getText();
     }
 
     public void searchBooksWithWord(String searchedBook) {

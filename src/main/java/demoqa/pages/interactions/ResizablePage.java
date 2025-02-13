@@ -8,6 +8,8 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import static utilities.JavaScriptUtility.scrollToElementJS;
+
 public class ResizablePage extends BasePage {
     @FindBy(xpath = "//h1[@class='text-center'][contains(.,'Resizable')]")
     private WebElement pageTitle;
@@ -66,6 +68,7 @@ public class ResizablePage extends BasePage {
     }
 
     public void changeSizeWithoutLimitations(int xOffset, int yOffset) {
+        scrollToElementJS(resizeHandle2);
         Actions actions = new Actions(driver);
         actions.clickAndHold(resizeHandle2)
                 .moveByOffset(xOffset, yOffset)

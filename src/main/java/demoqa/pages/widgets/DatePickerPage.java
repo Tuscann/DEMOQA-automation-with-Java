@@ -14,20 +14,20 @@ import java.time.Duration;
 import static utilities.JavaScriptUtility.scrollToElementJS;
 
 public class DatePickerPage extends BasePage {
-   @FindBy(id = "datePickerMonthYearInput")
-private WebElement sectionOneHeading;
+    @FindBy(id = "datePickerMonthYearInput")
+    private WebElement sectionOneHeading;
 
-@FindBy(id = "dateAndTimePickerInput")
-private WebElement sectionTwoHeading;
+    @FindBy(id = "dateAndTimePickerInput")
+    private WebElement sectionTwoHeading;
 
-@FindBy(xpath = "//h1[contains(.,'Date Picker')]")
-private WebElement datePickerText;
+    @FindBy(xpath = "//h1[contains(.,'Date Picker')]")
+    private WebElement datePickerText;
 
-@FindBy(xpath = "(//div[@class='col-md-3 col-sm-12'])[1]")
-private WebElement selectDateText;
+    @FindBy(xpath = "(//div[@class='col-md-3 col-sm-12'])[1]")
+    private WebElement selectDateText;
 
-@FindBy(xpath = "(//div[@class='col-md-3 col-sm-12'])[2]")
-private WebElement dateAndTimeText;
+    @FindBy(xpath = "(//div[@class='col-md-3 col-sm-12'])[2]")
+    private WebElement dateAndTimeText;
 
     public DatePickerPage(WebDriver driver) {
         super(driver);
@@ -37,19 +37,19 @@ private WebElement dateAndTimeText;
     public String getSelectDateText() {
         return selectDateText.getText();
     }
-    
+
     public String getSelectedDateAndTimeText() {
         return dateAndTimeText.getText();
     }
-    
+
     public String getDatePickerText() {
         return datePickerText.getText();
     }
-    
+
     public String getSelectedDate() {
         return sectionOneHeading.getDomAttribute("value");
     }
-    
+
     public String getSelectedDateAndTime() {
         return sectionTwoHeading.getDomAttribute("value");
     }
@@ -57,14 +57,14 @@ private WebElement dateAndTimeText;
     public void selectDate(String enterDate) {
         scrollToElementJS(sectionOneHeading);
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(4));
-    
+
         wait.until(ExpectedConditions.visibilityOf(sectionOneHeading));
         sectionOneHeading.sendKeys(Keys.chord(Keys.CONTROL, "a"), enterDate, Keys.chord(Keys.ENTER));
     }
-    
+
     public void selectDateAndTime(String expectedDate) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(4));
-    
+
         wait.until(ExpectedConditions.visibilityOf(sectionTwoHeading));
         sectionTwoHeading.sendKeys(Keys.chord(Keys.CONTROL, "a"), expectedDate, Keys.chord(Keys.ENTER));
     }

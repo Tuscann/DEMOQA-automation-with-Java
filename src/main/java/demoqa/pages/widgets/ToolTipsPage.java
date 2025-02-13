@@ -1,6 +1,5 @@
 package demoqa.pages.widgets;
 
-
 import demoqa.base.BasePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -13,7 +12,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 public class ToolTipsPage extends BasePage {
-
     @FindBy(xpath = "//*[@id='buttonToolTopContainer']/p")
     private WebElement practiceToolTipsText;
 

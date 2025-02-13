@@ -11,7 +11,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 public class TabsPage extends BasePage {
-
     @FindBy(id = "demo-tab-what")
     private WebElement whatTab;
 

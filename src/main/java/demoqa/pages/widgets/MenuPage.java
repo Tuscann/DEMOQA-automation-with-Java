@@ -8,7 +8,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class MenuPage extends BasePage {
-
     @FindBy(xpath = "//h1[@class='text-center'][contains(.,'Menu')]")
     private WebElement header;
 

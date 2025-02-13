@@ -7,6 +7,8 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import static utilities.JavaScriptUtility.scrollToElementJS;
+
 public class SortablePage extends BasePage {
 
     @FindBy(xpath = "//h1[@class='text-center'][contains(.,'Sortable')]")
@@ -162,6 +164,8 @@ public class SortablePage extends BasePage {
         WebElement draggable = getGridElementByName(gridOne);
         WebElement droppable = getGridElementByName(gridSix);
 
+        scrollToElementJS(draggable);
+
         if (draggable != null && droppable != null) {
             Actions actions = new Actions(driver);
             actions.dragAndDrop(draggable, droppable).perform();
@@ -171,6 +175,8 @@ public class SortablePage extends BasePage {
     public void moveOverList(String listOne, String listSix) {
         WebElement draggable = getListElementByName(listOne);
         WebElement droppable = getListElementByName(listSix);
+
+        scrollToElementJS(draggable);
 
         if (draggable != null && droppable != null) {
             Actions actions = new Actions(driver);

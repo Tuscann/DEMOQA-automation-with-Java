@@ -154,5 +154,4 @@ public class BooksLoginPage extends BasePage {
     public void setPassword(String password2) {
         set(password, password2);
     }
-
 }
