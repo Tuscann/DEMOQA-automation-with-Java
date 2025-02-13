@@ -12,7 +12,6 @@ import org.openqa.selenium.support.ui.Select;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static utilities.DropDownUtility.*;
 import static utilities.JavaScriptUtility.scrollToElementJS;
 
 public class SelectMenuPage extends BasePage {

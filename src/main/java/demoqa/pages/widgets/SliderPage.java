@@ -26,7 +26,7 @@ private WebElement slider;
     }
 
    public String getSliderValue() {
-    return sliderValue.getAttribute("value");
+    return sliderValue.getDomAttribute("value");
 }
 
     public void moveSlider(int x, int y) {

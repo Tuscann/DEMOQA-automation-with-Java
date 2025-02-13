@@ -49,7 +49,7 @@ public class ProgressBarPage extends BasePage {
     }
     
     public Integer getValueProgressBar() {
-        return Integer.parseInt(Objects.requireNonNull(progressBarCurrent.getAttribute("aria-valuenow")));
+        return Integer.parseInt(Objects.requireNonNull(progressBarCurrent.getDomAttribute("aria-valuenow")));
     }
     
     private String getProgressBarValue() {
