@@ -1,5 +1,6 @@
 package demoqa.web.tests.widgets;
 
+import demoqa.pages.widgets.WidgetsPage;
 import demoqa.web.base.BaseTest;
 import org.testng.annotations.Test;
 
@@ -8,6 +9,7 @@ public class WidgetsPageTests extends BaseTest {
     @Test(enabled = true, testName = "Check 9 pages links")
     public void CheckAllNinePagesLinks() {
         navigateToUrl("widgets");
+        WidgetsPage widgetsPage = new WidgetsPage(driver);
 
         String expectedUrl = "https://demoqa.com/accordian";
         widgetsPage.clickAccordion();
@@ -60,6 +62,7 @@ public class WidgetsPageTests extends BaseTest {
     @Test(enabled = true, testName = "Verify show/hide left dropdown menu")
     public void ClickLeftDropdownMenu() {
         navigateToUrl("widgets");
+        WidgetsPage widgetsPage = new WidgetsPage(driver);
 
         String expectedString = "Please select an item from left to start practice.";
         String actualString = widgetsPage.getMainText();

@@ -1,5 +1,6 @@
 package demoqa.web.tests.interactions;
 
+import demoqa.pages.interactions.DraggablePage;
 import demoqa.web.base.BaseTest;
 import org.openqa.selenium.Point;
 import org.testng.annotations.Test;
@@ -8,6 +9,7 @@ public class DraggablePageTests extends BaseTest {
     @Test(enabled = true, testName = "Verify all text on page")
     public void VerifyAllTextOnPage() {
         navigateToUrl("dragabble");
+        DraggablePage draggablePage = new DraggablePage(driver);
 
         String pageTitle = "Dragabble";
         String simpleTabTitle = "Simple";
@@ -61,6 +63,7 @@ public class DraggablePageTests extends BaseTest {
     @Test(enabled = true, testName = "Drag me simple tab")
     public void DragMeSimpleTab() {
         navigateToUrl("dragabble");
+        DraggablePage draggablePage = new DraggablePage(driver);
 
         int xOffset = 150;
         int yOffset = 50;
@@ -80,6 +83,7 @@ public class DraggablePageTests extends BaseTest {
     @Test(enabled = true, testName = "Drag only x in axis restricted tab")
     public void DragOnlyXInAxisRestrictedTab() {
         navigateToUrl("dragabble");
+        DraggablePage draggablePage = new DraggablePage(driver);
 
         int xOffset = 150;
         int yOffset = 50;
@@ -101,6 +105,7 @@ public class DraggablePageTests extends BaseTest {
     @Test(enabled = true, testName = "Drag only y in axis restricted tab")
     public void DragOnlyYInAxisRestrictedTab() {
         navigateToUrl("dragabble");
+        DraggablePage draggablePage = new DraggablePage(driver);
 
         int xOffset = 150;
         int yOffset = 50;
@@ -122,6 +127,7 @@ public class DraggablePageTests extends BaseTest {
     @Test(enabled = true, testName = "Contained in box axis restricted tab with size inside box")
     public void ContainedInBoxAxisRestrictedTabWithSizeInsideBox() {
         navigateToUrl("dragabble");
+        DraggablePage draggablePage = new DraggablePage(driver);
 
         int xOffset = 150;
         int yOffset = 50;
@@ -142,6 +148,7 @@ public class DraggablePageTests extends BaseTest {
     @Test(enabled = true, testName = "Contained in box axis restricted tab with size out side box")
     public void ContainedInBoxAxisRestrictedTabWithSizeOutSideBox() {
         navigateToUrl("dragabble");
+        DraggablePage draggablePage = new DraggablePage(driver);
 
         int xOffset = 500;
         int yOffset = 107;  //Magic number -1 become bigger TODO HELP
@@ -163,6 +170,7 @@ public class DraggablePageTests extends BaseTest {
     @Test(enabled = true, testName = "Contained in parent axis restricted tab with size inside box")
     public void ContainedInParentAxisRestrictedTabWithSizeInsideBox() {
         navigateToUrl("dragabble");
+        DraggablePage draggablePage = new DraggablePage(driver);
 
         int xOffset = 15;
         int yOffset = 60;
@@ -184,6 +192,7 @@ public class DraggablePageTests extends BaseTest {
     @Test(enabled = true, testName = "Move first text cursor style")
     public void MoveFirstTextCursorStyle() {
         navigateToUrl("dragabble");
+        DraggablePage draggablePage = new DraggablePage(driver);
 
         int xOffset = 0;
         int yOffset = 100;
@@ -216,6 +225,7 @@ public class DraggablePageTests extends BaseTest {
     @Test(enabled = true, testName = "Move second text cursor style")
     public void MoveSecondTextCursorStyle() {
         navigateToUrl("dragabble");
+        DraggablePage draggablePage = new DraggablePage(driver);
 
         draggablePage.clickCursorStyleTab();
 
@@ -277,6 +287,7 @@ public class DraggablePageTests extends BaseTest {
     @Test(enabled = true, testName = "Move third text cursor style")
     public void MoveThirdTextCursorStyle() {
         navigateToUrl("dragabble");
+        DraggablePage draggablePage = new DraggablePage(driver);
 
         int xOffset = 100;
         int yOffset = 100;  //Magic number -50 TODO HELP

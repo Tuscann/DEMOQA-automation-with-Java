@@ -1,5 +1,6 @@
 package demoqa.web.tests.widgets;
 
+import demoqa.pages.widgets.SelectMenuPage;
 import demoqa.web.base.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -11,6 +12,7 @@ public class SelectMenuPageTests extends BaseTest {
     @Test(enabled = true, testName = "Verify all text on the page")
     public void VerifyAllTextOnPage() {
         navigateToUrl("select-menu");
+        SelectMenuPage selectMenuPage = new SelectMenuPage(driver);
 
         String expectedSelectMenuText = "Select Menu";
         String expectedSelectedValueLabel = "Select Value";
@@ -57,6 +59,8 @@ public class SelectMenuPageTests extends BaseTest {
     @Test(enabled = true, testName = "Select all values from select value menu")
     public void SelectAllValuesFromSelectValue() {
         navigateToUrl("select-menu");
+        SelectMenuPage selectMenuPage = new SelectMenuPage(driver);
+
         for (int i = 0; i < 6; i++) {
             String expectedSelectedValue = switch (i) {
                 case 0 -> "Group 1, option 1";
@@ -78,6 +82,7 @@ public class SelectMenuPageTests extends BaseTest {
     @Test(enabled = true, testName = "Select all values from select one menu")
     public void SelectAllValuesFromSelectOne() {
         navigateToUrl("select-menu");
+        SelectMenuPage selectMenuPage = new SelectMenuPage(driver);
 
         for (int i = 0; i < 6; i++) {
             String expectedSelectOne = switch (i) {
@@ -101,6 +106,7 @@ public class SelectMenuPageTests extends BaseTest {
     @Test(enabled = true, testName = "Select all values from old style select menu")
     public void SelectAllValuesFromOldStyleSelectMenu() {
         navigateToUrl("select-menu");
+        SelectMenuPage selectMenuPage = new SelectMenuPage(driver);
 
         for (int i = 0; i < 11; i++) {
             String expectedColor = switch (i) {
@@ -128,6 +134,7 @@ public class SelectMenuPageTests extends BaseTest {
     @Test(enabled = false, testName = "Select all values from multi select dropdown menu")
     public void SelectMultiSelectDropDown() {
         navigateToUrl("select-menu");
+        SelectMenuPage selectMenuPage = new SelectMenuPage(driver);
 
         for (int i = 0; i < 4; i++) {
             String expectedColor = switch (i) {
@@ -149,6 +156,8 @@ public class SelectMenuPageTests extends BaseTest {
     @Test(enabled = true, testName = "Select all values from standard multi select menu")
     public void SelectAllValuesFromStandardMultiSelect() {
         navigateToUrl("select-menu");
+        SelectMenuPage selectMenuPage = new SelectMenuPage(driver);
+
         selectMenuPage.selectStandardMultiByText("Volvo");
         selectMenuPage.selectStandardMultiByIndex(1);
         selectMenuPage.selectStandardMultiByText("Audi");

@@ -1,5 +1,6 @@
 package demoqa.web.tests.widgets;
 
+import demoqa.pages.widgets.AutoCompletePage;
 import demoqa.web.base.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -9,6 +10,7 @@ public class AutoCompletePageTests extends BaseTest {
     @Test(enabled = true, testName = "Verify all text on page")
     public void VerifyAllTextOnPage() {
         navigateToUrl("auto-complete");
+        AutoCompletePage autoCompletePage = new AutoCompletePage(driver);
 
         String expectedText = "Auto Complete";
         String expectedTypeMultipleText = "Type multiple color names";
@@ -28,6 +30,7 @@ public class AutoCompletePageTests extends BaseTest {
     @Test(enabled = true, testName = "Select two colors multiple")
     public void SelectTwoColorsMultiple() {
         navigateToUrl("auto-complete");
+        AutoCompletePage autoCompletePage = new AutoCompletePage(driver);
 
         String expectedFirstColor = "Red";
         String expectedSecondColor = "Blue";
@@ -42,6 +45,7 @@ public class AutoCompletePageTests extends BaseTest {
     @Test(enabled = true, testName = "Select two colors and delete two multiple")
     public void SelectTwoColorsAndDeleteTwoMultiple() {
         navigateToUrl("auto-complete");
+        AutoCompletePage autoCompletePage = new AutoCompletePage(driver);
 
         String expectedFirstColor = "Red";
         String expectedSecondColor = "Blue";
@@ -65,6 +69,7 @@ public class AutoCompletePageTests extends BaseTest {
     @Test(enabled = true, testName = "Select one color clear add new color single")
     public void SelectOneColorClearAddNewColorSingle() {
         navigateToUrl("auto-complete");
+        AutoCompletePage autoCompletePage = new AutoCompletePage(driver);
 
         String expectedFirstColor = "Green";
         autoCompletePage.singleAutoComplete(expectedFirstColor);
@@ -85,6 +90,7 @@ public class AutoCompletePageTests extends BaseTest {
     @Test(enabled = true, testName = "Select one color single")
     public void SelectOneColorSingle() {
         navigateToUrl("auto-complete");
+        AutoCompletePage autoCompletePage = new AutoCompletePage(driver);
 
         String expectedFirstColor = "Green";
         autoCompletePage.singleAutoComplete(expectedFirstColor);

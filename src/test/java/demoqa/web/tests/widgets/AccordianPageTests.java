@@ -1,5 +1,6 @@
 package demoqa.web.tests.widgets;
 
+import demoqa.pages.widgets.AccordianPage;
 import demoqa.web.base.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -9,6 +10,8 @@ public class AccordianPageTests extends BaseTest {
     @Test(enabled = true, testName = "Verify all text on page")
     public void VerifyAllTextOnPage() {
         navigateToUrl("accordian");
+        AccordianPage accordianPage = new AccordianPage(driver);
+
         String expectedHeading = "Accordian";
         String expectedOneHeadingText = "What is Lorem Ipsum?";
         String expectedTwoHeadingText = "Where does it come from?";
@@ -30,6 +33,8 @@ public class AccordianPageTests extends BaseTest {
     @Test(enabled = true, testName = "Select first heading")
     public void SelectFirstHeading() {
         navigateToUrl("accordian");
+        AccordianPage accordianPage = new AccordianPage(driver);
+
         accordianPage.clickOneHeading();
 
         String actualText = accordianPage.getSectionOneText();
@@ -41,6 +46,8 @@ public class AccordianPageTests extends BaseTest {
     @Test(enabled = true, testName = "Select second heading")
     public void SelectSecondHeading() {
         navigateToUrl("accordian");
+        AccordianPage accordianPage = new AccordianPage(driver);
+
         accordianPage.clickTwoHeading();
 
         String actualText = accordianPage.getSectionTwoText();
@@ -53,6 +60,8 @@ public class AccordianPageTests extends BaseTest {
     @Test(enabled = true, testName = "Select third heading")
     public void SelectThirdHeading() {
         navigateToUrl("accordian");
+        AccordianPage accordianPage = new AccordianPage(driver);
+
         accordianPage.clickThreeHeading();
 
         String actualText = accordianPage.getSectionThreeText();

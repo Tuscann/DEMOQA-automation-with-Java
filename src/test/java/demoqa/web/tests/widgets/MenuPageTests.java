@@ -1,5 +1,6 @@
 package demoqa.web.tests.widgets;
 
+import demoqa.pages.widgets.MenuPage;
 import demoqa.web.base.BaseTest;
 import org.testng.annotations.Test;
 
@@ -7,6 +8,8 @@ public class MenuPageTests extends BaseTest {
 
     @Test(enabled = true, testName = "Verify all text on page")
     public void CheckAllTextOnPage() {
+        MenuPage menuPage = new MenuPage(driver);
+
         navigateToUrl("menu#");
         String pageHeader = "Menu";
         String mainItem1 = "Main Item 1";
@@ -46,6 +49,7 @@ public class MenuPageTests extends BaseTest {
     @Test(enabled = true, testName = "Hover over every item in menu and check hover color")
     public void HoverOverEveryItemInMenuAndCheckHoverColor() {
         navigateToUrl("menu#");
+        MenuPage menuPage = new MenuPage(driver);
 
         final String colorBeforeSelection = "rgba(36, 175, 21, 1)";
         final String colorAfterSelection = "rgba(0, 63, 32, 1)";

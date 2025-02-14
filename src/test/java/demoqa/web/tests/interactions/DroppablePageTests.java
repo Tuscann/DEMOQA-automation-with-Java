@@ -1,5 +1,6 @@
 package demoqa.web.tests.interactions;
 
+import demoqa.pages.interactions.DroppablePage;
 import demoqa.web.base.BaseTest;
 import org.openqa.selenium.Point;
 import org.testng.annotations.Test;
@@ -9,6 +10,7 @@ public class DroppablePageTests extends BaseTest {
     @Test(enabled = true, testName = "Verify all text on page")
     public void VerifyAllTextOnPage() {
         navigateToUrl("droppable");
+        DroppablePage droppablePage = new DroppablePage(driver);
 
         String expectedHeaderText = "Droppable";
         String simpleTabText = "Simple";
@@ -79,6 +81,7 @@ public class DroppablePageTests extends BaseTest {
     @Test(enabled = true, testName = "Simple drag and drop")
     public void SimpleDragAndDrop() {
         navigateToUrl("droppable");
+        DroppablePage droppablePage = new DroppablePage(driver);
 
         String expectedDroppedText = "Dropped!";
         String newColor = "rgba(70, 130, 180, 1)";
@@ -97,6 +100,8 @@ public class DroppablePageTests extends BaseTest {
     @Test(enabled = true, testName = "Accept tab drag and drop acceptable")
     public void AcceptTabDragAndDropAcceptable() {
         navigateToUrl("droppable");
+        DroppablePage droppablePage = new DroppablePage(driver);
+
         droppablePage.clickAcceptTab();
         droppablePage.dragAndDropAcceptable();
 
@@ -115,6 +120,8 @@ public class DroppablePageTests extends BaseTest {
     @Test(enabled = true, testName = "Accept tab drag and drop not acceptable")
     public void AcceptTabDragAndDropNotAcceptable() {
         navigateToUrl("droppable");
+        DroppablePage droppablePage = new DroppablePage(driver);
+
         droppablePage.clickAcceptTab();
         droppablePage.dragAndDropNotAcceptable();
 
@@ -133,6 +140,8 @@ public class DroppablePageTests extends BaseTest {
     @Test(enabled = true, testName = "Prevent propagation outer droppable not greedy")
     public void PreventPropagationInnerDroppableNotGreedy() {
         navigateToUrl("droppable");
+        DroppablePage droppablePage = new DroppablePage(driver);
+
         droppablePage.clickPreventPropagationTab();
 
         String expectedOuterNotGreedyColorBefore = "rgba(0, 0, 0, 0)";
@@ -164,6 +173,8 @@ public class DroppablePageTests extends BaseTest {
     @Test(enabled = true, testName = "Prevent propagation inner droppable greedy")
     public void PreventPropagationInnerDroppableGreedy() {
         navigateToUrl("droppable");
+        DroppablePage droppablePage = new DroppablePage(driver);
+
         droppablePage.clickPreventPropagationTab();
         droppablePage.dragAndDropPropagationInnerDroppableGreedy();
 
@@ -185,6 +196,8 @@ public class DroppablePageTests extends BaseTest {
     @Test(enabled = true, testName = "Prevent propagation outer droppable greedy")
     public void PreventPropagationOuterDroppableGreedy() {
         navigateToUrl("droppable");
+        DroppablePage droppablePage = new DroppablePage(driver);
+
         droppablePage.clickPreventPropagationTab();
         droppablePage.dragAndDropPropagationOuterDroppableGreedy();
 
@@ -206,6 +219,8 @@ public class DroppablePageTests extends BaseTest {
     @Test(enabled = true, testName = "Revert draggable will revert")
     public void RevertDraggableWillRevert() {
         navigateToUrl("droppable");
+        DroppablePage droppablePage = new DroppablePage(driver);
+
         droppablePage.clickRevertDraggableTab();
         String expectedDroppedHereText = "Drop here";
 
@@ -229,6 +244,8 @@ public class DroppablePageTests extends BaseTest {
     @Test(enabled = true, testName = "Revert draggable will not revert")
     public void RevertDraggableWillNotRevert() {
         navigateToUrl("droppable");
+        DroppablePage droppablePage = new DroppablePage(driver);
+
         droppablePage.clickRevertDraggableTab();
         String expectedDroppedHereText = "Drop here";
 

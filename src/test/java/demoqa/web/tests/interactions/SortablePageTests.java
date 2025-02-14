@@ -1,5 +1,6 @@
 package demoqa.web.tests.interactions;
 
+import demoqa.pages.interactions.SortablePage;
 import demoqa.web.base.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
@@ -9,6 +10,7 @@ public class SortablePageTests extends BaseTest {
     @Test(enabled = true, testName = "Verify all text on page")
     public void VerifyAllTextOnPage() {
         navigateToUrl("sortable");
+        SortablePage sortablePage = new SortablePage(driver);
 
         String pageTitle = "Sortable";
         String listTab = "List";
@@ -123,6 +125,7 @@ public class SortablePageTests extends BaseTest {
     @Test(dataProvider = "resizeData", description = "Check order in List", enabled = true, testName = "Check order in List")
     public void DragAndDropFromListTab(String dragFromPlace, String dropOnPlace, String expectedOrder) {
         navigateToUrl("sortable");
+        SortablePage sortablePage = new SortablePage(driver);
 
         sortablePage.moveOverList(dragFromPlace, dropOnPlace);
         String actualListSix = sortablePage.getListOrder();
@@ -229,6 +232,8 @@ public class SortablePageTests extends BaseTest {
     @Test(dataProvider = "resizeData2", description = "Check order in Grid", enabled = true, testName = "Check order in Grid")
     public void DragAndDropFromGridTab(String dragFromPlace, String dropOnPlace, String expectedOrder) {
         navigateToUrl("sortable");
+        SortablePage sortablePage = new SortablePage(driver);
+
         sortablePage.clickGridTab();
 
         sortablePage.moveOverGrid(dragFromPlace, dropOnPlace);

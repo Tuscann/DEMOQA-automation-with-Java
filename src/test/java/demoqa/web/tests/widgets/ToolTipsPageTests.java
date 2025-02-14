@@ -1,5 +1,6 @@
 package demoqa.web.tests.widgets;
 
+import demoqa.pages.widgets.ToolTipsPage;
 import demoqa.web.base.BaseTest;
 import org.testng.annotations.Test;
 
@@ -8,6 +9,7 @@ public class ToolTipsPageTests extends BaseTest {
     @Test(enabled = true, testName = "Verify all text on page")
     public void VerifyAllTextOnPage() {
         navigateToUrl("tool-tips");
+        ToolTipsPage toolTipsPage = new ToolTipsPage(driver);
 
         String header = "Tool Tips";
         String practiceToolTips = "Practice Tool Tips";
@@ -33,6 +35,7 @@ public class ToolTipsPageTests extends BaseTest {
     @Test(enabled = true, testName = "Verify over 4 tooltips")
     public void HoverOver4ToolTips() {
         navigateToUrl("tool-tips");
+        ToolTipsPage toolTipsPage = new ToolTipsPage(driver);
 
         String actualTooltipText = toolTipsPage.getHoverOverHoverMeToSeeButtonReturnToolTipText();
         String expectedTooltipText = "You hovered over the Button";

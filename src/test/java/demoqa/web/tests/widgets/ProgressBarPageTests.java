@@ -1,5 +1,6 @@
 package demoqa.web.tests.widgets;
 
+import demoqa.pages.widgets.ProgressBarPage;
 import demoqa.web.base.BaseTest;
 import org.testng.annotations.Test;
 
@@ -8,6 +9,7 @@ public class ProgressBarPageTests extends BaseTest {
     @Test(enabled = true, testName = "Verify all text on page")
     public void VerifyAllTextOnPage() {
         navigateToUrl("progress-bar");
+        ProgressBarPage progressBarPage = new ProgressBarPage(driver);
 
         String expectedHeaderText = "Progress Bar";
         String expectedProgressBarText = "Progress Bar";
@@ -27,6 +29,8 @@ public class ProgressBarPageTests extends BaseTest {
     @Test(enabled = true, testName = "Click start button and check progress bar end value")
     public void ClickStartButtonAndCheckProgressBarEndValue() {
         navigateToUrl("progress-bar");
+        ProgressBarPage progressBarPage = new ProgressBarPage(driver);
+
         String expectedText = "100";
         String resetButtonText = "Reset";
         String stopButtonText = "Stop";
@@ -53,6 +57,8 @@ public class ProgressBarPageTests extends BaseTest {
     @Test(enabled = true, testName = "Click reset button")
     public void ClickResetButton() {
         navigateToUrl("progress-bar");
+        ProgressBarPage progressBarPage = new ProgressBarPage(driver);
+
         String expectedText = "100";
         String startButtonText = "Start";
 
@@ -70,6 +76,8 @@ public class ProgressBarPageTests extends BaseTest {
     @Test(enabled = true, testName = "Click start stop start check progress bar end value")
     public void ClickStartStopStartCheckProgressBarEndValue() {
         navigateToUrl("progress-bar");
+        ProgressBarPage progressBarPage = new ProgressBarPage(driver);
+
         String expectedEndProgressBarValueText = "100";
         int stopValue = 4;
 
@@ -88,6 +96,7 @@ public class ProgressBarPageTests extends BaseTest {
     @Test(enabled = true, testName = "Stop on 31 percent of progressbar")
     public void StopOn31ProgressOfProgressbar() {
         navigateToUrl("progress-bar");
+        ProgressBarPage progressBarPage = new ProgressBarPage(driver);
 
         progressBarPage.clickStartButton();
 

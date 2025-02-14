@@ -1,6 +1,7 @@
 package demoqa.web.tests.interactions;
 
 
+import demoqa.pages.interactions.SelectablePage;
 import demoqa.web.base.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -9,6 +10,7 @@ public class SelectablePageTests extends BaseTest {
     @Test(enabled = true, testName = "Verify all text on page")
     public void VerifyAllTextOnPage() {
         navigateToUrl("selectable");
+        SelectablePage selectablePage = new SelectablePage(driver);
 
         String pageTitle = "Selectable";
         String listTab = "List";
@@ -68,6 +70,7 @@ public class SelectablePageTests extends BaseTest {
     @Test(enabled = true, testName = "Select one by one all from list")
     public void SelectOneByOneAllFromList() {
         navigateToUrl("selectable");
+        SelectablePage selectablePage = new SelectablePage(driver);
 
         String searched1Selection = "Cras justo odio";
         boolean isRowSelected = selectablePage.RowSelected(searched1Selection);
@@ -107,6 +110,8 @@ public class SelectablePageTests extends BaseTest {
     @Test(enabled = true, testName = "Select one by one all from grid")
     public void SelectOneByOneAllFromGrid() {
         navigateToUrl("selectable");
+        SelectablePage selectablePage = new SelectablePage(driver);
+
         selectablePage.clickGridTab();
 
         String searched1Selection;
@@ -127,7 +132,8 @@ public class SelectablePageTests extends BaseTest {
 
             selectablePage.selectPositionFromGrid(searched1Selection);
             isSelected = selectablePage.isPositionFromGridSelected(searched1Selection);
-            Assert.assertTrue(isSelected, searched1Selection + " is not selected.\n");
+            softAssert.assertTrue(isSelected, searched1Selection + " is not selected.\n");
         }
+        softAssert.assertAll();
     }
 }

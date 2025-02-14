@@ -1,5 +1,6 @@
 package demoqa.web.tests.forms;
 
+import demoqa.pages.forms.PracticeFormPage;
 import demoqa.web.base.BaseTest;
 import org.testng.annotations.Test;
 
@@ -10,6 +11,7 @@ public class PracticeFormPageTests extends BaseTest {
     @Test(enabled = true, testName = "Verify all text and placeholders")
     public void VerifyAllTextAndPlaceHolders() {
         navigateToUrl("automation-practice-form");
+        PracticeFormPage practiceFormPage = new PracticeFormPage(driver);
 
         String practiceFromText = "Practice Form";
         String studentRegistrationFormText = "Student Registration Form";
@@ -106,6 +108,7 @@ public class PracticeFormPageTests extends BaseTest {
     @Test(enabled = true, testName = "Verify three hobbies state")
     public void VerifyThreeHobbiesState() {
         navigateToUrl("automation-practice-form");
+        PracticeFormPage practiceFormPage = new PracticeFormPage(driver);
 
         practiceFormPage.clickSportHobbyCheckbox();
         practiceFormPage.clickMusicHobbyCheckbox();
@@ -126,6 +129,7 @@ public class PracticeFormPageTests extends BaseTest {
     @Test(enabled = true, testName = "Select there radio button for gender")
     public void SelectEveryRadioButton() {
         navigateToUrl("automation-practice-form");
+        PracticeFormPage practiceFormPage = new PracticeFormPage(driver);
 
         String genderFemale = "Female";
         practiceFormPage.clickGenderRadioButton(genderFemale);
@@ -149,6 +153,7 @@ public class PracticeFormPageTests extends BaseTest {
     @Test(enabled = true, testName = "Submit valid practice form and verify")
     public void SubmitValidPracticeFormAndVerify() {
         navigateToUrl("automation-practice-form");
+        PracticeFormPage practiceFormPage = new PracticeFormPage(driver);
 
         String expectedFirstName = "Zhivko";
         String expectedLastName = "Petrov";
@@ -219,6 +224,8 @@ public class PracticeFormPageTests extends BaseTest {
     @Test(enabled = true, testName = "Click submit button on empty form and verify colors")
     public void ClickSubmitOnEmptyFormAndVerifyColors() {
         navigateToUrl("automation-practice-form");
+        PracticeFormPage practiceFormPage = new PracticeFormPage(driver);
+
         practiceFormPage.clickSubmitButton();
 
         String expectedRedColor = "rgb(220, 53, 69)";
@@ -258,6 +265,8 @@ public class PracticeFormPageTests extends BaseTest {
     @Test(enabled = true, testName = "Verify colors change from red to green")
     public void VerifyColorsChangeFromRedToGreen() {
         navigateToUrl("automation-practice-form");
+        PracticeFormPage practiceFormPage = new PracticeFormPage(driver);
+
         practiceFormPage.clickSubmitButton();
 
         String expectedFirstName = "Zhivko";

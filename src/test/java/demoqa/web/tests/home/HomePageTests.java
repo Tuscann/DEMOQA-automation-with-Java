@@ -1,5 +1,6 @@
 package demoqa.web.tests.home;
 
+import demoqa.pages.home.HomePage;
 import demoqa.web.base.BaseTest;
 import org.testng.annotations.Test;
 
@@ -7,44 +8,47 @@ public class HomePageTests extends BaseTest {
 
     @Test(enabled = true, testName = "Click and verify all links")
     public void ClickAndVerifyAllLinks() {
+
+        HomePage homePage = new HomePage(driver);
+
         String expectedUrl = "https://demoqa.com/elements";
         homePage.goToElements();
-        String actualUrl = elementsPage.checkUrl();
+        String actualUrl = homePage.checkUrl();
         softAssert.assertEquals(actualUrl, expectedUrl, "\nExpected elements page.\n");
 
         homePage.navigateBack();
 
         expectedUrl = "https://demoqa.com/forms";
         homePage.goToForms();
-        actualUrl = elementsPage.checkUrl();
+        actualUrl = homePage.checkUrl();
         softAssert.assertEquals(actualUrl, expectedUrl, "\nExpected forms page.\n");
 
         homePage.navigateBack();
 
         expectedUrl = "https://demoqa.com/alertsWindows";
         homePage.goToAlertsFramesWindowsCard();
-        actualUrl = elementsPage.checkUrl();
+        actualUrl = homePage.checkUrl();
         softAssert.assertEquals(actualUrl, expectedUrl, "\nExpected alerts page.\n");
 
         homePage.navigateBack();
 
         expectedUrl = "https://demoqa.com/widgets";
         homePage.goToWidgets();
-        actualUrl = elementsPage.checkUrl();
+        actualUrl = homePage.checkUrl();
         softAssert.assertEquals(actualUrl, expectedUrl, "\nExpected widgets page.\n");
 
         homePage.navigateBack();
 
         expectedUrl = "https://demoqa.com/interaction";
         homePage.goToInteractions();
-        actualUrl = elementsPage.checkUrl();
+        actualUrl = homePage.checkUrl();
         softAssert.assertEquals(actualUrl, expectedUrl, "\nExpected Interaction page.\n");
 
         homePage.navigateBack();
 
         expectedUrl = "https://demoqa.com/books";
         homePage.goToBooks();
-        actualUrl = elementsPage.checkUrl();
+        actualUrl = homePage.checkUrl();
         softAssert.assertEquals(actualUrl, expectedUrl, "\nExpected books page.\n");
 
         softAssert.assertAll();
@@ -52,6 +56,8 @@ public class HomePageTests extends BaseTest {
 
     @Test(enabled = true, testName = "Verify all text on page")
     public void VerifyAllTextOnPage() {
+        HomePage homePage = new HomePage(driver);
+
         String expectedElementsText = "Elements";
         String expectedFormsText = "Forms";
         String expectedAlertsText = "Alerts, Frame & Windows";

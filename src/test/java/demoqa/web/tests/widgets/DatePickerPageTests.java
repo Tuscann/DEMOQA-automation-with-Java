@@ -1,5 +1,6 @@
 package demoqa.web.tests.widgets;
 
+import demoqa.pages.widgets.DatePickerPage;
 import demoqa.web.base.BaseTest;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -16,6 +17,7 @@ public class DatePickerPageTests extends BaseTest {
     @Test(enabled = true, testName = "Verify all text on page")
     public void VerifyAllTextOnPage() {
         navigateToUrl("date-picker");
+        DatePickerPage datePickerPage = new DatePickerPage(driver);
 
         String expectedDatePickerText = "Date Picker";
         String expectedSelectDateText = "Select Date";
@@ -42,6 +44,7 @@ public class DatePickerPageTests extends BaseTest {
     @Test(enabled = true, testName = "Select valid new date")
     public void SelectNewDate() throws InterruptedException {
         navigateToUrl("date-picker");
+        DatePickerPage datePickerPage = new DatePickerPage(driver);
 
         String expectedDate = "02/14/2025";
 
@@ -69,6 +72,8 @@ public class DatePickerPageTests extends BaseTest {
     @Test(enabled = true, testName = "Try to select no existing date")
     public void TryToSelectNoExistingDate() {
         navigateToUrl("date-picker");
+        DatePickerPage datePickerPage = new DatePickerPage(driver);
+
         String tryToAddDate = "14/32/2021";
         datePickerPage.selectDate(tryToAddDate);
 
@@ -81,6 +86,7 @@ public class DatePickerPageTests extends BaseTest {
     @Test(enabled = true, testName = "Select valid new date and time")
     public void SelectValidNewDateAndTime() throws InterruptedException {
         navigateToUrl("date-picker");
+        DatePickerPage datePickerPage = new DatePickerPage(driver);
 
         String expectedDateAndTime = "December 19, 2024 10:15 PM";
 
@@ -128,6 +134,8 @@ public class DatePickerPageTests extends BaseTest {
     @Test(enabled = true, testName = "Try to select no existing date and time")
     public void TryToSelectNoExistingDateAndTime() {
         navigateToUrl("date-picker");
+        DatePickerPage datePickerPage = new DatePickerPage(driver);
+
         String tryToAddDate = "December 34, 2024 10:12 PM";
         datePickerPage.selectDateAndTime(tryToAddDate);
 

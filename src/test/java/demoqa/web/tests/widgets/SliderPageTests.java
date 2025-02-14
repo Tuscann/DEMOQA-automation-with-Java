@@ -1,5 +1,6 @@
 package demoqa.web.tests.widgets;
 
+import demoqa.pages.widgets.SliderPage;
 import demoqa.web.base.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -23,6 +24,7 @@ public class SliderPageTests extends BaseTest {
         int x = 90;
         int y = 0;
         navigateToUrl("slider");
+        SliderPage sliderPage = new SliderPage(driver);
 
         sliderPage.moveSlider(x, y);
 
@@ -35,6 +37,7 @@ public class SliderPageTests extends BaseTest {
     @Test(enabled = true, testName = "Check default value slider")
     public void CheckDefaultValueSlider() {
         navigateToUrl("slider");
+        SliderPage sliderPage = new SliderPage(driver);
 
         String actualValue = sliderPage.getSliderValue();
         String expectedValue = "25";

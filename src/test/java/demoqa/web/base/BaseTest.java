@@ -35,29 +35,8 @@ public class BaseTest {
     private static final ThreadLocal<WebDriver> threadDriver = new ThreadLocal<>();
     private final String DEMOQA_URL = "http://demoqa.com/";
     public WebDriver driver;
-    public PracticeFormPage practiceFormPage;
-    public FormsPage formsPage;
-    public WidgetsPage widgetsPage;
-    public SortablePage sortablePage;
-    public AccordianPage accordianPage;
-    public AutoCompletePage autoCompletePage;
-    public DatePickerPage datePickerPage;
-    public SliderPage sliderPage;
-    public ProgressBarPage progressBarPage;
-    public TabsPage tabsPage;
-    public ToolTipsPage toolTipsPage;
-    public MenuPage menuPage;
-    public SelectMenuPage selectMenuPage;
-    public BooksProfilePage booksProfilePage;
-    public ElementsPage elementsPage;
-    public SelectablePage selectablePage;
-    public ResizablePage resizablePage;
-    public DroppablePage droppablePage;
-    public DraggablePage draggablePage;
-    public InteractionsPage interactionsPage;
     public SoftAssert softAssert;
     protected BasePage basePage;
-    protected HomePage homePage;
 
     @BeforeMethod
     public void setUp() {
