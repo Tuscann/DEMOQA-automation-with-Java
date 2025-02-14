@@ -1,5 +1,6 @@
 package demoqa.web.tests.alerts;
 
+import demoqa.pages.alerts.Alerts_Frames_WindowsPage;
 import demoqa.web.base.BaseTest;
 import org.testng.annotations.Test;
 
@@ -8,6 +9,7 @@ public class Alerts_Frames_WindowsPageTests extends BaseTest {
     @Test(enabled = true, testName = "Click on 5 links on left side menu")
     public void CheckAllFivePagesLinksAndText() {
         navigateToUrl("alertsWindows");
+        Alerts_Frames_WindowsPage alerts_frames_windowsPage = new Alerts_Frames_WindowsPage(driver);
 
         String expectedUrl = "https://demoqa.com/browser-windows";
         alerts_frames_windowsPage.clickBrowserWindows();
@@ -26,12 +28,12 @@ public class Alerts_Frames_WindowsPageTests extends BaseTest {
 
         expectedUrl = "https://demoqa.com/nestedframes";
         alerts_frames_windowsPage.clickNestedFrames();
-        actualUrl = booksPage.checkUrl();
+        actualUrl = alerts_frames_windowsPage.checkUrl();
         softAssert.assertEquals(actualUrl, expectedUrl, "\nUrl is not " + expectedUrl + ".\n");
 
         expectedUrl = "https://demoqa.com/modal-dialogs";
         alerts_frames_windowsPage.clickModalDialogs();
-        actualUrl = booksPage.checkUrl();
+        actualUrl = alerts_frames_windowsPage.checkUrl();
         softAssert.assertEquals(actualUrl, expectedUrl, "\nUrl is not " + expectedUrl + ".\n");
 
         softAssert.assertAll();
@@ -40,6 +42,7 @@ public class Alerts_Frames_WindowsPageTests extends BaseTest {
     @Test(enabled = true, testName = "Verify show/hide left dropdown menu.")
     public void ClickLeftDropdownMenu() {
         navigateToUrl("alertsWindows");
+        Alerts_Frames_WindowsPage alerts_frames_windowsPage = new Alerts_Frames_WindowsPage(driver);
 
         String expectedString = "Please select an item from left to start practice.";
         String actualString = alerts_frames_windowsPage.getMainText();

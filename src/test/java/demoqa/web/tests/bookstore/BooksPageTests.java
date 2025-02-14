@@ -1,5 +1,7 @@
 package demoqa.web.tests.bookstore;
 
+import demoqa.pages.bookstore.BooksPage;
+import demoqa.pages.bookstore.BooksRegisterPage;
 import demoqa.web.base.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -9,6 +11,8 @@ public class BooksPageTests extends BaseTest {
     @Test(enabled = true, testName = "Verify show/hide left dropdown menu")
     public void ClickLeftDropdownMenu() {
         navigateToUrl("books");
+
+        BooksPage booksPage = new BooksPage(driver);
 
         boolean TextBoxIsVisible = booksPage.verifyLoginIsVisible();
         softAssert.assertTrue(TextBoxIsVisible, "\nDropDown login in not shown.\n");
@@ -23,6 +27,8 @@ public class BooksPageTests extends BaseTest {
     @Test(enabled = true, testName = "Click on 4 links on left side")
     public void CheckAllFourPagesLinks() {
         navigateToUrl("books");
+
+        BooksPage booksPage = new BooksPage(driver);
 
         String expectedUrl = "https://demoqa.com/login";
         booksPage.clickLoginLink();
@@ -51,6 +57,8 @@ public class BooksPageTests extends BaseTest {
     public void GetFirstRowOfTable() {
         navigateToUrl("books");
 
+        BooksPage booksPage = new BooksPage(driver);
+
         String expectedTopRow = """
                 Image
                 Title
@@ -65,9 +73,9 @@ public class BooksPageTests extends BaseTest {
     @Test(enabled = true, testName = "Verify default count of books 8")
     public void VerifyCountOfDefaultBooks() {
         navigateToUrl("books");
+        BooksPage booksPage = new BooksPage(driver);
 
         int expectedBooksCount = 8;
-
         int actualBooksCount = booksPage.getCountFoundBooks();
 
         Assert.assertEquals(actualBooksCount, expectedBooksCount, "\nExpected books count.\n");
@@ -76,6 +84,7 @@ public class BooksPageTests extends BaseTest {
     @Test(enabled = true, testName = "Click login button and verify link")
     public void ClickLoginButton() {
         navigateToUrl("books");
+        BooksPage booksPage = new BooksPage(driver);
 
         booksPage.clickLoginButton();
 
@@ -87,6 +96,7 @@ public class BooksPageTests extends BaseTest {
     @Test(enabled = true, testName = "Search for book and verify found book")
     public void SearchAndFindOneBook() {
         navigateToUrl("books");
+        BooksPage booksPage = new BooksPage(driver);
 
         String searchedBook = "Understanding ECMAScript 6";
 
@@ -103,6 +113,7 @@ public class BooksPageTests extends BaseTest {
     @Test(enabled = true, testName = "Search for book and verify no books are found")
     public void SearchAndFindNoBook() {
         navigateToUrl("books");
+        BooksPage booksPage = new BooksPage(driver);
 
         String searchedBook = "Zhivko";
 
@@ -116,6 +127,7 @@ public class BooksPageTests extends BaseTest {
     @Test(enabled = true, testName = "Verify next and previous buttons can clickable")
     public void ClickNextAndPreviousButtons() {
         navigateToUrl("books");
+        BooksPage booksPage = new BooksPage(driver);
 
         String booksPerPage = "5 rows";
         booksPage.chooseBooksPerPage(booksPerPage);
@@ -156,6 +168,7 @@ public class BooksPageTests extends BaseTest {
     @Test(enabled = true, testName = "Click all rows per page")
     public void ClickAllRowsPerPage() {
         navigateToUrl("books");
+        BooksPage booksPage = new BooksPage(driver);
 
         String booksPerPage = "5 rows";
         booksPage.chooseBooksPerPage(booksPerPage);
@@ -215,6 +228,7 @@ public class BooksPageTests extends BaseTest {
     @Test(enabled = true, testName = "Order books by title,author,publisher in descending order")
     public void OrderBooksByTitleByAuthorByPublisherDescending() {
         navigateToUrl("books");
+        BooksPage booksPage = new BooksPage(driver);
 
         booksPage.clickTitle();
         booksPage.clickTitle();
@@ -321,6 +335,7 @@ public class BooksPageTests extends BaseTest {
     @Test(enabled = true, testName = "Order books by title,author,publisher in ascending order")
     public void OrderBooksByTitleByAuthorByPublisherAscending() {
         navigateToUrl("books");
+        BooksPage booksPage = new BooksPage(driver);
 
         booksPage.clickTitle();
 
@@ -424,6 +439,7 @@ public class BooksPageTests extends BaseTest {
     @Test(enabled = true, testName = "Search and order result in ascending order books")
     public void SearchAndOrderResultAscendingBooks() {
         navigateToUrl("books");
+        BooksPage booksPage = new BooksPage(driver);
 
         String searchedBook = "javascript";
 
@@ -512,6 +528,7 @@ public class BooksPageTests extends BaseTest {
     @Test(enabled = true, testName = "Search for book and order result in descending books")
     public void SearchForBookAndOrderResultDescendingBooks() {
         navigateToUrl("books");
+        BooksPage booksPage = new BooksPage(driver);
 
         String searchedBook = "javascript";
 

@@ -1,5 +1,6 @@
 package demoqa.web.tests.alerts;
 
+import demoqa.pages.alerts.BrowserWindowsPage;
 import demoqa.web.base.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -9,6 +10,7 @@ public class BrowserWindowsPageTests extends BaseTest {
     @Test(enabled = true, testName = "Verify all text on page")
     public void VerifyAllTextOnPage() {
         navigateToUrl("browser-windows");
+        BrowserWindowsPage browserWindowsPage = new BrowserWindowsPage(driver);
 
         String browserWindowsText = "Browser Windows";
         String newTabText = "New Tab";
@@ -31,6 +33,8 @@ public class BrowserWindowsPageTests extends BaseTest {
     @Test(enabled = true, testName = "Click on new tab button")
     public void ClickNewTabButton() {
         navigateToUrl("browser-windows");
+        BrowserWindowsPage browserWindowsPage = new BrowserWindowsPage(driver);
+
         browserWindowsPage.clickNewTabButton();
 
         String expectedNewTabUrl = "https://demoqa.com/sample";
@@ -42,6 +46,8 @@ public class BrowserWindowsPageTests extends BaseTest {
     @Test(enabled = true, testName = "Click on new window button")
     public void ClickNewWindowButton() {
         navigateToUrl("browser-windows");
+        BrowserWindowsPage browserWindowsPage = new BrowserWindowsPage(driver);
+
         browserWindowsPage.clickNewWindowButton();
 
         String expectedNewTabUrl = "https://demoqa.com/sample";
@@ -53,6 +59,8 @@ public class BrowserWindowsPageTests extends BaseTest {
     @Test(enabled = false, testName = "Click on new window message button")
     public void ClickNewWindowMessage() {
         navigateToUrl("browser-windows");
+        BrowserWindowsPage browserWindowsPage = new BrowserWindowsPage(driver);
+        
         browserWindowsPage.clickNewWindowMessageButton();
 
         String expectedBrowserMessage = "Knowledge increases by sharing but not by saving. Please share this website with your friends and in your organization.";

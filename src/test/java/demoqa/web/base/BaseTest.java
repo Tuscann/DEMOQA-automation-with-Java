@@ -20,6 +20,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.io.FileHandler;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.asserts.SoftAssert;
 
@@ -31,24 +32,11 @@ import static utilities.Utility.setUtilityDriver;
 
 public class BaseTest {
 
+    private static final ThreadLocal<WebDriver> threadDriver = new ThreadLocal<>();
+    private final String DEMOQA_URL = "http://demoqa.com/";
     public WebDriver driver;
-    public ButtonsPage buttonsPage;
-    public RadioButtonPage radioButtonPage;
-    public BrokenLinksImagesPage brokenLinksImagesPage;
-    public CheckBoxPage checkBoxPage;
-    public LinksPage linksPage;
-    public UploadAndDownloadPage uploadAndDownloadPage;
-    public DynamicPropertiesPage dynamicPropertiesPage;
     public PracticeFormPage practiceFormPage;
     public FormsPage formsPage;
-    public TextBoxPage textBoxPage;
-    public WebTablesPage webTablesPage;
-    public Alerts_Frames_WindowsPage alerts_frames_windowsPage;
-    public BrowserWindowsPage browserWindowsPage;
-    public AlertsPage alertsPage;
-    public FramesPage framesPage;
-    public NestedFramesPage nestedFramesPage;
-    public ModalDialogsPage modalDialogsPage;
     public WidgetsPage widgetsPage;
     public SortablePage sortablePage;
     public AccordianPage accordianPage;
@@ -66,9 +54,6 @@ public class BaseTest {
     public ResizablePage resizablePage;
     public DroppablePage droppablePage;
     public DraggablePage draggablePage;
-    public BooksLoginPage booksLoginPage;
-    public BooksPage booksPage;
-    public BooksRegisterPage booksRegisterPage;
     public InteractionsPage interactionsPage;
     public SoftAssert softAssert;
     protected BasePage basePage;
@@ -76,63 +61,24 @@ public class BaseTest {
 
     @BeforeMethod
     public void setUp() {
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless=new");
-        options.addArguments("--disable-gpu");
-        options.addArguments("--window-size=1440,900"); // Set the window size
+        if (threadDriver.get() == null) {
+            ChromeOptions options = new ChromeOptions();
+            options.addArguments("--headless=new");
+            options.addArguments("--disable-gpu");
+            options.addArguments("--window-size=1440,900");
 
-        driver = new ChromeDriver(options);
-        String DEMOQA_URL = "http://demoqa.com/";
+            driver = new ChromeDriver(options);
+            threadDriver.set(driver);
+            softAssert = new SoftAssert();
+            basePage = new BasePage(driver);
+            setUtilityDriver();
+        }
         driver.get(DEMOQA_URL);
-        softAssert = new SoftAssert();
-
-        basePage = new BasePage(driver);
-        homePage = new HomePage(driver);
-        elementsPage = new ElementsPage(driver);
-        textBoxPage = new TextBoxPage(driver);
-        checkBoxPage = new CheckBoxPage(driver);
-        radioButtonPage = new RadioButtonPage(driver);
-        webTablesPage = new WebTablesPage(driver);
-        buttonsPage = new ButtonsPage(driver);
-        linksPage = new LinksPage(driver);
-        brokenLinksImagesPage = new BrokenLinksImagesPage(driver);
-        uploadAndDownloadPage = new UploadAndDownloadPage(driver);
-        dynamicPropertiesPage = new DynamicPropertiesPage(driver);
-        formsPage = new FormsPage(driver);
-        practiceFormPage = new PracticeFormPage(driver);
-        alerts_frames_windowsPage = new Alerts_Frames_WindowsPage(driver);
-        browserWindowsPage = new BrowserWindowsPage(driver);
-        alertsPage = new AlertsPage(driver);
-        framesPage = new FramesPage(driver);
-        nestedFramesPage = new NestedFramesPage(driver);
-        modalDialogsPage = new ModalDialogsPage(driver);
-        widgetsPage = new WidgetsPage(driver);
-        interactionsPage = new InteractionsPage(driver);
-        droppablePage = new DroppablePage(driver);
-        draggablePage = new DraggablePage(driver);
-        resizablePage = new ResizablePage(driver);
-        selectablePage = new SelectablePage(driver);
-        selectMenuPage = new SelectMenuPage(driver);
-        menuPage = new MenuPage(driver);
-        toolTipsPage = new ToolTipsPage(driver);
-        booksPage = new BooksPage(driver);
-        booksLoginPage = new BooksLoginPage(driver);
-        booksProfilePage = new BooksProfilePage(driver);
-        booksRegisterPage = new BooksRegisterPage(driver);
-        tabsPage = new TabsPage(driver);
-        sortablePage = new SortablePage(driver);
-        accordianPage = new AccordianPage(driver);
-        autoCompletePage = new AutoCompletePage(driver);
-        datePickerPage = new DatePickerPage(driver);
-        sliderPage = new SliderPage(driver);
-        progressBarPage = new ProgressBarPage(driver);
-
-//        basePage.setDriver(driver);
-        setUtilityDriver();
     }
 
     @AfterMethod
-    public void takeFailedResultScreenshot(ITestResult testResult) {
+    public void tearDown(ITestResult testResult) {
+        // Take screenshot if test failed
         if (ITestResult.FAILURE == testResult.getStatus()) {
             TakesScreenshot screenshot = (TakesScreenshot) driver;
             File source = screenshot.getScreenshotAs(OutputType.FILE);
@@ -142,21 +88,24 @@ public class BaseTest {
                     testResult.getName() + ".png");
             try {
                 FileHandler.copy(source, destination);
+                System.out.println("Screenshot Located At " + destination);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-            System.out.println("Screenshot Located At " + destination);
         }
     }
 
     @AfterMethod
-    public void tearDown() {
-        delay(1000);
-        driver.quit();
+    public void tearDownClass() {
+        if (driver != null) {
+            delay(1000);
+            driver.quit();
+            threadDriver.remove();
+        }
     }
 
     public void navigateToUrl(String path) {
-        String url = "https://demoqa.com/" + path;
+        String url = DEMOQA_URL + path;
         driver.navigate().to(url);
     }
 }

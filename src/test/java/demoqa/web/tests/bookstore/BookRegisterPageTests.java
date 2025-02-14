@@ -1,5 +1,6 @@
 package demoqa.web.tests.bookstore;
 
+import demoqa.pages.bookstore.BooksRegisterPage;
 import demoqa.web.base.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -9,6 +10,8 @@ public class BookRegisterPageTests extends BaseTest {
     @Test(enabled = true, testName = "Verify all text on Page")
     public void VerifyAllTextOnPage() {
         navigateToUrl("register");
+
+        BooksRegisterPage booksRegisterPage = new BooksRegisterPage(driver);
 
         String expectedTitle = "Register";
         String expectedFirstText = "Register to Book Store";
@@ -57,6 +60,8 @@ public class BookRegisterPageTests extends BaseTest {
     @Test(enabled = true, testName = "Try to login without recaptcha")
     public void TryToLoginWithoutReCaptcha() {
         navigateToUrl("register");
+
+        BooksRegisterPage booksRegisterPage = new BooksRegisterPage(driver);
 
         String expectedFirstName = "Zhivko";
         String expectedLastName = "Petrov";

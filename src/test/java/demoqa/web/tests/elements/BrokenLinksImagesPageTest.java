@@ -1,5 +1,6 @@
 package demoqa.web.tests.elements;
 
+import demoqa.pages.elements.BrokenLinksImagesPage;
 import demoqa.web.base.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -8,6 +9,8 @@ public class BrokenLinksImagesPageTest extends BaseTest {
     @Test(enabled = true, testName = "Verify all text on page")
     public void VerifyAllTextOnPage() {
         navigateToUrl("broken");
+
+        BrokenLinksImagesPage brokenLinksImagesPage = new BrokenLinksImagesPage(driver);
 
         String expectedHeader = "Broken Links - Images";
         String expectedValidImageText = "Valid image";
@@ -39,6 +42,7 @@ public class BrokenLinksImagesPageTest extends BaseTest {
     @Test(enabled = true, testName = "Click on click here for valid link")
     public void ClickOnClickHereForValidLink() {
         navigateToUrl("broken");
+        BrokenLinksImagesPage brokenLinksImagesPage = new BrokenLinksImagesPage(driver);
 
         brokenLinksImagesPage.ClickOnClickHereValidLink();
 
@@ -51,6 +55,7 @@ public class BrokenLinksImagesPageTest extends BaseTest {
     @Test(enabled = true, testName = "Click on click here for broken link")
     public void ClickOnClickHereForBrokenLink() {
         navigateToUrl("broken");
+        BrokenLinksImagesPage brokenLinksImagesPage = new BrokenLinksImagesPage(driver);
 
         brokenLinksImagesPage.clickOnClickHereBrokenLink();
 

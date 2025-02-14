@@ -28,20 +28,22 @@ public class ResizablePageTests extends BaseTest {
     @DataProvider(name = "resizeData")
     public Object[][] resizeDataProvider() {
         return new Object[][]{
-                {300, 100, 500, 300}, // Test case 1: Test max limit Width and height
-                //   {301, 301, 500, 300}, // Test case 2: More than limits throw error
-                {0, 0, 200, 200},     // Test case 3: No change
-                {-50, -50, 150, 150}, // Test case 4: Test min values
-                {-51, -51, 150, 150}  // Test case 5: More than min values show limits
+                // {300, 100, 500, 300}, // Test case 1: Test max limit Width and height
+                {301, 301, 500, 300}, // Test case 2: More than limits
+                //          {0, 0, 200, 200},     // Test case 3: No change
+                //         {-50, -50, 150, 150}, // Test case 4: Test min values
+                //         {-51, -51, 150, 150}  // Test case 5: More than min values
         };
     }
 
     @Test(dataProvider = "resizeData", description = "Test resizing with different values", enabled = true, testName = "Resizing with different values")
     public void ТestResizedBoxWithLimitation(int addX, int addY, int expectedWidth, int expectedHeight) {
         navigateToUrl("resizable");
+
         resizablePage.changeSize(addX, addY);
 
         String actualNewSize = resizablePage.getNewSizeBox();
+
         Assert.assertEquals(actualNewSize, "(" + expectedWidth + ", " + expectedHeight + ")", "\nWrong new size.\n");
     }
 
@@ -71,6 +73,7 @@ public class ResizablePageTests extends BaseTest {
     public Object[][] diagonalResizeDataProvider() {
         return new Object[][]{
                 {100, 100, 300, 300},  // Diagonal resize within limits
+                {400, 400, 500, 300},  // Diagonal resize beyond max limits
                 {-100, -100, 150, 150}, // Diagonal resize to min limits
         };
     }

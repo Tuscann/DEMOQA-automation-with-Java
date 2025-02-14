@@ -1,5 +1,6 @@
 package demoqa.web.tests.elements;
 
+import demoqa.pages.elements.DynamicPropertiesPage;
 import demoqa.web.base.BaseTest;
 import org.testng.annotations.Test;
 
@@ -8,6 +9,8 @@ public class DynamicPropertiesPageTests extends BaseTest {
     @Test(enabled = true, testName = "Verify all text on page")
     public void VerifyAllTextOnPage() {
         navigateToUrl("dynamic-properties");
+
+        DynamicPropertiesPage dynamicPropertiesPage = new DynamicPropertiesPage(driver);
 
         String expectedPropertiesText = "Dynamic Properties";
         String expectedRandomIdText = "This text has random Id";
@@ -32,6 +35,7 @@ public class DynamicPropertiesPageTests extends BaseTest {
     @Test(enabled = true, testName = "Verify missing button on page")
     public void VerifyMissingButtonOnPage() {
         navigateToUrl("dynamic-properties");
+        DynamicPropertiesPage dynamicPropertiesPage = new DynamicPropertiesPage(driver);
 
         boolean isEnableButton = dynamicPropertiesPage.checkButtonWillEnable5Seconds();
         String colorOfColorChangeButton = dynamicPropertiesPage.getColorOfChangeButton();
@@ -49,6 +53,7 @@ public class DynamicPropertiesPageTests extends BaseTest {
     @Test(enabled = true, testName = "Check after 5 seconds all buttons")
     public void CheckAfter5secondsAllButtons() {
         navigateToUrl("dynamic-properties");
+        DynamicPropertiesPage dynamicPropertiesPage = new DynamicPropertiesPage(driver);
 
         String expectedVisibleAfter5SecondsButtonText = "Visible After 5 Seconds";
         String expectedColor = "rgba(255, 255, 255, 1)";

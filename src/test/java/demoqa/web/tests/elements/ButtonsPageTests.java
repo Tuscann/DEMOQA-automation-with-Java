@@ -1,5 +1,6 @@
 package demoqa.web.tests.elements;
 
+import demoqa.pages.elements.ButtonsPage;
 import demoqa.web.base.BaseTest;
 import org.testng.annotations.Test;
 
@@ -7,6 +8,8 @@ public class ButtonsPageTests extends BaseTest {
     @Test(enabled = true, testName = "Verify all buttons text and buttons color")
     public void VerifyAllTextOnPage() {
         navigateToUrl("buttons");
+
+        ButtonsPage buttonsPage = new ButtonsPage(driver);
 
         String expectedHeaderButtonsText = "Buttons";
         String expectedDoubleClickButtonText = "Double Click Me";
@@ -45,6 +48,8 @@ public class ButtonsPageTests extends BaseTest {
     @Test(enabled = true, testName = "Click on three buttons and verify messages")
     public void ClickOnThreeButtonsAndVerifyMessages() {
         navigateToUrl("buttons");
+
+        ButtonsPage buttonsPage = new ButtonsPage(driver);
 
         String expectedDoubleClickMessage = "You have done a double click";
         String expectedRightClickMessage = "You have done a right click";

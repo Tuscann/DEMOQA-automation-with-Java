@@ -1,5 +1,6 @@
 package demoqa.web.tests.elements;
 
+import demoqa.pages.elements.RadioButtonPage;
 import demoqa.web.base.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -9,6 +10,8 @@ public class RadioButtonPageTests extends BaseTest {
     @Test(enabled = true, testName = "Check all text on page")
     public void CheckAllTextOnPage() {
         navigateToUrl("radio-button");
+
+        RadioButtonPage radioButtonPage = new RadioButtonPage(driver);
 
         String expectedRadioButtonText = "Radio Button";
         String expectedActualQuestionText = "Do you like the site?";
@@ -37,12 +40,16 @@ public class RadioButtonPageTests extends BaseTest {
         navigateToUrl("radio-button");
         String expectedNoAnswer = "No";
 
+        RadioButtonPage radioButtonPage = new RadioButtonPage(driver);
+
         Assert.assertTrue(radioButtonPage.isAnswerDisable(expectedNoAnswer));
     }
 
     @Test(enabled = true, testName = "Choose answer yes")
     public void ChooseAnswerYes() {
         navigateToUrl("radio-button");
+
+        RadioButtonPage radioButtonPage = new RadioButtonPage(driver);
 
         String expectedAnswer = "Yes";
         radioButtonPage.clickAnswer(expectedAnswer);
@@ -60,6 +67,8 @@ public class RadioButtonPageTests extends BaseTest {
     public void ChooseAnswerImpressive() {
         navigateToUrl("radio-button");
 
+        RadioButtonPage radioButtonPage = new RadioButtonPage(driver);
+
         String expectedAnswer = "Impressive";
         radioButtonPage.clickAnswer(expectedAnswer);
 
@@ -75,6 +84,8 @@ public class RadioButtonPageTests extends BaseTest {
     @Test(enabled = true, testName = "Verify green color of result message")
     public void VerifyGreenColorOfResultMessage() {
         navigateToUrl("radio-button");
+
+        RadioButtonPage radioButtonPage = new RadioButtonPage(driver);
 
         String expectedAnswer = "Impressive";
         radioButtonPage.clickAnswer(expectedAnswer);

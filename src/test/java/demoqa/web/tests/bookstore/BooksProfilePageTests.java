@@ -1,5 +1,6 @@
 package demoqa.web.tests.bookstore;
 
+import demoqa.pages.bookstore.BooksProfilePage;
 import demoqa.web.base.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -9,6 +10,8 @@ public class BooksProfilePageTests extends BaseTest {
     @Test(enabled = true, testName = "Verify message text")
     public void VerifyMessageText() {
         navigateToUrl("profile");
+
+        BooksProfilePage booksProfilePage = new BooksProfilePage(driver);
 
         String expectedErrorMessage = "Currently you are not logged into the Book Store application, please visit the login page to enter or register page to register yourself.";
 
@@ -20,6 +23,7 @@ public class BooksProfilePageTests extends BaseTest {
     @Test(enabled = true, testName = "Verify login link")
     public void VerifyLoginLink() {
         navigateToUrl("profile");
+        BooksProfilePage booksProfilePage = new BooksProfilePage(driver);
 
         String expectedLoginUrl = "https://demoqa.com/login";
         booksProfilePage.clickLoginLink();
@@ -32,6 +36,7 @@ public class BooksProfilePageTests extends BaseTest {
     @Test(enabled = true, testName = "Verify register link")
     public void VerifyRegisterLink() {
         navigateToUrl("profile");
+        BooksProfilePage booksProfilePage = new BooksProfilePage(driver);
 
         String expectedLoginUrl = "https://demoqa.com/register";
 

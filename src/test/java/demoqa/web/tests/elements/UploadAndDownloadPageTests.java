@@ -1,5 +1,6 @@
 package demoqa.web.tests.elements;
 
+import demoqa.pages.elements.UploadAndDownloadPage;
 import demoqa.web.base.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -9,6 +10,7 @@ public class UploadAndDownloadPageTests extends BaseTest {
     @Test(enabled = true, testName = "Verify all text on page")
     public void VerifyAllTextOnPage() {
         navigateToUrl("upload-download");
+        UploadAndDownloadPage uploadAndDownloadPage = new UploadAndDownloadPage(driver);
 
         String expectedUploadAndDownloadText = "Upload and Download";
         String expectedDownloadButtonText = "Download";
@@ -28,6 +30,7 @@ public class UploadAndDownloadPageTests extends BaseTest {
     @Test(enabled = true, testName = "Upload file and verify image name")
     public void UploadFileVerifyImageName() {
         navigateToUrl("upload-download");
+        UploadAndDownloadPage uploadAndDownloadPage = new UploadAndDownloadPage(driver);
 
         String pictureName = "zhivko.jpg";
 
@@ -43,6 +46,7 @@ public class UploadAndDownloadPageTests extends BaseTest {
     @Test(enabled = true, testName = "Click download button and verify is download file")
     public void ClickDownloadButtonAndVerifyIsDownloadFile() {
         navigateToUrl("upload-download");
+        UploadAndDownloadPage uploadAndDownloadPage = new UploadAndDownloadPage(driver);
 
         uploadAndDownloadPage.clickDownloadButton();
 

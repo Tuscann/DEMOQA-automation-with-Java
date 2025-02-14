@@ -1,5 +1,8 @@
 package demoqa.web.tests.bookstore;
 
+import demoqa.pages.bookstore.BooksLoginPage;
+import demoqa.pages.bookstore.BooksPage;
+import demoqa.pages.bookstore.BooksProfilePage;
 import demoqa.web.base.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -9,6 +12,8 @@ public class BookLoginPageTests extends BaseTest {
     @Test(enabled = true, testName = "Verify all text on page")
     public void VerifyAllTextOnPage() {
         navigateToUrl("login");
+
+        BooksLoginPage booksLoginPage = new BooksLoginPage(driver);
 
         String loginHeaderText = "Login";
         String welcomeText = "Welcome,";
@@ -46,6 +51,7 @@ public class BookLoginPageTests extends BaseTest {
     @Test(enabled = true, testName = "Login with valid username and valid password")
     public void LoginWithValidUsernameAndValidPassword() {
         navigateToUrl("login");
+        BooksLoginPage booksLoginPage = new BooksLoginPage(driver);
 
         String expectedUsername = "fbinnzhivko";
         String password = "Karma1987!@";
@@ -62,6 +68,8 @@ public class BookLoginPageTests extends BaseTest {
     @Test(enabled = true, testName = "Try to login with wrong username")
     public void TryToLoginWithWrongUsername() {
         navigateToUrl("login");
+        BooksLoginPage booksLoginPage = new BooksLoginPage(driver);
+
         String expectedUsername = "username";
         String password = "h&vfCVj0k9BHofzP";
 
@@ -80,6 +88,8 @@ public class BookLoginPageTests extends BaseTest {
     @Test(enabled = true, testName = "Try to login with wrong username and wrong password")
     public void TryToLoginWithWrongUsernameAndWrongPassword() {
         navigateToUrl("login");
+        BooksLoginPage booksLoginPage = new BooksLoginPage(driver);
+
         String expectedUsername = "karma";
         String password = "karma";
 
@@ -98,6 +108,7 @@ public class BookLoginPageTests extends BaseTest {
     @Test(enabled = true, testName = "Try to login with wrong password")
     public void TryToLoginWithWrongPassword() {
         navigateToUrl("login");
+        BooksLoginPage booksLoginPage = new BooksLoginPage(driver);
 
         String expectedUsername = "fbinnnzhivko";
         String password = "password";
@@ -117,6 +128,7 @@ public class BookLoginPageTests extends BaseTest {
     @Test(enabled = true, testName = "Click logout after login")
     public void ClickLogoutAfterLogin() {
         navigateToUrl("login");
+        BooksLoginPage booksLoginPage = new BooksLoginPage(driver);
 
         String expectedUsername = "fbinnzhivko";
         String password = "Karma1987!@";
@@ -141,6 +153,9 @@ public class BookLoginPageTests extends BaseTest {
     @Test(enabled = true, testName = "Click on button gotobookstore")
     public void ClickOnButtonGotoBookStore() {
         navigateToUrl("login");
+        BooksLoginPage booksLoginPage = new BooksLoginPage(driver);
+        BooksProfilePage booksProfilePage = new BooksProfilePage(driver);
+        BooksPage booksPage = new BooksPage(driver);
 
         String expectedUsername = "fbinnzhivko";
         String password = "Karma1987!@";
@@ -158,6 +173,8 @@ public class BookLoginPageTests extends BaseTest {
     @Test(enabled = true, testName = "Verify login page after login")
     public void VerifyLoginPageAfterLogin() {
         navigateToUrl("login");
+        BooksLoginPage booksLoginPage = new BooksLoginPage(driver);
+        BooksProfilePage booksProfilePage = new BooksProfilePage(driver);
 
         String expectedUsername = "fbinnzhivko";
         String password = "Karma1987!@";

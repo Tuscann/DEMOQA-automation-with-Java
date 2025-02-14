@@ -1,5 +1,6 @@
 package demoqa.web.tests.alerts;
 
+import demoqa.pages.alerts.AlertsPage;
 import demoqa.web.base.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -12,6 +13,7 @@ public class AlertsPageTests extends BaseTest {
     public void VerifyAllTextOnPage() {
         // Arrange
         navigateToUrl("alerts");
+        AlertsPage alertsPage = new AlertsPage(driver);
 
         String alertHeaderText = "Alerts";
         String firstText = "Click Button to see alert";
@@ -40,6 +42,8 @@ public class AlertsPageTests extends BaseTest {
     public void VerifyTextOfInformationAlert() {
         // Arrange
         navigateToUrl("alerts");
+        AlertsPage alertsPage = new AlertsPage(driver);
+
         String expectedAlertText = "You clicked a button";
 
         // Act
@@ -54,6 +58,8 @@ public class AlertsPageTests extends BaseTest {
     public void VerifyTextOfPromptAlertAfter5seconds() {
         // Arrange
         navigateToUrl("alerts");
+        AlertsPage alertsPage = new AlertsPage(driver);
+
         String expectedAlertText = "This alert appeared after 5 seconds";
 
         // Act
@@ -68,6 +74,8 @@ public class AlertsPageTests extends BaseTest {
     public void VerifyTextOfConfirmationAlertCancel() {
         // Arrange
         navigateToUrl("alerts");
+        AlertsPage alertsPage = new AlertsPage(driver);
+
         String expectedConfirmationResult = "You selected Cancel";
 
         // Act
@@ -83,6 +91,8 @@ public class AlertsPageTests extends BaseTest {
     public void VerifyTextOfConfirmationAlertYes() {
         // Arrange
         navigateToUrl("alerts");
+        AlertsPage alertsPage = new AlertsPage(driver);
+
         String expectedConfirmationResult = "You selected Ok";
 
         // Act
@@ -98,6 +108,8 @@ public class AlertsPageTests extends BaseTest {
     public void VerifyTextOfPromptAlertAccept() {
         // Arrange
         navigateToUrl("alerts");
+        AlertsPage alertsPage = new AlertsPage(driver);
+
         String alertText = "Selenium With Java";
         String expectedResult = "You entered " + alertText;
 
@@ -115,6 +127,7 @@ public class AlertsPageTests extends BaseTest {
     public void VerifyTextOfPromptAlertOK() {
         // Arrange
         navigateToUrl("alerts");
+        AlertsPage alertsPage = new AlertsPage(driver);
 
         // Act
         alertsPage.clickPromptAlertButton();
@@ -129,6 +142,7 @@ public class AlertsPageTests extends BaseTest {
     public void VerifyTextOfPromptAlertCancel() {
         // Arrange
         navigateToUrl("alerts");
+        AlertsPage alertsPage = new AlertsPage(driver);
 
         // Act
         alertsPage.clickPromptAlertButton();

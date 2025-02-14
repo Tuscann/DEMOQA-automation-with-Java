@@ -1,5 +1,6 @@
 package demoqa.web.tests.alerts;
 
+import demoqa.pages.alerts.ModalDialogsPage;
 import demoqa.web.base.BaseTest;
 import org.testng.annotations.Test;
 
@@ -8,6 +9,7 @@ public class ModalDialogsPagePageTests extends BaseTest {
     @Test(enabled = true, testName = "Verify all text on page")
     public void VerifyAllTextOnPage() {
         navigateToUrl("modal-dialogs");
+        ModalDialogsPage modalDialogsPage = new ModalDialogsPage(driver);
 
         String modalDialogsText = "Modal Dialogs";
         String clickText = "Click on button to see modal";
@@ -30,6 +32,7 @@ public class ModalDialogsPagePageTests extends BaseTest {
     @Test(enabled = true, testName = "Verify small modal dialog text")
     public void VerifySmallModalDialogText() {
         navigateToUrl("modal-dialogs");
+        ModalDialogsPage modalDialogsPage = new ModalDialogsPage(driver);
 
         modalDialogsPage.clickSmallModalButton();
         String expectedSmallModalText = "Small Modal";
@@ -50,6 +53,7 @@ public class ModalDialogsPagePageTests extends BaseTest {
     @Test(enabled = true, testName = "Verify large modal dialog text")
     public void VerifyLargeModalDialogText() {
         navigateToUrl("modal-dialogs");
+        ModalDialogsPage modalDialogsPage = new ModalDialogsPage(driver);
 
         modalDialogsPage.clickLargeModalButton();
         String expectedLargeModalText = "Large Modal";

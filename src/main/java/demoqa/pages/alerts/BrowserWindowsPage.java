@@ -31,11 +31,13 @@ public class BrowserWindowsPage extends BasePage {
     }
 
     public void clickNewTabButton() {
-        newTabButton.click();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.elementToBeClickable(newTabButton)).click();
     }
 
     public void clickNewWindowButton() {
-        newWindowButton.click();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.elementToBeClickable(newWindowButton)).click();
     }
 
     public void clickNewWindowMessageButton() {
@@ -49,19 +51,25 @@ public class BrowserWindowsPage extends BasePage {
     }
 
     public String getNewWindowUrl() {
-
         String originalWindow = driver.getWindowHandle();
+        try {
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+            wait.until(d -> d.getWindowHandles().size() > 1);
 
-        String actualWindowUrl = "";
-        Set<String> allWindows = driver.getWindowHandles();
-        for (String currentWindowHandle : allWindows) {
-            if (!currentWindowHandle.equals(originalWindow)) {
-                driver.switchTo().window(currentWindowHandle);
-                actualWindowUrl = driver.getCurrentUrl();
-                break;
+            Set<String> windows = driver.getWindowHandles();
+            String newWindow = windows.stream()
+                .filter(handle -> !handle.equals(originalWindow))
+                .findFirst()
+                .orElse(null);
+
+            if (newWindow != null) {
+                driver.switchTo().window(newWindow);
+                return driver.getCurrentUrl();
             }
+            return "";
+        } finally {
+            driver.switchTo().window(originalWindow);
         }
-        return actualWindowUrl;
     }
 
     public String getBrowserMessage() {

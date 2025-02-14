@@ -3,14 +3,21 @@
 <suite name="Failed suite [Surefire suite]" verbose="0">
   <test thread-count="5" name="Surefire test(failed)" verbose="0">
     <classes>
-      <class name="demoqa.web.tests.interactions.ResizablePageTests">
+      <class name="demoqa.web.tests.elements.WebTablePageTests">
         <methods>
-          <include name="ТestResizedBoxWithLimitation" invocation-numbers="0"/>
+          <include name="SearchWithNoExistingCategoryAndCheckResults"/>
+          <include name="SearchWithExistingCategoryAndCheckResults"/>
+          <include name="AddNewUser"/>
           <include name="setUp"/>
+          <include name="SelectAllRowsPerPage"/>
+          <include name="tearDownClass"/>
+          <include name="VerifyPreviousAndNextButtonsActive"/>
+          <include name="VerifyColorsChangeFromRedToGreenAfterAdd"/>
+          <include name="SubmitEmptyFormAndVerifyAllRedLines"/>
           <include name="tearDown"/>
-          <include name="takeFailedResultScreenshot"/>
+          <include name="VerifyPreviousAndNextButtonAreNotActiveAfterLoadPage"/>
         </methods>
-      </class> <!-- demoqa.web.tests.interactions.ResizablePageTests -->
+      </class> <!-- demoqa.web.tests.elements.WebTablePageTests -->
     </classes>
   </test> <!-- Surefire test(failed) -->
 </suite> <!-- Failed suite [Surefire suite] -->

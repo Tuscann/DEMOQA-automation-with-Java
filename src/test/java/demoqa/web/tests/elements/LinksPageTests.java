@@ -1,5 +1,6 @@
 package demoqa.web.tests.elements;
 
+import demoqa.pages.elements.LinksPage;
 import demoqa.web.base.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -9,6 +10,8 @@ public class LinksPageTests extends BaseTest {
     @Test(enabled = true, testName = "Verify all text on page")
     public void VerifyAllTextOnPage() {
         navigateToUrl("links");
+
+        LinksPage linksPage = new LinksPage(driver);
 
         String expectedLinksHeader = "Links";
         String expectedFollowingLinksWillOpenNewTab = "Following links will open new tab";
@@ -53,6 +56,8 @@ public class LinksPageTests extends BaseTest {
     @Test(enabled = true, testName = "Open new tab from simple link")
     public void OpenNewTabFromSimpleLink() {
         navigateToUrl("links");
+        LinksPage linksPage = new LinksPage(driver);
+
         linksPage.clickSimpleTab();
 
         String urlNewTab = linksPage.getUrl();
@@ -64,6 +69,8 @@ public class LinksPageTests extends BaseTest {
     @Test(enabled = true, testName = "Open new tab from dynamic link")
     public void OpenNewTabFromDynamicLink() {
         navigateToUrl("links");
+        LinksPage linksPage = new LinksPage(driver);
+
         linksPage.clickDynamicTab();
 
         String urlNewTab = linksPage.getUrl();
@@ -76,6 +83,8 @@ public class LinksPageTests extends BaseTest {
     @Test(enabled = true, testName = "Click on created link")
     public void ClickOnkCreatedLink() {
         navigateToUrl("links");
+        LinksPage linksPage = new LinksPage(driver);
+
         linksPage.clickCreatedLink();
         String actualResponseText = linksPage.getResponse();
 
@@ -88,6 +97,8 @@ public class LinksPageTests extends BaseTest {
     @Test(enabled = true, testName = "Click on no content link")
     public void ClickOnNoContentLink() {
         navigateToUrl("links");
+        LinksPage linksPage = new LinksPage(driver);
+
         linksPage.clickNoContentRequestLink();
         String actualResponse = linksPage.getResponse();
 
@@ -100,6 +111,8 @@ public class LinksPageTests extends BaseTest {
     @Test(enabled = true, testName = "Click on moved link")
     public void ClickOnMovedLink() {
         navigateToUrl("links");
+        LinksPage linksPage = new LinksPage(driver);
+
         linksPage.clickMovedLink();
         String actualResponse = linksPage.getResponse();
 
@@ -112,6 +125,8 @@ public class LinksPageTests extends BaseTest {
     @Test(enabled = true, testName = "Click on bad request link")
     public void ClickOnBadRequestLink() {
         navigateToUrl("links");
+        LinksPage linksPage = new LinksPage(driver);
+
         linksPage.clickBadRequestLink();
         String actualResponse = linksPage.getResponse();
 
@@ -124,6 +139,8 @@ public class LinksPageTests extends BaseTest {
     @Test(enabled = true, testName = "Click on unauthorized link")
     public void ClickOnUnAuthorizedLink() {
         navigateToUrl("links");
+        LinksPage linksPage = new LinksPage(driver);
+
         linksPage.clickUnauthorizedLink();
         String actualResponse = linksPage.getResponse();
 
@@ -136,6 +153,8 @@ public class LinksPageTests extends BaseTest {
     @Test(enabled = true, testName = "Click on forbidden link")
     public void ClickOnForbiddenLink() {
         navigateToUrl("links");
+        LinksPage linksPage = new LinksPage(driver);
+
         linksPage.clickForbiddenLink();
         String actualResponse = linksPage.getResponse();
 
@@ -148,6 +167,8 @@ public class LinksPageTests extends BaseTest {
     @Test(enabled = true, testName = "Click on not found link")
     public void ClickOnNotFoundLink() {
         navigateToUrl("links");
+        LinksPage linksPage = new LinksPage(driver);
+
         linksPage.clickNotFoundLink();
         String actualResponse = linksPage.getResponse();
 

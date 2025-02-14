@@ -1,5 +1,6 @@
 package demoqa.web.tests.elements;
 
+import demoqa.pages.elements.CheckBoxPage;
 import demoqa.web.base.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -9,6 +10,8 @@ public class CheckBoxPageTests extends BaseTest {
     @Test(enabled = true, testName = "Select notes checkbox")
     public void SelectNotesCheckBox() {
         navigateToUrl("checkbox");
+        CheckBoxPage checkBoxPage = new CheckBoxPage(driver);
+
         checkBoxPage.clickExpandAll();
         checkBoxPage.clickNotes();
 
@@ -26,6 +29,7 @@ public class CheckBoxPageTests extends BaseTest {
     @Test(enabled = true, testName = "Select desktop home commands checkboxes")
     public void SelectDesktopWithHomeAndCommandsNotes() {
         navigateToUrl("checkbox");
+        CheckBoxPage checkBoxPage = new CheckBoxPage(driver);
 
         checkBoxPage.clickExpandAll();
         checkBoxPage.clickNotes();
@@ -44,6 +48,7 @@ public class CheckBoxPageTests extends BaseTest {
     @Test(enabled = true, testName = "Deselect notes checkbox")
     public void DeSelectNotesCheckBox() {
         navigateToUrl("checkbox");
+        CheckBoxPage checkBoxPage = new CheckBoxPage(driver);
 
         checkBoxPage.clickExpandAll();
         checkBoxPage.clickNotes();
@@ -64,6 +69,8 @@ public class CheckBoxPageTests extends BaseTest {
     @Test(enabled = true, testName = "Verify result message is empty without selections")
     public void VerifyResultMessageIsEmptyWithoutSelections() {
         navigateToUrl("checkbox");
+        CheckBoxPage checkBoxPage = new CheckBoxPage(driver);
+
         checkBoxPage.clickExpandAll();
 
         Assert.assertTrue(checkBoxPage.isResultMessageShown(), "\nShown some category\n");
@@ -72,6 +79,7 @@ public class CheckBoxPageTests extends BaseTest {
     @Test(enabled = true, testName = "Select commands checkbox")
     public void SelectCommandsCheckBox() {
         navigateToUrl("checkbox");
+        CheckBoxPage checkBoxPage = new CheckBoxPage(driver);
 
         checkBoxPage.clickExpandAll();
         checkBoxPage.clickCommands();
@@ -85,6 +93,7 @@ public class CheckBoxPageTests extends BaseTest {
     @Test(enabled = true, testName = "Select notes and office public checkbox")
     public void SelectNotesAndOfficePublicCheckBox() {
         navigateToUrl("checkbox");
+        CheckBoxPage checkBoxPage = new CheckBoxPage(driver);
 
         checkBoxPage.clickExpandAll();
         checkBoxPage.clickNotes();
@@ -102,6 +111,7 @@ public class CheckBoxPageTests extends BaseTest {
     @Test(enabled = true, testName = "Collapsed with selected categories")
     public void CollapsedWithSelectedCategories() {
         navigateToUrl("checkbox");
+        CheckBoxPage checkBoxPage = new CheckBoxPage(driver);
 
         checkBoxPage.clickExpandAll();
         checkBoxPage.clickOffice();
@@ -128,6 +138,7 @@ public class CheckBoxPageTests extends BaseTest {
     @Test(enabled = true, testName = "Select home checkbox")
     public void SelectHomeCheckBox() {
         navigateToUrl("checkbox");
+        CheckBoxPage checkBoxPage = new CheckBoxPage(driver);
 
         checkBoxPage.clickHome();
 
@@ -158,6 +169,7 @@ public class CheckBoxPageTests extends BaseTest {
     @Test(enabled = true, testName = "Select desktop documents and downloads checkboxes")
     public void SelectDesktopAndDocumentsAndDownloadsCheckBoxes() {
         navigateToUrl("checkbox");
+        CheckBoxPage checkBoxPage = new CheckBoxPage(driver);
 
         checkBoxPage.clickExpandAll();
         checkBoxPage.clickDesktop();
@@ -191,6 +203,7 @@ public class CheckBoxPageTests extends BaseTest {
     @Test(enabled = true, testName = "Select all checkboxes one by one")
     public void SelectAllCheckBoxesOneByOne() {
         navigateToUrl("checkbox");
+        CheckBoxPage checkBoxPage = new CheckBoxPage(driver);
 
         checkBoxPage.clickExpandAll();
         checkBoxPage.clickNotes();
@@ -233,6 +246,7 @@ public class CheckBoxPageTests extends BaseTest {
     @Test(enabled = true, testName = "Select all checkboxes one by one and deselect all")
     public void SelectAllCheckBoxesOneByOneAndDeselectAll() {
         navigateToUrl("checkbox");
+        CheckBoxPage checkBoxPage = new CheckBoxPage(driver);
 
         checkBoxPage.clickExpandAll();
         checkBoxPage.clickNotes();
