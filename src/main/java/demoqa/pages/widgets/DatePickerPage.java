@@ -60,7 +60,12 @@ public class DatePickerPage extends BasePage {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(4));
         wait.until(ExpectedConditions.visibilityOf(sectionOneHeading));
 
-        sectionOneHeading.sendKeys(Keys.chord(Keys.CONTROL, "a"));
+        String osName = System.getProperty("os.name").toLowerCase();
+        if (osName.contains("mac")) {
+            sectionOneHeading.sendKeys(Keys.COMMAND + "a");
+        } else {
+            sectionOneHeading.sendKeys(Keys.CONTROL + "a");
+        }
         sectionOneHeading.sendKeys(expectedDate);
         sectionOneHeading.sendKeys(Keys.chord(Keys.ENTER));
     }
@@ -70,7 +75,12 @@ public class DatePickerPage extends BasePage {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(4));
         wait.until(ExpectedConditions.visibilityOf(sectionTwoHeading));
 
-        sectionTwoHeading.sendKeys(Keys.chord(Keys.CONTROL, "a"));
+        String osName = System.getProperty("os.name").toLowerCase();
+        if (osName.contains("mac")) {
+            sectionTwoHeading.sendKeys(Keys.COMMAND + "a");
+        } else {
+            sectionTwoHeading.sendKeys(Keys.CONTROL + "a");
+        }
         sectionTwoHeading.sendKeys(expectedDate);
         sectionTwoHeading.sendKeys(Keys.chord(Keys.ENTER));
     }

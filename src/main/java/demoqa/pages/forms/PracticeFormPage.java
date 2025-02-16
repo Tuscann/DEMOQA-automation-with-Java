@@ -285,7 +285,12 @@ public class PracticeFormPage extends BasePage {
         WebElement dateOfBirthInput = wait.until(ExpectedConditions.visibilityOf(this.dateOfBirth));
         scrollToElementJS(dateOfBirth);
 
-        dateOfBirthInput.sendKeys(Keys.CONTROL + "a");
+        String osName = System.getProperty("os.name").toLowerCase();
+        if (osName.contains("mac")) {
+            dateOfBirthInput.sendKeys(Keys.COMMAND + "a");
+        } else {
+            dateOfBirthInput.sendKeys(Keys.CONTROL + "a");
+        }
         dateOfBirthInput.sendKeys(expectedDateOfBirth);
         dateOfBirthInput.sendKeys(Keys.ENTER);
     }
