@@ -230,7 +230,7 @@ public class SortablePageTests extends BaseTest {
     }
 
     @Test(dataProvider = "resizeData2", description = "Check order in Grid", enabled = true, testName = "Check order in Grid")
-    public void DragAndDropFromGridTab(String dragFromPlace, String dropOnPlace, String expectedOrder) {
+    public void DragAndDropFromGridTab(String dragFromPlace, String dropOnPlace, String expectedOrder) throws InterruptedException {
         navigateToUrl("sortable");
         SortablePage sortablePage = new SortablePage(driver);
 

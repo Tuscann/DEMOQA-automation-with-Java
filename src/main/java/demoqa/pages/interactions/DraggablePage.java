@@ -12,6 +12,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
+import static utilities.JavaScriptUtility.scrollToElementJS;
+
 public class DraggablePage extends BasePage {
 
     @FindBy(xpath = "//h1[@class='text-center'][contains(.,'Dragabble')]")
@@ -110,6 +112,7 @@ public class DraggablePage extends BasePage {
     }
 
     public Point getInitLocationSecondText() {
+        delay(300); //TODO
         return cursorStyleSecondText.getLocation();
     }
 
@@ -186,6 +189,7 @@ public class DraggablePage extends BasePage {
     }
 
     public Point getInitLocationContainedInParent() {
+        scrollToElementJS(containerRestrictedSecondText);
         return containerRestrictedSecondText.getLocation();
     }
 

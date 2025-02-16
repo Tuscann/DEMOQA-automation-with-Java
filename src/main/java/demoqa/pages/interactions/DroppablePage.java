@@ -111,6 +111,8 @@ public class DroppablePage extends BasePage {
     }
 
     public String getRevertDraggableTab() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(4));
+        wait.until(ExpectedConditions.visibilityOf(revertDraggableTab));
         return revertDraggableTab.getText();
     }
 
@@ -193,10 +195,12 @@ public class DroppablePage extends BasePage {
     }
 
     public void dragAndDrop() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(4));
+        wait.until(ExpectedConditions.visibilityOf(simpleTabDragMe));
+        wait.until(ExpectedConditions.visibilityOf(simpleTabDroppedContainer));
         Actions actions = new Actions(driver);
         actions.dragAndDrop(simpleTabDragMe, simpleTabDroppedContainer).perform();
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(4));
         wait.until(ExpectedConditions.textToBePresentInElement(simpleTabDroppedContainer, "Dropped!"));
     }
 
