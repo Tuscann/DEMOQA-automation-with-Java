@@ -123,6 +123,8 @@ public class DroppablePage extends BasePage {
     }
 
     public String getSimpleTabDragMe() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(4));
+        wait.until(ExpectedConditions.visibilityOf(simpleTabDragMe));
         return simpleTabDragMe.getText();
     }
 

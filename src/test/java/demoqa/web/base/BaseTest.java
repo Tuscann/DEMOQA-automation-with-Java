@@ -30,9 +30,10 @@ public class BaseTest {
     public void setUp() {
         if (threadDriver.get() == null) {
             ChromeOptions options = new ChromeOptions();
-            //    options.addArguments("--headless=new");
+            options.addArguments("--headless=new");
             options.addArguments("--disable-gpu");
             options.addArguments("--window-size=1440,900");
+            //options.addArguments("--window-size=1920,1080");
 
             driver = new ChromeDriver(options);
             threadDriver.set(driver);

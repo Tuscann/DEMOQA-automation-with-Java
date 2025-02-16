@@ -15,18 +15,19 @@ import static utilities.JavaScriptUtility.scrollToElementJS;
 public class ProgressBarPage extends BasePage {
     @FindBy(xpath = "//div[contains(@class, 'mb-3')]")
     private WebElement progressBarText;
-    
+
     @FindBy(id = "startStopButton")
     private WebElement startStopButton;
-    
+
     @FindBy(id = "resetButton")
     private WebElement resetButton;
-    
+
     @FindBy(xpath = "//div[@role='progressbar']")
     private WebElement progressBarCurrent;
-    
+
     @FindBy(xpath = "//h1[@class='text-center'][contains(.,'Progress Bar')]")
     private WebElement header;
+
     public ProgressBarPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
@@ -35,23 +36,23 @@ public class ProgressBarPage extends BasePage {
     public String getHeaderText() {
         return header.getText();
     }
-    
+
     public String getProgressBarText() {
         return progressBarText.getText();
     }
-    
+
     public String getStartStopButtonText() {
         return startStopButton.getText();
     }
-    
+
     public String getResetButtonText() {
         return resetButton.getText();
     }
-    
+
     public Integer getValueProgressBar() {
         return Integer.parseInt(Objects.requireNonNull(progressBarCurrent.getDomAttribute("aria-valuenow")));
     }
-    
+
     private String getProgressBarValue() {
         try {
             return progressBarCurrent.getDomAttribute("aria-valuenow");
@@ -59,34 +60,34 @@ public class ProgressBarPage extends BasePage {
             return null;
         }
     }
-    
+
     public String getColorProgressBar() {
         return progressBarCurrent.getCssValue("background-color");
     }
-    
+
     public String getValueOfProgressBarOnValue100() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
         wait.until(ExpectedConditions.attributeToBe(progressBarCurrent, "aria-valuenow", "100"));
         return progressBarCurrent.getDomAttribute("aria-valuenow");
     }
-    
+
     public void clickStartButton() {
         scrollToElementJS(progressBarText);
         startStopButton.click();
     }
-    
+
     public void clickResetButton() {
         resetButton.click();
     }
-    
+
     public void clickStopButton() {
         startStopButton.click();
     }
 
     public void stopProgressBarOnValue2(int targetValue) {
         Wait<WebDriver> wait = new FluentWait<>(driver)
-                .withTimeout(Duration.ofSeconds(10))
-                .pollingEvery(Duration.ofMillis(10))
+                .withTimeout(Duration.ofSeconds(8))
+                .pollingEvery(Duration.ofMillis(1))
                 .ignoring(org.openqa.selenium.NoSuchElementException.class);
 
         wait.until(new ExpectedCondition<Boolean>() {

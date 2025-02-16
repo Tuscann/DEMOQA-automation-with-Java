@@ -132,6 +132,7 @@ public class BooksPage extends BasePage {
     }
 
     public void clickBookStoreAPILink() {
+        scrollToElementJS(bookStoreAPILink);
         bookStoreAPILink.click();
     }
 

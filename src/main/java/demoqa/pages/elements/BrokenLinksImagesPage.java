@@ -63,6 +63,7 @@ public class BrokenLinksImagesPage extends BasePage {
     }
 
     public void ClickOnClickHereValidLink() {
+        scrollToElementJS(clickHereValidLinkText);
         clickHereValidLinkText.click();
     }
 

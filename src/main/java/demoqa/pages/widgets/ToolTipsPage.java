@@ -11,6 +11,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
+import static utilities.JavaScriptUtility.scrollToElementJS;
+
 public class ToolTipsPage extends BasePage {
     @FindBy(xpath = "//*[@id='buttonToolTopContainer']/p")
     private WebElement practiceToolTipsText;
@@ -54,10 +56,12 @@ public class ToolTipsPage extends BasePage {
     }
 
     public String getHoverOverHoverMeToSeeButtonReturnToolTipText() {
+        scrollToElementJS(header);
+
         Actions actions = new Actions(driver);
         actions.moveToElement(hoverMeToSeeButton).perform();
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(6));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOf(buttonToolTip));
 
         return buttonToolTip.getText();
@@ -67,7 +71,7 @@ public class ToolTipsPage extends BasePage {
         Actions actions = new Actions(driver);
         actions.moveToElement(hoverMeTextField).perform();
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(4));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOf(practiceTextFieldToolTip));
 
         return practiceTextFieldToolTip.getText();
@@ -87,7 +91,7 @@ public class ToolTipsPage extends BasePage {
         Actions actions = new Actions(driver);
         actions.moveToElement(section).perform();
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(4));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOf(sectionToolTip));
 
         return sectionToolTip.getText();
