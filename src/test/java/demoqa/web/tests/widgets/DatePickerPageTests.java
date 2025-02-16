@@ -3,13 +3,11 @@ package demoqa.web.tests.widgets;
 import demoqa.pages.widgets.DatePickerPage;
 import demoqa.web.base.BaseTest;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.List;
 import java.time.format.DateTimeFormatter;
 
 public class DatePickerPageTests extends BaseTest {
@@ -49,7 +47,7 @@ public class DatePickerPageTests extends BaseTest {
         String expectedDate = "02/14/2025";
 
         // Click to open the date picker
-        WebElement dateInput = driver.findElement(By.id("datePickerMonthYearInput"));
+        var dateInput = driver.findElement(By.id("datePickerMonthYearInput"));
         dateInput.click();
         Thread.sleep(500); // Wait for date picker to open
 
@@ -89,43 +87,44 @@ public class DatePickerPageTests extends BaseTest {
         DatePickerPage datePickerPage = new DatePickerPage(driver);
 
         String expectedDateAndTime = "December 19, 2024 10:15 PM";
+        datePickerPage.selectDateAndTime(expectedDateAndTime);
 
-        // Click to open the date and time picker
-        WebElement dateTimeInput = driver.findElement(By.id("dateAndTimePickerInput"));
-        dateTimeInput.click();
-        Thread.sleep(500); // Wait for picker to open
-
-        // Click the month button and select December
-        driver.findElement(By.xpath("//span[contains(@class, 'react-datepicker__month-read-view--selected-month')]/..")).click();
-        driver.findElement(By.xpath("//div[contains(@class, 'react-datepicker__month-option') and text()='December']")).click();
-
-        // Click the year button and select 2024
-        driver.findElement(By.xpath("//span[contains(@class, 'react-datepicker__year-read-view--selected-year')]/..")).click();
-        driver.findElement(By.xpath("//div[contains(@class, 'react-datepicker__year-option') and text()='2024']")).click();
-
-        // Click the specific date (19th)
-        driver.findElement(By.xpath("//div[contains(@class, 'react-datepicker__day--019')][@role='option' and not(contains(@class, 'outside-month'))]")).click();
-        Thread.sleep(500); // Wait for date selection to register
-
-        // Find and click the time list
-        WebElement timeList = driver.findElement(By.className("react-datepicker__time-list"));
-        List<WebElement> timeOptions = timeList.findElements(By.tagName("li"));
-
-        // Select 22:15 (10:15 PM) since it's the closest available time to 10:12 PM
-        String targetTime = "22:15";
-
-        // Find and click the desired time option
-        boolean timeFound = false;
-        for (WebElement timeOption : timeOptions) {
-            String timeText = timeOption.getText();
-            if (timeText.equals(targetTime)) {
-                timeOption.click();
-                timeFound = true;
-                break;
-            }
-        }
-
-        Thread.sleep(500); // Wait for picker to update
+//        // Click to open the date and time picker
+//        WebElement dateTimeInput = driver.findElement(By.id("dateAndTimePickerInput"));
+//        dateTimeInput.click();
+//        Thread.sleep(500); // Wait for picker to open
+//
+//        // Click the month button and select December
+//        driver.findElement(By.xpath("//span[contains(@class, 'react-datepicker__month-read-view--selected-month')]/..")).click();
+//        driver.findElement(By.xpath("//div[contains(@class, 'react-datepicker__month-option') and text()='December']")).click();
+//
+//        // Click the year button and select 2024
+//        driver.findElement(By.xpath("//span[contains(@class, 'react-datepicker__year-read-view--selected-year')]/..")).click();
+//        driver.findElement(By.xpath("//div[contains(@class, 'react-datepicker__year-option') and text()='2024']")).click();
+//
+//        // Click the specific date (19th)
+//        driver.findElement(By.xpath("//div[contains(@class, 'react-datepicker__day--019')][@role='option' and not(contains(@class, 'outside-month'))]")).click();
+//        Thread.sleep(500); // Wait for date selection to register
+//
+//        // Find and click the time list
+//        WebElement timeList = driver.findElement(By.className("react-datepicker__time-list"));
+//        List<WebElement> timeOptions = timeList.findElements(By.tagName("li"));
+//
+//        // Select 22:15 (10:15 PM) since it's the closest available time to 10:12 PM
+//        String targetTime = "22:15";
+//
+//        // Find and click the desired time option
+//        boolean timeFound = false;
+//        for (WebElement timeOption : timeOptions) {
+//            String timeText = timeOption.getText();
+//            if (timeText.equals(targetTime)) {
+//                timeOption.click();
+//                timeFound = true;
+//                break;
+//            }
+//        }
+//
+//        Thread.sleep(500); // Wait for picker to update
 
         String actualDateAndTime = datePickerPage.getSelectedDateAndTime();
         Assert.assertEquals(actualDateAndTime, expectedDateAndTime, "\nWrong Date and time.\n");

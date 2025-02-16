@@ -197,6 +197,7 @@ public class PracticeFormPage extends BasePage {
     }
 
     public String getDateOfBirthFromModal() {
+        scrollToElementJS(dateOfBirthForm);
         return dateOfBirthForm.getText();
     }
 
@@ -282,6 +283,7 @@ public class PracticeFormPage extends BasePage {
     public void setDateOfBirth(String expectedDateOfBirth) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement dateOfBirthInput = wait.until(ExpectedConditions.visibilityOf(this.dateOfBirth));
+        scrollToElementJS(dateOfBirth);
 
         dateOfBirthInput.sendKeys(Keys.CONTROL + "a");
         dateOfBirthInput.sendKeys(expectedDateOfBirth);

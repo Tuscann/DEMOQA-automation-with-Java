@@ -79,7 +79,7 @@ public class ProgressBarPageTests extends BaseTest {
         ProgressBarPage progressBarPage = new ProgressBarPage(driver);
 
         String expectedEndProgressBarValueText = "100";
-        int stopValue = 4;
+        int stopValue = 14;
 
         progressBarPage.clickStartButton();
         progressBarPage.stopProgressBarOnValue2(stopValue);
@@ -87,8 +87,8 @@ public class ProgressBarPageTests extends BaseTest {
         progressBarPage.clickStartButton();
         String endProgressBarText = progressBarPage.getValueOfProgressBarOnValue100();
 
-        softAssert.assertEquals(actualProgressBarText, stopValue, "\n Not stop on 1\n");
-        softAssert.assertEquals(endProgressBarText, expectedEndProgressBarValueText, "\nNot 100% value.\n");
+        softAssert.assertEquals(actualProgressBarText, stopValue, "\nNot stop on " + stopValue + ".\n");
+        softAssert.assertEquals(endProgressBarText, expectedEndProgressBarValueText, "\nNot stop 100% value.\n");
 
         softAssert.assertAll();
     }

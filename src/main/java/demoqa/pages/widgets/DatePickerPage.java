@@ -54,18 +54,24 @@ public class DatePickerPage extends BasePage {
         return sectionTwoHeading.getDomAttribute("value");
     }
 
-    public void selectDate(String enterDate) {
+    public void selectDate(String expectedDate) {
         scrollToElementJS(sectionOneHeading);
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(4));
 
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(4));
         wait.until(ExpectedConditions.visibilityOf(sectionOneHeading));
-        sectionOneHeading.sendKeys(Keys.chord(Keys.CONTROL, "a"), enterDate, Keys.chord(Keys.ENTER));
+
+        sectionOneHeading.sendKeys(Keys.chord(Keys.CONTROL, "a"));
+        sectionOneHeading.sendKeys(expectedDate);
+        sectionOneHeading.sendKeys(Keys.chord(Keys.ENTER));
     }
 
     public void selectDateAndTime(String expectedDate) {
+        scrollToElementJS(sectionTwoHeading);
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(4));
-
         wait.until(ExpectedConditions.visibilityOf(sectionTwoHeading));
-        sectionTwoHeading.sendKeys(Keys.chord(Keys.CONTROL, "a"), expectedDate, Keys.chord(Keys.ENTER));
+
+        sectionTwoHeading.sendKeys(Keys.chord(Keys.CONTROL, "a"));
+        sectionTwoHeading.sendKeys(expectedDate);
+        sectionTwoHeading.sendKeys(Keys.chord(Keys.ENTER));
     }
 }

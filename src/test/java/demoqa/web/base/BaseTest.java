@@ -1,17 +1,6 @@
 package demoqa.web.base;
 
 import demoqa.base.BasePage;
-import demoqa.pages.home.HomePage;
-import demoqa.pages.alerts.*;
-import demoqa.pages.bookstore.BooksLoginPage;
-import demoqa.pages.bookstore.BooksPage;
-import demoqa.pages.bookstore.BooksProfilePage;
-import demoqa.pages.bookstore.BooksRegisterPage;
-import demoqa.pages.elements.*;
-import demoqa.pages.forms.FormsPage;
-import demoqa.pages.forms.PracticeFormPage;
-import demoqa.pages.interactions.*;
-import demoqa.pages.widgets.*;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -20,7 +9,6 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.io.FileHandler;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.asserts.SoftAssert;
 
@@ -42,7 +30,7 @@ public class BaseTest {
     public void setUp() {
         if (threadDriver.get() == null) {
             ChromeOptions options = new ChromeOptions();
-            options.addArguments("--headless=new");
+            //    options.addArguments("--headless=new");
             options.addArguments("--disable-gpu");
             options.addArguments("--window-size=1440,900");
 
