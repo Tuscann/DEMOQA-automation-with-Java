@@ -1,1 +1,13 @@
-﻿target/
+﻿# Ignore the Maven target directory
+target/
+
+# Ignore IDE-specific files
+.idea/
+*.iml
+
+# Ignore log files
+*.log
+
+# Ignore other build directories
+build/
+out/
