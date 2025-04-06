@@ -6,6 +6,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 import static utilities.JavaScriptUtility.scrollToElementJS;
 
@@ -77,10 +81,12 @@ public class SortablePage extends BasePage {
     }
 
     public void clickGridTab() {
+        scrollToElementJS(gridTab);
         gridTab.click();
     }
 
     public String getPageTitle() {
+        scrollToElementJS(pageTitle);
         return pageTitle.getText();
     }
 
@@ -113,10 +119,14 @@ public class SortablePage extends BasePage {
     }
 
     public String getGridTab() {
+        scrollToElementJS(gridTab);
         return gridTab.getText();
     }
 
     public String getGridOne() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(4));
+        wait.until(ExpectedConditions.visibilityOf(this.gridOne));
+        scrollToElementJS(gridOne);
         return gridOne.getText();
     }
 

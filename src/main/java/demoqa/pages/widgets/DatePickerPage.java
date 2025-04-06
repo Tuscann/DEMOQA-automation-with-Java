@@ -63,6 +63,7 @@ public class DatePickerPage extends BasePage {
         String osName = System.getProperty("os.name").toLowerCase();
         if (osName.contains("mac")) {
             sectionOneHeading.sendKeys(Keys.COMMAND + "a");
+            sectionOneHeading.clear();
         } else {
             sectionOneHeading.sendKeys(Keys.CONTROL + "a");
         }

@@ -181,6 +181,8 @@ public class PracticeFormPage extends BasePage {
     }
 
     public String getCurrentAddressFromModal() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(4));
+        wait.until(ExpectedConditions.visibilityOf(this.addressForm));
         return addressForm.getText();
     }
 
@@ -268,6 +270,9 @@ public class PracticeFormPage extends BasePage {
     }
 
     public void setCurrentAddress(String currentAddress) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(4));
+        wait.until(ExpectedConditions.visibilityOf(this.currentAddressArea));
+        scrollToElementJS(currentAddressArea);
         currentAddressArea.click();
         set(this.currentAddressArea, currentAddress);
     }

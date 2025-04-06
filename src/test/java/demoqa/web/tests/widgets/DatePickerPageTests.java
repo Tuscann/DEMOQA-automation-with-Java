@@ -67,8 +67,8 @@ public class DatePickerPageTests extends BaseTest {
         Assert.assertEquals(actualDate, expectedDate, "\nWrong Date\n");
     }
 
-    @Test(enabled = true, testName = "Try to select no existing date")
-    public void TryToSelectNoExistingDate() {
+    @Test(enabled = true, testName = "Try to select non existing date")
+    public void TryToSelectNonExistingDate() {
         navigateToUrl("date-picker");
         DatePickerPage datePickerPage = new DatePickerPage(driver);
 
@@ -76,7 +76,7 @@ public class DatePickerPageTests extends BaseTest {
         datePickerPage.selectDate(tryToAddDate);
 
         String actualDate = datePickerPage.getSelectedDate();
-        String expectedDate = "01/01/2025";
+        String expectedDate = LocalDate.now().format(DateTimeFormatter.ofPattern("MM/dd/yyyy"))+"14";
 
         Assert.assertEquals(actualDate, expectedDate, "\nWrong Date.\n");
     }

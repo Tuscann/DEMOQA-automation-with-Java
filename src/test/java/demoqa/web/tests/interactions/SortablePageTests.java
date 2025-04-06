@@ -53,15 +53,15 @@ public class SortablePageTests extends BaseTest {
 
         softAssert.assertEquals(actualPageTitle, pageTitle, "\nWrong page title.\n");
         softAssert.assertEquals(actualListTab, listTab, "\nWrong page tab.\n");
-        softAssert.assertEquals(actualListOne, listOne, "Wrong page one");
-        softAssert.assertEquals(actualListTwo, listTwo, "Wrong page two");
+        softAssert.assertEquals(actualListOne, listOne, "Wrong page list one");
+        softAssert.assertEquals(actualListTwo, listTwo, "Wrong page list two");
         softAssert.assertEquals(actualListThree, listThree, "Wrong page three");
         softAssert.assertEquals(actualListFour, listFour, "Wrong page four");
         softAssert.assertEquals(actualListFive, listFive, "Wrong page five");
         softAssert.assertEquals(actualListSix, listSix, "Wrong page six");
         softAssert.assertEquals(actualGridTab, gridTab, "Wrong page tab");
-        softAssert.assertEquals(actualGridOne, gridOne, "Wrong page one");
-        softAssert.assertEquals(actualGridTwo, gridTwo, "Wrong page two");
+        softAssert.assertEquals(actualGridOne, gridOne, "Wrong page grid one");
+        softAssert.assertEquals(actualGridTwo, gridTwo, "Wrong page grid two");
         softAssert.assertEquals(actualGridThree, gridThree, "Wrong page three");
         softAssert.assertEquals(actualGridFour, gridFour, "Wrong page four");
         softAssert.assertEquals(actualGridFive, gridFive, "Wrong page five");

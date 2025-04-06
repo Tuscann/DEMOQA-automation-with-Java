@@ -139,10 +139,14 @@ public class DroppablePage extends BasePage {
     }
 
     public String getAcceptTabAcceptable() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.visibilityOf(acceptTabAcceptable));
         return acceptTabAcceptable.getText();
     }
 
     public String getAcceptTabNotAcceptable() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.visibilityOf(acceptTabNotAcceptable));
         return acceptTabNotAcceptable.getText();
     }
 
@@ -151,6 +155,8 @@ public class DroppablePage extends BasePage {
     }
 
     public String getDragMePreventPropagation() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.visibilityOf(preventPropagationDragMe));
         return preventPropagationDragMe.getText();
     }
 
@@ -171,10 +177,14 @@ public class DroppablePage extends BasePage {
     }
 
     public String getWillRevert() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.visibilityOf(willRevert));
         return willRevert.getText();
     }
 
     public String getNotRevert() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.visibilityOf(notWillRevert));
         return notWillRevert.getText();
     }
 

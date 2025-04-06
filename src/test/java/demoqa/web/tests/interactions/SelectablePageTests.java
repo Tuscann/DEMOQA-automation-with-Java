@@ -49,12 +49,12 @@ public class SelectablePageTests extends BaseTest {
 
         softAssert.assertEquals(actualPageTitle, pageTitle, "\nWrong page title.\n");
         softAssert.assertEquals(actualListTab, listTab, "\nWrong page tab name. \n");
-        softAssert.assertEquals(actualListFirstText, listFirstText, "\nWrong page one.\n");
+        softAssert.assertEquals(actualListFirstText, listFirstText, "\nWrong list page one.\n");
         softAssert.assertEquals(actualListSecondText, listSecondText, "\nWrong page two.\n");
         softAssert.assertEquals(actualListThirdText, listThirdText, "\nWrong page three.\n");
         softAssert.assertEquals(actualListFourText, listFourText, "\nWrong page four.\n");
         softAssert.assertEquals(actualGridTab, gridTab, "\nWrong page tab.\n");
-        softAssert.assertEquals(actualGridOne, gridOne, "\nWrong page one.\n");
+        softAssert.assertEquals(actualGridOne, gridOne, "\nWrong row page one.\n");
         softAssert.assertEquals(actualGridTwo, gridTwo, "\nWrong page two.\n");
         softAssert.assertEquals(actualGridThree, gridThree, "\nWrong page three.\n");
         softAssert.assertEquals(actualGridFour, gridFour, "\nWrong page four.\n");
