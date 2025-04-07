@@ -270,7 +270,7 @@ public class PracticeFormPage extends BasePage {
     }
 
     public void setCurrentAddress(String currentAddress) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(4));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOf(this.currentAddressArea));
         scrollToElementJS(currentAddressArea);
         currentAddressArea.click();

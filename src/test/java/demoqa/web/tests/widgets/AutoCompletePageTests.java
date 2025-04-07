@@ -52,7 +52,7 @@ public class AutoCompletePageTests extends BaseTest {
         autoCompletePage.multiAutoCompleteSelectColor(expectedFirstColor);
         autoCompletePage.multiAutoCompleteSelectColor(expectedSecondColor);
         String actualSelectedColors = autoCompletePage.getAllSelectedMultiColorNames();
-        softAssert.assertEquals(actualSelectedColors, expectedFirstColor + "\n" + expectedSecondColor, "\nWrong Colors selected.\n");
+        softAssert.assertEquals(actualSelectedColors, expectedFirstColor + "\n" + expectedSecondColor, "\nWrong Colors selected first.\n");
 
         autoCompletePage.clickCloseButton();
 
@@ -61,7 +61,7 @@ public class AutoCompletePageTests extends BaseTest {
         autoCompletePage.multiAutoCompleteSelectColor(expectedFirstColor);
         autoCompletePage.multiAutoCompleteSelectColor(expectedSecondColor);
         actualSelectedColors = autoCompletePage.getAllSelectedMultiColorNames();
-        softAssert.assertEquals(actualSelectedColors, expectedFirstColor + "\n" + expectedSecondColor, "\nWrong Colors selected.\n");
+        softAssert.assertEquals(actualSelectedColors, expectedFirstColor + "\n" + expectedSecondColor, "\nWrong Colors selected second.\n");
 
         softAssert.assertAll();
     }

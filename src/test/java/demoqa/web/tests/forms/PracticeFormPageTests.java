@@ -186,8 +186,8 @@ public class PracticeFormPageTests extends BaseTest {
         practiceFormPage.setDateOfBirth(dateOfBirth);
         practiceFormPage.setSubject(expectedSubject);
         practiceFormPage.clickSportHobbyCheckbox();
-        practiceFormPage.uploadFile(filePathOnOperationSystem);
         practiceFormPage.setCurrentAddress(expectedCurrentAddress);
+        practiceFormPage.uploadFile(filePathOnOperationSystem);
         practiceFormPage.setState(expectedState);
         practiceFormPage.setCity(expectedCity);
         practiceFormPage.clickSubmitButton();

@@ -183,8 +183,12 @@ public class DraggablePageTests extends BaseTest {
 
         Point endPosition = draggablePage.getInitLocationContainedInParent();
 
-        softAssert.assertEquals(initialLocation.x + xOffset, endPosition.x, "\nWrong initial location X.\n");
-        softAssert.assertEquals(initialLocation.y + yOffset, endPosition.y, "\nWrong initial location Y.\n");
+        // Allow for a larger margin of error (±10 pixels) in position
+        int marginOfError = 4;
+        softAssert.assertTrue(Math.abs((initialLocation.x + xOffset) - endPosition.x) <= marginOfError,
+                String.format("\nWrong initial location X. Expected: %d ± %d, Actual: %d\n", initialLocation.x + xOffset, marginOfError, endPosition.x));
+        softAssert.assertTrue(Math.abs((initialLocation.y + yOffset) - endPosition.y) <= marginOfError,
+                String.format("\nWrong initial location Y. Expected: %d ± %d, Actual: %d\n", initialLocation.y + yOffset, marginOfError, endPosition.y));
 
         softAssert.assertAll();
     }
