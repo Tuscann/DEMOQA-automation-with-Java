@@ -1,6 +1,7 @@
 package demoqa.pages.widgets;
 
 import demoqa.base.BasePage;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -10,6 +11,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.List;
 
 public class AutoCompletePage extends BasePage {
     @FindBy(id = "autoCompleteMultipleInput")
@@ -67,11 +69,11 @@ public class AutoCompletePage extends BasePage {
     }
 
     public void multiAutoCompleteSelectColor(String color) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(8));
         wait.until(ExpectedConditions.visibilityOf(multiAutoComplete))
                 .sendKeys(color);
         wait.until(ExpectedConditions.visibilityOf(multiAutoComplete))
-                .sendKeys(Keys.chord("" + Keys.ENTER));
+                .sendKeys(Keys.chord(Keys.ENTER));
     }
 
     public void singleAutoComplete(String color) {

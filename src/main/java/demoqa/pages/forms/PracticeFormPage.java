@@ -345,6 +345,15 @@ public class PracticeFormPage extends BasePage {
         submitButton.click();
     }
 
+    public void clickSubmitButton2() {
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.textToBePresentInElementValue(this.currentAddressArea, ""));
+
+        scrollToElementJS(submitButton);
+        submitButton.click();
+    }
+
     public boolean isReadingCheckBoxSelected() {
         return readingHobbyCheckbox.isSelected();
     }
