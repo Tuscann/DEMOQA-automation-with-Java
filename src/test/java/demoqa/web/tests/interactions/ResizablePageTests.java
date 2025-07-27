@@ -9,6 +9,7 @@ import org.testng.annotations.Test;
 public class ResizablePageTests extends BaseTest {
     @Test(enabled = true, testName = "Verify all text on page")
     public void VerifyAllTextOnPage() {
+        // Arrange
         navigateToUrl("resizable");
         ResizablePage resizablePage = new ResizablePage(driver);
 
@@ -20,6 +21,7 @@ public class ResizablePageTests extends BaseTest {
         String actualResizableBoxWithRestrictionText = resizablePage.getResizableBoxWithRestrictionText();
         String actualResizableText = resizablePage.getResizableText();
 
+        // Assert
         softAssert.assertEquals(actualPageTitle, pageTitle, "\nWrong page title.\n");
         softAssert.assertEquals(actualResizableBoxWithRestrictionText, resizableBoxWithRestrictionText, "\nWrong resizable text.\n");
         softAssert.assertEquals(actualResizableText, resizableText, "\nWrong resizable text.\n");
@@ -40,6 +42,7 @@ public class ResizablePageTests extends BaseTest {
 
     @Test(dataProvider = "resizeData", description = "Test resizing with different values", enabled = true, testName = "Resizing with different values")
     public void ТestResizedBoxWithLimitation(int addX, int addY, int expectedWidth, int expectedHeight) {
+        // Arrange
         navigateToUrl("resizable");
         ResizablePage resizablePage = new ResizablePage(driver);
 
@@ -47,6 +50,7 @@ public class ResizablePageTests extends BaseTest {
 
         String actualNewSize = resizablePage.getNewSizeBox();
 
+        // Assert
         Assert.assertEquals(actualNewSize, "(" + expectedWidth + ", " + expectedHeight + ")", "\nWrong new size.\n");
     }
 
@@ -63,6 +67,7 @@ public class ResizablePageTests extends BaseTest {
 
     @Test(dataProvider = "resizeData2", description = "Test resizing with different values", enabled = true, testName = "Resizing with different values")
     public void ТestResizedBoxWithoutLimitation(int addAmountOnXAxis, int addAmountOnYAxis, int expectedWidth, int expectedHeight) {
+        // Arrange
         navigateToUrl("resizable");
         ResizablePage resizablePage = new ResizablePage(driver);
 
@@ -70,6 +75,7 @@ public class ResizablePageTests extends BaseTest {
 
         String actualNewSize = resizablePage.getNewSizeBox2();
 
+        // Assert
         Assert.assertEquals(actualNewSize, "(" + expectedWidth + ", " + expectedHeight + ")", "\nWrong new size.\n");
     }
 
@@ -84,23 +90,26 @@ public class ResizablePageTests extends BaseTest {
 
     @Test(dataProvider = "diagonalResizeData", description = "Test diagonal resizing", enabled = true, testName = "Diagonal resizing test")
     public void DiagonalResizing(int addX, int addY, int expectedWidth, int expectedHeight) {
+        // Arrange
         navigateToUrl("resizable");
         ResizablePage resizablePage = new ResizablePage(driver);
 
         resizablePage.changeSize(addX, addY);
         String actualNewSize = resizablePage.getNewSizeBox();
 
+        // Assert
         Assert.assertEquals(actualNewSize, "(" + expectedWidth + ", " + expectedHeight + ")", "\nWrong size after diagonal resize.\n");
     }
 
     @Test(description = "Test resize handle visibility", enabled = true, testName = "Resize handle visibility test")
     public void ResizeHandleVisibility() {
+        // Arrange
         navigateToUrl("resizable");
         ResizablePage resizablePage = new ResizablePage(driver);
 
+        // Assert
         softAssert.assertTrue(resizablePage.isResizeHandleVisible(), "\nResize handle should be visible.\n");
         softAssert.assertTrue(resizablePage.isResizeHandle2Visible(), "\nSecond resize handle should be visible.\n");
-
         softAssert.assertAll();
     }
 }

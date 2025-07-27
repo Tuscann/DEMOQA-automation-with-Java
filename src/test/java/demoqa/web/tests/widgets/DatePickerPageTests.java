@@ -3,7 +3,6 @@ package demoqa.web.tests.widgets;
 import demoqa.pages.widgets.DatePickerPage;
 import demoqa.web.base.BaseTest;
 import org.openqa.selenium.By;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.time.LocalDate;
@@ -14,6 +13,7 @@ public class DatePickerPageTests extends BaseTest {
 
     @Test(enabled = true, testName = "Verify all text on page")
     public void VerifyAllTextOnPage() {
+        // Arrange
         navigateToUrl("date-picker");
         DatePickerPage datePickerPage = new DatePickerPage(driver);
 
@@ -21,31 +21,32 @@ public class DatePickerPageTests extends BaseTest {
         String expectedSelectDateText = "Select Date";
         String expectedDate = LocalDate.now().format(DateTimeFormatter.ofPattern("MM/dd/yyyy"));
         String expectedSelectDateAndTimeText = "Date And Time";
+        String expectedDateAndTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("MMMM d, yyyy h:mm a"));
 
+        // Act
         String actualDatePickerText = datePickerPage.getDatePickerText();
         String actualSelectDateText = datePickerPage.getSelectDateText();
         String actualSelectDate = datePickerPage.getSelectedDate();
         String actualSelectDateAndTimeText = datePickerPage.getSelectedDateAndTimeText();
         String actualDateAndTime = datePickerPage.getSelectedDateAndTime();
 
+        // Assert
         softAssert.assertEquals(actualDatePickerText, expectedDatePickerText, "\nWrong Date Picker.\n");
         softAssert.assertEquals(actualSelectDateText, expectedSelectDateText, "\nWrong date text.\n");
         softAssert.assertEquals(actualSelectDate, expectedDate, "\nWrong current date.\n");
         softAssert.assertEquals(actualSelectDateAndTimeText, expectedSelectDateAndTimeText, "\nWrong Date and time text.\n");
-
-        String expectedDateAndTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("MMMM d, yyyy h:mm a"));
         softAssert.assertEquals(actualDateAndTime, expectedDateAndTime, "Wrong current date and time");
-
         softAssert.assertAll();
     }
 
     @Test(enabled = true, testName = "Select valid new date")
     public void SelectNewDate() throws InterruptedException {
+        // Arrange
         navigateToUrl("date-picker");
         DatePickerPage datePickerPage = new DatePickerPage(driver);
-
         String expectedDate = "02/14/2025";
 
+        // Act
         // Click to open the date picker
         var dateInput = driver.findElement(By.id("datePickerMonthYearInput"));
         dateInput.click();
@@ -64,25 +65,32 @@ public class DatePickerPageTests extends BaseTest {
         Thread.sleep(500); // Wait for date picker to update
 
         String actualDate = datePickerPage.getSelectedDate();
-        Assert.assertEquals(actualDate, expectedDate, "\nWrong Date\n");
+
+        // Assert
+        softAssert.assertEquals(actualDate, expectedDate, "\nWrong Date\n");
+        softAssert.assertAll();
     }
 
     @Test(enabled = true, testName = "Try to select non existing date")
     public void TryToSelectNonExistingDate() {
+        // Arrange
         navigateToUrl("date-picker");
         DatePickerPage datePickerPage = new DatePickerPage(driver);
-
         String tryToAddDate = "14/32/2021";
-        datePickerPage.selectDate(tryToAddDate);
-
-        String actualDate = datePickerPage.getSelectedDate();
         String expectedDate = LocalDate.now().format(DateTimeFormatter.ofPattern("MM/dd/yyyy"))+"14";
 
-        Assert.assertEquals(actualDate, expectedDate, "\nWrong Date.\n");
+        // Act
+        datePickerPage.selectDate(tryToAddDate);
+        String actualDate = datePickerPage.getSelectedDate();
+
+        // Assert
+        softAssert.assertEquals(actualDate, expectedDate, "\nWrong Date.\n");
+        softAssert.assertAll();
     }
 
     @Test(enabled = true, testName = "Select valid new date and time")
     public void SelectValidNewDateAndTime() throws InterruptedException {
+        // Arrange
         navigateToUrl("date-picker");
         DatePickerPage datePickerPage = new DatePickerPage(driver);
 
@@ -126,21 +134,28 @@ public class DatePickerPageTests extends BaseTest {
 //
 //        Thread.sleep(500); // Wait for picker to update
 
+        // Act
         String actualDateAndTime = datePickerPage.getSelectedDateAndTime();
-        Assert.assertEquals(actualDateAndTime, expectedDateAndTime, "\nWrong Date and time.\n");
+
+        // Assert
+        softAssert.assertEquals(actualDateAndTime, expectedDateAndTime, "\nWrong Date and time.\n");
+        softAssert.assertAll();
     }
 
     @Test(enabled = true, testName = "Try to select no existing date and time")
     public void TryToSelectNoExistingDateAndTime() {
+        // Arrange
         navigateToUrl("date-picker");
         DatePickerPage datePickerPage = new DatePickerPage(driver);
-
         String tryToAddDate = "December 34, 2024 10:12 PM";
-        datePickerPage.selectDateAndTime(tryToAddDate);
-
-        String actualDate = datePickerPage.getSelectedDateAndTime();
         String expectedDateAndTime = "December 20, 2034 12:00 AM";
 
-        Assert.assertEquals(actualDate, expectedDateAndTime, "\nWrong Date.\n");
+        // Act
+        datePickerPage.selectDateAndTime(tryToAddDate);
+        String actualDate = datePickerPage.getSelectedDateAndTime();
+
+        // Assert
+        softAssert.assertEquals(actualDate, expectedDateAndTime, "\nWrong Date.\n");
+        softAssert.assertAll();
     }
 }

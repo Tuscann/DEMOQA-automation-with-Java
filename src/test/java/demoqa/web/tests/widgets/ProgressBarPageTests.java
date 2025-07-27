@@ -15,6 +15,7 @@ public class ProgressBarPageTests extends BaseTest {
         String expectedProgressBarText = "Progress Bar";
         String expectedStartButtonText = "Start";
 
+        // Act
         String actualHeaderText = progressBarPage.getHeaderText();
         String actualProgressButtonText = progressBarPage.getProgressBarText();
         String actualStartButtonText = progressBarPage.getStartStopButtonText();
@@ -37,6 +38,7 @@ public class ProgressBarPageTests extends BaseTest {
         String expectedGreenColor = "rgba(40, 167, 69, 1)";
         String expectedStartColor = "rgba(23, 162, 184, 1)";
 
+        // Act
         progressBarPage.clickStartButton();
 
         String actualNotGreenColor = progressBarPage.getColorProgressBar();
@@ -62,6 +64,7 @@ public class ProgressBarPageTests extends BaseTest {
         String expectedText = "100";
         String startButtonText = "Start";
 
+        // Act
         progressBarPage.clickStartButton();
         String actualText = progressBarPage.getValueOfProgressBarOnValue100();
         progressBarPage.clickResetButton();
@@ -77,10 +80,10 @@ public class ProgressBarPageTests extends BaseTest {
     public void ClickStartStopStartCheckProgressBarEndValue() {
         navigateToUrl("progress-bar");
         ProgressBarPage progressBarPage = new ProgressBarPage(driver);
-
         String expectedEndProgressBarValueText = "100";
         int stopValue = 14;
 
+        // Act
         progressBarPage.clickStartButton();
         progressBarPage.stopProgressBarOnValue2(stopValue);
         int actualProgressBarText = progressBarPage.getValueProgressBar();
@@ -97,19 +100,17 @@ public class ProgressBarPageTests extends BaseTest {
     public void StopOn31ProgressOfProgressbar() {
         navigateToUrl("progress-bar");
         ProgressBarPage progressBarPage = new ProgressBarPage(driver);
-
-        progressBarPage.clickStartButton();
-
         String expectedStartColor = "rgba(23, 162, 184, 1)";
         int stopValue = 31;
 
+        // Act
+        progressBarPage.clickStartButton();
         progressBarPage.stopProgressBarOnValue2(stopValue);
         int actualValueOfProgressBar = progressBarPage.getValueProgressBar();
         String actualNotGreenColor = progressBarPage.getColorProgressBar();
 
         softAssert.assertEquals(actualValueOfProgressBar, stopValue, "\nNot " + stopValue + " value.\n");
         softAssert.assertEquals(actualNotGreenColor, expectedStartColor, "\nWrong color value.\n");
-
         softAssert.assertAll();
     }
 }

@@ -2,7 +2,6 @@ package demoqa.web.tests.forms;
 
 import demoqa.pages.forms.FormsPage;
 import demoqa.web.base.BaseTest;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class FormsPageTests extends BaseTest {
@@ -18,17 +17,23 @@ public class FormsPageTests extends BaseTest {
         String expectedString = formsPage.getText();
 
         // Assert
-        Assert.assertEquals(expectedString, actualString, "\nWrong text.\n");
+        softAssert.assertEquals(expectedString, actualString, "\nWrong text.\n");
+        softAssert.assertAll();
     }
 
     @Test(enabled = true, testName = "Verify practice form link")
     public void VerifyPracticeFormLink() {
+        // Arrange
         navigateToUrl("forms");
         FormsPage formsPage = new FormsPage(driver);
-
         String expectedUrl = "https://demoqa.com/automation-practice-form";
+
+        // Act
         formsPage.clickPracticeForm();
         String actualUrl = formsPage.checkUrl();
-        Assert.assertEquals(actualUrl, expectedUrl, "\nWrong URL not automation-practice-form.\n");
+
+        // Assert
+        softAssert.assertEquals(actualUrl, expectedUrl, "\nWrong URL not automation-practice-form.\n");
+        softAssert.assertAll();
     }
 }

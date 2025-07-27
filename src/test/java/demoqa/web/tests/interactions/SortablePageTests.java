@@ -9,6 +9,7 @@ import org.testng.annotations.Test;
 public class SortablePageTests extends BaseTest {
     @Test(enabled = true, testName = "Verify all text on page")
     public void VerifyAllTextOnPage() {
+        // Arrange
         navigateToUrl("sortable");
         SortablePage sortablePage = new SortablePage(driver);
 
@@ -31,6 +32,7 @@ public class SortablePageTests extends BaseTest {
         String gridEight = "Eight";
         String gridNine = "Nine";
 
+        // Act
         String actualPageTitle = sortablePage.getPageTitle();
         String actualListTab = sortablePage.getListTab();
         String actualListOne = sortablePage.getListOne();
@@ -51,6 +53,7 @@ public class SortablePageTests extends BaseTest {
         String actualGridEight = sortablePage.getGridEight();
         String actualGridNine = sortablePage.getGridNine();
 
+        // Assert
         softAssert.assertEquals(actualPageTitle, pageTitle, "\nWrong page title.\n");
         softAssert.assertEquals(actualListTab, listTab, "\nWrong page tab.\n");
         softAssert.assertEquals(actualListOne, listOne, "Wrong page list one");
@@ -124,13 +127,17 @@ public class SortablePageTests extends BaseTest {
 
     @Test(dataProvider = "resizeData", description = "Check order in List", enabled = true, testName = "Check order in List")
     public void DragAndDropFromListTab(String dragFromPlace, String dropOnPlace, String expectedOrder) {
+        // Arrange
         navigateToUrl("sortable");
         SortablePage sortablePage = new SortablePage(driver);
 
+        // Act
         sortablePage.moveOverList(dragFromPlace, dropOnPlace);
         String actualListSix = sortablePage.getListOrder();
 
-        Assert.assertEquals(actualListSix, expectedOrder, "\nWrong order in the list.\n");
+        // Assert
+        softAssert.assertEquals(actualListSix, expectedOrder, "\nWrong order in the list.\n");
+        softAssert.assertAll();
     }
 
     @DataProvider(name = "resizeData2")
@@ -231,14 +238,17 @@ public class SortablePageTests extends BaseTest {
 
     @Test(dataProvider = "resizeData2", description = "Check order in Grid", enabled = true, testName = "Check order in Grid")
     public void DragAndDropFromGridTab(String dragFromPlace, String dropOnPlace, String expectedOrder) throws InterruptedException {
+        // Arrange
         navigateToUrl("sortable");
         SortablePage sortablePage = new SortablePage(driver);
 
+        // Act
         sortablePage.clickGridTab();
-
         sortablePage.moveOverGrid(dragFromPlace, dropOnPlace);
         String actualListSix = sortablePage.getGridOrder();
 
-        Assert.assertEquals(actualListSix, expectedOrder, "\nWrong order in the grid.\n");
+        // Assert
+        softAssert.assertEquals(actualListSix, expectedOrder, "\nWrong order in the grid.\n");
+        softAssert.assertAll();
     }
 }

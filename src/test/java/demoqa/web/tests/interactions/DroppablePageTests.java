@@ -172,6 +172,7 @@ public class DroppablePageTests extends BaseTest {
 
     @Test(enabled = true, testName = "Prevent propagation inner droppable greedy")
     public void PreventPropagationInnerDroppableGreedy() {
+        // Arrange
         navigateToUrl("droppable");
         DroppablePage droppablePage = new DroppablePage(driver);
 
@@ -195,6 +196,7 @@ public class DroppablePageTests extends BaseTest {
 
     @Test(enabled = true, testName = "Prevent propagation outer droppable greedy")
     public void PreventPropagationOuterDroppableGreedy() {
+        // Arrange
         navigateToUrl("droppable");
         DroppablePage droppablePage = new DroppablePage(driver);
 
@@ -218,6 +220,7 @@ public class DroppablePageTests extends BaseTest {
 
     @Test(enabled = true, testName = "Revert draggable will revert")
     public void RevertDraggableWillRevert() {
+        // Arrange
         navigateToUrl("droppable");
         DroppablePage droppablePage = new DroppablePage(driver);
 
@@ -243,6 +246,7 @@ public class DroppablePageTests extends BaseTest {
 
     @Test(enabled = true, testName = "Revert draggable will not revert")
     public void RevertDraggableWillNotRevert() {
+        // Arrange
         navigateToUrl("droppable");
         DroppablePage droppablePage = new DroppablePage(driver);
 
@@ -262,7 +266,6 @@ public class DroppablePageTests extends BaseTest {
         Point afterLocation = droppablePage.getAfterLocationNot();
 
         softAssert.assertNotEquals(initialLocation, afterLocation, "\nWrong position.\n");
-
         softAssert.assertAll();
     }
 }

@@ -8,6 +8,7 @@ public class InteractionPageTests extends BaseTest {
 
     @Test(enabled = true, testName = "Click left dropdown menu")
     public void ClickLeftDropdownMenu() {
+        // Arrange
         navigateToUrl("interaction");
         InteractionsPage interactionsPage = new InteractionsPage(driver);
 
@@ -22,12 +23,12 @@ public class InteractionPageTests extends BaseTest {
 
         TextBoxIsVisible = interactionsPage.verifyFramesIsNotVisible();
         softAssert.assertFalse(TextBoxIsVisible, "\nFrames is shown.\n");
-
         softAssert.assertAll();
     }
 
     @Test(enabled = true, testName = "Verify nine pages links")
     public void CheckAllNinePagesLinks() {
+        // Arrange
         navigateToUrl("interaction");
         InteractionsPage interactionsPage = new InteractionsPage(driver);
 

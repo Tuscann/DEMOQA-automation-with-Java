@@ -23,6 +23,7 @@ public class MenuPageTests extends BaseTest {
         String mainItem2SubSubListSubItem2 = "Sub Sub Item 2";
         String mainItem3 = "Main Item 3";
 
+        // Act
         String actualPageHeader = menuPage.getHeaderText();
         String actualMainItem1 = menuPage.getMainItem1();
         String actualMainItem2 = menuPage.getMainItem2();
@@ -32,6 +33,7 @@ public class MenuPageTests extends BaseTest {
         String actualMainItem2SubSubListSubItem1 = menuPage.getMainItem2SubSubListSubItem1();
         String actualMainItem2SubSubListSubItem2 = menuPage.getMainItem2SubSubListSubItem2();
         String actualMainItem3 = menuPage.getMainItem3();
+
 
         softAssert.assertEquals(actualPageHeader, pageHeader, "\nPage header not correct.\n");
         softAssert.assertEquals(actualMainItem1, mainItem1, "\nMain Item 1 not correct.\n");
@@ -54,6 +56,7 @@ public class MenuPageTests extends BaseTest {
         final String colorBeforeSelection = "rgba(36, 175, 21, 1)";
         final String colorAfterSelection = "rgba(0, 63, 32, 1)";
 
+        // Act
         String actualColorSelected = menuPage.takeBackgroundColorMainItem1();
         softAssert.assertEquals(actualColorSelected, colorBeforeSelection, "\nNot normal green.\n");
         menuPage.selectMainItem1();
@@ -100,8 +103,9 @@ public class MenuPageTests extends BaseTest {
         softAssert.assertEquals(actualColorSelected, colorBeforeSelection, "\nNot normal green.\n");
         menuPage.selectMainItem3();
         actualColorSelected = menuPage.takeBackgroundColorMainItem3();
-        softAssert.assertEquals(actualColorSelected, colorAfterSelection, "\nNot dark green.\n");
 
+
+        softAssert.assertEquals(actualColorSelected, colorAfterSelection, "\nNot dark green.\n");
         softAssert.assertAll();
     }
 }

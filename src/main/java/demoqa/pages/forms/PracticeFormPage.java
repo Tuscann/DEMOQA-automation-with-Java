@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
@@ -17,6 +18,12 @@ import static utilities.JavaScriptUtility.scrollToElementJS;
 
 public class PracticeFormPage extends BasePage {
 
+    @FindBy(className = "react-datepicker__month-select")
+    public WebElement select_month;
+    @FindBy(className = "react-datepicker__year-select")
+    public WebElement select_year;
+    @FindBy(className = "react-datepicker__day--027")
+    public WebElement select_date;
     @FindBy(xpath = "/html/body/div[4]/div/div/div[2]/p")
     public WebElement pLoremIpsumSimplyDummy;
     @FindBy(id = "hobbies-checkbox-2")
@@ -285,19 +292,23 @@ public class PracticeFormPage extends BasePage {
         }
     }
 
-    public void setDateOfBirth(String expectedDateOfBirth) {
+    public void setDateOfBirth(String month,String year,String day) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement dateOfBirthInput = wait.until(ExpectedConditions.visibilityOf(this.dateOfBirth));
         scrollToElementJS(dateOfBirth);
+        clickJS(dateOfBirthInput);
 
-        String osName = System.getProperty("os.name").toLowerCase();
-        if (osName.contains("mac")) {
-            dateOfBirthInput.sendKeys(Keys.COMMAND + "a");
-        } else {
-            dateOfBirthInput.sendKeys(Keys.CONTROL + "a");
-        }
-        dateOfBirthInput.sendKeys(expectedDateOfBirth);
-        dateOfBirthInput.sendKeys(Keys.ENTER);
+        WebElement monthSelectElement = wait.until(ExpectedConditions.visibilityOf(select_month));
+        Select monthSelect = new Select(monthSelectElement);
+        monthSelect.selectByVisibleText(month);
+
+        WebElement yearSelectElement = wait.until(ExpectedConditions.visibilityOf(select_year));
+        Select yearSelect = new Select(yearSelectElement);
+        clickJS(yearSelectElement);
+        yearSelect.selectByVisibleText(year);
+
+        WebElement dateSelectElement = wait.until(ExpectedConditions.visibilityOf(select_date));
+        clickJS(dateSelectElement);
     }
 
     public boolean isFemaleRadioButtonSelected() {

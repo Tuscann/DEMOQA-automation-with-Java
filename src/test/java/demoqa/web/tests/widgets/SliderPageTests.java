@@ -2,7 +2,6 @@ package demoqa.web.tests.widgets;
 
 import demoqa.pages.widgets.SliderPage;
 import demoqa.web.base.BaseTest;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class SliderPageTests extends BaseTest {
@@ -21,27 +20,33 @@ public class SliderPageTests extends BaseTest {
 
     @Test(enabled = false, testName = "Test slider result zero")
     public void TestSliderResultZero() throws InterruptedException {
-        int x = 90;
-        int y = 0;
+
         navigateToUrl("slider");
         SliderPage sliderPage = new SliderPage(driver);
-
-        sliderPage.moveSlider(x, y);
-
-        String actualValue = sliderPage.getSliderValue();
         String expectedValue = "60";
+        int x = 90;
+        int y = 0;
 
-        Assert.assertEquals(actualValue, expectedValue, "Actual value is not equal to expected value");
+        // Act
+        sliderPage.moveSlider(x, y);
+        String actualValue = sliderPage.getSliderValue();
+
+        // Assert
+        softAssert.assertEquals(actualValue, expectedValue, "Actual value is not equal to expected value");
+        softAssert.assertAll();
     }
 
     @Test(enabled = true, testName = "Check default value slider")
     public void CheckDefaultValueSlider() {
         navigateToUrl("slider");
         SliderPage sliderPage = new SliderPage(driver);
-
-        String actualValue = sliderPage.getSliderValue();
         String expectedValue = "25";
 
-        Assert.assertEquals(actualValue, expectedValue, "Actual value is not default 25");
+        // Act
+        String actualValue = sliderPage.getSliderValue();
+
+        // Assert
+        softAssert.assertEquals(actualValue, expectedValue, "Actual value is not default 25");
+        softAssert.assertAll();
     }
 }

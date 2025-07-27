@@ -8,6 +8,7 @@ import org.testng.annotations.Test;
 public class DraggablePageTests extends BaseTest {
     @Test(enabled = true, testName = "Verify all text on page")
     public void VerifyAllTextOnPage() {
+        // Arrange
         navigateToUrl("dragabble");
         DraggablePage draggablePage = new DraggablePage(driver);
 
@@ -43,6 +44,7 @@ public class DraggablePageTests extends BaseTest {
         String actualCursorStyleSecondText = draggablePage.getCursorStyleSecondText();
         String actualCursorStyleThirdText = draggablePage.getCursorStyleThirdText();
 
+        // Assert
         softAssert.assertEquals(actualPageTitle, pageTitle, "\nWrong page title.\n");
         softAssert.assertEquals(actualSimpleTabTitle, simpleTabTitle, "\nWrong Simple page title.\n");
         softAssert.assertEquals(actualSimpleDragMe, simpleDragMe, "\nWrong simple page title.\n");
@@ -74,9 +76,9 @@ public class DraggablePageTests extends BaseTest {
 
         Point endPosition = draggablePage.getInitLocation();
 
+        // Assert
         softAssert.assertEquals(initialLocation.x + xOffset, endPosition.x, "\nWrong initial location X.\n");
         softAssert.assertEquals(initialLocation.y + yOffset, endPosition.y, "\nWrong initial location Y.\n");
-
         softAssert.assertAll();
     }
 
@@ -96,9 +98,9 @@ public class DraggablePageTests extends BaseTest {
 
         Point endPosition = draggablePage.getInitLocationOnlyX();
 
+        // Assert
         softAssert.assertEquals(initialLocation.x + xOffset, endPosition.x, "\nWrong initial location X.\n");
         softAssert.assertEquals(initialLocation.y, endPosition.y, "\nWrong initial location Y.\n");
-
         softAssert.assertAll();
     }
 
@@ -118,9 +120,9 @@ public class DraggablePageTests extends BaseTest {
 
         Point endPosition = draggablePage.getInitLocationOnlyY();
 
+        // Assert
         softAssert.assertEquals(initialLocation.x, endPosition.x, "\nWrong initial location X.\n");
         softAssert.assertEquals(initialLocation.y + yOffset, endPosition.y, "\nWrong initial location Y.\n");
-
         softAssert.assertAll();
     }
 
@@ -139,9 +141,9 @@ public class DraggablePageTests extends BaseTest {
 
         Point endPosition = draggablePage.getInitLocationContainedInBox();
 
+        // Assert
         softAssert.assertEquals(initialLocation.x + xOffset, endPosition.x, "\nWrong initial location X.\n");
         softAssert.assertEquals(initialLocation.y + yOffset, endPosition.y, "\nWrong initial location Y.\n");
-
         softAssert.assertAll();
     }
 
@@ -161,9 +163,9 @@ public class DraggablePageTests extends BaseTest {
 
         Point endPosition = draggablePage.getInitLocationContainedInBox();
 
+        // Assert
         softAssert.assertEquals(initialLocation.x + xOffset - 50, endPosition.x, "\nWrong point location X axis.\n");
         softAssert.assertEquals(initialLocation.y + yOffset, endPosition.y, "\nWrong point location on y axis.\n");
-
         softAssert.assertAll();
     }
 
@@ -174,6 +176,8 @@ public class DraggablePageTests extends BaseTest {
 
         int xOffset = 15;
         int yOffset = 60;
+        // Allow for a larger margin of error (±10 pixels) in position
+        int marginOfError = 4;
 
         draggablePage.clickContainerRestrictedTab();
 
@@ -183,13 +187,11 @@ public class DraggablePageTests extends BaseTest {
 
         Point endPosition = draggablePage.getInitLocationContainedInParent();
 
-        // Allow for a larger margin of error (±10 pixels) in position
-        int marginOfError = 4;
+        // Assert
         softAssert.assertTrue(Math.abs((initialLocation.x + xOffset) - endPosition.x) <= marginOfError,
                 String.format("\nWrong initial location X. Expected: %d ± %d, Actual: %d\n", initialLocation.x + xOffset, marginOfError, endPosition.x));
         softAssert.assertTrue(Math.abs((initialLocation.y + yOffset) - endPosition.y) <= marginOfError,
                 String.format("\nWrong initial location Y. Expected: %d ± %d, Actual: %d\n", initialLocation.y + yOffset, marginOfError, endPosition.y));
-
         softAssert.assertAll();
     }
 
@@ -290,6 +292,7 @@ public class DraggablePageTests extends BaseTest {
 
     @Test(enabled = true, testName = "Move third text cursor style")
     public void MoveThirdTextCursorStyle() {
+        // Arrange
         navigateToUrl("dragabble");
         DraggablePage draggablePage = new DraggablePage(driver);
 

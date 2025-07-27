@@ -4,6 +4,10 @@ import demoqa.pages.home.HomePage;
 import demoqa.web.base.BaseTest;
 import org.testng.annotations.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+
 public class HomePageTests extends BaseTest {
 
     @Test(enabled = true, testName = "Click and verify all links")
@@ -96,6 +100,10 @@ public class HomePageTests extends BaseTest {
 
         // Act
         homePage.clickJoinNow();
+        Set<String> windowHandles = driver.getWindowHandles();
+        List<String> handlesList = new ArrayList<>(windowHandles);
+        driver.switchTo().window(handlesList.get(1));
+        
         String currentUrl = driver.getCurrentUrl();
 
         // Assert

@@ -9,6 +9,7 @@ import org.testng.annotations.Test;
 public class SelectablePageTests extends BaseTest {
     @Test(enabled = true, testName = "Verify all text on page")
     public void VerifyAllTextOnPage() {
+        // Arrange
         navigateToUrl("selectable");
         SelectablePage selectablePage = new SelectablePage(driver);
 
@@ -69,6 +70,7 @@ public class SelectablePageTests extends BaseTest {
 
     @Test(enabled = true, testName = "Select one by one all from list")
     public void SelectOneByOneAllFromList() {
+        // Arrange
         navigateToUrl("selectable");
         SelectablePage selectablePage = new SelectablePage(driver);
 
