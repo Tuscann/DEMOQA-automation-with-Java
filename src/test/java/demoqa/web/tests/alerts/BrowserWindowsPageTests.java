@@ -2,7 +2,6 @@ package demoqa.web.tests.alerts;
 
 import demoqa.pages.alerts.BrowserWindowsPage;
 import demoqa.web.base.BaseTest;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class BrowserWindowsPageTests extends BaseTest {

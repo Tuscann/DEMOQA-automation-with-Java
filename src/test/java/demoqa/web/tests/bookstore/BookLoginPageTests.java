@@ -4,7 +4,6 @@ import demoqa.pages.bookstore.BooksLoginPage;
 import demoqa.pages.bookstore.BooksPage;
 import demoqa.pages.bookstore.BooksProfilePage;
 import demoqa.web.base.BaseTest;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class BookLoginPageTests extends BaseTest {

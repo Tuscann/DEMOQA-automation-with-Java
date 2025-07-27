@@ -4,8 +4,6 @@ import demoqa.pages.home.HomePage;
 import demoqa.web.base.BaseTest;
 import org.testng.annotations.Test;
 
-import java.util.ArrayList;
-
 public class HomePageTests extends BaseTest {
 
     @Test(enabled = true, testName = "Click and verify all links")
@@ -58,6 +56,7 @@ public class HomePageTests extends BaseTest {
 
     @Test(enabled = true, testName = "Verify all text on page")
     public void VerifyAllTextOnPage() {
+        // Arrange
         HomePage homePage = new HomePage(driver);
 
         String expectedElementsText = "Elements";
@@ -68,6 +67,7 @@ public class HomePageTests extends BaseTest {
         String expectedBooksText = "Book Store Application";
         String expectedFooterText = "© 2013-2020 TOOLSQA.COM | ALL RIGHTS RESERVED.";
 
+        // Act
         String actualFooterText = homePage.getFooterText();
         String actualElementsText = homePage.getElementsText();
         String actualFormsText = homePage.getFormsText();
@@ -76,6 +76,7 @@ public class HomePageTests extends BaseTest {
         String actualInteractionText = homePage.getInteractionsText();
         String actualBooksText = homePage.getBookStoreApplicationText();
 
+        // Assert
         softAssert.assertEquals(actualElementsText, expectedElementsText, "\nExpected elements.\n");
         softAssert.assertEquals(actualFormsText, expectedFormsText, "\nExpected forms.\n");
         softAssert.assertEquals(actualAlertsText, expectedAlertsText, "\nExpected Alerts.\n");
@@ -89,13 +90,16 @@ public class HomePageTests extends BaseTest {
 
     @Test(enabled = true, testName = "Verify all text on page")
     public void VerifyJoinNowButton() {
+        // Arrange
         HomePage homePage = new HomePage(driver);
-
-        homePage.clickJoinNow();
-
         String expectedUrl = "https://www.toolsqa.com/selenium-training/";
+
+        // Act
+        homePage.clickJoinNow();
         String currentUrl = driver.getCurrentUrl();
 
+        // Assert
         softAssert.assertEquals(expectedUrl,currentUrl);
+        softAssert.assertAll();
     }
 }

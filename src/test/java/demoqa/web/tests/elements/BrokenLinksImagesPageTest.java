@@ -2,7 +2,6 @@ package demoqa.web.tests.elements;
 
 import demoqa.pages.elements.BrokenLinksImagesPage;
 import demoqa.web.base.BaseTest;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class BrokenLinksImagesPageTest extends BaseTest {

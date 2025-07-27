@@ -2,7 +2,6 @@ package demoqa.web.tests.alerts;
 
 import demoqa.pages.alerts.AlertsPage;
 import demoqa.web.base.BaseTest;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import static utilities.SwitchToUtility.*;
@@ -51,7 +50,8 @@ public class AlertsPageTests extends BaseTest {
         String actualAlertText = getAlertText();
 
         // Assert
-        Assert.assertEquals(actualAlertText, expectedAlertText, "\n Actual & Expected Messages Do Not Match.\n");
+        softAssert.assertEquals(actualAlertText, expectedAlertText, "\n Actual & Expected Messages Do Not Match.\n");
+        softAssert.assertAll();
     }
 
     @Test(enabled = true, testName = "Verify  text of prompt alert after 5 seconds")
@@ -67,7 +67,8 @@ public class AlertsPageTests extends BaseTest {
         String actualAlertText = getAlertText();
 
         // Assert
-        Assert.assertEquals(actualAlertText, expectedAlertText, "\nDifferent Prompt Alert message.\n");
+        softAssert.assertEquals(actualAlertText, expectedAlertText, "\nDifferent Prompt Alert message.\n");
+        softAssert.assertAll();
     }
 
     @Test(enabled = true, testName = "Verify you selected cancel on confirmation alert")
@@ -84,7 +85,8 @@ public class AlertsPageTests extends BaseTest {
         String actualConfirmationResult = alertsPage.getConfirmationResult();
 
         // Assert
-        Assert.assertEquals(actualConfirmationResult, expectedConfirmationResult, "\n You Did Not Select Cancel.\n");
+        softAssert.assertEquals(actualConfirmationResult, expectedConfirmationResult, "\n You Did Not Select Cancel.\n");
+        softAssert.assertAll();
     }
 
     @Test(enabled = true, testName = "Verify you selected ok on confirmation alert")
@@ -101,7 +103,8 @@ public class AlertsPageTests extends BaseTest {
         String actualConfirmationResult = alertsPage.getConfirmationResult();
 
         // Assert
-        Assert.assertEquals(actualConfirmationResult, expectedConfirmationResult, "\nYou Did Not Select OK.\n");
+        softAssert.assertEquals(actualConfirmationResult, expectedConfirmationResult, "\nYou Did Not Select OK.\n");
+        softAssert.assertAll();
     }
 
     @Test(enabled = true, testName = "Verify text of message after of prompt alert")
@@ -120,7 +123,8 @@ public class AlertsPageTests extends BaseTest {
         String actualResult = alertsPage.getPromptAlertResult();
 
         // Assert
-        Assert.assertEquals(actualResult, expectedResult, "\nActual & Expected Results Do Not Match.\n");
+        softAssert.assertEquals(actualResult, expectedResult, "\nActual & Expected Results Do Not Match.\n");
+        softAssert.assertAll();
     }
 
     @Test(enabled = true, testName = "Verify text of message after ok of prompt alert")
@@ -135,7 +139,8 @@ public class AlertsPageTests extends BaseTest {
         boolean isAlertResultMissing = alertsPage.verifyNoAlertResult();
 
         // Assert
-        Assert.assertTrue(isAlertResultMissing, "\nResult alert is not shown.\n");
+        softAssert.assertTrue(isAlertResultMissing, "\nResult alert is not shown.\n");
+        softAssert.assertAll();
     }
 
     @Test(enabled = true, testName = "Verify text of message after close prompt alert")
@@ -151,6 +156,7 @@ public class AlertsPageTests extends BaseTest {
         boolean isAlertResultMissing = alertsPage.verifyNoAlertResult();
 
         // Assert
-        Assert.assertTrue(isAlertResultMissing, "\nResult alert is not shown.\n");
+        softAssert.assertTrue(isAlertResultMissing, "\nResult alert is not shown.\n");
+        softAssert.assertAll();
     }
 }
