@@ -4,6 +4,8 @@ import demoqa.pages.home.HomePage;
 import demoqa.web.base.BaseTest;
 import org.testng.annotations.Test;
 
+import java.util.ArrayList;
+
 public class HomePageTests extends BaseTest {
 
     @Test(enabled = true, testName = "Click and verify all links")
@@ -83,5 +85,17 @@ public class HomePageTests extends BaseTest {
         softAssert.assertEquals(actualFooterText, expectedFooterText, "\nExpected footer.\n");
 
         softAssert.assertAll();
+    }
+
+    @Test(enabled = true, testName = "Verify all text on page")
+    public void VerifyJoinNowButton() {
+        HomePage homePage = new HomePage(driver);
+
+        homePage.clickJoinNow();
+
+        String expectedUrl = "https://www.toolsqa.com/selenium-training/";
+        String currentUrl = driver.getCurrentUrl();
+
+        softAssert.assertEquals(expectedUrl,currentUrl);
     }
 }

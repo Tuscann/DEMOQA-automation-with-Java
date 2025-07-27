@@ -13,6 +13,9 @@ import static utilities.StaticVariables.HOME_MENU_ITEMS;
 
 public class HomePage extends BasePage {
 
+    @FindBy(xpath = "//*[@id=\"app\"]/div/div/div[1]/a/img")
+    private WebElement joinNow;
+
     @FindBy(xpath = "//div[@id='app']//h5[text()='Elements']")
     private WebElement elementsCard;
 
@@ -40,6 +43,11 @@ public class HomePage extends BasePage {
     public HomePage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
+    }
+
+    public void clickJoinNow(){
+        scrollToElementJS(joinNow);
+        joinNow.click();
     }
 
     public String getElementsText() {
@@ -102,7 +110,7 @@ public class HomePage extends BasePage {
 
     public void chooseHomePageMenu(String homeMenu) {
         int indexOfElement = HOME_MENU_ITEMS.indexOf(homeMenu);
-        scrollToElementJS(clickHomePageItems.get(0));
+        scrollToElementJS(clickHomePageItems.getFirst());
 
         for (int i = 0; i < 3 && i < clickHomePageItems.size(); i++) {
             if (i == indexOfElement) {
