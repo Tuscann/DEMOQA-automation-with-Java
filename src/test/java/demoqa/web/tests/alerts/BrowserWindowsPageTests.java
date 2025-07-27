@@ -9,6 +9,7 @@ public class BrowserWindowsPageTests extends BaseTest {
 
     @Test(enabled = true, testName = "Verify all text on page")
     public void VerifyAllTextOnPage() {
+        // Arrange
         navigateToUrl("browser-windows");
         BrowserWindowsPage browserWindowsPage = new BrowserWindowsPage(driver);
 
@@ -17,11 +18,13 @@ public class BrowserWindowsPageTests extends BaseTest {
         String newWindow = "New Window";
         String newWindowMessage = "New Window Message";
 
+        // Act
         String actualBrowserWindowsText = browserWindowsPage.getBrowserWindowsText();
         String actualNewTabText = browserWindowsPage.getNewTabText();
         String actualNewWindowText = browserWindowsPage.getNewWindowText();
         String actualNewWindowMessageText = browserWindowsPage.getNewWindowMessageText();
 
+        // Assert
         softAssert.assertEquals(actualBrowserWindowsText, browserWindowsText, "\nMissing Browser Windows.\n");
         softAssert.assertEquals(actualNewTabText, newTabText, "\nMissing New Tab.\n");
         softAssert.assertEquals(actualNewWindowText, newWindow, "\nMissing New Window.\n");
@@ -32,40 +35,49 @@ public class BrowserWindowsPageTests extends BaseTest {
 
     @Test(enabled = true, testName = "Click on new tab button")
     public void ClickNewTabButton() {
+        // Arrange
         navigateToUrl("browser-windows");
         BrowserWindowsPage browserWindowsPage = new BrowserWindowsPage(driver);
-
-        browserWindowsPage.clickNewTabButton();
-
         String expectedNewTabUrl = "https://demoqa.com/sample";
+
+        // Act
+        browserWindowsPage.clickNewTabButton();
         String actualNewTabUrl = browserWindowsPage.getNewTabUrl();
 
-        Assert.assertEquals(actualNewTabUrl, expectedNewTabUrl, "\n Actual & Expected URL Do Not Match.\n");
+        // Assert
+        softAssert.assertEquals(actualNewTabUrl, expectedNewTabUrl, "\n Actual & Expected URL Do Not Match.\n");
+        softAssert.assertAll();
     }
 
     @Test(enabled = true, testName = "Click on new window button")
     public void ClickNewWindowButton() {
+        // Arrange
         navigateToUrl("browser-windows");
         BrowserWindowsPage browserWindowsPage = new BrowserWindowsPage(driver);
-
-        browserWindowsPage.clickNewWindowButton();
-
         String expectedNewTabUrl = "https://demoqa.com/sample";
+
+        // Act
+        browserWindowsPage.clickNewWindowButton();
         String actualNewTabUrl = browserWindowsPage.getNewWindowUrl();
 
-        Assert.assertEquals(actualNewTabUrl, expectedNewTabUrl, "\n Actual & Expected URL Do Not Match. \n");
+        // Assert
+        softAssert.assertEquals(actualNewTabUrl, expectedNewTabUrl, "\n Actual & Expected URL Do Not Match. \n");
+        softAssert.assertAll();
     }
 
     @Test(enabled = false, testName = "Click on new window message button")
     public void ClickNewWindowMessage() {
+        // Arrange
         navigateToUrl("browser-windows");
         BrowserWindowsPage browserWindowsPage = new BrowserWindowsPage(driver);
-        
-        browserWindowsPage.clickNewWindowMessageButton();
-
         String expectedBrowserMessage = "Knowledge increases by sharing but not by saving. Please share this website with your friends and in your organization.";
+
+        // Act
+        browserWindowsPage.clickNewWindowMessageButton();
         String actualBrowserMessage = browserWindowsPage.getBrowserMessage();
 
-        Assert.assertEquals(actualBrowserMessage, expectedBrowserMessage, "\nWrong message.\n");
+        // Assert
+        softAssert.assertEquals(actualBrowserMessage, expectedBrowserMessage, "\nWrong message.\n");
+        softAssert.assertAll();
     }
 }

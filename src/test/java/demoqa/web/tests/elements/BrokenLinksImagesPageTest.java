@@ -8,8 +8,8 @@ import org.testng.annotations.Test;
 public class BrokenLinksImagesPageTest extends BaseTest {
     @Test(enabled = true, testName = "Verify all text on page")
     public void VerifyAllTextOnPage() {
+        // Arrange
         navigateToUrl("broken");
-
         BrokenLinksImagesPage brokenLinksImagesPage = new BrokenLinksImagesPage(driver);
 
         String expectedHeader = "Broken Links - Images";
@@ -20,6 +20,7 @@ public class BrokenLinksImagesPageTest extends BaseTest {
         String expectedBrokenLinkText = "Broken Link";
         String expectedClickHereBrokenLinkText = "Click Here for Broken Link";
 
+        // Act
         String actualHeaderText = brokenLinksImagesPage.getHeaderText();
         String actualClickHereValidLinkText = brokenLinksImagesPage.getClickHereValidLinkText();
         String actualBrokenImageText = brokenLinksImagesPage.getBrokenImageText();
@@ -28,6 +29,7 @@ public class BrokenLinksImagesPageTest extends BaseTest {
         String actualBrokenLinkText = brokenLinksImagesPage.getBrokenLinkText();
         String actualClickHereBrokenLinkText = brokenLinksImagesPage.getClickHereBrokenLinkText();
 
+        // Assert
         softAssert.assertEquals(actualHeaderText, expectedHeader, "\nWrong header text.\n");
         softAssert.assertEquals(actualClickHereValidLinkText, expectedClickHereValidLinkText, "\nWrong click link text.\n");
         softAssert.assertEquals(actualBrokenImageText, expectedBrokenImageText, "\nWrong image text.\n");
@@ -41,27 +43,33 @@ public class BrokenLinksImagesPageTest extends BaseTest {
 
     @Test(enabled = true, testName = "Click on click here for valid link")
     public void ClickOnClickHereForValidLink() {
+        // Arrange
         navigateToUrl("broken");
         BrokenLinksImagesPage brokenLinksImagesPage = new BrokenLinksImagesPage(driver);
-
-        brokenLinksImagesPage.ClickOnClickHereValidLink();
-
         String expectedUrl = "https://demoqa.com/";
+
+        // Act
+        brokenLinksImagesPage.ClickOnClickHereValidLink();
         String currentUrl = brokenLinksImagesPage.getCurrentUrl();
 
-        Assert.assertEquals(currentUrl, expectedUrl, "\nWrong url is shown.\n");
+        // Assert
+        softAssert.assertEquals(currentUrl, expectedUrl, "\nWrong url is shown.\n");
+        softAssert.assertAll();
     }
 
     @Test(enabled = true, testName = "Click on click here for broken link")
     public void ClickOnClickHereForBrokenLink() {
+        // Arrange
         navigateToUrl("broken");
         BrokenLinksImagesPage brokenLinksImagesPage = new BrokenLinksImagesPage(driver);
-
-        brokenLinksImagesPage.clickOnClickHereBrokenLink();
-
         String expectedUrl = "https://the-internet.herokuapp.com/status_codes/500";
+
+        // Act
+        brokenLinksImagesPage.clickOnClickHereBrokenLink();
         String currentUrl = brokenLinksImagesPage.getCurrentUrl();
 
-        Assert.assertEquals(currentUrl, expectedUrl, "\nWrong url is shown.\n");
+        // Assert
+        softAssert.assertEquals(currentUrl, expectedUrl, "\nWrong url is shown.\n");
+        softAssert.assertAll();
     }
 }

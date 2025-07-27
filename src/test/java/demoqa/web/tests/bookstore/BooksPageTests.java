@@ -1,7 +1,6 @@
 package demoqa.web.tests.bookstore;
 
 import demoqa.pages.bookstore.BooksPage;
-import demoqa.pages.bookstore.BooksRegisterPage;
 import demoqa.web.base.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -11,7 +10,6 @@ public class BooksPageTests extends BaseTest {
     @Test(enabled = true, testName = "Verify show/hide left dropdown menu")
     public void ClickLeftDropdownMenu() {
         navigateToUrl("books");
-
         BooksPage booksPage = new BooksPage(driver);
 
         boolean TextBoxIsVisible = booksPage.verifyLoginIsVisible();
@@ -55,42 +53,52 @@ public class BooksPageTests extends BaseTest {
 
     @Test(enabled = true, testName = "Verify table header columns")
     public void GetFirstRowOfTable() {
+        // Arrange
         navigateToUrl("books");
-
         BooksPage booksPage = new BooksPage(driver);
-
         String expectedTopRow = """
                 Image
                 Title
                 Author
                 Publisher""";
 
+        // Act
         String actualTopRow = booksPage.getTopRowTable();
 
-        Assert.assertEquals(actualTopRow, expectedTopRow, "\nExpected table header.\n");
+        // Assert
+        softAssert.assertEquals(actualTopRow, expectedTopRow, "\nExpected table header.\n");
+        softAssert.assertAll();
     }
 
     @Test(enabled = true, testName = "Verify default count of books 8")
     public void VerifyCountOfDefaultBooks() {
+        // Arrange
         navigateToUrl("books");
         BooksPage booksPage = new BooksPage(driver);
-
         int expectedBooksCount = 8;
+
+        // Act
         int actualBooksCount = booksPage.getCountFoundBooks();
 
-        Assert.assertEquals(actualBooksCount, expectedBooksCount, "\nExpected books count.\n");
+        // Assert
+        softAssert.assertEquals(actualBooksCount, expectedBooksCount, "\nExpected books count.\n");
+        softAssert.assertAll();
     }
 
     @Test(enabled = true, testName = "Click login button and verify link")
     public void ClickLoginButton() {
+        // Arrange
         navigateToUrl("books");
         BooksPage booksPage = new BooksPage(driver);
-
-        booksPage.clickLoginButton();
-
         String expectedUrl = "https://demoqa.com/login";
+
+        // Act
+        booksPage.clickLoginButton();
         String actualUrl = booksPage.checkUrl();
-        Assert.assertEquals(actualUrl, expectedUrl, "\n Expected url to be login \n");
+
+        // Assert
+        softAssert.assertEquals(actualUrl, expectedUrl, "\n Expected url to be login \n");
+        softAssert.assertAll();
     }
 
     @Test(enabled = true, testName = "Search for book and verify found book")

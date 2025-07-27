@@ -11,6 +11,7 @@ public class BookLoginPageTests extends BaseTest {
 
     @Test(enabled = true, testName = "Verify all text on page")
     public void VerifyAllTextOnPage() {
+        // Arrange
         navigateToUrl("login");
 
         BooksLoginPage booksLoginPage = new BooksLoginPage(driver);
@@ -25,6 +26,7 @@ public class BookLoginPageTests extends BaseTest {
         String loginButtonText = "Login";
         String newUserButtonText = "New User";
 
+        // Act
         String actualLoginHeaderText = booksLoginPage.getLoginHeaderText();
         String actualWelcomeText = booksLoginPage.getWelcomeText();
         String actualLoginInBookStoreText = booksLoginPage.getLoginInBookStoreText();
@@ -35,6 +37,7 @@ public class BookLoginPageTests extends BaseTest {
         String actualLoginButtonText = booksLoginPage.getLoginButtonText();
         String actualNewUserButtonText = booksLoginPage.getNewUserButtonText();
 
+        // Assert
         softAssert.assertEquals(actualLoginHeaderText, loginHeaderText, "\nWrong login header text.\n");
         softAssert.assertEquals(actualWelcomeText, welcomeText, "\nWrong welcome text.\n");
         softAssert.assertEquals(actualLoginInBookStoreText, loginInBookStoreText, "\nWrong login in book store.\n");
@@ -44,95 +47,110 @@ public class BookLoginPageTests extends BaseTest {
         softAssert.assertEquals(actualPasswordPlaceholder, passwordPlaceholder, "\nWrong password placeholder.\n");
         softAssert.assertEquals(actualLoginButtonText, loginButtonText, "\nWrong login button text.\n");
         softAssert.assertEquals(actualNewUserButtonText, newUserButtonText, "\nWrong new user button text.\n");
-
         softAssert.assertAll();
     }
 
     @Test(enabled = true, testName = "Login with valid username and valid password")
     public void LoginWithValidUsernameAndValidPassword() {
+        // Arrange
         navigateToUrl("login");
         BooksLoginPage booksLoginPage = new BooksLoginPage(driver);
 
         String expectedUsername = "fbinnzhivko";
         String password = "Karma1987!@";
 
+        // Act
         booksLoginPage.setUsername(expectedUsername);
         booksLoginPage.clickPassword();
         booksLoginPage.setPassword(password);
         booksLoginPage.clickLoginButton();
 
+        // Assert
         String actualProfile = booksLoginPage.getProfile();
-        Assert.assertEquals(actualProfile, expectedUsername, "\nNot same username.\n");
+        softAssert.assertEquals(actualProfile, expectedUsername, "\nNot same username.\n");
+        softAssert.assertAll();
     }
 
     @Test(enabled = true, testName = "Try to login with wrong username")
     public void TryToLoginWithWrongUsername() {
+        // Arrange
         navigateToUrl("login");
         BooksLoginPage booksLoginPage = new BooksLoginPage(driver);
 
         String expectedUsername = "username";
         String password = "h&vfCVj0k9BHofzP";
+        String expectedMessage = "Invalid username or password!";
 
+        // Act
         booksLoginPage.clickUsername();
         booksLoginPage.setUsername(expectedUsername);
         booksLoginPage.clickPassword();
         booksLoginPage.setPassword(password);
         booksLoginPage.clickLoginButton();
-
         String actualMessage = booksLoginPage.getErrorMessage();
-        String expectedMessage = "Invalid username or password!";
 
-        Assert.assertEquals(actualMessage, expectedMessage, "\nWrong username or password.\n");
+        // Assert
+        softAssert.assertEquals(actualMessage, expectedMessage, "\nWrong username or password.\n");
+        softAssert.assertAll();
     }
 
     @Test(enabled = true, testName = "Try to login with wrong username and wrong password")
     public void TryToLoginWithWrongUsernameAndWrongPassword() {
+        // Arrange
         navigateToUrl("login");
         BooksLoginPage booksLoginPage = new BooksLoginPage(driver);
 
-        String expectedUsername = "karma";
+        String username = "karma";
         String password = "karma";
+        String expectedMessage = "Invalid username or password!";
 
+        // Act
         booksLoginPage.clickUsername();
-        booksLoginPage.setUsername(expectedUsername);
+        booksLoginPage.setUsername(username);
         booksLoginPage.clickPassword();
         booksLoginPage.setPassword(password);
         booksLoginPage.clickLoginButton();
-
         String actualMessage = booksLoginPage.getErrorMessage();
-        String expectedMessage = "Invalid username or password!";
 
-        Assert.assertEquals(actualMessage, expectedMessage, "\nWrong username or password.\n");
+        // Assert
+        softAssert.assertEquals(actualMessage, expectedMessage, "\nWrong username or password.\n");
+        softAssert.assertAll();
     }
 
     @Test(enabled = true, testName = "Try to login with wrong password")
     public void TryToLoginWithWrongPassword() {
+        // Arrange
         navigateToUrl("login");
         BooksLoginPage booksLoginPage = new BooksLoginPage(driver);
 
-        String expectedUsername = "fbinnnzhivko";
+        String username = "fbinnnzhivko";
         String password = "password";
+        String expectedErrorMessage = "Invalid username or password!";
 
+        // Act
         booksLoginPage.clickUsername();
-        booksLoginPage.setUsername(expectedUsername);
+        booksLoginPage.setUsername(username);
         booksLoginPage.clickPassword();
         booksLoginPage.setPassword(password);
         booksLoginPage.clickLoginButton();
-
         String actualErrorMessage = booksLoginPage.getErrorMessage();
-        String expectedErrorMessage = "Invalid username or password!";
 
-        Assert.assertEquals(actualErrorMessage, expectedErrorMessage, "\nWrong password message.\n");
+        // Assert
+        softAssert.assertEquals(actualErrorMessage, expectedErrorMessage, "\nWrong password message.\n");
+        softAssert.assertAll();
     }
 
     @Test(enabled = true, testName = "Click logout after login")
     public void ClickLogoutAfterLogin() {
+        // Arrange
         navigateToUrl("login");
         BooksLoginPage booksLoginPage = new BooksLoginPage(driver);
 
         String expectedUsername = "fbinnzhivko";
         String password = "Karma1987!@";
+        String expectedLoginText = "Login in Book Store";
 
+        // Act
         booksLoginPage.setUsername(expectedUsername);
         booksLoginPage.clickPassword();
         booksLoginPage.setPassword(password);
@@ -140,18 +158,17 @@ public class BookLoginPageTests extends BaseTest {
 
         String actualProfile = booksLoginPage.getProfile();
         softAssert.assertEquals(actualProfile, expectedUsername, "\nNot same username.\n");
-
         booksLoginPage.clickLogoutButton();
-
-        String expectedLoginText = "Login in Book Store";
         String actualLoginText = booksLoginPage.getLoginText();
-        softAssert.assertEquals(actualLoginText, expectedLoginText, "\nNot same login text.\n");
 
+        // Assert
+        softAssert.assertEquals(actualLoginText, expectedLoginText, "\nNot same login text.\n");
         softAssert.assertAll();
     }
 
     @Test(enabled = true, testName = "Click on button gotobookstore")
     public void ClickOnButtonGotoBookStore() {
+        // Arrange
         navigateToUrl("login");
         BooksLoginPage booksLoginPage = new BooksLoginPage(driver);
         BooksProfilePage booksProfilePage = new BooksProfilePage(driver);
@@ -159,36 +176,42 @@ public class BookLoginPageTests extends BaseTest {
 
         String expectedUsername = "fbinnzhivko";
         String password = "Karma1987!@";
+        String expectedUrl = "https://demoqa.com/books";
 
+        // Act
         booksLoginPage.setUsername(expectedUsername);
         booksLoginPage.setPassword(password);
         booksLoginPage.clickLoginButton();
         booksProfilePage.clickGoToBookStoreButton();
-
-        String expectedUrl = "https://demoqa.com/books";
         String actualUrl = booksPage.checkUrl();
-        Assert.assertEquals(actualUrl, expectedUrl, "\nNot same books url.\n");
+
+        // Assert
+        softAssert.assertEquals(actualUrl, expectedUrl, "\nNot same books url.\n");
+        softAssert.assertAll();
     }
 
     @Test(enabled = true, testName = "Verify login page after login")
     public void VerifyLoginPageAfterLogin() {
+        // Arrange
         navigateToUrl("login");
         BooksLoginPage booksLoginPage = new BooksLoginPage(driver);
         BooksProfilePage booksProfilePage = new BooksProfilePage(driver);
 
         String expectedUsername = "fbinnzhivko";
         String password = "Karma1987!@";
+        String expectedText = "You are already logged in. View your profile.";
 
+        // Act
         booksLoginPage.setUsername(expectedUsername);
         booksLoginPage.clickPassword();
         booksLoginPage.setPassword(password);
         booksLoginPage.clickLoginButton();
         booksProfilePage.clickGoToBookStoreButton();
         booksProfilePage.clickLeftLoginLink2();
-
-        String expectedText = "You are already logged in. View your profile.";
         String actualLabel = booksLoginPage.getLoadingLabel();
 
-        Assert.assertEquals(actualLabel, expectedText, "\nNot same label.\n");
+        // Assert
+        softAssert.assertEquals(actualLabel, expectedText, "\nNot same label.\n");
+        softAssert.assertAll();
     }
 }

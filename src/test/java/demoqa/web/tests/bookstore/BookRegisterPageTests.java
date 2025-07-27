@@ -2,13 +2,13 @@ package demoqa.web.tests.bookstore;
 
 import demoqa.pages.bookstore.BooksRegisterPage;
 import demoqa.web.base.BaseTest;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class BookRegisterPageTests extends BaseTest {
 
     @Test(enabled = true, testName = "Verify all text on Page")
     public void VerifyAllTextOnPage() {
+        // Arrange
         navigateToUrl("register");
 
         BooksRegisterPage booksRegisterPage = new BooksRegisterPage(driver);
@@ -26,6 +26,7 @@ public class BookRegisterPageTests extends BaseTest {
         String expectedRegisterButtonName = "Register";
         String expectedBackToLoginButtonName = "Back to Login";
 
+        // Act
         String actualTitleText = booksRegisterPage.getTitle();
         String actualFirstText = booksRegisterPage.getFirstText();
         String actualFirstNameLabel = booksRegisterPage.getFirstNameLabel();
@@ -40,6 +41,7 @@ public class BookRegisterPageTests extends BaseTest {
         String actualRegisterButtonText = booksRegisterPage.getTextOfRegisterButton();
         String actualBackToLoginButtonText = booksRegisterPage.getTextOfBackToLoginButton();
 
+        // Assert
         softAssert.assertEquals(actualFirstNamePlaceholder, expectedFirstNamePlaceholder, "\nWrong first name placeholder.\n");
         softAssert.assertEquals(actualLastNamePlaceholder, expectedLastNamePlaceholder, "\nWrong last name placeholder.\n");
         softAssert.assertEquals(actualUserNamePlaceholder, expectedUserNamePlaceholder, "\nWrong username placeholder.\n");
@@ -50,17 +52,15 @@ public class BookRegisterPageTests extends BaseTest {
         softAssert.assertEquals(actualLastNameLabel, expectedLastNameLabel, "\nWrong last name label placeholder.\n");
         softAssert.assertEquals(actualUserNameLabel, expectedUserNameLabel, "\nWrong username label placeholder.\n");
         softAssert.assertEquals(actualPasswordLabel, expectedPasswordLabel, "\nWrong password label placeholder.\n");
-
         softAssert.assertEquals(actualRegisterButtonText, expectedRegisterButtonName, "\nMissing register button.\n");
         softAssert.assertEquals(actualBackToLoginButtonText, expectedBackToLoginButtonName, "\nMissing backtologin button.\n");
-
         softAssert.assertAll();
     }
 
     @Test(enabled = true, testName = "Try to login without recaptcha")
     public void TryToLoginWithoutReCaptcha() {
+        // Arrange
         navigateToUrl("register");
-
         BooksRegisterPage booksRegisterPage = new BooksRegisterPage(driver);
 
         String expectedFirstName = "Zhivko";
@@ -69,6 +69,7 @@ public class BookRegisterPageTests extends BaseTest {
         String expectedPassword = "1234Aa!";
         String expectedErrorMessage = "Please verify reCaptcha to register!";
 
+        // Act
         booksRegisterPage.setFirstName(expectedFirstName);
         booksRegisterPage.setLastName(expectedLastName);
         booksRegisterPage.setUsername(expectedUsername);
@@ -77,6 +78,8 @@ public class BookRegisterPageTests extends BaseTest {
         booksRegisterPage.clickRegisterButton();
         String actualErrorMessage = booksRegisterPage.getErrorMessage();
 
-        Assert.assertEquals(actualErrorMessage, expectedErrorMessage, "\nWrong error message.\n");
+        // Assert
+        softAssert.assertEquals(actualErrorMessage, expectedErrorMessage, "\nWrong error message.\n");
+        softAssert.assertAll();
     }
 }
