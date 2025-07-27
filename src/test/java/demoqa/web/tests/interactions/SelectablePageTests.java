@@ -1,9 +1,7 @@
 package demoqa.web.tests.interactions;
 
-
 import demoqa.pages.interactions.SelectablePage;
 import demoqa.web.base.BaseTest;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class SelectablePageTests extends BaseTest {

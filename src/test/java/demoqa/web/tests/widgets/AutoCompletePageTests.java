@@ -2,7 +2,6 @@ package demoqa.web.tests.widgets;
 
 import demoqa.pages.widgets.AutoCompletePage;
 import demoqa.web.base.BaseTest;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class AutoCompletePageTests extends BaseTest {

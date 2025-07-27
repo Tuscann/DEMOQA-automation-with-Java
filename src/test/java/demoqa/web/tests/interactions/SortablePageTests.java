@@ -2,7 +2,6 @@ package demoqa.web.tests.interactions;
 
 import demoqa.pages.interactions.SortablePage;
 import demoqa.web.base.BaseTest;
-import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
