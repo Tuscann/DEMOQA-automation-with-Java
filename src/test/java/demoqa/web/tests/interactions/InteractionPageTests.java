@@ -32,31 +32,34 @@ public class InteractionPageTests extends BaseTest {
         navigateToUrl("interaction");
         InteractionsPage interactionsPage = new InteractionsPage(driver);
 
-        String expectedUrl = "https://demoqa.com/sortable";
+        String expectedSortableUrl = "https://demoqa.com/sortable";
+        String expectedSelectableUrl = "https://demoqa.com/selectable";
+        String expectedResizableUrl = "https://demoqa.com/resizable";
+        String expectedDroppableUrl = "https://demoqa.com/droppable";
+        String expectedDragabbleUrl = "https://demoqa.com/dragabble";
+
+        // Act
         interactionsPage.clickSortable();
-        String actualUrl = interactionsPage.checkUrl();
-        softAssert.assertEquals(actualUrl, expectedUrl, "\nWrong url for sortable page.\n");
+        String actualSortableUrl = interactionsPage.checkUrl();
 
-        expectedUrl = "https://demoqa.com/selectable";
         interactionsPage.clickSelectable();
-        actualUrl = interactionsPage.checkUrl();
-        softAssert.assertEquals(actualUrl, expectedUrl, "\nWrong url for selectable page.\n");
+        String actualSelectableUrl = interactionsPage.checkUrl();
 
-        expectedUrl = "https://demoqa.com/resizable";
         interactionsPage.clickResizable();
-        actualUrl = interactionsPage.checkUrl();
-        softAssert.assertEquals(actualUrl, expectedUrl, "\nWrong url for resizable page.\n");
+        String actualResizableUrl = interactionsPage.checkUrl();
 
-        expectedUrl = "https://demoqa.com/droppable";
         interactionsPage.clickDroppable();
-        actualUrl = interactionsPage.checkUrl();
-        softAssert.assertEquals(actualUrl, expectedUrl, "\nWrong url for droppable page.\n");
+        String actualDroppableUrl = interactionsPage.checkUrl();
 
-        expectedUrl = "https://demoqa.com/dragabble";
         interactionsPage.clickDraggable();
-        actualUrl = interactionsPage.checkUrl();
-        softAssert.assertEquals(actualUrl, expectedUrl, "\nWrong url for draggable page.\n");
+        String actualDragabbleUrl = interactionsPage.checkUrl();
 
+        // Assert
+        softAssert.assertEquals(actualSortableUrl, expectedSortableUrl, "\nWrong url for sortable page.\n");
+        softAssert.assertEquals(actualSelectableUrl, expectedSelectableUrl, "\nWrong url for selectable page.\n");
+        softAssert.assertEquals(actualResizableUrl, expectedResizableUrl, "\nWrong url for resizable page.\n");
+        softAssert.assertEquals(actualDroppableUrl, expectedDroppableUrl, "\nWrong url for droppable page.\n");
+        softAssert.assertEquals(actualDragabbleUrl, expectedDragabbleUrl, "\nWrong url for draggable page.\n");
         softAssert.assertAll();
     }
 }

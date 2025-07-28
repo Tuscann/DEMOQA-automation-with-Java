@@ -21,7 +21,6 @@ public class FramesPageTests extends BaseTest {
         // Assert
         softAssert.assertEquals(actualHeadingText, expectedHeadingText, "\nWrong heading.\n");
         softAssert.assertEquals(actualText, expectedText, "\nWrong text.\n");
-
         softAssert.assertAll();
     }
 

@@ -28,7 +28,6 @@ public class ModalDialogsPagePageTests extends BaseTest {
         softAssert.assertEquals(actualClickText, clickText, "\nMissing click text.\n");
         softAssert.assertEquals(actualSmallText, smallButtonText, "\nMissing small text.\n");
         softAssert.assertEquals(actualLargeText, largeButtonText, "\nMissing large text.\n");
-
         softAssert.assertAll();
     }
 
@@ -52,7 +51,6 @@ public class ModalDialogsPagePageTests extends BaseTest {
         softAssert.assertEquals(actualSmallModalHeader, expectedSmallModalText, "\nWrong modal header text.\n");
         softAssert.assertEquals(actualSmallBodyText, expectedSmallBodyText, "\nWrong modal header text.\n");
         softAssert.assertEquals(actualCloseButtonText, expectedClosButtonText, "\nWrong close button text.\n");
-
         softAssert.assertAll();
     }
 
@@ -76,7 +74,6 @@ public class ModalDialogsPagePageTests extends BaseTest {
         softAssert.assertEquals(actualLargeModalHeader, expectedLargeModalText, "\nWrong modal header text.\n");
         softAssert.assertEquals(actualBodyText, expectedLargeBodyText, "\nWrong modal header text.\n");
         softAssert.assertEquals(actualCloseButtonText, expectedClosButtonText, "\nWrong close button text.\n");
-
         softAssert.assertAll();
     }
 }

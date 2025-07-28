@@ -17,6 +17,7 @@ public class ResizablePageTests extends BaseTest {
         String resizableBoxWithRestrictionText = "Resizable box, starting at 200x200. Min size is 150x150, max is 500x300.";
         String resizableText = "Resizable";
 
+        // Act
         String actualPageTitle = resizablePage.getPageTitleText();
         String actualResizableBoxWithRestrictionText = resizablePage.getResizableBoxWithRestrictionText();
         String actualResizableText = resizablePage.getResizableText();
@@ -46,8 +47,8 @@ public class ResizablePageTests extends BaseTest {
         navigateToUrl("resizable");
         ResizablePage resizablePage = new ResizablePage(driver);
 
+        // Act
         resizablePage.changeSize(addX, addY);
-
         String actualNewSize = resizablePage.getNewSizeBox();
 
         // Assert
@@ -71,8 +72,8 @@ public class ResizablePageTests extends BaseTest {
         navigateToUrl("resizable");
         ResizablePage resizablePage = new ResizablePage(driver);
 
+        // Act
         resizablePage.changeSizeWithoutLimitations(addAmountOnXAxis, addAmountOnYAxis);
-
         String actualNewSize = resizablePage.getNewSizeBox2();
 
         // Assert
@@ -94,6 +95,7 @@ public class ResizablePageTests extends BaseTest {
         navigateToUrl("resizable");
         ResizablePage resizablePage = new ResizablePage(driver);
 
+        // Act
         resizablePage.changeSize(addX, addY);
         String actualNewSize = resizablePage.getNewSizeBox();
 

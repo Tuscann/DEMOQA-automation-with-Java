@@ -21,7 +21,6 @@ public class NestedFramesPageTests extends BaseTest {
         // Assert
         softAssert.assertEquals(actualHeadingText, expectedHeadingText, "\nMissing Heading text.\n");
         softAssert.assertEquals(actualMainText, expectedMainText, "\nWrong main text.\n");
-
         softAssert.assertAll();
     }
 

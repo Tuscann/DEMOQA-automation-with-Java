@@ -9,6 +9,7 @@ public class TextBoxPageTests extends BaseTest {
 
     @Test(enabled = true, testName = "Verify all placeholders and all labels")
     public void VerifyAllPlaceholdersAndAllLabels() {
+        // Arrange
         navigateToUrl("text-box");
 
         TextBoxPage textBoxPage = new TextBoxPage(driver);
@@ -51,6 +52,7 @@ public class TextBoxPageTests extends BaseTest {
 
     @Test(enabled = true, testName = "Submit fill form")
     public void SubmitFillForm() {
+        // Arrange
         navigateToUrl("text-box");
         TextBoxPage textBoxPage = new TextBoxPage(driver);
 
@@ -80,6 +82,7 @@ public class TextBoxPageTests extends BaseTest {
 
     @Test(enabled = true, testName = "Submit empty form")
     public void SubmitEmptyForm() {
+        // Arrange
         navigateToUrl("text-box");
         TextBoxPage textBoxPage = new TextBoxPage(driver);
 
@@ -92,6 +95,7 @@ public class TextBoxPageTests extends BaseTest {
 
     @Test(enabled = true, testName = "Submit only full name")
     public void SubmitOnlyFullName() {
+        // Arrange
         navigateToUrl("text-box");
         TextBoxPage textBoxPage = new TextBoxPage(driver);
 
@@ -107,6 +111,7 @@ public class TextBoxPageTests extends BaseTest {
 
     @Test(enabled = true, testName = "Submit only valid email")
     public void SubmitOnlyValidEmail() {
+        // Arrange
         navigateToUrl("text-box");
         TextBoxPage textBoxPage = new TextBoxPage(driver);
 
@@ -121,6 +126,7 @@ public class TextBoxPageTests extends BaseTest {
 
     @Test(enabled = true, testName = "Try to submit non valid email and check red line")
     public void TryToSubmitUnValidEmailAndCheckRedLine() {
+        // Arrange
         navigateToUrl("text-box");
         TextBoxPage textBoxPage = new TextBoxPage(driver);
 
@@ -136,6 +142,7 @@ public class TextBoxPageTests extends BaseTest {
 
     @Test(enabled = true, testName = "Submit only valid current address")
     public void SubmitOnlyValidCurrentAddress() {
+        // Arrange
         navigateToUrl("text-box");
         TextBoxPage textBoxPage = new TextBoxPage(driver);
 
@@ -150,6 +157,7 @@ public class TextBoxPageTests extends BaseTest {
 
     @Test(enabled = true, testName = "Submit only valid permanent address")
     public void SubmitOnlyValidPermanentAddress() {
+        // Arrange
         navigateToUrl("text-box");
         TextBoxPage textBoxPage = new TextBoxPage(driver);
 
@@ -164,6 +172,7 @@ public class TextBoxPageTests extends BaseTest {
 
     @Test(enabled = true, testName = "Update all fields after submit")
     public void UpdateAllFieldsAfterSubmit() {
+        // Arrange
         navigateToUrl("text-box");
         TextBoxPage textBoxPage = new TextBoxPage(driver);
 

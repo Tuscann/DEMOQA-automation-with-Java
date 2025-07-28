@@ -36,7 +36,6 @@ public class BrokenLinksImagesPageTest extends BaseTest {
         softAssert.assertEquals(actualValidImageText, expectedValidImageText, "\nWrong valid image text.\n");
         softAssert.assertEquals(actualBrokenLinkText, expectedBrokenLinkText, "\nWrong broken link text.\n");
         softAssert.assertEquals(actualClickHereBrokenLinkText, expectedClickHereBrokenLinkText, "\nWrong click link text.\n");
-
         softAssert.assertAll();
     }
 

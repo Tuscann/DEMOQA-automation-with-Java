@@ -28,6 +28,7 @@ public class SelectablePageTests extends BaseTest {
         String gridEight = "Eight";
         String gridNine = "Nine";
 
+        // Act
         String actualPageTitle = selectablePage.getPageTitleText();
         String actualListTab = selectablePage.getListTabText();
         String actualListFirstText = selectablePage.getListFirstText();
@@ -71,16 +72,19 @@ public class SelectablePageTests extends BaseTest {
         // Arrange
         navigateToUrl("selectable");
         SelectablePage selectablePage = new SelectablePage(driver);
-
         String searched1Selection = "Cras justo odio";
+        String searched2Selection = "Dapibus ac facilisis in";
+        String searched3Selection = "Morbi leo risus";
+        String searched4Selection = "Porta ac consectetur ac";
+        int position = 0;
+
         boolean isRowSelected = selectablePage.RowSelected(searched1Selection);
         softAssert.assertFalse(isRowSelected, "\nFirst row is selected.\n");
-        int position = 0;
+
         selectablePage.clickElement(position);
         isRowSelected = selectablePage.RowSelected(searched1Selection);
         softAssert.assertTrue(isRowSelected, "\nFirst row is not selected.\n");
 
-        String searched2Selection = "Dapibus ac facilisis in";
         isRowSelected = selectablePage.RowSelected(searched2Selection);
         softAssert.assertFalse(isRowSelected, "\nSecond row is selected.\n");
         position = 1;
@@ -88,7 +92,6 @@ public class SelectablePageTests extends BaseTest {
         isRowSelected = selectablePage.RowSelected(searched2Selection);
         softAssert.assertTrue(isRowSelected, "\nSecond row is not selected.\n");
 
-        String searched3Selection = "Morbi leo risus";
         isRowSelected = selectablePage.RowSelected(searched3Selection);
         softAssert.assertFalse(isRowSelected, "\nThird row is selected.\n");
         position = 2;
@@ -96,7 +99,6 @@ public class SelectablePageTests extends BaseTest {
         isRowSelected = selectablePage.RowSelected(searched3Selection);
         softAssert.assertTrue(isRowSelected, "\nThird row is not selected.\n");
 
-        String searched4Selection = "Porta ac consectetur ac";
         isRowSelected = selectablePage.RowSelected(searched4Selection);
         softAssert.assertFalse(isRowSelected, "\nFour row is selected.\n");
         position = 3;

@@ -2,13 +2,13 @@ package demoqa.web.tests.elements;
 
 import demoqa.pages.elements.LinksPage;
 import demoqa.web.base.BaseTest;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class LinksPageTests extends BaseTest {
 
     @Test(enabled = true, testName = "Verify all text on page")
     public void VerifyAllTextOnPage() {
+        // Arrange
         navigateToUrl("links");
 
         LinksPage linksPage = new LinksPage(driver);
@@ -55,6 +55,7 @@ public class LinksPageTests extends BaseTest {
 
     @Test(enabled = true, testName = "Open new tab from simple link")
     public void OpenNewTabFromSimpleLink() {
+        // Arrange
         navigateToUrl("links");
         LinksPage linksPage = new LinksPage(driver);
 
@@ -63,11 +64,13 @@ public class LinksPageTests extends BaseTest {
         String urlNewTab = linksPage.getUrl();
         String expectedUrlNewTab = "https://demoqa.com/";
 
-        Assert.assertEquals(urlNewTab, expectedUrlNewTab, "\n Actual & Expected New Tab Url Do Not Match.\n");
+        softAssert.assertEquals(urlNewTab, expectedUrlNewTab, "\n Actual & Expected New Tab Url Do Not Match.\n");
+        softAssert.assertAll();
     }
 
     @Test(enabled = true, testName = "Open new tab from dynamic link")
     public void OpenNewTabFromDynamicLink() {
+        // Arrange
         navigateToUrl("links");
         LinksPage linksPage = new LinksPage(driver);
 
@@ -76,105 +79,120 @@ public class LinksPageTests extends BaseTest {
         String urlNewTab = linksPage.getUrl();
         String expectedUrlNewTab = "https://demoqa.com/";
 
-        Assert.assertEquals(urlNewTab, expectedUrlNewTab,
+        softAssert.assertEquals(urlNewTab, expectedUrlNewTab,
                 "\n Actual & Expected New Tab Url Do Not Match.\n");
+        softAssert.assertAll();
     }
 
     @Test(enabled = true, testName = "Click on created link")
     public void ClickOnkCreatedLink() {
+        // Arrange
         navigateToUrl("links");
         LinksPage linksPage = new LinksPage(driver);
 
         linksPage.clickCreatedLink();
         String actualResponseText = linksPage.getResponse();
 
-        Assert.assertTrue(actualResponseText.contains("201")
+        softAssert.assertTrue(actualResponseText.contains("201")
                         && actualResponseText.contains("Created"),
                 "\n Link has responded with staus" + actualResponseText +
                         ")\n and status text Created \n");
+        softAssert.assertAll();
     }
 
     @Test(enabled = true, testName = "Click on no content link")
     public void ClickOnNoContentLink() {
+        // Arrange
         navigateToUrl("links");
         LinksPage linksPage = new LinksPage(driver);
 
         linksPage.clickNoContentRequestLink();
         String actualResponse = linksPage.getResponse();
 
-        Assert.assertTrue(actualResponse.contains("204")
+        softAssert.assertTrue(actualResponse.contains("204")
                         && actualResponse.contains("No Content"),
                 "\n Link has responded with staus" + actualResponse +
                         ")\n and status text Created \n");
+        softAssert.assertAll();
     }
 
     @Test(enabled = true, testName = "Click on moved link")
     public void ClickOnMovedLink() {
+        // Arrange
         navigateToUrl("links");
         LinksPage linksPage = new LinksPage(driver);
 
         linksPage.clickMovedLink();
         String actualResponse = linksPage.getResponse();
 
-        Assert.assertTrue(actualResponse.contains("301")
+        softAssert.assertTrue(actualResponse.contains("301")
                         && actualResponse.contains("Moved Permanently"),
                 "\n Link has responded with staus" + actualResponse +
                         ")\n and status text Created \n");
+        softAssert.assertAll();
     }
 
     @Test(enabled = true, testName = "Click on bad request link")
     public void ClickOnBadRequestLink() {
+        // Arrange
         navigateToUrl("links");
         LinksPage linksPage = new LinksPage(driver);
 
         linksPage.clickBadRequestLink();
         String actualResponse = linksPage.getResponse();
 
-        Assert.assertTrue(actualResponse.contains("400")
+        softAssert.assertTrue(actualResponse.contains("400")
                         && actualResponse.contains("Bad Request"),
                 "\n Actual Response (" + actualResponse +
                         ")\n Does Not Contain '400' and 'Bad Request' \n");
+        softAssert.assertAll();
     }
 
     @Test(enabled = true, testName = "Click on unauthorized link")
     public void ClickOnUnAuthorizedLink() {
+        // Arrange
         navigateToUrl("links");
         LinksPage linksPage = new LinksPage(driver);
 
         linksPage.clickUnauthorizedLink();
         String actualResponse = linksPage.getResponse();
 
-        Assert.assertTrue(actualResponse.contains("401")
+        softAssert.assertTrue(actualResponse.contains("401")
                         && actualResponse.contains("Unauthorized"),
                 "\n Link has responded with staus" + actualResponse +
                         ")\n and status text Created \n");
+        softAssert.assertAll();
     }
 
     @Test(enabled = true, testName = "Click on forbidden link")
     public void ClickOnForbiddenLink() {
+        // Arrange
         navigateToUrl("links");
         LinksPage linksPage = new LinksPage(driver);
 
         linksPage.clickForbiddenLink();
         String actualResponse = linksPage.getResponse();
 
-        Assert.assertTrue(actualResponse.contains("403")
+        softAssert.assertTrue(actualResponse.contains("403")
                         && actualResponse.contains("Forbidden"),
-                "\n Link has responded with staus" + actualResponse +
+                "\n Link has responded with status" + actualResponse +
                         ")\n and status text Created \n");
+        softAssert.assertAll();
     }
 
     @Test(enabled = true, testName = "Click on not found link")
     public void ClickOnNotFoundLink() {
+        // Arrange
         navigateToUrl("links");
         LinksPage linksPage = new LinksPage(driver);
 
         linksPage.clickNotFoundLink();
         String actualResponse = linksPage.getResponse();
 
-        Assert.assertTrue(actualResponse.contains("404")
+        softAssert.assertTrue(actualResponse.contains("404")
                         && actualResponse.contains("Not Found"),
                 "\n Link has responded with staus" + actualResponse +
                         ")\n and status text Created \n");
+        softAssert.assertAll();
     }
 }

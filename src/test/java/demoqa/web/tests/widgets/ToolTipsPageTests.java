@@ -39,25 +39,22 @@ public class ToolTipsPageTests extends BaseTest {
         // Arrange
         navigateToUrl("tool-tips");
         ToolTipsPage toolTipsPage = new ToolTipsPage(driver);
+        String expectedTooltipText1 = "You hovered over the Button";
+        String expectedTooltipText2 = "You hovered over the text field";
+        String expectedTooltipText3 = "You hovered over the Contrary";
+        String expectedTooltipText4 = "You hovered over the 1.10.32";
 
         // Act
         String actualTooltipText = toolTipsPage.getHoverOverHoverMeToSeeButtonReturnToolTipText();
-        String expectedTooltipText = "You hovered over the Button";
-        softAssert.assertEquals(actualTooltipText, expectedTooltipText, "\nMissing tooltip.\n");
-
         String actualHoverMeToSeeTextField = toolTipsPage.getHoverOverHoverMeToSeeTextFieldReturnToolTipText();
-        expectedTooltipText = "You hovered over the text field";
-        softAssert.assertEquals(actualHoverMeToSeeTextField, expectedTooltipText, "\nMissing tooltip text feild.\n");
-
         String actualContraryTextField = toolTipsPage.getHoverOverContraryReturnToolTipText();
-        expectedTooltipText = "You hovered over the Contrary";
-        softAssert.assertEquals(actualContraryTextField, expectedTooltipText, "\nMissing tooltip contrary.\n");
-
         String actualSection = toolTipsPage.getHoverOverSectionText();
-        expectedTooltipText = "You hovered over the 1.10.32";
 
         // Assert
-        softAssert.assertEquals(actualSection, expectedTooltipText, "\nMissing tooltip contrary.\n");
+        softAssert.assertEquals(actualTooltipText, expectedTooltipText1, "\nMissing tooltip.\n");
+        softAssert.assertEquals(actualHoverMeToSeeTextField, expectedTooltipText2, "\nMissing tooltip text feild.\n");
+        softAssert.assertEquals(actualContraryTextField, expectedTooltipText3, "\nMissing tooltip contrary.\n");
+        softAssert.assertEquals(actualSection, expectedTooltipText4, "\nMissing tooltip contrary.\n");
         softAssert.assertAll();
     }
 }

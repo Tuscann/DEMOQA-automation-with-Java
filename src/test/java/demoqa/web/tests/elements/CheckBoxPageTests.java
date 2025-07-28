@@ -8,20 +8,22 @@ public class CheckBoxPageTests extends BaseTest {
 
     @Test(enabled = true, testName = "Select notes checkbox")
     public void SelectNotesCheckBox() {
+        // Arrange
         navigateToUrl("checkbox");
         CheckBoxPage checkBoxPage = new CheckBoxPage(driver);
+        String expectedHeader = "Check Box";
+        String expectedResultMessage = "You have selected :\nnotes";
 
+        // Act
         checkBoxPage.clickExpandAll();
         checkBoxPage.clickNotes();
 
         String actualResultMessage = checkBoxPage.getResultMessage();
-        String expectedResultMessage = "You have selected :\nnotes";
-        softAssert.assertEquals(actualResultMessage, expectedResultMessage, "\nNot selected Notes\n");
-
-        String header = "Check Box";
         String actualHeader = checkBoxPage.getHeader();
-        softAssert.assertEquals(actualHeader, header, "\nWrong Header Message.\n");
 
+        // Assert
+        softAssert.assertEquals(actualResultMessage, expectedResultMessage, "\nNot selected Notes\n");
+        softAssert.assertEquals(actualHeader, expectedHeader, "\nWrong Header Message.\n");
         softAssert.assertAll();
     }
 
@@ -30,18 +32,19 @@ public class CheckBoxPageTests extends BaseTest {
         // Arrange
         navigateToUrl("checkbox");
         CheckBoxPage checkBoxPage = new CheckBoxPage(driver);
-
-        checkBoxPage.clickExpandAll();
-        checkBoxPage.clickNotes();
-        checkBoxPage.clickCommands();
-
-        String actualResult = checkBoxPage.getResultMessage();
         String expectedResult = """
                 You have selected :
                 desktop
                 notes
                 commands""";
 
+        // Act
+        checkBoxPage.clickExpandAll();
+        checkBoxPage.clickNotes();
+        checkBoxPage.clickCommands();
+        String actualResult = checkBoxPage.getResultMessage();
+
+        // Assert
         softAssert.assertEquals(actualResult, expectedResult, "\nNot selected Notes.\n");
         softAssert.assertAll();
     }
@@ -51,20 +54,20 @@ public class CheckBoxPageTests extends BaseTest {
         // Arrange
         navigateToUrl("checkbox");
         CheckBoxPage checkBoxPage = new CheckBoxPage(driver);
+        String expectedResult = """
+                You have selected :
+                notes""";
 
         checkBoxPage.clickExpandAll();
         checkBoxPage.clickNotes();
 
         String actualResult = checkBoxPage.getResultMessage();
-        String expectedResult = """
-                You have selected :
-                notes""";
+
         softAssert.assertEquals(actualResult, expectedResult, "\nNot selected Notes.\n");
 
         checkBoxPage.clickNotes();
 
         softAssert.assertTrue(checkBoxPage.isResultMessageShown(), "\nShown wrong category.\n");
-
         softAssert.assertAll();
     }
 
@@ -76,6 +79,7 @@ public class CheckBoxPageTests extends BaseTest {
 
         checkBoxPage.clickExpandAll();
 
+        // Assert
         softAssert.assertTrue(checkBoxPage.isResultMessageShown(), "\nShown some category\n");
         softAssert.assertAll();
     }
@@ -85,13 +89,14 @@ public class CheckBoxPageTests extends BaseTest {
         // Arrange
         navigateToUrl("checkbox");
         CheckBoxPage checkBoxPage = new CheckBoxPage(driver);
+        String expectedResult = "You have selected :\ncommands";
 
         checkBoxPage.clickExpandAll();
         checkBoxPage.clickCommands();
 
         String actualResult = checkBoxPage.getResultMessage();
-        String expectedResult = "You have selected :\ncommands";
 
+        // Assert
         softAssert.assertEquals(actualResult, expectedResult, "\nNot selected Commands.\n");
         softAssert.assertAll();
     }
@@ -101,17 +106,19 @@ public class CheckBoxPageTests extends BaseTest {
         // Arrange
         navigateToUrl("checkbox");
         CheckBoxPage checkBoxPage = new CheckBoxPage(driver);
-
-        checkBoxPage.clickExpandAll();
-        checkBoxPage.clickNotes();
-        checkBoxPage.clickOfficePublic();
-
-        String actualResult = checkBoxPage.getResultMessage();
         String expectedResult = """
                 You have selected :
                 notes
                 public""";
 
+        // Act
+        checkBoxPage.clickExpandAll();
+        checkBoxPage.clickNotes();
+        checkBoxPage.clickOfficePublic();
+
+        String actualResult = checkBoxPage.getResultMessage();
+
+        // Assert
         softAssert.assertEquals(actualResult, expectedResult, "Not selected 3 checkbox Notes/Commands");
         softAssert.assertAll();
     }
@@ -121,13 +128,6 @@ public class CheckBoxPageTests extends BaseTest {
         // Arrange
         navigateToUrl("checkbox");
         CheckBoxPage checkBoxPage = new CheckBoxPage(driver);
-
-        checkBoxPage.clickExpandAll();
-        checkBoxPage.clickOffice();
-        checkBoxPage.clickWorkSpace();
-        checkBoxPage.clickCollapseAll();
-
-        String actualResult = checkBoxPage.getResultMessage();
         String expectedResult = """
                 You have selected :
                 documents
@@ -141,6 +141,14 @@ public class CheckBoxPageTests extends BaseTest {
                 classified
                 general""";
 
+        // Act
+        checkBoxPage.clickExpandAll();
+        checkBoxPage.clickOffice();
+        checkBoxPage.clickWorkSpace();
+        checkBoxPage.clickCollapseAll();
+        String actualResult = checkBoxPage.getResultMessage();
+
+        // Assert
         softAssert.assertEquals(actualResult, expectedResult, "\nNot selected 3 checkbox Notes/Commands.\n");
         softAssert.assertAll();
     }
@@ -150,10 +158,6 @@ public class CheckBoxPageTests extends BaseTest {
         // Arrange
         navigateToUrl("checkbox");
         CheckBoxPage checkBoxPage = new CheckBoxPage(driver);
-
-        checkBoxPage.clickHome();
-
-        String actualResult = checkBoxPage.getResultMessage();
         String expectedResult = """
                 You have selected :
                 home
@@ -174,6 +178,11 @@ public class CheckBoxPageTests extends BaseTest {
                 wordFile
                 excelFile""";
 
+        // Act
+        checkBoxPage.clickHome();
+        String actualResult = checkBoxPage.getResultMessage();
+
+        // Assert
         softAssert.assertEquals(actualResult, expectedResult, "\nNot selected all CheckBoxes.\n");
         softAssert.assertAll();
     }
@@ -204,6 +213,7 @@ public class CheckBoxPageTests extends BaseTest {
                 wordFile
                 excelFile""";
 
+        // Act
         checkBoxPage.clickExpandAll();
         checkBoxPage.clickDesktop();
         checkBoxPage.clickDocuments();
@@ -211,6 +221,7 @@ public class CheckBoxPageTests extends BaseTest {
 
         String actualResult = checkBoxPage.getResultMessage();
 
+        // Assert
         softAssert.assertEquals(actualResult, expectedResult, "\nNot selected all CheckBoxes\n");
         softAssert.assertAll();
     }
@@ -263,6 +274,7 @@ public class CheckBoxPageTests extends BaseTest {
 
     @Test(enabled = true, testName = "Select all checkboxes one by one and deselect all")
     public void SelectAllCheckBoxesOneByOneAndDeselectAll() {
+        // Arrange
         navigateToUrl("checkbox");
         CheckBoxPage checkBoxPage = new CheckBoxPage(driver);
 
@@ -300,8 +312,7 @@ public class CheckBoxPageTests extends BaseTest {
                 wordFile
                 excelFile""";
 
-        softAssert.assertEquals(actualResult, expectedResult, "\nNot selected all CheckBoxes.\n");
-
+        // Act
         checkBoxPage.clickNotes();
         checkBoxPage.clickCommands();
         checkBoxPage.clickReact();
@@ -316,6 +327,8 @@ public class CheckBoxPageTests extends BaseTest {
 
         boolean isResultMessageShown = checkBoxPage.verifyResultMessageIsMissing();
 
+        // Assert
+        softAssert.assertEquals(actualResult, expectedResult, "\nNot selected all CheckBoxes.\n");
         softAssert.assertTrue(isResultMessageShown, "\nFound some selected CheckBoxes.\n");
         softAssert.assertAll();
     }

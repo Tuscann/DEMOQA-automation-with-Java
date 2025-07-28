@@ -24,30 +24,33 @@ public class BooksPageTests extends BaseTest {
 
     @Test(enabled = true, testName = "Click on 4 links on left side")
     public void CheckAllFourPagesLinks() {
+        // Arrange
         navigateToUrl("books");
-
         BooksPage booksPage = new BooksPage(driver);
 
-        String expectedUrl = "https://demoqa.com/login";
+        String expectedLoginUrl = "https://demoqa.com/login";
+        String expectedBooksUrl = "https://demoqa.com/books";
+        String expectedProfileUrl = "https://demoqa.com/profile";
+        String expectedSwaggerUrl = "https://demoqa.com/swagger/";
+
+        // Act
         booksPage.clickLoginLink();
-        String actualUrl = booksPage.checkUrl();
-        softAssert.assertEquals(actualUrl, expectedUrl, "\nExpected login url.\n");
+        String actualLoginUrl = booksPage.checkUrl();
 
-        expectedUrl = "https://demoqa.com/books";
         booksPage.clickBookStoreLink();
-        actualUrl = booksPage.checkUrl();
-        softAssert.assertEquals(actualUrl, expectedUrl, "\nExpected book store link.\n");
+        String actualBooksUrl = booksPage.checkUrl();
 
-        expectedUrl = "https://demoqa.com/profile";
         booksPage.clickProfileLink();
-        actualUrl = booksPage.checkUrl();
-        softAssert.assertEquals(actualUrl, expectedUrl, "\nExpected profile link.\n");
+        String actualProfileUrl = booksPage.checkUrl();
 
-        expectedUrl = "https://demoqa.com/swagger/";
         booksPage.clickBookStoreAPILink();
-        actualUrl = booksPage.checkUrl();
-        softAssert.assertEquals(actualUrl, expectedUrl, "\nExpected book store API link.\n");
+        String actualSwaggerUrl = booksPage.checkUrl();
 
+        // Assert
+        softAssert.assertEquals(actualLoginUrl, expectedLoginUrl, "\nExpected login url.\n");
+        softAssert.assertEquals(actualBooksUrl, expectedBooksUrl, "\nExpected book store link.\n");
+        softAssert.assertEquals(actualProfileUrl, expectedProfileUrl, "\nExpected profile link.\n");
+        softAssert.assertEquals(actualSwaggerUrl, expectedSwaggerUrl, "\nExpected book store API link.\n");
         softAssert.assertAll();
     }
 
@@ -103,6 +106,7 @@ public class BooksPageTests extends BaseTest {
 
     @Test(enabled = true, testName = "Search for book and verify found book")
     public void SearchAndFindOneBook() {
+        // Arrange
         navigateToUrl("books");
         BooksPage booksPage = new BooksPage(driver);
 
@@ -115,11 +119,13 @@ public class BooksPageTests extends BaseTest {
                 No Starch Press""";
         String actualFindBooks = booksPage.getAllFoundBooks();
 
-        Assert.assertEquals(actualFindBooks, expectedBooks, "\nExpected not books found.\n");
+        softAssert.assertEquals(actualFindBooks, expectedBooks, "\nExpected not books found.\n");
+        softAssert.assertAll();
     }
 
     @Test(enabled = true, testName = "Search for book and verify no books are found")
     public void SearchAndFindNoBook() {
+        // Arrange
         navigateToUrl("books");
         BooksPage booksPage = new BooksPage(driver);
 
@@ -129,11 +135,13 @@ public class BooksPageTests extends BaseTest {
         String expectedMessage = "No rows found";
         String actualMessage = booksPage.noRowsFound();
 
-        Assert.assertEquals(actualMessage, expectedMessage, "\nExpected message not found.\n");
+        softAssert.assertEquals(actualMessage, expectedMessage, "\nExpected message not found.\n");
+        softAssert.assertAll();
     }
 
     @Test(enabled = true, testName = "Verify next and previous buttons can clickable")
     public void ClickNextAndPreviousButtons() {
+        // Arrange
         navigateToUrl("books");
         BooksPage booksPage = new BooksPage(driver);
 
@@ -175,6 +183,7 @@ public class BooksPageTests extends BaseTest {
 
     @Test(enabled = true, testName = "Click all rows per page")
     public void ClickAllRowsPerPage() {
+        // Arrange
         navigateToUrl("books");
         BooksPage booksPage = new BooksPage(driver);
 
@@ -235,6 +244,7 @@ public class BooksPageTests extends BaseTest {
 
     @Test(enabled = true, testName = "Order books by title,author,publisher in descending order")
     public void OrderBooksByTitleByAuthorByPublisherDescending() {
+        // Arrange
         navigateToUrl("books");
         BooksPage booksPage = new BooksPage(driver);
 
@@ -336,12 +346,12 @@ public class BooksPageTests extends BaseTest {
         actualFindBooks = booksPage.getFoundBooks();
 
         softAssert.assertEquals(actualFindBooks, expectedBooks, "\nExpected books.\n");
-
         softAssert.assertAll();
     }
 
     @Test(enabled = true, testName = "Order books by title,author,publisher in ascending order")
     public void OrderBooksByTitleByAuthorByPublisherAscending() {
+        // Arrange
         navigateToUrl("books");
         BooksPage booksPage = new BooksPage(driver);
 
@@ -440,12 +450,12 @@ public class BooksPageTests extends BaseTest {
         actualFindBooks = booksPage.getFoundBooks();
 
         softAssert.assertEquals(actualFindBooks, expectedBooks, "\nExpected books.\n");
-
         softAssert.assertAll();
     }
 
     @Test(enabled = true, testName = "Search and order result in ascending order books")
     public void SearchAndOrderResultAscendingBooks() {
+        // Arrange
         navigateToUrl("books");
         BooksPage booksPage = new BooksPage(driver);
 
@@ -535,6 +545,7 @@ public class BooksPageTests extends BaseTest {
 
     @Test(enabled = true, testName = "Search for book and order result in descending books")
     public void SearchForBookAndOrderResultDescendingBooks() {
+        // Arrange
         navigateToUrl("books");
         BooksPage booksPage = new BooksPage(driver);
 
@@ -616,8 +627,9 @@ public class BooksPageTests extends BaseTest {
                 No Starch Press
                 """;
         actualFindBooks = booksPage.getFoundBooks();
-        softAssert.assertEquals(actualFindBooks, expectedBooks, "\nWrong found books.\n");
 
+        // Assert
+        softAssert.assertEquals(actualFindBooks, expectedBooks, "\nWrong found books.\n");
         softAssert.assertAll();
     }
 }

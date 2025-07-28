@@ -156,12 +156,12 @@ public class BookLoginPageTests extends BaseTest {
         booksLoginPage.clickLoginButton();
 
         String actualProfile = booksLoginPage.getProfile();
-        softAssert.assertEquals(actualProfile, expectedUsername, "\nNot same username.\n");
         booksLoginPage.clickLogoutButton();
         String actualLoginText = booksLoginPage.getLoginText();
 
         // Assert
         softAssert.assertEquals(actualLoginText, expectedLoginText, "\nNot same login text.\n");
+        softAssert.assertEquals(actualProfile, expectedUsername, "\nNot same username.\n");
         softAssert.assertAll();
     }
 
