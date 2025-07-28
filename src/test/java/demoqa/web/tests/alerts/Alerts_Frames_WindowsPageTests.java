@@ -55,7 +55,6 @@ public class Alerts_Frames_WindowsPageTests extends BaseTest {
         boolean TextBoxIsVisible = alerts_frames_windowsPage.verifyFramesIsVisible();
 
         alerts_frames_windowsPage.clickAlertFramesWindows();
-
         boolean TextBoxIsVisible2 = alerts_frames_windowsPage.verifyFramesIsNotVisible();
 
         // Assert

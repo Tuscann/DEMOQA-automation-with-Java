@@ -26,6 +26,7 @@ public class LinksPageTests extends BaseTest {
         String expectedForbiddenText = "Forbidden";
         String expectedNotFoundText = "Not Found";
 
+        // Act
         String actualLinksHeader = linksPage.getLinksText();
         String actualFollowingLinksWillOpenNewTab = linksPage.getNewTabText();
         String actualHomeText = linksPage.getSimpleLinkText();
@@ -38,6 +39,7 @@ public class LinksPageTests extends BaseTest {
         String actualForbiddenText = linksPage.getForbiddenRequestLinkText();
         String actualNotFoundText = linksPage.getNotFoundRequestLinkText();
 
+        // Assert
         softAssert.assertEquals(actualLinksHeader, expectedLinksHeader, "\nDifferent Header text.\n");
         softAssert.assertEquals(actualFollowingLinksWillOpenNewTab, expectedFollowingLinksWillOpenNewTab, "\nDifferent new tab text.\n");
         softAssert.assertEquals(actualHomeText, expectedHomeText, "\nDifferent home text.\n");
@@ -49,7 +51,6 @@ public class LinksPageTests extends BaseTest {
         softAssert.assertEquals(actualUnauthorizedText, expectedUnauthorizedText, "\nDifferent Unauthorized text.\n");
         softAssert.assertEquals(actualForbiddenText, expectedForbiddenText, "\nDifferent Forbidden text.\n");
         softAssert.assertEquals(actualNotFoundText, expectedNotFoundText, "\nDifferent NotFound text.\n");
-
         softAssert.assertAll();
     }
 
@@ -58,12 +59,13 @@ public class LinksPageTests extends BaseTest {
         // Arrange
         navigateToUrl("links");
         LinksPage linksPage = new LinksPage(driver);
-
-        linksPage.clickSimpleTab();
-
-        String urlNewTab = linksPage.getUrl();
         String expectedUrlNewTab = "https://demoqa.com/";
 
+        // Act
+        linksPage.clickSimpleTab();
+        String urlNewTab = linksPage.getUrl();
+
+        // Assert
         softAssert.assertEquals(urlNewTab, expectedUrlNewTab, "\n Actual & Expected New Tab Url Do Not Match.\n");
         softAssert.assertAll();
     }
@@ -73,12 +75,13 @@ public class LinksPageTests extends BaseTest {
         // Arrange
         navigateToUrl("links");
         LinksPage linksPage = new LinksPage(driver);
-
-        linksPage.clickDynamicTab();
-
-        String urlNewTab = linksPage.getUrl();
         String expectedUrlNewTab = "https://demoqa.com/";
 
+        // Act
+        linksPage.clickDynamicTab();
+        String urlNewTab = linksPage.getUrl();
+
+        // Assert
         softAssert.assertEquals(urlNewTab, expectedUrlNewTab,
                 "\n Actual & Expected New Tab Url Do Not Match.\n");
         softAssert.assertAll();
@@ -90,9 +93,11 @@ public class LinksPageTests extends BaseTest {
         navigateToUrl("links");
         LinksPage linksPage = new LinksPage(driver);
 
+        // Act
         linksPage.clickCreatedLink();
         String actualResponseText = linksPage.getResponse();
 
+        // Assert
         softAssert.assertTrue(actualResponseText.contains("201")
                         && actualResponseText.contains("Created"),
                 "\n Link has responded with staus" + actualResponseText +
@@ -106,9 +111,11 @@ public class LinksPageTests extends BaseTest {
         navigateToUrl("links");
         LinksPage linksPage = new LinksPage(driver);
 
+        // Act
         linksPage.clickNoContentRequestLink();
         String actualResponse = linksPage.getResponse();
 
+        // Assert
         softAssert.assertTrue(actualResponse.contains("204")
                         && actualResponse.contains("No Content"),
                 "\n Link has responded with staus" + actualResponse +
@@ -122,9 +129,11 @@ public class LinksPageTests extends BaseTest {
         navigateToUrl("links");
         LinksPage linksPage = new LinksPage(driver);
 
+        // Act
         linksPage.clickMovedLink();
         String actualResponse = linksPage.getResponse();
 
+        // Assert
         softAssert.assertTrue(actualResponse.contains("301")
                         && actualResponse.contains("Moved Permanently"),
                 "\n Link has responded with staus" + actualResponse +
@@ -138,9 +147,11 @@ public class LinksPageTests extends BaseTest {
         navigateToUrl("links");
         LinksPage linksPage = new LinksPage(driver);
 
+        // Act
         linksPage.clickBadRequestLink();
         String actualResponse = linksPage.getResponse();
 
+        // Assert
         softAssert.assertTrue(actualResponse.contains("400")
                         && actualResponse.contains("Bad Request"),
                 "\n Actual Response (" + actualResponse +
@@ -154,9 +165,11 @@ public class LinksPageTests extends BaseTest {
         navigateToUrl("links");
         LinksPage linksPage = new LinksPage(driver);
 
+        // Act
         linksPage.clickUnauthorizedLink();
         String actualResponse = linksPage.getResponse();
 
+        // Assert
         softAssert.assertTrue(actualResponse.contains("401")
                         && actualResponse.contains("Unauthorized"),
                 "\n Link has responded with staus" + actualResponse +
@@ -170,9 +183,11 @@ public class LinksPageTests extends BaseTest {
         navigateToUrl("links");
         LinksPage linksPage = new LinksPage(driver);
 
+        // Act
         linksPage.clickForbiddenLink();
         String actualResponse = linksPage.getResponse();
 
+        // Assert
         softAssert.assertTrue(actualResponse.contains("403")
                         && actualResponse.contains("Forbidden"),
                 "\n Link has responded with status" + actualResponse +
@@ -186,9 +201,11 @@ public class LinksPageTests extends BaseTest {
         navigateToUrl("links");
         LinksPage linksPage = new LinksPage(driver);
 
+        // Act
         linksPage.clickNotFoundLink();
         String actualResponse = linksPage.getResponse();
 
+        // Assert
         softAssert.assertTrue(actualResponse.contains("404")
                         && actualResponse.contains("Not Found"),
                 "\n Link has responded with staus" + actualResponse +

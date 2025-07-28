@@ -2,23 +2,24 @@ package demoqa.web.tests.bookstore;
 
 import demoqa.pages.bookstore.BooksPage;
 import demoqa.web.base.BaseTest;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class BooksPageTests extends BaseTest {
 
     @Test(enabled = true, testName = "Verify show/hide left dropdown menu")
     public void ClickLeftDropdownMenu() {
+        // Arrange
         navigateToUrl("books");
         BooksPage booksPage = new BooksPage(driver);
 
+        // Act
         boolean TextBoxIsVisible = booksPage.verifyLoginIsVisible();
-        softAssert.assertTrue(TextBoxIsVisible, "\nDropDown login in not shown.\n");
-
         booksPage.clickBookStoreApplicationLink();
+        boolean TextBoxIsVisible2 = booksPage.verifyLoginIsNotVisible();
 
-        TextBoxIsVisible = booksPage.verifyLoginIsNotVisible();
-        softAssert.assertFalse(TextBoxIsVisible, "\nDropDown Login in shown.\n");
+        // Assert
+        softAssert.assertTrue(TextBoxIsVisible, "\nDropDown Login in not shown.\n");
+        softAssert.assertFalse(TextBoxIsVisible2, "\nDropDown Login in shown.\n");
         softAssert.assertAll();
     }
 
@@ -109,16 +110,17 @@ public class BooksPageTests extends BaseTest {
         // Arrange
         navigateToUrl("books");
         BooksPage booksPage = new BooksPage(driver);
-
         String searchedBook = "Understanding ECMAScript 6";
-
-        booksPage.searchBooksWithWord(searchedBook);
         String expectedBooks = """
                 Understanding ECMAScript 6
                 Nicholas C. Zakas
                 No Starch Press""";
+
+        // Act
+        booksPage.searchBooksWithWord(searchedBook);
         String actualFindBooks = booksPage.getAllFoundBooks();
 
+        // Assert
         softAssert.assertEquals(actualFindBooks, expectedBooks, "\nExpected not books found.\n");
         softAssert.assertAll();
     }
@@ -128,13 +130,14 @@ public class BooksPageTests extends BaseTest {
         // Arrange
         navigateToUrl("books");
         BooksPage booksPage = new BooksPage(driver);
-
         String searchedBook = "Zhivko";
-
-        booksPage.searchBooksWithWord(searchedBook);
         String expectedMessage = "No rows found";
+
+        // Act
+        booksPage.searchBooksWithWord(searchedBook);
         String actualMessage = booksPage.noRowsFound();
 
+        // Assert
         softAssert.assertEquals(actualMessage, expectedMessage, "\nExpected message not found.\n");
         softAssert.assertAll();
     }
@@ -175,9 +178,9 @@ public class BooksPageTests extends BaseTest {
         isActivePreviousButton = booksPage.checkPreviousButtonIsActive();
         isActiveNextButton = booksPage.checkNextButtonIsActive();
 
+        // Assert
         softAssert.assertFalse(isActivePreviousButton);
         softAssert.assertTrue(isActiveNextButton);
-
         softAssert.assertAll();
     }
 
@@ -237,8 +240,9 @@ public class BooksPageTests extends BaseTest {
 
         expectedBooksCount = 100;
         actualBooksCount = booksPage.getCountOfAllRows();
-        softAssert.assertEquals(actualBooksCount, expectedBooksCount, "\nCount is not 100 times.\n");
 
+        // Assert
+        softAssert.assertEquals(actualBooksCount, expectedBooksCount, "\nCount is not 100 times.\n");
         softAssert.assertAll();
     }
 
@@ -247,9 +251,6 @@ public class BooksPageTests extends BaseTest {
         // Arrange
         navigateToUrl("books");
         BooksPage booksPage = new BooksPage(driver);
-
-        booksPage.clickTitle();
-        booksPage.clickTitle();
 
         String expectedBooks = """
                 Understanding ECMAScript 6
@@ -277,6 +278,10 @@ public class BooksPageTests extends BaseTest {
                 Richard E. Silverman
                 O'Reilly Media
                 """;
+
+        booksPage.clickTitle();
+        booksPage.clickTitle();
+
         String actualFindBooks = booksPage.getFoundBooks();
 
         softAssert.assertEquals(actualFindBooks, expectedBooks, "\nExpected books.\n");
@@ -345,6 +350,7 @@ public class BooksPageTests extends BaseTest {
                 """;
         actualFindBooks = booksPage.getFoundBooks();
 
+        // Assert
         softAssert.assertEquals(actualFindBooks, expectedBooks, "\nExpected books.\n");
         softAssert.assertAll();
     }
@@ -449,6 +455,7 @@ public class BooksPageTests extends BaseTest {
                 """;
         actualFindBooks = booksPage.getFoundBooks();
 
+        // Assert
         softAssert.assertEquals(actualFindBooks, expectedBooks, "\nExpected books.\n");
         softAssert.assertAll();
     }
@@ -538,8 +545,8 @@ public class BooksPageTests extends BaseTest {
                 """;
         actualFindBooks = booksPage.getFoundBooks();
 
+        // Assert
         softAssert.assertEquals(actualFindBooks, expectedBooks, "\nWrong found books.\n");
-
         softAssert.assertAll();
     }
 

@@ -58,15 +58,15 @@ public class CheckBoxPageTests extends BaseTest {
                 You have selected :
                 notes""";
 
+        // Act
         checkBoxPage.clickExpandAll();
         checkBoxPage.clickNotes();
 
         String actualResult = checkBoxPage.getResultMessage();
-
-        softAssert.assertEquals(actualResult, expectedResult, "\nNot selected Notes.\n");
-
         checkBoxPage.clickNotes();
 
+        // Assert
+        softAssert.assertEquals(actualResult, expectedResult, "\nNot selected Notes.\n");
         softAssert.assertTrue(checkBoxPage.isResultMessageShown(), "\nShown wrong category.\n");
         softAssert.assertAll();
     }
@@ -77,6 +77,7 @@ public class CheckBoxPageTests extends BaseTest {
         navigateToUrl("checkbox");
         CheckBoxPage checkBoxPage = new CheckBoxPage(driver);
 
+        // Act
         checkBoxPage.clickExpandAll();
 
         // Assert
@@ -91,9 +92,9 @@ public class CheckBoxPageTests extends BaseTest {
         CheckBoxPage checkBoxPage = new CheckBoxPage(driver);
         String expectedResult = "You have selected :\ncommands";
 
+        // Act
         checkBoxPage.clickExpandAll();
         checkBoxPage.clickCommands();
-
         String actualResult = checkBoxPage.getResultMessage();
 
         // Assert

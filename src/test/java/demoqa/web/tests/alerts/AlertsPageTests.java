@@ -42,7 +42,6 @@ public class AlertsPageTests extends BaseTest {
         // Arrange
         navigateToUrl("alerts");
         AlertsPage alertsPage = new AlertsPage(driver);
-
         String expectedAlertText = "You clicked a button";
 
         // Act
@@ -59,7 +58,6 @@ public class AlertsPageTests extends BaseTest {
         // Arrange
         navigateToUrl("alerts");
         AlertsPage alertsPage = new AlertsPage(driver);
-
         String expectedAlertText = "This alert appeared after 5 seconds";
 
         // Act
@@ -76,7 +74,6 @@ public class AlertsPageTests extends BaseTest {
         // Arrange
         navigateToUrl("alerts");
         AlertsPage alertsPage = new AlertsPage(driver);
-
         String expectedConfirmationResult = "You selected Cancel";
 
         // Act
@@ -94,7 +91,6 @@ public class AlertsPageTests extends BaseTest {
         // Arrange
         navigateToUrl("alerts");
         AlertsPage alertsPage = new AlertsPage(driver);
-
         String expectedConfirmationResult = "You selected Ok";
 
         // Act
@@ -112,7 +108,6 @@ public class AlertsPageTests extends BaseTest {
         // Arrange
         navigateToUrl("alerts");
         AlertsPage alertsPage = new AlertsPage(driver);
-
         String alertText = "Selenium With Java";
         String expectedResult = "You entered " + alertText;
 
@@ -152,7 +147,6 @@ public class AlertsPageTests extends BaseTest {
         // Act
         alertsPage.clickPromptAlertButton();
         dismissAlert();
-
         boolean isAlertResultMissing = alertsPage.verifyNoAlertResult();
 
         // Assert
