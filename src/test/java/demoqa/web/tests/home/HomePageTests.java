@@ -2,58 +2,65 @@ package demoqa.web.tests.home;
 
 import demoqa.pages.home.HomePage;
 import demoqa.web.base.BaseTest;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-
 public class HomePageTests extends BaseTest {
+
+    private static final String ELEMENTS_URL = "https://demoqa.com/elements";
+    private static final String FORMS_URL = "https://demoqa.com/forms";
+    private static final String ALERTS_WINDOWS_URL = "https://demoqa.com/alertsWindows";
+    private static final String WIDGETS_URL = "https://demoqa.com/widgets";
+    private static final String INTERACTION_URL = "https://demoqa.com/interaction";
+    private static final String BOOKS_URL = "https://demoqa.com/books";
+    private static final String SELENIUM_TRAINING_URL = "https://www.toolsqa.com/selenium-training/";
+
+    private static final String ELEMENTS_TEXT = "Elements";
+    private static final String FORMS_TEXT = "Forms";
+    private static final String ALERTS_TEXT = "Alerts, Frame & Windows";
+    private static final String WIDGETS_TEXT = "Widgets";
+    private static final String INTERACTIONS_TEXT = "Interactions";
+    private static final String BOOKS_TEXT = "Book Store Application";
+    private static final String FOOTER_TEXT = "© 2013-2020 TOOLSQA.COM | ALL RIGHTS RESERVED.";
 
     @Test(enabled = true, testName = "Click and verify all links")
     public void ClickAndVerifyAllLinks() {
 
         HomePage homePage = new HomePage(driver);
 
-        String expectedUrl = "https://demoqa.com/elements";
         homePage.goToElements();
         String actualUrl = homePage.checkUrl();
-        softAssert.assertEquals(actualUrl, expectedUrl, "\nExpected elements page.\n");
+        softAssert.assertEquals(actualUrl, ELEMENTS_URL, "\nExpected elements page.\n");
 
         homePage.navigateBack();
 
-        expectedUrl = "https://demoqa.com/forms";
         homePage.goToForms();
         actualUrl = homePage.checkUrl();
-        softAssert.assertEquals(actualUrl, expectedUrl, "\nExpected forms page.\n");
+        softAssert.assertEquals(actualUrl, FORMS_URL, "\nExpected forms page.\n");
 
         homePage.navigateBack();
 
-        expectedUrl = "https://demoqa.com/alertsWindows";
         homePage.goToAlertsFramesWindowsCard();
         actualUrl = homePage.checkUrl();
-        softAssert.assertEquals(actualUrl, expectedUrl, "\nExpected alerts page.\n");
+        softAssert.assertEquals(actualUrl, ALERTS_WINDOWS_URL, "\nExpected alerts page.\n");
 
         homePage.navigateBack();
 
-        expectedUrl = "https://demoqa.com/widgets";
         homePage.goToWidgets();
         actualUrl = homePage.checkUrl();
-        softAssert.assertEquals(actualUrl, expectedUrl, "\nExpected widgets page.\n");
+        softAssert.assertEquals(actualUrl, WIDGETS_URL, "\nExpected widgets page.\n");
 
         homePage.navigateBack();
 
-        expectedUrl = "https://demoqa.com/interaction";
         homePage.goToInteractions();
         actualUrl = homePage.checkUrl();
-        softAssert.assertEquals(actualUrl, expectedUrl, "\nExpected Interaction page.\n");
+        softAssert.assertEquals(actualUrl, INTERACTION_URL, "\nExpected Interaction page.\n");
 
         homePage.navigateBack();
 
-        expectedUrl = "https://demoqa.com/books";
         homePage.goToBooks();
         actualUrl = homePage.checkUrl();
-        softAssert.assertEquals(actualUrl, expectedUrl, "\nExpected books page.\n");
+        softAssert.assertEquals(actualUrl, BOOKS_URL, "\nExpected books page.\n");
 
         softAssert.assertAll();
     }
@@ -62,14 +69,6 @@ public class HomePageTests extends BaseTest {
     public void VerifyAllTextOnPage() {
         // Arrange
         HomePage homePage = new HomePage(driver);
-
-        String expectedElementsText = "Elements";
-        String expectedFormsText = "Forms";
-        String expectedAlertsText = "Alerts, Frame & Windows";
-        String expectedWidgetsText = "Widgets";
-        String expectedInteractionText = "Interactions";
-        String expectedBooksText = "Book Store Application";
-        String expectedFooterText = "© 2013-2020 TOOLSQA.COM | ALL RIGHTS RESERVED.";
 
         // Act
         String actualFooterText = homePage.getFooterText();
@@ -81,33 +80,37 @@ public class HomePageTests extends BaseTest {
         String actualBooksText = homePage.getBookStoreApplicationText();
 
         // Assert
-        softAssert.assertEquals(actualElementsText, expectedElementsText, "\nExpected elements.\n");
-        softAssert.assertEquals(actualFormsText, expectedFormsText, "\nExpected forms.\n");
-        softAssert.assertEquals(actualAlertsText, expectedAlertsText, "\nExpected Alerts.\n");
-        softAssert.assertEquals(actualWidgetsText, expectedWidgetsText, "\nExpected widgets.\n");
-        softAssert.assertEquals(actualInteractionText, expectedInteractionText, "\nExpected interaction.\n");
-        softAssert.assertEquals(actualBooksText, expectedBooksText, "\nExpected books.\n");
-        softAssert.assertEquals(actualFooterText, expectedFooterText, "\nExpected footer.\n");
+        softAssert.assertEquals(actualElementsText, ELEMENTS_TEXT, "\nExpected elements text.\n");
+        softAssert.assertEquals(actualFormsText, FORMS_TEXT, "\nExpected forms text.\n");
+        softAssert.assertEquals(actualAlertsText, ALERTS_TEXT, "\nExpected alerts text.\n");
+        softAssert.assertEquals(actualWidgetsText, WIDGETS_TEXT, "\nExpected widgets text.\n");
+        softAssert.assertEquals(actualInteractionText, INTERACTIONS_TEXT, "\nExpected interaction text.\n");
+        softAssert.assertEquals(actualBooksText, BOOKS_TEXT, "\nExpected books text.\n");
+        softAssert.assertEquals(actualFooterText, FOOTER_TEXT, "\nExpected footer text.\n");
 
         softAssert.assertAll();
     }
 
-    @Test(enabled = true, testName = "Verify all text on page")
+    @Test(enabled = true, testName = "Verify Join Now button navigates correctly.")
     public void VerifyJoinNowButton() {
         // Arrange
         HomePage homePage = new HomePage(driver);
-        String expectedUrl = "https://www.toolsqa.com/selenium-training/";
 
         // Act
-        homePage.clickJoinNow();
-        Set<String> windowHandles = driver.getWindowHandles();
-        List<String> handlesList = new ArrayList<>(windowHandles);
-        driver.switchTo().window(handlesList.get(1));
+        String originalWindow = driver.getWindowHandle();
+        homePage.clickJoinNowButton();
+
+        for (String handle : driver.getWindowHandles()) {
+            if (!handle.equals(originalWindow)) {
+                driver.switchTo().window(handle);
+                break;
+            }
+        }
         
         String currentUrl = driver.getCurrentUrl();
 
         // Assert
-        softAssert.assertEquals(expectedUrl,currentUrl);
+        softAssert.assertEquals(SELENIUM_TRAINING_URL,currentUrl);
         softAssert.assertAll();
     }
 }

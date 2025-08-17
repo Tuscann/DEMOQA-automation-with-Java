@@ -45,7 +45,7 @@ public class HomePage extends BasePage {
         PageFactory.initElements(driver, this);
     }
 
-    public void clickJoinNow(){
+    public void clickJoinNowButton(){
         scrollToElementJS(joinNow);
         joinNow.click();
     }

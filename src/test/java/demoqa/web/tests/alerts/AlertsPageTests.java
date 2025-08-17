@@ -9,7 +9,7 @@ import static utilities.SwitchToUtility.*;
 public class AlertsPageTests extends BaseTest {
 
     @Test(enabled = true, testName = "Verify all text on page")
-    public void VerifyAllTextOnPage() {
+    public void verifyAllTextOnPage() {
         // Arrange
         navigateToUrl("alerts");
         AlertsPage alertsPage = new AlertsPage(driver);
