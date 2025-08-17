@@ -3,6 +3,7 @@ package demoqa.web.tests.widgets;
 import demoqa.pages.widgets.DatePickerPage;
 import demoqa.web.base.BaseTest;
 import org.openqa.selenium.By;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.time.LocalDate;
@@ -11,12 +12,18 @@ import java.time.format.DateTimeFormatter;
 
 public class DatePickerPageTests extends BaseTest {
 
-    @Test(enabled = true, testName = "Verify all text on page")
-    public void VerifyAllTextOnPage() {
-        // Arrange
-        navigateToUrl("date-picker");
-        DatePickerPage datePickerPage = new DatePickerPage(driver);
+    public static final String DATE_PICKER_URL = "date-picker";
+    private DatePickerPage datePickerPage;
 
+    @BeforeMethod
+    public void goToDatePickerPage() {
+        navigateToUrl(DATE_PICKER_URL);
+        datePickerPage = new DatePickerPage(driver);
+    }
+
+    @Test(enabled = true, testName = "Verify all text on page")
+    public void verifyAllTextOnPage() {
+        // Arrange
         String expectedDatePickerText = "Date Picker";
         String expectedSelectDateText = "Select Date";
         String expectedDate = LocalDate.now().format(DateTimeFormatter.ofPattern("MM/dd/yyyy"));
@@ -40,10 +47,8 @@ public class DatePickerPageTests extends BaseTest {
     }
 
     @Test(enabled = true, testName = "Select valid new date")
-    public void SelectNewDate() throws InterruptedException {
+    public void selectNewDate() throws InterruptedException {
         // Arrange
-        navigateToUrl("date-picker");
-        DatePickerPage datePickerPage = new DatePickerPage(driver);
         String expectedDate = "02/14/2025";
 
         // Act
@@ -72,12 +77,10 @@ public class DatePickerPageTests extends BaseTest {
     }
 
     @Test(enabled = true, testName = "Try to select non existing date")
-    public void TryToSelectNonExistingDate() {
+    public void tryToSelectNonExistingDate() {
         // Arrange
-        navigateToUrl("date-picker");
-        DatePickerPage datePickerPage = new DatePickerPage(driver);
         String tryToAddDate = "14/32/2021";
-        String expectedDate = LocalDate.now().format(DateTimeFormatter.ofPattern("MM/dd/yyyy"))+"14";
+        String expectedDate = LocalDate.now().format(DateTimeFormatter.ofPattern("MM/dd/yyyy")) + "14";
 
         // Act
         datePickerPage.selectDate(tryToAddDate);
@@ -91,9 +94,6 @@ public class DatePickerPageTests extends BaseTest {
     @Test(enabled = true, testName = "Select valid new date and time")
     public void SelectValidNewDateAndTime() throws InterruptedException {
         // Arrange
-        navigateToUrl("date-picker");
-        DatePickerPage datePickerPage = new DatePickerPage(driver);
-
         String expectedDateAndTime = "December 19, 2024 10:15 PM";
         datePickerPage.selectDateAndTime(expectedDateAndTime);
 
@@ -143,10 +143,8 @@ public class DatePickerPageTests extends BaseTest {
     }
 
     @Test(enabled = true, testName = "Try to select no existing date and time")
-    public void TryToSelectNoExistingDateAndTime() {
+    public void tryToSelectNoExistingDateAndTime() {
         // Arrange
-        navigateToUrl("date-picker");
-        DatePickerPage datePickerPage = new DatePickerPage(driver);
         String tryToAddDate = "December 34, 2024 10:12 PM";
         String expectedDateAndTime = "December 20, 2034 12:00 AM";
 

@@ -3,15 +3,23 @@ package demoqa.web.tests.elements;
 import demoqa.pages.elements.UploadAndDownloadPage;
 import demoqa.web.base.BaseTest;
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class UploadAndDownloadPageTests extends BaseTest {
 
+    public static final String UPLOAD_DOWNLOAD_URL = "upload-download";
+    private UploadAndDownloadPage uploadAndDownloadPage;
+
+    @BeforeMethod
+    public void goToUploadDownloadPage() {
+        navigateToUrl(UPLOAD_DOWNLOAD_URL);
+        uploadAndDownloadPage = new UploadAndDownloadPage(driver);
+    }
+
     @Test(enabled = true, testName = "Verify all text on page")
     public void VerifyAllTextOnPage() {
-        navigateToUrl("upload-download");
-        UploadAndDownloadPage uploadAndDownloadPage = new UploadAndDownloadPage(driver);
-
+        // Arrange
         String expectedUploadAndDownloadText = "Upload and Download";
         String expectedDownloadButtonText = "Download";
         String expectedSelectAFileText = "Select a file";
@@ -29,9 +37,7 @@ public class UploadAndDownloadPageTests extends BaseTest {
 
     @Test(enabled = true, testName = "Upload file and verify image name")
     public void UploadFileVerifyImageName() {
-        navigateToUrl("upload-download");
-        UploadAndDownloadPage uploadAndDownloadPage = new UploadAndDownloadPage(driver);
-
+        // Arrange
         String pictureName = "zhivko.jpg";
 
         String filePathOnOperationSystem = uploadAndDownloadPage.getFilePathFromResources(pictureName);
@@ -46,9 +52,7 @@ public class UploadAndDownloadPageTests extends BaseTest {
 
     @Test(enabled = true, testName = "Click download button and verify is download file")
     public void ClickDownloadButtonAndVerifyIsDownloadFile() {
-        navigateToUrl("upload-download");
-        UploadAndDownloadPage uploadAndDownloadPage = new UploadAndDownloadPage(driver);
-
+        // Arrange
         uploadAndDownloadPage.clickDownloadButton();
 
         String expectedFileName = "sampleFile.jpeg";

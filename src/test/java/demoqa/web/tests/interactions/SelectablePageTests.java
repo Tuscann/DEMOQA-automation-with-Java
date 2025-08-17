@@ -2,15 +2,23 @@ package demoqa.web.tests.interactions;
 
 import demoqa.pages.interactions.SelectablePage;
 import demoqa.web.base.BaseTest;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class SelectablePageTests extends BaseTest {
-    @Test(enabled = true, testName = "Verify all text on page")
-    public void VerifyAllTextOnPage() {
-        // Arrange
-        navigateToUrl("selectable");
-        SelectablePage selectablePage = new SelectablePage(driver);
 
+    public static final String SELECTABLE_URL = "selectable";
+    private SelectablePage selectablePage;
+
+    @BeforeMethod
+    public void goToSelectablePage() {
+        navigateToUrl(SELECTABLE_URL);
+        selectablePage = new SelectablePage(driver);
+    }
+
+    @Test(enabled = true, testName = "Verify all text on page")
+    public void verifyAllTextOnPage() {
+        // Arrange
         String pageTitle = "Selectable";
         String listTab = "List";
         String listFirstText = "Cras justo odio";
@@ -64,20 +72,20 @@ public class SelectablePageTests extends BaseTest {
         softAssert.assertEquals(actualGridEight, gridEight, "\nWrong page eight.\n");
         softAssert.assertEquals(actualGridNine, gridNine, "\nWrong page nine.\n");
 
+        // Assert
         softAssert.assertAll();
     }
 
     @Test(enabled = true, testName = "Select one by one all from list")
-    public void SelectOneByOneAllFromList() {
+    public void selectOneByOneAllFromList() {
         // Arrange
-        navigateToUrl("selectable");
-        SelectablePage selectablePage = new SelectablePage(driver);
         String searched1Selection = "Cras justo odio";
         String searched2Selection = "Dapibus ac facilisis in";
         String searched3Selection = "Morbi leo risus";
         String searched4Selection = "Porta ac consectetur ac";
         int position = 0;
 
+        // Act
         boolean isRowSelected = selectablePage.RowSelected(searched1Selection);
         softAssert.assertFalse(isRowSelected, "\nFirst row is selected.\n");
 
@@ -106,14 +114,13 @@ public class SelectablePageTests extends BaseTest {
         isRowSelected = selectablePage.RowSelected(searched4Selection);
         softAssert.assertTrue(isRowSelected, "\nFour row is not selected.\n");
 
+        // Assert
         softAssert.assertAll();
     }
 
     @Test(enabled = true, testName = "Select one by one all from grid")
-    public void SelectOneByOneAllFromGrid() {
-        navigateToUrl("selectable");
-        SelectablePage selectablePage = new SelectablePage(driver);
-
+    public void selectOneByOneAllFromGrid() {
+        // Arrange
         selectablePage.clickGridTab();
 
         String searched1Selection;
@@ -131,11 +138,12 @@ public class SelectablePageTests extends BaseTest {
                 case 8 -> "Nine";
                 default -> "Error";
             };
-
+            // Act
             selectablePage.selectPositionFromGrid(searched1Selection);
             isSelected = selectablePage.isPositionFromGridSelected(searched1Selection);
             softAssert.assertTrue(isSelected, searched1Selection + " is not selected.\n");
         }
+        // Assert
         softAssert.assertAll();
     }
 }

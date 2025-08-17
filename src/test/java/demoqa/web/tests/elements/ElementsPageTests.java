@@ -2,26 +2,33 @@ package demoqa.web.tests.elements;
 
 import demoqa.pages.elements.ElementsPage;
 import demoqa.web.base.BaseTest;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class ElementsPageTests extends BaseTest {
+    private static final String TEXT_BOX_URL = "https://demoqa.com/text-box";
+    private static final String CHECK_BOX_URL = "https://demoqa.com/checkbox";
+    private static final String RADIO_BUTTON_URL = "https://demoqa.com/radio-button";
+    private static final String WEB_TABLES_URL = "https://demoqa.com/webtables";
+    private static final String BUTTONS_URL = "https://demoqa.com/buttons";
+    private static final String LINKS_URL = "https://demoqa.com/links";
+    private static final String BROKEN_URL = "https://demoqa.com/broken";
+    private static final String UPLOAD_DOWNLOAD_URL = "https://demoqa.com/upload-download";
+    private static final String DYNAMIC_PROPERTIES_URL = "https://demoqa.com/dynamic-properties";
+    private static final String LEFT_PANEL_INFO_TEXT = "Please select an item from left to start practice.";
+
+    private static final String ELEMENTS_URL = "elements";
+    private ElementsPage elementsPage;
+
+    @BeforeMethod
+    public void goToProfilePage() {
+        navigateToUrl(ELEMENTS_URL);
+        elementsPage = new ElementsPage(driver);
+    }
 
     @Test(enabled = true, testName = "Check nine pages links")
     public void CheckAllNinePagesLinks() {
         // Arrange
-        navigateToUrl("elements");
-        ElementsPage elementsPage = new ElementsPage(driver);
-
-        String expectedTextBoxUrl = "https://demoqa.com/text-box";
-        String expectedCheckBoxUrl = "https://demoqa.com/checkbox";
-        String expectedRadioButtonUrl = "https://demoqa.com/radio-button";
-        String expectedWebtablesUrl = "https://demoqa.com/webtables";
-        String expectedButtonsUrl = "https://demoqa.com/buttons";
-        String expectedLinksUrl = "https://demoqa.com/links";
-        String expectedBrokenUrl = "https://demoqa.com/broken";
-        String expectedUploadDownloadUrl = "https://demoqa.com/upload-download";
-        String expectedDynamicPropertiesUrl = "https://demoqa.com/dynamic-properties";
-
         // Act
         elementsPage.clickTextBox();
         String actualTextBoxUrl = elementsPage.checkUrl();
@@ -51,25 +58,21 @@ public class ElementsPageTests extends BaseTest {
         String actualDynamicPropertiesUrl = elementsPage.checkUrl();
 
         // Assert
-        softAssert.assertEquals(actualTextBoxUrl, expectedTextBoxUrl, "\nWrong text-box url is shown.\n");
-        softAssert.assertEquals(actualCheckBoxUrl, expectedCheckBoxUrl, "\nWrong checkbox url is shown.\n");
-        softAssert.assertEquals(actualRadioButtonUrl, expectedRadioButtonUrl, "\nWrong radio-button url is shown.\n");
-        softAssert.assertEquals(actualWebTablesUrl, expectedWebtablesUrl, "\nWrong webtables url is shown.\n");
-        softAssert.assertEquals(actualButtonsUrl, expectedButtonsUrl, "\nWrong buttons url is shown.\n");
-        softAssert.assertEquals(actualLinksUrl, expectedLinksUrl, "\nWrong links url is shown.\n");
-        softAssert.assertEquals(actualBrokenUrl, expectedBrokenUrl, "\nWrong broken url is shown.\n");
-        softAssert.assertEquals(actualUploadDownloadUrl, expectedUploadDownloadUrl, "\nWrong upload-download url is shown.\n");
-        softAssert.assertEquals(actualDynamicPropertiesUrl, expectedDynamicPropertiesUrl, "\nWrong dynamic-properties url is shown.\n");
+        softAssert.assertEquals(actualTextBoxUrl, TEXT_BOX_URL, "\nWrong text-box url is shown.\n");
+        softAssert.assertEquals(actualCheckBoxUrl, CHECK_BOX_URL, "\nWrong checkbox url is shown.\n");
+        softAssert.assertEquals(actualRadioButtonUrl, RADIO_BUTTON_URL, "\nWrong radio-button url is shown.\n");
+        softAssert.assertEquals(actualWebTablesUrl, WEB_TABLES_URL, "\nWrong webtables url is shown.\n");
+        softAssert.assertEquals(actualButtonsUrl, BUTTONS_URL, "\nWrong buttons url is shown.\n");
+        softAssert.assertEquals(actualLinksUrl, LINKS_URL, "\nWrong links url is shown.\n");
+        softAssert.assertEquals(actualBrokenUrl, BROKEN_URL, "\nWrong broken url is shown.\n");
+        softAssert.assertEquals(actualUploadDownloadUrl, UPLOAD_DOWNLOAD_URL, "\nWrong upload-download url is shown.\n");
+        softAssert.assertEquals(actualDynamicPropertiesUrl, DYNAMIC_PROPERTIES_URL, "\nWrong dynamic-properties url is shown.\n");
         softAssert.assertAll();
     }
 
     @Test(enabled = true, testName = "Click left dropdown menu")
     public void ClickLeftDropdownMenu() {
         // Arrange
-        navigateToUrl("elements");
-        ElementsPage elementsPage = new ElementsPage(driver);
-        String actualString = "Please select an item from left to start practice.";
-
         // Act
         String expectedString = elementsPage.getText();
         boolean TextBoxIsVisible = elementsPage.verifyTextBoxIsVisible();
@@ -77,7 +80,7 @@ public class ElementsPageTests extends BaseTest {
         boolean TextBoxIsVisible2 = elementsPage.verifyTextBoxIsNotVisible();
 
         // Assert
-        softAssert.assertEquals(expectedString, actualString, "\nWrong text is shown.\n");
+        softAssert.assertEquals(expectedString, LEFT_PANEL_INFO_TEXT, "\nWrong text is shown.\n");
         softAssert.assertTrue(TextBoxIsVisible, "\nDropDown in not shown.\n");
         softAssert.assertFalse(TextBoxIsVisible2, "\nDropDown in shown.\n");
         softAssert.assertAll();

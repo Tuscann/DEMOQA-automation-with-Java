@@ -2,13 +2,23 @@ package demoqa.web.tests.widgets;
 
 import demoqa.pages.widgets.SliderPage;
 import demoqa.web.base.BaseTest;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class SliderPageTests extends BaseTest {
 
+    public static final String SLIDER_URL = "slider";
+    private SliderPage sliderPage;
+
+    @BeforeMethod
+    public void goToSliderPage() {
+        navigateToUrl(SLIDER_URL);
+        sliderPage = new SliderPage(driver);
+    }
+
     @Test(enabled = false, testName = "Start and stop on value")
-    public void StartAndStopOnValue() throws InterruptedException {
-        navigateToUrl("slider");
+    public void startAndStopOnValue() throws InterruptedException {
+        // Arrange
         int targetValue = 70;
 // Need HELP TODO
 
@@ -19,10 +29,8 @@ public class SliderPageTests extends BaseTest {
     }
 
     @Test(enabled = false, testName = "Test slider result zero")
-    public void TestSliderResultZero() throws InterruptedException {
-
-        navigateToUrl("slider");
-        SliderPage sliderPage = new SliderPage(driver);
+    public void testSliderResultZero() throws InterruptedException {
+        // Arrange
         String expectedValue = "60";
         int x = 90;
         int y = 0;
@@ -37,9 +45,8 @@ public class SliderPageTests extends BaseTest {
     }
 
     @Test(enabled = true, testName = "Check default value slider")
-    public void CheckDefaultValueSlider() {
-        navigateToUrl("slider");
-        SliderPage sliderPage = new SliderPage(driver);
+    public void checkDefaultValueSlider() {
+        // Arrange
         String expectedValue = "25";
 
         // Act

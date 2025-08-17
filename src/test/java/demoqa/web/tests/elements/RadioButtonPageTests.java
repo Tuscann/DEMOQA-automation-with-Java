@@ -2,18 +2,23 @@ package demoqa.web.tests.elements;
 
 import demoqa.pages.elements.RadioButtonPage;
 import demoqa.web.base.BaseTest;
-import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class RadioButtonPageTests extends BaseTest {
 
+    public static final String RADIO_BUTTON_URL = "radio-button";
+    private RadioButtonPage radioButtonPage;
+
+    @BeforeMethod
+    public void goToRadioButtonPage() {
+        navigateToUrl(RADIO_BUTTON_URL);
+        radioButtonPage = new RadioButtonPage(driver);
+    }
+
     @Test(enabled = true, testName = "Check all text on page")
     public void CheckAllTextOnPage() {
         // Arrange
-        navigateToUrl("radio-button");
-
-        RadioButtonPage radioButtonPage = new RadioButtonPage(driver);
-
         String expectedRadioButtonText = "Radio Button";
         String expectedActualQuestionText = "Do you like the site?";
         String expectedYesAnswerLabel = "Yes";
@@ -39,22 +44,15 @@ public class RadioButtonPageTests extends BaseTest {
     @Test(enabled = true, testName = "Verify answer no is disabled")
     public void VerifyAnswerNoIsDisabled() {
         // Arrange
-        navigateToUrl("radio-button");
-        String expectedNoAnswer = "No";
-
-        RadioButtonPage radioButtonPage = new RadioButtonPage(driver);
-
+        // Act
+        softAssert.assertTrue(radioButtonPage.isAnswerDisable("No"));
         // Assert
-        Assert.assertTrue(radioButtonPage.isAnswerDisable(expectedNoAnswer));
+        softAssert.assertAll();
     }
 
     @Test(enabled = true, testName = "Choose answer yes")
     public void ChooseAnswerYes() {
         // Arrange
-        navigateToUrl("radio-button");
-
-        RadioButtonPage radioButtonPage = new RadioButtonPage(driver);
-
         String expectedAnswer = "Yes";
         radioButtonPage.clickAnswer(expectedAnswer);
 
@@ -70,10 +68,7 @@ public class RadioButtonPageTests extends BaseTest {
     @Test(enabled = true, testName = "Choose answer impressive")
     public void ChooseAnswerImpressive() {
         // Arrange
-        navigateToUrl("radio-button");
         String expectedAnswer = "Impressive";
-
-        RadioButtonPage radioButtonPage = new RadioButtonPage(driver);
 
         radioButtonPage.clickAnswer(expectedAnswer);
         String actualImpressiveAnswer = radioButtonPage.getResultMessage();
@@ -88,8 +83,6 @@ public class RadioButtonPageTests extends BaseTest {
     @Test(enabled = true, testName = "Verify green color of result message")
     public void VerifyGreenColorOfResultMessage() {
         // Arrange
-        navigateToUrl("radio-button");
-        RadioButtonPage radioButtonPage = new RadioButtonPage(driver);
         String expectedAnswer = "Impressive";
         String expectedGreenColor = "rgba(40, 167, 69, 1)";
 

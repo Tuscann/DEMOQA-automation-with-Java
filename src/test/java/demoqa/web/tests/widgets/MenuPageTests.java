@@ -2,15 +2,23 @@ package demoqa.web.tests.widgets;
 
 import demoqa.pages.widgets.MenuPage;
 import demoqa.web.base.BaseTest;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class MenuPageTests extends BaseTest {
 
-    @Test(enabled = true, testName = "Verify all text on page")
-    public void CheckAllTextOnPage() {
-        MenuPage menuPage = new MenuPage(driver);
+    public static final String MENU_URL = "menu#";
+    private MenuPage menuPage;
 
-        navigateToUrl("menu#");
+    @BeforeMethod
+    public void goToProgressBarPage() {
+        navigateToUrl(MENU_URL);
+        menuPage = new MenuPage(driver);
+    }
+
+    @Test(enabled = true, testName = "Verify all text on page")
+    public void checkAllTextOnPage() {
+        // Arrange
         String pageHeader = "Menu";
         String mainItem1 = "Main Item 1";
         menuPage.selectMainItem2();
@@ -34,7 +42,6 @@ public class MenuPageTests extends BaseTest {
         String actualMainItem2SubSubListSubItem2 = menuPage.getMainItem2SubSubListSubItem2();
         String actualMainItem3 = menuPage.getMainItem3();
 
-
         softAssert.assertEquals(actualPageHeader, pageHeader, "\nPage header not correct.\n");
         softAssert.assertEquals(actualMainItem1, mainItem1, "\nMain Item 1 not correct.\n");
         softAssert.assertEquals(actualMainItem2, mainItem2, "\nMain Item 2 not correct.\n");
@@ -45,14 +52,13 @@ public class MenuPageTests extends BaseTest {
         softAssert.assertEquals(actualMainItem2SubSubListSubItem2, mainItem2SubSubListSubItem2, "\nSubSubListSubItem2 not correct.\n");
         softAssert.assertEquals(actualMainItem3, mainItem3, "\nMain Item 3 not correct.\n");
 
+        // Assert
         softAssert.assertAll();
     }
 
     @Test(enabled = true, testName = "Hover over every item in menu and check hover color")
-    public void HoverOverEveryItemInMenuAndCheckHoverColor() {
-        navigateToUrl("menu#");
-        MenuPage menuPage = new MenuPage(driver);
-
+    public void hoverOverEveryItemInMenuAndCheckHoverColor() {
+        // Arrange
         final String colorBeforeSelection = "rgba(36, 175, 21, 1)";
         final String colorAfterSelection = "rgba(0, 63, 32, 1)";
 
@@ -104,8 +110,9 @@ public class MenuPageTests extends BaseTest {
         menuPage.selectMainItem3();
         actualColorSelected = menuPage.takeBackgroundColorMainItem3();
 
-
         softAssert.assertEquals(actualColorSelected, colorAfterSelection, "\nNot dark green.\n");
+
+        // Assert
         softAssert.assertAll();
     }
 }

@@ -2,16 +2,23 @@ package demoqa.web.tests.widgets;
 
 import demoqa.pages.widgets.AutoCompletePage;
 import demoqa.web.base.BaseTest;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class AutoCompletePageTests extends BaseTest {
 
-    @Test(enabled = true, testName = "Verify all text on page")
-    public void VerifyAllTextOnPage() {
-        // Arrange
-        navigateToUrl("auto-complete");
-        AutoCompletePage autoCompletePage = new AutoCompletePage(driver);
+    public static final String AUTO_COMPLETE_URL = "auto-complete";
+    private AutoCompletePage autoCompletePage;
 
+    @BeforeMethod
+    public void goToDatePickerPage() {
+        navigateToUrl(AUTO_COMPLETE_URL);
+        autoCompletePage = new AutoCompletePage(driver);
+    }
+
+    @Test(enabled = true, testName = "Verify all text on page")
+    public void verifyAllTextOnPage() {
+        // Arrange
         String expectedText = "Auto Complete";
         String expectedTypeMultipleText = "Type multiple color names";
         String expectedTypeSingleText = "Type single color name";
@@ -29,11 +36,8 @@ public class AutoCompletePageTests extends BaseTest {
     }
 
     @Test(enabled = true, testName = "Select two colors multiple")
-    public void SelectTwoColorsMultiple() {
+    public void selectTwoColorsMultiple() {
         // Arrange
-        navigateToUrl("auto-complete");
-        AutoCompletePage autoCompletePage = new AutoCompletePage(driver);
-
         String expectedFirstColor = "Red";
         String expectedSecondColor = "Blue";
 
@@ -48,11 +52,8 @@ public class AutoCompletePageTests extends BaseTest {
     }
 
     @Test(enabled = true, testName = "Select two colors and delete two multiple")
-    public void SelectTwoColorsAndDeleteTwoMultiple() {
+    public void selectTwoColorsAndDeleteTwoMultiple() {
         // Arrange
-        navigateToUrl("auto-complete");
-        AutoCompletePage autoCompletePage = new AutoCompletePage(driver);
-
         String expectedFirstColor = "Red";
         String expectedSecondColor = "Blue";
 
@@ -75,10 +76,8 @@ public class AutoCompletePageTests extends BaseTest {
     }
 
     @Test(enabled = true, testName = "Select one color clear add new color single")
-    public void SelectOneColorClearAddNewColorSingle() {
+    public void selectOneColorClearAddNewColorSingle() {
         // Arrange
-        navigateToUrl("auto-complete");
-        AutoCompletePage autoCompletePage = new AutoCompletePage(driver);
         String expectedFirstColor = "Green";
 
         // Act
@@ -97,10 +96,8 @@ public class AutoCompletePageTests extends BaseTest {
     }
 
     @Test(enabled = true, testName = "Select one color single")
-    public void SelectOneColorSingle() {
+    public void selectOneColorSingle() {
         // Arrange
-        navigateToUrl("auto-complete");
-        AutoCompletePage autoCompletePage = new AutoCompletePage(driver);
         String expectedFirstColor = "Green";
 
         // Act

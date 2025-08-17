@@ -2,17 +2,25 @@ package demoqa.web.tests.interactions;
 
 import demoqa.pages.interactions.InteractionsPage;
 import demoqa.web.base.BaseTest;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class InteractionPageTests extends BaseTest {
+    public static final String INTERACTION_URL = "interaction";
+    private InteractionsPage interactionsPage;
+
+    @BeforeMethod
+    public void goToInteractionsPage() {
+        navigateToUrl(INTERACTION_URL);
+        interactionsPage = new InteractionsPage(driver);
+    }
 
     @Test(enabled = true, testName = "Click left dropdown menu")
-    public void ClickLeftDropdownMenu() {
+    public void clickLeftDropdownMenu() {
         // Arrange
-        navigateToUrl("interaction");
-        InteractionsPage interactionsPage = new InteractionsPage(driver);
-
         String expectedString = "Please select an item from left to start practice.";
+
+        // Act
         String actualString = interactionsPage.getMainText();
         softAssert.assertEquals(actualString, expectedString, "\nWrong text.\n");
 
@@ -23,15 +31,14 @@ public class InteractionPageTests extends BaseTest {
 
         TextBoxIsVisible = interactionsPage.verifyFramesIsNotVisible();
         softAssert.assertFalse(TextBoxIsVisible, "\nFrames is shown.\n");
+
+        // Assert
         softAssert.assertAll();
     }
 
     @Test(enabled = true, testName = "Verify nine pages links")
-    public void CheckAllNinePagesLinks() {
+    public void checkAllNinePagesLinks() {
         // Arrange
-        navigateToUrl("interaction");
-        InteractionsPage interactionsPage = new InteractionsPage(driver);
-
         String expectedSortableUrl = "https://demoqa.com/sortable";
         String expectedSelectableUrl = "https://demoqa.com/selectable";
         String expectedResizableUrl = "https://demoqa.com/resizable";

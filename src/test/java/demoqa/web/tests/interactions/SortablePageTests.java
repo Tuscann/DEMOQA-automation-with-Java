@@ -2,16 +2,24 @@ package demoqa.web.tests.interactions;
 
 import demoqa.pages.interactions.SortablePage;
 import demoqa.web.base.BaseTest;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 public class SortablePageTests extends BaseTest {
-    @Test(enabled = true, testName = "Verify all text on page")
-    public void VerifyAllTextOnPage() {
-        // Arrange
-        navigateToUrl("sortable");
-        SortablePage sortablePage = new SortablePage(driver);
 
+    public static final String SORTABLE_URL = "sortable";
+    private SortablePage sortablePage;
+
+    @BeforeMethod
+    public void goToSortablePage() {
+        navigateToUrl(SORTABLE_URL);
+        sortablePage = new SortablePage(driver);
+    }
+
+    @Test(enabled = true, testName = "Verify all text on page")
+    public void verifyAllTextOnPage() {
+        // Arrange
         String pageTitle = "Sortable";
         String listTab = "List";
         String listOne = "One";
@@ -125,11 +133,8 @@ public class SortablePageTests extends BaseTest {
     }
 
     @Test(dataProvider = "resizeData", description = "Check order in List", enabled = true, testName = "Check order in List")
-    public void DragAndDropFromListTab(String dragFromPlace, String dropOnPlace, String expectedOrder) {
+    public void dragAndDropFromListTab(String dragFromPlace, String dropOnPlace, String expectedOrder) {
         // Arrange
-        navigateToUrl("sortable");
-        SortablePage sortablePage = new SortablePage(driver);
-
         // Act
         sortablePage.moveOverList(dragFromPlace, dropOnPlace);
         String actualListSix = sortablePage.getListOrder();
@@ -236,11 +241,8 @@ public class SortablePageTests extends BaseTest {
     }
 
     @Test(dataProvider = "resizeData2", description = "Check order in Grid", enabled = true, testName = "Check order in Grid")
-    public void DragAndDropFromGridTab(String dragFromPlace, String dropOnPlace, String expectedOrder) throws InterruptedException {
+    public void dragAndDropFromGridTab(String dragFromPlace, String dropOnPlace, String expectedOrder) throws InterruptedException {
         // Arrange
-        navigateToUrl("sortable");
-        SortablePage sortablePage = new SortablePage(driver);
-
         // Act
         sortablePage.clickGridTab();
         sortablePage.moveOverGrid(dragFromPlace, dropOnPlace);

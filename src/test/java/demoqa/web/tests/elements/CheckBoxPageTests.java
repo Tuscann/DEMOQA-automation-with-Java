@@ -2,15 +2,23 @@ package demoqa.web.tests.elements;
 
 import demoqa.pages.elements.CheckBoxPage;
 import demoqa.web.base.BaseTest;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class CheckBoxPageTests extends BaseTest {
 
+    private static final String CHECK_BOX_URL = "checkbox";
+    private CheckBoxPage checkBoxPage;
+
+    @BeforeMethod
+    public void goToCheckBoxPage() {
+        navigateToUrl(CHECK_BOX_URL);
+        checkBoxPage = new CheckBoxPage(driver);
+    }
+
     @Test(enabled = true, testName = "Select notes checkbox")
-    public void SelectNotesCheckBox() {
+    public void selectNotesCheckBox() {
         // Arrange
-        navigateToUrl("checkbox");
-        CheckBoxPage checkBoxPage = new CheckBoxPage(driver);
         String expectedHeader = "Check Box";
         String expectedResultMessage = "You have selected :\nnotes";
 
@@ -28,10 +36,8 @@ public class CheckBoxPageTests extends BaseTest {
     }
 
     @Test(enabled = true, testName = "Select desktop home commands checkboxes")
-    public void SelectDesktopWithHomeAndCommandsNotes() {
+    public void selectDesktopWithHomeAndCommandsNotes() {
         // Arrange
-        navigateToUrl("checkbox");
-        CheckBoxPage checkBoxPage = new CheckBoxPage(driver);
         String expectedResult = """
                 You have selected :
                 desktop
@@ -50,10 +56,8 @@ public class CheckBoxPageTests extends BaseTest {
     }
 
     @Test(enabled = true, testName = "Deselect notes checkbox")
-    public void DeSelectNotesCheckBox() {
+    public void deSelectNotesCheckBox() {
         // Arrange
-        navigateToUrl("checkbox");
-        CheckBoxPage checkBoxPage = new CheckBoxPage(driver);
         String expectedResult = """
                 You have selected :
                 notes""";
@@ -72,11 +76,8 @@ public class CheckBoxPageTests extends BaseTest {
     }
 
     @Test(enabled = true, testName = "Verify result message is empty without selections")
-    public void VerifyResultMessageIsEmptyWithoutSelections() {
+    public void verifyResultMessageIsEmptyWithoutSelections() {
         // Arrange
-        navigateToUrl("checkbox");
-        CheckBoxPage checkBoxPage = new CheckBoxPage(driver);
-
         // Act
         checkBoxPage.clickExpandAll();
 
@@ -86,10 +87,8 @@ public class CheckBoxPageTests extends BaseTest {
     }
 
     @Test(enabled = true, testName = "Select commands checkbox")
-    public void SelectCommandsCheckBox() {
+    public void selectCommandsCheckBox() {
         // Arrange
-        navigateToUrl("checkbox");
-        CheckBoxPage checkBoxPage = new CheckBoxPage(driver);
         String expectedResult = "You have selected :\ncommands";
 
         // Act
@@ -103,10 +102,8 @@ public class CheckBoxPageTests extends BaseTest {
     }
 
     @Test(enabled = true, testName = "Select notes and office public checkbox")
-    public void SelectNotesAndOfficePublicCheckBox() {
+    public void selectNotesAndOfficePublicCheckBox() {
         // Arrange
-        navigateToUrl("checkbox");
-        CheckBoxPage checkBoxPage = new CheckBoxPage(driver);
         String expectedResult = """
                 You have selected :
                 notes
@@ -125,10 +122,8 @@ public class CheckBoxPageTests extends BaseTest {
     }
 
     @Test(enabled = true, testName = "Collapsed with selected categories")
-    public void CollapsedWithSelectedCategories() {
+    public void collapsedWithSelectedCategories() {
         // Arrange
-        navigateToUrl("checkbox");
-        CheckBoxPage checkBoxPage = new CheckBoxPage(driver);
         String expectedResult = """
                 You have selected :
                 documents
@@ -155,10 +150,8 @@ public class CheckBoxPageTests extends BaseTest {
     }
 
     @Test(enabled = true, testName = "Select home checkbox")
-    public void SelectHomeCheckBox() {
+    public void selectHomeCheckBox() {
         // Arrange
-        navigateToUrl("checkbox");
-        CheckBoxPage checkBoxPage = new CheckBoxPage(driver);
         String expectedResult = """
                 You have selected :
                 home
@@ -191,9 +184,6 @@ public class CheckBoxPageTests extends BaseTest {
     @Test(enabled = true, testName = "Select desktop documents and downloads checkboxes")
     public void SelectDesktopAndDocumentsAndDownloadsCheckBoxes() {
         // Arrange
-        navigateToUrl("checkbox");
-        CheckBoxPage checkBoxPage = new CheckBoxPage(driver);
-
         String expectedResult = """
                 You have selected :
                 home
@@ -228,11 +218,8 @@ public class CheckBoxPageTests extends BaseTest {
     }
 
     @Test(enabled = true, testName = "Select all checkboxes one by one")
-    public void SelectAllCheckBoxesOneByOne() {
+    public void selectAllCheckBoxesOneByOne() {
         // Arrange
-        navigateToUrl("checkbox");
-        CheckBoxPage checkBoxPage = new CheckBoxPage(driver);
-
         String expectedResult = """
                 You have selected :
                 home
@@ -274,11 +261,8 @@ public class CheckBoxPageTests extends BaseTest {
     }
 
     @Test(enabled = true, testName = "Select all checkboxes one by one and deselect all")
-    public void SelectAllCheckBoxesOneByOneAndDeselectAll() {
+    public void selectAllCheckBoxesOneByOneAndDeselectAll() {
         // Arrange
-        navigateToUrl("checkbox");
-        CheckBoxPage checkBoxPage = new CheckBoxPage(driver);
-
         checkBoxPage.clickExpandAll();
         checkBoxPage.clickNotes();
         checkBoxPage.clickCommands();

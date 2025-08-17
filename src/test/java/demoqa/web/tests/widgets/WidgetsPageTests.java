@@ -2,87 +2,59 @@ package demoqa.web.tests.widgets;
 
 import demoqa.pages.widgets.WidgetsPage;
 import demoqa.web.base.BaseTest;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
+import java.util.Map;
 
 public class WidgetsPageTests extends BaseTest {
 
-    @Test(enabled = true, testName = "Check 9 pages links")
-    public void CheckAllNinePagesLinks() {
-        // Arrange
-        navigateToUrl("widgets");
-        WidgetsPage widgetsPage = new WidgetsPage(driver);
+    private WidgetsPage widgetsPage;
+    private static final String WIDGETS_URL = "widgets";
 
-        String expectedAccordianUrl = "https://demoqa.com/accordian";
-        String expectedAutoCompleteUrl = "https://demoqa.com/auto-complete";
-        String expectedDatePickerUrl = "https://demoqa.com/date-picker";
-        String expectedSliderUrl = "https://demoqa.com/slider";
-        String expectedProgressBarUrl = "https://demoqa.com/progress-bar";
-        String expectedTabsUrl = "https://demoqa.com/tabs";
-        String expectedToolsTipsUrl = "https://demoqa.com/tool-tips";
-        String expectedMenuUrl = "https://demoqa.com/menu";
-        String expectedSelectMenuUrl =  "https://demoqa.com/select-menu";
+    @BeforeMethod
+    public void goToWidgetsPage() {
+        navigateToUrl(WIDGETS_URL);
+        widgetsPage = new WidgetsPage(driver);
+    }
+
+    @Test(enabled = true, testName = "Verify all widget subpage links work correctly.")
+    public void checkAllNinePagesLinks() {
+        // Arrange
+        Map<String, Runnable> widgetActions = Map.of(
+                "https://demoqa.com/accordian", widgetsPage::clickAccordion,
+                "https://demoqa.com/auto-complete", widgetsPage::clickAutoComplete,
+                "https://demoqa.com/date-picker", widgetsPage::clickDatePicker,
+                "https://demoqa.com/slider", widgetsPage::clickSlider,
+                "https://demoqa.com/progress-bar", widgetsPage::clickProgressBar,
+                "https://demoqa.com/tabs", widgetsPage::clickTabs,
+                "https://demoqa.com/tool-tips", widgetsPage::clickToolTips,
+                "https://demoqa.com/menu", widgetsPage::clickMenu,
+                "https://demoqa.com/select-menu", widgetsPage::clickSelectMenu
+        );
 
         // Act
-        widgetsPage.clickAccordion();
-        String actualAccordianUrl = widgetsPage.checkUrl();
-
-        widgetsPage.clickAutoComplete();
-        String  actualUrl = widgetsPage.checkUrl();
-
-        widgetsPage.clickDatePicker();
-        String  actualDatePickerUrl = widgetsPage.checkUrl();
-
-        widgetsPage.clickSlider();
-        String  actualSliderUrl = widgetsPage.checkUrl();
-
-        widgetsPage.clickProgressBar();
-        String  actualProgressBarUrl = widgetsPage.checkUrl();
-
-        widgetsPage.clickTabs();
-        String  actualTabsUrl = widgetsPage.checkUrl();
-
-        widgetsPage.clickToolTips();
-        String  actualToolsTipsUr = widgetsPage.checkUrl();
-
-        widgetsPage.clickMenu();
-        String  actualMenuUrl = widgetsPage.checkUrl();
-
-        widgetsPage.clickSelectMenu();
-        String  actualSelectMenuUrl = widgetsPage.checkUrl();
-
+        widgetActions.forEach((expectedUrl, action) -> {
+            action.run();
+            String actualUrl = widgetsPage.checkUrl();
+            softAssert.assertEquals(actualUrl, expectedUrl, "\nExpected URL: " + expectedUrl + "\n");
+        });
         // Assert
-        softAssert.assertEquals(actualAccordianUrl, expectedAccordianUrl, "\nExpected accordian url.\n");
-        softAssert.assertEquals(actualUrl, expectedAutoCompleteUrl, "\nExpected auto-complete url.\n");
-        softAssert.assertEquals(actualDatePickerUrl, expectedDatePickerUrl, "\nExpected date picker url.\n");
-        softAssert.assertEquals(actualSliderUrl, expectedSliderUrl, "\nExpected slider url.\n");
-        softAssert.assertEquals(actualProgressBarUrl, expectedProgressBarUrl, "\nExpected progress bar url.\n");
-        softAssert.assertEquals(actualTabsUrl, expectedTabsUrl, "\nExpected tabs url.\n");
-        softAssert.assertEquals(actualToolsTipsUr, expectedToolsTipsUrl, "\nExpected tooltips url.\n");
-        softAssert.assertEquals(actualMenuUrl, expectedMenuUrl, "\nExpected menu url.\n");
-        softAssert.assertEquals(actualSelectMenuUrl, expectedSelectMenuUrl, "\nExpected select menu url.\n");
         softAssert.assertAll();
     }
 
     @Test(enabled = true, testName = "Verify show/hide left dropdown menu")
-    public void ClickLeftDropdownMenu() {
+    public void clickLeftDropdownMenu() {
         // Arrange
-        navigateToUrl("widgets");
-        WidgetsPage widgetsPage = new WidgetsPage(driver);
         String expectedString = "Please select an item from left to start practice.";
 
         // Act
-        String actualString = widgetsPage.getMainText();
-        softAssert.assertEquals(actualString, expectedString, "\nWrong text.\n");
-
-        boolean TextBoxIsVisible = widgetsPage.verifyAccordionIsVisible();
-        softAssert.assertTrue(TextBoxIsVisible, "\nFrames is not shown.\n");
-
+        softAssert.assertEquals(widgetsPage.getMainText(), expectedString, "\nWrong text.\n");
+        softAssert.assertTrue(widgetsPage.verifyAccordionIsVisible(), "\nFrames is not shown.\n");
         widgetsPage.clickWidgetsWindows();
-
-        TextBoxIsVisible = widgetsPage.verifyAccordionIsNotVisible();
+        softAssert.assertFalse(widgetsPage.verifyAccordionIsNotVisible(), "\nFrames is shown.\n");
 
         // Assert
-        softAssert.assertFalse(TextBoxIsVisible, "\nFrames is shown.\n");
         softAssert.assertAll();
     }
 }

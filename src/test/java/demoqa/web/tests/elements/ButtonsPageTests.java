@@ -2,24 +2,36 @@ package demoqa.web.tests.elements;
 
 import demoqa.pages.elements.ButtonsPage;
 import demoqa.web.base.BaseTest;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class ButtonsPageTests extends BaseTest {
+
+    private static final String EXPECTED_HEADER_TEXT = "Buttons";
+    private static final String EXPECTED_DOUBLE_CLICK_TEXT = "Double Click Me";
+    private static final String EXPECTED_RIGHT_CLICK_TEXT = "Right Click Me";
+    private static final String EXPECTED_DYNAMIC_CLICK_TEXT = "Click Me";
+    private static final String EXPECTED_DOUBLE_CLICK_MESSAGE = "You have done a double click";
+    private static final String EXPECTED_RIGHT_CLICK_MESSAGE = "You have done a right click";
+    private static final String EXPECTED_DYNAMIC_CLICK_MESSAGE = "You have done a dynamic click";
+
+    private static final String EXPECTED_BORDER_COLOR = "rgb(0, 123, 255)";
+    private static final String EXPECTED_BACKGROUND_COLOR = "rgba(0, 123, 255, 1)";
+
+    private static final String BUTTONS_URL = "buttons";
+    private ButtonsPage buttonsPage;
+
+    @BeforeMethod
+    public void goToButtonsPage() {
+        navigateToUrl(BUTTONS_URL);
+        buttonsPage = new ButtonsPage(driver);
+    }
+
     @Test(enabled = true, testName = "Verify all buttons text and buttons color")
-    public void VerifyAllTextOnPage() {
+    public void verifyAllTextOnPage() {
         // Arrange
-        navigateToUrl("buttons");
-        ButtonsPage buttonsPage = new ButtonsPage(driver);
-
-        String expectedHeaderButtonsText = "Buttons";
-        String expectedDoubleClickButtonText = "Double Click Me";
-        String expectedRightClickMeButtonText = "Right Click Me";
-        String expectedDynamicClickMeButtonText = "Click Me";
-        String blueBorderColor = "rgb(0, 123, 255)";
-        String blueBackgroundColor = "rgba(0, 123, 255, 1)";
-        String actualHeaderButtonText = buttonsPage.getButtonsText();
-
         // Act
+        String actualHeaderButtonText = buttonsPage.getButtonsText();
         String actualDoubleClickButtonText = buttonsPage.getDoubleButtonText();
         String doubleClickButtonBorderColor = buttonsPage.getDoubleClickButtonBorderColor();
         String doubleClickButtonBackGroundColor = buttonsPage.getDoubleClickButtonBackGroundColor();
@@ -31,29 +43,22 @@ public class ButtonsPageTests extends BaseTest {
         String clickMeButtonBackGroundColor = buttonsPage.getClickMeButtonBackGroundColor();
 
         // Assert
-        softAssert.assertEquals(actualHeaderButtonText, expectedHeaderButtonsText, "\nWrong header Buttons.\n");
-        softAssert.assertEquals(actualDoubleClickButtonText, expectedDoubleClickButtonText, "\nWrong button text " + expectedDoubleClickButtonText + ".\n");
-        softAssert.assertEquals(doubleClickButtonBorderColor, blueBorderColor, "\nExpected border blue color.\n");
-        softAssert.assertEquals(doubleClickButtonBackGroundColor, blueBackgroundColor, "\nExpected border blue color.\n");
-        softAssert.assertEquals(actualRightClickMeButtonText, expectedRightClickMeButtonText, "\nWrong button text" + expectedRightClickMeButtonText + ".\n");
-        softAssert.assertEquals(rightClickMeButtonBorderColor, blueBorderColor, "\nExpected border blue color.");
-        softAssert.assertEquals(rightClickMeButtonBackGroundColor, blueBackgroundColor, "\nExpected border blue color.");
-        softAssert.assertEquals(actualClickMeButtonText, expectedDynamicClickMeButtonText, "\nWrong text " + expectedDynamicClickMeButtonText + "Click Me.\n");
-        softAssert.assertEquals(clickMeButtonBorderColor, blueBorderColor, "\nExpected border blue color.\n");
-        softAssert.assertEquals(clickMeButtonBackGroundColor, blueBackgroundColor, "\nExpected border blue color.\n");
+        softAssert.assertEquals(actualHeaderButtonText, EXPECTED_HEADER_TEXT, "\nWrong header Buttons.\n");
+        softAssert.assertEquals(actualDoubleClickButtonText, EXPECTED_DOUBLE_CLICK_TEXT, "\nWrong button text " + EXPECTED_DOUBLE_CLICK_TEXT + ".\n");
+        softAssert.assertEquals(doubleClickButtonBorderColor, EXPECTED_BORDER_COLOR, "\nExpected border blue color.\n");
+        softAssert.assertEquals(doubleClickButtonBackGroundColor, EXPECTED_BACKGROUND_COLOR, "\nExpected background blue color.\n");
+        softAssert.assertEquals(actualRightClickMeButtonText, EXPECTED_RIGHT_CLICK_TEXT, "\nWrong button text" + EXPECTED_RIGHT_CLICK_TEXT + ".\n");
+        softAssert.assertEquals(rightClickMeButtonBorderColor, EXPECTED_BORDER_COLOR, "\nExpected border blue color.");
+        softAssert.assertEquals(rightClickMeButtonBackGroundColor, EXPECTED_BACKGROUND_COLOR, "\nExpected border blue color.");
+        softAssert.assertEquals(actualClickMeButtonText, EXPECTED_DYNAMIC_CLICK_TEXT, "\nWrong text " + EXPECTED_DYNAMIC_CLICK_TEXT + "Click Me.\n");
+        softAssert.assertEquals(clickMeButtonBorderColor, EXPECTED_BORDER_COLOR, "\nExpected border blue color.\n");
+        softAssert.assertEquals(clickMeButtonBackGroundColor, EXPECTED_BACKGROUND_COLOR, "\nExpected border blue color.\n");
         softAssert.assertAll();
     }
 
     @Test(enabled = true, testName = "Click on three buttons and verify messages")
-    public void ClickOnThreeButtonsAndVerifyMessages() {
+    public void clickOnThreeButtonsAndVerifyMessages() {
         // Arrange
-        navigateToUrl("buttons");
-        ButtonsPage buttonsPage = new ButtonsPage(driver);
-
-        String expectedDoubleClickMessage = "You have done a double click";
-        String expectedRightClickMessage = "You have done a right click";
-        String expectedDynamicClickMessage = "You have done a dynamic click";
-
         // Act
         buttonsPage.doubleClickOnButton();
         buttonsPage.rightClickOnButton();
@@ -64,9 +69,9 @@ public class ButtonsPageTests extends BaseTest {
         String actualClickMeMessage = buttonsPage.getClickMeClickMessage();
 
         // Assert
-        softAssert.assertEquals(actualDoubleClickMessage, expectedDoubleClickMessage, "\nExpected message is not" + expectedDoubleClickMessage + ".\n");
-        softAssert.assertEquals(actualRightClickMessage, expectedRightClickMessage, "\nExpected message is not" + expectedRightClickMessage + ".\n");
-        softAssert.assertEquals(actualClickMeMessage, expectedDynamicClickMessage, "\nExpected message is not" + expectedDynamicClickMessage + ".\n");
+        softAssert.assertEquals(actualDoubleClickMessage, EXPECTED_DOUBLE_CLICK_MESSAGE, "\nExpected message is not" + EXPECTED_DOUBLE_CLICK_MESSAGE + ".\n");
+        softAssert.assertEquals(actualRightClickMessage, EXPECTED_RIGHT_CLICK_MESSAGE, "\nExpected message is not" + EXPECTED_RIGHT_CLICK_MESSAGE + ".\n");
+        softAssert.assertEquals(actualClickMeMessage, EXPECTED_DYNAMIC_CLICK_MESSAGE, "\nExpected message is not" + EXPECTED_DYNAMIC_CLICK_MESSAGE + ".\n");
         softAssert.assertAll();
     }
 }

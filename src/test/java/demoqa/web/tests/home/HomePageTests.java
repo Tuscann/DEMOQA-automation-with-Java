@@ -23,11 +23,15 @@ public class HomePageTests extends BaseTest {
     private static final String BOOKS_TEXT = "Book Store Application";
     private static final String FOOTER_TEXT = "© 2013-2020 TOOLSQA.COM | ALL RIGHTS RESERVED.";
 
+    private HomePage homePage;
+
+    @BeforeMethod
+    public void goToDraggablePage() {
+        homePage = new HomePage(driver);
+    }
+
     @Test(enabled = true, testName = "Click and verify all links")
     public void ClickAndVerifyAllLinks() {
-
-        HomePage homePage = new HomePage(driver);
-
         homePage.goToElements();
         String actualUrl = homePage.checkUrl();
         softAssert.assertEquals(actualUrl, ELEMENTS_URL, "\nExpected elements page.\n");
@@ -68,8 +72,6 @@ public class HomePageTests extends BaseTest {
     @Test(enabled = true, testName = "Verify all text on page")
     public void VerifyAllTextOnPage() {
         // Arrange
-        HomePage homePage = new HomePage(driver);
-
         // Act
         String actualFooterText = homePage.getFooterText();
         String actualElementsText = homePage.getElementsText();
@@ -94,8 +96,6 @@ public class HomePageTests extends BaseTest {
     @Test(enabled = true, testName = "Verify Join Now button navigates correctly.")
     public void VerifyJoinNowButton() {
         // Arrange
-        HomePage homePage = new HomePage(driver);
-
         // Act
         String originalWindow = driver.getWindowHandle();
         homePage.clickJoinNowButton();
@@ -106,11 +106,11 @@ public class HomePageTests extends BaseTest {
                 break;
             }
         }
-        
+
         String currentUrl = driver.getCurrentUrl();
 
         // Assert
-        softAssert.assertEquals(SELENIUM_TRAINING_URL,currentUrl);
+        softAssert.assertEquals(SELENIUM_TRAINING_URL, currentUrl);
         softAssert.assertAll();
     }
 }

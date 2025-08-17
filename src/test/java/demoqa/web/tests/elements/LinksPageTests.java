@@ -2,17 +2,23 @@ package demoqa.web.tests.elements;
 
 import demoqa.pages.elements.LinksPage;
 import demoqa.web.base.BaseTest;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class LinksPageTests extends BaseTest {
 
+    public static final String LINKS_URL = "links";
+    private LinksPage linksPage;
+
+    @BeforeMethod
+    public void goToLinksPage() {
+        navigateToUrl(LINKS_URL);
+        linksPage = new LinksPage(driver);
+    }
+
     @Test(enabled = true, testName = "Verify all text on page")
     public void VerifyAllTextOnPage() {
         // Arrange
-        navigateToUrl("links");
-
-        LinksPage linksPage = new LinksPage(driver);
-
         String expectedLinksHeader = "Links";
         String expectedFollowingLinksWillOpenNewTab = "Following links will open new tab";
         String expectedHomeText = "Home";
@@ -57,8 +63,6 @@ public class LinksPageTests extends BaseTest {
     @Test(enabled = true, testName = "Open new tab from simple link")
     public void OpenNewTabFromSimpleLink() {
         // Arrange
-        navigateToUrl("links");
-        LinksPage linksPage = new LinksPage(driver);
         String expectedUrlNewTab = "https://demoqa.com/";
 
         // Act
@@ -73,8 +77,6 @@ public class LinksPageTests extends BaseTest {
     @Test(enabled = true, testName = "Open new tab from dynamic link")
     public void OpenNewTabFromDynamicLink() {
         // Arrange
-        navigateToUrl("links");
-        LinksPage linksPage = new LinksPage(driver);
         String expectedUrlNewTab = "https://demoqa.com/";
 
         // Act
@@ -90,9 +92,6 @@ public class LinksPageTests extends BaseTest {
     @Test(enabled = true, testName = "Click on created link")
     public void ClickOnkCreatedLink() {
         // Arrange
-        navigateToUrl("links");
-        LinksPage linksPage = new LinksPage(driver);
-
         // Act
         linksPage.clickCreatedLink();
         String actualResponseText = linksPage.getResponse();
@@ -108,9 +107,6 @@ public class LinksPageTests extends BaseTest {
     @Test(enabled = true, testName = "Click on no content link")
     public void ClickOnNoContentLink() {
         // Arrange
-        navigateToUrl("links");
-        LinksPage linksPage = new LinksPage(driver);
-
         // Act
         linksPage.clickNoContentRequestLink();
         String actualResponse = linksPage.getResponse();
@@ -126,9 +122,6 @@ public class LinksPageTests extends BaseTest {
     @Test(enabled = true, testName = "Click on moved link")
     public void ClickOnMovedLink() {
         // Arrange
-        navigateToUrl("links");
-        LinksPage linksPage = new LinksPage(driver);
-
         // Act
         linksPage.clickMovedLink();
         String actualResponse = linksPage.getResponse();
@@ -144,9 +137,6 @@ public class LinksPageTests extends BaseTest {
     @Test(enabled = true, testName = "Click on bad request link")
     public void ClickOnBadRequestLink() {
         // Arrange
-        navigateToUrl("links");
-        LinksPage linksPage = new LinksPage(driver);
-
         // Act
         linksPage.clickBadRequestLink();
         String actualResponse = linksPage.getResponse();
@@ -162,9 +152,6 @@ public class LinksPageTests extends BaseTest {
     @Test(enabled = true, testName = "Click on unauthorized link")
     public void ClickOnUnAuthorizedLink() {
         // Arrange
-        navigateToUrl("links");
-        LinksPage linksPage = new LinksPage(driver);
-
         // Act
         linksPage.clickUnauthorizedLink();
         String actualResponse = linksPage.getResponse();
@@ -180,9 +167,6 @@ public class LinksPageTests extends BaseTest {
     @Test(enabled = true, testName = "Click on forbidden link")
     public void ClickOnForbiddenLink() {
         // Arrange
-        navigateToUrl("links");
-        LinksPage linksPage = new LinksPage(driver);
-
         // Act
         linksPage.clickForbiddenLink();
         String actualResponse = linksPage.getResponse();
@@ -198,9 +182,6 @@ public class LinksPageTests extends BaseTest {
     @Test(enabled = true, testName = "Click on not found link")
     public void ClickOnNotFoundLink() {
         // Arrange
-        navigateToUrl("links");
-        LinksPage linksPage = new LinksPage(driver);
-
         // Act
         linksPage.clickNotFoundLink();
         String actualResponse = linksPage.getResponse();

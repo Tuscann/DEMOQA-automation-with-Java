@@ -120,12 +120,12 @@ public class BooksLoginPage extends BasePage {
         return errorMessage.getText();
     }
 
-    public void clickUsername() {
+    public void clickUsernameInputField() {
         scrollToElementJS(username);
         username.click();
     }
 
-    public void clickPassword() {
+    public void clickPasswordInputField() {
         password.click();
     }
 

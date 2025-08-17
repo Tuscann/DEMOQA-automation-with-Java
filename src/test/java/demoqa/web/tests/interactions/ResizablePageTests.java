@@ -3,16 +3,23 @@ package demoqa.web.tests.interactions;
 import demoqa.pages.interactions.ResizablePage;
 import demoqa.web.base.BaseTest;
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 public class ResizablePageTests extends BaseTest {
-    @Test(enabled = true, testName = "Verify all text on page")
-    public void VerifyAllTextOnPage() {
-        // Arrange
-        navigateToUrl("resizable");
-        ResizablePage resizablePage = new ResizablePage(driver);
+    public static final String RESIZABLE_URL = "resizable";
+    private ResizablePage resizablePage;
 
+    @BeforeMethod
+    public void goToResizablePage() {
+        navigateToUrl(RESIZABLE_URL);
+        resizablePage = new ResizablePage(driver);
+    }
+
+    @Test(enabled = true, testName = "Verify all text on page")
+    public void verifyAllTextOnPage() {
+        // Arrange
         String pageTitle = "Resizable";
         String resizableBoxWithRestrictionText = "Resizable box, starting at 200x200. Min size is 150x150, max is 500x300.";
         String resizableText = "Resizable";
@@ -42,11 +49,8 @@ public class ResizablePageTests extends BaseTest {
     }
 
     @Test(dataProvider = "resizeData", description = "Test resizing with different values", enabled = true, testName = "Resizing with different values")
-    public void ТestResizedBoxWithLimitation(int addX, int addY, int expectedWidth, int expectedHeight) {
+    public void testResizedBoxWithLimitation(int addX, int addY, int expectedWidth, int expectedHeight) {
         // Arrange
-        navigateToUrl("resizable");
-        ResizablePage resizablePage = new ResizablePage(driver);
-
         // Act
         resizablePage.changeSize(addX, addY);
         String actualNewSize = resizablePage.getNewSizeBox();
@@ -67,11 +71,8 @@ public class ResizablePageTests extends BaseTest {
     }
 
     @Test(dataProvider = "resizeData2", description = "Test resizing with different values", enabled = true, testName = "Resizing with different values")
-    public void ТestResizedBoxWithoutLimitation(int addAmountOnXAxis, int addAmountOnYAxis, int expectedWidth, int expectedHeight) {
+    public void testResizedBoxWithoutLimitation(int addAmountOnXAxis, int addAmountOnYAxis, int expectedWidth, int expectedHeight) {
         // Arrange
-        navigateToUrl("resizable");
-        ResizablePage resizablePage = new ResizablePage(driver);
-
         // Act
         resizablePage.changeSizeWithoutLimitations(addAmountOnXAxis, addAmountOnYAxis);
         String actualNewSize = resizablePage.getNewSizeBox2();
@@ -90,11 +91,8 @@ public class ResizablePageTests extends BaseTest {
     }
 
     @Test(dataProvider = "diagonalResizeData", description = "Test diagonal resizing", enabled = true, testName = "Diagonal resizing test")
-    public void DiagonalResizing(int addX, int addY, int expectedWidth, int expectedHeight) {
+    public void diagonalResizing(int addX, int addY, int expectedWidth, int expectedHeight) {
         // Arrange
-        navigateToUrl("resizable");
-        ResizablePage resizablePage = new ResizablePage(driver);
-
         // Act
         resizablePage.changeSize(addX, addY);
         String actualNewSize = resizablePage.getNewSizeBox();
@@ -104,11 +102,9 @@ public class ResizablePageTests extends BaseTest {
     }
 
     @Test(description = "Test resize handle visibility", enabled = true, testName = "Resize handle visibility test")
-    public void ResizeHandleVisibility() {
+    public void resizeHandleVisibility() {
         // Arrange
-        navigateToUrl("resizable");
-        ResizablePage resizablePage = new ResizablePage(driver);
-
+        // Act
         // Assert
         softAssert.assertTrue(resizablePage.isResizeHandleVisible(), "\nResize handle should be visible.\n");
         softAssert.assertTrue(resizablePage.isResizeHandle2Visible(), "\nSecond resize handle should be visible.\n");

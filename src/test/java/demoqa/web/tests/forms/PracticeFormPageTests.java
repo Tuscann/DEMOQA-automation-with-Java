@@ -2,18 +2,26 @@ package demoqa.web.tests.forms;
 
 import demoqa.pages.forms.PracticeFormPage;
 import demoqa.web.base.BaseTest;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class PracticeFormPageTests extends BaseTest {
+
+    public static final String AUTOMATION_PRACTICE_FORM_URL = "automation-practice-form";
+    private PracticeFormPage practiceFormPage;
+
+    @BeforeMethod
+    public void goToAutomationPracticeFormPage() {
+        navigateToUrl(AUTOMATION_PRACTICE_FORM_URL);
+        practiceFormPage = new PracticeFormPage(driver);
+    }
+
     @Test(enabled = true, testName = "Verify all text and placeholders")
     public void VerifyAllTextAndPlaceHolders() {
         // Arrange
-        navigateToUrl("automation-practice-form");
-        PracticeFormPage practiceFormPage = new PracticeFormPage(driver);
-
         String practiceFromText = "Practice Form";
         String studentRegistrationFormText = "Student Registration Form";
         String nameLabel = "Name";
@@ -110,9 +118,6 @@ public class PracticeFormPageTests extends BaseTest {
     @Test(enabled = true, testName = "Verify three hobbies state")
     public void VerifyThreeHobbiesState() {
         // Arrange
-        navigateToUrl("automation-practice-form");
-        PracticeFormPage practiceFormPage = new PracticeFormPage(driver);
-
         // Act
         practiceFormPage.clickSportHobbyCheckbox();
         practiceFormPage.clickMusicHobbyCheckbox();
@@ -133,9 +138,6 @@ public class PracticeFormPageTests extends BaseTest {
     @Test(enabled = true, testName = "Select there radio button for gender")
     public void SelectEveryRadioButton() {
         // Arrange
-        navigateToUrl("automation-practice-form");
-        PracticeFormPage practiceFormPage = new PracticeFormPage(driver);
-
         String genderFemale = "Female";
         String genderMale = "Male";
         String genderOther = "Other";
@@ -159,9 +161,6 @@ public class PracticeFormPageTests extends BaseTest {
     @Test(enabled = true, testName = "Submit valid practice form and verify")
     public void SubmitValidPracticeFormAndVerify() {
         // Arrange
-        navigateToUrl("automation-practice-form");
-        PracticeFormPage practiceFormPage = new PracticeFormPage(driver);
-
         String expectedFirstName = "Zhivko";
         String expectedLastName = "Petrov";
         String expectedEmail = "karma@gmail.com";
@@ -190,7 +189,7 @@ public class PracticeFormPageTests extends BaseTest {
         practiceFormPage.setEmail(expectedEmail);
         practiceFormPage.clickGenderRadioButton(expectedGender);
         practiceFormPage.setMobile(expectedMobileNumber);
-        practiceFormPage.setDateOfBirth("March","2024","27");
+        practiceFormPage.setDateOfBirth("March", "2024", "27");
         practiceFormPage.setSubject(expectedSubject);
         practiceFormPage.clickSportHobbyCheckbox();
         practiceFormPage.setCurrentAddress(expectedCurrentAddress);
@@ -231,9 +230,6 @@ public class PracticeFormPageTests extends BaseTest {
     @Test(enabled = true, testName = "Click submit button on empty form and verify colors")
     public void ClickSubmitOnEmptyFormAndVerifyColors() {
         // Arrange
-        navigateToUrl("automation-practice-form");
-        PracticeFormPage practiceFormPage = new PracticeFormPage(driver);
-
         practiceFormPage.clickSubmitButton();
 
         String expectedRedColor = "rgb(220, 53, 69)";
@@ -274,9 +270,6 @@ public class PracticeFormPageTests extends BaseTest {
     @Test(enabled = true, testName = "Verify colors change from red to green")
     public void VerifyColorsChangeFromRedToGreen() {
         // Arrange
-        navigateToUrl("automation-practice-form");
-        PracticeFormPage practiceFormPage = new PracticeFormPage(driver);
-
         practiceFormPage.clickSubmitButton();
 
         String expectedFirstName = "Zhivko";

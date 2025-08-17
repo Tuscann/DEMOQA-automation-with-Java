@@ -3,17 +3,25 @@ package demoqa.web.tests.widgets;
 import demoqa.pages.widgets.SelectMenuPage;
 import demoqa.web.base.BaseTest;
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.List;
 
 public class SelectMenuPageTests extends BaseTest {
 
-    @Test(enabled = true, testName = "Verify all text on the page")
-    public void VerifyAllTextOnPage() {
-        navigateToUrl("select-menu");
-        SelectMenuPage selectMenuPage = new SelectMenuPage(driver);
+    public static final String SELECT_MENU_URL = "select-menu";
+    private SelectMenuPage selectMenuPage;
 
+    @BeforeMethod
+    public void goToSelectMenuPage() {
+        navigateToUrl(SELECT_MENU_URL);
+        selectMenuPage = new SelectMenuPage(driver);
+    }
+
+    @Test(enabled = true, testName = "Verify all text on the page")
+    public void verifyAllTextOnPage() {
+        // Arrange
         String expectedSelectMenuText = "Select Menu";
         String expectedSelectedValueLabel = "Select Value";
         String expectedSelectedValuePlaceholder = "Select Option";
@@ -57,10 +65,8 @@ public class SelectMenuPageTests extends BaseTest {
     }
 
     @Test(enabled = true, testName = "Select all values from select value menu")
-    public void SelectAllValuesFromSelectValue() {
-        navigateToUrl("select-menu");
-        SelectMenuPage selectMenuPage = new SelectMenuPage(driver);
-
+    public void selectAllValuesFromSelectValue() {
+        // Arrange
         for (int i = 0; i < 6; i++) {
             String expectedSelectedValue = switch (i) {
                 case 0 -> "Group 1, option 1";
@@ -80,10 +86,8 @@ public class SelectMenuPageTests extends BaseTest {
     }
 
     @Test(enabled = true, testName = "Select all values from select one menu")
-    public void SelectAllValuesFromSelectOne() {
-        navigateToUrl("select-menu");
-        SelectMenuPage selectMenuPage = new SelectMenuPage(driver);
-
+    public void selectAllValuesFromSelectOne() {
+        // Arrange
         for (int i = 0; i < 6; i++) {
             String expectedSelectOne = switch (i) {
                 case 0 -> "Dr.";
@@ -104,10 +108,8 @@ public class SelectMenuPageTests extends BaseTest {
     }
 
     @Test(enabled = true, testName = "Select all values from old style select menu")
-    public void SelectAllValuesFromOldStyleSelectMenu() {
-        navigateToUrl("select-menu");
-        SelectMenuPage selectMenuPage = new SelectMenuPage(driver);
-
+    public void selectAllValuesFromOldStyleSelectMenu() {
+        // Arrange
         for (int i = 0; i < 11; i++) {
             String expectedColor = switch (i) {
                 case 0 -> "Red";
@@ -132,10 +134,8 @@ public class SelectMenuPageTests extends BaseTest {
     }
 
     @Test(enabled = false, testName = "Select all values from multi select dropdown menu")
-    public void SelectMultiSelectDropDown() {
-        navigateToUrl("select-menu");
-        SelectMenuPage selectMenuPage = new SelectMenuPage(driver);
-
+    public void selectMultiSelectDropDown() {
+        // Arrange
         for (int i = 0; i < 4; i++) {
             String expectedColor = switch (i) {
                 case 0 -> "Green";
@@ -154,10 +154,8 @@ public class SelectMenuPageTests extends BaseTest {
     }
 
     @Test(enabled = true, testName = "Select all values from standard multi select menu")
-    public void SelectAllValuesFromStandardMultiSelect() {
-        navigateToUrl("select-menu");
-        SelectMenuPage selectMenuPage = new SelectMenuPage(driver);
-
+    public void selectAllValuesFromStandardMultiSelect() {
+        // Arrange
         selectMenuPage.selectStandardMultiByText("Volvo");
         selectMenuPage.selectStandardMultiByIndex(1);
         selectMenuPage.selectStandardMultiByText("Audi");

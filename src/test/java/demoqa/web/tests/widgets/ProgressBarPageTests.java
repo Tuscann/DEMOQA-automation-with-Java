@@ -2,15 +2,23 @@ package demoqa.web.tests.widgets;
 
 import demoqa.pages.widgets.ProgressBarPage;
 import demoqa.web.base.BaseTest;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class ProgressBarPageTests extends BaseTest {
 
-    @Test(enabled = true, testName = "Verify all text on page")
-    public void VerifyAllTextOnPage() {
-        navigateToUrl("progress-bar");
-        ProgressBarPage progressBarPage = new ProgressBarPage(driver);
+    public static final String PROGRESS_BAR_URL = "progress-bar";
+    private ProgressBarPage progressBarPage;
 
+    @BeforeMethod
+    public void goToProgressBarPage() {
+        navigateToUrl(PROGRESS_BAR_URL);
+        progressBarPage = new ProgressBarPage(driver);
+    }
+
+    @Test(enabled = true, testName = "Verify all text on page")
+    public void verifyAllTextOnPage() {
+        // Arrange
         String expectedHeaderText = "Progress Bar";
         String expectedProgressBarText = "Progress Bar";
         String expectedStartButtonText = "Start";
@@ -28,10 +36,8 @@ public class ProgressBarPageTests extends BaseTest {
     }
 
     @Test(enabled = true, testName = "Click start button and check progress bar end value")
-    public void ClickStartButtonAndCheckProgressBarEndValue() {
-        navigateToUrl("progress-bar");
-        ProgressBarPage progressBarPage = new ProgressBarPage(driver);
-
+    public void clickStartButtonAndCheckProgressBarEndValue() {
+        // Arrange
         String expectedText = "100";
         String resetButtonText = "Reset";
         String stopButtonText = "Stop";
@@ -53,14 +59,13 @@ public class ProgressBarPageTests extends BaseTest {
         softAssert.assertEquals(textOfResetButton, resetButtonText, "\nNot reset Button.\n");
         softAssert.assertEquals(actualStartStopButtonText, stopButtonText, "\nNot stop Button.\n");
 
+        // Assert
         softAssert.assertAll();
     }
 
     @Test(enabled = true, testName = "Click reset button")
-    public void ClickResetButton() {
-        navigateToUrl("progress-bar");
-        ProgressBarPage progressBarPage = new ProgressBarPage(driver);
-
+    public void clickResetButton() {
+        // Arrange
         String expectedText = "100";
         String startButtonText = "Start";
 
@@ -73,13 +78,13 @@ public class ProgressBarPageTests extends BaseTest {
         softAssert.assertEquals(actualText, expectedText, "\nNot 100% value.\n");
         softAssert.assertEquals(actualStartButtonText, startButtonText, "\nWrong start button value.\n");
 
+        // Assert
         softAssert.assertAll();
     }
 
     @Test(enabled = true, testName = "Click start stop start check progress bar end value")
-    public void ClickStartStopStartCheckProgressBarEndValue() {
-        navigateToUrl("progress-bar");
-        ProgressBarPage progressBarPage = new ProgressBarPage(driver);
+    public void clickStartStopStartCheckProgressBarEndValue() {
+        // Arrange
         String expectedEndProgressBarValueText = "100";
         int stopValue = 14;
 
@@ -93,13 +98,13 @@ public class ProgressBarPageTests extends BaseTest {
         softAssert.assertEquals(actualProgressBarText, stopValue, "\nNot stop on " + stopValue + ".\n");
         softAssert.assertEquals(endProgressBarText, expectedEndProgressBarValueText, "\nNot stop 100% value.\n");
 
+        // Assert
         softAssert.assertAll();
     }
 
     @Test(enabled = true, testName = "Stop on 31 percent of progressbar")
-    public void StopOn31ProgressOfProgressbar() {
-        navigateToUrl("progress-bar");
-        ProgressBarPage progressBarPage = new ProgressBarPage(driver);
+    public void stopOn31ProgressOfProgressbar() {
+        // Arrange
         String expectedStartColor = "rgba(23, 162, 184, 1)";
         int stopValue = 31;
 
@@ -111,6 +116,8 @@ public class ProgressBarPageTests extends BaseTest {
 
         softAssert.assertEquals(actualValueOfProgressBar, stopValue, "\nNot " + stopValue + " value.\n");
         softAssert.assertEquals(actualNotGreenColor, expectedStartColor, "\nWrong color value.\n");
+
+        // Assert
         softAssert.assertAll();
     }
 }

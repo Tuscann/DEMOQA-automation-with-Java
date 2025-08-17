@@ -3,17 +3,23 @@ package demoqa.web.tests.elements;
 import demoqa.pages.elements.TextBoxPage;
 import demoqa.web.base.BaseTest;
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class TextBoxPageTests extends BaseTest {
 
+    public static final String TEXT_BOX_URL = "text-box";
+    private TextBoxPage textBoxPage;
+
+    @BeforeMethod
+    public void goToTextBoxPage() {
+        navigateToUrl(TEXT_BOX_URL);
+        textBoxPage = new TextBoxPage(driver);
+    }
+
     @Test(enabled = true, testName = "Verify all placeholders and all labels")
     public void VerifyAllPlaceholdersAndAllLabels() {
         // Arrange
-        navigateToUrl("text-box");
-
-        TextBoxPage textBoxPage = new TextBoxPage(driver);
-
         String header = "Text Box";
         String expectedFullNameLabel = "Full Name";
         String expectedFullNamePlaceholder = "Full Name";
@@ -53,9 +59,6 @@ public class TextBoxPageTests extends BaseTest {
     @Test(enabled = true, testName = "Submit fill form")
     public void SubmitFillForm() {
         // Arrange
-        navigateToUrl("text-box");
-        TextBoxPage textBoxPage = new TextBoxPage(driver);
-
         String expectedFullName = "Zhivko Nedyalkov";
         String expectedEmail = "fbinnzhivko@gmail.com";
         String expectedCurrentAddress = "Sofia";
@@ -83,9 +86,6 @@ public class TextBoxPageTests extends BaseTest {
     @Test(enabled = true, testName = "Submit empty form")
     public void SubmitEmptyForm() {
         // Arrange
-        navigateToUrl("text-box");
-        TextBoxPage textBoxPage = new TextBoxPage(driver);
-
         textBoxPage.clickSubmitButton();
 
         String actualOutput = textBoxPage.getOutput();
@@ -96,9 +96,6 @@ public class TextBoxPageTests extends BaseTest {
     @Test(enabled = true, testName = "Submit only full name")
     public void SubmitOnlyFullName() {
         // Arrange
-        navigateToUrl("text-box");
-        TextBoxPage textBoxPage = new TextBoxPage(driver);
-
         String fullName = "Zhivko Nedyalkov";
 
         textBoxPage.setFullNameField(fullName);
@@ -112,9 +109,6 @@ public class TextBoxPageTests extends BaseTest {
     @Test(enabled = true, testName = "Submit only valid email")
     public void SubmitOnlyValidEmail() {
         // Arrange
-        navigateToUrl("text-box");
-        TextBoxPage textBoxPage = new TextBoxPage(driver);
-
         String email = "testemail@example.com";
 
         textBoxPage.setEmailField(email);
@@ -127,9 +121,6 @@ public class TextBoxPageTests extends BaseTest {
     @Test(enabled = true, testName = "Try to submit non valid email and check red line")
     public void TryToSubmitUnValidEmailAndCheckRedLine() {
         // Arrange
-        navigateToUrl("text-box");
-        TextBoxPage textBoxPage = new TextBoxPage(driver);
-
         String email = "InvalidEmailFormat";
         textBoxPage.setEmailField(email);
         textBoxPage.clickSubmitButton();
@@ -143,9 +134,6 @@ public class TextBoxPageTests extends BaseTest {
     @Test(enabled = true, testName = "Submit only valid current address")
     public void SubmitOnlyValidCurrentAddress() {
         // Arrange
-        navigateToUrl("text-box");
-        TextBoxPage textBoxPage = new TextBoxPage(driver);
-
         String currentAddress = "4321 Maple Lane, Metropolis";
 
         textBoxPage.setCurrentAddressField(currentAddress);
@@ -158,9 +146,6 @@ public class TextBoxPageTests extends BaseTest {
     @Test(enabled = true, testName = "Submit only valid permanent address")
     public void SubmitOnlyValidPermanentAddress() {
         // Arrange
-        navigateToUrl("text-box");
-        TextBoxPage textBoxPage = new TextBoxPage(driver);
-
         String permanentAddress = "1234 Elm Street, Springfield";
 
         textBoxPage.setPermanentAddressField(permanentAddress);
@@ -173,9 +158,6 @@ public class TextBoxPageTests extends BaseTest {
     @Test(enabled = true, testName = "Update all fields after submit")
     public void UpdateAllFieldsAfterSubmit() {
         // Arrange
-        navigateToUrl("text-box");
-        TextBoxPage textBoxPage = new TextBoxPage(driver);
-
         String fullName = "Zhivko Nedyalkov";
         String email = "fbinnzhivko@gmail.com";
         String currentAddress = "Sofia";

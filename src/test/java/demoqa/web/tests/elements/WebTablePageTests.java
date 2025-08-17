@@ -3,16 +3,22 @@ package demoqa.web.tests.elements;
 import demoqa.pages.elements.WebTablesPage;
 import demoqa.web.base.BaseTest;
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class WebTablePageTests extends BaseTest {
+    public static final String WEB_TABLES_URL = "webtables";
+    private WebTablesPage webTablesPage;
 
+    @BeforeMethod
+    public void goToWebTablesPage() {
+        navigateToUrl(WEB_TABLES_URL);
+        webTablesPage = new WebTablesPage(driver);
+    }
 
     @Test(enabled = true, testName = "Verify all text on page")
     public void VerifyAllTextOnPage() {
-        navigateToUrl("webtables");
-        WebTablesPage webTablesPage = new WebTablesPage(driver);
-
+        // Arrange
         String expectedHeader = "Web Tables";
         String expectedButtonAddText = "Add";
         String buttonNextText = "Next";
@@ -76,9 +82,7 @@ public class WebTablePageTests extends BaseTest {
 
     @Test(enabled = true, testName = "Verify all label and place holders on registration form")
     public void VerifyAllLabelAndPlaceHoldersOnRegistrationForm() {
-        navigateToUrl("webtables");
-        WebTablesPage webTablesPage = new WebTablesPage(driver);
-
+        // Arrange
         String expectedRegistrationFormText = "Registration Form";
         String expectedFirstNameLabel = "First Name";
         String expectedFirstNamePlaceholder = "First Name";
@@ -130,9 +134,7 @@ public class WebTablePageTests extends BaseTest {
 
     @Test(enabled = true, testName = "Update first name on first user")
     public void UpdateFirstNameOnFirstUser() {
-        navigateToUrl("webtables");
-        WebTablesPage webTablesPage = new WebTablesPage(driver);
-
+        // Arrange
         String email = "cierra@example.com";
         String expectedFirstName = "Zhivko";
 
@@ -147,9 +149,7 @@ public class WebTablePageTests extends BaseTest {
 
     @Test(enabled = true, testName = "Update last name on first user")
     public void UpdateLastNameOnFirstUser() {
-        navigateToUrl("webtables");
-        WebTablesPage webTablesPage = new WebTablesPage(driver);
-
+        // Arrange
         String email = "cierra@example.com";
         String expectedLastName = "Petrov";
 
@@ -164,9 +164,7 @@ public class WebTablePageTests extends BaseTest {
 
     @Test(enabled = true, testName = "Update email on first user")
     public void UpdateEmailOnFirstUser() {
-        navigateToUrl("webtables");
-        WebTablesPage webTablesPage = new WebTablesPage(driver);
-
+        // Arrange
         String oldEmail = "cierra@example.com";
         String newEmail = "da@abv.bg";
 
@@ -180,9 +178,7 @@ public class WebTablePageTests extends BaseTest {
 
     @Test(enabled = true, testName = "Update age on first user")
     public void UpdateAgeOnFirstUser() {
-        navigateToUrl("webtables");
-        WebTablesPage webTablesPage = new WebTablesPage(driver);
-
+        // Arrange
         String oldEmail = "cierra@example.com";
         String newEmail = "da@abv.bg";
 
@@ -196,9 +192,7 @@ public class WebTablePageTests extends BaseTest {
 
     @Test(enabled = true, testName = "Update salary on first user")
     public void UpdateSalaryOnFirstUser() {
-        navigateToUrl("webtables");
-        WebTablesPage webTablesPage = new WebTablesPage(driver);
-
+        // Arrange
         String email = "cierra@example.com";
         String expectedSalary = "2000";
 
@@ -212,9 +206,7 @@ public class WebTablePageTests extends BaseTest {
 
     @Test(enabled = true, testName = "Update department on first user")
     public void UpdateDepartmentOnFirstUser() {
-        navigateToUrl("webtables");
-        WebTablesPage webTablesPage = new WebTablesPage(driver);
-
+        // Arrange
         String email = "cierra@example.com";
         String expectedDepartment = "Home";
 
@@ -228,9 +220,7 @@ public class WebTablePageTests extends BaseTest {
 
     @Test(enabled = true, testName = "Delete default three rows")
     public void DeleteDefaultThreeRows() {
-        navigateToUrl("webtables");
-        WebTablesPage webTablesPage = new WebTablesPage(driver);
-
+        // Arrange
         String email1 = "cierra@example.com";
         String email2 = "kierra@example.com";
         String email3 = "alden@example.com";
@@ -246,9 +236,7 @@ public class WebTablePageTests extends BaseTest {
 
     @Test(enabled = true, testName = "Add new user")
     public void AddNewUser() {
-        navigateToUrl("webtables");
-        WebTablesPage webTablesPage = new WebTablesPage(driver);
-
+        // Arrange
         String expectedFirstName = "Zhivko";
         String expectedLastName = "Petrov";
         String expectedEmail = "Zhivko@example.com";
@@ -286,9 +274,7 @@ public class WebTablePageTests extends BaseTest {
 
     @Test(enabled = true, testName = "Verify previous and next buttons active")
     public void VerifyPreviousAndNextButtonsActive() {
-        navigateToUrl("webtables");
-        WebTablesPage webTablesPage = new WebTablesPage(driver);
-
+        // Arrange
         String expectedFirstName = "Zhivko";
         String lastName = "Kamenov";
         String email = "Zhivko@example.com";
@@ -332,9 +318,7 @@ public class WebTablePageTests extends BaseTest {
 
     @Test(enabled = true, testName = "Verify previous and next button are not active after load page")
     public void VerifyPreviousAndNextButtonAreNotActiveAfterLoadPage() {
-        navigateToUrl("webtables");
-        WebTablesPage webTablesPage = new WebTablesPage(driver);
-
+        // Arrange
         softAssert.assertFalse(webTablesPage.checkPreviousButtonIsActive(), "\nNot active Previous button.\n");
         softAssert.assertFalse(webTablesPage.checkNextButtonIsActive(), "\nNot active Next button.\n");
 
@@ -343,9 +327,7 @@ public class WebTablePageTests extends BaseTest {
 
     @Test(enabled = true, testName = "Search with no existing category and check results")
     public void SearchWithNoExistingCategoryAndCheckResults() {
-        navigateToUrl("webtables");
-        WebTablesPage webTablesPage = new WebTablesPage(driver);
-
+        // Arrange
         String expectedResult = "No rows found";
         String searchedWord = "karma";
         webTablesPage.searchWithWord(searchedWord);
@@ -356,9 +338,7 @@ public class WebTablePageTests extends BaseTest {
 
     @Test(enabled = true, testName = "Search with existing category and check results")
     public void SearchWithExistingCategoryAndCheckResults() {
-        navigateToUrl("webtables");
-        WebTablesPage webTablesPage = new WebTablesPage(driver);
-
+        // Arrange
         String searchedWord = "Insurance";
         String expectedFirstName = "Cierra";
         String expectedLastName = "Vega";
@@ -387,8 +367,7 @@ public class WebTablePageTests extends BaseTest {
 
     @Test(enabled = true, testName = "Submit empty form and verify all red lines")
     public void SubmitEmptyFormAndVerifyAllRedLines() {
-        navigateToUrl("webtables");
-        WebTablesPage webTablesPage = new WebTablesPage(driver);
+        // Arrange
         String redColor = "1px solid rgb(220, 53, 69)";
 
         webTablesPage.clickAddButton();
@@ -401,8 +380,7 @@ public class WebTablePageTests extends BaseTest {
 
     @Test(enabled = true, testName = "Select all rows per page")
     public void SelectAllRowsPerPage() {
-        navigateToUrl("webtables");
-        WebTablesPage webTablesPage = new WebTablesPage(driver);
+        // Arrange
         String expected5rows = "5 rows";
         String expected10rows = "10 rows";
         String expected20rows = "20 rows";
@@ -439,9 +417,7 @@ public class WebTablePageTests extends BaseTest {
 
     @Test(enabled = true, testName = "Verify border color change from red to green after add")
     public void VerifyColorsChangeFromRedToGreenAfterAdd() {
-        navigateToUrl("webtables");
-        WebTablesPage webTablesPage = new WebTablesPage(driver);
-
+        // Arrange
         webTablesPage.clickAddButton();
         webTablesPage.clickSubmitButton();
 

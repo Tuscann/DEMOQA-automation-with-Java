@@ -3,15 +3,23 @@ package demoqa.web.tests.interactions;
 import demoqa.pages.interactions.DraggablePage;
 import demoqa.web.base.BaseTest;
 import org.openqa.selenium.Point;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class DraggablePageTests extends BaseTest {
+
+    public static final String DRAGGABLE_URL = "dragabble";
+    private DraggablePage draggablePage;
+
+    @BeforeMethod
+    public void goToDraggablePage() {
+        navigateToUrl(DRAGGABLE_URL);
+        draggablePage = new DraggablePage(driver);
+    }
+
     @Test(enabled = true, testName = "Verify all text on page")
     public void VerifyAllTextOnPage() {
         // Arrange
-        navigateToUrl("dragabble");
-        DraggablePage draggablePage = new DraggablePage(driver);
-
         String pageTitle = "Dragabble";
         String simpleTabTitle = "Simple";
         String simpleDragMe = "Drag me";
@@ -64,16 +72,12 @@ public class DraggablePageTests extends BaseTest {
 
     @Test(enabled = true, testName = "Drag me simple tab")
     public void DragMeSimpleTab() {
-        navigateToUrl("dragabble");
-        DraggablePage draggablePage = new DraggablePage(driver);
-
+        // Arrange
         int xOffset = 150;
         int yOffset = 50;
 
         Point initialLocation = draggablePage.getInitLocation();
-
         draggablePage.dragAndDropByOnPositionDragMe(xOffset, yOffset);
-
         Point endPosition = draggablePage.getInitLocation();
 
         // Assert
@@ -84,9 +88,7 @@ public class DraggablePageTests extends BaseTest {
 
     @Test(enabled = true, testName = "Drag only x in axis restricted tab")
     public void DragOnlyXInAxisRestrictedTab() {
-        navigateToUrl("dragabble");
-        DraggablePage draggablePage = new DraggablePage(driver);
-
+        // Arrange
         int xOffset = 150;
         int yOffset = 50;
 
@@ -106,9 +108,7 @@ public class DraggablePageTests extends BaseTest {
 
     @Test(enabled = true, testName = "Drag only y in axis restricted tab")
     public void DragOnlyYInAxisRestrictedTab() {
-        navigateToUrl("dragabble");
-        DraggablePage draggablePage = new DraggablePage(driver);
-
+        // Arrange
         int xOffset = 150;
         int yOffset = 50;
 
@@ -128,9 +128,7 @@ public class DraggablePageTests extends BaseTest {
 
     @Test(enabled = true, testName = "Contained in box axis restricted tab with size inside box")
     public void ContainedInBoxAxisRestrictedTabWithSizeInsideBox() {
-        navigateToUrl("dragabble");
-        DraggablePage draggablePage = new DraggablePage(driver);
-
+        // Arrange
         int xOffset = 150;
         int yOffset = 50;
 
@@ -149,9 +147,7 @@ public class DraggablePageTests extends BaseTest {
 
     @Test(enabled = false, testName = "Contained in box axis restricted tab with size out side box")
     public void ContainedInBoxAxisRestrictedTabWithSizeOutSideBox() {
-        navigateToUrl("dragabble");
-        DraggablePage draggablePage = new DraggablePage(driver);
-
+        // Arrange
         int xOffset = 500;
         int yOffset = 107;  //Magic number -1 become bigger TODO HELP
 
@@ -171,9 +167,7 @@ public class DraggablePageTests extends BaseTest {
 
     @Test(enabled = true, testName = "Contained in parent axis restricted tab with size inside box")
     public void ContainedInParentAxisRestrictedTabWithSizeInsideBox() {
-        navigateToUrl("dragabble");
-        DraggablePage draggablePage = new DraggablePage(driver);
-
+        // Arrange
         int xOffset = 15;
         int yOffset = 60;
         // Allow for a larger margin of error (±10 pixels) in position
@@ -197,9 +191,7 @@ public class DraggablePageTests extends BaseTest {
 
     @Test(enabled = true, testName = "Move first text cursor style")
     public void MoveFirstTextCursorStyle() {
-        navigateToUrl("dragabble");
-        DraggablePage draggablePage = new DraggablePage(driver);
-
+        // Arrange
         int xOffset = 0;
         int yOffset = 100;
 
@@ -230,9 +222,7 @@ public class DraggablePageTests extends BaseTest {
 
     @Test(enabled = true, testName = "Move second text cursor style")
     public void MoveSecondTextCursorStyle() {
-        navigateToUrl("dragabble");
-        DraggablePage draggablePage = new DraggablePage(driver);
-
+        // Arrange
         draggablePage.clickCursorStyleTab();
 
         // Add a wait before getting initial location
@@ -293,9 +283,6 @@ public class DraggablePageTests extends BaseTest {
     @Test(enabled = true, testName = "Move third text cursor style")
     public void MoveThirdTextCursorStyle() {
         // Arrange
-        navigateToUrl("dragabble");
-        DraggablePage draggablePage = new DraggablePage(driver);
-
         int xOffset = 100;
         int yOffset = 100;  //Magic number -50 TODO HELP
 
