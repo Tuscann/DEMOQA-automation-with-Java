@@ -2,16 +2,22 @@ package demoqa.web.tests.alerts;
 
 import demoqa.pages.alerts.BrowserWindowsPage;
 import demoqa.web.base.BaseTest;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class BrowserWindowsPageTests extends BaseTest {
+    private static final String FRAMES_URL = "browser-windows";
+    private BrowserWindowsPage browserWindowsPage;
+
+    @BeforeMethod
+    public void goToBrowserWindowsPage() {
+        navigateToUrl(FRAMES_URL);
+        browserWindowsPage = new BrowserWindowsPage(driver);
+    }
 
     @Test(enabled = true, testName = "Verify all text on page")
-    public void VerifyAllTextOnPage() {
+    public void verifyAllTextOnPage() {
         // Arrange
-        navigateToUrl("browser-windows");
-        BrowserWindowsPage browserWindowsPage = new BrowserWindowsPage(driver);
-
         String browserWindowsText = "Browser Windows";
         String newTabText = "New Tab";
         String newWindow = "New Window";
@@ -33,10 +39,8 @@ public class BrowserWindowsPageTests extends BaseTest {
     }
 
     @Test(enabled = true, testName = "Click on new tab button")
-    public void ClickNewTabButton() {
+    public void clickNewTabButton() {
         // Arrange
-        navigateToUrl("browser-windows");
-        BrowserWindowsPage browserWindowsPage = new BrowserWindowsPage(driver);
         String expectedNewTabUrl = "https://demoqa.com/sample";
 
         // Act
@@ -49,10 +53,8 @@ public class BrowserWindowsPageTests extends BaseTest {
     }
 
     @Test(enabled = true, testName = "Click on new window button")
-    public void ClickNewWindowButton() {
+    public void clickNewWindowButton() {
         // Arrange
-        navigateToUrl("browser-windows");
-        BrowserWindowsPage browserWindowsPage = new BrowserWindowsPage(driver);
         String expectedNewTabUrl = "https://demoqa.com/sample";
 
         // Act
@@ -65,10 +67,8 @@ public class BrowserWindowsPageTests extends BaseTest {
     }
 
     @Test(enabled = false, testName = "Click on new window message button")
-    public void ClickNewWindowMessage() {
+    public void clickNewWindowMessage() {
         // Arrange
-        navigateToUrl("browser-windows");
-        BrowserWindowsPage browserWindowsPage = new BrowserWindowsPage(driver);
         String expectedBrowserMessage = "Knowledge increases by sharing but not by saving. Please share this website with your friends and in your organization.";
 
         // Act

@@ -2,9 +2,10 @@ package demoqa.web.tests.alerts;
 
 import demoqa.pages.alerts.Alerts_Frames_WindowsPage;
 import demoqa.web.base.BaseTest;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class Alerts_Frames_WindowsPageTests extends BaseTest {
+public class AlertsFramesWindowsPageTests extends BaseTest {
 
     private static final String BASE_URL = "https://demoqa.com/";
     private static final String ALERTS_WINDOWS_URL = "alertsWindows";
@@ -16,13 +17,17 @@ public class Alerts_Frames_WindowsPageTests extends BaseTest {
 
     private static final String EXPECTED_MAIN_TEXT = "Please select an item from left to start practice.";
 
+    private Alerts_Frames_WindowsPage alerts_frames_windowsPage;
 
-    @Test(enabled = true, testName = "Click on 5 links on left side menu")
-    public void CheckAllFivePagesLinksAndText() {
-        // Arrange
+    @BeforeMethod
+    public void goToAlertsFramesWindowsPage() {
         navigateToUrl(ALERTS_WINDOWS_URL);
-        Alerts_Frames_WindowsPage alerts_frames_windowsPage = new Alerts_Frames_WindowsPage(driver);
+        alerts_frames_windowsPage = new Alerts_Frames_WindowsPage(driver);
+    }
 
+    @Test(enabled = true, testName = "Verify navigation to all 5 sub-pages in left menu")
+    public void checkAllFivePagesLinksAndText() {
+        // Arrange
         // Act
         alerts_frames_windowsPage.clickBrowserWindows();
         softAssert.assertEquals(alerts_frames_windowsPage.checkUrl(), BROWSER_WINDOWS_URL, "\nUrl is not " + BROWSER_WINDOWS_URL + ".\n");
@@ -44,12 +49,8 @@ public class Alerts_Frames_WindowsPageTests extends BaseTest {
     }
 
     @Test(enabled = true, testName = "Verify left side menu collapses and expands correctly.")
-    public void ClickLeftDropdownMenu() {
-        // Arrange
-        navigateToUrl(ALERTS_WINDOWS_URL);
-        Alerts_Frames_WindowsPage alerts_frames_windowsPage = new Alerts_Frames_WindowsPage(driver);
-
-        // Act
+    public void clickLeftDropdownMenu() {
+        // Arrange & Act
         String actualString = alerts_frames_windowsPage.getMainText();
         boolean textBoxIsVisible = alerts_frames_windowsPage.verifyFramesIsVisible();
 
@@ -57,7 +58,7 @@ public class Alerts_Frames_WindowsPageTests extends BaseTest {
         boolean textBoxIsVisible2 = alerts_frames_windowsPage.verifyFramesIsNotVisible();
 
         // Assert
-        softAssert.assertEquals(actualString, EXPECTED_MAIN_TEXT, "\nExpecting "+EXPECTED_MAIN_TEXT+" text.\n");
+        softAssert.assertEquals(actualString, EXPECTED_MAIN_TEXT, "\nExpecting " + EXPECTED_MAIN_TEXT + " text.\n");
         softAssert.assertTrue(textBoxIsVisible, "\nFrames is not shown.\n");
         softAssert.assertFalse(textBoxIsVisible2, "\nFrames is shown.\n");
         softAssert.assertAll();

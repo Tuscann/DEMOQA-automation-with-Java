@@ -16,7 +16,7 @@ public class AccordianPageTests extends BaseTest {
         accordianPage = new AccordianPage(driver);
     }
 
-    @Test(enabled = true, testName = "Verify all text on page")
+    @Test(enabled = true, testName = "Verify all headings on Accordian page")
     public void verifyAllTextOnPage() {
         // Arrange
         String expectedHeading = "Accordian";
@@ -24,17 +24,11 @@ public class AccordianPageTests extends BaseTest {
         String expectedTwoHeadingText = "Where does it come from?";
         String expectedThreeHeadingText = "Why do we use it?";
 
-        // Act
-        String actualHeading = accordianPage.getHeading();
-        String actualSectionOneHeadingText = accordianPage.getSectionOneHeadingText();
-        String actualSectionTwoHeadingText = accordianPage.getSectionTwoHeadingText();
-        String actualSectionThreeHeadingText = accordianPage.getSectionThreeHeadingText();
-
-        // Assert
-        softAssert.assertEquals(actualHeading, expectedHeading, "\nWrong heading.\n");
-        softAssert.assertEquals(actualSectionOneHeadingText, expectedOneHeadingText, "\nWrong one heading text.\n");
-        softAssert.assertEquals(actualSectionTwoHeadingText, expectedTwoHeadingText, "\nWrong two heading text.\n");
-        softAssert.assertEquals(actualSectionThreeHeadingText, expectedThreeHeadingText, "\nWrong three heading text.\n");
+        // Act & Assert
+        softAssert.assertEquals(accordianPage.getHeading(), expectedHeading, "\nIncorrect page heading.\n");
+        softAssert.assertEquals(accordianPage.getSectionOneHeadingText(), expectedOneHeadingText, "\nIncorrect first section heading.\n");
+        softAssert.assertEquals(accordianPage.getSectionTwoHeadingText(), expectedTwoHeadingText, "\nIncorrect second section heading.\n");
+        softAssert.assertEquals(accordianPage.getSectionThreeHeadingText(), expectedThreeHeadingText, "\nIncorrect third section heading.\n");
         softAssert.assertAll();
     }
 
@@ -45,10 +39,9 @@ public class AccordianPageTests extends BaseTest {
 
         // Act
         accordianPage.clickOneHeading();
-        String actualText = accordianPage.getSectionOneText();
 
         // Assert
-        softAssert.assertEquals(actualText, expectedText, "\nWrong first paragraph.\n");
+        softAssert.assertEquals(accordianPage.getSectionOneText(), expectedText, "\nWrong first paragraph.\n");
         softAssert.assertAll();
     }
 
@@ -60,10 +53,9 @@ public class AccordianPageTests extends BaseTest {
 
         // Act
         accordianPage.clickTwoHeading();
-        String actualText = accordianPage.getSectionTwoText();
 
         // Assert
-        softAssert.assertEquals(actualText, expectedText, "\nWrong second paragraph.\n");
+        softAssert.assertEquals(accordianPage.getSectionTwoText(), expectedText, "\nWrong second paragraph.\n");
         softAssert.assertAll();
     }
 
@@ -74,10 +66,9 @@ public class AccordianPageTests extends BaseTest {
 
         // Act
         accordianPage.clickThreeHeading();
-        String actualText = accordianPage.getSectionThreeText();
 
         // Assert
-        softAssert.assertEquals(actualText, expectedText, "\nWrong third paragraph.\n");
+        softAssert.assertEquals(accordianPage.getSectionThreeText(), expectedText, "\nWrong third paragraph.\n");
         softAssert.assertAll();
     }
 }

@@ -3,6 +3,7 @@ package demoqa.web.tests.home;
 import demoqa.pages.home.HomePage;
 import demoqa.web.base.BaseTest;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 public class HomePageTests extends BaseTest {
@@ -30,73 +31,46 @@ public class HomePageTests extends BaseTest {
         homePage = new HomePage(driver);
     }
 
-    @Test(enabled = true, testName = "Click and verify all links")
-    public void ClickAndVerifyAllLinks() {
-        homePage.goToElements();
+    @DataProvider(name = "homePageCards")
+    public Object[][] homePageCards() {
+        return new Object[][]{
+                {"Elements", ELEMENTS_URL, (Runnable) () -> homePage.goToElements()},
+                {"Forms", FORMS_URL, (Runnable) () -> homePage.goToForms()},
+                {"Alerts", ALERTS_WINDOWS_URL, (Runnable) () -> homePage.goToAlertsFramesWindowsCard()},
+                {"Widgets", WIDGETS_URL, (Runnable) () -> homePage.goToWidgets()},
+                {"Interactions", INTERACTION_URL, (Runnable) () -> homePage.goToInteractions()},
+                {"Book Store", BOOKS_URL, (Runnable) () -> homePage.goToBooks()}
+        };
+    }
+
+    @Test(dataProvider = "homePageCards", testName = "Click and verify card: {0} ")
+    public void clickAndVerifyCardNavigation(String cardName, String expectedUrl, Runnable clickAction) {
+        clickAction.run();
         String actualUrl = homePage.checkUrl();
-        softAssert.assertEquals(actualUrl, ELEMENTS_URL, "\nExpected elements page.\n");
-
-        homePage.navigateBack();
-
-        homePage.goToForms();
-        actualUrl = homePage.checkUrl();
-        softAssert.assertEquals(actualUrl, FORMS_URL, "\nExpected forms page.\n");
-
-        homePage.navigateBack();
-
-        homePage.goToAlertsFramesWindowsCard();
-        actualUrl = homePage.checkUrl();
-        softAssert.assertEquals(actualUrl, ALERTS_WINDOWS_URL, "\nExpected alerts page.\n");
-
-        homePage.navigateBack();
-
-        homePage.goToWidgets();
-        actualUrl = homePage.checkUrl();
-        softAssert.assertEquals(actualUrl, WIDGETS_URL, "\nExpected widgets page.\n");
-
-        homePage.navigateBack();
-
-        homePage.goToInteractions();
-        actualUrl = homePage.checkUrl();
-        softAssert.assertEquals(actualUrl, INTERACTION_URL, "\nExpected Interaction page.\n");
-
-        homePage.navigateBack();
-
-        homePage.goToBooks();
-        actualUrl = homePage.checkUrl();
-        softAssert.assertEquals(actualUrl, BOOKS_URL, "\nExpected books page.\n");
-
+        softAssert.assertEquals(actualUrl, expectedUrl, "\nFailed for card: " + cardName);
         softAssert.assertAll();
+        homePage.navigateBack();
     }
 
     @Test(enabled = true, testName = "Verify all text on page")
-    public void VerifyAllTextOnPage() {
+    public void verifyAllHomePageTexts() {
         // Arrange
         // Act
-        String actualFooterText = homePage.getFooterText();
-        String actualElementsText = homePage.getElementsText();
-        String actualFormsText = homePage.getFormsText();
-        String actualAlertsText = homePage.getAlertsText();
-        String actualWidgetsText = homePage.getWidgetsText();
-        String actualInteractionText = homePage.getInteractionsText();
-        String actualBooksText = homePage.getBookStoreApplicationText();
-
         // Assert
-        softAssert.assertEquals(actualElementsText, ELEMENTS_TEXT, "\nExpected elements text.\n");
-        softAssert.assertEquals(actualFormsText, FORMS_TEXT, "\nExpected forms text.\n");
-        softAssert.assertEquals(actualAlertsText, ALERTS_TEXT, "\nExpected alerts text.\n");
-        softAssert.assertEquals(actualWidgetsText, WIDGETS_TEXT, "\nExpected widgets text.\n");
-        softAssert.assertEquals(actualInteractionText, INTERACTIONS_TEXT, "\nExpected interaction text.\n");
-        softAssert.assertEquals(actualBooksText, BOOKS_TEXT, "\nExpected books text.\n");
-        softAssert.assertEquals(actualFooterText, FOOTER_TEXT, "\nExpected footer text.\n");
+        softAssert.assertEquals(homePage.getElementsText(), ELEMENTS_TEXT, "\nExpected elements text.\n");
+        softAssert.assertEquals(homePage.getFormsText(), FORMS_TEXT, "\nExpected forms text.\n");
+        softAssert.assertEquals(homePage.getAlertsText(), ALERTS_TEXT, "\nExpected alerts text.\n");
+        softAssert.assertEquals(homePage.getWidgetsText(), WIDGETS_TEXT, "\nExpected widgets text.\n");
+        softAssert.assertEquals(homePage.getInteractionsText(), INTERACTIONS_TEXT, "\nExpected interaction text.\n");
+        softAssert.assertEquals(homePage.getBookStoreApplicationText(), BOOKS_TEXT, "\nExpected books text.\n");
+        softAssert.assertEquals(homePage.getFooterText(), FOOTER_TEXT, "\nExpected footer text.\n");
 
         softAssert.assertAll();
     }
 
     @Test(enabled = true, testName = "Verify Join Now button navigates correctly.")
-    public void VerifyJoinNowButton() {
-        // Arrange
-        // Act
+    public void verifyJoinNowButton() {
+        // Arrange & Act
         String originalWindow = driver.getWindowHandle();
         homePage.clickJoinNowButton();
 
@@ -107,10 +81,10 @@ public class HomePageTests extends BaseTest {
             }
         }
 
-        String currentUrl = driver.getCurrentUrl();
+        String actualUrl = driver.getCurrentUrl();
 
         // Assert
-        softAssert.assertEquals(SELENIUM_TRAINING_URL, currentUrl);
+        softAssert.assertEquals(actualUrl, SELENIUM_TRAINING_URL);
         softAssert.assertAll();
     }
 }

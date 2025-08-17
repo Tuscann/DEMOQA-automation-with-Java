@@ -21,7 +21,7 @@ import static utilities.Utility.setUtilityDriver;
 public class BaseTest {
 
     private static final ThreadLocal<WebDriver> threadDriver = new ThreadLocal<>();
-    public final String DEMOQA_URL = "http://demoqa.com/";
+    public final String DEMOQA_URL = "https://demoqa.com/";
     public WebDriver driver;
     public SoftAssert softAssert;
     protected BasePage basePage;
@@ -32,8 +32,9 @@ public class BaseTest {
             ChromeOptions options = new ChromeOptions();
             options.addArguments("--headless=new");
             options.addArguments("--disable-gpu");
-           //options.addArguments("--window-size=1680,1050");
-            options.addArguments("--window-size=1920,1080");
+            // options.addArguments("--window-size=1680,1050");
+            // options.addArguments("--window-size=1920,1080");
+            options.addArguments("--start-maximized");
 
             driver = new ChromeDriver(options);
             threadDriver.set(driver);

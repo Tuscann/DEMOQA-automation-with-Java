@@ -2,15 +2,22 @@ package demoqa.web.tests.alerts;
 
 import demoqa.pages.alerts.FramesPage;
 import demoqa.web.base.BaseTest;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class FramesPageTests extends BaseTest {
+    private static final String FRAMES_URL = "frames";
+    private FramesPage framesPage;
+
+    @BeforeMethod
+    public void goToFramesPage() {
+        navigateToUrl(FRAMES_URL);
+        framesPage = new FramesPage(driver);
+    }
 
     @Test(enabled = true, testName = "Verify all text on page")
-    public void VerifyAllTextOnPage() {
+    public void verifyAllTextOnPage() {
         // Arrange
-        navigateToUrl("frames");
-        FramesPage framesPage = new FramesPage(driver);
         String expectedHeadingText = "Frames";
         String expectedText = "Sample Iframe page There are 2 Iframes in this page. Use browser inspecter or firebug to check out the HTML source. In total you can switch between the parent frame, which is this window, and the two frames below";
 
@@ -25,10 +32,8 @@ public class FramesPageTests extends BaseTest {
     }
 
     @Test(enabled = true, testName = "Verify heading in first Iframe")
-    public void VerifyHeadingTextInFirstIframe() {
+    public void verifyHeadingTextInFirstIframe() {
         // Arrange
-        navigateToUrl("frames");
-        FramesPage framesPage = new FramesPage(driver);
         String expectedFirstIFrameHeadingText = "This is a sample page";
 
         // Act
@@ -40,10 +45,8 @@ public class FramesPageTests extends BaseTest {
     }
 
     @Test(enabled = true, testName = "Verify heading in second Iframe")
-    public void VerifyHeadingTextInSecondIframe() {
+    public void verifyHeadingTextInSecondIframe() {
         // Arrange
-        navigateToUrl("frames");
-        FramesPage framesPage = new FramesPage(driver);
         String expectedSecondIFrameHeadingText = "This is a sample page";
 
         // Act

@@ -12,8 +12,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 import java.util.List;
 
-import static utilities.JavaScriptUtility.scrollToElementJS;
-
 public class SelectablePage extends BasePage {
     @FindBy(xpath = "//h1[@class='text-center'][contains(.,'Selectable')]")
     private WebElement pageTitle;
@@ -135,37 +133,37 @@ public class SelectablePage extends BasePage {
         }
     }
 
-    public void selectFirstRow() {
-        firstRowSelect.click();
-    }
-
-    public void selectSecondRow() {
-        secondRowSelect.click();
-    }
-
-    public void selectThirdRow() {
-        thirdRowSelect.click();
-    }
-
-    public void selectFourRow() {
-        fourRowSelect.click();
-    }
-
-    public void deselectFirstRow() {
-        firstRowDeselect.click();
-    }
-
-    public void deselectSecondRow() {
-        secondRowDeselect.click();
-    }
-
-    public void deselectThirdRow() {
-        thirdRowDeselect.click();
-    }
-
-    public void deselectFourRow() {
-        fourRowDeselect.click();
-    }
+//    public void selectFirstRow() {
+//        firstRowSelect.click();
+//    }
+//
+//    public void selectSecondRow() {
+//        secondRowSelect.click();
+//    }
+//
+//    public void selectThirdRow() {
+//        thirdRowSelect.click();
+//    }
+//
+//    public void selectFourRow() {
+//        fourRowSelect.click();
+//    }
+//
+//    public void deselectFirstRow() {
+//        firstRowDeselect.click();
+//    }
+//
+//    public void deselectSecondRow() {
+//        secondRowDeselect.click();
+//    }
+//
+//    public void deselectThirdRow() {
+//        thirdRowDeselect.click();
+//    }
+//
+//    public void deselectFourRow() {
+//        fourRowDeselect.click();
+//    }
 
     public boolean RowSelected(String searchedSelection) {
 

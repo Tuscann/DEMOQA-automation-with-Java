@@ -2,155 +2,156 @@ package demoqa.web.tests.alerts;
 
 import demoqa.pages.alerts.AlertsPage;
 import demoqa.web.base.BaseTest;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static utilities.SwitchToUtility.*;
 
 public class AlertsPageTests extends BaseTest {
+    private static final String ALERTS_PAGE_URL = "alerts";
+    private AlertsPage alertsPage;
+    
+    // Page Text Constants
+    private static final String HEADER_TEXT = "Alerts";
+    private static final String FIRST_ALERT_TEXT = "Click Button to see alert";
+    private static final String SECOND_ALERT_TEXT = "On button click, alert will appear after 5 seconds";
+    private static final String THIRD_ALERT_TEXT = "On button click, confirm box will appear";
+    private static final String FOURTH_ALERT_TEXT = "On button click, prompt box will appear";
+    
+    // Alert Message Constants
+    private static final String INFO_ALERT_MESSAGE = "You clicked a button";
+    private static final String TIMED_ALERT_MESSAGE = "This alert appeared after 5 seconds";
+    
+    // Alert Response Constants
+    private static final String CANCEL_RESULT = "You selected Cancel";
+    private static final String OK_RESULT = "You selected Ok";
+    
+    // Prompt Alert Constants
+    private static final String PROMPT_INPUT_TEXT = "Selenium With Java";
+    private static final String PROMPT_RESULT_PREFIX = "You entered ";
+    
+    // Error Messages Constants
+    private static final String HEADER_MISMATCH_ERROR = "Incorrect header text";
+    private static final String FIRST_TEXT_MISMATCH_ERROR = "First alert text mismatch";
+    private static final String SECOND_TEXT_MISMATCH_ERROR = "Second alert text mismatch";
+    private static final String THIRD_TEXT_MISMATCH_ERROR = "Third alert text mismatch";
+    private static final String FOURTH_TEXT_MISMATCH_ERROR = "Fourth alert text mismatch";
+    private static final String INFO_ALERT_MISMATCH_ERROR = "Information alert text mismatch";
+    private static final String TIMED_ALERT_MISMATCH_ERROR = "Timed alert message mismatch";
+    private static final String CANCEL_SELECTION_ERROR = "Cancel selection result mismatch";
+    private static final String OK_SELECTION_ERROR = "OK selection result mismatch";
+    private static final String PROMPT_RESULT_MISMATCH_ERROR = "Prompt alert result mismatch";
+    private static final String ALERT_RESULT_VISIBILITY_ERROR = "Alert result visibility mismatch";
 
-    @Test(enabled = true, testName = "Verify all text on page")
+    @BeforeMethod
+    public void goToAlertsWindowsPage() {
+        navigateToUrl(ALERTS_PAGE_URL);
+        alertsPage = new AlertsPage(driver);
+    }
+
+    @Test(enabled = true, description = "Verify all static texts on alerts page")
     public void verifyAllTextOnPage() {
-        // Arrange
-        navigateToUrl("alerts");
-        AlertsPage alertsPage = new AlertsPage(driver);
-
-        String alertHeaderText = "Alerts";
-        String firstText = "Click Button to see alert";
-        String secondText = "On button click, alert will appear after 5 seconds";
-        String thirdText = "On button click, confirm box will appear";
-        String fourText = "On button click, prompt box will appear";
-
-        // Act
-        String actualHeaderText = alertsPage.getHeaderText();
-        String actualFirstText = alertsPage.getFirstText();
-        String actualSecondText = alertsPage.getSecondText();
-        String actualThirdText = alertsPage.getThirdText();
-        String actualFourText = alertsPage.getFourthText();
-
-        // Assert
-        softAssert.assertEquals(actualHeaderText, alertHeaderText, "\n Alert Title Do Not Match. \n");
-        softAssert.assertEquals(actualFirstText, firstText, "\n Alert Second Text Do Not Match. \n");
-        softAssert.assertEquals(actualSecondText, secondText, "\n Alert Third Text Do Not Match. \n");
-        softAssert.assertEquals(actualThirdText, thirdText, "\n Alert Four Text Do Not Match. \n");
-        softAssert.assertEquals(actualFourText, fourText, "\n Alert Five Text Do Not Match. \n");
-
+        // Act & Assert
+        softAssert.assertEquals(alertsPage.getHeaderText(), HEADER_TEXT, HEADER_MISMATCH_ERROR);
+        softAssert.assertEquals(alertsPage.getFirstText(), FIRST_ALERT_TEXT, FIRST_TEXT_MISMATCH_ERROR);
+        softAssert.assertEquals(alertsPage.getSecondText(), SECOND_ALERT_TEXT, SECOND_TEXT_MISMATCH_ERROR);
+        softAssert.assertEquals(alertsPage.getThirdText(), THIRD_ALERT_TEXT, THIRD_TEXT_MISMATCH_ERROR);
+        softAssert.assertEquals(alertsPage.getFourthText(), FOURTH_ALERT_TEXT, FOURTH_TEXT_MISMATCH_ERROR);
         softAssert.assertAll();
     }
 
-    @Test(enabled = true, testName = "Verify text of Information alert")
-    public void VerifyTextOfInformationAlert() {
-        // Arrange
-        navigateToUrl("alerts");
-        AlertsPage alertsPage = new AlertsPage(driver);
-        String expectedAlertText = "You clicked a button";
-
+    @Test(enabled = true, description = "Verify text of Information alert")
+    public void verifyTextOfInformationAlert() {
         // Act
         alertsPage.clickInformationAlertButton();
-        String actualAlertText = getAlertText();
+        String actualAlertMessage = getAlertText();
 
         // Assert
-        softAssert.assertEquals(actualAlertText, expectedAlertText, "\n Actual & Expected Messages Do Not Match.\n");
+        softAssert.assertEquals(actualAlertMessage, INFO_ALERT_MESSAGE, INFO_ALERT_MISMATCH_ERROR);
         softAssert.assertAll();
     }
 
-    @Test(enabled = true, testName = "Verify  text of prompt alert after 5 seconds")
-    public void VerifyTextOfPromptAlertAfter5seconds() {
-        // Arrange
-        navigateToUrl("alerts");
-        AlertsPage alertsPage = new AlertsPage(driver);
-        String expectedAlertText = "This alert appeared after 5 seconds";
-
+    @Test(enabled = true, description = "Verify text of prompt alert after 5 seconds")
+    public void verifyTextOfPromptAlertAfter5seconds() {
         // Act
         alertsPage.clickConfirmationTimeAlertButton();
-        String actualAlertText = getAlertText();
+        String actualAlertMessage = getAlertText();
 
         // Assert
-        softAssert.assertEquals(actualAlertText, expectedAlertText, "\nDifferent Prompt Alert message.\n");
+        softAssert.assertEquals(actualAlertMessage, TIMED_ALERT_MESSAGE, TIMED_ALERT_MISMATCH_ERROR);
         softAssert.assertAll();
     }
 
-    @Test(enabled = true, testName = "Verify you selected cancel on confirmation alert")
-    public void VerifyTextOfConfirmationAlertCancel() {
-        // Arrange
-        navigateToUrl("alerts");
-        AlertsPage alertsPage = new AlertsPage(driver);
-        String expectedConfirmationResult = "You selected Cancel";
-
+    @Test(enabled = true, description = "Verify Cancel option on confirmation alert")
+    public void verifyTextOfConfirmationAlertCancel() {
         // Act
         alertsPage.clickConfirmationAlertButton();
         dismissAlert();
-        String actualConfirmationResult = alertsPage.getConfirmationResult();
+        String actualResult = alertsPage.getConfirmationResult();
 
         // Assert
-        softAssert.assertEquals(actualConfirmationResult, expectedConfirmationResult, "\n You Did Not Select Cancel.\n");
+        softAssert.assertEquals(actualResult, CANCEL_RESULT, CANCEL_SELECTION_ERROR);
         softAssert.assertAll();
     }
 
-    @Test(enabled = true, testName = "Verify you selected ok on confirmation alert")
-    public void VerifyTextOfConfirmationAlertYes() {
-        // Arrange
-        navigateToUrl("alerts");
-        AlertsPage alertsPage = new AlertsPage(driver);
-        String expectedConfirmationResult = "You selected Ok";
-
+    @Test(enabled = true, description = "Verify you selected ok on confirmation alert")
+    public void verifyTextOfConfirmationAlertYes() {
         // Act
         alertsPage.clickConfirmationAlertButton();
         acceptAlert();
-        String actualConfirmationResult = alertsPage.getConfirmationResult();
+        String actualResult = alertsPage.getConfirmationResult();
 
         // Assert
-        softAssert.assertEquals(actualConfirmationResult, expectedConfirmationResult, "\nYou Did Not Select OK.\n");
+        softAssert.assertEquals(actualResult, OK_RESULT, OK_SELECTION_ERROR);
         softAssert.assertAll();
     }
 
-    @Test(enabled = true, testName = "Verify text of message after of prompt alert")
-    public void VerifyTextOfPromptAlertAccept() {
+    @Test(enabled = true, description = "Verify text of message after of prompt alert")
+    public void verifyTextOfPromptAlertAccept() {
         // Arrange
-        navigateToUrl("alerts");
-        AlertsPage alertsPage = new AlertsPage(driver);
-        String alertText = "Selenium With Java";
-        String expectedResult = "You entered " + alertText;
+        String expectedResult = buildPromptResultMessage(PROMPT_INPUT_TEXT);
 
         // Act
         alertsPage.clickPromptAlertButton();
-        setAlertText(alertText);
+        setAlertText(PROMPT_INPUT_TEXT);
         acceptAlert();
         String actualResult = alertsPage.getPromptAlertResult();
 
         // Assert
-        softAssert.assertEquals(actualResult, expectedResult, "\nActual & Expected Results Do Not Match.\n");
+        softAssert.assertEquals(actualResult, expectedResult, PROMPT_RESULT_MISMATCH_ERROR);
         softAssert.assertAll();
     }
 
-    @Test(enabled = true, testName = "Verify text of message after ok of prompt alert")
-    public void VerifyTextOfPromptAlertOK() {
-        // Arrange
-        navigateToUrl("alerts");
-        AlertsPage alertsPage = new AlertsPage(driver);
-
+    @Test(enabled = true, description = "Verify text of message after ok of prompt alert")
+    public void verifyTextOfPromptAlertOK() {
         // Act
         alertsPage.clickPromptAlertButton();
         acceptAlert();
-        boolean isAlertResultMissing = alertsPage.verifyNoAlertResult();
+        boolean isResultMissing = alertsPage.verifyNoAlertResult();
 
         // Assert
-        softAssert.assertTrue(isAlertResultMissing, "\nResult alert is not shown.\n");
+        softAssert.assertTrue(isResultMissing, ALERT_RESULT_VISIBILITY_ERROR);
         softAssert.assertAll();
     }
 
-    @Test(enabled = true, testName = "Verify text of message after close prompt alert")
-    public void VerifyTextOfPromptAlertCancel() {
-        // Arrange
-        navigateToUrl("alerts");
-        AlertsPage alertsPage = new AlertsPage(driver);
-
+    @Test(enabled = true, description = "Verify text of message after close prompt alert")
+    public void verifyTextOfPromptAlertCancel() {
         // Act
         alertsPage.clickPromptAlertButton();
         dismissAlert();
-        boolean isAlertResultMissing = alertsPage.verifyNoAlertResult();
+        boolean isResultMissing = alertsPage.verifyNoAlertResult();
 
         // Assert
-        softAssert.assertTrue(isAlertResultMissing, "\nResult alert is not shown.\n");
+        softAssert.assertTrue(isResultMissing, ALERT_RESULT_VISIBILITY_ERROR);
         softAssert.assertAll();
+    }
+
+    /**
+     * Helper method to build expected prompt result message
+     * @param inputText the text entered in the prompt
+     * @return formatted result message
+     */
+    private String buildPromptResultMessage(String inputText) {
+        return PROMPT_RESULT_PREFIX + inputText;
     }
 }
