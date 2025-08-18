@@ -24,6 +24,17 @@ public class HomePageTests extends BaseTest {
     private static final String BOOKS_TEXT = "Book Store Application";
     private static final String FOOTER_TEXT = "© 2013-2020 TOOLSQA.COM | ALL RIGHTS RESERVED.";
 
+    // Error Message Constants
+    private static final String CARD_NAVIGATION_ERROR = "Failed for card: %s";
+    private static final String ELEMENTS_TEXT_ERROR = "Elements card text mismatch";
+    private static final String FORMS_TEXT_ERROR = "Forms card text mismatch";
+    private static final String ALERTS_TEXT_ERROR = "Alerts card text mismatch";
+    private static final String WIDGETS_TEXT_ERROR = "Widgets card text mismatch";
+    private static final String INTERACTIONS_TEXT_ERROR = "Interactions card text mismatch";
+    private static final String BOOKS_TEXT_ERROR = "Books card text mismatch";
+    private static final String FOOTER_TEXT_ERROR = "Footer text mismatch";
+    private static final String SELENIUM_TRAINING_URL_ERROR = "Selenium training URL mismatch";
+
     private HomePage homePage;
 
     @BeforeMethod
@@ -43,32 +54,31 @@ public class HomePageTests extends BaseTest {
         };
     }
 
-    @Test(dataProvider = "homePageCards", testName = "Click and verify card: {0} ")
+    @Test(dataProvider = "homePageCards", description = "Click and verify card: {0} ")
     public void clickAndVerifyCardNavigation(String cardName, String expectedUrl, Runnable clickAction) {
         clickAction.run();
         String actualUrl = homePage.checkUrl();
-        softAssert.assertEquals(actualUrl, expectedUrl, "\nFailed for card: " + cardName);
-        softAssert.assertAll();
-        homePage.navigateBack();
+        softAssert.assertEquals(actualUrl, expectedUrl, String.format(CARD_NAVIGATION_ERROR, cardName));
+        softAssert.assertAll();        
     }
 
-    @Test(enabled = true, testName = "Verify all text on page")
+    @Test(enabled = true, description = "Verify all text on page")
     public void verifyAllHomePageTexts() {
         // Arrange
         // Act
         // Assert
-        softAssert.assertEquals(homePage.getElementsText(), ELEMENTS_TEXT, "\nExpected elements text.\n");
-        softAssert.assertEquals(homePage.getFormsText(), FORMS_TEXT, "\nExpected forms text.\n");
-        softAssert.assertEquals(homePage.getAlertsText(), ALERTS_TEXT, "\nExpected alerts text.\n");
-        softAssert.assertEquals(homePage.getWidgetsText(), WIDGETS_TEXT, "\nExpected widgets text.\n");
-        softAssert.assertEquals(homePage.getInteractionsText(), INTERACTIONS_TEXT, "\nExpected interaction text.\n");
-        softAssert.assertEquals(homePage.getBookStoreApplicationText(), BOOKS_TEXT, "\nExpected books text.\n");
-        softAssert.assertEquals(homePage.getFooterText(), FOOTER_TEXT, "\nExpected footer text.\n");
+        softAssert.assertEquals(homePage.getElementsText(), ELEMENTS_TEXT, ELEMENTS_TEXT_ERROR);
+        softAssert.assertEquals(homePage.getFormsText(), FORMS_TEXT, FORMS_TEXT_ERROR);
+        softAssert.assertEquals(homePage.getAlertsText(), ALERTS_TEXT, ALERTS_TEXT_ERROR);
+        softAssert.assertEquals(homePage.getWidgetsText(), WIDGETS_TEXT, WIDGETS_TEXT_ERROR);
+        softAssert.assertEquals(homePage.getInteractionsText(), INTERACTIONS_TEXT, INTERACTIONS_TEXT_ERROR);
+        softAssert.assertEquals(homePage.getBookStoreApplicationText(), BOOKS_TEXT, BOOKS_TEXT_ERROR);
+        softAssert.assertEquals(homePage.getFooterText(), FOOTER_TEXT, FOOTER_TEXT_ERROR);
 
         softAssert.assertAll();
     }
 
-    @Test(enabled = true, testName = "Verify Join Now button navigates correctly.")
+    @Test(enabled = true, description = "Verify Join Now button navigates correctly.")
     public void verifyJoinNowButton() {
         // Arrange & Act
         String originalWindow = driver.getWindowHandle();
@@ -84,7 +94,7 @@ public class HomePageTests extends BaseTest {
         String actualUrl = driver.getCurrentUrl();
 
         // Assert
-        softAssert.assertEquals(actualUrl, SELENIUM_TRAINING_URL);
+        softAssert.assertEquals(actualUrl, SELENIUM_TRAINING_URL, SELENIUM_TRAINING_URL_ERROR);
         softAssert.assertAll();
     }
 }

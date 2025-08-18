@@ -8,6 +8,16 @@ import org.testng.annotations.Test;
 public class FormsPageTests extends BaseTest {
     public static final String FORMS_URL = "forms";
     private FormsPage formsPage;
+    
+    // Expected Text Constants
+    private static final String EMPTY_STATE_MESSAGE = "Please select an item from left to start practice.";
+    
+    // URL Constants
+    private static final String PRACTICE_FORM_FULL_URL = "https://demoqa.com/automation-practice-form";   
+    
+    // Error Messages Constants
+    private static final String EMPTY_STATE_ERROR = "Empty state message mismatch";
+    private static final String URL_NAVIGATION_ERROR = "Practice form URL navigation failed";
 
     @BeforeMethod
     public void goToFormsPage() {
@@ -15,30 +25,24 @@ public class FormsPageTests extends BaseTest {
         formsPage = new FormsPage(driver);
     }
 
-    @Test(enabled = true, testName = "Verify all text on page")
-    public void CheckAllTextOnPage() {
-        // Arrange
-        String actualString = "Please select an item from left to start practice.";
-
+    @Test(enabled = true, description = "Verify all text on page")
+    public void checkAllTextOnPage() {
         // Act
-        String expectedString = formsPage.getText();
+        String actualText = formsPage.getText();
 
         // Assert
-        softAssert.assertEquals(expectedString, actualString, "\nWrong text.\n");
+        softAssert.assertEquals(actualText, EMPTY_STATE_MESSAGE, EMPTY_STATE_ERROR);
         softAssert.assertAll();
     }
 
-    @Test(enabled = true, testName = "Verify practice form link")
-    public void VerifyPracticeFormLink() {
-        // Arrange
-        String expectedUrl = "https://demoqa.com/automation-practice-form";
-
+    @Test(enabled = true, description = "Verify practice form link")
+    public void verifyPracticeFormLink() {
         // Act
-        formsPage.clickPracticeForm();
+        formsPage.clickPracticeFormLink();
         String actualUrl = formsPage.checkUrl();
 
         // Assert
-        softAssert.assertEquals(actualUrl, expectedUrl, "\nWrong URL not automation-practice-form.\n");
+        softAssert.assertEquals(actualUrl, PRACTICE_FORM_FULL_URL, URL_NAVIGATION_ERROR);
         softAssert.assertAll();
     }
 }

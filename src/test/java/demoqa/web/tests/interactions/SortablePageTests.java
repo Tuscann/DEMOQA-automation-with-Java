@@ -10,6 +10,48 @@ public class SortablePageTests extends BaseTest {
 
     public static final String SORTABLE_URL = "sortable";
     private SortablePage sortablePage;
+    
+    // Text Constants
+    private static final String PAGE_TITLE = "Sortable";
+    private static final String LIST_TAB = "List";
+    private static final String LIST_ONE = "One";
+    private static final String LIST_TWO = "Two";
+    private static final String LIST_THREE = "Three";
+    private static final String LIST_FOUR = "Four";
+    private static final String LIST_FIVE = "Five";
+    private static final String LIST_SIX = "Six";
+    private static final String GRID_TAB = "Grid";
+    private static final String GRID_ONE = "One";
+    private static final String GRID_TWO = "Two";
+    private static final String GRID_THREE = "Three";
+    private static final String GRID_FOUR = "Four";
+    private static final String GRID_FIVE = "Five";
+    private static final String GRID_SIX = "Six";
+    private static final String GRID_SEVEN = "Seven";
+    private static final String GRID_EIGHT = "Eight";
+    private static final String GRID_NINE = "Nine";
+    
+    // Error Message Constants
+    private static final String PAGE_TITLE_ERROR = "Page title mismatch";
+    private static final String LIST_TAB_ERROR = "List tab name mismatch";
+    private static final String LIST_ONE_ERROR = "List one text mismatch";
+    private static final String LIST_TWO_ERROR = "List two text mismatch";
+    private static final String LIST_THREE_ERROR = "List three text mismatch";
+    private static final String LIST_FOUR_ERROR = "List four text mismatch";
+    private static final String LIST_FIVE_ERROR = "List five text mismatch";
+    private static final String LIST_SIX_ERROR = "List six text mismatch";
+    private static final String GRID_TAB_ERROR = "Grid tab name mismatch";
+    private static final String GRID_ONE_ERROR = "Grid one text mismatch";
+    private static final String GRID_TWO_ERROR = "Grid two text mismatch";
+    private static final String GRID_THREE_ERROR = "Grid three text mismatch";
+    private static final String GRID_FOUR_ERROR = "Grid four text mismatch";
+    private static final String GRID_FIVE_ERROR = "Grid five text mismatch";
+    private static final String GRID_SIX_ERROR = "Grid six text mismatch";
+    private static final String GRID_SEVEN_ERROR = "Grid seven text mismatch";
+    private static final String GRID_EIGHT_ERROR = "Grid eight text mismatch";
+    private static final String GRID_NINE_ERROR = "Grid nine text mismatch";
+    private static final String LIST_ORDER_ERROR = "Wrong order in the list";
+    private static final String GRID_ORDER_ERROR = "Wrong order in the grid";
 
     @BeforeMethod
     public void goToSortablePage() {
@@ -17,27 +59,9 @@ public class SortablePageTests extends BaseTest {
         sortablePage = new SortablePage(driver);
     }
 
-    @Test(enabled = true, testName = "Verify all text on page")
+    @Test(enabled = true, description = "Verify all text on page")
     public void verifyAllTextOnPage() {
         // Arrange
-        String pageTitle = "Sortable";
-        String listTab = "List";
-        String listOne = "One";
-        String listTwo = "Two";
-        String listThree = "Three";
-        String listFour = "Four";
-        String listFive = "Five";
-        String listSix = "Six";
-        String gridTab = "Grid";
-        String gridOne = "One";
-        String gridTwo = "Two";
-        String gridThree = "Three";
-        String gridFour = "Four";
-        String gridFive = "Five";
-        String gridSix = "Six";
-        String gridSeven = "Seven";
-        String gridEight = "Eight";
-        String gridNine = "Nine";
 
         // Act
         String actualPageTitle = sortablePage.getPageTitle();
@@ -61,24 +85,24 @@ public class SortablePageTests extends BaseTest {
         String actualGridNine = sortablePage.getGridNine();
 
         // Assert
-        softAssert.assertEquals(actualPageTitle, pageTitle, "\nWrong page title.\n");
-        softAssert.assertEquals(actualListTab, listTab, "\nWrong page tab.\n");
-        softAssert.assertEquals(actualListOne, listOne, "Wrong page list one");
-        softAssert.assertEquals(actualListTwo, listTwo, "Wrong page list two");
-        softAssert.assertEquals(actualListThree, listThree, "Wrong page three");
-        softAssert.assertEquals(actualListFour, listFour, "Wrong page four");
-        softAssert.assertEquals(actualListFive, listFive, "Wrong page five");
-        softAssert.assertEquals(actualListSix, listSix, "Wrong page six");
-        softAssert.assertEquals(actualGridTab, gridTab, "Wrong page tab");
-        softAssert.assertEquals(actualGridOne, gridOne, "Wrong page grid one");
-        softAssert.assertEquals(actualGridTwo, gridTwo, "Wrong page grid two");
-        softAssert.assertEquals(actualGridThree, gridThree, "Wrong page three");
-        softAssert.assertEquals(actualGridFour, gridFour, "Wrong page four");
-        softAssert.assertEquals(actualGridFive, gridFive, "Wrong page five");
-        softAssert.assertEquals(actualGridSix, gridSix, "Wrong page six");
-        softAssert.assertEquals(actualGridSeven, gridSeven, "\nWrong page seven.\n");
-        softAssert.assertEquals(actualGridEight, gridEight, "\nWrong page eight.\n");
-        softAssert.assertEquals(actualGridNine, gridNine, "\nWrong page nine.\n");
+        softAssert.assertEquals(actualPageTitle, PAGE_TITLE, PAGE_TITLE_ERROR);
+        softAssert.assertEquals(actualListTab, LIST_TAB, LIST_TAB_ERROR);
+        softAssert.assertEquals(actualListOne, LIST_ONE, LIST_ONE_ERROR);
+        softAssert.assertEquals(actualListTwo, LIST_TWO, LIST_TWO_ERROR);
+        softAssert.assertEquals(actualListThree, LIST_THREE, LIST_THREE_ERROR);
+        softAssert.assertEquals(actualListFour, LIST_FOUR, LIST_FOUR_ERROR);
+        softAssert.assertEquals(actualListFive, LIST_FIVE, LIST_FIVE_ERROR);
+        softAssert.assertEquals(actualListSix, LIST_SIX, LIST_SIX_ERROR);
+        softAssert.assertEquals(actualGridTab, GRID_TAB, GRID_TAB_ERROR);
+        softAssert.assertEquals(actualGridOne, GRID_ONE, GRID_ONE_ERROR);
+        softAssert.assertEquals(actualGridTwo, GRID_TWO, GRID_TWO_ERROR);
+        softAssert.assertEquals(actualGridThree, GRID_THREE, GRID_THREE_ERROR);
+        softAssert.assertEquals(actualGridFour, GRID_FOUR, GRID_FOUR_ERROR);
+        softAssert.assertEquals(actualGridFive, GRID_FIVE, GRID_FIVE_ERROR);
+        softAssert.assertEquals(actualGridSix, GRID_SIX, GRID_SIX_ERROR);
+        softAssert.assertEquals(actualGridSeven, GRID_SEVEN, GRID_SEVEN_ERROR);
+        softAssert.assertEquals(actualGridEight, GRID_EIGHT, GRID_EIGHT_ERROR);
+        softAssert.assertEquals(actualGridNine, GRID_NINE, GRID_NINE_ERROR);
 
         softAssert.assertAll();
     }
@@ -132,7 +156,7 @@ public class SortablePageTests extends BaseTest {
         };
     }
 
-    @Test(dataProvider = "resizeData", description = "Check order in List", enabled = true, testName = "Check order in List")
+    @Test(dataProvider = "resizeData", description = "Check order in List", enabled = true)
     public void dragAndDropFromListTab(String dragFromPlace, String dropOnPlace, String expectedOrder) {
         // Arrange
         // Act
@@ -140,7 +164,7 @@ public class SortablePageTests extends BaseTest {
         String actualListSix = sortablePage.getListOrder();
 
         // Assert
-        softAssert.assertEquals(actualListSix, expectedOrder, "\nWrong order in the list.\n");
+        softAssert.assertEquals(actualListSix, expectedOrder, LIST_ORDER_ERROR);
         softAssert.assertAll();
     }
 
@@ -240,7 +264,7 @@ public class SortablePageTests extends BaseTest {
         };
     }
 
-    @Test(dataProvider = "resizeData2", description = "Check order in Grid", enabled = true, testName = "Check order in Grid")
+    @Test(dataProvider = "resizeData2", description = "Check order in Grid", enabled = true)
     public void dragAndDropFromGridTab(String dragFromPlace, String dropOnPlace, String expectedOrder) throws InterruptedException {
         // Arrange
         // Act
@@ -249,7 +273,7 @@ public class SortablePageTests extends BaseTest {
         String actualListSix = sortablePage.getGridOrder();
 
         // Assert
-        softAssert.assertEquals(actualListSix, expectedOrder, "\nWrong order in the grid.\n");
+        softAssert.assertEquals(actualListSix, expectedOrder, GRID_ORDER_ERROR);
         softAssert.assertAll();
     }
 }

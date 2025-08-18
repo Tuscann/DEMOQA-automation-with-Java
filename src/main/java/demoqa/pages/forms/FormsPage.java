@@ -21,7 +21,7 @@ public class FormsPage extends BasePage {
         PageFactory.initElements(driver, this);
     }
 
-    public void clickPracticeForm() {
+    public void clickPracticeFormLink() {
         scrollToElementJS(practiceFormMenuItem);
         practiceFormMenuItem.click();
     }

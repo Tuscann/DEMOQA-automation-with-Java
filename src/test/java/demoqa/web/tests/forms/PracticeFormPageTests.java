@@ -12,6 +12,66 @@ public class PracticeFormPageTests extends BaseTest {
 
     public static final String AUTOMATION_PRACTICE_FORM_URL = "automation-practice-form";
     private PracticeFormPage practiceFormPage;
+    
+    // Form Headers Constants
+    private static final String PRACTICE_FORM_HEADER = "Practice Form";
+    private static final String STUDENT_REGISTRATION_HEADER = "Student Registration Form";
+    
+    // Form Labels Constants
+    private static final String NAME_LABEL = "Name";
+    private static final String EMAIL_LABEL = "Email";
+    private static final String GENDER_LABEL = "Gender";
+    private static final String MOBILE_LABEL = "Mobile(10 Digits)";
+    private static final String DATE_OF_BIRTH_LABEL = "Date of Birth";
+    private static final String SUBJECTS_LABEL = "Subjects";
+    private static final String HOBBIES_LABEL = "Hobbies";
+    private static final String PICTURE_LABEL = "Picture";
+    private static final String CURRENT_ADDRESS_LABEL = "Current Address";
+    private static final String STATE_AND_CITY_LABEL = "State and City";
+    
+    // Placeholder Constants
+    private static final String FIRST_NAME_PLACEHOLDER = "First Name";
+    private static final String LAST_NAME_PLACEHOLDER = "Last Name";
+    private static final String EMAIL_PLACEHOLDER = "name@example.com";
+    private static final String MOBILE_PLACEHOLDER = "Mobile Number";
+    private static final String CURRENT_ADDRESS_PLACEHOLDER = "Current Address";
+    private static final String SELECT_STATE_PLACEHOLDER = "Select State";
+    private static final String SELECT_CITY_PLACEHOLDER = "Select City";
+    private static final String SELECT_PICTURE_TEXT = "Select picture";
+    
+    // Gender Options Constants
+    private static final String MALE_GENDER = "Male";
+    private static final String FEMALE_GENDER = "Female";
+    private static final String OTHER_GENDER = "Other";
+    
+    // Hobby Options Constants
+    private static final String SPORTS_HOBBY = "Sports";
+    private static final String READING_HOBBY = "Reading";
+    private static final String MUSIC_HOBBY = "Music";
+    
+    // Button Constants
+    private static final String SUBMIT_BUTTON_TEXT = "Submit";
+    
+    // Test Data Constants
+    private static final String TEST_FIRST_NAME = "Zhivko";
+    private static final String TEST_LAST_NAME = "Petrov";
+    private static final String TEST_EMAIL = "karma@gmail.com";
+    private static final String TEST_MOBILE = "1234567890";
+    private static final String TEST_SUBJECT = "Hindi";
+    private static final String TEST_ADDRESS = "Sofia Main St 244";
+    private static final String TEST_STATE = "Haryana";
+    private static final String TEST_CITY = "Karnal";
+    private static final String TEST_PICTURE_FILE = "zhivko.jpg";
+    
+    // Color Constants
+    private static final String VALIDATION_ERROR_COLOR = "rgb(220, 53, 69)";
+    private static final String VALIDATION_ERROR_COLOR_RGBA = "rgba(220, 53, 69, 1)";
+    private static final String VALIDATION_SUCCESS_COLOR = "rgb(40, 167, 69)";
+    private static final String VALIDATION_SUCCESS_COLOR_RGBA = "rgba(40, 167, 69, 1)";
+    
+    // Modal Constants
+    private static final String MODAL_LABEL_TEXT = "Label";
+    private static final String MODAL_VALUES_TEXT = "Values";
 
     @BeforeMethod
     public void goToAutomationPracticeFormPage() {
@@ -19,37 +79,10 @@ public class PracticeFormPageTests extends BaseTest {
         practiceFormPage = new PracticeFormPage(driver);
     }
 
-    @Test(enabled = true, testName = "Verify all text and placeholders")
-    public void VerifyAllTextAndPlaceHolders() {
+    @Test(enabled = true, description = "Verify all text and placeholders")
+    public void verifyAllTextAndPlaceHolders() {
         // Arrange
-        String practiceFromText = "Practice Form";
-        String studentRegistrationFormText = "Student Registration Form";
-        String nameLabel = "Name";
-        String firstNamePlaceholder = "First Name";
-        String lastNamePlaceholder = "Last Name";
-        String emailLabel = "Email";
-        String expectedPlaceholderEmail = "name@example.com";
-        String genderLabel = "Gender";
-        String expectedMaleRadioButtonText = "Male";
-        String expectedFemaleRadioButtonText = "Female";
-        String otherRadioButtonText = "Other";
-        String expectedMobileNumberLabel = "Mobile(10 Digits)";
-        String expectedMobileNumberPlaceholder = "Mobile Number";
-        String expectedDateOfBirthLabel = "Date of Birth";
         String expectedDateOfBirthPlaceholder = LocalDate.now().format(DateTimeFormatter.ofPattern("dd MMM yyyy"));
-        String expectedSubjectsLabel = "Subjects";
-        String expectedHobbiesLabel = "Hobbies";
-        String expectedHobbySportText = "Sports";
-        String expectedHobbyReadingText = "Reading";
-        String expectedHobbyMusicText = "Music";
-        String expectedPictureLabelText = "Picture";
-        String expectedSelectPictureText = "Select picture";
-        String expectedCurrentAddressLabel = "Current Address";
-        String expectedCurrentAddressPlaceholder = "Current Address";
-        String expectedStateAndCityLabel = "State and City";
-        String expectedSelectStatePlaceholder = "Select State";
-        String expectedSelectCityPlaceholder = "Select City";
-        String expectedSubmitButtonText = "Submit";
 
         // Act
         String actualPracticeFromText = practiceFormPage.getPracticeFormLabel();
@@ -83,39 +116,39 @@ public class PracticeFormPageTests extends BaseTest {
         String actualSubmitButtonText = practiceFormPage.getSubmitButtonText();
 
         // Assert
-        softAssert.assertEquals(actualPracticeFromText, practiceFromText, "\nWrong practice form text\n");
-        softAssert.assertEquals(actualStudentRegistrationFormText, studentRegistrationFormText, "\nWrong registration text\n");
-        softAssert.assertEquals(actualNameLabel, nameLabel, "\nWrong practice form text.\n");
-        softAssert.assertEquals(actualFirstNamePlaceholder, firstNamePlaceholder, "\nWrong first placeholder.\n");
-        softAssert.assertEquals(actualLastNamePlaceholder, lastNamePlaceholder, "\nWrong last placeholder.\n");
-        softAssert.assertEquals(actualEmailLabel, emailLabel, "\nWrong email placeholder");
-        softAssert.assertEquals(actualPlaceholderEmail, expectedPlaceholderEmail, "\nWrong email placeholder");
-        softAssert.assertEquals(actualGenderLabel, genderLabel, "\nWrong gender placeholder.\n");
-        softAssert.assertEquals(actualMaleRadioButtonText, expectedMaleRadioButtonText, "\nWrong male placeholder.\n");
-        softAssert.assertEquals(actualFemaleRadioButtonText, expectedFemaleRadioButtonText, "\nWrong female placeholder.\n");
-        softAssert.assertEquals(actualOtherRadioButtonText, otherRadioButtonText, "\nWrong other placeholder.\n");
-        softAssert.assertEquals(actualMobileNumberLabel, expectedMobileNumberLabel, "\nWrong mobile number placeholder.\n");
-        softAssert.assertEquals(actualMobileNumberPlaceholder, expectedMobileNumberPlaceholder, "\nWrong mobile number placeholder");
-        softAssert.assertEquals(actualDateOfBirthLabel, expectedDateOfBirthLabel, "\nWrong date of birth label.\n");
-        softAssert.assertEquals(actualDateOfBirthPlaceholder, expectedDateOfBirthPlaceholder, "\nWrong date of birth placeholder");
-        softAssert.assertEquals(actualSubjectsLabel, expectedSubjectsLabel, "\nWrong subject placeholder.\n");
+        softAssert.assertEquals(actualPracticeFromText, PRACTICE_FORM_HEADER, "Practice form header text mismatch");
+        softAssert.assertEquals(actualStudentRegistrationFormText, STUDENT_REGISTRATION_HEADER, "Student registration header text mismatch");
+        softAssert.assertEquals(actualNameLabel, NAME_LABEL, "Name label text mismatch");
+        softAssert.assertEquals(actualFirstNamePlaceholder, FIRST_NAME_PLACEHOLDER, "First name placeholder text mismatch");
+        softAssert.assertEquals(actualLastNamePlaceholder, LAST_NAME_PLACEHOLDER, "Last name placeholder text mismatch");
+        softAssert.assertEquals(actualEmailLabel, EMAIL_LABEL, "Email label text mismatch");
+        softAssert.assertEquals(actualPlaceholderEmail, EMAIL_PLACEHOLDER, "Email placeholder text mismatch");
+        softAssert.assertEquals(actualGenderLabel, GENDER_LABEL, "Gender label text mismatch");
+        softAssert.assertEquals(actualMaleRadioButtonText, MALE_GENDER, "Male gender text mismatch");
+        softAssert.assertEquals(actualFemaleRadioButtonText, FEMALE_GENDER, "Female gender text mismatch");
+        softAssert.assertEquals(actualOtherRadioButtonText, OTHER_GENDER, "Other gender text mismatch");
+        softAssert.assertEquals(actualMobileNumberLabel, MOBILE_LABEL, "Mobile number label text mismatch");
+        softAssert.assertEquals(actualMobileNumberPlaceholder, MOBILE_PLACEHOLDER, "Mobile number placeholder text mismatch");
+        softAssert.assertEquals(actualDateOfBirthLabel, DATE_OF_BIRTH_LABEL, "Date of birth label text mismatch");
+        softAssert.assertEquals(actualDateOfBirthPlaceholder, expectedDateOfBirthPlaceholder, "Date of birth placeholder text mismatch");
+        softAssert.assertEquals(actualSubjectsLabel, SUBJECTS_LABEL, "Subjects label text mismatch");
         softAssert.assertNull(actualSubjectsPlaceholder);
-        softAssert.assertEquals(actualHobbiesLabel, expectedHobbiesLabel, "\nWrong hobbies placeholder.\n");
-        softAssert.assertEquals(actualHobbySportText, expectedHobbySportText, "\nWrong hobby sport text.\n");
-        softAssert.assertEquals(actualHobbyReadingText, expectedHobbyReadingText, "\nWrong hobby reading text.\n");
-        softAssert.assertEquals(actualHobbyMusicText, expectedHobbyMusicText, "\nWrong hobby music text.\n");
-        softAssert.assertEquals(actualPictureLabelText, expectedPictureLabelText, "\nWrong picture text.\n");
-        softAssert.assertEquals(actualSelectPictureText, expectedSelectPictureText, "\nWrong select picture.\n");
-        softAssert.assertEquals(actualCurrentAddressLabel, expectedCurrentAddressLabel, "\nWrong current address label");
-        softAssert.assertEquals(actualCurrentAddressPlaceholder, expectedCurrentAddressPlaceholder, "\nWrong current address placeholder");
-        softAssert.assertEquals(actualStateAndCityLabel, expectedStateAndCityLabel, "\nWrong state and City label");
-        softAssert.assertEquals(actualSelectStatePlaceholder, expectedSelectStatePlaceholder, "\nWrong select state placeholder");
-        softAssert.assertEquals(actualSelectCityPlaceholder, expectedSelectCityPlaceholder, "\nWrong select city placeholder");
-        softAssert.assertEquals(actualSubmitButtonText, expectedSubmitButtonText, "\nWrong submit button text.\n");
+        softAssert.assertEquals(actualHobbiesLabel, HOBBIES_LABEL, "Hobbies label text mismatch");
+        softAssert.assertEquals(actualHobbySportText, SPORTS_HOBBY, "Sports hobby text mismatch");
+        softAssert.assertEquals(actualHobbyReadingText, READING_HOBBY, "Reading hobby text mismatch");
+        softAssert.assertEquals(actualHobbyMusicText, MUSIC_HOBBY, "Music hobby text mismatch");
+        softAssert.assertEquals(actualPictureLabelText, PICTURE_LABEL, "Picture label text mismatch");
+        softAssert.assertEquals(actualSelectPictureText, SELECT_PICTURE_TEXT, "Select picture text mismatch");
+        softAssert.assertEquals(actualCurrentAddressLabel, CURRENT_ADDRESS_LABEL, "Current address label text mismatch");
+        softAssert.assertEquals(actualCurrentAddressPlaceholder, CURRENT_ADDRESS_PLACEHOLDER, "Current address placeholder text mismatch");
+        softAssert.assertEquals(actualStateAndCityLabel, STATE_AND_CITY_LABEL, "State and city label text mismatch");
+        softAssert.assertEquals(actualSelectStatePlaceholder, SELECT_STATE_PLACEHOLDER, "Select state placeholder text mismatch");
+        softAssert.assertEquals(actualSelectCityPlaceholder, SELECT_CITY_PLACEHOLDER, "Select city placeholder text mismatch");
+        softAssert.assertEquals(actualSubmitButtonText, SUBMIT_BUTTON_TEXT, "Submit button text mismatch");
         softAssert.assertAll();
     }
 
-    @Test(enabled = true, testName = "Verify three hobbies state")
+    @Test(enabled = true, description = "Verify three hobbies state")
     public void VerifyThreeHobbiesState() {
         // Arrange
         // Act
@@ -129,73 +162,53 @@ public class PracticeFormPageTests extends BaseTest {
         boolean isMusicCheckBoxSelected = practiceFormPage.isMusicCheckBoxSelected();
 
         // Assert
-        softAssert.assertTrue(isSportsCheckBoxSelected, "\nSports checkbox is not unselected.\n");
-        softAssert.assertFalse(isReadingCheckBoxSelected, "\nReading checkbox is not unselected.\n");
-        softAssert.assertTrue(isMusicCheckBoxSelected, "\nMusic checkbox is not unselected.\n");
+        softAssert.assertTrue(isSportsCheckBoxSelected, "Sports checkbox should be selected");
+        softAssert.assertFalse(isReadingCheckBoxSelected, "Reading checkbox should be unselected");
+        softAssert.assertTrue(isMusicCheckBoxSelected, "Music checkbox should be selected");
         softAssert.assertAll();
     }
 
-    @Test(enabled = true, testName = "Select there radio button for gender")
-    public void SelectEveryRadioButton() {
-        // Arrange
-        String genderFemale = "Female";
-        String genderMale = "Male";
-        String genderOther = "Other";
-
+    @Test(enabled = true, description = "Select three radio buttons for gender")
+    public void selectEveryRadioButton() {
         // Act
-        practiceFormPage.clickGenderRadioButton(genderFemale);
-        practiceFormPage.clickGenderRadioButton(genderMale);
-        practiceFormPage.clickGenderRadioButton(genderOther);
+        practiceFormPage.clickGenderRadioButton(FEMALE_GENDER);
+        practiceFormPage.clickGenderRadioButton(MALE_GENDER);
+        practiceFormPage.clickGenderRadioButton(OTHER_GENDER);
 
         boolean isFemaleRadioButtonSelected = practiceFormPage.isFemaleRadioButtonSelected();
         boolean isMaleRadioButtonSelected = practiceFormPage.isMaleRadioButtonSelected();
         boolean isOtherRadioButtonSelected = practiceFormPage.isOtherRadioButtonSelected();
 
         // Assert
-        softAssert.assertFalse(isFemaleRadioButtonSelected, "\nFemale radio button is not selected.\n");
-        softAssert.assertFalse(isMaleRadioButtonSelected, "\nMale radio button is not selected.\n");
-        softAssert.assertTrue(isOtherRadioButtonSelected, "\nOther radio button is not selected.\n");
+        softAssert.assertFalse(isFemaleRadioButtonSelected, "Female radio button should not be selected");
+        softAssert.assertFalse(isMaleRadioButtonSelected, "Male radio button should not be selected");
+        softAssert.assertTrue(isOtherRadioButtonSelected, "Other radio button should be selected");
         softAssert.assertAll();
     }
 
-    @Test(enabled = true, testName = "Submit valid practice form and verify")
+    @Test(enabled = true, description = "Submit valid practice form and verify")
     public void SubmitValidPracticeFormAndVerify() {
         // Arrange
-        String expectedFirstName = "Zhivko";
-        String expectedLastName = "Petrov";
-        String expectedEmail = "karma@gmail.com";
-        String expectedGender = "Female";
-        String expectedMobileNumber = "1234567890";
-
         String dateOfBirth = "27 Feb 2024";
         DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("dd MMM yyyy");
         DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("dd MMMM,yyyy");
         LocalDate date = LocalDate.parse(dateOfBirth, inputFormatter);
-
         String expectedDateOfBirth = date.format(outputFormatter);
-        String expectedSubject = "Hindi";
-        String expectedHobbies = "Sports";
-        String expectedPicture = "zhivko.jpg";
-        String expectedCurrentAddress = "Sofia Main St 244";
-        String expectedState = "Haryana";
-        String expectedCity = "Karnal";
-        String expectedLabel = "Label";
-        String expectedValues = "Values";
 
         // Act
-        String filePathOnOperationSystem = practiceFormPage.getFilePathFromResources(expectedPicture);
-        practiceFormPage.setFirstName(expectedFirstName);
-        practiceFormPage.setLastName(expectedLastName);
-        practiceFormPage.setEmail(expectedEmail);
-        practiceFormPage.clickGenderRadioButton(expectedGender);
-        practiceFormPage.setMobile(expectedMobileNumber);
+        String filePathOnOperationSystem = practiceFormPage.getFilePathFromResources(TEST_PICTURE_FILE);
+        practiceFormPage.setFirstName(TEST_FIRST_NAME);
+        practiceFormPage.setLastName(TEST_LAST_NAME);
+        practiceFormPage.setEmail(TEST_EMAIL);
+        practiceFormPage.clickGenderRadioButton(FEMALE_GENDER);
+        practiceFormPage.setMobile(TEST_MOBILE);
         practiceFormPage.setDateOfBirth("March", "2024", "27");
-        practiceFormPage.setSubject(expectedSubject);
+        practiceFormPage.setSubject(TEST_SUBJECT);
         practiceFormPage.clickSportHobbyCheckbox();
-        practiceFormPage.setCurrentAddress(expectedCurrentAddress);
+        practiceFormPage.setCurrentAddress(TEST_ADDRESS);
         practiceFormPage.uploadFile(filePathOnOperationSystem);
-        practiceFormPage.setState(expectedState);
-        practiceFormPage.setCity(expectedCity);
+        practiceFormPage.setState(TEST_STATE);
+        practiceFormPage.setCity(TEST_CITY);
         practiceFormPage.clickSubmitButton2();
 
         String actualFullName = practiceFormPage.getStudentNameFromModal();
@@ -212,39 +225,34 @@ public class PracticeFormPageTests extends BaseTest {
         String actualValues = practiceFormPage.getValuesFromModal();
 
         // Assert
-        softAssert.assertEquals(actualFullName, expectedFirstName + " " + expectedLastName, "\nWrong full name.\n");
-        softAssert.assertEquals(actualEmail, expectedEmail, "\nWrong email address.\n");
-        softAssert.assertEquals(actualGender, expectedGender, "\nWrong gender.\n");
-        softAssert.assertEquals(actualMobile, expectedMobileNumber, "\nWrong mobile number.\n");
+        softAssert.assertEquals(actualFullName, TEST_FIRST_NAME + " " + TEST_LAST_NAME, "\nWrong full name.\n");
+        softAssert.assertEquals(actualEmail, TEST_EMAIL, "\nWrong email address.\n");
+        softAssert.assertEquals(actualGender, FEMALE_GENDER, "\nWrong gender.\n");
+        softAssert.assertEquals(actualMobile, TEST_MOBILE, "\nWrong mobile number.\n");
         softAssert.assertEquals(actualDaterOfBirth, expectedDateOfBirth, "Wrong date of birth.\n");
-        softAssert.assertEquals(actualSubjects, expectedSubject, "\nWrong subjects.\n");
-        softAssert.assertEquals(actualHobbies, expectedHobbies, "\nWrong hobbies.\n");
-        softAssert.assertEquals(actualPicture, expectedPicture, "\nWrong name of picture.\n");
-        softAssert.assertEquals(actualCurrentAddress, expectedCurrentAddress, "\nWrong current address.\n");
-        softAssert.assertEquals(actualStateAndCity, expectedState + " " + expectedCity, "Wrong State and City.\n");
-        softAssert.assertEquals(actualLabel, expectedLabel, "\nWrong label.\n");
-        softAssert.assertEquals(actualValues, expectedValues, "\nWrong values.\n");
+        softAssert.assertEquals(actualSubjects, TEST_SUBJECT, "\nWrong subjects.\n");
+        softAssert.assertEquals(actualHobbies, SPORTS_HOBBY, "\nWrong hobbies.\n");
+        softAssert.assertEquals(actualPicture, TEST_PICTURE_FILE, "\nWrong name of picture.\n");
+        softAssert.assertEquals(actualCurrentAddress, TEST_ADDRESS, "\nWrong current address.\n");
+        softAssert.assertEquals(actualStateAndCity, TEST_STATE + " " + TEST_CITY, "Wrong State and City.\n");
+        softAssert.assertEquals(actualLabel, MODAL_LABEL_TEXT, "\nWrong label.\n");
+        softAssert.assertEquals(actualValues, MODAL_VALUES_TEXT, "\nWrong values.\n");
         softAssert.assertAll();
     }
 
-    @Test(enabled = true, testName = "Click submit button on empty form and verify colors")
-    public void ClickSubmitOnEmptyFormAndVerifyColors() {
+    @Test(enabled = true, description = "Click submit button on empty form and verify colors")
+    public void clickSubmitOnEmptyFormAndVerifyColors() {
         // Arrange
         practiceFormPage.clickSubmitButton();
 
-        String expectedRedColor = "rgb(220, 53, 69)";
-        String expectedRedColorText = "rgba(220, 53, 69, 1)";
-        String expectedGreenColor = "rgb(40, 167, 69)";
-        String expectedGreenColorText = "rgba(40, 167, 69, 1)";
-
         // Act
-        String firstNameBorderColor = practiceFormPage.getColorOfFirstNameBorder(expectedRedColor);
-        String lastNameBorderColor = practiceFormPage.getColorOfLastNameBorder(expectedRedColor);
+        String firstNameBorderColor = practiceFormPage.getColorOfFirstNameBorder(VALIDATION_ERROR_COLOR);
+        String lastNameBorderColor = practiceFormPage.getColorOfLastNameBorder(VALIDATION_ERROR_COLOR);
         String emailBorderColor = practiceFormPage.getColorOfEmail();
         String maleGenderColor = practiceFormPage.getMaleGenderColor();
         String femaleGenderColor = practiceFormPage.getFemaleGenderColor();
         String otherGenderColor = practiceFormPage.getOtherGenderColor();
-        String mobileBorderColor = practiceFormPage.getColorOfMobile(expectedRedColor);
+        String mobileBorderColor = practiceFormPage.getColorOfMobile(VALIDATION_ERROR_COLOR);
         String dateOfBirth = practiceFormPage.getColorOfDateOfBirth();
         String sportColor = practiceFormPage.getHobbiesSportColor();
         String readingColor = practiceFormPage.getHobbiesReadingColor();
@@ -252,63 +260,54 @@ public class PracticeFormPageTests extends BaseTest {
         String currentAddress = practiceFormPage.getCurrentAddressColor();
 
         // Assert
-        softAssert.assertEquals(firstNameBorderColor, expectedRedColor, "\nWrong color.Expected Red \n");
-        softAssert.assertEquals(lastNameBorderColor, expectedRedColor, "\nWrong color.Expected Red \n");
-        softAssert.assertEquals(emailBorderColor, expectedGreenColor, "\nWrong color.Expected Green \n");
-        softAssert.assertEquals(maleGenderColor, expectedRedColorText, "\nWrong color.Expected Red \n");
-        softAssert.assertEquals(femaleGenderColor, expectedRedColorText, "\nWrong color.Expected Red \n");
-        softAssert.assertEquals(otherGenderColor, expectedRedColorText, "\nWrong color.Expected Red \n");
-        softAssert.assertEquals(mobileBorderColor, expectedRedColor, "\nWrong color.Expected Red \n");
-        softAssert.assertEquals(dateOfBirth, expectedGreenColor, "\nWrong color.Expected Red \n");
-        softAssert.assertEquals(sportColor, expectedGreenColorText, "\nWrong color.Expected Green \n");
-        softAssert.assertEquals(readingColor, expectedGreenColorText, "\nWrong color.Expected Red \n");
-        softAssert.assertEquals(musicColor, expectedGreenColorText, "\nWrong color.Expected Green \n");
-        softAssert.assertEquals(currentAddress, expectedGreenColor, "\nWrong color.Expected Green \n");
+        softAssert.assertEquals(firstNameBorderColor, VALIDATION_ERROR_COLOR, "\nWrong color.Expected Red \n");
+        softAssert.assertEquals(lastNameBorderColor, VALIDATION_ERROR_COLOR, "\nWrong color.Expected Red \n");
+        softAssert.assertEquals(emailBorderColor, VALIDATION_SUCCESS_COLOR, "\nWrong color.Expected Green \n");
+        softAssert.assertEquals(maleGenderColor, VALIDATION_ERROR_COLOR_RGBA, "\nWrong color.Expected Red \n");
+        softAssert.assertEquals(femaleGenderColor, VALIDATION_ERROR_COLOR_RGBA, "\nWrong color.Expected Red \n");
+        softAssert.assertEquals(otherGenderColor, VALIDATION_ERROR_COLOR_RGBA, "\nWrong color.Expected Red \n");
+        softAssert.assertEquals(mobileBorderColor, VALIDATION_ERROR_COLOR, "\nWrong color.Expected Red \n");
+        softAssert.assertEquals(dateOfBirth, VALIDATION_SUCCESS_COLOR, "\nWrong color.Expected Red \n");
+        softAssert.assertEquals(sportColor, VALIDATION_SUCCESS_COLOR_RGBA, "\nWrong color.Expected Green \n");
+        softAssert.assertEquals(readingColor, VALIDATION_SUCCESS_COLOR_RGBA, "\nWrong color.Expected Red \n");
+        softAssert.assertEquals(musicColor, VALIDATION_SUCCESS_COLOR_RGBA, "\nWrong color.Expected Green \n");
+        softAssert.assertEquals(currentAddress, VALIDATION_SUCCESS_COLOR, "\nWrong color.Expected Green \n");
         softAssert.assertAll();
     }
 
-    @Test(enabled = true, testName = "Verify colors change from red to green")
-    public void VerifyColorsChangeFromRedToGreen() {
+    @Test(enabled = true, description = "Verify colors change from red to green")
+    public void verifyColorsChangeFromRedToGreen() {
         // Arrange
         practiceFormPage.clickSubmitButton();
 
-        String expectedFirstName = "Zhivko";
-        String expectedLastName = "Petrov";
-        String expectedRedColor = "rgb(220, 53, 69)";
-        String expectedRedColorText = "rgba(220, 53, 69, 1)";
-        String expectedGreenColor = "rgb(40, 167, 69)";
-        String expectedGreenColorText = "rgba(40, 167, 69, 1)";
-        String expectedFemaleGender = "Female";
-        String expectedMobileNumber = "1234567890";
-
         // Act
-        String firstNameBorderColorBefore = practiceFormPage.getColorOfFirstNameBorder(expectedRedColor);
-        softAssert.assertEquals(firstNameBorderColorBefore, expectedRedColor, "\nWrong color.Expected Red.\n");
-        practiceFormPage.setFirstName(expectedFirstName);
+        String firstNameBorderColorBefore = practiceFormPage.getColorOfFirstNameBorder(VALIDATION_ERROR_COLOR);
+        softAssert.assertEquals(firstNameBorderColorBefore, VALIDATION_ERROR_COLOR, "\nWrong color.Expected Red.\n");
+        practiceFormPage.setFirstName(TEST_FIRST_NAME);
 
-        String firstNameBorderColorAfter = practiceFormPage.getColorOfFirstNameBorder(expectedGreenColor);
-        softAssert.assertEquals(firstNameBorderColorAfter, expectedGreenColor, "\nWrong color.Expected Green.\n");
+        String firstNameBorderColorAfter = practiceFormPage.getColorOfFirstNameBorder(VALIDATION_SUCCESS_COLOR);
+        softAssert.assertEquals(firstNameBorderColorAfter, VALIDATION_SUCCESS_COLOR, "\nWrong color.Expected Green.\n");
 
-        String lastNameBorderColorBefore = practiceFormPage.getColorOfLastNameBorder(expectedRedColor);
-        softAssert.assertEquals(lastNameBorderColorBefore, expectedRedColor, "\nWrong color.Expected Red.\n");
-        practiceFormPage.setLastName(expectedLastName);
+        String lastNameBorderColorBefore = practiceFormPage.getColorOfLastNameBorder(VALIDATION_ERROR_COLOR);
+        softAssert.assertEquals(lastNameBorderColorBefore, VALIDATION_ERROR_COLOR, "\nWrong color.Expected Red.\n");
+        practiceFormPage.setLastName(TEST_LAST_NAME);
 
-        String lastNameBorderColorAfter = practiceFormPage.getColorOfLastNameBorder(expectedGreenColor);
-        softAssert.assertEquals(lastNameBorderColorAfter, expectedGreenColor, "\nWrong color.Expected Green.\n");
+        String lastNameBorderColorAfter = practiceFormPage.getColorOfLastNameBorder(VALIDATION_SUCCESS_COLOR);
+        softAssert.assertEquals(lastNameBorderColorAfter, VALIDATION_SUCCESS_COLOR, "\nWrong color.Expected Green.\n");
 
         String femaleGenderColorBefore = practiceFormPage.getFemaleGenderColor();
-        practiceFormPage.clickGenderRadioButton(expectedFemaleGender);
+        practiceFormPage.clickGenderRadioButton(FEMALE_GENDER);
 
         String femaleGenderColorAfter = practiceFormPage.getFemaleGenderColor();
-        String mobileBorderColorBefore = practiceFormPage.getColorOfMobile(expectedRedColor);
-        practiceFormPage.setMobile(expectedMobileNumber);
+        String mobileBorderColorBefore = practiceFormPage.getColorOfMobile(VALIDATION_ERROR_COLOR);
+        practiceFormPage.setMobile(TEST_MOBILE);
 
-        String mobileBorderColorAfter = practiceFormPage.getColorOfMobile(expectedGreenColor);
+        String mobileBorderColorAfter = practiceFormPage.getColorOfMobile(VALIDATION_SUCCESS_COLOR);
 
-        softAssert.assertEquals(femaleGenderColorBefore, expectedRedColorText, "\nWrong color.Expected Red.\n");
-        softAssert.assertEquals(femaleGenderColorAfter, expectedGreenColorText, "\nWrong color.Expected Green.\n");
-        softAssert.assertEquals(mobileBorderColorBefore, expectedRedColor, "\nWrong color.Expected Red.\n");
-        softAssert.assertEquals(mobileBorderColorAfter, expectedGreenColor, "\nWrong color.Expected Green.\n");
+        softAssert.assertEquals(femaleGenderColorBefore, VALIDATION_ERROR_COLOR_RGBA, "\nWrong color.Expected Red.\n");
+        softAssert.assertEquals(femaleGenderColorAfter, VALIDATION_SUCCESS_COLOR_RGBA, "\nWrong color.Expected Green.\n");
+        softAssert.assertEquals(mobileBorderColorBefore, VALIDATION_ERROR_COLOR, "\nWrong color.Expected Red.\n");
+        softAssert.assertEquals(mobileBorderColorAfter, VALIDATION_SUCCESS_COLOR, "\nWrong color.Expected Green.\n");
 
         // Assert
         softAssert.assertAll();

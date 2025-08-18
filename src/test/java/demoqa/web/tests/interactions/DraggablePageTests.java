@@ -11,29 +11,49 @@ public class DraggablePageTests extends BaseTest {
     public static final String DRAGGABLE_URL = "dragabble";
     private DraggablePage draggablePage;
 
+    // Text Constants
+    private static final String PAGE_TITLE = "Dragabble";
+    private static final String SIMPLE_TAB_TITLE = "Simple";
+    private static final String SIMPLE_DRAG_ME = "Drag me";
+    private static final String AXIS_RESTRICTED_TAB = "Axis Restricted";
+    private static final String AXIS_RESTRICTED_ONLY_X = "Only X";
+    private static final String AXIS_RESTRICTED_ONLY_Y = "Only Y";
+    private static final String CONTAINER_RESTRICTED_TAB = "Container Restricted";
+    private static final String CONTAINER_RESTRICTED_FIRST_TEXT = "I'm contained within the box";
+    private static final String CONTAINER_RESTRICTED_SECOND_TEXT = "I'm contained within my parent";
+    private static final String CURSOR_STYLE_TAB = "Cursor Style";
+    private static final String CURSOR_STYLE_FIRST_TEXT = "I will always stick to the center";
+    private static final String CURSOR_STYLE_SECOND_TEXT = "My cursor is at top left";
+    private static final String CURSOR_STYLE_THIRD_TEXT = "My cursor is at bottom";
+
+    // Error Message Constants
+    private static final String PAGE_TITLE_ERROR = "Page title mismatch";
+    private static final String SIMPLE_TAB_TITLE_ERROR = "Simple tab title mismatch";
+    private static final String SIMPLE_DRAG_ME_ERROR = "Simple drag me text mismatch";
+    private static final String AXIS_RESTRICTED_TAB_ERROR = "Axis restricted tab text mismatch";
+    private static final String AXIS_RESTRICTED_ONLY_X_ERROR = "Axis restricted only X text mismatch";
+    private static final String AXIS_RESTRICTED_ONLY_Y_ERROR = "Axis restricted only Y text mismatch";
+    private static final String CONTAINER_RESTRICTED_TAB_ERROR = "Container restricted tab text mismatch";
+    private static final String CONTAINER_RESTRICTED_FIRST_TEXT_ERROR = "Container restricted first text mismatch";
+    private static final String CONTAINER_RESTRICTED_SECOND_TEXT_ERROR = "Container restricted second text mismatch";
+    private static final String CURSOR_STYLE_TAB_ERROR = "Cursor style tab text mismatch";
+    private static final String CURSOR_STYLE_FIRST_TEXT_ERROR = "Cursor style first text mismatch";
+    private static final String CURSOR_STYLE_SECOND_TEXT_ERROR = "Cursor style second text mismatch";
+    private static final String CURSOR_STYLE_THIRD_TEXT_ERROR = "Cursor style third text mismatch";
+    private static final String INITIAL_LOCATION_X_ERROR = "Initial location X mismatch";
+    private static final String INITIAL_LOCATION_Y_ERROR = "Initial location Y mismatch";
+    private static final String POINT_LOCATION_X_ERROR = "Point location X axis mismatch";
+    private static final String POINT_LOCATION_Y_ERROR = "Point location Y axis mismatch";
+
     @BeforeMethod
     public void goToDraggablePage() {
         navigateToUrl(DRAGGABLE_URL);
         draggablePage = new DraggablePage(driver);
     }
 
-    @Test(enabled = true, testName = "Verify all text on page")
-    public void VerifyAllTextOnPage() {
+    @Test(enabled = true, description = "Verify all text on page")
+    public void verifyAllTextOnPage() {
         // Arrange
-        String pageTitle = "Dragabble";
-        String simpleTabTitle = "Simple";
-        String simpleDragMe = "Drag me";
-        String axisRestrictedTab = "Axis Restricted";
-        String axisRestrictedOnlyX = "Only X";
-        String axisRestrictedOnlyY = "Only Y";
-        String containerRestrictedTab = "Container Restricted";
-        String containerRestrictedFirstText = "I'm contained within the box";
-        String containerRestrictedSecondText = "I'm contained within my parent";
-        String cursorStyleTab = "Cursor Style";
-        String cursorStyleFirstText = "I will always stick to the center";
-        String cursorStyleSecondText = "My cursor is at top left";
-        String cursorStyleThirdText = "My cursor is at bottom";
-
         String actualPageTitle = draggablePage.getPageTitle();
         String actualSimpleTabTitle = draggablePage.getSimpleTabTitle();
         draggablePage.clickSimpleTab();
@@ -53,25 +73,25 @@ public class DraggablePageTests extends BaseTest {
         String actualCursorStyleThirdText = draggablePage.getCursorStyleThirdText();
 
         // Assert
-        softAssert.assertEquals(actualPageTitle, pageTitle, "\nWrong page title.\n");
-        softAssert.assertEquals(actualSimpleTabTitle, simpleTabTitle, "\nWrong Simple page title.\n");
-        softAssert.assertEquals(actualSimpleDragMe, simpleDragMe, "\nWrong simple page title.\n");
-        softAssert.assertEquals(actualAxisRestrictedTab, axisRestrictedTab, "\nWrong axis restricted tab.\n");
-        softAssert.assertEquals(actualAxisRestrictedOnlyX, axisRestrictedOnlyX, "\nWrong axis restricted only X.\n");
-        softAssert.assertEquals(actualAxisRestrictedOnlyY, axisRestrictedOnlyY, "\nWrong axis restricted only Y.\n");
-        softAssert.assertEquals(actualContainerRestrictedTab, containerRestrictedTab, "Wrong container restricted tab.\n");
-        softAssert.assertEquals(actualContainerRestrictedFirstText, containerRestrictedFirstText, "\nWrong container restricted first text.\n");
-        softAssert.assertEquals(actualContainerRestrictedSecondText, containerRestrictedSecondText, "\nWrong container second text.\n");
-        softAssert.assertEquals(actualCursorStyleTab, cursorStyleTab, "\nWrong cursor style tab.\n");
-        softAssert.assertEquals(actualCursorStyleFirstText, cursorStyleFirstText, "\nWrong style first text.\n");
-        softAssert.assertEquals(actualCursorStyleSecondText, cursorStyleSecondText, "\nWrong style second text.\n");
-        softAssert.assertEquals(actualCursorStyleThirdText, cursorStyleThirdText, "\nWrong style third text.\n");
+        softAssert.assertEquals(actualPageTitle, PAGE_TITLE, PAGE_TITLE_ERROR);
+        softAssert.assertEquals(actualSimpleTabTitle, SIMPLE_TAB_TITLE, SIMPLE_TAB_TITLE_ERROR);
+        softAssert.assertEquals(actualSimpleDragMe, SIMPLE_DRAG_ME, SIMPLE_DRAG_ME_ERROR);
+        softAssert.assertEquals(actualAxisRestrictedTab, AXIS_RESTRICTED_TAB, AXIS_RESTRICTED_TAB_ERROR);
+        softAssert.assertEquals(actualAxisRestrictedOnlyX, AXIS_RESTRICTED_ONLY_X, AXIS_RESTRICTED_ONLY_X_ERROR);
+        softAssert.assertEquals(actualAxisRestrictedOnlyY, AXIS_RESTRICTED_ONLY_Y, AXIS_RESTRICTED_ONLY_Y_ERROR);
+        softAssert.assertEquals(actualContainerRestrictedTab, CONTAINER_RESTRICTED_TAB, CONTAINER_RESTRICTED_TAB_ERROR);
+        softAssert.assertEquals(actualContainerRestrictedFirstText, CONTAINER_RESTRICTED_FIRST_TEXT, CONTAINER_RESTRICTED_FIRST_TEXT_ERROR);
+        softAssert.assertEquals(actualContainerRestrictedSecondText, CONTAINER_RESTRICTED_SECOND_TEXT, CONTAINER_RESTRICTED_SECOND_TEXT_ERROR);
+        softAssert.assertEquals(actualCursorStyleTab, CURSOR_STYLE_TAB, CURSOR_STYLE_TAB_ERROR);
+        softAssert.assertEquals(actualCursorStyleFirstText, CURSOR_STYLE_FIRST_TEXT, CURSOR_STYLE_FIRST_TEXT_ERROR);
+        softAssert.assertEquals(actualCursorStyleSecondText, CURSOR_STYLE_SECOND_TEXT, CURSOR_STYLE_SECOND_TEXT_ERROR);
+        softAssert.assertEquals(actualCursorStyleThirdText, CURSOR_STYLE_THIRD_TEXT, CURSOR_STYLE_THIRD_TEXT_ERROR);
 
         softAssert.assertAll();
     }
 
-    @Test(enabled = true, testName = "Drag me simple tab")
-    public void DragMeSimpleTab() {
+    @Test(enabled = true, description = "Drag me simple tab")
+    public void dragMeSimpleTab() {
         // Arrange
         int xOffset = 150;
         int yOffset = 50;
@@ -81,13 +101,13 @@ public class DraggablePageTests extends BaseTest {
         Point endPosition = draggablePage.getInitLocation();
 
         // Assert
-        softAssert.assertEquals(initialLocation.x + xOffset, endPosition.x, "\nWrong initial location X.\n");
-        softAssert.assertEquals(initialLocation.y + yOffset, endPosition.y, "\nWrong initial location Y.\n");
+        softAssert.assertEquals(initialLocation.x + xOffset, endPosition.x, INITIAL_LOCATION_X_ERROR);
+        softAssert.assertEquals(initialLocation.y + yOffset, endPosition.y, INITIAL_LOCATION_Y_ERROR);
         softAssert.assertAll();
     }
 
-    @Test(enabled = true, testName = "Drag only x in axis restricted tab")
-    public void DragOnlyXInAxisRestrictedTab() {
+    @Test(enabled = true, description = "Drag only x in axis restricted tab")
+    public void dragOnlyXInAxisRestrictedTab() {
         // Arrange
         int xOffset = 150;
         int yOffset = 50;
@@ -101,13 +121,13 @@ public class DraggablePageTests extends BaseTest {
         Point endPosition = draggablePage.getInitLocationOnlyX();
 
         // Assert
-        softAssert.assertEquals(initialLocation.x + xOffset, endPosition.x, "\nWrong initial location X.\n");
-        softAssert.assertEquals(initialLocation.y, endPosition.y, "\nWrong initial location Y.\n");
+        softAssert.assertEquals(initialLocation.x + xOffset, endPosition.x, INITIAL_LOCATION_X_ERROR);
+        softAssert.assertEquals(initialLocation.y, endPosition.y, INITIAL_LOCATION_Y_ERROR);
         softAssert.assertAll();
     }
 
-    @Test(enabled = true, testName = "Drag only y in axis restricted tab")
-    public void DragOnlyYInAxisRestrictedTab() {
+    @Test(enabled = true, description = "Drag only y in axis restricted tab")
+    public void dragOnlyYInAxisRestrictedTab() {
         // Arrange
         int xOffset = 150;
         int yOffset = 50;
@@ -121,13 +141,13 @@ public class DraggablePageTests extends BaseTest {
         Point endPosition = draggablePage.getInitLocationOnlyY();
 
         // Assert
-        softAssert.assertEquals(initialLocation.x, endPosition.x, "\nWrong initial location X.\n");
-        softAssert.assertEquals(initialLocation.y + yOffset, endPosition.y, "\nWrong initial location Y.\n");
+        softAssert.assertEquals(initialLocation.x, endPosition.x, INITIAL_LOCATION_X_ERROR);
+        softAssert.assertEquals(initialLocation.y + yOffset, endPosition.y, INITIAL_LOCATION_Y_ERROR);
         softAssert.assertAll();
     }
 
-    @Test(enabled = true, testName = "Contained in box axis restricted tab with size inside box")
-    public void ContainedInBoxAxisRestrictedTabWithSizeInsideBox() {
+    @Test(enabled = true, description = "Contained in box axis restricted tab with size inside box")
+    public void containedInBoxAxisRestrictedTabWithSizeInsideBox() {
         // Arrange
         int xOffset = 150;
         int yOffset = 50;
@@ -140,13 +160,13 @@ public class DraggablePageTests extends BaseTest {
         Point endPosition = draggablePage.getInitLocationContainedInBox();
 
         // Assert
-        softAssert.assertEquals(initialLocation.x + xOffset, endPosition.x, "\nWrong initial location X.\n");
-        softAssert.assertEquals(initialLocation.y + yOffset, endPosition.y, "\nWrong initial location Y.\n");
+        softAssert.assertEquals(initialLocation.x + xOffset, endPosition.x, INITIAL_LOCATION_X_ERROR);
+        softAssert.assertEquals(initialLocation.y + yOffset, endPosition.y, INITIAL_LOCATION_Y_ERROR);
         softAssert.assertAll();
     }
 
-    @Test(enabled = false, testName = "Contained in box axis restricted tab with size out side box")
-    public void ContainedInBoxAxisRestrictedTabWithSizeOutSideBox() {
+    @Test(enabled = false, description = "Contained in box axis restricted tab with size out side box")
+    public void containedInBoxAxisRestrictedTabWithSizeOutSideBox() {
         // Arrange
         int xOffset = 500;
         int yOffset = 107;  //Magic number -1 become bigger TODO HELP
@@ -160,13 +180,13 @@ public class DraggablePageTests extends BaseTest {
         Point endPosition = draggablePage.getInitLocationContainedInBox();
 
         // Assert
-        softAssert.assertEquals(initialLocation.x + xOffset - 50, endPosition.x, "\nWrong point location X axis.\n");
-        softAssert.assertEquals(initialLocation.y + yOffset, endPosition.y, "\nWrong point location on y axis.\n");
+        softAssert.assertEquals(initialLocation.x + xOffset - 50, endPosition.x, POINT_LOCATION_X_ERROR);
+        softAssert.assertEquals(initialLocation.y + yOffset, endPosition.y, POINT_LOCATION_Y_ERROR);
         softAssert.assertAll();
     }
 
-    @Test(enabled = true, testName = "Contained in parent axis restricted tab with size inside box")
-    public void ContainedInParentAxisRestrictedTabWithSizeInsideBox() {
+    @Test(enabled = true, description = "Contained in parent axis restricted tab with size inside box")
+    public void containedInParentAxisRestrictedTabWithSizeInsideBox() {
         // Arrange
         int xOffset = 15;
         int yOffset = 60;
@@ -189,8 +209,8 @@ public class DraggablePageTests extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(enabled = true, testName = "Move first text cursor style")
-    public void MoveFirstTextCursorStyle() {
+    @Test(enabled = true, description = "Move first text cursor style")
+    public void moveFirstTextCursorStyle() {
         // Arrange
         int xOffset = 0;
         int yOffset = 100;
@@ -220,8 +240,8 @@ public class DraggablePageTests extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(enabled = true, testName = "Move second text cursor style")
-    public void MoveSecondTextCursorStyle() {
+    @Test(enabled = true, description = "Move second text cursor style")
+    public void moveSecondTextCursorStyle() {
         // Arrange
         draggablePage.clickCursorStyleTab();
 
@@ -280,8 +300,8 @@ public class DraggablePageTests extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(enabled = true, testName = "Move third text cursor style")
-    public void MoveThirdTextCursorStyle() {
+    @Test(enabled = true, description = "Move third text cursor style")
+    public void moveThirdTextCursorStyle() {
         // Arrange
         int xOffset = 100;
         int yOffset = 100;  //Magic number -50 TODO HELP

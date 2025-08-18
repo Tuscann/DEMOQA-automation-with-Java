@@ -17,7 +17,7 @@ public class ResizablePageTests extends BaseTest {
         resizablePage = new ResizablePage(driver);
     }
 
-    @Test(enabled = true, testName = "Verify all text on page")
+    @Test(enabled = true, description = "Verify all text on page")
     public void verifyAllTextOnPage() {
         // Arrange
         String pageTitle = "Resizable";
@@ -48,7 +48,7 @@ public class ResizablePageTests extends BaseTest {
         };
     }
 
-    @Test(dataProvider = "resizeData", description = "Test resizing with different values", enabled = true, testName = "Resizing with different values")
+    @Test(dataProvider = "resizeData", description = "Test resizing with different values", enabled = true)
     public void testResizedBoxWithLimitation(int addX, int addY, int expectedWidth, int expectedHeight) {
         // Arrange
         // Act
@@ -70,7 +70,7 @@ public class ResizablePageTests extends BaseTest {
         };
     }
 
-    @Test(dataProvider = "resizeData2", description = "Test resizing with different values", enabled = true, testName = "Resizing with different values")
+    @Test(dataProvider = "resizeData2", description = "Test resizing with different values", enabled = true)
     public void testResizedBoxWithoutLimitation(int addAmountOnXAxis, int addAmountOnYAxis, int expectedWidth, int expectedHeight) {
         // Arrange
         // Act
@@ -90,7 +90,7 @@ public class ResizablePageTests extends BaseTest {
         };
     }
 
-    @Test(dataProvider = "diagonalResizeData", description = "Test diagonal resizing", enabled = true, testName = "Diagonal resizing test")
+    @Test(dataProvider = "diagonalResizeData", description = "Test diagonal resizing", enabled = true)
     public void diagonalResizing(int addX, int addY, int expectedWidth, int expectedHeight) {
         // Arrange
         // Act
@@ -101,7 +101,7 @@ public class ResizablePageTests extends BaseTest {
         Assert.assertEquals(actualNewSize, "(" + expectedWidth + ", " + expectedHeight + ")", "\nWrong size after diagonal resize.\n");
     }
 
-    @Test(description = "Test resize handle visibility", enabled = true, testName = "Resize handle visibility test")
+    @Test(description = "Test resize handle visibility", enabled = true)
     public void resizeHandleVisibility() {
         // Arrange
         // Act
