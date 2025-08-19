@@ -10,8 +10,8 @@ import java.util.List;
 
 public class BooksStoreTests extends BaseTestApi {
 
-    @Test(testName = "Count all books with GET Books", suiteName = "api", enabled = true)
-    void GetAllBooks() throws IOException, InterruptedException {
+    @Test(description = "Count all books with GET Books", suiteName = "api", enabled = true)
+    void getAllBooks() throws IOException, InterruptedException {
         TodoClient todoClient = new TodoClient();
         List<Book> books = todoClient.FindAllBooks();
 
@@ -20,8 +20,8 @@ public class BooksStoreTests extends BaseTestApi {
         Assert.assertEquals(books.size(), expectedBookCount);
     }
 
-    @Test(testName = "Get All Books and verify first book properties with GET BOOKS.", suiteName = "api", enabled = true)
-    void VerifyFirstBookFromBooks() throws IOException, InterruptedException {
+    @Test(description = "Get All Books and verify first book properties with GET BOOKS.", suiteName = "api", enabled = true)
+    void verifyFirstBookFromBooks() throws IOException, InterruptedException {
         TodoClient client = new TodoClient();
         List<Book> books = client.FindAllBooks();
 
@@ -58,8 +58,8 @@ public class BooksStoreTests extends BaseTestApi {
         softAssert.assertAll();
     }
 
-    @Test(testName = "Get Book By ISBN", suiteName = "api", enabled = true)
-    void GetBookByISBN() throws IOException, InterruptedException {
+    @Test(description = "Get Book By ISBN", suiteName = "api", enabled = true)
+    void getBookByISBN() throws IOException, InterruptedException {
         TodoClient client = new TodoClient();
 
         String expectedIsbn = "9781449325862";

@@ -19,7 +19,7 @@ public class SelectMenuPageTests extends BaseTest {
         selectMenuPage = new SelectMenuPage(driver);
     }
 
-    @Test(enabled = true, testName = "Verify all text on the page")
+    @Test(enabled = true, description = "Verify all text on the page")
     public void verifyAllTextOnPage() {
         // Arrange
         String expectedSelectMenuText = "Select Menu";
@@ -64,7 +64,7 @@ public class SelectMenuPageTests extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(enabled = true, testName = "Select all values from select value menu")
+    @Test(enabled = true, description = "Select all values from select value menu")
     public void selectAllValuesFromSelectValue() {
         // Arrange
         for (int i = 0; i < 6; i++) {
@@ -85,7 +85,7 @@ public class SelectMenuPageTests extends BaseTest {
         }
     }
 
-    @Test(enabled = true, testName = "Select all values from select one menu")
+    @Test(enabled = true, description = "Select all values from select one menu")
     public void selectAllValuesFromSelectOne() {
         // Arrange
         for (int i = 0; i < 6; i++) {
@@ -107,7 +107,7 @@ public class SelectMenuPageTests extends BaseTest {
         }
     }
 
-    @Test(enabled = true, testName = "Select all values from old style select menu")
+    @Test(enabled = true, description = "Select all values from old style select menu")
     public void selectAllValuesFromOldStyleSelectMenu() {
         // Arrange
         for (int i = 0; i < 11; i++) {
@@ -133,7 +133,7 @@ public class SelectMenuPageTests extends BaseTest {
         }
     }
 
-    @Test(enabled = false, testName = "Select all values from multi select dropdown menu")
+    @Test(enabled = false, description = "Select all values from multi select dropdown menu")
     public void selectMultiSelectDropDown() {
         // Arrange
         for (int i = 0; i < 4; i++) {
@@ -153,7 +153,7 @@ public class SelectMenuPageTests extends BaseTest {
         }
     }
 
-    @Test(enabled = true, testName = "Select all values from standard multi select menu")
+    @Test(enabled = true, description = "Select all values from standard multi select menu")
     public void selectAllValuesFromStandardMultiSelect() {
         // Arrange
         selectMenuPage.selectStandardMultiByText("Volvo");

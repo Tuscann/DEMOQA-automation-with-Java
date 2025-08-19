@@ -26,6 +26,21 @@ public class BookRegisterPageTests extends BaseTest {
 
     // Messages
     public static final String RECAPTCHA_ERROR_MESSAGE = "Please verify reCaptcha to register!";
+    
+    // Error Message Constants
+    private static final String FIRST_NAME_PLACEHOLDER_ERROR = "First name placeholder text mismatch";
+    private static final String LAST_NAME_PLACEHOLDER_ERROR = "Last name placeholder text mismatch";
+    private static final String USERNAME_PLACEHOLDER_ERROR = "Username placeholder text mismatch";
+    private static final String PASSWORD_PLACEHOLDER_ERROR = "Password placeholder text mismatch";
+    private static final String PAGE_TITLE_ERROR = "Page title text mismatch";
+    private static final String HEADER_TEXT_ERROR = "Header text mismatch";
+    private static final String FIRST_NAME_LABEL_ERROR = "First name label text mismatch";
+    private static final String LAST_NAME_LABEL_ERROR = "Last name label text mismatch";
+    private static final String USERNAME_LABEL_ERROR = "Username label text mismatch";
+    private static final String PASSWORD_LABEL_ERROR = "Password label text mismatch";
+    private static final String REGISTER_BUTTON_ERROR = "Register button text mismatch";
+    private static final String BACK_TO_LOGIN_BUTTON_ERROR = "Back to login button text mismatch";
+    private static final String RECAPTCHA_ERROR_MESSAGE_ERROR = "ReCAPTCHA error message mismatch";
 
     private BooksRegisterPage booksRegisterPage;
     private Faker faker;
@@ -37,10 +52,9 @@ public class BookRegisterPageTests extends BaseTest {
         faker = new Faker();
     }
 
-    @Test(enabled = true, testName = "Verify all text on Page")
+    @Test(enabled = true, description = "Verify all static text elements on the register page")
     public void verifyAllTextOnPage() {
-        // Arrange
-        // Act
+        // Arrange & Act        
         String actualTitleText = booksRegisterPage.getTitle();
         String actualFirstText = booksRegisterPage.getFirstText();
         String actualFirstNameLabel = booksRegisterPage.getFirstNameLabel();
@@ -56,28 +70,27 @@ public class BookRegisterPageTests extends BaseTest {
         String actualBackToLoginButtonText = booksRegisterPage.getTextOfBackToLoginButton();
 
         // Assert
-        softAssert.assertEquals(actualFirstNamePlaceholder, FIRST_NAME_PLACEHOLDER, "\nWrong first name placeholder.\n");
-        softAssert.assertEquals(actualLastNamePlaceholder, LAST_NAME_PLACEHOLDER, "\nWrong last name placeholder.\n");
-        softAssert.assertEquals(actualUserNamePlaceholder, USERNAME_PLACEHOLDER, "\nWrong username placeholder.\n");
-        softAssert.assertEquals(actualPasswordPlaceholder, PASSWORD_PLACEHOLDER, "\nWrong password placeholder.\n");
-        softAssert.assertEquals(actualTitleText, PAGE_TITLE, "\nWrong title placeholder.\n");
-        softAssert.assertEquals(actualFirstText, HEADER_TEXT, "\nWrong first text placeholder.\n");
-        softAssert.assertEquals(actualFirstNameLabel, FIRST_NAME_LABEL, "\nWrong first name label placeholder.\n");
-        softAssert.assertEquals(actualLastNameLabel, LAST_NAME_LABEL, "\nWrong last name label placeholder.\n");
-        softAssert.assertEquals(actualUserNameLabel, USERNAME_LABEL, "\nWrong username label placeholder.\n");
-        softAssert.assertEquals(actualPasswordLabel, PASSWORD_LABEL, "\nWrong password label placeholder.\n");
-        softAssert.assertEquals(actualRegisterButtonText, REGISTER_BUTTON_TEXT, "\nMissing register button.\n");
-        softAssert.assertEquals(actualBackToLoginButtonText, BACK_TO_LOGIN_BUTTON_TEXT, "\nMissing backtologin button.\n");
+        softAssert.assertEquals(actualFirstNamePlaceholder, FIRST_NAME_PLACEHOLDER, FIRST_NAME_PLACEHOLDER_ERROR);
+        softAssert.assertEquals(actualLastNamePlaceholder, LAST_NAME_PLACEHOLDER, LAST_NAME_PLACEHOLDER_ERROR);
+        softAssert.assertEquals(actualUserNamePlaceholder, USERNAME_PLACEHOLDER, USERNAME_PLACEHOLDER_ERROR);
+        softAssert.assertEquals(actualPasswordPlaceholder, PASSWORD_PLACEHOLDER, PASSWORD_PLACEHOLDER_ERROR);
+        softAssert.assertEquals(actualTitleText, PAGE_TITLE, PAGE_TITLE_ERROR);
+        softAssert.assertEquals(actualFirstText, HEADER_TEXT, HEADER_TEXT_ERROR);
+        softAssert.assertEquals(actualFirstNameLabel, FIRST_NAME_LABEL, FIRST_NAME_LABEL_ERROR);
+        softAssert.assertEquals(actualLastNameLabel, LAST_NAME_LABEL, LAST_NAME_LABEL_ERROR);
+        softAssert.assertEquals(actualUserNameLabel, USERNAME_LABEL, USERNAME_LABEL_ERROR);
+        softAssert.assertEquals(actualPasswordLabel, PASSWORD_LABEL, PASSWORD_LABEL_ERROR);
+        softAssert.assertEquals(actualRegisterButtonText, REGISTER_BUTTON_TEXT, REGISTER_BUTTON_ERROR);
+        softAssert.assertEquals(actualBackToLoginButtonText, BACK_TO_LOGIN_BUTTON_TEXT, BACK_TO_LOGIN_BUTTON_ERROR);
         softAssert.assertAll();
     }
 
-    @Test(enabled = true, testName = "Try to login without recaptcha")
+    @Test(enabled = true, description = "Verify error message when attempting registration without reCAPTCHA verification")
     public void tryToLoginWithoutReCaptcha() {
-        // Arrange: Generate dynamic user data
+        // Arrange - Generate dynamic user data
         String expectedFirstName = faker.name().firstName();
         String expectedLastName = faker.name().lastName();
-        String expectedUsername = faker.name().username();
-        // Generate a password that meets complexity requirements
+        String expectedUsername = faker.name().username();        
         String expectedPassword = faker.internet().password(8, 16, true, false, true) + "A1!";
 
         // Act
@@ -90,7 +103,7 @@ public class BookRegisterPageTests extends BaseTest {
         String actualErrorMessage = booksRegisterPage.getErrorMessage();
 
         // Assert
-        softAssert.assertEquals(actualErrorMessage, RECAPTCHA_ERROR_MESSAGE, "\nWrong error message.\n");
+        softAssert.assertEquals(actualErrorMessage, RECAPTCHA_ERROR_MESSAGE, RECAPTCHA_ERROR_MESSAGE_ERROR);
         softAssert.assertAll();
     }
 }

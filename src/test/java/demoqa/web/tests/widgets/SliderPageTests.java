@@ -16,7 +16,7 @@ public class SliderPageTests extends BaseTest {
         sliderPage = new SliderPage(driver);
     }
 
-    @Test(enabled = false, testName = "Start and stop on value")
+    @Test(enabled = false, description = "Start and stop on value")
     public void startAndStopOnValue() throws InterruptedException {
         // Arrange
         int targetValue = 70;
@@ -28,7 +28,7 @@ public class SliderPageTests extends BaseTest {
 //        Assert.assertEquals(actualValue, stopValue, "Different values");
     }
 
-    @Test(enabled = false, testName = "Test slider result zero")
+    @Test(enabled = false, description = "Test slider result zero")
     public void testSliderResultZero() throws InterruptedException {
         // Arrange
         String expectedValue = "60";
@@ -44,7 +44,7 @@ public class SliderPageTests extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(enabled = true, testName = "Check default value slider")
+    @Test(enabled = true, description = "Check default value slider")
     public void checkDefaultValueSlider() {
         // Arrange
         String expectedValue = "25";

@@ -7,7 +7,60 @@ import org.testng.annotations.Test;
 
 public class LinksPageTests extends BaseTest {
 
-    public static final String LINKS_URL = "links";
+    // URL Constants
+    private static final String LINKS_URL = "links";
+    private static final String EXPECTED_HOME_URL = "https://demoqa.com/";
+    
+    // Text Constants
+    private static final String EXPECTED_LINKS_HEADER = "Links";
+    private static final String EXPECTED_FOLLOWING_LINKS_NEW_TAB = "Following links will open new tab";
+    private static final String EXPECTED_HOME_TEXT = "Home";
+    private static final String EXPECTED_FOLLOWING_LINKS_API_CALL = "Following links will send an api call";
+    private static final String EXPECTED_CREATED_TEXT = "Created";
+    private static final String EXPECTED_NO_CONTENT_TEXT = "No Content";
+    private static final String EXPECTED_MOVED_TEXT = "Moved";
+    private static final String EXPECTED_BAD_REQUEST_TEXT = "Bad Request";
+    private static final String EXPECTED_UNAUTHORIZED_TEXT = "Unauthorized";
+    private static final String EXPECTED_FORBIDDEN_TEXT = "Forbidden";
+    private static final String EXPECTED_NOT_FOUND_TEXT = "Not Found";
+    
+    // HTTP Status Constants
+    private static final String EXPECTED_CREATED_STATUS = "201";
+    private static final String EXPECTED_CREATED_STATUS_TEXT = "Created";
+    private static final String EXPECTED_NO_CONTENT_STATUS = "204";
+    private static final String EXPECTED_NO_CONTENT_STATUS_TEXT = "No Content";
+    private static final String EXPECTED_MOVED_STATUS = "301";
+    private static final String EXPECTED_MOVED_STATUS_TEXT = "Moved Permanently";
+    private static final String EXPECTED_BAD_REQUEST_STATUS = "400";
+    private static final String EXPECTED_BAD_REQUEST_STATUS_TEXT = "Bad Request";
+    private static final String EXPECTED_UNAUTHORIZED_STATUS = "401";
+    private static final String EXPECTED_UNAUTHORIZED_STATUS_TEXT = "Unauthorized";
+    private static final String EXPECTED_FORBIDDEN_STATUS = "403";
+    private static final String EXPECTED_FORBIDDEN_STATUS_TEXT = "Forbidden";
+    private static final String EXPECTED_NOT_FOUND_STATUS = "404";
+    private static final String EXPECTED_NOT_FOUND_STATUS_TEXT = "Not Found";
+    
+    // Error Message Constants
+    private static final String HEADER_TEXT_MISMATCH = "Links header text mismatch";
+    private static final String NEW_TAB_TEXT_MISMATCH = "New tab text mismatch";
+    private static final String HOME_TEXT_MISMATCH = "Home text mismatch";
+    private static final String API_CALL_TEXT_MISMATCH = "API call text mismatch";
+    private static final String CREATED_TEXT_MISMATCH = "Created text mismatch";
+    private static final String NO_CONTENT_TEXT_MISMATCH = "No content text mismatch";
+    private static final String MOVED_TEXT_MISMATCH = "Moved text mismatch";
+    private static final String BAD_REQUEST_TEXT_MISMATCH = "Bad request text mismatch";
+    private static final String UNAUTHORIZED_TEXT_MISMATCH = "Unauthorized text mismatch";
+    private static final String FORBIDDEN_TEXT_MISMATCH = "Forbidden text mismatch";
+    private static final String NOT_FOUND_TEXT_MISMATCH = "Not found text mismatch";
+    private static final String NEW_TAB_URL_MISMATCH = "New tab URL mismatch";
+    private static final String CREATED_LINK_RESPONSE_ERROR = "Created link response error";
+    private static final String NO_CONTENT_LINK_RESPONSE_ERROR = "No content link response error";
+    private static final String MOVED_LINK_RESPONSE_ERROR = "Moved link response error";
+    private static final String BAD_REQUEST_LINK_RESPONSE_ERROR = "Bad request link response error";
+    private static final String UNAUTHORIZED_LINK_RESPONSE_ERROR = "Unauthorized link response error";
+    private static final String FORBIDDEN_LINK_RESPONSE_ERROR = "Forbidden link response error";
+    private static final String NOT_FOUND_LINK_RESPONSE_ERROR = "Not found link response error";
+    
     private LinksPage linksPage;
 
     @BeforeMethod
@@ -16,23 +69,9 @@ public class LinksPageTests extends BaseTest {
         linksPage = new LinksPage(driver);
     }
 
-    @Test(enabled = true, testName = "Verify all text on page")
-    public void VerifyAllTextOnPage() {
-        // Arrange
-        String expectedLinksHeader = "Links";
-        String expectedFollowingLinksWillOpenNewTab = "Following links will open new tab";
-        String expectedHomeText = "Home";
-        // Dynamic name can not be checked
-        String expectedFollowingLinksWillSendAnApiCall = "Following links will send an api call";
-        String expectedCreatedText = "Created";
-        String expectedNoContentText = "No Content";
-        String expectedMovedText = "Moved";
-        String expectedBadRequestText = "Bad Request";
-        String expectedUnauthorizedText = "Unauthorized";
-        String expectedForbiddenText = "Forbidden";
-        String expectedNotFoundText = "Not Found";
-
-        // Act
+    @Test(enabled = true, description = "Verify all text elements on the links page")
+    public void verifyAllTextOnPage() {
+        // Arrange & Act
         String actualLinksHeader = linksPage.getLinksText();
         String actualFollowingLinksWillOpenNewTab = linksPage.getNewTabText();
         String actualHomeText = linksPage.getSimpleLinkText();
@@ -46,151 +85,130 @@ public class LinksPageTests extends BaseTest {
         String actualNotFoundText = linksPage.getNotFoundRequestLinkText();
 
         // Assert
-        softAssert.assertEquals(actualLinksHeader, expectedLinksHeader, "\nDifferent Header text.\n");
-        softAssert.assertEquals(actualFollowingLinksWillOpenNewTab, expectedFollowingLinksWillOpenNewTab, "\nDifferent new tab text.\n");
-        softAssert.assertEquals(actualHomeText, expectedHomeText, "\nDifferent home text.\n");
-        softAssert.assertEquals(actualFollowingLinksWillSendAnApiCall, expectedFollowingLinksWillSendAnApiCall, "\nDifferent api call text.\n");
-        softAssert.assertEquals(actualCreatedText, expectedCreatedText, "\nDifferent created text.\n");
-        softAssert.assertEquals(actualNoContentText, expectedNoContentText, "\nDifferent no content text.\n");
-        softAssert.assertEquals(actualMovedText, expectedMovedText, "\nDifferent moved text\n");
-        softAssert.assertEquals(actualBadRequestText, expectedBadRequestText, "\nDifferent bad request text.\n");
-        softAssert.assertEquals(actualUnauthorizedText, expectedUnauthorizedText, "\nDifferent Unauthorized text.\n");
-        softAssert.assertEquals(actualForbiddenText, expectedForbiddenText, "\nDifferent Forbidden text.\n");
-        softAssert.assertEquals(actualNotFoundText, expectedNotFoundText, "\nDifferent NotFound text.\n");
+        softAssert.assertEquals(actualLinksHeader, EXPECTED_LINKS_HEADER, HEADER_TEXT_MISMATCH);
+        softAssert.assertEquals(actualFollowingLinksWillOpenNewTab, EXPECTED_FOLLOWING_LINKS_NEW_TAB, NEW_TAB_TEXT_MISMATCH);
+        softAssert.assertEquals(actualHomeText, EXPECTED_HOME_TEXT, HOME_TEXT_MISMATCH);
+        softAssert.assertEquals(actualFollowingLinksWillSendAnApiCall, EXPECTED_FOLLOWING_LINKS_API_CALL, API_CALL_TEXT_MISMATCH);
+        softAssert.assertEquals(actualCreatedText, EXPECTED_CREATED_TEXT, CREATED_TEXT_MISMATCH);
+        softAssert.assertEquals(actualNoContentText, EXPECTED_NO_CONTENT_TEXT, NO_CONTENT_TEXT_MISMATCH);
+        softAssert.assertEquals(actualMovedText, EXPECTED_MOVED_TEXT, MOVED_TEXT_MISMATCH);
+        softAssert.assertEquals(actualBadRequestText, EXPECTED_BAD_REQUEST_TEXT, BAD_REQUEST_TEXT_MISMATCH);
+        softAssert.assertEquals(actualUnauthorizedText, EXPECTED_UNAUTHORIZED_TEXT, UNAUTHORIZED_TEXT_MISMATCH);
+        softAssert.assertEquals(actualForbiddenText, EXPECTED_FORBIDDEN_TEXT, FORBIDDEN_TEXT_MISMATCH);
+        softAssert.assertEquals(actualNotFoundText, EXPECTED_NOT_FOUND_TEXT, NOT_FOUND_TEXT_MISMATCH);
         softAssert.assertAll();
     }
 
-    @Test(enabled = true, testName = "Open new tab from simple link")
-    public void OpenNewTabFromSimpleLink() {
-        // Arrange
-        String expectedUrlNewTab = "https://demoqa.com/";
-
-        // Act
+    @Test(enabled = true, description = "Open new tab from simple link and verify URL")
+    public void openNewTabFromSimpleLink() {
+        // Arrange & Act
         linksPage.clickSimpleTab();
         String urlNewTab = linksPage.getUrl();
 
         // Assert
-        softAssert.assertEquals(urlNewTab, expectedUrlNewTab, "\n Actual & Expected New Tab Url Do Not Match.\n");
+        softAssert.assertEquals(urlNewTab, EXPECTED_HOME_URL, NEW_TAB_URL_MISMATCH);
         softAssert.assertAll();
     }
 
-    @Test(enabled = true, testName = "Open new tab from dynamic link")
-    public void OpenNewTabFromDynamicLink() {
-        // Arrange
-        String expectedUrlNewTab = "https://demoqa.com/";
-
-        // Act
+    @Test(enabled = true, description = "Open new tab from dynamic link and verify URL")
+    public void openNewTabFromDynamicLink() {
+        // Arrange & Act
         linksPage.clickDynamicTab();
         String urlNewTab = linksPage.getUrl();
 
         // Assert
-        softAssert.assertEquals(urlNewTab, expectedUrlNewTab,
-                "\n Actual & Expected New Tab Url Do Not Match.\n");
+        softAssert.assertEquals(urlNewTab, EXPECTED_HOME_URL, NEW_TAB_URL_MISMATCH);
         softAssert.assertAll();
     }
 
-    @Test(enabled = true, testName = "Click on created link")
-    public void ClickOnkCreatedLink() {
-        // Arrange
-        // Act
+    @Test(enabled = true, description = "Click on created link and verify response")
+    public void clickOnCreatedLink() {
+        // Arrange & Act
         linksPage.clickCreatedLink();
         String actualResponseText = linksPage.getResponse();
 
         // Assert
-        softAssert.assertTrue(actualResponseText.contains("201")
-                        && actualResponseText.contains("Created"),
-                "\n Link has responded with staus" + actualResponseText +
-                        ")\n and status text Created \n");
+        softAssert.assertTrue(actualResponseText.contains(EXPECTED_CREATED_STATUS)
+                        && actualResponseText.contains(EXPECTED_CREATED_STATUS_TEXT),
+                CREATED_LINK_RESPONSE_ERROR);
         softAssert.assertAll();
     }
 
-    @Test(enabled = true, testName = "Click on no content link")
-    public void ClickOnNoContentLink() {
-        // Arrange
-        // Act
+    @Test(enabled = true, description = "Click on no content link and verify response")
+    public void clickOnNoContentLink() {
+        // Arrange & Act
         linksPage.clickNoContentRequestLink();
         String actualResponse = linksPage.getResponse();
 
         // Assert
-        softAssert.assertTrue(actualResponse.contains("204")
-                        && actualResponse.contains("No Content"),
-                "\n Link has responded with staus" + actualResponse +
-                        ")\n and status text Created \n");
+        softAssert.assertTrue(actualResponse.contains(EXPECTED_NO_CONTENT_STATUS)
+                        && actualResponse.contains(EXPECTED_NO_CONTENT_STATUS_TEXT),
+                NO_CONTENT_LINK_RESPONSE_ERROR);
         softAssert.assertAll();
     }
 
-    @Test(enabled = true, testName = "Click on moved link")
-    public void ClickOnMovedLink() {
-        // Arrange
-        // Act
+    @Test(enabled = true, description = "Click on moved link and verify response")
+    public void clickOnMovedLink() {
+        // Arrange & Act
         linksPage.clickMovedLink();
         String actualResponse = linksPage.getResponse();
 
         // Assert
-        softAssert.assertTrue(actualResponse.contains("301")
-                        && actualResponse.contains("Moved Permanently"),
-                "\n Link has responded with staus" + actualResponse +
-                        ")\n and status text Created \n");
+        softAssert.assertTrue(actualResponse.contains(EXPECTED_MOVED_STATUS)
+                        && actualResponse.contains(EXPECTED_MOVED_STATUS_TEXT),
+                MOVED_LINK_RESPONSE_ERROR);
         softAssert.assertAll();
     }
 
-    @Test(enabled = true, testName = "Click on bad request link")
-    public void ClickOnBadRequestLink() {
-        // Arrange
-        // Act
+    @Test(enabled = true, description = "Click on bad request link and verify response")
+    public void clickOnBadRequestLink() {
+        // Arrange & Act
         linksPage.clickBadRequestLink();
         String actualResponse = linksPage.getResponse();
 
         // Assert
-        softAssert.assertTrue(actualResponse.contains("400")
-                        && actualResponse.contains("Bad Request"),
-                "\n Actual Response (" + actualResponse +
-                        ")\n Does Not Contain '400' and 'Bad Request' \n");
+        softAssert.assertTrue(actualResponse.contains(EXPECTED_BAD_REQUEST_STATUS)
+                        && actualResponse.contains(EXPECTED_BAD_REQUEST_STATUS_TEXT),
+                BAD_REQUEST_LINK_RESPONSE_ERROR);
         softAssert.assertAll();
     }
 
-    @Test(enabled = true, testName = "Click on unauthorized link")
-    public void ClickOnUnAuthorizedLink() {
-        // Arrange
-        // Act
+    @Test(enabled = true, description = "Click on unauthorized link and verify response")
+    public void clickOnUnauthorizedLink() {
+        // Arrange & Act
         linksPage.clickUnauthorizedLink();
         String actualResponse = linksPage.getResponse();
 
         // Assert
-        softAssert.assertTrue(actualResponse.contains("401")
-                        && actualResponse.contains("Unauthorized"),
-                "\n Link has responded with staus" + actualResponse +
-                        ")\n and status text Created \n");
+        softAssert.assertTrue(actualResponse.contains(EXPECTED_UNAUTHORIZED_STATUS)
+                        && actualResponse.contains(EXPECTED_UNAUTHORIZED_STATUS_TEXT),
+                UNAUTHORIZED_LINK_RESPONSE_ERROR);
         softAssert.assertAll();
     }
 
-    @Test(enabled = true, testName = "Click on forbidden link")
-    public void ClickOnForbiddenLink() {
-        // Arrange
-        // Act
+    @Test(enabled = true, description = "Click on forbidden link and verify response")
+    public void clickOnForbiddenLink() {
+        // Arrange & Act
         linksPage.clickForbiddenLink();
         String actualResponse = linksPage.getResponse();
 
         // Assert
-        softAssert.assertTrue(actualResponse.contains("403")
-                        && actualResponse.contains("Forbidden"),
-                "\n Link has responded with status" + actualResponse +
-                        ")\n and status text Created \n");
+        softAssert.assertTrue(actualResponse.contains(EXPECTED_FORBIDDEN_STATUS)
+                        && actualResponse.contains(EXPECTED_FORBIDDEN_STATUS_TEXT),
+                FORBIDDEN_LINK_RESPONSE_ERROR);
         softAssert.assertAll();
     }
 
-    @Test(enabled = true, testName = "Click on not found link")
-    public void ClickOnNotFoundLink() {
-        // Arrange
-        // Act
+    @Test(enabled = true, description = "Click on not found link and verify response")
+    public void clickOnNotFoundLink() {
+        // Arrange & Act
         linksPage.clickNotFoundLink();
         String actualResponse = linksPage.getResponse();
 
         // Assert
-        softAssert.assertTrue(actualResponse.contains("404")
-                        && actualResponse.contains("Not Found"),
-                "\n Link has responded with staus" + actualResponse +
-                        ")\n and status text Created \n");
+        softAssert.assertTrue(actualResponse.contains(EXPECTED_NOT_FOUND_STATUS)
+                        && actualResponse.contains(EXPECTED_NOT_FOUND_STATUS_TEXT),
+                NOT_FOUND_LINK_RESPONSE_ERROR);
         softAssert.assertAll();
     }
 }

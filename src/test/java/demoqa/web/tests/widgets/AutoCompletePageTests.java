@@ -46,6 +46,7 @@ public class AutoCompletePageTests extends BaseTest {
         String actualTypeMultipleText = autoCompletePage.getMultipleContainerText();
         String actualTypeSingleText = autoCompletePage.getAutoCompleteSingleText();
 
+         // Assert
         softAssert.assertEquals(actualText, PAGE_HEADING, PAGE_HEADING_ERROR);
         softAssert.assertEquals(actualTypeMultipleText, TYPE_MULTIPLE_TEXT, TYPE_MULTIPLE_TEXT_ERROR);
         softAssert.assertEquals(actualTypeSingleText, TYPE_SINGLE_TEXT, TYPE_SINGLE_TEXT_ERROR);
@@ -63,15 +64,14 @@ public class AutoCompletePageTests extends BaseTest {
 
         String actualSelectedColors = autoCompletePage.getAllSelectedMultiColorNames();
 
+        // Assert
         softAssert.assertEquals(actualSelectedColors, COLOR_RED + "\n" + COLOR_BLUE, COLORS_SELECTED_ERROR);
         softAssert.assertAll();
     }
 
     @Test(enabled = true, description = "Select two colors and delete two multiple")
     public void selectTwoColorsAndDeleteTwoMultiple() {
-        // Arrange
-
-        // Act
+        // Arrange & Act
         autoCompletePage.multiAutoCompleteSelectColor(COLOR_RED);
         autoCompletePage.multiAutoCompleteSelectColor(COLOR_BLUE);
         String actualSelectedColors = autoCompletePage.getAllSelectedMultiColorNames();
@@ -89,8 +89,7 @@ public class AutoCompletePageTests extends BaseTest {
 
     @Test(enabled = true, description = "Select one color clear add new color single")
     public void selectOneColorClearAddNewColorSingle() {
-        // Arrange
-        // Act
+        // Arrange & Act
         autoCompletePage.singleAutoComplete(COLOR_GREEN);
         String actualSelectedColors = autoCompletePage.getAllSingleColorNames();
 
@@ -106,11 +105,11 @@ public class AutoCompletePageTests extends BaseTest {
 
     @Test(enabled = true, description = "Select one color single")
     public void selectOneColorSingle() {
-        // Arrange      
-        // Act
+        // Arrange & Act
         autoCompletePage.singleAutoComplete(COLOR_GREEN);
         String actualSelectedColors = autoCompletePage.getAllSingleColorNames();
 
+        // Assert
         softAssert.assertEquals(actualSelectedColors, COLOR_GREEN, GREEN_COLOR_SELECTED_ERROR);
         softAssert.assertAll();
     }

@@ -7,7 +7,69 @@ import org.testng.annotations.Test;
 
 public class CheckBoxPageTests extends BaseTest {
 
+    // URL Constants
     private static final String CHECK_BOX_URL = "checkbox";
+    
+    // Text Constants
+    private static final String EXPECTED_HEADER_TEXT = "Check Box";
+    
+    // Expected Result Constants
+    private static final String EXPECTED_NOTES_RESULT = "You have selected :\nnotes";
+    private static final String EXPECTED_DESKTOP_HOME_COMMANDS_RESULT = """
+            You have selected :
+            desktop
+            notes
+            commands""";
+    private static final String EXPECTED_NOTES_AND_OFFICE_PUBLIC_RESULT = """
+            You have selected :
+            notes
+            public""";
+    private static final String EXPECTED_COLLAPSED_SELECTED_RESULT = """
+            You have selected :
+            documents
+            workspace
+            react
+            angular
+            veu
+            office
+            public
+            private
+            classified
+            general""";
+    private static final String EXPECTED_HOME_SELECTION_RESULT = """
+            You have selected :
+            home
+            desktop
+            notes
+            commands
+            documents
+            workspace
+            react
+            angular
+            veu
+            office
+            public
+            private
+            classified
+            general
+            downloads
+            wordFile
+            excelFile""";
+    
+    // Error Message Constants
+    private static final String HEADER_TEXT_MISMATCH = "Header text mismatch";
+    private static final String NOTES_SELECTION_ERROR = "Notes checkbox not selected properly";
+    private static final String DESKTOP_HOME_COMMANDS_SELECTION_ERROR = "Desktop, home, and commands checkboxes not selected properly";
+    private static final String NOTES_DESELECTION_ERROR = "Notes checkbox not deselected properly";
+    private static final String RESULT_MESSAGE_SHOWN_ERROR = "Result message shown incorrectly";
+    private static final String COMMANDS_SELECTION_ERROR = "Commands checkbox not selected properly";
+    private static final String NOTES_OFFICE_PUBLIC_SELECTION_ERROR = "Notes and office public checkboxes not selected properly";
+    private static final String COLLAPSED_SELECTION_ERROR = "Collapsed selection not working properly";
+    private static final String HOME_SELECTION_ERROR = "Home checkbox selection not working properly";
+    private static final String DESKTOP_DOCUMENTS_DOWNLOADS_SELECTION_ERROR = "Desktop, documents, and downloads checkboxes not selected properly";
+    private static final String ALL_CHECKBOXES_SELECTION_ERROR = "All checkboxes not selected properly";
+    private static final String ALL_CHECKBOXES_DESELECTION_ERROR = "All checkboxes not deselected properly";
+    
     private CheckBoxPage checkBoxPage;
 
     @BeforeMethod
@@ -16,13 +78,9 @@ public class CheckBoxPageTests extends BaseTest {
         checkBoxPage = new CheckBoxPage(driver);
     }
 
-    @Test(enabled = true, testName = "Select notes checkbox")
+    @Test(enabled = true, description = "Select notes checkbox and verify selection result")
     public void selectNotesCheckBox() {
-        // Arrange
-        String expectedHeader = "Check Box";
-        String expectedResultMessage = "You have selected :\nnotes";
-
-        // Act
+        // Arrange & Act
         checkBoxPage.clickExpandAll();
         checkBoxPage.clickNotes();
 
@@ -30,39 +88,27 @@ public class CheckBoxPageTests extends BaseTest {
         String actualHeader = checkBoxPage.getHeader();
 
         // Assert
-        softAssert.assertEquals(actualResultMessage, expectedResultMessage, "\nNot selected Notes\n");
-        softAssert.assertEquals(actualHeader, expectedHeader, "\nWrong Header Message.\n");
+        softAssert.assertEquals(actualResultMessage, EXPECTED_NOTES_RESULT, NOTES_SELECTION_ERROR);
+        softAssert.assertEquals(actualHeader, EXPECTED_HEADER_TEXT, HEADER_TEXT_MISMATCH);
         softAssert.assertAll();
     }
 
-    @Test(enabled = true, testName = "Select desktop home commands checkboxes")
+    @Test(enabled = true, description = "Select desktop, home, and commands checkboxes and verify selection")
     public void selectDesktopWithHomeAndCommandsNotes() {
-        // Arrange
-        String expectedResult = """
-                You have selected :
-                desktop
-                notes
-                commands""";
-
-        // Act
+        // Arrange & Act
         checkBoxPage.clickExpandAll();
         checkBoxPage.clickNotes();
         checkBoxPage.clickCommands();
         String actualResult = checkBoxPage.getResultMessage();
 
         // Assert
-        softAssert.assertEquals(actualResult, expectedResult, "\nNot selected Notes.\n");
+        softAssert.assertEquals(actualResult, EXPECTED_DESKTOP_HOME_COMMANDS_RESULT, DESKTOP_HOME_COMMANDS_SELECTION_ERROR);
         softAssert.assertAll();
     }
 
-    @Test(enabled = true, testName = "Deselect notes checkbox")
+    @Test(enabled = true, description = "Deselect notes checkbox and verify deselection result")
     public void deSelectNotesCheckBox() {
-        // Arrange
-        String expectedResult = """
-                You have selected :
-                notes""";
-
-        // Act
+        // Arrange & Act
         checkBoxPage.clickExpandAll();
         checkBoxPage.clickNotes();
 
@@ -70,46 +116,36 @@ public class CheckBoxPageTests extends BaseTest {
         checkBoxPage.clickNotes();
 
         // Assert
-        softAssert.assertEquals(actualResult, expectedResult, "\nNot selected Notes.\n");
-        softAssert.assertTrue(checkBoxPage.isResultMessageShown(), "\nShown wrong category.\n");
+        softAssert.assertEquals(actualResult, EXPECTED_NOTES_RESULT, NOTES_DESELECTION_ERROR);
+        softAssert.assertTrue(checkBoxPage.isResultMessageShown(), RESULT_MESSAGE_SHOWN_ERROR);
         softAssert.assertAll();
     }
 
-    @Test(enabled = true, testName = "Verify result message is empty without selections")
+    @Test(enabled = true, description = "Verify result message is empty without any checkbox selections")
     public void verifyResultMessageIsEmptyWithoutSelections() {
-        // Arrange
-        // Act
+        // Arrange & Act
         checkBoxPage.clickExpandAll();
 
         // Assert
-        softAssert.assertTrue(checkBoxPage.isResultMessageShown(), "\nShown some category\n");
+        softAssert.assertTrue(checkBoxPage.isResultMessageShown(), RESULT_MESSAGE_SHOWN_ERROR);
         softAssert.assertAll();
     }
 
-    @Test(enabled = true, testName = "Select commands checkbox")
+    @Test(enabled = true, description = "Select commands checkbox and verify selection result")
     public void selectCommandsCheckBox() {
-        // Arrange
-        String expectedResult = "You have selected :\ncommands";
-
-        // Act
+        // Arrange & Act
         checkBoxPage.clickExpandAll();
         checkBoxPage.clickCommands();
         String actualResult = checkBoxPage.getResultMessage();
 
         // Assert
-        softAssert.assertEquals(actualResult, expectedResult, "\nNot selected Commands.\n");
+        softAssert.assertEquals(actualResult, "You have selected :\ncommands", COMMANDS_SELECTION_ERROR);
         softAssert.assertAll();
     }
 
-    @Test(enabled = true, testName = "Select notes and office public checkbox")
+    @Test(enabled = true, description = "Select notes and office public checkboxes and verify selection")
     public void selectNotesAndOfficePublicCheckBox() {
-        // Arrange
-        String expectedResult = """
-                You have selected :
-                notes
-                public""";
-
-        // Act
+        // Arrange & Act
         checkBoxPage.clickExpandAll();
         checkBoxPage.clickNotes();
         checkBoxPage.clickOfficePublic();
@@ -117,27 +153,13 @@ public class CheckBoxPageTests extends BaseTest {
         String actualResult = checkBoxPage.getResultMessage();
 
         // Assert
-        softAssert.assertEquals(actualResult, expectedResult, "Not selected 3 checkbox Notes/Commands");
+        softAssert.assertEquals(actualResult, EXPECTED_NOTES_AND_OFFICE_PUBLIC_RESULT, NOTES_OFFICE_PUBLIC_SELECTION_ERROR);
         softAssert.assertAll();
     }
 
-    @Test(enabled = true, testName = "Collapsed with selected categories")
+    @Test(enabled = true, description = "Test collapsed state with selected categories")
     public void collapsedWithSelectedCategories() {
-        // Arrange
-        String expectedResult = """
-                You have selected :
-                documents
-                workspace
-                react
-                angular
-                veu
-                office
-                public
-                private
-                classified
-                general""";
-
-        // Act
+        // Arrange & Act
         checkBoxPage.clickExpandAll();
         checkBoxPage.clickOffice();
         checkBoxPage.clickWorkSpace();
@@ -145,66 +167,24 @@ public class CheckBoxPageTests extends BaseTest {
         String actualResult = checkBoxPage.getResultMessage();
 
         // Assert
-        softAssert.assertEquals(actualResult, expectedResult, "\nNot selected 3 checkbox Notes/Commands.\n");
+        softAssert.assertEquals(actualResult, EXPECTED_COLLAPSED_SELECTED_RESULT, COLLAPSED_SELECTION_ERROR);
         softAssert.assertAll();
     }
 
-    @Test(enabled = true, testName = "Select home checkbox")
+    @Test(enabled = true, description = "Select home checkbox and verify all child checkboxes are selected")
     public void selectHomeCheckBox() {
-        // Arrange
-        String expectedResult = """
-                You have selected :
-                home
-                desktop
-                notes
-                commands
-                documents
-                workspace
-                react
-                angular
-                veu
-                office
-                public
-                private
-                classified
-                general
-                downloads
-                wordFile
-                excelFile""";
-
-        // Act
+        // Arrange & Act
         checkBoxPage.clickHome();
         String actualResult = checkBoxPage.getResultMessage();
 
         // Assert
-        softAssert.assertEquals(actualResult, expectedResult, "\nNot selected all CheckBoxes.\n");
+        softAssert.assertEquals(actualResult, EXPECTED_HOME_SELECTION_RESULT, HOME_SELECTION_ERROR);
         softAssert.assertAll();
     }
 
-    @Test(enabled = true, testName = "Select desktop documents and downloads checkboxes")
-    public void SelectDesktopAndDocumentsAndDownloadsCheckBoxes() {
-        // Arrange
-        String expectedResult = """
-                You have selected :
-                home
-                desktop
-                notes
-                commands
-                documents
-                workspace
-                react
-                angular
-                veu
-                office
-                public
-                private
-                classified
-                general
-                downloads
-                wordFile
-                excelFile""";
-
-        // Act
+    @Test(enabled = true, description = "Select desktop, documents, and downloads checkboxes and verify selection")
+    public void selectDesktopAndDocumentsAndDownloadsCheckBoxes() {
+        // Arrange & Act
         checkBoxPage.clickExpandAll();
         checkBoxPage.clickDesktop();
         checkBoxPage.clickDocuments();
@@ -213,34 +193,13 @@ public class CheckBoxPageTests extends BaseTest {
         String actualResult = checkBoxPage.getResultMessage();
 
         // Assert
-        softAssert.assertEquals(actualResult, expectedResult, "\nNot selected all CheckBoxes\n");
+        softAssert.assertEquals(actualResult, EXPECTED_HOME_SELECTION_RESULT, DESKTOP_DOCUMENTS_DOWNLOADS_SELECTION_ERROR);
         softAssert.assertAll();
     }
 
-    @Test(enabled = true, testName = "Select all checkboxes one by one")
+    @Test(enabled = true, description = "Select all checkboxes one by one and verify complete selection")
     public void selectAllCheckBoxesOneByOne() {
-        // Arrange
-        String expectedResult = """
-                You have selected :
-                home
-                desktop
-                notes
-                commands
-                documents
-                workspace
-                react
-                angular
-                veu
-                office
-                public
-                private
-                classified
-                general
-                downloads
-                wordFile
-                excelFile""";
-
-        // Act
+        // Arrange & Act
         checkBoxPage.clickExpandAll();
         checkBoxPage.clickNotes();
         checkBoxPage.clickCommands();
@@ -256,11 +215,11 @@ public class CheckBoxPageTests extends BaseTest {
         String actualResult = checkBoxPage.getResultMessage();
 
         // Assert
-        softAssert.assertEquals(actualResult, expectedResult, "\nNot selected all CheckBoxes.\n");
+        softAssert.assertEquals(actualResult, EXPECTED_HOME_SELECTION_RESULT, ALL_CHECKBOXES_SELECTION_ERROR);
         softAssert.assertAll();
     }
 
-    @Test(enabled = true, testName = "Select all checkboxes one by one and deselect all")
+    @Test(enabled = true, description = "Select all checkboxes one by one and then deselect all to verify complete deselection")
     public void selectAllCheckBoxesOneByOneAndDeselectAll() {
         // Arrange
         checkBoxPage.clickExpandAll();
@@ -277,25 +236,6 @@ public class CheckBoxPageTests extends BaseTest {
         checkBoxPage.clickExcelFileDoc();
 
         String actualResult = checkBoxPage.getResultMessage();
-        String expectedResult = """
-                You have selected :
-                home
-                desktop
-                notes
-                commands
-                documents
-                workspace
-                react
-                angular
-                veu
-                office
-                public
-                private
-                classified
-                general
-                downloads
-                wordFile
-                excelFile""";
 
         // Act
         checkBoxPage.clickNotes();
@@ -313,8 +253,8 @@ public class CheckBoxPageTests extends BaseTest {
         boolean isResultMessageShown = checkBoxPage.verifyResultMessageIsMissing();
 
         // Assert
-        softAssert.assertEquals(actualResult, expectedResult, "\nNot selected all CheckBoxes.\n");
-        softAssert.assertTrue(isResultMessageShown, "\nFound some selected CheckBoxes.\n");
+        softAssert.assertEquals(actualResult, EXPECTED_HOME_SELECTION_RESULT, ALL_CHECKBOXES_SELECTION_ERROR);
+        softAssert.assertTrue(isResultMessageShown, ALL_CHECKBOXES_DESELECTION_ERROR);
         softAssert.assertAll();
     }
 }

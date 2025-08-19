@@ -30,7 +30,7 @@ public class ToolTipsPageTests extends BaseTest {
         toolTipsPage = new ToolTipsPage(driver);
     }
 
-    @Test(enabled = true, testName = "Verify all text on page")
+    @Test(enabled = true, description = "Verify all text on page")
     public void verifyAllTextOnPage() {
         // Arrange
         // Act
@@ -49,7 +49,7 @@ public class ToolTipsPageTests extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(enabled = true, testName = "Verify over 4 tooltips")
+    @Test(enabled = true, description = "Verify over 4 tooltips")
     public void hoverOver4ToolTips() {
         // Arrange
         // Act

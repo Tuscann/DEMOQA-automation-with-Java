@@ -16,7 +16,7 @@ public class ProgressBarPageTests extends BaseTest {
         progressBarPage = new ProgressBarPage(driver);
     }
 
-    @Test(enabled = true, testName = "Verify all text on page")
+    @Test(enabled = true, description = "Verify all text on page")
     public void verifyAllTextOnPage() {
         // Arrange
         String expectedHeaderText = "Progress Bar";
@@ -35,7 +35,7 @@ public class ProgressBarPageTests extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(enabled = true, testName = "Click start button and check progress bar end value")
+    @Test(enabled = true, description = "Click start button and check progress bar end value")
     public void clickStartButtonAndCheckProgressBarEndValue() {
         // Arrange
         String expectedText = "100";
@@ -63,7 +63,7 @@ public class ProgressBarPageTests extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(enabled = true, testName = "Click reset button")
+    @Test(enabled = true, description = "Click reset button")
     public void clickResetButton() {
         // Arrange
         String expectedText = "100";
@@ -82,7 +82,7 @@ public class ProgressBarPageTests extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(enabled = true, testName = "Click start stop start check progress bar end value")
+    @Test(enabled = true, description = "Click start stop start check progress bar end value")
     public void clickStartStopStartCheckProgressBarEndValue() {
         // Arrange
         String expectedEndProgressBarValueText = "100";
@@ -102,7 +102,7 @@ public class ProgressBarPageTests extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(enabled = true, testName = "Stop on 31 percent of progressbar")
+    @Test(enabled = true, description = "Stop on 31 percent of progressbar")
     public void stopOn31ProgressOfProgressbar() {
         // Arrange
         String expectedStartColor = "rgba(23, 162, 184, 1)";

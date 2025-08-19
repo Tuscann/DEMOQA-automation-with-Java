@@ -1,6 +1,5 @@
 package demoqa.api.tests;
 
-import demoqa.api.tests.BaseTestApi;
 import demoqa.api.models.Token;
 import demoqa.api.models.User;
 import demoqa.api.models.ErrorResponse;
@@ -14,8 +13,8 @@ public class AccountTests extends BaseTestApi {
 
     User testUser = new User();
 
-    @Test(testName = "Authorized user with POST", suiteName = "api", enabled = true)
-    void AuthorizeUser() throws IOException, InterruptedException {
+    @Test(description = "Authorized user with POST", suiteName = "api", enabled = true)
+    void authorizeUser() throws IOException, InterruptedException {
         TodoClient todoClient = new TodoClient();
 
         String expectedUsername = "fbinnzhivko";
@@ -26,7 +25,7 @@ public class AccountTests extends BaseTestApi {
         Assert.assertEquals(isUserFound, "true", "\nWrong request.\n");
     }
 
-    @Test(testName = "Try to authorized non existing user with POST", suiteName = "api", enabled = true)
+    @Test(description = "Try to authorized non existing user with POST", suiteName = "api", enabled = true)
     void tryToAuthorizeUser() throws IOException, InterruptedException {
         TodoClient todoClient = new TodoClient();
 
@@ -38,8 +37,8 @@ public class AccountTests extends BaseTestApi {
         Assert.assertEquals(response, "{\"code\":\"1207\",\"message\":\"User not found!\"}", "\nWrong response from API.\n");
     }
 
-    @Test(testName = "Generate Token with POST", suiteName = "api", enabled = true)
-    void GenerateToken() throws IOException, InterruptedException {
+    @Test(description = "Generate Token with POST", suiteName = "api", enabled = true)
+    void generateToken() throws IOException, InterruptedException {
         TodoClient todoClient = new TodoClient();
 
         String username = "fbinnzhivko";
@@ -60,8 +59,8 @@ public class AccountTests extends BaseTestApi {
         softAssert.assertAll();
     }
 
-    @Test(testName = "Generate new valid user with POST", suiteName = "api", enabled = true)
-    void GenerateNewUser() throws IOException, InterruptedException {
+    @Test(description = "Generate new valid user with POST", suiteName = "api", enabled = true)
+    void generateNewUser() throws IOException, InterruptedException {
         TodoClient todoClient = new TodoClient();
 
         String username = "fbinnzhivko" + 100 + (int) (Math.random() * 899);
@@ -81,8 +80,8 @@ public class AccountTests extends BaseTestApi {
         softAssert.assertAll();
     }
 
-    @Test(testName = "Try to generate new user with existing user with POST", suiteName = "api", enabled = true)
-    void GenerateNewUserWithExistingUser() throws IOException, InterruptedException {
+    @Test(description = "Try to generate new user with existing user with POST", suiteName = "api", enabled = true)
+    void generateNewUserWithExistingUser() throws IOException, InterruptedException {
         TodoClient todoClient = new TodoClient();
 
         String username = "fbinnzhivko";
@@ -100,8 +99,8 @@ public class AccountTests extends BaseTestApi {
         softAssert.assertAll();
     }
 
-    @Test(testName = "Try to delete user with not authorized user with DELETE", suiteName = "api", enabled = true)
-    void TryToDeleteUser() throws IOException, InterruptedException {
+    @Test(description = "Try to delete user with not authorized user with DELETE", suiteName = "api", enabled = true)
+    void tryToDeleteUser() throws IOException, InterruptedException {
         TodoClient todoClient = new TodoClient();
 
         String userId = "9e8aef1f-7ee6-4fc5-a75e-3d4701627871";
@@ -118,8 +117,8 @@ public class AccountTests extends BaseTestApi {
         softAssert.assertAll();
     }
 
-    @Test(testName = "Try to get user information with not authorized user with GET", suiteName = "api", enabled = true)
-    void GetInformation() throws IOException, InterruptedException {
+    @Test(description = "Try to get user information with not authorized user with GET", suiteName = "api", enabled = true)
+    void getInformation() throws IOException, InterruptedException {
         TodoClient todoClient = new TodoClient();
 
         String userId = "9e8aef1f-7ee6-4fc5-a75e-3d4701627871";
@@ -136,14 +135,9 @@ public class AccountTests extends BaseTestApi {
         softAssert.assertAll();
     }
 
-    @Test(testName = "Try to2", suiteName = "api", enabled = false)
-    void GetInformation2() throws IOException, InterruptedException {
-        TodoClient todoClient = new TodoClient();
-
-        String username = "fbinnzhivko";
-        String password = "Karma1987!@";
-
-        String isUserFound = todoClient.AuthorizeUser(username, password);
+    @Test(description = "Try to2", suiteName = "api", enabled = false)
+    void getInformation2() throws IOException, InterruptedException {
+        TodoClient todoClient = new TodoClient();       
 
         String userId = "e90df422-7f2b-4f51-be1b-c92541eb370f";
 

@@ -152,7 +152,7 @@ public class DroppablePageTests extends BaseTest {
 
     @Test(enabled = true, description = "Accept tab drag and drop not acceptable")
     public void acceptTabDragAndDropNotAcceptable() {
-        // Arrange - Using constants instead of inline strings
+        // Arrange & Act
         droppablePage.clickAcceptTab();
         droppablePage.dragAndDropNotAcceptable();
 
@@ -167,7 +167,7 @@ public class DroppablePageTests extends BaseTest {
 
     @Test(enabled = true, description = "Prevent propagation outer droppable not greedy")
     public void preventPropagationInnerDroppableNotGreedy() {
-        // Arrange - Using constants instead of inline strings
+        // Arrange & Act
         droppablePage.clickPreventPropagationTab();
 
         String actualInnerNotGreedyColor = droppablePage.getInnerDroppableNotGreedyColor();
@@ -191,7 +191,7 @@ public class DroppablePageTests extends BaseTest {
 
     @Test(enabled = true, description = "Prevent propagation inner droppable greedy")
     public void preventPropagationInnerDroppableGreedy() {
-        // Arrange - Using constants instead of inline strings
+         // Arrange & Act
         droppablePage.clickPreventPropagationTab();
         droppablePage.dragAndDropPropagationInnerDroppableGreedy();
 
@@ -208,7 +208,7 @@ public class DroppablePageTests extends BaseTest {
 
     @Test(enabled = true, description = "Prevent propagation outer droppable greedy")
     public void preventPropagationOuterDroppableGreedy() {
-        // Arrange
+        // Arrange & Act
         droppablePage.clickPreventPropagationTab();
         droppablePage.dragAndDropPropagationOuterDroppableGreedy();
 
@@ -225,7 +225,7 @@ public class DroppablePageTests extends BaseTest {
 
     @Test(enabled = true, description = "Revert draggable will revert")
     public void revertDraggableWillRevert() {
-        // Arrange 
+        // Arrange & Act
         droppablePage.clickRevertDraggableTab();
 
         Point initialLocation = droppablePage.getInitLocation();
@@ -246,7 +246,7 @@ public class DroppablePageTests extends BaseTest {
 
     @Test(enabled = true, description = "Revert draggable will not revert")
     public void revertDraggableWillNotRevert() {
-        // Arrange
+        // Arrange & Act
         droppablePage.clickRevertDraggableTab();
 
         Point initialLocation = droppablePage.getInitLocation();

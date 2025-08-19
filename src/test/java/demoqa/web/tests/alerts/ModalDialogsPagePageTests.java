@@ -9,6 +9,30 @@ public class ModalDialogsPagePageTests extends BaseTest {
 
     private static final String MODAL_DIALOGS_URL = "modal-dialogs";
     private ModalDialogsPage modalDialogsPage;
+    
+    // Text Constants
+    private static final String MODAL_DIALOGS_TEXT = "Modal Dialogs";
+    private static final String CLICK_TEXT = "Click on button to see modal";
+    private static final String SMALL_BUTTON_TEXT = "Small modal";
+    private static final String LARGE_BUTTON_TEXT = "Large modal";
+    
+    // Modal Dialog Constants
+    private static final String SMALL_MODAL_HEADER = "Small Modal";
+    private static final String SMALL_MODAL_BODY = "This is a small modal. It has very less content";
+    private static final String LARGE_MODAL_HEADER = "Large Modal";
+    private static final String LARGE_MODAL_BODY = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";
+    private static final String CLOSE_BUTTON_TEXT = "Close";
+    
+    // Error Message Constants
+    private static final String MODAL_DIALOGS_TEXT_ERROR = "Modal dialogs text mismatch";
+    private static final String CLICK_TEXT_ERROR = "Click text mismatch";
+    private static final String SMALL_BUTTON_TEXT_ERROR = "Small button text mismatch";
+    private static final String LARGE_BUTTON_TEXT_ERROR = "Large button text mismatch";
+    private static final String SMALL_MODAL_HEADER_ERROR = "Small modal header text mismatch";
+    private static final String SMALL_MODAL_BODY_ERROR = "Small modal body text mismatch";
+    private static final String LARGE_MODAL_HEADER_ERROR = "Large modal header text mismatch";
+    private static final String LARGE_MODAL_BODY_ERROR = "Large modal body text mismatch";
+    private static final String CLOSE_BUTTON_TEXT_ERROR = "Close button text mismatch";
 
     @BeforeMethod
     public void goModalDialogsPage() {
@@ -16,13 +40,9 @@ public class ModalDialogsPagePageTests extends BaseTest {
         modalDialogsPage = new ModalDialogsPage(driver);
     }
 
-    @Test(enabled = true, testName = "Verify all text on page")
+    @Test(enabled = true, description = "Verify all text on page")
     public void verifyAllTextOnPage() {
-        // Arrange
-        String modalDialogsText = "Modal Dialogs";
-        String clickText = "Click on button to see modal";
-        String smallButtonText = "Small modal";
-        String largeButtonText = "Large modal";
+        // Arrange - Using constants instead of inline strings
 
         // Act
         String actualModalDialogsText = modalDialogsPage.getModalDialogsText();
@@ -31,20 +51,17 @@ public class ModalDialogsPagePageTests extends BaseTest {
         String actualLargeText = modalDialogsPage.getLargeText();
 
         // Assert
-        softAssert.assertEquals(actualModalDialogsText, modalDialogsText, "\nMissing modal dialogs text.\n");
-        softAssert.assertEquals(actualClickText, clickText, "\nMissing click text.\n");
-        softAssert.assertEquals(actualSmallText, smallButtonText, "\nMissing small text.\n");
-        softAssert.assertEquals(actualLargeText, largeButtonText, "\nMissing large text.\n");
+        softAssert.assertEquals(actualModalDialogsText, MODAL_DIALOGS_TEXT, MODAL_DIALOGS_TEXT_ERROR);
+        softAssert.assertEquals(actualClickText, CLICK_TEXT, CLICK_TEXT_ERROR);
+        softAssert.assertEquals(actualSmallText, SMALL_BUTTON_TEXT, SMALL_BUTTON_TEXT_ERROR);
+        softAssert.assertEquals(actualLargeText, LARGE_BUTTON_TEXT, LARGE_BUTTON_TEXT_ERROR);
         softAssert.assertAll();
     }
 
-    @Test(enabled = true, testName = "Verify small modal dialog text")
+    @Test(enabled = true, description = "Verify small modal dialog text")
     public void verifySmallModalDialogText() {
-        // Arrange
+        // Arrange - Using constants instead of inline strings
         modalDialogsPage.clickSmallModalButton();
-        String expectedSmallModalText = "Small Modal";
-        String expectedSmallBodyText = "This is a small modal. It has very less content";
-        String expectedClosButtonText = "Close";
 
         // Act
         String actualSmallModalHeader = modalDialogsPage.getSmallModalHeaderText();
@@ -52,19 +69,16 @@ public class ModalDialogsPagePageTests extends BaseTest {
         String actualCloseButtonText = modalDialogsPage.getSmallCloseButtonText();
 
         // Assert
-        softAssert.assertEquals(actualSmallModalHeader, expectedSmallModalText, "\nWrong modal header text.\n");
-        softAssert.assertEquals(actualSmallBodyText, expectedSmallBodyText, "\nWrong modal header text.\n");
-        softAssert.assertEquals(actualCloseButtonText, expectedClosButtonText, "\nWrong close button text.\n");
+        softAssert.assertEquals(actualSmallModalHeader, SMALL_MODAL_HEADER, SMALL_MODAL_HEADER_ERROR);
+        softAssert.assertEquals(actualSmallBodyText, SMALL_MODAL_BODY, SMALL_MODAL_BODY_ERROR);
+        softAssert.assertEquals(actualCloseButtonText, CLOSE_BUTTON_TEXT, CLOSE_BUTTON_TEXT_ERROR);
         softAssert.assertAll();
     }
 
-    @Test(enabled = true, testName = "Verify large modal dialog text")
+    @Test(enabled = true, description = "Verify large modal dialog text")
     public void verifyLargeModalDialogText() {
-        // Arrange
+        // Arrange - Using constants instead of inline strings
         modalDialogsPage.clickLargeModalButton();
-        String expectedLargeModalText = "Large Modal";
-        String expectedLargeBodyText = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";
-        String expectedClosButtonText = "Close";
 
         // Act
         String actualLargeModalHeader = modalDialogsPage.getLargeModalHeaderText();
@@ -72,9 +86,9 @@ public class ModalDialogsPagePageTests extends BaseTest {
         String actualCloseButtonText = modalDialogsPage.getLargeCloseButtonText();
 
         // Assert
-        softAssert.assertEquals(actualLargeModalHeader, expectedLargeModalText, "\nWrong modal header text.\n");
-        softAssert.assertEquals(actualBodyText, expectedLargeBodyText, "\nWrong modal header text.\n");
-        softAssert.assertEquals(actualCloseButtonText, expectedClosButtonText, "\nWrong close button text.\n");
+        softAssert.assertEquals(actualLargeModalHeader, LARGE_MODAL_HEADER, LARGE_MODAL_HEADER_ERROR);
+        softAssert.assertEquals(actualBodyText, LARGE_MODAL_BODY, LARGE_MODAL_BODY_ERROR);
+        softAssert.assertEquals(actualCloseButtonText, CLOSE_BUTTON_TEXT, CLOSE_BUTTON_TEXT_ERROR);
         softAssert.assertAll();
     }
 }

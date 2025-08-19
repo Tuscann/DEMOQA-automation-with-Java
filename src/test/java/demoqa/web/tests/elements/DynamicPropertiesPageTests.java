@@ -7,14 +7,31 @@ import org.testng.annotations.Test;
 
 public class DynamicPropertiesPageTests extends BaseTest {
 
+    // URL Constants
+    private static final String DYNAMIC_PROPERTIES_URL = "dynamic-properties";
+    
+    // Text Constants
     private static final String EXPECTED_PROPERTIES_TEXT = "Dynamic Properties";
     private static final String EXPECTED_RANDOM_ID_TEXT = "This text has random Id";
     private static final String EXPECTED_ENABLE_BUTTON_TEXT = "Will enable 5 seconds";
     private static final String EXPECTED_COLOR_CHANGE_TEXT = "Color Change";
     private static final String EXPECTED_VISIBLE_AFTER_5_SEC_TEXT = "Visible After 5 Seconds";
+    
+    // Color Constants
     private static final String EXPECTED_WHITE_COLOR = "rgba(255, 255, 255, 1)";
-
-    private static final String DYNAMIC_PROPERTIES_URL = "dynamic-properties";
+    
+    // Error Message Constants
+    private static final String DYNAMIC_PROPERTIES_TEXT_MISMATCH = "Dynamic properties text mismatch";
+    private static final String RANDOM_ID_TEXT_MISMATCH = "Random ID text mismatch";
+    private static final String ENABLE_BUTTON_TEXT_MISMATCH = "Enable button text mismatch";
+    private static final String COLOR_CHANGE_TEXT_MISMATCH = "Color change button text mismatch";
+    private static final String VISIBLE_AFTER_5_SEC_TEXT_MISMATCH = "Visible after 5 seconds text mismatch";
+    private static final String ENABLE_BUTTON_ENABLED_ERROR = "Enable button should not be enabled initially";
+    private static final String COLOR_CHANGE_COLOR_MISMATCH = "Color change button color mismatch";
+    private static final String VISIBLE_BUTTON_VISIBLE_ERROR = "Visible after 5 seconds button should not be visible initially";
+    private static final String ENABLE_BUTTON_NOT_ENABLED_ERROR = "Enable button should be enabled after 5 seconds";
+    private static final String VISIBLE_BUTTON_NOT_VISIBLE_ERROR = "Visible after 5 seconds button should be visible after 5 seconds";
+    
     private DynamicPropertiesPage dynamicPropertiesPage;
 
     @BeforeMethod
@@ -23,10 +40,9 @@ public class DynamicPropertiesPageTests extends BaseTest {
         dynamicPropertiesPage = new DynamicPropertiesPage(driver);
     }
 
-    @Test(enabled = true, testName = "Verify all text on page")
-    public void VerifyAllTextOnPage() {
-        // Arrange
-        // Act
+    @Test(enabled = true, description = "Verify all text elements on the dynamic properties page")
+    public void verifyAllTextOnPage() {
+        // Arrange & Act
         String dynamicPropertiesText = dynamicPropertiesPage.getDynamicPropertiesText();
         String randomIdText = dynamicPropertiesPage.getTextWithRandomIdText();
         String willEnable5SecondsButtonText = dynamicPropertiesPage.getWillEnable5SecondsButtonText();
@@ -34,43 +50,41 @@ public class DynamicPropertiesPageTests extends BaseTest {
         String visibleAfter5SecondsButtonText = dynamicPropertiesPage.getVisibleAfter5SecondsButtonTextAfter5seconds();
 
         // Assert
-        softAssert.assertEquals(dynamicPropertiesText, EXPECTED_PROPERTIES_TEXT, "\nWrong dynamic properties text.\n");
-        softAssert.assertEquals(randomIdText, EXPECTED_RANDOM_ID_TEXT, "\nWrong random id text.\n");
-        softAssert.assertEquals(willEnable5SecondsButtonText, EXPECTED_ENABLE_BUTTON_TEXT, "\nWrong will enable 5 seconds.\n");
-        softAssert.assertEquals(colorChangeButton, EXPECTED_COLOR_CHANGE_TEXT, "\nWrong color change text.\n");
-        softAssert.assertEquals(visibleAfter5SecondsButtonText, EXPECTED_VISIBLE_AFTER_5_SEC_TEXT, "\nVisible after 5 seconds.\n");
+        softAssert.assertEquals(dynamicPropertiesText, EXPECTED_PROPERTIES_TEXT, DYNAMIC_PROPERTIES_TEXT_MISMATCH);
+        softAssert.assertEquals(randomIdText, EXPECTED_RANDOM_ID_TEXT, RANDOM_ID_TEXT_MISMATCH);
+        softAssert.assertEquals(willEnable5SecondsButtonText, EXPECTED_ENABLE_BUTTON_TEXT, ENABLE_BUTTON_TEXT_MISMATCH);
+        softAssert.assertEquals(colorChangeButton, EXPECTED_COLOR_CHANGE_TEXT, COLOR_CHANGE_TEXT_MISMATCH);
+        softAssert.assertEquals(visibleAfter5SecondsButtonText, EXPECTED_VISIBLE_AFTER_5_SEC_TEXT, VISIBLE_AFTER_5_SEC_TEXT_MISMATCH);
         softAssert.assertAll();
     }
 
-    @Test(enabled = true, testName = "Verify missing button on page")
-    public void VerifyMissingButtonOnPage() {
-        // Arrange
-        // Act
+    @Test(enabled = true, description = "Verify button states and properties before 5-second delay")
+    public void verifyMissingButtonOnPage() {
+        // Arrange & Act
         boolean isEnableButton = dynamicPropertiesPage.checkButtonWillEnable5Seconds();
         String colorOfColorChangeButton = dynamicPropertiesPage.getColorOfChangeButton();
         boolean isVisibleAfter5SecondsButton = dynamicPropertiesPage.checkButtonVisibleAfter5Seconds();
 
         // Assert
-        softAssert.assertFalse(isEnableButton, "Enable button is enable now");
-        softAssert.assertEquals(colorOfColorChangeButton, EXPECTED_WHITE_COLOR, "Not white color on change text");
-        softAssert.assertFalse(isVisibleAfter5SecondsButton, "Visible after 5 button is visible now");
+        softAssert.assertFalse(isEnableButton, ENABLE_BUTTON_ENABLED_ERROR);
+        softAssert.assertEquals(colorOfColorChangeButton, EXPECTED_WHITE_COLOR, COLOR_CHANGE_COLOR_MISMATCH);
+        softAssert.assertFalse(isVisibleAfter5SecondsButton, VISIBLE_BUTTON_VISIBLE_ERROR);
         softAssert.assertAll();
     }
 
-    @Test(enabled = true, testName = "Check after 5 seconds all buttons")
-    public void CheckAfter5secondsAllButtons() {
-        // Arrange
-        // Act
-        String colorOFColorChangeButton = dynamicPropertiesPage.getColorOfChangeButton();
+    @Test(enabled = true, description = "Verify button states and properties after 5-second delay")
+    public void checkAfter5SecondsAllButtons() {
+        // Arrange & Act
+        String colorOfColorChangeButton = dynamicPropertiesPage.getColorOfChangeButton();
         String visibleAfter5SecondsButtonText = dynamicPropertiesPage.getVisibleAfter5SecondsButtonTextAfter5seconds();
         boolean isEnableButton = dynamicPropertiesPage.checkButtonWillEnable5Seconds();
         boolean isVisibleAfter5SecondsButton = dynamicPropertiesPage.checkButtonVisibleAfter5Seconds();
 
         // Assert
-        softAssert.assertTrue(isEnableButton, "\nEnable button is not enable.\n");
-        softAssert.assertEquals(colorOFColorChangeButton, EXPECTED_WHITE_COLOR, "\nNot white color on change text.\n");
-        softAssert.assertTrue(isVisibleAfter5SecondsButton, "\nVisible after 5 button is visible now.\n");
-        softAssert.assertEquals(visibleAfter5SecondsButtonText, EXPECTED_VISIBLE_AFTER_5_SEC_TEXT, "\nVisible after 5 seconds.\n");
+        softAssert.assertTrue(isEnableButton, ENABLE_BUTTON_NOT_ENABLED_ERROR);
+        softAssert.assertEquals(colorOfColorChangeButton, EXPECTED_WHITE_COLOR, COLOR_CHANGE_COLOR_MISMATCH);
+        softAssert.assertTrue(isVisibleAfter5SecondsButton, VISIBLE_BUTTON_NOT_VISIBLE_ERROR);
+        softAssert.assertEquals(visibleAfter5SecondsButtonText, EXPECTED_VISIBLE_AFTER_5_SEC_TEXT, VISIBLE_AFTER_5_SEC_TEXT_MISMATCH);
 
         softAssert.assertAll();
     }

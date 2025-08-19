@@ -64,8 +64,7 @@ public class SelectablePageTests extends BaseTest {
 
     @Test(enabled = true, description = "Verify all text on page")
     public void verifyAllTextOnPage() {
-        // Arrange
-        // Act
+        // Arrange & Act
         String actualPageTitle = selectablePage.getPageTitleText();
         String actualListTab = selectablePage.getListTabText();
         String actualListFirstText = selectablePage.getListFirstText();

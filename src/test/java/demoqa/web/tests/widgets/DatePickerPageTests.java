@@ -21,7 +21,7 @@ public class DatePickerPageTests extends BaseTest {
         datePickerPage = new DatePickerPage(driver);
     }
 
-    @Test(enabled = true, testName = "Verify all text on page")
+    @Test(enabled = true, description = "Verify all text on page")
     public void verifyAllTextOnPage() {
         // Arrange
         String expectedDatePickerText = "Date Picker";
@@ -46,7 +46,7 @@ public class DatePickerPageTests extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(enabled = true, testName = "Select valid new date")
+    @Test(enabled = true, description = "Select valid new date")
     public void selectNewDate() throws InterruptedException {
         // Arrange
         String expectedDate = "02/14/2025";
@@ -76,7 +76,7 @@ public class DatePickerPageTests extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(enabled = true, testName = "Try to select non existing date")
+    @Test(enabled = true, description = "Try to select non existing date")
     public void tryToSelectNonExistingDate() {
         // Arrange
         String tryToAddDate = "14/32/2021";
@@ -91,48 +91,11 @@ public class DatePickerPageTests extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(enabled = true, testName = "Select valid new date and time")
-    public void SelectValidNewDateAndTime() throws InterruptedException {
+    @Test(enabled = true, description = "Select valid new date and time")
+    public void selectValidNewDateAndTime() throws InterruptedException {
         // Arrange
         String expectedDateAndTime = "December 19, 2024 10:15 PM";
         datePickerPage.selectDateAndTime(expectedDateAndTime);
-
-//        // Click to open the date and time picker
-//        WebElement dateTimeInput = driver.findElement(By.id("dateAndTimePickerInput"));
-//        dateTimeInput.click();
-//        Thread.sleep(500); // Wait for picker to open
-//
-//        // Click the month button and select December
-//        driver.findElement(By.xpath("//span[contains(@class, 'react-datepicker__month-read-view--selected-month')]/..")).click();
-//        driver.findElement(By.xpath("//div[contains(@class, 'react-datepicker__month-option') and text()='December']")).click();
-//
-//        // Click the year button and select 2024
-//        driver.findElement(By.xpath("//span[contains(@class, 'react-datepicker__year-read-view--selected-year')]/..")).click();
-//        driver.findElement(By.xpath("//div[contains(@class, 'react-datepicker__year-option') and text()='2024']")).click();
-//
-//        // Click the specific date (19th)
-//        driver.findElement(By.xpath("//div[contains(@class, 'react-datepicker__day--019')][@role='option' and not(contains(@class, 'outside-month'))]")).click();
-//        Thread.sleep(500); // Wait for date selection to register
-//
-//        // Find and click the time list
-//        WebElement timeList = driver.findElement(By.className("react-datepicker__time-list"));
-//        List<WebElement> timeOptions = timeList.findElements(By.tagName("li"));
-//
-//        // Select 22:15 (10:15 PM) since it's the closest available time to 10:12 PM
-//        String targetTime = "22:15";
-//
-//        // Find and click the desired time option
-//        boolean timeFound = false;
-//        for (WebElement timeOption : timeOptions) {
-//            String timeText = timeOption.getText();
-//            if (timeText.equals(targetTime)) {
-//                timeOption.click();
-//                timeFound = true;
-//                break;
-//            }
-//        }
-//
-//        Thread.sleep(500); // Wait for picker to update
 
         // Act
         String actualDateAndTime = datePickerPage.getSelectedDateAndTime();
@@ -142,7 +105,7 @@ public class DatePickerPageTests extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(enabled = true, testName = "Try to select no existing date and time")
+    @Test(enabled = true, description = "Try to select no existing date and time")
     public void tryToSelectNoExistingDateAndTime() {
         // Arrange
         String tryToAddDate = "December 34, 2024 10:12 PM";

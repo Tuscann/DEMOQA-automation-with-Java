@@ -6,6 +6,8 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class ElementsPageTests extends BaseTest {
+    // URL Constants
+    private static final String ELEMENTS_URL = "elements";
     private static final String TEXT_BOX_URL = "https://demoqa.com/text-box";
     private static final String CHECK_BOX_URL = "https://demoqa.com/checkbox";
     private static final String RADIO_BUTTON_URL = "https://demoqa.com/radio-button";
@@ -15,9 +17,24 @@ public class ElementsPageTests extends BaseTest {
     private static final String BROKEN_URL = "https://demoqa.com/broken";
     private static final String UPLOAD_DOWNLOAD_URL = "https://demoqa.com/upload-download";
     private static final String DYNAMIC_PROPERTIES_URL = "https://demoqa.com/dynamic-properties";
+    
+    // Text Constants
     private static final String LEFT_PANEL_INFO_TEXT = "Please select an item from left to start practice.";
-
-    private static final String ELEMENTS_URL = "elements";
+    
+    // Error Message Constants
+    private static final String TEXT_BOX_URL_MISMATCH = "Text box URL mismatch";
+    private static final String CHECK_BOX_URL_MISMATCH = "Checkbox URL mismatch";
+    private static final String RADIO_BUTTON_URL_MISMATCH = "Radio button URL mismatch";
+    private static final String WEB_TABLES_URL_MISMATCH = "Web tables URL mismatch";
+    private static final String BUTTONS_URL_MISMATCH = "Buttons URL mismatch";
+    private static final String LINKS_URL_MISMATCH = "Links URL mismatch";
+    private static final String BROKEN_URL_MISMATCH = "Broken links URL mismatch";
+    private static final String UPLOAD_DOWNLOAD_URL_MISMATCH = "Upload and download URL mismatch";
+    private static final String DYNAMIC_PROPERTIES_URL_MISMATCH = "Dynamic properties URL mismatch";
+    private static final String LEFT_PANEL_TEXT_MISMATCH = "Left panel text mismatch";
+    private static final String DROPDOWN_NOT_VISIBLE_ERROR = "Dropdown menu is not visible";
+    private static final String DROPDOWN_STILL_VISIBLE_ERROR = "Dropdown menu is still visible after clicking";
+    
     private ElementsPage elementsPage;
 
     @BeforeMethod
@@ -26,10 +43,9 @@ public class ElementsPageTests extends BaseTest {
         elementsPage = new ElementsPage(driver);
     }
 
-    @Test(enabled = true, testName = "Check nine pages links")
-    public void CheckAllNinePagesLinks() {
-        // Arrange
-        // Act
+    @Test(enabled = true, description = "Verify navigation to all nine element pages and validate URLs")
+    public void checkAllNinePagesLinks() {
+        // Arrange & Act
         elementsPage.clickTextBox();
         String actualTextBoxUrl = elementsPage.checkUrl();
 
@@ -58,31 +74,30 @@ public class ElementsPageTests extends BaseTest {
         String actualDynamicPropertiesUrl = elementsPage.checkUrl();
 
         // Assert
-        softAssert.assertEquals(actualTextBoxUrl, TEXT_BOX_URL, "\nWrong text-box url is shown.\n");
-        softAssert.assertEquals(actualCheckBoxUrl, CHECK_BOX_URL, "\nWrong checkbox url is shown.\n");
-        softAssert.assertEquals(actualRadioButtonUrl, RADIO_BUTTON_URL, "\nWrong radio-button url is shown.\n");
-        softAssert.assertEquals(actualWebTablesUrl, WEB_TABLES_URL, "\nWrong webtables url is shown.\n");
-        softAssert.assertEquals(actualButtonsUrl, BUTTONS_URL, "\nWrong buttons url is shown.\n");
-        softAssert.assertEquals(actualLinksUrl, LINKS_URL, "\nWrong links url is shown.\n");
-        softAssert.assertEquals(actualBrokenUrl, BROKEN_URL, "\nWrong broken url is shown.\n");
-        softAssert.assertEquals(actualUploadDownloadUrl, UPLOAD_DOWNLOAD_URL, "\nWrong upload-download url is shown.\n");
-        softAssert.assertEquals(actualDynamicPropertiesUrl, DYNAMIC_PROPERTIES_URL, "\nWrong dynamic-properties url is shown.\n");
+        softAssert.assertEquals(actualTextBoxUrl, TEXT_BOX_URL, TEXT_BOX_URL_MISMATCH);
+        softAssert.assertEquals(actualCheckBoxUrl, CHECK_BOX_URL, CHECK_BOX_URL_MISMATCH);
+        softAssert.assertEquals(actualRadioButtonUrl, RADIO_BUTTON_URL, RADIO_BUTTON_URL_MISMATCH);
+        softAssert.assertEquals(actualWebTablesUrl, WEB_TABLES_URL, WEB_TABLES_URL_MISMATCH);
+        softAssert.assertEquals(actualButtonsUrl, BUTTONS_URL, BUTTONS_URL_MISMATCH);
+        softAssert.assertEquals(actualLinksUrl, LINKS_URL, LINKS_URL_MISMATCH);
+        softAssert.assertEquals(actualBrokenUrl, BROKEN_URL, BROKEN_URL_MISMATCH);
+        softAssert.assertEquals(actualUploadDownloadUrl, UPLOAD_DOWNLOAD_URL, UPLOAD_DOWNLOAD_URL_MISMATCH);
+        softAssert.assertEquals(actualDynamicPropertiesUrl, DYNAMIC_PROPERTIES_URL, DYNAMIC_PROPERTIES_URL_MISMATCH);
         softAssert.assertAll();
     }
 
-    @Test(enabled = true, testName = "Click left dropdown menu")
-    public void ClickLeftDropdownMenu() {
-        // Arrange
-        // Act
+    @Test(enabled = true, description = "Test left dropdown menu functionality and visibility states")
+    public void clickLeftDropdownMenu() {
+        // Arrange & Act
         String expectedString = elementsPage.getText();
-        boolean TextBoxIsVisible = elementsPage.verifyTextBoxIsVisible();
+        boolean textBoxIsVisible = elementsPage.verifyTextBoxIsVisible();
         elementsPage.clickElements();
-        boolean TextBoxIsVisible2 = elementsPage.verifyTextBoxIsNotVisible();
+        boolean textBoxIsVisible2 = elementsPage.verifyTextBoxIsNotVisible();
 
         // Assert
-        softAssert.assertEquals(expectedString, LEFT_PANEL_INFO_TEXT, "\nWrong text is shown.\n");
-        softAssert.assertTrue(TextBoxIsVisible, "\nDropDown in not shown.\n");
-        softAssert.assertFalse(TextBoxIsVisible2, "\nDropDown in shown.\n");
+        softAssert.assertEquals(expectedString, LEFT_PANEL_INFO_TEXT, LEFT_PANEL_TEXT_MISMATCH);
+        softAssert.assertTrue(textBoxIsVisible, DROPDOWN_NOT_VISIBLE_ERROR);
+        softAssert.assertFalse(textBoxIsVisible2, DROPDOWN_STILL_VISIBLE_ERROR);
         softAssert.assertAll();
     }
 }

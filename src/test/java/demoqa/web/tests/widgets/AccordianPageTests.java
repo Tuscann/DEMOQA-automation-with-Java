@@ -61,8 +61,7 @@ public class AccordianPageTests extends BaseTest {
 
     @Test(enabled = true, description = "Select second heading")
     public void selectSecondHeading() {
-        // Arrange
-        // Act
+        // Arrange & Act
         accordianPage.clickTwoHeading();
 
         // Assert
@@ -72,8 +71,7 @@ public class AccordianPageTests extends BaseTest {
 
     @Test(enabled = true, description = "Select third heading")
     public void selectThirdHeading() {
-        // Arrange
-        // Act
+        // Arrange & Act
         accordianPage.clickThreeHeading();
 
         // Assert

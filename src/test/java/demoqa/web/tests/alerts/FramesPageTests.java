@@ -9,51 +9,53 @@ public class FramesPageTests extends BaseTest {
     private static final String FRAMES_URL = "frames";
     private FramesPage framesPage;
 
+    // Text Constants
+    private static final String PAGE_HEADING = "Frames";
+    private static final String PAGE_DESCRIPTION = "Sample Iframe page There are 2 Iframes in this page. Use browser inspecter or firebug to check out the HTML source. In total you can switch between the parent frame, which is this window, and the two frames below";
+    private static final String FIRST_IFRAME_HEADING = "This is a sample page";
+    private static final String SECOND_IFRAME_HEADING = "This is a sample page";
+
+    // Error Message Constants
+    private static final String PAGE_HEADING_ERROR = "Page heading mismatch";
+    private static final String PAGE_DESCRIPTION_ERROR = "Page description text mismatch";
+    private static final String FIRST_IFRAME_HEADING_ERROR = "First iframe heading mismatch";
+    private static final String SECOND_IFRAME_HEADING_ERROR = "Second iframe heading mismatch";
+
     @BeforeMethod
     public void goToFramesPage() {
         navigateToUrl(FRAMES_URL);
         framesPage = new FramesPage(driver);
     }
 
-    @Test(enabled = true, testName = "Verify all text on page")
+    @Test(enabled = true, description = "Verify all text on page")
     public void verifyAllTextOnPage() {
-        // Arrange
-        String expectedHeadingText = "Frames";
-        String expectedText = "Sample Iframe page There are 2 Iframes in this page. Use browser inspecter or firebug to check out the HTML source. In total you can switch between the parent frame, which is this window, and the two frames below";
-
-        // Act
+        // Arrange & Act
         String actualHeadingText = framesPage.getFramesHeadingText();
         String actualText = framesPage.getText();
 
         // Assert
-        softAssert.assertEquals(actualHeadingText, expectedHeadingText, "\nWrong heading.\n");
-        softAssert.assertEquals(actualText, expectedText, "\nWrong text.\n");
+        softAssert.assertEquals(actualHeadingText, PAGE_HEADING, PAGE_HEADING_ERROR);
+        softAssert.assertEquals(actualText, PAGE_DESCRIPTION, PAGE_DESCRIPTION_ERROR);
         softAssert.assertAll();
     }
 
-    @Test(enabled = true, testName = "Verify heading in first Iframe")
+    @Test(enabled = true, description = "Verify heading in first Iframe")
     public void verifyHeadingTextInFirstIframe() {
-        // Arrange
-        String expectedFirstIFrameHeadingText = "This is a sample page";
-
-        // Act
+        // Arrange & Act
         String actualFirstIFrameHeadingText = framesPage.getHeadingTextInFirstIframe();
 
         // Assert
-        softAssert.assertEquals(actualFirstIFrameHeadingText, expectedFirstIFrameHeadingText, "\nWrong heading in first Iframe.\n");
+        softAssert.assertEquals(actualFirstIFrameHeadingText, FIRST_IFRAME_HEADING, FIRST_IFRAME_HEADING_ERROR);
         softAssert.assertAll();
     }
 
-    @Test(enabled = true, testName = "Verify heading in second Iframe")
+    @Test(enabled = true, description = "Verify heading in second Iframe")
     public void verifyHeadingTextInSecondIframe() {
-        // Arrange
-        String expectedSecondIFrameHeadingText = "This is a sample page";
-
-        // Act
+        // Arrange & Act
         String actualSecondIFrameHeadingText = framesPage.getHeadingTextInSecondIframe();
 
         // Assert
-        softAssert.assertEquals(actualSecondIFrameHeadingText, expectedSecondIFrameHeadingText, "\nWrong heading in second Iframe.\n");
+        softAssert.assertEquals(actualSecondIFrameHeadingText, SECOND_IFRAME_HEADING, SECOND_IFRAME_HEADING_ERROR);
         softAssert.assertAll();
     }
 }

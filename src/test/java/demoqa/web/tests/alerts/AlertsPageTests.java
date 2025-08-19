@@ -61,7 +61,7 @@ public class AlertsPageTests extends BaseTest {
     }
 
     @Test(enabled = true, description = "Verify text of Information alert")
-    public void verifyTextOfInformationAlert() {
+    public void verifyPromptAlertWithTextInputAndAccept() {
         // Act
         alertsPage.clickInformationAlertButton();
         String actualAlertMessage = getAlertText();

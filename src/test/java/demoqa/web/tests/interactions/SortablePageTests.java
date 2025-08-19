@@ -61,9 +61,7 @@ public class SortablePageTests extends BaseTest {
 
     @Test(enabled = true, description = "Verify all text on page")
     public void verifyAllTextOnPage() {
-        // Arrange
-
-        // Act
+        // Arrange & Act
         String actualPageTitle = sortablePage.getPageTitle();
         String actualListTab = sortablePage.getListTab();
         String actualListOne = sortablePage.getListOne();
@@ -158,8 +156,7 @@ public class SortablePageTests extends BaseTest {
 
     @Test(dataProvider = "resizeData", description = "Check order in List", enabled = true)
     public void dragAndDropFromListTab(String dragFromPlace, String dropOnPlace, String expectedOrder) {
-        // Arrange
-        // Act
+        // Arrange & Act
         sortablePage.moveOverList(dragFromPlace, dropOnPlace);
         String actualListSix = sortablePage.getListOrder();
 
@@ -266,8 +263,7 @@ public class SortablePageTests extends BaseTest {
 
     @Test(dataProvider = "resizeData2", description = "Check order in Grid", enabled = true)
     public void dragAndDropFromGridTab(String dragFromPlace, String dropOnPlace, String expectedOrder) throws InterruptedException {
-        // Arrange
-        // Act
+        // Arrange & Act
         sortablePage.clickGridTab();
         sortablePage.moveOverGrid(dragFromPlace, dropOnPlace);
         String actualListSix = sortablePage.getGridOrder();

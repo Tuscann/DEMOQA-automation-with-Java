@@ -18,7 +18,7 @@ public class WidgetsPageTests extends BaseTest {
         widgetsPage = new WidgetsPage(driver);
     }
 
-    @Test(enabled = true, testName = "Verify all widget subpage links work correctly.")
+    @Test(enabled = true, description = "Verify all widget subpage links work correctly.")
     public void checkAllNinePagesLinks() {
         // Arrange
         Map<String, Runnable> widgetActions = Map.of(
@@ -43,7 +43,7 @@ public class WidgetsPageTests extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(enabled = true, testName = "Verify show/hide left dropdown menu")
+    @Test(enabled = true, description = "Verify show/hide left dropdown menu")
     public void clickLeftDropdownMenu() {
         // Arrange
         String expectedString = "Please select an item from left to start practice.";

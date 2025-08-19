@@ -72,8 +72,7 @@ public class ResizablePageTests extends BaseTest {
 
     @Test(dataProvider = "resizeData2", description = "Test resizing with different values", enabled = true)
     public void testResizedBoxWithoutLimitation(int addAmountOnXAxis, int addAmountOnYAxis, int expectedWidth, int expectedHeight) {
-        // Arrange
-        // Act
+        // Arrange & Act
         resizablePage.changeSizeWithoutLimitations(addAmountOnXAxis, addAmountOnYAxis);
         String actualNewSize = resizablePage.getNewSizeBox2();
 
@@ -92,8 +91,7 @@ public class ResizablePageTests extends BaseTest {
 
     @Test(dataProvider = "diagonalResizeData", description = "Test diagonal resizing", enabled = true)
     public void diagonalResizing(int addX, int addY, int expectedWidth, int expectedHeight) {
-        // Arrange
-        // Act
+        // Arrange & Act
         resizablePage.changeSize(addX, addY);
         String actualNewSize = resizablePage.getNewSizeBox();
 

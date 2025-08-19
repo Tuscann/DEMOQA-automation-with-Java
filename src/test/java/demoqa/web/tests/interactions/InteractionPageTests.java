@@ -37,8 +37,7 @@ public class InteractionPageTests extends BaseTest {
 
     @Test(enabled = true, description = "Click left dropdown menu")
     public void clickLeftDropdownMenu() {
-        // Arrange
-        // Act
+        // Arrange & Act        
         String actualString = interactionsPage.getMainText();
         softAssert.assertEquals(actualString, MAIN_TEXT, MAIN_TEXT_ERROR);
 
@@ -56,8 +55,7 @@ public class InteractionPageTests extends BaseTest {
 
     @Test(enabled = true, description = "Verify nine pages links")
     public void checkAllNinePagesLinks() {
-        // Arrange
-        // Act
+        // Arrange & Act
         interactionsPage.clickSortable();
         String actualSortableUrl = interactionsPage.checkUrl();
 

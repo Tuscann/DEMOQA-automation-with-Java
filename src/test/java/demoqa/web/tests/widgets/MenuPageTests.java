@@ -16,7 +16,7 @@ public class MenuPageTests extends BaseTest {
         menuPage = new MenuPage(driver);
     }
 
-    @Test(enabled = true, testName = "Verify all text on page")
+    @Test(enabled = true, description = "Verify all text on page")
     public void checkAllTextOnPage() {
         // Arrange
         String pageHeader = "Menu";
@@ -56,7 +56,7 @@ public class MenuPageTests extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(enabled = true, testName = "Hover over every item in menu and check hover color")
+    @Test(enabled = true, description = "Hover over every item in menu and check hover color")
     public void hoverOverEveryItemInMenuAndCheckHoverColor() {
         // Arrange
         final String colorBeforeSelection = "rgba(36, 175, 21, 1)";
