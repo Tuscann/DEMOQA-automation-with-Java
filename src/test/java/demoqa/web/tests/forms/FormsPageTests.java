@@ -6,18 +6,18 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class FormsPageTests extends BaseTest {
-    public static final String FORMS_URL = "forms";
-    private FormsPage formsPage;
-    
     // Expected Text Constants
     private static final String EMPTY_STATE_MESSAGE = "Please select an item from left to start practice.";
-    
+
     // URL Constants
-    private static final String PRACTICE_FORM_FULL_URL = "https://demoqa.com/automation-practice-form";   
-    
+    private static final String PRACTICE_FORM_FULL_URL = DEMO_QA_URL + "automation-practice-form";
+
     // Error Messages Constants
     private static final String EMPTY_STATE_ERROR = "Empty state message mismatch";
     private static final String URL_NAVIGATION_ERROR = "Practice form URL navigation failed";
+
+    public static final String FORMS_URL = "forms";
+    private FormsPage formsPage;
 
     @BeforeMethod
     public void goToFormsPage() {
@@ -27,7 +27,7 @@ public class FormsPageTests extends BaseTest {
 
     @Test(enabled = true, description = "Verify all text on page")
     public void checkAllTextOnPage() {
-        // Act
+        // Arrange & Act
         String actualText = formsPage.getText();
 
         // Assert
@@ -37,7 +37,7 @@ public class FormsPageTests extends BaseTest {
 
     @Test(enabled = true, description = "Verify practice form link")
     public void verifyPracticeFormLink() {
-        // Act
+        // Arrange & Act
         formsPage.clickPracticeFormLink();
         String actualUrl = formsPage.checkUrl();
 

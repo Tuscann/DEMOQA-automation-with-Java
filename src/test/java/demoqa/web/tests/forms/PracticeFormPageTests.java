@@ -10,14 +10,10 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class PracticeFormPageTests extends BaseTest {
-
-    // URL Constants
-    private static final String AUTOMATION_PRACTICE_FORM_URL = "automation-practice-form";
-    
     // Form Headers Constants
     private static final String PRACTICE_FORM_HEADER = "Practice Form";
     private static final String STUDENT_REGISTRATION_HEADER = "Student Registration Form";
-    
+
     // Form Labels Constants
     private static final String NAME_LABEL = "Name";
     private static final String EMAIL_LABEL = "Email";
@@ -29,30 +25,26 @@ public class PracticeFormPageTests extends BaseTest {
     private static final String PICTURE_LABEL = "Picture";
     private static final String CURRENT_ADDRESS_LABEL = "Current Address";
     private static final String STATE_AND_CITY_LABEL = "State and City";
-    
+
     // Placeholder Constants
     private static final String FIRST_NAME_PLACEHOLDER = "First Name";
     private static final String LAST_NAME_PLACEHOLDER = "Last Name";
     private static final String EMAIL_PLACEHOLDER = "name@example.com";
-    private static final String MOBILE_PLACEHOLDER = "Mobile Number";
-    private static final String CURRENT_ADDRESS_PLACEHOLDER = "Current Address";
-    private static final String SELECT_STATE_PLACEHOLDER = "Select State";
-    private static final String SELECT_CITY_PLACEHOLDER = "Select City";
-    private static final String SELECT_PICTURE_TEXT = "Select picture";
-    
-    // Gender Options Constants
     private static final String MALE_GENDER = "Male";
     private static final String FEMALE_GENDER = "Female";
     private static final String OTHER_GENDER = "Other";
-    
-    // Hobby Options Constants
+    private static final String MOBILE_PLACEHOLDER = "Mobile Number";
     private static final String SPORTS_HOBBY = "Sports";
     private static final String READING_HOBBY = "Reading";
     private static final String MUSIC_HOBBY = "Music";
-    
+    private static final String SELECT_PICTURE_TEXT = "Select picture";
+    private static final String CURRENT_ADDRESS_PLACEHOLDER = "Current Address";
+    private static final String SELECT_STATE_PLACEHOLDER = "Select State";
+    private static final String SELECT_CITY_PLACEHOLDER = "Select City";
+
     // Button Constants
     private static final String SUBMIT_BUTTON_TEXT = "Submit";
-    
+
     // Test Data Constants
     private static final String TEST_FIRST_NAME = "Zhivko";
     private static final String TEST_LAST_NAME = "Petrov";
@@ -63,17 +55,17 @@ public class PracticeFormPageTests extends BaseTest {
     private static final String TEST_STATE = "Haryana";
     private static final String TEST_CITY = "Karnal";
     private static final String TEST_PICTURE_FILE = "zhivko.jpg";
-    
+
     // Color Constants
     private static final String VALIDATION_ERROR_COLOR = "rgb(220, 53, 69)";
     private static final String VALIDATION_ERROR_COLOR_RGBA = "rgba(220, 53, 69, 1)";
     private static final String VALIDATION_SUCCESS_COLOR = "rgb(40, 167, 69)";
     private static final String VALIDATION_SUCCESS_COLOR_RGBA = "rgba(40, 167, 69, 1)";
-    
+
     // Modal Constants
     private static final String MODAL_LABEL_TEXT = "Label";
     private static final String MODAL_VALUES_TEXT = "Values";
-    
+
     // Error Message Constants
     private static final String PRACTICE_FORM_HEADER_ERROR = "Practice form header text mismatch";
     private static final String STUDENT_REGISTRATION_HEADER_ERROR = "Student registration header text mismatch";
@@ -139,6 +131,7 @@ public class PracticeFormPageTests extends BaseTest {
     private static final String MOBILE_SUCCESS_COLOR_ERROR = "Wrong color, expected green";
 
     private PracticeFormPage practiceFormPage;
+    private static final String AUTOMATION_PRACTICE_FORM_URL = "automation-practice-form";
 
     @BeforeMethod
     public void goToAutomationPracticeFormPage() {
@@ -217,8 +210,7 @@ public class PracticeFormPageTests extends BaseTest {
 
     @Test(enabled = true, description = "Verify three hobbies state and selection behavior")
     public void verifyThreeHobbiesState() {
-        // Arrange
-        // Act
+        // Arrange & Act
         practiceFormPage.clickSportHobbyCheckbox();
         practiceFormPage.clickMusicHobbyCheckbox();
         practiceFormPage.clickReadingHobbyCheckbox();
@@ -237,7 +229,7 @@ public class PracticeFormPageTests extends BaseTest {
 
     @Test(enabled = true, description = "Select three radio buttons for gender and verify selection")
     public void selectEveryRadioButton() {
-        // Act
+        // Arrange & Act
         practiceFormPage.clickGenderRadioButton(FEMALE_GENDER);
         practiceFormPage.clickGenderRadioButton(MALE_GENDER);
         practiceFormPage.clickGenderRadioButton(OTHER_GENDER);
@@ -379,128 +371,122 @@ public class PracticeFormPageTests extends BaseTest {
         // Assert
         softAssert.assertAll();
     }
-    
+
     // Data Provider for Form Validation Testing
     @DataProvider(name = "formValidationData")
     public Object[][] formValidationDataProvider() {
         return new Object[][]{
-            {"", "First Name", "Empty first name validation"},
-            {"A", "First Name", "Single character first name validation"},
-            {"123", "First Name", "Numeric first name validation"},
-            {"!@#", "First Name", "Special character first name validation"},
-            {"", "Last Name", "Empty last name validation"},
-            {"", "Email", "Empty email validation"},
-            {"invalid-email", "Email", "Invalid email format validation"},
-            {"", "Mobile", "Empty mobile validation"},
-            {"123", "Mobile", "Short mobile validation"},
-            {"12345678901", "Mobile", "Long mobile validation"}
+                {"", "First Name", "Empty first name validation"},
+                {"A", "First Name", "Single character first name validation"},
+                {"123", "First Name", "Numeric first name validation"},
+                {"!@#", "First Name", "Special character first name validation"},
+                {"", "Last Name", "Empty last name validation"},
+                {"", "Email", "Empty email validation"},
+                {"invalid-email", "Email", "Invalid email format validation"},
+                {"", "Mobile", "Empty mobile validation"},
+                {"123", "Mobile", "Short mobile validation"},
+                {"12345678901", "Mobile", "Long mobile validation"}
         };
     }
-    
+
     // Data Provider for Form Submission Testing
     @DataProvider(name = "formSubmissionData")
     public Object[][] formSubmissionDataProvider() {
         return new Object[][]{
-            {"John", "Doe", "john.doe@example.com", "1234567890", "Male", "Sports", "New York", "NYC", "Valid form submission"},
-            {"Jane", "Smith", "jane.smith@test.com", "0987654321", "Female", "Reading", "Los Angeles", "LA", "Another valid form submission"},
-            {"Bob", "Johnson", "bob.johnson@demo.com", "5555555555", "Other", "Music", "Chicago", "CHI", "Third valid form submission"}
+                {"John", "Doe", "john.doe@example.com", "1234567890", "Male", "Sports", "New York", "NYC", "Valid form submission"},
+                {"Jane", "Smith", "jane.smith@test.com", "0987654321", "Female", "Reading", "Los Angeles", "LA", "Another valid form submission"},
+                {"Bob", "Johnson", "bob.johnson@demo.com", "5555555555", "Other", "Music", "Chicago", "CHI", "Third valid form submission"}
         };
     }
-    
+
     // Data Provider for Gender Selection Testing
     @DataProvider(name = "genderSelectionData")
     public Object[][] genderSelectionDataProvider() {
         return new Object[][]{
-            {"Male", "Male gender selection"},
-            {"Female", "Female gender selection"},
-            {"Other", "Other gender selection"}
+                {"Male", "Male gender selection"},
+                {"Female", "Female gender selection"},
+                {"Other", "Other gender selection"}
         };
     }
-    
+
     // Data Provider for Hobby Selection Testing
     @DataProvider(name = "hobbySelectionData")
     public Object[][] hobbySelectionDataProvider() {
         return new Object[][]{
-            {"Sports", "Sports hobby selection"},
-            {"Reading", "Reading hobby selection"},
-            {"Music", "Music hobby selection"}
+                {"Sports", "Sports hobby selection"},
+                {"Reading", "Reading hobby selection"},
+                {"Music", "Music hobby selection"}
         };
     }
-    
+
     // New Data-Driven Test for Form Validation
     @Test(dataProvider = "formValidationData", enabled = true, description = "Test form validation with data provider")
     public void testFormValidationWithDataProvider(String inputValue, String fieldName, String testDescription) {
         // Arrange & Act
         // Note: This would require adding validation methods to PracticeFormPage
         // For now, this demonstrates the data provider structure
-        
+
         // Assert
         // Implementation would depend on available validation methods
         softAssert.assertTrue(true, "Form validation test structure implemented");
         softAssert.assertAll();
     }
-    
+
     // New Data-Driven Test for Form Submission
     @Test(dataProvider = "formSubmissionData", enabled = true, description = "Test form submission with data provider")
-    public void testFormSubmissionWithDataProvider(String firstName, String lastName, String email, 
-                                                  String mobile, String gender, String hobby, 
-                                                  String state, String city, String testDescription) {
+    public void testFormSubmissionWithDataProvider(String firstName, String lastName, String email,
+                                                   String mobile, String gender, String hobby,
+                                                   String state, String city, String testDescription) {
         // Arrange & Act
         // Note: This would require adding form filling methods to PracticeFormPage
         // For now, this demonstrates the data provider structure
-        
+
         // Assert
         // Implementation would depend on available form filling methods
         softAssert.assertTrue(true, "Form submission test structure implemented");
         softAssert.assertAll();
     }
-    
+
     // New Data-Driven Test for Gender Selection
     @Test(dataProvider = "genderSelectionData", enabled = true, description = "Test gender selection with data provider")
     public void testGenderSelectionWithDataProvider(String gender, String testDescription) {
         // Arrange & Act
         practiceFormPage.clickGenderRadioButton(gender);
-        
+
         // Assert
-        boolean isSelected = false;
-        switch (gender) {
-            case "Male":
-                isSelected = practiceFormPage.isMaleRadioButtonSelected();
-                break;
-            case "Female":
-                isSelected = practiceFormPage.isFemaleRadioButtonSelected();
-                break;
-            case "Other":
-                isSelected = practiceFormPage.isOtherRadioButtonSelected();
-                break;
-        }
-        
+        boolean isSelected = switch (gender) {
+            case "Male" -> practiceFormPage.isMaleRadioButtonSelected();
+            case "Female" -> practiceFormPage.isFemaleRadioButtonSelected();
+            case "Other" -> practiceFormPage.isOtherRadioButtonSelected();
+            default -> false;
+        };
+
         softAssert.assertTrue(isSelected, "Gender " + gender + " should be selected");
         softAssert.assertAll();
     }
-    
+
     // New Data-Driven Test for Hobby Selection
     @Test(dataProvider = "hobbySelectionData", enabled = true, description = "Test hobby selection with data provider")
     public void testHobbySelectionWithDataProvider(String hobby, String testDescription) {
         // Arrange & Act
-        boolean isSelected = false;
-        switch (hobby) {
-            case "Sports":
+        boolean isSelected = switch (hobby) {
+            case "Sports" -> {
                 practiceFormPage.clickSportHobbyCheckbox();
-                isSelected = practiceFormPage.isSportCheckBSelected();
-                break;
-            case "Reading":
+                yield practiceFormPage.isSportCheckBSelected();
+            }
+            case "Reading" -> {
                 practiceFormPage.clickReadingHobbyCheckbox();
-                isSelected = practiceFormPage.isReadingCheckBoxSelected();
-                break;
-            case "Music":
+                yield practiceFormPage.isReadingCheckBoxSelected();
+            }
+            case "Music" -> {
                 practiceFormPage.clickMusicHobbyCheckbox();
-                isSelected = practiceFormPage.isMusicCheckBoxSelected();
-                break;
-        }
-        
+                yield practiceFormPage.isMusicCheckBoxSelected();
+            }
+            default -> false;
+        };
+
         // Assert
         softAssert.assertTrue(isSelected, "Hobby " + hobby + " should be selected");
         softAssert.assertAll();
-    }   
+    }
 }

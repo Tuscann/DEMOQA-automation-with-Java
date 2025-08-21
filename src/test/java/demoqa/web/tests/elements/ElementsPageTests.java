@@ -7,20 +7,19 @@ import org.testng.annotations.Test;
 
 public class ElementsPageTests extends BaseTest {
     // URL Constants
-    private static final String ELEMENTS_URL = "elements";
-    private static final String TEXT_BOX_URL = "https://demoqa.com/text-box";
-    private static final String CHECK_BOX_URL = "https://demoqa.com/checkbox";
-    private static final String RADIO_BUTTON_URL = "https://demoqa.com/radio-button";
-    private static final String WEB_TABLES_URL = "https://demoqa.com/webtables";
-    private static final String BUTTONS_URL = "https://demoqa.com/buttons";
-    private static final String LINKS_URL = "https://demoqa.com/links";
-    private static final String BROKEN_URL = "https://demoqa.com/broken";
-    private static final String UPLOAD_DOWNLOAD_URL = "https://demoqa.com/upload-download";
-    private static final String DYNAMIC_PROPERTIES_URL = "https://demoqa.com/dynamic-properties";
-    
+    private static final String TEXT_BOX_URL = DEMO_QA_URL + "text-box";
+    private static final String CHECK_BOX_URL = DEMO_QA_URL + "checkbox";
+    private static final String RADIO_BUTTON_URL = DEMO_QA_URL + "radio-button";
+    private static final String WEB_TABLES_URL = DEMO_QA_URL + "webtables";
+    private static final String BUTTONS_URL = DEMO_QA_URL + "buttons";
+    private static final String LINKS_URL = DEMO_QA_URL + "links";
+    private static final String BROKEN_URL = DEMO_QA_URL + "broken";
+    private static final String UPLOAD_DOWNLOAD_URL = DEMO_QA_URL + "upload-download";
+    private static final String DYNAMIC_PROPERTIES_URL = DEMO_QA_URL + "dynamic-properties";
+
     // Text Constants
     private static final String LEFT_PANEL_INFO_TEXT = "Please select an item from left to start practice.";
-    
+
     // Error Message Constants
     private static final String TEXT_BOX_URL_MISMATCH = "Text box URL mismatch";
     private static final String CHECK_BOX_URL_MISMATCH = "Checkbox URL mismatch";
@@ -34,8 +33,9 @@ public class ElementsPageTests extends BaseTest {
     private static final String LEFT_PANEL_TEXT_MISMATCH = "Left panel text mismatch";
     private static final String DROPDOWN_NOT_VISIBLE_ERROR = "Dropdown menu is not visible";
     private static final String DROPDOWN_STILL_VISIBLE_ERROR = "Dropdown menu is still visible after clicking";
-    
+
     private ElementsPage elementsPage;
+    private static final String ELEMENTS_URL = "elements";
 
     @BeforeMethod
     public void goToProfilePage() {

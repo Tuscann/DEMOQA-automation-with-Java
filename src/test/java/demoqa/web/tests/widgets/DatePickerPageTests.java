@@ -52,7 +52,6 @@ public class DatePickerPageTests extends BaseTest {
         String expectedDate = "02/14/2025";
 
         // Act
-        // Click to open the date picker
         var dateInput = driver.findElement(By.id("datePickerMonthYearInput"));
         dateInput.click();
         Thread.sleep(500); // Wait for date picker to open

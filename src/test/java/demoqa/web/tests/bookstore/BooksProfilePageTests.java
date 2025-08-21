@@ -8,17 +8,17 @@ import org.testng.annotations.Test;
 public class BooksProfilePageTests extends BaseTest {
     // URL Constants
     private static final String BOOKS_PROFILE_PAGE_URL = "profile";
-    private static final String EXPECTED_LOGIN_URL = "https://demoqa.com/login";
-    private static final String EXPECTED_REGISTER_URL = "https://demoqa.com/register";
-    
+    private static final String EXPECTED_LOGIN_URL = DEMO_QA_URL + "login";
+    private static final String EXPECTED_REGISTER_URL = DEMO_QA_URL + "register";
+
     // Message Constants
     private static final String EXPECTED_ERROR_MESSAGE = "Currently you are not logged into the Book Store application, please visit the login page to enter or register page to register yourself.";
-    
+
     // Error Message Constants
     private static final String ERROR_MESSAGE_MISMATCH = "Error message text mismatch";
     private static final String LOGIN_URL_MISMATCH = "Login URL mismatch after clicking login link";
     private static final String REGISTER_URL_MISMATCH = "Register URL mismatch after clicking register link";
-    
+
     private BooksProfilePage booksProfilePage;
 
     @BeforeMethod

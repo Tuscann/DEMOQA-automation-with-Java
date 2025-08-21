@@ -6,21 +6,17 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class AutoCompletePageTests extends BaseTest {
-
-    public static final String AUTO_COMPLETE_URL = "auto-complete";
-    private AutoCompletePage autoCompletePage;
-    
     // Text Constants
     private static final String PAGE_HEADING = "Auto Complete";
     private static final String TYPE_MULTIPLE_TEXT = "Type multiple color names";
     private static final String TYPE_SINGLE_TEXT = "Type single color name";
-    
+
     // Color Constants
     private static final String COLOR_RED = "Red";
     private static final String COLOR_BLUE = "Blue";
     private static final String COLOR_WHITE = "White";
     private static final String COLOR_GREEN = "Green";
-    
+
     // Error Message Constants
     private static final String PAGE_HEADING_ERROR = "Page heading mismatch";
     private static final String TYPE_MULTIPLE_TEXT_ERROR = "Type multiple color names text mismatch";
@@ -32,6 +28,9 @@ public class AutoCompletePageTests extends BaseTest {
     private static final String SECOND_COLOR_SELECTED_ERROR = "Wrong second color selected";
     private static final String GREEN_COLOR_SELECTED_ERROR = "Wrong green color selected";
 
+    public static final String AUTO_COMPLETE_URL = "auto-complete";
+    private AutoCompletePage autoCompletePage;
+
     @BeforeMethod
     public void goToDatePickerPage() {
         navigateToUrl(AUTO_COMPLETE_URL);
@@ -40,13 +39,12 @@ public class AutoCompletePageTests extends BaseTest {
 
     @Test(enabled = true, description = "Verify all text on page")
     public void verifyAllTextOnPage() {
-        // Arrange
-        // Act
+        // Arrange & Act
         String actualText = autoCompletePage.getText();
         String actualTypeMultipleText = autoCompletePage.getMultipleContainerText();
         String actualTypeSingleText = autoCompletePage.getAutoCompleteSingleText();
 
-         // Assert
+        // Assert
         softAssert.assertEquals(actualText, PAGE_HEADING, PAGE_HEADING_ERROR);
         softAssert.assertEquals(actualTypeMultipleText, TYPE_MULTIPLE_TEXT, TYPE_MULTIPLE_TEXT_ERROR);
         softAssert.assertEquals(actualTypeSingleText, TYPE_SINGLE_TEXT, TYPE_SINGLE_TEXT_ERROR);
@@ -56,9 +54,7 @@ public class AutoCompletePageTests extends BaseTest {
 
     @Test(enabled = true, description = "Select two colors multiple")
     public void selectTwoColorsMultiple() {
-        // Arrange
-
-        // Act
+        // Arrange & Act
         autoCompletePage.multiAutoCompleteSelectColor(COLOR_RED);
         autoCompletePage.multiAutoCompleteSelectColor(COLOR_BLUE);
 

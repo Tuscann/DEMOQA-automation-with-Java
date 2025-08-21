@@ -43,40 +43,40 @@ public class AccordianPage extends BasePage {
         return heading.getText();
     }
 
-    public String getSectionOneHeadingText() {
+    public String getFirstSectionHeadingText() {
         return sectionOneHeading.getText();
     }
 
-    public String getSectionTwoHeadingText() {
+    public String getSecondSectionHeadingText() {
         return sectionTwoHeading.getText();
     }
 
-    public String getSectionThreeHeadingText() {
+    public String getThirdSectionHeadingText() {
         return sectionThreeHeading.getText();
     }
 
-    public String getSectionOneText() {
+    public String getFirstSectionText() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
         wait.until(ExpectedConditions.invisibilityOf(sectionTwoContent));
         wait.until(ExpectedConditions.invisibilityOf(sectionThreeContent));
         return sectionOneContent.getText();
     }
 
-    public String getSectionTwoText() {
+    public String getSecondSectionText() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
         wait.until(ExpectedConditions.invisibilityOf(sectionOneContent));
         wait.until(ExpectedConditions.invisibilityOf(sectionThreeContent));
         return sectionTwoContent.getText();
     }
 
-    public String getSectionThreeText() {
+    public String getThirdSectionText() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
         wait.until(ExpectedConditions.invisibilityOf(sectionOneContent));
         wait.until(ExpectedConditions.invisibilityOf(sectionTwoContent));
         return sectionThreeContent.getText();
     }
 
-    public void clickOneHeading() {
+    public void clickFirstHeading() {
         sectionOneHeading.click();
         sectionOneHeading.click();
     }
@@ -86,7 +86,7 @@ public class AccordianPage extends BasePage {
         sectionTwoHeading.click();
     }
 
-    public void clickThreeHeading() {
+    public void clickThrirdHeading() {
         scrollToElementJS(sectionTwoHeading);
         sectionThreeHeading.click();
     }

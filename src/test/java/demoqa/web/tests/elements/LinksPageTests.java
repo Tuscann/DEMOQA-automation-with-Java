@@ -6,11 +6,6 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class LinksPageTests extends BaseTest {
-
-    // URL Constants
-    private static final String LINKS_URL = "links";
-    private static final String EXPECTED_HOME_URL = "https://demoqa.com/";
-    
     // Text Constants
     private static final String EXPECTED_LINKS_HEADER = "Links";
     private static final String EXPECTED_FOLLOWING_LINKS_NEW_TAB = "Following links will open new tab";
@@ -23,7 +18,7 @@ public class LinksPageTests extends BaseTest {
     private static final String EXPECTED_UNAUTHORIZED_TEXT = "Unauthorized";
     private static final String EXPECTED_FORBIDDEN_TEXT = "Forbidden";
     private static final String EXPECTED_NOT_FOUND_TEXT = "Not Found";
-    
+
     // HTTP Status Constants
     private static final String EXPECTED_CREATED_STATUS = "201";
     private static final String EXPECTED_CREATED_STATUS_TEXT = "Created";
@@ -39,7 +34,7 @@ public class LinksPageTests extends BaseTest {
     private static final String EXPECTED_FORBIDDEN_STATUS_TEXT = "Forbidden";
     private static final String EXPECTED_NOT_FOUND_STATUS = "404";
     private static final String EXPECTED_NOT_FOUND_STATUS_TEXT = "Not Found";
-    
+
     // Error Message Constants
     private static final String HEADER_TEXT_MISMATCH = "Links header text mismatch";
     private static final String NEW_TAB_TEXT_MISMATCH = "New tab text mismatch";
@@ -60,8 +55,9 @@ public class LinksPageTests extends BaseTest {
     private static final String UNAUTHORIZED_LINK_RESPONSE_ERROR = "Unauthorized link response error";
     private static final String FORBIDDEN_LINK_RESPONSE_ERROR = "Forbidden link response error";
     private static final String NOT_FOUND_LINK_RESPONSE_ERROR = "Not found link response error";
-    
+
     private LinksPage linksPage;
+    private static final String LINKS_URL = "links";
 
     @BeforeMethod
     public void goToLinksPage() {
@@ -106,7 +102,7 @@ public class LinksPageTests extends BaseTest {
         String urlNewTab = linksPage.getUrl();
 
         // Assert
-        softAssert.assertEquals(urlNewTab, EXPECTED_HOME_URL, NEW_TAB_URL_MISMATCH);
+        softAssert.assertEquals(urlNewTab, DEMO_QA_URL, NEW_TAB_URL_MISMATCH);
         softAssert.assertAll();
     }
 
@@ -117,7 +113,7 @@ public class LinksPageTests extends BaseTest {
         String urlNewTab = linksPage.getUrl();
 
         // Assert
-        softAssert.assertEquals(urlNewTab, EXPECTED_HOME_URL, NEW_TAB_URL_MISMATCH);
+        softAssert.assertEquals(urlNewTab, DEMO_QA_URL, NEW_TAB_URL_MISMATCH);
         softAssert.assertAll();
     }
 

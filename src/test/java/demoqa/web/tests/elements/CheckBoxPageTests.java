@@ -6,13 +6,9 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class CheckBoxPageTests extends BaseTest {
-
-    // URL Constants
-    private static final String CHECK_BOX_URL = "checkbox";
-    
     // Text Constants
     private static final String EXPECTED_HEADER_TEXT = "Check Box";
-    
+
     // Expected Result Constants
     private static final String EXPECTED_NOTES_RESULT = "You have selected :\nnotes";
     private static final String EXPECTED_DESKTOP_HOME_COMMANDS_RESULT = """
@@ -55,7 +51,7 @@ public class CheckBoxPageTests extends BaseTest {
             downloads
             wordFile
             excelFile""";
-    
+
     // Error Message Constants
     private static final String HEADER_TEXT_MISMATCH = "Header text mismatch";
     private static final String NOTES_SELECTION_ERROR = "Notes checkbox not selected properly";
@@ -69,8 +65,9 @@ public class CheckBoxPageTests extends BaseTest {
     private static final String DESKTOP_DOCUMENTS_DOWNLOADS_SELECTION_ERROR = "Desktop, documents, and downloads checkboxes not selected properly";
     private static final String ALL_CHECKBOXES_SELECTION_ERROR = "All checkboxes not selected properly";
     private static final String ALL_CHECKBOXES_DESELECTION_ERROR = "All checkboxes not deselected properly";
-    
+
     private CheckBoxPage checkBoxPage;
+    private static final String CHECK_BOX_URL = "checkbox";
 
     @BeforeMethod
     public void goToCheckBoxPage() {

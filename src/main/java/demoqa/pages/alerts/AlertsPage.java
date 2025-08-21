@@ -33,7 +33,7 @@ public class AlertsPage extends BasePage {
     @FindBy(xpath = "//span[contains(.,'On button click, confirm box will appear')]")
     WebElement alertThirdTitle;
     @FindBy(xpath = "//span[contains(.,'On button click, prompt box will appear')]")
-    WebElement alertFourTitle;
+    WebElement alertFourthTitle;
 
     public AlertsPage(WebDriver driver) {
         super(driver);
@@ -44,20 +44,20 @@ public class AlertsPage extends BasePage {
         return alertHeaderTitle.getText();
     }
 
-    public String getFirstText() {
+    public String getFirstAlertTitle() {
         return alertFirstTitle.getText();
     }
 
-    public String getSecondText() {
+    public String getSecondAlertTitle() {
         return alertSecondTitle.getText();
     }
 
-    public String getThirdText() {
+    public String getThirdAlertTitle() {
         return alertThirdTitle.getText();
     }
 
-    public String getFourthText() {
-        return alertFourTitle.getText();
+    public String getFourthAlertTitle() {
+        return alertFourthTitle.getText();
     }
 
     public String getPromptAlertResult() {

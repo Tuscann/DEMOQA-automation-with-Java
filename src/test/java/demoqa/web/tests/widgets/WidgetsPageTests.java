@@ -8,6 +8,25 @@ import org.testng.annotations.Test;
 import java.util.Map;
 
 public class WidgetsPageTests extends BaseTest {
+    // Expected URL Constants
+    private static final String ACCORDION_URL = DEMO_QA_URL + "accordian";
+    private static final String AUTO_COMPLETE_URL = DEMO_QA_URL + "auto-complete";
+    private static final String DATE_PICKER_URL = DEMO_QA_URL + "date-picker";
+    private static final String SLIDER_URL = DEMO_QA_URL + "slider";
+    private static final String PROGRESS_BAR_URL = DEMO_QA_URL + "progress-bar";
+    private static final String TABS_URL = DEMO_QA_URL + "tabs";
+    private static final String TOOL_TIPS_URL = DEMO_QA_URL + "tool-tips";
+    private static final String MENU_URL = DEMO_QA_URL + "menu";
+    private static final String SELECT_MENU_URL = DEMO_QA_URL + "select-menu";
+
+    // Text Constants
+    private static final String EXPECTED_MAIN_TEXT = "Please select an item from left to start practice.";
+
+    // Error Message Constants
+    private static final String URL_MISMATCH_ERROR = "Expected URL mismatch";
+    private static final String MAIN_TEXT_ERROR = "Wrong main text";
+    private static final String ACCORDION_VISIBILITY_ERROR = "Accordion is not shown";
+    private static final String ACCORDION_HIDDEN_ERROR = "Accordion is shown when it should be hidden";
 
     private WidgetsPage widgetsPage;
     private static final String WIDGETS_URL = "widgets";
@@ -22,22 +41,22 @@ public class WidgetsPageTests extends BaseTest {
     public void checkAllNinePagesLinks() {
         // Arrange
         Map<String, Runnable> widgetActions = Map.of(
-                "https://demoqa.com/accordian", widgetsPage::clickAccordion,
-                "https://demoqa.com/auto-complete", widgetsPage::clickAutoComplete,
-                "https://demoqa.com/date-picker", widgetsPage::clickDatePicker,
-                "https://demoqa.com/slider", widgetsPage::clickSlider,
-                "https://demoqa.com/progress-bar", widgetsPage::clickProgressBar,
-                "https://demoqa.com/tabs", widgetsPage::clickTabs,
-                "https://demoqa.com/tool-tips", widgetsPage::clickToolTips,
-                "https://demoqa.com/menu", widgetsPage::clickMenu,
-                "https://demoqa.com/select-menu", widgetsPage::clickSelectMenu
+                ACCORDION_URL, widgetsPage::clickAccordion,
+                AUTO_COMPLETE_URL, widgetsPage::clickAutoComplete,
+                DATE_PICKER_URL, widgetsPage::clickDatePicker,
+                SLIDER_URL, widgetsPage::clickSlider,
+                PROGRESS_BAR_URL, widgetsPage::clickProgressBar,
+                TABS_URL, widgetsPage::clickTabs,
+                TOOL_TIPS_URL, widgetsPage::clickToolTips,
+                MENU_URL, widgetsPage::clickMenu,
+                SELECT_MENU_URL, widgetsPage::clickSelectMenu
         );
 
         // Act
         widgetActions.forEach((expectedUrl, action) -> {
             action.run();
             String actualUrl = widgetsPage.checkUrl();
-            softAssert.assertEquals(actualUrl, expectedUrl, "\nExpected URL: " + expectedUrl + "\n");
+            softAssert.assertEquals(actualUrl, expectedUrl, URL_MISMATCH_ERROR + ": " + expectedUrl);
         });
         // Assert
         softAssert.assertAll();
@@ -45,14 +64,11 @@ public class WidgetsPageTests extends BaseTest {
 
     @Test(enabled = true, description = "Verify show/hide left dropdown menu")
     public void clickLeftDropdownMenu() {
-        // Arrange
-        String expectedString = "Please select an item from left to start practice.";
-
-        // Act
-        softAssert.assertEquals(widgetsPage.getMainText(), expectedString, "\nWrong text.\n");
-        softAssert.assertTrue(widgetsPage.verifyAccordionIsVisible(), "\nFrames is not shown.\n");
+        // Arrange and Act       
+        softAssert.assertEquals(widgetsPage.getMainText(), EXPECTED_MAIN_TEXT, MAIN_TEXT_ERROR);
+        softAssert.assertTrue(widgetsPage.verifyAccordionIsVisible(), ACCORDION_VISIBILITY_ERROR);
         widgetsPage.clickWidgetsWindows();
-        softAssert.assertFalse(widgetsPage.verifyAccordionIsNotVisible(), "\nFrames is shown.\n");
+        softAssert.assertFalse(widgetsPage.verifyAccordionIsNotVisible(), ACCORDION_HIDDEN_ERROR);
 
         // Assert
         softAssert.assertAll();

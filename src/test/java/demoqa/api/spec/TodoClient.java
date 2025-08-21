@@ -1,9 +1,9 @@
 package demoqa.api.spec;
 
 import demoqa.api.models.Book;
+import demoqa.api.models.ErrorResponse;
 import demoqa.api.models.Token;
 import demoqa.api.models.User;
-import demoqa.api.models.ErrorResponse;
 import io.qameta.allure.internal.shadowed.jackson.core.type.TypeReference;
 import io.qameta.allure.internal.shadowed.jackson.databind.ObjectMapper;
 
@@ -16,8 +16,10 @@ import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 
+import static demoqa.web.base.BaseTest.DEMO_QA_URL;
+
 public class TodoClient {
-    private final String BASE_URL = "https://demoqa.com";
+
     HttpClient client;
     ObjectMapper objectMapper;
 
@@ -28,7 +30,7 @@ public class TodoClient {
 
     public List<Book> FindAllBooks() throws IOException, InterruptedException {
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(BASE_URL + "/BookStore/v1/Books"))
+                .uri(URI.create(DEMO_QA_URL + "BookStore/v1/Books"))
                 .GET()
                 .build();
 
@@ -43,7 +45,7 @@ public class TodoClient {
 
     public Book GetBookByISBN(String ISBN) throws IOException, InterruptedException {
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(BASE_URL + "/BookStore/v1/Book?ISBN=" + ISBN))
+                .uri(URI.create(DEMO_QA_URL + "BookStore/v1/Book?ISBN=" + ISBN))
                 .GET()
                 .build();
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
@@ -62,7 +64,7 @@ public class TodoClient {
                 URLEncoder.encode(password, StandardCharsets.UTF_8));
 
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(BASE_URL + "/Account/v1/Authorized"))
+                .uri(URI.create(DEMO_QA_URL + "Account/v1/Authorized"))
                 .header("Content-Type", "application/x-www-form-urlencoded")
                 .POST(HttpRequest.BodyPublishers.ofString(requestBody))
                 .build();
@@ -77,7 +79,7 @@ public class TodoClient {
                 URLEncoder.encode(password, StandardCharsets.UTF_8));
 
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(BASE_URL + "/Account/v1/GenerateToken"))
+                .uri(URI.create(DEMO_QA_URL + "Account/v1/GenerateToken"))
                 .header("Content-Type", "application/x-www-form-urlencoded")
                 .POST(HttpRequest.BodyPublishers.ofString(requestBody))
                 .build();
@@ -91,7 +93,7 @@ public class TodoClient {
                 URLEncoder.encode(password, StandardCharsets.UTF_8));
 
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(BASE_URL + "/Account/v1/User"))
+                .uri(URI.create(DEMO_QA_URL + "Account/v1/User"))
                 .header("Content-Type", "application/x-www-form-urlencoded")
                 .POST(HttpRequest.BodyPublishers.ofString(requestBody))
                 .build();
@@ -106,7 +108,7 @@ public class TodoClient {
 
     public Object DeleteUser(String userId) throws IOException, InterruptedException {
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(BASE_URL + "/Account/v1/User/" + userId))
+                .uri(URI.create(DEMO_QA_URL + "Account/v1/User/" + userId))
                 .header("Content-Type", "application/x-www-form-urlencoded")
                 .DELETE()
                 .build();
@@ -121,7 +123,7 @@ public class TodoClient {
 
     public Object GetUserByUUID(String userId) throws IOException, InterruptedException {
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(BASE_URL + "/Account/v1/User/" + userId))
+                .uri(URI.create(DEMO_QA_URL + "Account/v1/User/" + userId))
                 .header("Content-Type", "application/x-www-form-urlencoded")
                 .GET()
                 .build();

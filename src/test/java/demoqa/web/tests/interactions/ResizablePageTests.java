@@ -2,7 +2,6 @@ package demoqa.web.tests.interactions;
 
 import demoqa.pages.interactions.ResizablePage;
 import demoqa.web.base.BaseTest;
-import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -50,13 +49,13 @@ public class ResizablePageTests extends BaseTest {
 
     @Test(dataProvider = "resizeData", description = "Test resizing with different values", enabled = true)
     public void testResizedBoxWithLimitation(int addX, int addY, int expectedWidth, int expectedHeight) {
-        // Arrange
-        // Act
+        // Arrange & Act
         resizablePage.changeSize(addX, addY);
         String actualNewSize = resizablePage.getNewSizeBox();
 
         // Assert
-        Assert.assertEquals(actualNewSize, "(" + expectedWidth + ", " + expectedHeight + ")", "\nWrong new size.\n");
+        softAssert.assertEquals(actualNewSize, "(" + expectedWidth + ", " + expectedHeight + ")", "\nWrong new size.\n");
+        softAssert.assertAll();
     }
 
     @DataProvider(name = "resizeData2")
@@ -77,7 +76,8 @@ public class ResizablePageTests extends BaseTest {
         String actualNewSize = resizablePage.getNewSizeBox2();
 
         // Assert
-        Assert.assertEquals(actualNewSize, "(" + expectedWidth + ", " + expectedHeight + ")", "\nWrong new size.\n");
+        softAssert.assertEquals(actualNewSize, "(" + expectedWidth + ", " + expectedHeight + ")", "\nWrong new size.\n");
+        softAssert.assertAll();
     }
 
     @DataProvider(name = "diagonalResizeData")
@@ -96,14 +96,13 @@ public class ResizablePageTests extends BaseTest {
         String actualNewSize = resizablePage.getNewSizeBox();
 
         // Assert
-        Assert.assertEquals(actualNewSize, "(" + expectedWidth + ", " + expectedHeight + ")", "\nWrong size after diagonal resize.\n");
+        softAssert.assertEquals(actualNewSize, "(" + expectedWidth + ", " + expectedHeight + ")", "\nWrong size after diagonal resize.\n");
+        softAssert.assertAll();
     }
 
     @Test(description = "Test resize handle visibility", enabled = true)
     public void resizeHandleVisibility() {
-        // Arrange
-        // Act
-        // Assert
+        // Arrange & Act & Assert
         softAssert.assertTrue(resizablePage.isResizeHandleVisible(), "\nResize handle should be visible.\n");
         softAssert.assertTrue(resizablePage.isResizeHandle2Visible(), "\nSecond resize handle should be visible.\n");
         softAssert.assertAll();

@@ -21,7 +21,7 @@ import static utilities.Utility.setUtilityDriver;
 public class BaseTest {
 
     private static final ThreadLocal<WebDriver> threadDriver = new ThreadLocal<>();
-    public final String DEMOQA_URL = "https://demoqa.com/";
+    public static final String DEMO_QA_URL = "https://demoqa.com/";
     public WebDriver driver;
     public SoftAssert softAssert;
     protected BasePage basePage;
@@ -42,7 +42,7 @@ public class BaseTest {
             basePage = new BasePage(driver);
             setUtilityDriver();
         }
-        driver.get(DEMOQA_URL);
+        driver.get(DEMO_QA_URL);
     }
 
     @AfterMethod
@@ -74,7 +74,7 @@ public class BaseTest {
     }
 
     public void navigateToUrl(String path) {
-        String url = DEMOQA_URL + path;
+        String url = DEMO_QA_URL + path;
         driver.navigate().to(url);
     }
 }

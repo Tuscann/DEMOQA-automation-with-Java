@@ -8,15 +8,11 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class BookLoginPageTests extends BaseTest {
-
     // Page Content
     private static final String VALID_USERNAME = "fbinnzhivko";
     private static final String VALID_PASSWORD = "Karma1987!@";
     private static final String INVALID_USERNAME = "wrongUser";
     private static final String INVALID_PASSWORD = "wrongPass";
-
-    // URL
-    private static final String LOGIN_URL = "login";
 
     // Text Constants
     private static final String LOGIN_HEADER = "Login";
@@ -32,7 +28,7 @@ public class BookLoginPageTests extends BaseTest {
     // Expected Text Constants
     private static final String EXPECTED_LOGIN_TEXT = "Login in Book Store";
     private static final String EXPECTED_ALREADY_LOGGED_IN_TEXT = "You are already logged in. View your profile.";
-    private static final String EXPECTED_BOOKS_URL = "https://demoqa.com/books";
+    private static final String EXPECTED_BOOKS_URL = DEMO_QA_URL + "books";
     private static final String INVALID_USERNAME_PASSWORD_ERROR = "Invalid username or password!";
 
     // Error Message Constants
@@ -52,6 +48,7 @@ public class BookLoginPageTests extends BaseTest {
     private static final String ALREADY_LOGGED_IN_ERROR = "Already logged in message mismatch";
 
     private BooksLoginPage booksLoginPage;
+    private static final String LOGIN_URL = "login";
 
     @BeforeMethod
     public void goToLoginPage() {
@@ -61,9 +58,7 @@ public class BookLoginPageTests extends BaseTest {
 
     @Test(enabled = true, description = "Verify all static text elements on the book login page")
     public void verifyAllTextOnPage() {
-        // Arrange
-        // Act
-        // Assert
+        // Arrange & Act & Assert
         softAssert.assertEquals(booksLoginPage.getLoginHeaderText(), LOGIN_HEADER, LOGIN_HEADER_ERROR);
         softAssert.assertEquals(booksLoginPage.getWelcomeText(), WELCOME_TEXT, WELCOME_TEXT_ERROR);
         softAssert.assertEquals(booksLoginPage.getLoginInBookStoreText(), LOGIN_IN_BOOK_STORE_TEXT, LOGIN_IN_BOOK_STORE_ERROR);

@@ -8,28 +8,25 @@ import org.testng.annotations.Test;
 import static utilities.SwitchToUtility.*;
 
 public class AlertsPageTests extends BaseTest {
-    private static final String ALERTS_PAGE_URL = "alerts";
-    private AlertsPage alertsPage;
-    
     // Page Text Constants
     private static final String HEADER_TEXT = "Alerts";
     private static final String FIRST_ALERT_TEXT = "Click Button to see alert";
     private static final String SECOND_ALERT_TEXT = "On button click, alert will appear after 5 seconds";
     private static final String THIRD_ALERT_TEXT = "On button click, confirm box will appear";
     private static final String FOURTH_ALERT_TEXT = "On button click, prompt box will appear";
-    
+
     // Alert Message Constants
     private static final String INFO_ALERT_MESSAGE = "You clicked a button";
     private static final String TIMED_ALERT_MESSAGE = "This alert appeared after 5 seconds";
-    
+
     // Alert Response Constants
     private static final String CANCEL_RESULT = "You selected Cancel";
     private static final String OK_RESULT = "You selected Ok";
-    
+
     // Prompt Alert Constants
     private static final String PROMPT_INPUT_TEXT = "Selenium With Java";
     private static final String PROMPT_RESULT_PREFIX = "You entered ";
-    
+
     // Error Messages Constants
     private static final String HEADER_MISMATCH_ERROR = "Incorrect header text";
     private static final String FIRST_TEXT_MISMATCH_ERROR = "First alert text mismatch";
@@ -43,6 +40,9 @@ public class AlertsPageTests extends BaseTest {
     private static final String PROMPT_RESULT_MISMATCH_ERROR = "Prompt alert result mismatch";
     private static final String ALERT_RESULT_VISIBILITY_ERROR = "Alert result visibility mismatch";
 
+    private static final String ALERTS_PAGE_URL = "alerts";
+    private AlertsPage alertsPage;
+
     @BeforeMethod
     public void goToAlertsWindowsPage() {
         navigateToUrl(ALERTS_PAGE_URL);
@@ -51,18 +51,20 @@ public class AlertsPageTests extends BaseTest {
 
     @Test(enabled = true, description = "Verify all static texts on alerts page")
     public void verifyAllTextOnPage() {
-        // Act & Assert
+        // Arrange & Act
         softAssert.assertEquals(alertsPage.getHeaderText(), HEADER_TEXT, HEADER_MISMATCH_ERROR);
-        softAssert.assertEquals(alertsPage.getFirstText(), FIRST_ALERT_TEXT, FIRST_TEXT_MISMATCH_ERROR);
-        softAssert.assertEquals(alertsPage.getSecondText(), SECOND_ALERT_TEXT, SECOND_TEXT_MISMATCH_ERROR);
-        softAssert.assertEquals(alertsPage.getThirdText(), THIRD_ALERT_TEXT, THIRD_TEXT_MISMATCH_ERROR);
-        softAssert.assertEquals(alertsPage.getFourthText(), FOURTH_ALERT_TEXT, FOURTH_TEXT_MISMATCH_ERROR);
+        softAssert.assertEquals(alertsPage.getFirstAlertTitle(), FIRST_ALERT_TEXT, FIRST_TEXT_MISMATCH_ERROR);
+        softAssert.assertEquals(alertsPage.getSecondAlertTitle(), SECOND_ALERT_TEXT, SECOND_TEXT_MISMATCH_ERROR);
+        softAssert.assertEquals(alertsPage.getThirdAlertTitle(), THIRD_ALERT_TEXT, THIRD_TEXT_MISMATCH_ERROR);
+        softAssert.assertEquals(alertsPage.getFourthAlertTitle(), FOURTH_ALERT_TEXT, FOURTH_TEXT_MISMATCH_ERROR);
+
+        // Assert
         softAssert.assertAll();
     }
 
     @Test(enabled = true, description = "Verify text of Information alert")
     public void verifyPromptAlertWithTextInputAndAccept() {
-        // Act
+        // Arrange & Act
         alertsPage.clickInformationAlertButton();
         String actualAlertMessage = getAlertText();
 
@@ -73,7 +75,7 @@ public class AlertsPageTests extends BaseTest {
 
     @Test(enabled = true, description = "Verify text of prompt alert after 5 seconds")
     public void verifyTextOfPromptAlertAfter5seconds() {
-        // Act
+        // Arrange & Act
         alertsPage.clickConfirmationTimeAlertButton();
         String actualAlertMessage = getAlertText();
 
@@ -84,7 +86,7 @@ public class AlertsPageTests extends BaseTest {
 
     @Test(enabled = true, description = "Verify Cancel option on confirmation alert")
     public void verifyTextOfConfirmationAlertCancel() {
-        // Act
+        // Arrange & Act
         alertsPage.clickConfirmationAlertButton();
         dismissAlert();
         String actualResult = alertsPage.getConfirmationResult();
@@ -96,7 +98,7 @@ public class AlertsPageTests extends BaseTest {
 
     @Test(enabled = true, description = "Verify you selected ok on confirmation alert")
     public void verifyTextOfConfirmationAlertYes() {
-        // Act
+        // Arrange & Act
         alertsPage.clickConfirmationAlertButton();
         acceptAlert();
         String actualResult = alertsPage.getConfirmationResult();
@@ -109,7 +111,7 @@ public class AlertsPageTests extends BaseTest {
     @Test(enabled = true, description = "Verify text of message after of prompt alert")
     public void verifyTextOfPromptAlertAccept() {
         // Arrange
-        String expectedResult = buildPromptResultMessage(PROMPT_INPUT_TEXT);
+        String expectedResult = PROMPT_RESULT_PREFIX + PROMPT_INPUT_TEXT;
 
         // Act
         alertsPage.clickPromptAlertButton();
@@ -124,7 +126,7 @@ public class AlertsPageTests extends BaseTest {
 
     @Test(enabled = true, description = "Verify text of message after ok of prompt alert")
     public void verifyTextOfPromptAlertOK() {
-        // Act
+        // Arrange & Act
         alertsPage.clickPromptAlertButton();
         acceptAlert();
         boolean isResultMissing = alertsPage.verifyNoAlertResult();
@@ -136,7 +138,7 @@ public class AlertsPageTests extends BaseTest {
 
     @Test(enabled = true, description = "Verify text of message after close prompt alert")
     public void verifyTextOfPromptAlertCancel() {
-        // Act
+        // Arrange & Act
         alertsPage.clickPromptAlertButton();
         dismissAlert();
         boolean isResultMissing = alertsPage.verifyNoAlertResult();
@@ -144,14 +146,5 @@ public class AlertsPageTests extends BaseTest {
         // Assert
         softAssert.assertTrue(isResultMissing, ALERT_RESULT_VISIBILITY_ERROR);
         softAssert.assertAll();
-    }
-
-    /**
-     * Helper method to build expected prompt result message
-     * @param inputText the text entered in the prompt
-     * @return formatted result message
-     */
-    private String buildPromptResultMessage(String inputText) {
-        return PROMPT_RESULT_PREFIX + inputText;
     }
 }

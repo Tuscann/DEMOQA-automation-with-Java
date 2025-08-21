@@ -7,9 +7,6 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class DroppablePageTests extends BaseTest {
-    public static final String DROPPABLE_URL = "droppable";
-    private DroppablePage droppablePage;
-    
     // Text Constants
     private static final String PAGE_HEADER_TEXT = "Droppable";
     private static final String SIMPLE_TAB_TEXT = "Simple";
@@ -30,11 +27,11 @@ public class DroppablePageTests extends BaseTest {
     private static final String DROPPED_TEXT_DOUBLE = "Dropped!\nDropped!";
     private static final String OUTER_DROPPABLE_DROPPED_TEXT = "Outer droppable\nDropped!";
     private static final String OUTER_DROPPABLE_INNER_DROPPABLE_TEXT = "Dropped!\nInner droppable (greedy)";
-    
+
     // Color Constants
     private static final String NEW_BACKGROUND_COLOR = "rgba(70, 130, 180, 1)";
     private static final String TRANSPARENT_COLOR = "rgba(0, 0, 0, 0)";
-    
+
     // Error Message Constants
     private static final String HEADER_ERROR = "Header text mismatch";
     private static final String SIMPLE_TAB_ERROR = "Simple tab text mismatch";
@@ -65,6 +62,9 @@ public class DroppablePageTests extends BaseTest {
     private static final String DROPPED_TEXT_MISSING_ERROR = "Dropped text missing";
     private static final String POSITION_ERROR = "Position mismatch";
 
+    public static final String DROPPABLE_URL = "droppable";
+    private DroppablePage droppablePage;
+
     @BeforeMethod
     public void goToDroppablePage() {
         navigateToUrl(DROPPABLE_URL);
@@ -73,7 +73,7 @@ public class DroppablePageTests extends BaseTest {
 
     @Test(enabled = true, description = "Verify all text on page")
     public void verifyAllTextOnPage() {
-        // Arrange 
+        // Arrange & Act
         String actualHeader = droppablePage.getExpectedHeader();
         String actualSimpleTab = droppablePage.getExpectedSimpleTab();
         String actualDragMeSimple = droppablePage.getSimpleTabDragMe();
@@ -99,6 +99,7 @@ public class DroppablePageTests extends BaseTest {
         String actualNotRevert = droppablePage.getNotRevert();
         String actualDropHereRevertDraggable = droppablePage.getDropHereRevertDraggable();
 
+        // Assert
         softAssert.assertEquals(actualHeader, PAGE_HEADER_TEXT, HEADER_ERROR);
         softAssert.assertEquals(actualSimpleTab, SIMPLE_TAB_TEXT, SIMPLE_TAB_ERROR);
         softAssert.assertEquals(actualDragMeSimple, DRAG_ME_TEXT, DRAG_ME_ERROR);
@@ -123,7 +124,7 @@ public class DroppablePageTests extends BaseTest {
 
     @Test(enabled = true, description = "Simple drag and drop")
     public void simpleDragAndDrop() {
-        // Arrange 
+        // Arrange & Act
         droppablePage.dragAndDrop();
 
         String actualDroppedText = droppablePage.getRevertDraggableTabText();
@@ -132,18 +133,20 @@ public class DroppablePageTests extends BaseTest {
         softAssert.assertEquals(actualColor, NEW_BACKGROUND_COLOR, COLOR_ERROR);
         softAssert.assertEquals(actualDroppedText, DROPPED_TEXT, DROPPED_TEXT_ERROR);
 
+        // Assert
         softAssert.assertAll();
     }
 
     @Test(enabled = true, description = "Accept tab drag and drop acceptable")
     public void acceptTabDragAndDropAcceptable() {
-        // Arrange 
+        // Arrange & Act
         droppablePage.clickAcceptTab();
         droppablePage.dragAndDropAcceptable();
 
         String actualDroppedText = droppablePage.getDragAndDropAcceptableText();
         String actualColor = droppablePage.getColorAcceptable();
 
+        // Assert
         softAssert.assertEquals(actualDroppedText, DROPPED_TEXT, DROPPED_TEXT_ERROR);
         softAssert.assertEquals(actualColor, NEW_BACKGROUND_COLOR, COLOR_ERROR);
 
@@ -159,6 +162,7 @@ public class DroppablePageTests extends BaseTest {
         String actualDroppedText = droppablePage.getDragAndDropAcceptableText();
         String actualColor = droppablePage.getColorNotAcceptable();
 
+        // Assert
         softAssert.assertEquals(actualDroppedText, DROP_HERE_TEXT, DROP_HERE_TEXT_ERROR);
         softAssert.assertEquals(actualColor, TRANSPARENT_COLOR, COLOR_ERROR);
 
@@ -182,6 +186,7 @@ public class DroppablePageTests extends BaseTest {
         actualOuterNotGreedyColor = droppablePage.getOuterDroppableNotGreedyColor();
         String actualOuterDroppableNotGreedyText = droppablePage.getOuterDroppableNotGreedyText();
 
+        // Assert
         softAssert.assertEquals(actualInnerNotGreedyColor, NEW_BACKGROUND_COLOR, INNER_COLOR_ERROR);
         softAssert.assertEquals(actualOuterNotGreedyColor, NEW_BACKGROUND_COLOR, OUTER_COLOR_ERROR);
         softAssert.assertEquals(actualOuterDroppableNotGreedyText, DROPPED_TEXT_DOUBLE, DROPPED_TEXT_DOUBLE_ERROR);
@@ -191,7 +196,7 @@ public class DroppablePageTests extends BaseTest {
 
     @Test(enabled = true, description = "Prevent propagation inner droppable greedy")
     public void preventPropagationInnerDroppableGreedy() {
-         // Arrange & Act
+        // Arrange & Act
         droppablePage.clickPreventPropagationTab();
         droppablePage.dragAndDropPropagationInnerDroppableGreedy();
 
@@ -199,6 +204,7 @@ public class DroppablePageTests extends BaseTest {
         String actualOuterDroppableGreedyColor = droppablePage.getOuterDroppableGreedyColor();
         String actualOuterDroppableNotGreedyText = droppablePage.getOuterDroppableGreedyText();
 
+        // Assert
         softAssert.assertEquals(actualInnerGreedyColor, NEW_BACKGROUND_COLOR, INNER_COLOR_ERROR);
         softAssert.assertEquals(actualOuterDroppableGreedyColor, TRANSPARENT_COLOR, OUTER_COLOR_ERROR);
         softAssert.assertEquals(actualOuterDroppableNotGreedyText, OUTER_DROPPABLE_DROPPED_TEXT, OUTER_DROPPABLE_NOT_GREEDY_TEXT_ERROR);
@@ -216,6 +222,7 @@ public class DroppablePageTests extends BaseTest {
         String actualOuterDroppableGreedyColor = droppablePage.getOuterDroppableGreedyColor();
         String actualOuterDroppableNotGreedyText = droppablePage.getOuterDroppableGreedyText();
 
+        // Assert
         softAssert.assertEquals(actualInnerGreedyColor, TRANSPARENT_COLOR, INNER_COLOR_ERROR);
         softAssert.assertEquals(actualOuterDroppableGreedyColor, NEW_BACKGROUND_COLOR, OUTER_COLOR_ERROR);
         softAssert.assertEquals(actualOuterDroppableNotGreedyText, OUTER_DROPPABLE_INNER_DROPPABLE_TEXT, OUTER_DROPPABLE_GREEDY_TEXT_ERROR);
@@ -239,6 +246,7 @@ public class DroppablePageTests extends BaseTest {
 
         Point afterLocation = droppablePage.getEndLocation(initialLocation.x, initialLocation.y);
 
+        // Assert
         softAssert.assertEquals(initialLocation, afterLocation, POSITION_ERROR);
 
         softAssert.assertAll();

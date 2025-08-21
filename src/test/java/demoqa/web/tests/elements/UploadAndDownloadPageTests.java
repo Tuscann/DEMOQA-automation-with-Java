@@ -2,33 +2,29 @@ package demoqa.web.tests.elements;
 
 import demoqa.pages.elements.UploadAndDownloadPage;
 import demoqa.web.base.BaseTest;
-import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class UploadAndDownloadPageTests extends BaseTest {
-
-    // URL Constants
-    private static final String UPLOAD_DOWNLOAD_URL = "upload-download";
-    
     // Text Constants
     private static final String EXPECTED_UPLOAD_AND_DOWNLOAD_TEXT = "Upload and Download";
     private static final String EXPECTED_DOWNLOAD_BUTTON_TEXT = "Download";
     private static final String EXPECTED_SELECT_A_FILE_TEXT = "Select a file";
-    
+
     // File Constants
     private static final String PICTURE_NAME = "zhivko.jpg";
     private static final String EXPECTED_DOWNLOAD_FILE_NAME = "sampleFile.jpeg";
     private static final String FAKE_PATH_PREFIX = "C:\\fakepath\\";
-    
+
     // Error Message Constants
     private static final String UPLOAD_DOWNLOAD_TEXT_MISMATCH = "Upload and Download text mismatch";
     private static final String DOWNLOAD_BUTTON_TEXT_MISMATCH = "Download button text mismatch";
     private static final String SELECT_A_FILE_TEXT_MISMATCH = "Select a file text mismatch";
     private static final String UPLOAD_NAME_MISMATCH = "Upload file name mismatch";
     private static final String FILE_NOT_DOWNLOADED_ERROR = "File was not downloaded";
-    
+
     private UploadAndDownloadPage uploadAndDownloadPage;
+    private static final String UPLOAD_DOWNLOAD_URL = "upload-download";
 
     @BeforeMethod
     public void goToUploadDownloadPage() {
@@ -60,7 +56,8 @@ public class UploadAndDownloadPageTests extends BaseTest {
         String expectedFakeUploadFolder = FAKE_PATH_PREFIX + PICTURE_NAME;
 
         // Assert
-        Assert.assertEquals(actualFakeUploadFolder, expectedFakeUploadFolder, UPLOAD_NAME_MISMATCH);
+        softAssert.assertEquals(actualFakeUploadFolder, expectedFakeUploadFolder, UPLOAD_NAME_MISMATCH);
+        softAssert.assertAll();
     }
 
     @Test(enabled = true, description = "Click download button and verify file download")
@@ -71,6 +68,7 @@ public class UploadAndDownloadPageTests extends BaseTest {
         boolean fileExists = uploadAndDownloadPage.checkIfFileExists(EXPECTED_DOWNLOAD_FILE_NAME);
 
         // Assert
-        Assert.assertTrue(fileExists, FILE_NOT_DOWNLOADED_ERROR);
+        softAssert.assertTrue(fileExists, FILE_NOT_DOWNLOADED_ERROR);
+        softAssert.assertAll();
     }
 }

@@ -6,20 +6,16 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class DynamicPropertiesPageTests extends BaseTest {
-
-    // URL Constants
-    private static final String DYNAMIC_PROPERTIES_URL = "dynamic-properties";
-    
     // Text Constants
     private static final String EXPECTED_PROPERTIES_TEXT = "Dynamic Properties";
     private static final String EXPECTED_RANDOM_ID_TEXT = "This text has random Id";
     private static final String EXPECTED_ENABLE_BUTTON_TEXT = "Will enable 5 seconds";
     private static final String EXPECTED_COLOR_CHANGE_TEXT = "Color Change";
     private static final String EXPECTED_VISIBLE_AFTER_5_SEC_TEXT = "Visible After 5 Seconds";
-    
+
     // Color Constants
     private static final String EXPECTED_WHITE_COLOR = "rgba(255, 255, 255, 1)";
-    
+
     // Error Message Constants
     private static final String DYNAMIC_PROPERTIES_TEXT_MISMATCH = "Dynamic properties text mismatch";
     private static final String RANDOM_ID_TEXT_MISMATCH = "Random ID text mismatch";
@@ -31,8 +27,9 @@ public class DynamicPropertiesPageTests extends BaseTest {
     private static final String VISIBLE_BUTTON_VISIBLE_ERROR = "Visible after 5 seconds button should not be visible initially";
     private static final String ENABLE_BUTTON_NOT_ENABLED_ERROR = "Enable button should be enabled after 5 seconds";
     private static final String VISIBLE_BUTTON_NOT_VISIBLE_ERROR = "Visible after 5 seconds button should be visible after 5 seconds";
-    
+
     private DynamicPropertiesPage dynamicPropertiesPage;
+    private static final String DYNAMIC_PROPERTIES_URL = "dynamic-properties";
 
     @BeforeMethod
     public void goToProfilePage() {

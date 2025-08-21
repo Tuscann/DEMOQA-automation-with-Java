@@ -6,10 +6,6 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class SelectablePageTests extends BaseTest {
-
-    public static final String SELECTABLE_URL = "selectable";
-    private SelectablePage selectablePage;
-    
     // Text Constants
     private static final String PAGE_TITLE = "Selectable";
     private static final String LIST_TAB = "List";
@@ -28,7 +24,7 @@ public class SelectablePageTests extends BaseTest {
     private static final String GRID_EIGHT = "Eight";
     private static final String GRID_NINE = "Nine";
     private static final String ERROR_TEXT = "Error";
-    
+
     // Error Message Constants
     private static final String PAGE_TITLE_ERROR = "Page title mismatch";
     private static final String LIST_TAB_ERROR = "List tab name mismatch";
@@ -55,6 +51,9 @@ public class SelectablePageTests extends BaseTest {
     private static final String FOURTH_ROW_SELECTED_ERROR = "Fourth row should not be selected initially";
     private static final String FOURTH_ROW_NOT_SELECTED_ERROR = "Fourth row should be selected after click";
     private static final String GRID_POSITION_NOT_SELECTED_ERROR = "Grid position is not selected";
+
+    public static final String SELECTABLE_URL = "selectable";
+    private SelectablePage selectablePage;
 
     @BeforeMethod
     public void goToSelectablePage() {

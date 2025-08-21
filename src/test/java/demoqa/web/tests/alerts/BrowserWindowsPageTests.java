@@ -6,21 +6,18 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class BrowserWindowsPageTests extends BaseTest {
-    private static final String FRAMES_URL = "browser-windows";
-    private BrowserWindowsPage browserWindowsPage;
-    
     // Text Constants
     private static final String BROWSER_WINDOWS_TEXT = "Browser Windows";
     private static final String NEW_TAB_TEXT = "New Tab";
     private static final String NEW_WINDOW_TEXT = "New Window";
     private static final String NEW_WINDOW_MESSAGE_TEXT = "New Window Message";
-    
+
     // URL Constants
-    private static final String EXPECTED_SAMPLE_URL = "https://demoqa.com/sample";
-    
+    private static final String EXPECTED_SAMPLE_URL = DEMO_QA_URL + "sample";
+
     // Message Constants
     private static final String EXPECTED_BROWSER_MESSAGE = "Knowledge increases by sharing but not by saving. Please share this website with your friends and in your organization.";
-    
+
     // Error Message Constants
     private static final String BROWSER_WINDOWS_TEXT_ERROR = "Browser Windows text mismatch";
     private static final String NEW_TAB_TEXT_ERROR = "New Tab text mismatch";
@@ -29,6 +26,9 @@ public class BrowserWindowsPageTests extends BaseTest {
     private static final String NEW_TAB_URL_ERROR = "New Tab URL mismatch";
     private static final String NEW_WINDOW_URL_ERROR = "New Window URL mismatch";
     private static final String BROWSER_MESSAGE_ERROR = "Browser message mismatch";
+
+    private static final String FRAMES_URL = "browser-windows";
+    private BrowserWindowsPage browserWindowsPage;
 
     @BeforeMethod
     public void goToBrowserWindowsPage() {

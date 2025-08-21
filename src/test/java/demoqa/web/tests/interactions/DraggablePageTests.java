@@ -7,10 +7,6 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class DraggablePageTests extends BaseTest {
-
-    public static final String DRAGGABLE_URL = "dragabble";
-    private DraggablePage draggablePage;
-
     // Text Constants
     private static final String PAGE_TITLE = "Dragabble";
     private static final String SIMPLE_TAB_TITLE = "Simple";
@@ -45,6 +41,9 @@ public class DraggablePageTests extends BaseTest {
     private static final String POINT_LOCATION_X_ERROR = "Point location X axis mismatch";
     private static final String POINT_LOCATION_Y_ERROR = "Point location Y axis mismatch";
 
+    public static final String DRAGGABLE_URL = "dragabble";
+    private DraggablePage draggablePage;
+
     @BeforeMethod
     public void goToDraggablePage() {
         navigateToUrl(DRAGGABLE_URL);
@@ -53,7 +52,7 @@ public class DraggablePageTests extends BaseTest {
 
     @Test(enabled = true, description = "Verify all text on page")
     public void verifyAllTextOnPage() {
-        // Arrange
+        // Arrange & Act
         String actualPageTitle = draggablePage.getPageTitle();
         String actualSimpleTabTitle = draggablePage.getSimpleTabTitle();
         draggablePage.clickSimpleTab();
@@ -92,7 +91,7 @@ public class DraggablePageTests extends BaseTest {
 
     @Test(enabled = true, description = "Drag me simple tab")
     public void dragMeSimpleTab() {
-        // Arrange
+        // Arrange & Act
         int xOffset = 150;
         int yOffset = 50;
 
@@ -108,7 +107,7 @@ public class DraggablePageTests extends BaseTest {
 
     @Test(enabled = true, description = "Drag only x in axis restricted tab")
     public void dragOnlyXInAxisRestrictedTab() {
-        // Arrange
+        // Arrange & Act
         int xOffset = 150;
         int yOffset = 50;
 
@@ -128,7 +127,7 @@ public class DraggablePageTests extends BaseTest {
 
     @Test(enabled = true, description = "Drag only y in axis restricted tab")
     public void dragOnlyYInAxisRestrictedTab() {
-        // Arrange
+        // Arrange & Act
         int xOffset = 150;
         int yOffset = 50;
 
@@ -148,7 +147,7 @@ public class DraggablePageTests extends BaseTest {
 
     @Test(enabled = true, description = "Contained in box axis restricted tab with size inside box")
     public void containedInBoxAxisRestrictedTabWithSizeInsideBox() {
-        // Arrange
+        // Arrange & Act
         int xOffset = 150;
         int yOffset = 50;
 
@@ -167,9 +166,9 @@ public class DraggablePageTests extends BaseTest {
 
     @Test(enabled = false, description = "Contained in box axis restricted tab with size out side box")
     public void containedInBoxAxisRestrictedTabWithSizeOutSideBox() {
-        // Arrange
+        // Arrange & Act
         int xOffset = 500;
-        int yOffset = 107;  //Magic number -1 become bigger TODO HELP
+        int yOffset = 107;  // Magic number -1 become bigger TODO HELP
 
         draggablePage.clickContainerRestrictedTab();
 
@@ -193,6 +192,7 @@ public class DraggablePageTests extends BaseTest {
         // Allow for a larger margin of error (±10 pixels) in position
         int marginOfError = 4;
 
+        // Act
         draggablePage.clickContainerRestrictedTab();
 
         Point initialLocation = draggablePage.getInitLocationContainedInParent();
@@ -232,6 +232,8 @@ public class DraggablePageTests extends BaseTest {
 
         // Allow for a larger margin of error (±10 pixels) in position
         int marginOfError = 8;
+
+        // Assert
         softAssert.assertTrue(Math.abs((initialLocation.x + xOffset) - endPosition.x) <= marginOfError,
                 String.format("\nWrong initial location X. Expected: %d ± %d, Actual: %d\n", initialLocation.x + xOffset, marginOfError, endPosition.x));
         softAssert.assertTrue(Math.abs((initialLocation.y + yOffset) - endPosition.y) <= marginOfError,
@@ -306,6 +308,7 @@ public class DraggablePageTests extends BaseTest {
         int xOffset = 100;
         int yOffset = 100;  //Magic number -50 TODO HELP
 
+        // Act
         draggablePage.clickCursorStyleTab();
 
         Point initialLocation = draggablePage.getInitLocationThirdText();
@@ -314,6 +317,7 @@ public class DraggablePageTests extends BaseTest {
 
         Point endPosition = draggablePage.getInitLocationThirdText();
 
+        // Assert
         softAssert.assertEquals(initialLocation.x + xOffset, endPosition.x, "\nWrong initial location X.\n");
         softAssert.assertEquals(initialLocation.y + yOffset - 50, endPosition.y, "\nWrong initial location Y.\n");
 

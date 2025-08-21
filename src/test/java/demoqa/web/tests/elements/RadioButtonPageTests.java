@@ -6,24 +6,20 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class RadioButtonPageTests extends BaseTest {
-
-    // URL Constants
-    private static final String RADIO_BUTTON_URL = "radio-button";
-    
     // Text Constants
     private static final String EXPECTED_RADIO_BUTTON_HEADER = "Radio Button";
     private static final String EXPECTED_QUESTION_TEXT = "Do you like the site?";
     private static final String EXPECTED_YES_ANSWER = "Yes";
     private static final String EXPECTED_IMPRESSIVE_ANSWER = "Impressive";
     private static final String EXPECTED_NO_ANSWER = "No";
-    
+
     // Message Constants
     private static final String EXPECTED_YES_SELECTION_MESSAGE = "You have selected Yes";
     private static final String EXPECTED_IMPRESSIVE_SELECTION_MESSAGE = "You have selected Impressive";
-    
+
     // Color Constants
     private static final String EXPECTED_GREEN_COLOR = "rgba(40, 167, 69, 1)";
-    
+
     // Error Message Constants
     private static final String HEADER_TEXT_MISMATCH = "Radio button header text mismatch";
     private static final String QUESTION_TEXT_MISMATCH = "Question text mismatch";
@@ -34,8 +30,9 @@ public class RadioButtonPageTests extends BaseTest {
     private static final String IMPRESSIVE_ANSWER_NOT_CHOSEN_ERROR = "Impressive answer not chosen properly";
     private static final String GREEN_COLOR_IMPRESSIVE_ERROR = "Green color not displayed for Impressive answer";
     private static final String GREEN_COLOR_YES_ERROR = "Green color not displayed for Yes answer";
-    
+
     private RadioButtonPage radioButtonPage;
+    private static final String RADIO_BUTTON_URL = "radio-button";
 
     @BeforeMethod
     public void goToRadioButtonPage() {
@@ -108,7 +105,6 @@ public class RadioButtonPageTests extends BaseTest {
 
         // Assert
         softAssert.assertEquals(actualColor, EXPECTED_GREEN_COLOR, GREEN_COLOR_YES_ERROR);
-
         softAssert.assertAll();
     }
 }

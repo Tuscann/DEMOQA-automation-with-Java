@@ -6,25 +6,21 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class ButtonsPageTests extends BaseTest {
-
-    // URL Constants
-    private static final String BUTTONS_URL = "buttons";
-    
     // Text Constants
     private static final String EXPECTED_HEADER_TEXT = "Buttons";
     private static final String EXPECTED_DOUBLE_CLICK_TEXT = "Double Click Me";
     private static final String EXPECTED_RIGHT_CLICK_TEXT = "Right Click Me";
     private static final String EXPECTED_DYNAMIC_CLICK_TEXT = "Click Me";
-    
+
     // Message Constants
     private static final String EXPECTED_DOUBLE_CLICK_MESSAGE = "You have done a double click";
     private static final String EXPECTED_RIGHT_CLICK_MESSAGE = "You have done a right click";
     private static final String EXPECTED_DYNAMIC_CLICK_MESSAGE = "You have done a dynamic click";
-    
+
     // Color Constants
     private static final String EXPECTED_BORDER_COLOR = "rgb(0, 123, 255)";
     private static final String EXPECTED_BACKGROUND_COLOR = "rgba(0, 123, 255, 1)";
-    
+
     // Error Message Constants
     private static final String HEADER_TEXT_MISMATCH = "Header text mismatch";
     private static final String DOUBLE_CLICK_BUTTON_TEXT_MISMATCH = "Double click button text mismatch";
@@ -35,8 +31,9 @@ public class ButtonsPageTests extends BaseTest {
     private static final String DOUBLE_CLICK_MESSAGE_MISMATCH = "Double click message mismatch";
     private static final String RIGHT_CLICK_MESSAGE_MISMATCH = "Right click message mismatch";
     private static final String DYNAMIC_CLICK_MESSAGE_MISMATCH = "Dynamic click message mismatch";
-    
+
     private ButtonsPage buttonsPage;
+    private static final String BUTTONS_URL = "buttons";
 
     @BeforeMethod
     public void goToButtonsPage() {

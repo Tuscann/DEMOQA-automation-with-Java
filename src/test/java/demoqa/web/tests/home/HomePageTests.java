@@ -7,13 +7,12 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 public class HomePageTests extends BaseTest {
-
-    private static final String ELEMENTS_URL = "https://demoqa.com/elements";
-    private static final String FORMS_URL = "https://demoqa.com/forms";
-    private static final String ALERTS_WINDOWS_URL = "https://demoqa.com/alertsWindows";
-    private static final String WIDGETS_URL = "https://demoqa.com/widgets";
-    private static final String INTERACTION_URL = "https://demoqa.com/interaction";
-    private static final String BOOKS_URL = "https://demoqa.com/books";
+    private static final String ELEMENTS_URL = DEMO_QA_URL + "elements";
+    private static final String FORMS_URL = DEMO_QA_URL + "forms";
+    private static final String ALERTS_WINDOWS_URL = DEMO_QA_URL + "alertsWindows";
+    private static final String WIDGETS_URL = DEMO_QA_URL + "widgets";
+    private static final String INTERACTION_URL = DEMO_QA_URL + "interaction";
+    private static final String BOOKS_URL = DEMO_QA_URL + "books";
     private static final String SELENIUM_TRAINING_URL = "https://www.toolsqa.com/selenium-training/";
 
     private static final String ELEMENTS_TEXT = "Elements";
@@ -56,17 +55,17 @@ public class HomePageTests extends BaseTest {
 
     @Test(dataProvider = "homePageCards", description = "Click and verify card: {0} ")
     public void clickAndVerifyCardNavigation(String cardName, String expectedUrl, Runnable clickAction) {
+        // Arrange & Act
         clickAction.run();
         String actualUrl = homePage.checkUrl();
+        // Assert
         softAssert.assertEquals(actualUrl, expectedUrl, String.format(CARD_NAVIGATION_ERROR, cardName));
-        softAssert.assertAll();        
+        softAssert.assertAll();
     }
 
     @Test(enabled = true, description = "Verify all text on page")
     public void verifyAllHomePageTexts() {
-        // Arrange
-        // Act
-        // Assert
+        // Arrange & Act & Assert
         softAssert.assertEquals(homePage.getElementsText(), ELEMENTS_TEXT, ELEMENTS_TEXT_ERROR);
         softAssert.assertEquals(homePage.getFormsText(), FORMS_TEXT, FORMS_TEXT_ERROR);
         softAssert.assertEquals(homePage.getAlertsText(), ALERTS_TEXT, ALERTS_TEXT_ERROR);

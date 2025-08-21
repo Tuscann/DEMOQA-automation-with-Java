@@ -40,31 +40,31 @@ public class Alerts_Frames_WindowsPage extends BasePage {
         return text.getText();
     }
 
-    public void clickBrowserWindows() {
+    public void clickBrowserWindowsTab() {
         browserWindowsMenuItem.click();
     }
 
-    public void clickAlerts() {
+    public void clickAlertsTab() {
         scrollToElementJS(alertsMenuItem);
         alertsMenuItem.click();
     }
 
-    public void clickNestedFrames() {
+    public void clickNestedFramesTab() {
         scrollToElementJS(nestedFramesItem);
         nestedFramesItem.click();
     }
 
-    public void clickFrames() {
+    public void clickFramesTab() {
         scrollToElementJS(framesMenuItem);
         framesMenuItem.click();
     }
 
-    public void clickModalDialogs() {
+    public void clickModalDialogsTab() {
         scrollToElementJS(modalDialogsMenuItem);
         modalDialogsMenuItem.click();
     }
 
-    public void clickAlertFramesWindows() {
+    public void clickAlertFramesWindowsTab() {
         alertsFramesWindows.click();
     }
 

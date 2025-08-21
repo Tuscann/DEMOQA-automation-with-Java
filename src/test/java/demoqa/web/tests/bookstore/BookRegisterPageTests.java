@@ -7,9 +7,6 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class BookRegisterPageTests extends BaseTest {
-    // URL
-    private static final String REGISTER_URL = "register";
-
     // Page Content
     public static final String PAGE_TITLE = "Register";
     public static final String HEADER_TEXT = "Register to Book Store";
@@ -26,7 +23,7 @@ public class BookRegisterPageTests extends BaseTest {
 
     // Messages
     public static final String RECAPTCHA_ERROR_MESSAGE = "Please verify reCaptcha to register!";
-    
+
     // Error Message Constants
     private static final String FIRST_NAME_PLACEHOLDER_ERROR = "First name placeholder text mismatch";
     private static final String LAST_NAME_PLACEHOLDER_ERROR = "Last name placeholder text mismatch";
@@ -43,6 +40,7 @@ public class BookRegisterPageTests extends BaseTest {
     private static final String RECAPTCHA_ERROR_MESSAGE_ERROR = "ReCAPTCHA error message mismatch";
 
     private BooksRegisterPage booksRegisterPage;
+    private static final String REGISTER_URL = "register";
     private Faker faker;
 
     @BeforeMethod
@@ -90,7 +88,7 @@ public class BookRegisterPageTests extends BaseTest {
         // Arrange - Generate dynamic user data
         String expectedFirstName = faker.name().firstName();
         String expectedLastName = faker.name().lastName();
-        String expectedUsername = faker.name().username();        
+        String expectedUsername = faker.name().username();
         String expectedPassword = faker.internet().password(8, 16, true, false, true) + "A1!";
 
         // Act

@@ -2,7 +2,6 @@ package demoqa.web.tests.widgets;
 
 import demoqa.pages.widgets.SelectMenuPage;
 import demoqa.web.base.BaseTest;
-import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -81,8 +80,9 @@ public class SelectMenuPageTests extends BaseTest {
 
             String actualSelectValue = selectMenuPage.getSelectedValue();
 
-            Assert.assertEquals(actualSelectValue, expectedSelectedValue, "\nWrong select value +\n" + expectedSelectedValue);
+            softAssert.assertEquals(actualSelectValue, expectedSelectedValue, "\nWrong select value +\n" + expectedSelectedValue);
         }
+        softAssert.assertAll();
     }
 
     @Test(enabled = true, description = "Select all values from select one menu")
@@ -103,8 +103,9 @@ public class SelectMenuPageTests extends BaseTest {
 
             String actualSelectOne = selectMenuPage.getSelectedSelectOne();
 
-            Assert.assertEquals(actualSelectOne, expectedSelectOne, "\nWrong selected " + expectedSelectOne + "\n");
+            softAssert.assertEquals(actualSelectOne, expectedSelectOne, "\nWrong selected " + expectedSelectOne + "\n");
         }
+        softAssert.assertAll();
     }
 
     @Test(enabled = true, description = "Select all values from old style select menu")
@@ -129,8 +130,9 @@ public class SelectMenuPageTests extends BaseTest {
             selectMenuPage.selectOldStyleSelectMenuByText(expectedColor);
             String actualColor = selectMenuPage.getOldStyleSelectMenuSelectedValue();
 
-            Assert.assertEquals(actualColor, expectedColor, "\nWrong color selected" + expectedColor + ".\n");
+            softAssert.assertEquals(actualColor, expectedColor, "\nWrong color selected" + expectedColor + ".\n");
         }
+        softAssert.assertAll();
     }
 
     @Test(enabled = false, description = "Select all values from multi select dropdown menu")
@@ -144,13 +146,12 @@ public class SelectMenuPageTests extends BaseTest {
                 case 3 -> "Red";
                 default -> "Error";
             };
-
             selectMenuPage.multiSelectOne(expectedColor);
-
             String actualSelectValue = selectMenuPage.getSelectedValue();
 
-            Assert.assertEquals(actualSelectValue, expectedColor, "\nWrong group" + expectedColor + ".\n");
+            softAssert.assertEquals(actualSelectValue, expectedColor, "\nWrong group" + expectedColor + ".\n");
         }
+        softAssert.assertAll();
     }
 
     @Test(enabled = true, description = "Select all values from standard multi select menu")

@@ -6,20 +6,19 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class FramesPageTests extends BaseTest {
-    private static final String FRAMES_URL = "frames";
-    private FramesPage framesPage;
-
     // Text Constants
     private static final String PAGE_HEADING = "Frames";
     private static final String PAGE_DESCRIPTION = "Sample Iframe page There are 2 Iframes in this page. Use browser inspecter or firebug to check out the HTML source. In total you can switch between the parent frame, which is this window, and the two frames below";
-    private static final String FIRST_IFRAME_HEADING = "This is a sample page";
-    private static final String SECOND_IFRAME_HEADING = "This is a sample page";
+    private static final String IFRAME_HEADING = "This is a sample page";
 
     // Error Message Constants
     private static final String PAGE_HEADING_ERROR = "Page heading mismatch";
     private static final String PAGE_DESCRIPTION_ERROR = "Page description text mismatch";
     private static final String FIRST_IFRAME_HEADING_ERROR = "First iframe heading mismatch";
     private static final String SECOND_IFRAME_HEADING_ERROR = "Second iframe heading mismatch";
+
+    private static final String FRAMES_URL = "frames";
+    private FramesPage framesPage;
 
     @BeforeMethod
     public void goToFramesPage() {
@@ -45,7 +44,7 @@ public class FramesPageTests extends BaseTest {
         String actualFirstIFrameHeadingText = framesPage.getHeadingTextInFirstIframe();
 
         // Assert
-        softAssert.assertEquals(actualFirstIFrameHeadingText, FIRST_IFRAME_HEADING, FIRST_IFRAME_HEADING_ERROR);
+        softAssert.assertEquals(actualFirstIFrameHeadingText, IFRAME_HEADING, FIRST_IFRAME_HEADING_ERROR);
         softAssert.assertAll();
     }
 
@@ -55,7 +54,7 @@ public class FramesPageTests extends BaseTest {
         String actualSecondIFrameHeadingText = framesPage.getHeadingTextInSecondIframe();
 
         // Assert
-        softAssert.assertEquals(actualSecondIFrameHeadingText, SECOND_IFRAME_HEADING, SECOND_IFRAME_HEADING_ERROR);
+        softAssert.assertEquals(actualSecondIFrameHeadingText, IFRAME_HEADING, SECOND_IFRAME_HEADING_ERROR);
         softAssert.assertAll();
     }
 }

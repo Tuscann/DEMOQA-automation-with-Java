@@ -97,7 +97,7 @@ public class TextBoxPage extends BasePage {
         return permanentAddress.getText();
     }
 
-    public String getExpectedFullName() {
+    public String getExpectedName() {
         return expectedFullName.getText();
     }
 
