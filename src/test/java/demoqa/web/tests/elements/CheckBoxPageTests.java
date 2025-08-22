@@ -78,7 +78,7 @@ public class CheckBoxPageTests extends BaseTest {
     @Test(enabled = true, description = "Select notes checkbox and verify selection result")
     public void selectNotesCheckBox() {
         // Arrange & Act
-        checkBoxPage.clickExpandAll();
+        checkBoxPage.clickExpandAllCheckBoxes();
         checkBoxPage.clickNotes();
 
         String actualResultMessage = checkBoxPage.getResultMessage();
@@ -90,81 +90,81 @@ public class CheckBoxPageTests extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(enabled = true, description = "Select desktop, home, and commands checkboxes and verify selection")
+    @Test(enabled = true, description = "Select home, and commands checkboxes and verify selection")
     public void selectDesktopWithHomeAndCommandsNotes() {
         // Arrange & Act
-        checkBoxPage.clickExpandAll();
+        checkBoxPage.clickExpandAllCheckBoxes();
         checkBoxPage.clickNotes();
         checkBoxPage.clickCommands();
-        String actualResult = checkBoxPage.getResultMessage();
+        String actualResultMessage = checkBoxPage.getResultMessage();
 
         // Assert
-        softAssert.assertEquals(actualResult, EXPECTED_DESKTOP_HOME_COMMANDS_RESULT, DESKTOP_HOME_COMMANDS_SELECTION_ERROR);
+        softAssert.assertEquals(actualResultMessage, EXPECTED_DESKTOP_HOME_COMMANDS_RESULT, DESKTOP_HOME_COMMANDS_SELECTION_ERROR);
         softAssert.assertAll();
     }
 
     @Test(enabled = true, description = "Deselect notes checkbox and verify deselection result")
     public void deSelectNotesCheckBox() {
         // Arrange & Act
-        checkBoxPage.clickExpandAll();
+        checkBoxPage.clickExpandAllCheckBoxes();
         checkBoxPage.clickNotes();
 
-        String actualResult = checkBoxPage.getResultMessage();
+        String actualResultMessage = checkBoxPage.getResultMessage();
         checkBoxPage.clickNotes();
 
         // Assert
-        softAssert.assertEquals(actualResult, EXPECTED_NOTES_RESULT, NOTES_DESELECTION_ERROR);
-        softAssert.assertTrue(checkBoxPage.isResultMessageShown(), RESULT_MESSAGE_SHOWN_ERROR);
+        softAssert.assertEquals(actualResultMessage, EXPECTED_NOTES_RESULT, NOTES_DESELECTION_ERROR);
+        softAssert.assertTrue(checkBoxPage.isResultMessageEmpty(), RESULT_MESSAGE_SHOWN_ERROR);
         softAssert.assertAll();
     }
 
     @Test(enabled = true, description = "Verify result message is empty without any checkbox selections")
     public void verifyResultMessageIsEmptyWithoutSelections() {
         // Arrange & Act
-        checkBoxPage.clickExpandAll();
+        checkBoxPage.clickExpandAllCheckBoxes();
 
         // Assert
-        softAssert.assertTrue(checkBoxPage.isResultMessageShown(), RESULT_MESSAGE_SHOWN_ERROR);
+        softAssert.assertTrue(checkBoxPage.isResultMessageEmpty(), RESULT_MESSAGE_SHOWN_ERROR);
         softAssert.assertAll();
     }
 
     @Test(enabled = true, description = "Select commands checkbox and verify selection result")
     public void selectCommandsCheckBox() {
         // Arrange & Act
-        checkBoxPage.clickExpandAll();
+        checkBoxPage.clickExpandAllCheckBoxes();
         checkBoxPage.clickCommands();
-        String actualResult = checkBoxPage.getResultMessage();
+        String actualResultMessage = checkBoxPage.getResultMessage();
 
         // Assert
-        softAssert.assertEquals(actualResult, "You have selected :\ncommands", COMMANDS_SELECTION_ERROR);
+        softAssert.assertEquals(actualResultMessage, "You have selected :\ncommands", COMMANDS_SELECTION_ERROR);
         softAssert.assertAll();
     }
 
     @Test(enabled = true, description = "Select notes and office public checkboxes and verify selection")
     public void selectNotesAndOfficePublicCheckBox() {
         // Arrange & Act
-        checkBoxPage.clickExpandAll();
+        checkBoxPage.clickExpandAllCheckBoxes();
         checkBoxPage.clickNotes();
         checkBoxPage.clickOfficePublic();
 
-        String actualResult = checkBoxPage.getResultMessage();
+        String actualResultMessage = checkBoxPage.getResultMessage();
 
         // Assert
-        softAssert.assertEquals(actualResult, EXPECTED_NOTES_AND_OFFICE_PUBLIC_RESULT, NOTES_OFFICE_PUBLIC_SELECTION_ERROR);
+        softAssert.assertEquals(actualResultMessage, EXPECTED_NOTES_AND_OFFICE_PUBLIC_RESULT, NOTES_OFFICE_PUBLIC_SELECTION_ERROR);
         softAssert.assertAll();
     }
 
     @Test(enabled = true, description = "Test collapsed state with selected categories")
     public void collapsedWithSelectedCategories() {
         // Arrange & Act
-        checkBoxPage.clickExpandAll();
-        checkBoxPage.clickOffice();
+        checkBoxPage.clickExpandAllCheckBoxes();
         checkBoxPage.clickWorkSpace();
+        checkBoxPage.clickOffice();
         checkBoxPage.clickCollapseAll();
-        String actualResult = checkBoxPage.getResultMessage();
+        String actualResultMessage = checkBoxPage.getResultMessage();
 
         // Assert
-        softAssert.assertEquals(actualResult, EXPECTED_COLLAPSED_SELECTED_RESULT, COLLAPSED_SELECTION_ERROR);
+        softAssert.assertEquals(actualResultMessage, EXPECTED_COLLAPSED_SELECTED_RESULT, COLLAPSED_SELECTION_ERROR);
         softAssert.assertAll();
     }
 
@@ -172,86 +172,86 @@ public class CheckBoxPageTests extends BaseTest {
     public void selectHomeCheckBox() {
         // Arrange & Act
         checkBoxPage.clickHome();
-        String actualResult = checkBoxPage.getResultMessage();
+        String actualResultMessage = checkBoxPage.getResultMessage();
 
         // Assert
-        softAssert.assertEquals(actualResult, EXPECTED_HOME_SELECTION_RESULT, HOME_SELECTION_ERROR);
+        softAssert.assertEquals(actualResultMessage, EXPECTED_HOME_SELECTION_RESULT, HOME_SELECTION_ERROR);
         softAssert.assertAll();
     }
 
     @Test(enabled = true, description = "Select desktop, documents, and downloads checkboxes and verify selection")
     public void selectDesktopAndDocumentsAndDownloadsCheckBoxes() {
         // Arrange & Act
-        checkBoxPage.clickExpandAll();
+        checkBoxPage.clickExpandAllCheckBoxes();
         checkBoxPage.clickDesktop();
         checkBoxPage.clickDocuments();
         checkBoxPage.clickDownloads();
 
-        String actualResult = checkBoxPage.getResultMessage();
+        String actualResultMessage = checkBoxPage.getResultMessage();
 
         // Assert
-        softAssert.assertEquals(actualResult, EXPECTED_HOME_SELECTION_RESULT, DESKTOP_DOCUMENTS_DOWNLOADS_SELECTION_ERROR);
+        softAssert.assertEquals(actualResultMessage, EXPECTED_HOME_SELECTION_RESULT, DESKTOP_DOCUMENTS_DOWNLOADS_SELECTION_ERROR);
         softAssert.assertAll();
     }
 
     @Test(enabled = true, description = "Select all checkboxes one by one and verify complete selection")
     public void selectAllCheckBoxesOneByOne() {
         // Arrange & Act
-        checkBoxPage.clickExpandAll();
+        checkBoxPage.clickExpandAllCheckBoxes();
         checkBoxPage.clickNotes();
         checkBoxPage.clickCommands();
-        checkBoxPage.clickReact();
-        checkBoxPage.clickAngular();
-        checkBoxPage.clickVeu();
+        checkBoxPage.clickWorkSpaceReact();
+        checkBoxPage.clickWorkSpaceAngular();
+        checkBoxPage.clickWorkSpaceVeu();
         checkBoxPage.clickOfficePublic();
         checkBoxPage.clickOfficePrivate();
-        checkBoxPage.clickClassified();
-        checkBoxPage.clickGeneral();
+        checkBoxPage.clickOfficeClassified();
+        checkBoxPage.clickOfficeGeneral();
         checkBoxPage.clickWordFileDoc();
         checkBoxPage.clickExcelFileDoc();
-        String actualResult = checkBoxPage.getResultMessage();
+        String actualResultMessage = checkBoxPage.getResultMessage();
 
         // Assert
-        softAssert.assertEquals(actualResult, EXPECTED_HOME_SELECTION_RESULT, ALL_CHECKBOXES_SELECTION_ERROR);
+        softAssert.assertEquals(actualResultMessage, EXPECTED_HOME_SELECTION_RESULT, ALL_CHECKBOXES_SELECTION_ERROR);
         softAssert.assertAll();
     }
 
     @Test(enabled = true, description = "Select all checkboxes one by one and then deselect all to verify complete deselection")
     public void selectAllCheckBoxesOneByOneAndDeselectAll() {
         // Arrange
-        checkBoxPage.clickExpandAll();
+        checkBoxPage.clickExpandAllCheckBoxes();
         checkBoxPage.clickNotes();
         checkBoxPage.clickCommands();
-        checkBoxPage.clickReact();
-        checkBoxPage.clickAngular();
-        checkBoxPage.clickVeu();
+        checkBoxPage.clickWorkSpaceReact();
+        checkBoxPage.clickWorkSpaceAngular();
+        checkBoxPage.clickWorkSpaceVeu();
         checkBoxPage.clickOfficePublic();
         checkBoxPage.clickOfficePrivate();
-        checkBoxPage.clickClassified();
-        checkBoxPage.clickGeneral();
+        checkBoxPage.clickOfficeClassified();
+        checkBoxPage.clickOfficeGeneral();
         checkBoxPage.clickWordFileDoc();
         checkBoxPage.clickExcelFileDoc();
 
-        String actualResult = checkBoxPage.getResultMessage();
+        String actualResultMessage = checkBoxPage.getResultMessage();
 
         // Act
         checkBoxPage.clickNotes();
         checkBoxPage.clickCommands();
-        checkBoxPage.clickReact();
-        checkBoxPage.clickAngular();
-        checkBoxPage.clickVeu();
+        checkBoxPage.clickWorkSpaceReact();
+        checkBoxPage.clickWorkSpaceAngular();
+        checkBoxPage.clickWorkSpaceVeu();
         checkBoxPage.clickOfficePublic();
         checkBoxPage.clickOfficePrivate();
-        checkBoxPage.clickClassified();
-        checkBoxPage.clickGeneral();
+        checkBoxPage.clickOfficeClassified();
+        checkBoxPage.clickOfficeGeneral();
         checkBoxPage.clickWordFileDoc();
         checkBoxPage.clickExcelFileDoc();
 
-        boolean isResultMessageShown = checkBoxPage.verifyResultMessageIsMissing();
+        boolean isResultMessageMissing = checkBoxPage.verifyResultMessageIsMissing();
 
         // Assert
-        softAssert.assertEquals(actualResult, EXPECTED_HOME_SELECTION_RESULT, ALL_CHECKBOXES_SELECTION_ERROR);
-        softAssert.assertTrue(isResultMessageShown, ALL_CHECKBOXES_DESELECTION_ERROR);
+        softAssert.assertEquals(actualResultMessage, EXPECTED_HOME_SELECTION_RESULT, ALL_CHECKBOXES_SELECTION_ERROR);
+        softAssert.assertTrue(isResultMessageMissing, ALL_CHECKBOXES_DESELECTION_ERROR);
         softAssert.assertAll();
     }
 }

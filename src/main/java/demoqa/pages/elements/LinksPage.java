@@ -117,11 +117,6 @@ public class LinksPage extends BasePage {
         driver.switchTo().window(tabs.get(1));
     }
 
-    public void clickDynamicLink() {
-        scrollToElementJS(dynamicLink);
-        dynamicLink.click();
-    }
-
     public void clickCreatedLink() {
         scrollToElementJS(createdRequestLink);
         createdRequestLink.click();

@@ -45,7 +45,7 @@ public class HomePage extends BasePage {
         PageFactory.initElements(driver, this);
     }
 
-    public void clickJoinNowButton(){
+    public void clickJoinNowButton() {
         scrollToElementJS(joinNow);
         joinNow.click();
     }
@@ -58,7 +58,7 @@ public class HomePage extends BasePage {
         return formsCard.getText();
     }
 
-    public String getAlertsText() {
+    public String getAlertsFramesWindowsText() {
         return alertsFrameWindowsCard.getText();
     }
 
@@ -117,9 +117,5 @@ public class HomePage extends BasePage {
                 clickHomePageItems.get(i).click();
             }
         }
-    }
-
-    public void navigateBack() {
-        driver.navigate().back();
     }
 }

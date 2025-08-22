@@ -136,10 +136,6 @@ public class BooksPage extends BasePage {
         bookStoreAPILink.click();
     }
 
-    public int getCountOfAllRows() {
-        return allRows.size();
-    }
-
     public int getCountFoundBooks() {
         int count = 0;
         for (WebElement element : allRows) {

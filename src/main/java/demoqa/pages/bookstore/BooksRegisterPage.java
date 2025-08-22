@@ -160,8 +160,4 @@ public class BooksRegisterPage extends BasePage {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(12));
         registerButton.click();
     }
-
-    public void clickBackToLoginButton() {
-        backToLoginButton.click();
-    }
 }

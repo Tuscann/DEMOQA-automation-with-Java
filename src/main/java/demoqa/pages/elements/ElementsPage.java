@@ -15,7 +15,7 @@ import static utilities.JavaScriptUtility.scrollToElementJS;
 public class ElementsPage extends BasePage {
 
     @FindBy(xpath = "//li[@id='item-0']/span[text()='Text Box']")
-    private WebElement textBox;
+    private WebElement textBoxTab;
 
     @FindBy(xpath = "//li[@id='item-1']/span[text()='Check Box']")
     private WebElement checkBox;
@@ -60,7 +60,7 @@ public class ElementsPage extends BasePage {
     }
 
     public void clickTextBox() {
-        textBox.click();
+        textBoxTab.click();
     }
 
     public void clickCheckBox() {
@@ -96,8 +96,8 @@ public class ElementsPage extends BasePage {
         links.click();
     }
 
-    public boolean verifyTextBoxIsVisible() {
-        return textBox.isDisplayed();
+    public boolean verifyTextBoxTabIsVisible() {
+        return textBoxTab.isDisplayed();
     }
 
     public void clickElements() {
@@ -106,7 +106,7 @@ public class ElementsPage extends BasePage {
 
     public boolean verifyTextBoxIsNotVisible() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(6));
-        wait.until(ExpectedConditions.invisibilityOf(textBox));
+        wait.until(ExpectedConditions.invisibilityOf(textBoxTab));
 
         String classAttribute = collapseDiv.getDomAttribute("class");
         return classAttribute.equals("element-list collapse show");

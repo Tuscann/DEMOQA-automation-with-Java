@@ -83,7 +83,7 @@ public class CheckBoxPage extends BasePage {
         PageFactory.initElements(driver, this);
     }
 
-    public boolean isResultMessageShown() {
+    public boolean isResultMessageEmpty() {
         return resultMessageList.isEmpty();
     }
 
@@ -95,7 +95,7 @@ public class CheckBoxPage extends BasePage {
         return header.getText();
     }
 
-    public void clickExpandAll() {
+    public void clickExpandAllCheckBoxes() {
         expandAll.click();
     }
 
@@ -111,7 +111,7 @@ public class CheckBoxPage extends BasePage {
         documents.click();
     }
 
-    public void clickVeu() {
+    public void clickWorkSpaceVeu() {
         veu.click();
     }
 
@@ -127,12 +127,12 @@ public class CheckBoxPage extends BasePage {
         workSpace.click();
     }
 
-    public void clickReact() {
+    public void clickWorkSpaceReact() {
         scrollToElementJS(react);
         react.click();
     }
 
-    public void clickAngular() {
+    public void clickWorkSpaceAngular() {
         angular.click();
     }
 
@@ -169,11 +169,11 @@ public class CheckBoxPage extends BasePage {
         officePrivate.click();
     }
 
-    public void clickClassified() {
+    public void clickOfficeClassified() {
         classified.click();
     }
 
-    public void clickGeneral() {
+    public void clickOfficeGeneral() {
         general.click();
     }
 

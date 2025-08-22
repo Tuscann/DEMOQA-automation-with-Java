@@ -335,16 +335,6 @@ public class WebTablesPage extends BasePage {
         return departmentCell.getText();
     }
 
-    public boolean checkPreviousButtonIsActive() {
-        scrollToElementJS(previousButton);
-        return previousButton.isEnabled();
-    }
-
-    public boolean checkNextButtonIsActive() {
-        scrollToElementJS(previousButton);
-        return nextButton.isEnabled();
-    }
-
     public boolean isAllBordersRed(String color) {
         delay(500); //TODO
 
@@ -363,12 +353,6 @@ public class WebTablesPage extends BasePage {
             }
         }
         return true;
-    }
-
-    public void clickNexButton() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(6));
-        wait.until(ExpectedConditions.elementToBeClickable(nextButton));
-        nextButton.click();
     }
 
     public boolean isFirstNameBorderColorGreen(String color) {

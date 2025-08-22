@@ -30,8 +30,6 @@ public class TextBoxPageTests extends BaseTest {
 
     private static final String TEST_FULL_NAME_ALT = "Petar Kamenov";
     private static final String TEST_EMAIL_ALT = "da@gmail.com";
-    private static final String TEST_CURRENT_ADDRESS_ALT2 = "Varna";
-    private static final String TEST_PERMANENT_ADDRESS_ALT2 = "Mars";
 
     // Output Format Constants
     private static final String NAME_PREFIX = "Name:";
@@ -76,27 +74,27 @@ public class TextBoxPageTests extends BaseTest {
     @Test(enabled = true, description = "Verify all placeholders and labels on the text box page")
     public void verifyAllPlaceholdersAndAllLabels() {
         // Arrange & Act
-        String actualHeader = textBoxPage.getHeaderText();
-        String placeholderFullName = textBoxPage.getPlaceholderFullName();
-        String placeholderEmail = textBoxPage.getPlaceholderEmail();
-        String placeholderCurrentAddress = textBoxPage.getPlaceholderCurrentAddress();
-        String actualPlaceholderPermanentAddress = textBoxPage.getPlaceholderPermanentAddress();
+        String actualHeader = textBoxPage.getTextBoxHeaderText();
         String fullNameLabel = textBoxPage.getFullNameLabel();
+        String fullNamePlaceholder = textBoxPage.getPlaceholderFullName();
         String emailLabel = textBoxPage.getEmailLabel();
+        String emailPlaceholder = textBoxPage.getPlaceholderEmail();
         String currentAddressLabel = textBoxPage.getCurrentAddressLabel();
+        String currentAddressPlaceholder = textBoxPage.getPlaceholderCurrentAddress();
         String permanentAddressLabel = textBoxPage.getPermanentAddressLabel();
+        String permanentAddressPlaceholder = textBoxPage.getPlaceholderPermanentAddress();
         String actualSubmitButtonText = textBoxPage.getSubmitButtonText();
 
         // Assert
         softAssert.assertEquals(actualHeader, EXPECTED_HEADER_TEXT, HEADER_TEXT_MISMATCH);
         softAssert.assertEquals(fullNameLabel, EXPECTED_FULL_NAME_LABEL, FULL_NAME_LABEL_MISMATCH);
-        softAssert.assertEquals(placeholderFullName, EXPECTED_FULL_NAME_PLACEHOLDER, FULL_NAME_PLACEHOLDER_MISMATCH);
+        softAssert.assertEquals(fullNamePlaceholder, EXPECTED_FULL_NAME_PLACEHOLDER, FULL_NAME_PLACEHOLDER_MISMATCH);
         softAssert.assertEquals(emailLabel, EXPECTED_EMAIL_LABEL, EMAIL_LABEL_MISMATCH);
-        softAssert.assertEquals(placeholderEmail, EXPECTED_EMAIL_PLACEHOLDER, EMAIL_PLACEHOLDER_MISMATCH);
+        softAssert.assertEquals(emailPlaceholder, EXPECTED_EMAIL_PLACEHOLDER, EMAIL_PLACEHOLDER_MISMATCH);
         softAssert.assertEquals(currentAddressLabel, EXPECTED_CURRENT_ADDRESS_LABEL, CURRENT_ADDRESS_LABEL_MISMATCH);
-        softAssert.assertEquals(placeholderCurrentAddress, EXPECTED_CURRENT_ADDRESS_PLACEHOLDER, CURRENT_ADDRESS_PLACEHOLDER_MISMATCH);
+        softAssert.assertEquals(currentAddressPlaceholder, EXPECTED_CURRENT_ADDRESS_PLACEHOLDER, CURRENT_ADDRESS_PLACEHOLDER_MISMATCH);
         softAssert.assertEquals(permanentAddressLabel, EXPECTED_PERMANENT_ADDRESS_LABEL, PERMANENT_ADDRESS_LABEL_MISMATCH);
-        softAssert.assertEquals(actualPlaceholderPermanentAddress, EXPECTED_PERMANENT_ADDRESS_PLACEHOLDER, PERMANENT_ADDRESS_PLACEHOLDER_MISMATCH);
+        softAssert.assertEquals(permanentAddressPlaceholder, EXPECTED_PERMANENT_ADDRESS_PLACEHOLDER, PERMANENT_ADDRESS_PLACEHOLDER_MISMATCH);
         softAssert.assertEquals(actualSubmitButtonText, EXPECTED_SUBMIT_BUTTON_TEXT, SUBMIT_BUTTON_TEXT_MISMATCH);
 
         softAssert.assertAll();
@@ -166,7 +164,7 @@ public class TextBoxPageTests extends BaseTest {
     }
 
     @Test(enabled = true, description = "Submit invalid email and verify red border validation")
-    public void tryToSubmitInvalidEmailAndCheckRedLine() {
+    public void submitInvalidEmailAndCheckRedLine() {
         // Arrange & Act
         textBoxPage.setEmailField(TEST_EMAIL_INVALID);
         textBoxPage.clickSubmitButton();
@@ -181,26 +179,26 @@ public class TextBoxPageTests extends BaseTest {
     @Test(enabled = true, description = "Submit only valid current address and verify output")
     public void submitOnlyValidCurrentAddress() {
         // Arrange & Act
-        textBoxPage.setCurrentAddressField(TEST_CURRENT_ADDRESS_ALT);
+        textBoxPage.setCurrentAddressField(TEST_CURRENT_ADDRESS);
         textBoxPage.clickSubmitButton();
 
         String actualCurrentAddress = textBoxPage.getExpectedCurrentAddress();
 
         // Assert
-        softAssert.assertEquals(actualCurrentAddress, CURRENT_ADDRESS_PREFIX + TEST_CURRENT_ADDRESS_ALT, CURRENT_ADDRESS_DOES_NOT_MATCH_ERROR);
+        softAssert.assertEquals(actualCurrentAddress, CURRENT_ADDRESS_PREFIX + TEST_CURRENT_ADDRESS, CURRENT_ADDRESS_DOES_NOT_MATCH_ERROR);
         softAssert.assertAll();
     }
 
     @Test(enabled = true, description = "Submit only valid permanent address and verify output")
     public void submitOnlyValidPermanentAddress() {
         // Arrange & Act
-        textBoxPage.setPermanentAddressField(TEST_PERMANENT_ADDRESS_ALT);
+        textBoxPage.setPermanentAddressField(TEST_PERMANENT_ADDRESS);
         textBoxPage.clickSubmitButton();
 
         String actualPermanentAddress = textBoxPage.getExpectedPermanentAddress();
 
         // Assert
-        softAssert.assertEquals(actualPermanentAddress, PERMANENT_ADDRESS_PREFIX + TEST_PERMANENT_ADDRESS_ALT, PERMANENT_ADDRESS_DOES_NOT_MATCH_ERROR);
+        softAssert.assertEquals(actualPermanentAddress, PERMANENT_ADDRESS_PREFIX + TEST_PERMANENT_ADDRESS, PERMANENT_ADDRESS_DOES_NOT_MATCH_ERROR);
         softAssert.assertAll();
     }
 
@@ -227,8 +225,8 @@ public class TextBoxPageTests extends BaseTest {
         // Arrange & Act - Second submission with updated values
         textBoxPage.setFullNameField(TEST_FULL_NAME_ALT);
         textBoxPage.setEmailField(TEST_EMAIL_ALT);
-        textBoxPage.setCurrentAddressField(TEST_CURRENT_ADDRESS_ALT2);
-        textBoxPage.setPermanentAddressField(TEST_PERMANENT_ADDRESS_ALT2);
+        textBoxPage.setCurrentAddressField(TEST_CURRENT_ADDRESS_ALT);
+        textBoxPage.setPermanentAddressField(TEST_PERMANENT_ADDRESS_ALT);
         textBoxPage.clickSubmitButton();
 
         actualName = textBoxPage.getExpectedName();
@@ -239,9 +237,48 @@ public class TextBoxPageTests extends BaseTest {
         // Assert - Second submission
         softAssert.assertEquals(actualName, NAME_PREFIX + TEST_FULL_NAME_ALT, FULL_NAME_MISMATCH);
         softAssert.assertEquals(actualEmail, EMAIL_PREFIX + TEST_EMAIL_ALT, EMAIL_MISMATCH);
-        softAssert.assertEquals(actualCurrentAddress, CURRENT_ADDRESS_PREFIX + TEST_CURRENT_ADDRESS_ALT2, CURRENT_ADDRESS_MISMATCH);
-        softAssert.assertEquals(actualPermanentAddress, PERMANENT_ADDRESS_PREFIX + TEST_PERMANENT_ADDRESS_ALT2, PERMANENT_ADDRESS_MISMATCH);
+        softAssert.assertEquals(actualCurrentAddress, CURRENT_ADDRESS_PREFIX + TEST_CURRENT_ADDRESS_ALT, CURRENT_ADDRESS_MISMATCH);
+        softAssert.assertEquals(actualPermanentAddress, PERMANENT_ADDRESS_PREFIX + TEST_PERMANENT_ADDRESS_ALT, PERMANENT_ADDRESS_MISMATCH);
 
+        softAssert.assertAll();
+    }
+
+    @Test(enabled = true, description = "Update all fields after submit delete all except email")
+    public void submitFillFormAndOnlyStayEmail() {
+        // Arrange & Act - First submission
+        textBoxPage.setFullNameField(TEST_FULL_NAME);
+        textBoxPage.setEmailField(TEST_EMAIL);
+        textBoxPage.setCurrentAddressField(TEST_CURRENT_ADDRESS);
+        textBoxPage.setPermanentAddressField(TEST_PERMANENT_ADDRESS);
+        textBoxPage.clickSubmitButton();
+
+        String actualName = textBoxPage.getExpectedName();
+        String actualEmail = textBoxPage.getExpectedEmail();
+        String actualCurrentAddress = textBoxPage.getExpectedCurrentAddress();
+        String actualPermanentAddress = textBoxPage.getExpectedPermanentAddress();
+
+        // Assert - First submission
+        softAssert.assertEquals(actualName, NAME_PREFIX + TEST_FULL_NAME, FULL_NAME_MISMATCH);
+        softAssert.assertEquals(actualEmail, EMAIL_PREFIX + TEST_EMAIL, EMAIL_MISMATCH);
+        softAssert.assertEquals(actualCurrentAddress, CURRENT_ADDRESS_PREFIX + TEST_CURRENT_ADDRESS, CURRENT_ADDRESS_MISMATCH);
+        softAssert.assertEquals(actualPermanentAddress, PERMANENT_ADDRESS_PREFIX + TEST_PERMANENT_ADDRESS, PERMANENT_ADDRESS_MISMATCH);
+
+        // Arrange & Act - Second submission with updated values
+        textBoxPage.setFullNameField("");
+        textBoxPage.setCurrentAddressField("");
+        textBoxPage.setPermanentAddressField("");
+        textBoxPage.clickSubmitButton();
+
+        String fullNamePlaceholder = textBoxPage.getPlaceholderFullName();
+        actualEmail = textBoxPage.getExpectedEmail();
+        String currentAddressPlaceholder = textBoxPage.getPlaceholderCurrentAddress();
+        String permanentAddressPlaceholder = textBoxPage.getPlaceholderPermanentAddress();
+
+        // Assert - Second submission
+        softAssert.assertEquals(fullNamePlaceholder, EXPECTED_FULL_NAME_PLACEHOLDER, FULL_NAME_PLACEHOLDER_MISMATCH);
+        softAssert.assertEquals(actualEmail, EMAIL_PREFIX + TEST_EMAIL, EMAIL_MISMATCH);
+        softAssert.assertEquals(currentAddressPlaceholder, EXPECTED_CURRENT_ADDRESS_PLACEHOLDER, CURRENT_ADDRESS_PLACEHOLDER_MISMATCH);
+        softAssert.assertEquals(permanentAddressPlaceholder, EXPECTED_PERMANENT_ADDRESS_PLACEHOLDER, PERMANENT_ADDRESS_PLACEHOLDER_MISMATCH);
         softAssert.assertAll();
     }
 }

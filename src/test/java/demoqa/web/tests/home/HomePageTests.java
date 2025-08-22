@@ -46,7 +46,7 @@ public class HomePageTests extends BaseTest {
         return new Object[][]{
                 {"Elements", ELEMENTS_URL, (Runnable) () -> homePage.goToElements()},
                 {"Forms", FORMS_URL, (Runnable) () -> homePage.goToForms()},
-                {"Alerts", ALERTS_WINDOWS_URL, (Runnable) () -> homePage.goToAlertsFramesWindowsCard()},
+                {"Alerts Frame Windows", ALERTS_WINDOWS_URL, (Runnable) () -> homePage.goToAlertsFramesWindowsCard()},
                 {"Widgets", WIDGETS_URL, (Runnable) () -> homePage.goToWidgets()},
                 {"Interactions", INTERACTION_URL, (Runnable) () -> homePage.goToInteractions()},
                 {"Book Store", BOOKS_URL, (Runnable) () -> homePage.goToBooks()}
@@ -68,7 +68,7 @@ public class HomePageTests extends BaseTest {
         // Arrange & Act & Assert
         softAssert.assertEquals(homePage.getElementsText(), ELEMENTS_TEXT, ELEMENTS_TEXT_ERROR);
         softAssert.assertEquals(homePage.getFormsText(), FORMS_TEXT, FORMS_TEXT_ERROR);
-        softAssert.assertEquals(homePage.getAlertsText(), ALERTS_TEXT, ALERTS_TEXT_ERROR);
+        softAssert.assertEquals(homePage.getAlertsFramesWindowsText(), ALERTS_TEXT, ALERTS_TEXT_ERROR);
         softAssert.assertEquals(homePage.getWidgetsText(), WIDGETS_TEXT, WIDGETS_TEXT_ERROR);
         softAssert.assertEquals(homePage.getInteractionsText(), INTERACTIONS_TEXT, INTERACTIONS_TEXT_ERROR);
         softAssert.assertEquals(homePage.getBookStoreApplicationText(), BOOKS_TEXT, BOOKS_TEXT_ERROR);

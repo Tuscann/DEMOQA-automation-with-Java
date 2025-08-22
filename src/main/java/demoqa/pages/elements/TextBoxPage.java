@@ -117,7 +117,7 @@ public class TextBoxPage extends BasePage {
         return output.getText();
     }
 
-    public String getHeaderText() {
+    public String getTextBoxHeaderText() {
         return header.getText();
     }
 
@@ -125,19 +125,19 @@ public class TextBoxPage extends BasePage {
         return submitButton.getText();
     }
 
-    public void setFullNameField(String fullName2) {
+    public void setFullNameField(String fullName) {
         MoveToElementSelenium(fullNameField);
-        set(fullNameField, fullName2);
+        set(fullNameField, fullName);
     }
 
-    public void setEmailField(String email2) {
+    public void setEmailField(String email) {
         scrollToElementJS(emailField);
-        set(emailField, email2);
+        set(emailField, email);
     }
 
-    public void setCurrentAddressField(String currentAddress2) {
+    public void setCurrentAddressField(String currentAddress) {
         scrollToElementJS(currentAddressField);
-        set(currentAddressField, currentAddress2);
+        set(currentAddressField, currentAddress);
     }
 
     public void setPermanentAddressField(String permanentAddress2) {

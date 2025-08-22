@@ -19,6 +19,8 @@ public class RadioButtonPage extends BasePage {
     private WebElement impressiveLabel;
     @FindBy(xpath = "//label[@for='noRadio']")
     private WebElement noAnswerLabel;
+    @FindBy(xpath = "//label[@class='custom-control-label disabled']")
+    private WebElement noAnswerLabelDisabled;
     @FindBy(xpath = "//p[contains(@class, 'mt-3')]")
     private WebElement resultMessage;
     @FindBy(xpath = "//span[@class='text-success']")
@@ -70,13 +72,29 @@ public class RadioButtonPage extends BasePage {
         }
     }
 
-    public boolean isAnswerDisable(String answer) {
-        boolean isDisabled = false;
+    public boolean isAnswerEnabled(String answer) {
         switch (answer) {
-            case "Yes" -> isDisabled = yesAnswerLabel.isEnabled();
-            case "Impressive" -> isDisabled = impressiveLabel.isEnabled();
-            case "No" -> isDisabled = noAnswerLabel.isEnabled();
+            case "Yes" -> {
+                return yesAnswerLabel.isEnabled();
+            }
+            case "Impressive" -> {
+                return impressiveLabel.isEnabled();
+            }
+            case "No" -> {
+                // If disabled label is found, return false (disabled)
+                // Otherwise check if regular label is enabled
+                try {
+                    if (noAnswerLabelDisabled.isDisplayed()) {
+                        return false;
+                    }
+                } catch (Exception e) {
+                    // Disabled label not found, continue to check regular label
+                }
+                return noAnswerLabel.isEnabled();
+            }
+            default -> {
+                return false;
+            }
         }
-        return isDisabled;
     }
 }

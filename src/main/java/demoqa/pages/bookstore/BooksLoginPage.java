@@ -98,18 +98,6 @@ public class BooksLoginPage extends BasePage {
         return newUserButton.getText();
     }
 
-    public void clickGoToBookStoreButton() {
-        goToBookStoreButton.click();
-    }
-
-    public void clickDeleteAccountButton() {
-        deleteAccountButton.click();
-    }
-
-    public void clickDeleteAllBooksButton() {
-        deleteAllBooksButton.click();
-    }
-
     public void clickLogoutButton() {
         logoutButton.click();
     }
@@ -118,15 +106,6 @@ public class BooksLoginPage extends BasePage {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(12));
         wait.until(ExpectedConditions.elementToBeClickable(errorMessage));
         return errorMessage.getText();
-    }
-
-    public void clickUsernameInputField() {
-        scrollToElementJS(username);
-        username.click();
-    }
-
-    public void clickPasswordInputField() {
-        password.click();
     }
 
     public void clickLoginButton() {
@@ -139,11 +118,6 @@ public class BooksLoginPage extends BasePage {
         wait.until(ExpectedConditions.urlToBe("https://demoqa.com/profile"));
         wait.until(ExpectedConditions.elementToBeClickable(profile));
         return profile.getText();
-    }
-
-    public void clickNewUserButton() {
-        scrollToElementJS(newUserButton);
-        newUserButton.click();
     }
 
     public void setUsername(String username2) {

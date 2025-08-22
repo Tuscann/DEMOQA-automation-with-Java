@@ -133,38 +133,6 @@ public class SelectablePage extends BasePage {
         }
     }
 
-//    public void selectFirstRow() {
-//        firstRowSelect.click();
-//    }
-//
-//    public void selectSecondRow() {
-//        secondRowSelect.click();
-//    }
-//
-//    public void selectThirdRow() {
-//        thirdRowSelect.click();
-//    }
-//
-//    public void selectFourRow() {
-//        fourRowSelect.click();
-//    }
-//
-//    public void deselectFirstRow() {
-//        firstRowDeselect.click();
-//    }
-//
-//    public void deselectSecondRow() {
-//        secondRowDeselect.click();
-//    }
-//
-//    public void deselectThirdRow() {
-//        thirdRowDeselect.click();
-//    }
-//
-//    public void deselectFourRow() {
-//        fourRowDeselect.click();
-//    }
-
     public boolean RowSelected(String searchedSelection) {
 
         WebElement listItem = driver.findElement(By.xpath("//li[contains(.,'" + searchedSelection + "')]"));

@@ -57,10 +57,6 @@ public class BooksProfilePage extends BasePage {
         registerLink.click();
     }
 
-    public void clickUsername() {
-        username.click();
-    }
-
     public void clickGoToBookStoreButton() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(12));
         wait.until(ExpectedConditions.urlToBe("https://demoqa.com/profile"));
