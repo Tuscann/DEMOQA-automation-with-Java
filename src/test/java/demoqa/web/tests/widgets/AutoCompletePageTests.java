@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 
 public class AutoCompletePageTests extends BaseTest {
     // Text Constants
-    private static final String PAGE_HEADING = "Auto Complete";
+    private static final String AUTO_COMPLETE_HEADING = "Auto Complete";
     private static final String TYPE_MULTIPLE_TEXT = "Type multiple color names";
     private static final String TYPE_SINGLE_TEXT = "Type single color name";
 
@@ -45,7 +45,7 @@ public class AutoCompletePageTests extends BaseTest {
         String actualTypeSingleText = autoCompletePage.getAutoCompleteSingleText();
 
         // Assert
-        softAssert.assertEquals(actualText, PAGE_HEADING, PAGE_HEADING_ERROR);
+        softAssert.assertEquals(actualText, AUTO_COMPLETE_HEADING, PAGE_HEADING_ERROR);
         softAssert.assertEquals(actualTypeMultipleText, TYPE_MULTIPLE_TEXT, TYPE_MULTIPLE_TEXT_ERROR);
         softAssert.assertEquals(actualTypeSingleText, TYPE_SINGLE_TEXT, TYPE_SINGLE_TEXT_ERROR);
 
@@ -55,6 +55,8 @@ public class AutoCompletePageTests extends BaseTest {
     @Test(enabled = true, description = "Select two colors multiple")
     public void selectTwoColorsMultiple() {
         // Arrange & Act
+        autoCompletePage.waitForPageReady();
+
         autoCompletePage.multiAutoCompleteSelectColor(COLOR_RED);
         autoCompletePage.multiAutoCompleteSelectColor(COLOR_BLUE);
 
@@ -68,6 +70,8 @@ public class AutoCompletePageTests extends BaseTest {
     @Test(enabled = true, description = "Select two colors and delete two multiple")
     public void selectTwoColorsAndDeleteTwoMultiple() {
         // Arrange & Act
+        autoCompletePage.waitForPageReady();
+
         autoCompletePage.multiAutoCompleteSelectColor(COLOR_RED);
         autoCompletePage.multiAutoCompleteSelectColor(COLOR_BLUE);
         String actualSelectedColors = autoCompletePage.getAllSelectedMultiColorNames();
