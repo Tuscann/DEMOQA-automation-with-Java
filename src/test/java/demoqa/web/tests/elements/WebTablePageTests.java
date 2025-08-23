@@ -3,7 +3,6 @@ package demoqa.web.tests.elements;
 import demoqa.pages.elements.WebTablesPage;
 import demoqa.web.base.BaseTest;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 public class WebTablePageTests extends BaseTest {
@@ -31,6 +30,33 @@ public class WebTablePageTests extends BaseTest {
     private static final String EXPECTED_DEPARTMENT_PLACEHOLDER = "Department";
     private static final String EXPECTED_SUBMIT_BUTTON_TEXT = "Submit";
     private static final String EXPECTED_NO_ROWS_FOUND = "No rows found";
+
+    private static final String expectedFirstRowData =
+            """                
+                    Alden
+                    Cantrell
+                    45
+                    alden@example.com
+                    12000
+                    Compliance""";
+
+    private static final String expectedSecondRowData =
+            """                
+                    Cierra
+                    Vega
+                    39
+                    cierra@example.com
+                    10000
+                    Insurance""";
+
+    private static final String expectedThirdRowData =
+            """                
+                    Kierra
+                    Gentry
+                    29
+                    kierra@example.com
+                    2000
+                    Legal""";
 
     // Table Data Constants
     private static final String EXPECTED_TABLE_HEADER = """
@@ -63,26 +89,38 @@ public class WebTablePageTests extends BaseTest {
     private static final String TEST_EMAIL_CIERRA = "cierra@example.com";
     private static final String TEST_FIRST_NAME = "Zhivko";
     private static final String TEST_LAST_NAME = "Petrov";
-    private static final String TEST_NEW_EMAIL = "da@abv.bg";
+    private static final String TEST_NEW_EMAIL = "karma@abv.bg";
     private static final String TEST_AGE = "37";
-    private static final String TEST_SALARY = "2000";
+    private static final String TEST_SALARY = "3600";
     private static final String TEST_DEPARTMENT = "Home";
     private static final String TEST_EMAIL_KIERRA = "kierra@example.com";
     private static final String TEST_EMAIL_ALDEN = "alden@example.com";
     private static final String TEST_EMAIL_ZHIVKO = "Zhivko@example.com";
-    private static final String TEST_LAST_NAME_KAMENOV = "Kamenov";
-    private static final String TEST_SALARY_ALT = "2500";
-    private static final String TEST_DEPARTMENT_QA = "QA";
 
     // Test Data Constants - Expected Values for Search Tests
     private static final String EXPECTED_FIRST_NAME_CIERRA = "Cierra";
-    private static final String EXPECTED_LAST_NAME_CIERRA = "Vega";
-    private static final String EXPECTED_AGE_CIERRA = "39";
-    private static final String EXPECTED_SALARY_CIERRA = "10000";
+    private static final String EXPECTED_FIRST_NAME_ALDEN = "Alden";
+    private static final String EXPECTED_FIRST_NAME_KIERRA = "Kierra";
+    private static final String EXPECTED_LAST_NAME_VEGA = "Vega";
+    private static final String EXPECTED_LAST_NAME_CANTRELL = "Cantrell";
+    private static final String EXPECTED_LAST_NAME_GENTRY = "Gentry";
+    private static final String EXPECTED_AGE_29 = "29";
+    private static final String EXPECTED_AGE_39 = "39";
+    private static final String EXPECTED_AGE_45 = "45";
+    private static final String EXPECTED_SALARY_10000 = "10000";
+    private static final String EXPECTED_SALARY_12000 = "12000";
+    private static final String EXPECTED_SALARY_2000 = "2000";
+    private static final String EXPECTED_DEPARTMENT_COMPLIANCE = "Compliance";
+    private static final String EXPECTED_DEPARTMENT_LEGAL = "Legal";
 
     // Test Data Constants - Search Test Data
     private static final String SEARCH_NON_EXISTENT_CATEGORY = "karma";
-    private static final String SEARCH_EXISTING_CATEGORY = "Insurance";
+    private static final String SEARCH_EXISTING_FIRST_NAME = "ALDEN";
+    private static final String SEARCH_EXISTING_LAST_NAME = "Gentry";
+    private static final String SEARCH_EXISTING_AGE = "45";
+    private static final String SEARCH_EXISTING_EMAIL_ALDEN = "alden@example.com";
+    private static final String SEARCH_EXISTING_SALARY_12000 = "12000";
+    private static final String SEARCH_EXISTING_DEPARTMENT_INSURANCE = "Insurance";
 
     // Rows Per Page Constants
     private static final String ROWS_5 = "5 rows";
@@ -121,12 +159,7 @@ public class WebTablePageTests extends BaseTest {
     private static final String SALARY_PLACEHOLDER_MISMATCH = "Salary placeholder mismatch";
     private static final String DEPARTMENT_PLACEHOLDER_MISMATCH = "Department placeholder mismatch";
     private static final String SUBMIT_BUTTON_TEXT_MISMATCH = "Submit button text mismatch";
-    private static final String FIRST_NAME_MISMATCH = "First name mismatch";
-    private static final String LAST_NAME_MISMATCH = "Last name mismatch";
-    private static final String EMAIL_MISMATCH = "Email mismatch";
     private static final String AGE_MISMATCH = "Age mismatch";
-    private static final String SALARY_MISMATCH = "Salary mismatch";
-    private static final String DEPARTMENT_MISMATCH = "Department mismatch";
     private static final String NO_ROWS_MESSAGE_MISMATCH = "No rows found message missing";
     private static final String WRONG_FIRST_NAME = "Wrong first name";
     private static final String WRONG_LAST_NAME = "Wrong last name";
@@ -134,9 +167,6 @@ public class WebTablePageTests extends BaseTest {
     private static final String WRONG_EMAIL = "Wrong email";
     private static final String WRONG_SALARY = "Wrong salary";
     private static final String WRONG_DEPARTMENT = "Wrong department";
-    private static final String NEXT_BUTTON_ACTIVE_ERROR = "Next button should not be active";
-    private static final String RED_COLOR_MISMATCH = "Wrong color, expected red";
-    private static final String GREEN_COLOR_MISMATCH = "Wrong color, expected green";
 
     // Error Message Constants - Generic Messages
     private static final String GENERIC_FIRST_NAME_MISMATCH = "\n Actual & Expected FirstName Do Not Match.\n";
@@ -159,19 +189,6 @@ public class WebTablePageTests extends BaseTest {
     private static final String GENERIC_EXPECTED_ROWS_100 = "\nExpected 100 rows.\n";
     private static final String GENERIC_WRONG_COLOR_RED = "\nWrong color expected red.\n";
     private static final String GENERIC_WRONG_COLOR_GREEN = "\nWrong color expected green.\n";
-
-    // Data Provider for Rows Per Page Testing
-    @DataProvider(name = "rowsPerPageData")
-    public Object[][] rowsPerPageDataProvider() {
-        return new Object[][]{
-                {ROWS_5, 5, "5 rows per page"},
-                {ROWS_10, 10, "10 rows per page"},
-                {ROWS_20, 20, "20 rows per page"},
-                {ROWS_25, 25, "25 rows per page"},
-                {ROWS_50, 50, "50 rows per page"},
-                {ROWS_100, 100, "100 rows per page"}
-        };
-    }
 
     private WebTablesPage webTablesPage;
     private static final String WEB_TABLES_URL = "webtables";
@@ -216,42 +233,42 @@ public class WebTablePageTests extends BaseTest {
     public void verifyAllLabelAndPlaceHoldersOnRegistrationForm() {
         // Arrange & Act
         webTablesPage.clickAddButton();
-        String actualRegistrationText = webTablesPage.getRegistrationFormText();
+        String actualRegistrationFormHeaderText = webTablesPage.getRegistrationFormText();
         String actualFirstNameLabel = webTablesPage.getRegistrationFirstNameLabel();
-        String actualPlaceholderFirstName = webTablesPage.getPlaceholderFirstName();
+        String actualFirstNamePlaceholder = webTablesPage.getPlaceholderFirstName();
         String actualLastNameLabel = webTablesPage.getRegistrationLastNameLabel();
-        String actualPlaceholderLastName = webTablesPage.getPlaceholderLastName();
+        String actualLastNamePlaceholder = webTablesPage.getPlaceholderLastName();
         String actualEmailLabel = webTablesPage.getRegistrationEmailLabel();
-        String actualPlaceholderEmail = webTablesPage.getPlaceholderUserEmail();
+        String actualEmailPlaceholder = webTablesPage.getPlaceholderUserEmail();
         String actualAgeLabel = webTablesPage.getRegistrationAgeLabel();
-        String actualPlaceholderAge = webTablesPage.getAgePlaceholder();
+        String actualAgePlaceholder = webTablesPage.getAgePlaceholder();
         String actualSalaryLabel = webTablesPage.getRegistrationSalaryLabel();
-        String actualPlaceholderSalary = webTablesPage.getSalaryPlaceholder();
+        String actualSalaryPlaceholder = webTablesPage.getSalaryPlaceholder();
         String actualDepartmentLabel = webTablesPage.getDepartmentLabel();
-        String actualPlaceholderDepartment = webTablesPage.getDepartmentPlaceholder();
+        String actualDepartmentPlaceholder = webTablesPage.getDepartmentPlaceholder();
         String actualSubmitButtonText = webTablesPage.getSubmitButtonText();
 
         // Assert
-        softAssert.assertEquals(actualRegistrationText, EXPECTED_REGISTRATION_FORM_TEXT, REGISTRATION_FORM_TEXT_MISMATCH);
+        softAssert.assertEquals(actualRegistrationFormHeaderText, EXPECTED_REGISTRATION_FORM_TEXT, REGISTRATION_FORM_TEXT_MISMATCH);
         softAssert.assertEquals(actualFirstNameLabel, EXPECTED_FIRST_NAME_LABEL, FIRST_NAME_LABEL_MISMATCH);
         softAssert.assertEquals(actualLastNameLabel, EXPECTED_LAST_NAME_LABEL, LAST_NAME_LABEL_MISMATCH);
         softAssert.assertEquals(actualEmailLabel, EXPECTED_EMAIL_LABEL, EMAIL_LABEL_MISMATCH);
         softAssert.assertEquals(actualAgeLabel, EXPECTED_AGE_LABEL, AGE_LABEL_MISMATCH);
         softAssert.assertEquals(actualSalaryLabel, EXPECTED_SALARY_LABEL, SALARY_LABEL_MISMATCH);
         softAssert.assertEquals(actualDepartmentLabel, EXPECTED_DEPARTMENT_LABEL, DEPARTMENT_LABEL_MISMATCH);
-        softAssert.assertEquals(actualPlaceholderFirstName, EXPECTED_FIRST_NAME_PLACEHOLDER, FIRST_NAME_PLACEHOLDER_MISMATCH);
-        softAssert.assertEquals(actualPlaceholderLastName, EXPECTED_LAST_NAME_PLACEHOLDER, LAST_NAME_PLACEHOLDER_MISMATCH);
-        softAssert.assertEquals(actualPlaceholderEmail, EXPECTED_EMAIL_PLACEHOLDER, EMAIL_PLACEHOLDER_MISMATCH);
-        softAssert.assertEquals(actualPlaceholderAge, EXPECTED_AGE_PLACEHOLDER, AGE_PLACEHOLDER_MISMATCH);
-        softAssert.assertEquals(actualPlaceholderSalary, EXPECTED_SALARY_PLACEHOLDER, SALARY_PLACEHOLDER_MISMATCH);
-        softAssert.assertEquals(actualPlaceholderDepartment, EXPECTED_DEPARTMENT_PLACEHOLDER, DEPARTMENT_PLACEHOLDER_MISMATCH);
+        softAssert.assertEquals(actualFirstNamePlaceholder, EXPECTED_FIRST_NAME_PLACEHOLDER, FIRST_NAME_PLACEHOLDER_MISMATCH);
+        softAssert.assertEquals(actualLastNamePlaceholder, EXPECTED_LAST_NAME_PLACEHOLDER, LAST_NAME_PLACEHOLDER_MISMATCH);
+        softAssert.assertEquals(actualEmailPlaceholder, EXPECTED_EMAIL_PLACEHOLDER, EMAIL_PLACEHOLDER_MISMATCH);
+        softAssert.assertEquals(actualAgePlaceholder, EXPECTED_AGE_PLACEHOLDER, AGE_PLACEHOLDER_MISMATCH);
+        softAssert.assertEquals(actualSalaryPlaceholder, EXPECTED_SALARY_PLACEHOLDER, SALARY_PLACEHOLDER_MISMATCH);
+        softAssert.assertEquals(actualDepartmentPlaceholder, EXPECTED_DEPARTMENT_PLACEHOLDER, DEPARTMENT_PLACEHOLDER_MISMATCH);
         softAssert.assertEquals(actualSubmitButtonText, EXPECTED_SUBMIT_BUTTON_TEXT, SUBMIT_BUTTON_TEXT_MISMATCH);
 
         softAssert.assertAll();
     }
 
     @Test(enabled = true, description = "Update first name on first user")
-    public void updateFirstNameOnFirstUser() {
+    public void updateFirstUserFirstName() {
         // Arrange & Act
         webTablesPage.clickEdit(TEST_EMAIL_CIERRA);
         webTablesPage.setFirstName(TEST_FIRST_NAME);
@@ -265,7 +282,7 @@ public class WebTablePageTests extends BaseTest {
     }
 
     @Test(enabled = true, description = "Update last name on first user")
-    public void updateLastNameOnFirstUser() {
+    public void updateFirstUserLastName() {
         // Arrange & Act
         webTablesPage.clickEdit(TEST_EMAIL_CIERRA);
         webTablesPage.setLastName(TEST_LAST_NAME);
@@ -278,21 +295,8 @@ public class WebTablePageTests extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(enabled = true, description = "Update email on first user")
-    public void updateEmailOnFirstUser() {
-        // Arrange & Act
-        webTablesPage.clickEdit(TEST_EMAIL_CIERRA);
-        webTablesPage.setEmail(TEST_NEW_EMAIL);
-        webTablesPage.clickSubmitButton();
-        String actualEmail = webTablesPage.getTableEmail(TEST_NEW_EMAIL);
-
-        // Assert
-        softAssert.assertEquals(actualEmail, TEST_NEW_EMAIL, GENERIC_EMAIL_MISMATCH);
-        softAssert.assertAll();
-    }
-
     @Test(enabled = true, description = "Update age on first user")
-    public void updateAgeOnFirstUser() {
+    public void updateFirstUserAge() {
         // Arrange & Act
         webTablesPage.clickEdit(TEST_EMAIL_CIERRA);
         webTablesPage.setAge(TEST_AGE);
@@ -304,8 +308,21 @@ public class WebTablePageTests extends BaseTest {
         softAssert.assertAll();
     }
 
+    @Test(enabled = true, description = "Update email on first user")
+    public void updateFirstUserEmail() {
+        // Arrange & Act
+        webTablesPage.clickEdit(TEST_EMAIL_CIERRA);
+        webTablesPage.setEmail(TEST_NEW_EMAIL);
+        webTablesPage.clickSubmitButton();
+        String actualEmail = webTablesPage.getTableEmail(TEST_NEW_EMAIL);
+
+        // Assert
+        softAssert.assertEquals(actualEmail, TEST_NEW_EMAIL, GENERIC_EMAIL_MISMATCH);
+        softAssert.assertAll();
+    }
+
     @Test(enabled = true, description = "Update salary on first user")
-    public void updateSalaryOnFirstUser() {
+    public void updateFirstUserSalary() {
         // Arrange
         webTablesPage.clickEdit(TEST_EMAIL_CIERRA);
         webTablesPage.setSalary(TEST_SALARY);
@@ -318,7 +335,7 @@ public class WebTablePageTests extends BaseTest {
     }
 
     @Test(enabled = true, description = "Update department on first user")
-    public void updateDepartmentOnFirstUser() {
+    public void updateFirstUserDepartment() {
         // Arrange & Act
         webTablesPage.clickEdit(TEST_EMAIL_CIERRA);
         webTablesPage.setDepartment(TEST_DEPARTMENT);
@@ -341,6 +358,101 @@ public class WebTablePageTests extends BaseTest {
 
         // Assert
         softAssert.assertEquals(actualResult, EXPECTED_NO_ROWS_FOUND, NO_ROWS_MESSAGE_MISMATCH);
+        softAssert.assertAll();
+    }
+
+    @Test(enabled = true, description = "Delete default three rows")
+    public void deleteDefaultThreeRowsAndNewUser() {
+        // Arrange & Act
+        webTablesPage.clickDeleteByEmail(TEST_EMAIL_CIERRA);
+        webTablesPage.clickDeleteByEmail(TEST_EMAIL_KIERRA);
+        webTablesPage.clickDeleteByEmail(TEST_EMAIL_ALDEN);
+
+        webTablesPage.clickAddButton();
+        webTablesPage.setFirstName(TEST_FIRST_NAME);
+        webTablesPage.setLastName(TEST_LAST_NAME);
+        webTablesPage.setEmail(TEST_EMAIL_ZHIVKO);
+        webTablesPage.setAge(TEST_AGE);
+        webTablesPage.setSalary(TEST_SALARY);
+        webTablesPage.setDepartment(TEST_DEPARTMENT);
+        webTablesPage.clickSubmitButton();
+
+        // Assert
+        String actualFirstName = webTablesPage.getFirstRowFirstName();
+        String actualLastName = webTablesPage.getFirstRowLastName();
+        String actualAge = webTablesPage.getFirstRowAge();
+        String actualEmail = webTablesPage.getFirstRowEmail();
+        String actualSalary = webTablesPage.getFirstRowSalary();
+        String actualDepartment = webTablesPage.getFirstRowDepartment();
+
+        softAssert.assertEquals(actualFirstName, TEST_FIRST_NAME, GENERIC_WRONG_FIRST_NAME);
+        softAssert.assertEquals(actualLastName, TEST_LAST_NAME, GENERIC_WRONG_LAST_NAME);
+        softAssert.assertEquals(actualAge, TEST_AGE, GENERIC_WRONG_AGE);
+        softAssert.assertEquals(actualEmail, TEST_EMAIL_ZHIVKO, GENERIC_WRONG_EMAIL);
+        softAssert.assertEquals(actualSalary, TEST_SALARY, GENERIC_WRONG_SALARY);
+        softAssert.assertEquals(actualDepartment, EXPECTED_DEPARTMENT_LEGAL, GENERIC_WRONG_DEPARTMENT);
+
+    }
+
+    @Test(enabled = true, description = "Add 17 new users and verify rows count")
+    public void addSeventeenNewUsersAndVerifyData() {
+        // Arrange & Act
+        for (int i = 0; i < 17; i++) {
+            webTablesPage.clickAddButton();
+            webTablesPage.setFirstName(TEST_FIRST_NAME + i);
+            webTablesPage.setLastName(TEST_LAST_NAME + i);
+            webTablesPage.setEmail(TEST_EMAIL_ZHIVKO);
+            webTablesPage.setAge(EXPECTED_AGE_45 + i + "");
+            webTablesPage.setSalary(TEST_SALARY);
+            webTablesPage.setDepartment(TEST_DEPARTMENT);
+            webTablesPage.clickSubmitButton();
+        }
+
+        webTablesPage.clickRowPerPage(ROWS_20);
+        int actualCountOfLines = webTablesPage.getCountOfLines();
+
+        // Assert
+        softAssert.assertEquals(actualCountOfLines, 20);
+        softAssert.assertAll();
+    }
+
+    @Test(enabled = true, description = "Add eight new users and verify rows count")
+    public void addEightNewUsersAndClickNextAndVerifyData() {
+        // Arrange & Act
+        String firstName = "Zhivko7";
+        String lastName = "Petrov7";
+        String age = "52";
+        String email = "Zhivko@example.com";
+        String salary = "3600";
+        String department = "Home7";
+
+        for (int i = 0; i < 8; i++) {
+            webTablesPage.clickAddButton();
+            webTablesPage.setFirstName(TEST_FIRST_NAME + i);
+            webTablesPage.setLastName(TEST_LAST_NAME + i);
+            webTablesPage.setEmail(TEST_EMAIL_ZHIVKO);
+            webTablesPage.setAge(45 + i + "");
+            webTablesPage.setSalary(TEST_SALARY);
+            webTablesPage.setDepartment(TEST_DEPARTMENT + i);
+            webTablesPage.clickSubmitButton();
+        }
+
+        webTablesPage.clickNextButton();
+        String actualFirstName = webTablesPage.getFirstRowFirstName();
+        String actualLastName = webTablesPage.getFirstRowLastName();
+        String actualAge = webTablesPage.getFirstRowAge();
+        String actualEmail = webTablesPage.getFirstRowEmail();
+        String actualSalary = webTablesPage.getFirstRowSalary();
+        String actualDepartment = webTablesPage.getFirstRowDepartment();
+
+        softAssert.assertEquals(actualFirstName, firstName, GENERIC_WRONG_FIRST_NAME);
+        softAssert.assertEquals(actualLastName, lastName, GENERIC_WRONG_LAST_NAME);
+        softAssert.assertEquals(actualAge, age, GENERIC_WRONG_AGE);
+        softAssert.assertEquals(actualEmail, email, GENERIC_WRONG_EMAIL);
+        softAssert.assertEquals(actualSalary, salary, GENERIC_WRONG_SALARY);
+        softAssert.assertEquals(actualDepartment, department, GENERIC_WRONG_DEPARTMENT);
+
+        // Assert
         softAssert.assertAll();
     }
 
@@ -385,10 +497,125 @@ public class WebTablePageTests extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(enabled = true, description = "Search with existing category and check results")
-    public void searchWithExistingCategoryAndCheckResults() {
+    @Test(enabled = true, description = "Search with existing first name and check results")
+    public void searchWithExistingFirstNameAndCheckResults() {
         // Arrange & Act
-        webTablesPage.searchWithWord(SEARCH_EXISTING_CATEGORY);
+        webTablesPage.searchWithWord(SEARCH_EXISTING_FIRST_NAME);
+
+        String actualFirstName = webTablesPage.getFirstRowFirstName();
+        String actualLastName = webTablesPage.getFirstRowLastName();
+        String actualAge = webTablesPage.getFirstRowAge();
+        String actualEmail = webTablesPage.getFirstRowEmail();
+        String actualSalary = webTablesPage.getFirstRowSalary();
+        String actualDepartment = webTablesPage.getFirstRowDepartment();
+
+        softAssert.assertEquals(actualFirstName, EXPECTED_FIRST_NAME_ALDEN, GENERIC_WRONG_FIRST_NAME);
+        softAssert.assertEquals(actualLastName, EXPECTED_LAST_NAME_CANTRELL, GENERIC_WRONG_LAST_NAME);
+        softAssert.assertEquals(actualAge, EXPECTED_AGE_45, GENERIC_WRONG_AGE);
+        softAssert.assertEquals(actualEmail, TEST_EMAIL_ALDEN, GENERIC_WRONG_EMAIL);
+        softAssert.assertEquals(actualSalary, EXPECTED_SALARY_12000, GENERIC_WRONG_SALARY);
+        softAssert.assertEquals(actualDepartment, EXPECTED_DEPARTMENT_COMPLIANCE, GENERIC_WRONG_DEPARTMENT);
+
+        // Assert
+        softAssert.assertAll();
+    }
+
+    @Test(enabled = true, description = "Search with existing age and check results")
+    public void searchWithExistingLastNameAndCheckResults() {
+        // Arrange & Act
+        webTablesPage.searchWithWord(SEARCH_EXISTING_LAST_NAME);
+
+        String actualFirstName = webTablesPage.getFirstRowFirstName();
+        String actualLastName = webTablesPage.getFirstRowLastName();
+        String actualAge = webTablesPage.getFirstRowAge();
+        String actualEmail = webTablesPage.getFirstRowEmail();
+        String actualSalary = webTablesPage.getFirstRowSalary();
+        String actualDepartment = webTablesPage.getFirstRowDepartment();
+
+        softAssert.assertEquals(actualFirstName, EXPECTED_FIRST_NAME_KIERRA, GENERIC_WRONG_FIRST_NAME);
+        softAssert.assertEquals(actualLastName, EXPECTED_LAST_NAME_GENTRY, GENERIC_WRONG_LAST_NAME);
+        softAssert.assertEquals(actualAge, EXPECTED_AGE_29, GENERIC_WRONG_AGE);
+        softAssert.assertEquals(actualEmail, TEST_EMAIL_KIERRA, GENERIC_WRONG_EMAIL);
+        softAssert.assertEquals(actualSalary, EXPECTED_SALARY_2000, GENERIC_WRONG_SALARY);
+        softAssert.assertEquals(actualDepartment, EXPECTED_DEPARTMENT_LEGAL, GENERIC_WRONG_DEPARTMENT);
+
+        // Assert
+        softAssert.assertAll();
+    }
+
+    @Test(enabled = true, description = "Search with existing age and check results")
+    public void searchWithExistingAgeAndCheckResults() {
+        // Arrange & Act
+        webTablesPage.searchWithWord(SEARCH_EXISTING_AGE);
+
+        String actualFirstName = webTablesPage.getFirstRowFirstName();
+        String actualLastName = webTablesPage.getFirstRowLastName();
+        String actualAge = webTablesPage.getFirstRowAge();
+        String actualEmail = webTablesPage.getFirstRowEmail();
+        String actualSalary = webTablesPage.getFirstRowSalary();
+        String actualDepartment = webTablesPage.getFirstRowDepartment();
+
+        softAssert.assertEquals(actualFirstName, EXPECTED_FIRST_NAME_ALDEN, GENERIC_WRONG_FIRST_NAME);
+        softAssert.assertEquals(actualLastName, EXPECTED_LAST_NAME_CANTRELL, GENERIC_WRONG_LAST_NAME);
+        softAssert.assertEquals(actualAge, EXPECTED_AGE_45, GENERIC_WRONG_AGE);
+        softAssert.assertEquals(actualEmail, TEST_EMAIL_ALDEN, GENERIC_WRONG_EMAIL);
+        softAssert.assertEquals(actualSalary, EXPECTED_SALARY_12000, GENERIC_WRONG_SALARY);
+        softAssert.assertEquals(actualDepartment, EXPECTED_DEPARTMENT_COMPLIANCE, GENERIC_WRONG_DEPARTMENT);
+
+        // Assert
+        softAssert.assertAll();
+    }
+
+    @Test(enabled = true, description = "Search with existing email and check results")
+    public void searchWithExistingEmailAndCheckResults() {
+        // Arrange & Act
+        webTablesPage.searchWithWord(SEARCH_EXISTING_EMAIL_ALDEN);
+
+        String actualFirstName = webTablesPage.getFirstRowFirstName();
+        String actualLastName = webTablesPage.getFirstRowLastName();
+        String actualAge = webTablesPage.getFirstRowAge();
+        String actualEmail = webTablesPage.getFirstRowEmail();
+        String actualSalary = webTablesPage.getFirstRowSalary();
+        String actualDepartment = webTablesPage.getFirstRowDepartment();
+
+        softAssert.assertEquals(actualFirstName, EXPECTED_FIRST_NAME_ALDEN, GENERIC_WRONG_FIRST_NAME);
+        softAssert.assertEquals(actualLastName, EXPECTED_LAST_NAME_CANTRELL, GENERIC_WRONG_LAST_NAME);
+        softAssert.assertEquals(actualAge, EXPECTED_AGE_45, GENERIC_WRONG_AGE);
+        softAssert.assertEquals(actualEmail, TEST_EMAIL_ALDEN, GENERIC_WRONG_EMAIL);
+        softAssert.assertEquals(actualSalary, EXPECTED_SALARY_12000, GENERIC_WRONG_SALARY);
+        softAssert.assertEquals(actualDepartment, EXPECTED_DEPARTMENT_COMPLIANCE, GENERIC_WRONG_DEPARTMENT);
+
+        // Assert
+        softAssert.assertAll();
+    }
+
+    @Test(enabled = true, description = "Search with existing salary and check results")
+    public void searchWithExistingSalaryAndCheckResults() {
+        // Arrange & Act
+        webTablesPage.searchWithWord(SEARCH_EXISTING_SALARY_12000);
+
+        String actualFirstName = webTablesPage.getFirstRowFirstName();
+        String actualLastName = webTablesPage.getFirstRowLastName();
+        String actualAge = webTablesPage.getFirstRowAge();
+        String actualEmail = webTablesPage.getFirstRowEmail();
+        String actualSalary = webTablesPage.getFirstRowSalary();
+        String actualDepartment = webTablesPage.getFirstRowDepartment();
+
+        softAssert.assertEquals(actualFirstName, EXPECTED_FIRST_NAME_ALDEN, GENERIC_WRONG_FIRST_NAME);
+        softAssert.assertEquals(actualLastName, EXPECTED_LAST_NAME_CANTRELL, GENERIC_WRONG_LAST_NAME);
+        softAssert.assertEquals(actualAge, EXPECTED_AGE_45, GENERIC_WRONG_AGE);
+        softAssert.assertEquals(actualEmail, TEST_EMAIL_ALDEN, GENERIC_WRONG_EMAIL);
+        softAssert.assertEquals(actualSalary, EXPECTED_SALARY_12000, GENERIC_WRONG_SALARY);
+        softAssert.assertEquals(actualDepartment, EXPECTED_DEPARTMENT_COMPLIANCE, GENERIC_WRONG_DEPARTMENT);
+
+        // Assert
+        softAssert.assertAll();
+    }
+
+    @Test(enabled = true, description = "Search with existing department and check results")
+    public void searchWithExistingDepartmentAndCheckResults() {
+        // Arrange & Act
+        webTablesPage.searchWithWord(SEARCH_EXISTING_DEPARTMENT_INSURANCE);
 
         String actualFirstName = webTablesPage.getTableFirstName(TEST_EMAIL_CIERRA);
         String actualLastName = webTablesPage.getTableLastName(TEST_EMAIL_CIERRA);
@@ -398,11 +625,11 @@ public class WebTablePageTests extends BaseTest {
         String actualDepartment = webTablesPage.getTableDepartment(TEST_EMAIL_CIERRA);
 
         softAssert.assertEquals(actualFirstName, EXPECTED_FIRST_NAME_CIERRA, GENERIC_WRONG_FIRST_NAME);
-        softAssert.assertEquals(actualLastName, EXPECTED_LAST_NAME_CIERRA, GENERIC_WRONG_LAST_NAME);
-        softAssert.assertEquals(actualAge, EXPECTED_AGE_CIERRA, GENERIC_WRONG_AGE);
+        softAssert.assertEquals(actualLastName, EXPECTED_LAST_NAME_VEGA, GENERIC_WRONG_LAST_NAME);
+        softAssert.assertEquals(actualAge, EXPECTED_AGE_39, GENERIC_WRONG_AGE);
         softAssert.assertEquals(actualEmail, TEST_EMAIL_CIERRA, GENERIC_WRONG_EMAIL);
-        softAssert.assertEquals(actualSalary, EXPECTED_SALARY_CIERRA, GENERIC_WRONG_SALARY);
-        softAssert.assertEquals(actualDepartment, SEARCH_EXISTING_CATEGORY, GENERIC_WRONG_DEPARTMENT);
+        softAssert.assertEquals(actualSalary, EXPECTED_SALARY_10000, GENERIC_WRONG_SALARY);
+        softAssert.assertEquals(actualDepartment, SEARCH_EXISTING_DEPARTMENT_INSURANCE, GENERIC_WRONG_DEPARTMENT);
 
         // Assert
         softAssert.assertAll();
@@ -421,42 +648,13 @@ public class WebTablePageTests extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(enabled = true, description = "Select all rows per page")
-    public void selectAllRowsPerPage() {
-        // Arrange & Act
-        webTablesPage.clickRowPerPage(ROWS_5);
-        int countOfLines = webTablesPage.getCountOfLines();
-        softAssert.assertEquals(countOfLines, 5, GENERIC_EXPECTED_ROWS_5);
-
-        webTablesPage.clickRowPerPage(ROWS_10);
-        countOfLines = webTablesPage.getCountOfLines();
-        softAssert.assertEquals(countOfLines, 10, GENERIC_EXPECTED_ROWS_10);
-
-        webTablesPage.clickRowPerPage(ROWS_20);
-        countOfLines = webTablesPage.getCountOfLines();
-        softAssert.assertEquals(countOfLines, 20, GENERIC_EXPECTED_ROWS_20);
-
-        webTablesPage.clickRowPerPage(ROWS_25);
-        countOfLines = webTablesPage.getCountOfLines();
-        softAssert.assertEquals(countOfLines, 25, GENERIC_EXPECTED_ROWS_25);
-
-        webTablesPage.clickRowPerPage(ROWS_50);
-        countOfLines = webTablesPage.getCountOfLines();
-        softAssert.assertEquals(countOfLines, 50, GENERIC_EXPECTED_ROWS_50);
-
-        webTablesPage.clickRowPerPage(ROWS_100);
-        countOfLines = webTablesPage.getCountOfLines();
-        softAssert.assertEquals(countOfLines, 100, GENERIC_EXPECTED_ROWS_100);
-
-        softAssert.assertAll();
-    }
-
     @Test(enabled = true, description = "Verify border color change from red to green after add")
     public void verifyColorsChangeFromRedToGreenAfterAdd() {
         // Arrange & Act
         webTablesPage.clickAddButton();
         webTablesPage.clickSubmitButton();
 
+        // Assert
         String actualFirstNameBorderColorBefore = webTablesPage.getFirstNameBorderColor();
         softAssert.assertEquals(actualFirstNameBorderColorBefore, EXPECTED_RED_COLOR, GENERIC_WRONG_COLOR_RED);
         webTablesPage.setFirstName(TEST_FIRST_NAME);
@@ -490,16 +688,140 @@ public class WebTablePageTests extends BaseTest {
         softAssert.assertAll();
     }
 
-    // New Data-Driven Test for Rows Per Page
-    @Test(dataProvider = "rowsPerPageData", enabled = true, description = "Test rows per page functionality with data provider")
-    public void testRowsPerPageWithDataProvider(String rowsOption, int expectedCount, String testDescription) {
+    @Test(enabled = true, description = "Order users by first name ascending and descending")
+    public void orderTableByFirstNameHeaderAscendingAndDescending() {
         // Arrange & Act
-        webTablesPage.clickRowPerPage(rowsOption);
-        int actualCountOfLines = webTablesPage.getCountOfLines();
+        webTablesPage.clickFirstNameHeader();
 
         // Assert
-        softAssert.assertEquals(actualCountOfLines, expectedCount,
-                String.format("Expected %d rows for %s, but found %d", expectedCount, rowsOption, actualCountOfLines));
+        softAssert.assertEquals(webTablesPage.getFirstRow(), expectedFirstRowData, GENERIC_WRONG_FIRST_NAME);
+        softAssert.assertEquals(webTablesPage.getSecondRow(), expectedSecondRowData, GENERIC_WRONG_FIRST_NAME);
+        softAssert.assertEquals(webTablesPage.getThirdRow(), expectedThirdRowData, GENERIC_WRONG_FIRST_NAME);
+
+        webTablesPage.clickFirstNameHeader();
+
+        // Assert
+        softAssert.assertEquals(webTablesPage.getThirdRow(), expectedFirstRowData, GENERIC_WRONG_FIRST_NAME);
+        softAssert.assertEquals(webTablesPage.getSecondRow(), expectedSecondRowData, GENERIC_WRONG_FIRST_NAME);
+        softAssert.assertEquals(webTablesPage.getFirstRow(), expectedThirdRowData, GENERIC_WRONG_FIRST_NAME);
+
+        softAssert.assertAll();
+    }
+
+    @Test(enabled = true, description = "Order users by last name")
+    public void orderTableByLastNameAscendingAndDescending() {
+        // Arrange & Act
+        webTablesPage.clickLastNameHeader();
+
+        // Assert
+        softAssert.assertEquals(webTablesPage.getFirstRow(), expectedFirstRowData, GENERIC_WRONG_FIRST_NAME);
+        softAssert.assertEquals(webTablesPage.getSecondRow(), expectedThirdRowData, GENERIC_WRONG_FIRST_NAME);
+        softAssert.assertEquals(webTablesPage.getThirdRow(), expectedSecondRowData, GENERIC_WRONG_FIRST_NAME);
+
+        webTablesPage.clickLastNameHeader();
+        softAssert.assertEquals(webTablesPage.getThirdRow(), expectedFirstRowData, GENERIC_WRONG_FIRST_NAME);
+        softAssert.assertEquals(webTablesPage.getSecondRow(), expectedThirdRowData, GENERIC_WRONG_FIRST_NAME);
+        softAssert.assertEquals(webTablesPage.getFirstRow(), expectedSecondRowData, GENERIC_WRONG_FIRST_NAME);
+
+        softAssert.assertAll();
+    }
+
+    @Test(enabled = true, description = "Order users by age")
+    public void orderTableByAgeAscendingAndDescending() {
+        // Arrange & Act
+        webTablesPage.clickAgeHeader();
+
+        // Assert
+        softAssert.assertEquals(webTablesPage.getFirstRow(), expectedThirdRowData, GENERIC_WRONG_FIRST_NAME);
+        softAssert.assertEquals(webTablesPage.getSecondRow(), expectedSecondRowData, GENERIC_WRONG_FIRST_NAME);
+        softAssert.assertEquals(webTablesPage.getThirdRow(), expectedFirstRowData, GENERIC_WRONG_FIRST_NAME);
+
+        webTablesPage.clickAgeHeader();
+        softAssert.assertEquals(webTablesPage.getFirstRow(), expectedFirstRowData, GENERIC_WRONG_FIRST_NAME);
+        softAssert.assertEquals(webTablesPage.getSecondRow(), expectedSecondRowData, GENERIC_WRONG_FIRST_NAME);
+        softAssert.assertEquals(webTablesPage.getThirdRow(), expectedThirdRowData, GENERIC_WRONG_FIRST_NAME);
+
+        softAssert.assertAll();
+    }
+
+    @Test(enabled = true, description = "Order users by email")
+    public void orderTableByEmailAscendingAndDescending() {
+        // Arrange & Act
+        webTablesPage.clickEmailHeader();
+
+        // Assert
+        softAssert.assertEquals(webTablesPage.getFirstRow(), expectedFirstRowData, GENERIC_WRONG_FIRST_NAME);
+        softAssert.assertEquals(webTablesPage.getSecondRow(), expectedSecondRowData, GENERIC_WRONG_FIRST_NAME);
+        softAssert.assertEquals(webTablesPage.getThirdRow(), expectedThirdRowData, GENERIC_WRONG_FIRST_NAME);
+
+        webTablesPage.clickEmailHeader();
+        softAssert.assertEquals(webTablesPage.getFirstRow(), expectedThirdRowData, GENERIC_WRONG_FIRST_NAME);
+        softAssert.assertEquals(webTablesPage.getSecondRow(), expectedSecondRowData, GENERIC_WRONG_FIRST_NAME);
+        softAssert.assertEquals(webTablesPage.getThirdRow(), expectedFirstRowData, GENERIC_WRONG_FIRST_NAME);
+
+        softAssert.assertAll();
+    }
+
+    @Test(enabled = true, description = "Order users by salary")
+    public void orderTableBySalaryAscendingAndDescending() {
+        // Arrange & Act
+        webTablesPage.clickSalaryHeader();
+
+        // Assert
+        softAssert.assertEquals(webTablesPage.getFirstRow(), expectedThirdRowData, GENERIC_WRONG_FIRST_NAME);
+        softAssert.assertEquals(webTablesPage.getSecondRow(), expectedSecondRowData, GENERIC_WRONG_FIRST_NAME);
+        softAssert.assertEquals(webTablesPage.getThirdRow(), expectedFirstRowData, GENERIC_WRONG_FIRST_NAME);
+
+        webTablesPage.clickSalaryHeader();
+
+        softAssert.assertEquals(webTablesPage.getFirstRow(), expectedFirstRowData, GENERIC_WRONG_FIRST_NAME);
+        softAssert.assertEquals(webTablesPage.getSecondRow(), expectedSecondRowData, GENERIC_WRONG_FIRST_NAME);
+        softAssert.assertEquals(webTablesPage.getThirdRow(), expectedThirdRowData, GENERIC_WRONG_FIRST_NAME);
+
+        softAssert.assertAll();
+    }
+
+    @Test(enabled = true, description = "Order users by department")
+    public void orderTableByDepartmentAscendingAndDescending() {
+        // Arrange & Act
+        webTablesPage.clickDepartmentHeader();
+
+        // Assert
+        softAssert.assertEquals(webTablesPage.getFirstRow(), expectedFirstRowData, GENERIC_WRONG_FIRST_NAME);
+        softAssert.assertEquals(webTablesPage.getSecondRow(), expectedSecondRowData, GENERIC_WRONG_FIRST_NAME);
+        softAssert.assertEquals(webTablesPage.getThirdRow(), expectedThirdRowData, GENERIC_WRONG_FIRST_NAME);
+
+        webTablesPage.clickDepartmentHeader();
+
+        softAssert.assertEquals(webTablesPage.getFirstRow(), expectedThirdRowData, GENERIC_WRONG_FIRST_NAME);
+        softAssert.assertEquals(webTablesPage.getSecondRow(), expectedSecondRowData, GENERIC_WRONG_FIRST_NAME);
+        softAssert.assertEquals(webTablesPage.getThirdRow(), expectedFirstRowData, GENERIC_WRONG_FIRST_NAME);
+
+        softAssert.assertAll();
+    }
+
+    @Test(enabled = true, description = "Select all rows per page")
+    public void selectAllRowsPerPage() {
+        // Arrange & Act
+        webTablesPage.clickRowPerPage(ROWS_5);
+        softAssert.assertEquals(webTablesPage.getCountOfLines(), 5, GENERIC_EXPECTED_ROWS_5);
+
+        webTablesPage.clickRowPerPage(ROWS_10);
+        softAssert.assertEquals(webTablesPage.getCountOfLines(), 10, GENERIC_EXPECTED_ROWS_10);
+
+        webTablesPage.clickRowPerPage(ROWS_20);
+        softAssert.assertEquals(webTablesPage.getCountOfLines(), 20, GENERIC_EXPECTED_ROWS_20);
+
+        webTablesPage.clickRowPerPage(ROWS_25);
+        softAssert.assertEquals(webTablesPage.getCountOfLines(), 25, GENERIC_EXPECTED_ROWS_25);
+
+        webTablesPage.clickRowPerPage(ROWS_50);
+        softAssert.assertEquals(webTablesPage.getCountOfLines(), 50, GENERIC_EXPECTED_ROWS_50);
+
+        webTablesPage.clickRowPerPage(ROWS_100);
+        softAssert.assertEquals(webTablesPage.getCountOfLines(), 100, GENERIC_EXPECTED_ROWS_100);
+
+        // Assert
         softAssert.assertAll();
     }
 }

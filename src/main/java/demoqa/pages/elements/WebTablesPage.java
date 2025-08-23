@@ -93,8 +93,56 @@ public class WebTablesPage extends BasePage {
     @FindBy(className = "rt-thead")
     private WebElement tableHeader;
 
+    @FindBy(xpath = "(//div[contains(@class, 'rt-tr -odd')])[1]")
+    private WebElement firstRow;
+
+    @FindBy(xpath = "(//div[contains(@class, 'rt-tr -even')])[1]")
+    private WebElement secondRow;
+
+    @FindBy(xpath = "(//div[contains(@class, 'rt-tr -odd')])[2]")
+    private WebElement thirdRow;
+
+
+    @FindBy(xpath = "(//div[contains(@class, 'rt-resizable-header-content')])[1]")
+    private WebElement firstNameHeader;
+
+    @FindBy(xpath = "(//div[contains(@class, 'rt-resizable-header-content')])[2]")
+    private WebElement lastNameHeader;
+
+    @FindBy(xpath = "(//div[contains(@class, 'rt-resizable-header-content')])[3] ")
+    private WebElement ageHeader;
+
+    @FindBy(xpath = "(//div[contains(@class, 'rt-resizable-header-content')])[4] ")
+    private WebElement emailHeader;
+
+    @FindBy(xpath = "(//div[contains(@class, 'rt-resizable-header-content')])[5] ")
+    private WebElement salaryHeader;
+
+    @FindBy(xpath = "(//div[contains(@class, 'rt-resizable-header-content')])[6] ")
+    private WebElement departmentHeader;
+
+
     @FindBy(className = "rt-tr-group")
     private List<WebElement> tableInformation;
+
+    @FindBy(xpath = "(//div[contains(@class, 'rt-tr -odd')])[1]/div[@class='rt-td'][1] ")
+    private WebElement firstRowFirstName;
+
+    @FindBy(xpath = "(//div[contains(@class, 'rt-tr -odd')])[1]/div[@class='rt-td'][2] ")
+    private WebElement firstRowLastName;
+
+    @FindBy(xpath = "(//div[contains(@class, 'rt-tr -odd')])[1]/div[@class='rt-td'][3] ")
+    private WebElement firstRowAge;
+
+    @FindBy(xpath = "(//div[contains(@class, 'rt-tr -odd')])[1]/div[@class='rt-td'][4] ")
+    private WebElement firstRowEmail;
+
+    @FindBy(xpath = "(//div[contains(@class, 'rt-tr -odd')])[1]/div[@class='rt-td'][5] ")
+    private WebElement firstRowSalary;
+
+    @FindBy(xpath = "(//div[contains(@class, 'rt-tr -odd')])[1]/div[@class='rt-td'][6] ")
+    private WebElement firstRowDepartment;
+
 
     public WebTablesPage(WebDriver driver) {
         super(driver);
@@ -216,6 +264,19 @@ public class WebTablesPage extends BasePage {
         return header.getText();
     }
 
+    public String getFirstRow() {
+        return firstRow.getText();
+    }
+
+    public String getSecondRow() {
+        return secondRow.getText();
+    }
+
+    public String getThirdRow() {
+        return thirdRow.getText();
+    }
+
+
     public String getSubmitButtonText() {
         return submitButton.getText();
     }
@@ -280,6 +341,34 @@ public class WebTablesPage extends BasePage {
         addNewRecordButton.click();
     }
 
+    public void clickFirstNameHeader() {
+        firstNameHeader.click();
+    }
+
+    public void clickLastNameHeader() {
+        lastNameHeader.click();
+    }
+
+    public void clickAgeHeader() {
+        ageHeader.click();
+    }
+
+    public void clickEmailHeader() {
+        emailHeader.click();
+    }
+
+    public void clickSalaryHeader() {
+        salaryHeader.click();
+    }
+
+    public void clickDepartmentHeader() {
+        departmentHeader.click();
+    }
+
+    public void clickNextButton() {
+        nextButton.click();
+    }
+
     public void searchWithWord(String word) {
         searchBox.clear();
         searchBox.sendKeys(word);
@@ -305,19 +394,45 @@ public class WebTablesPage extends BasePage {
         deleteButton.click();
     }
 
-    public String getTableAge(String email) {
-        WebElement ageCell = driver.findElement(By.xpath("//div[text()='" + email + "']//preceding::div[1]"));
-        return ageCell.getText();
+    public String getFirstRowFirstName() {
+        return firstRowFirstName.getText();
     }
+
+    public String getFirstRowLastName() {
+        return firstRowLastName.getText();
+    }
+
+    public String getFirstRowAge() {
+        return firstRowAge.getText();
+    }
+
+    public String getFirstRowEmail() {
+        return firstRowEmail.getText();
+    }
+
+    public String getFirstRowSalary() {
+        return firstRowSalary.getText();
+    }
+
+    public String getFirstRowDepartment() {
+        return firstRowDepartment.getText();
+    }
+
 
     public String getTableFirstName(String email) {
         WebElement firstNameCell = driver.findElement(By.xpath("//div[text()='" + email + "']//preceding::div[3]"));
         return firstNameCell.getText();
     }
 
+
     public String getTableLastName(String email) {
         WebElement lastNameCell = driver.findElement(By.xpath("//div[text()='" + email + "']//preceding::div[2]"));
         return lastNameCell.getText();
+    }
+
+    public String getTableAge(String email) {
+        WebElement ageCell = driver.findElement(By.xpath("//div[text()='" + email + "']//preceding::div[1]"));
+        return ageCell.getText();
     }
 
     public String getTableEmail(String email) {
