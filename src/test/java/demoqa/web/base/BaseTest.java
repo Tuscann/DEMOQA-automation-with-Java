@@ -16,7 +16,6 @@ import java.io.File;
 import java.io.IOException;
 
 import static demoqa.base.BasePage.delay;
-import static utilities.Utility.setUtilityDriver;
 
 public class BaseTest {
 
@@ -40,7 +39,6 @@ public class BaseTest {
             threadDriver.set(driver);
             softAssert = new SoftAssert();
             basePage = new BasePage(driver);
-            setUtilityDriver();
         }
         driver.get(DEMO_QA_URL);
     }

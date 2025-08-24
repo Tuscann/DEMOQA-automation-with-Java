@@ -7,10 +7,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utilities.JavaScriptUtility;
 
 import java.time.Duration;
-
-import static utilities.JavaScriptUtility.scrollToElementJS;
 
 public class Alerts_Frames_WindowsPage extends BasePage {
 
@@ -31,9 +30,12 @@ public class Alerts_Frames_WindowsPage extends BasePage {
     @FindBy(xpath = "//div[contains(@class,'element-list collapse')]")
     WebElement collapseDiv;
 
+    private final JavaScriptUtility javaScriptUtility;
+
     public Alerts_Frames_WindowsPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
+        this.javaScriptUtility = new JavaScriptUtility(driver);
     }
 
     public String getMainText() {
@@ -45,22 +47,22 @@ public class Alerts_Frames_WindowsPage extends BasePage {
     }
 
     public void clickAlertsTab() {
-        scrollToElementJS(alertsMenuItem);
+        javaScriptUtility.scrollToElementJS(alertsMenuItem);
         alertsMenuItem.click();
     }
 
     public void clickNestedFramesTab() {
-        scrollToElementJS(nestedFramesItem);
+        javaScriptUtility.scrollToElementJS(nestedFramesItem);
         nestedFramesItem.click();
     }
 
     public void clickFramesTab() {
-        scrollToElementJS(framesMenuItem);
+        javaScriptUtility.scrollToElementJS(framesMenuItem);
         framesMenuItem.click();
     }
 
     public void clickModalDialogsTab() {
-        scrollToElementJS(modalDialogsMenuItem);
+        javaScriptUtility.scrollToElementJS(modalDialogsMenuItem);
         modalDialogsMenuItem.click();
     }
 

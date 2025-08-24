@@ -8,7 +8,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import static utilities.JavaScriptUtility.scrollToElementJS;
+import utilities.JavaScriptUtility;
 
 public class ResizablePage extends BasePage {
     @FindBy(xpath = "//h1[@class='text-center'][contains(.,'Resizable')]")
@@ -32,9 +32,12 @@ public class ResizablePage extends BasePage {
     @FindBy(xpath = "(//span[contains(@class,'react-resizable-handle react-resizable-handle-se')])[2]")
     private WebElement resizeHandle2;
 
+    private final JavaScriptUtility javaScriptUtility;
+
     public ResizablePage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
+        this.javaScriptUtility = new JavaScriptUtility(driver);
     }
 
     public String getPageTitleText() {
@@ -68,7 +71,7 @@ public class ResizablePage extends BasePage {
     }
 
     public void changeSizeWithoutLimitations(int xOffset, int yOffset) {
-        scrollToElementJS(resizeHandle2);
+        javaScriptUtility.scrollToElementJS(resizeHandle2);
         Actions actions = new Actions(driver);
         actions.clickAndHold(resizeHandle2)
                 .moveByOffset(xOffset, yOffset)

@@ -9,12 +9,10 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utilities.JavaScriptUtility;
 
 import java.io.File;
 import java.time.Duration;
-
-import static utilities.JavaScriptUtility.clickJS;
-import static utilities.JavaScriptUtility.scrollToElementJS;
 
 public class PracticeFormPage extends BasePage {
 
@@ -155,9 +153,12 @@ public class PracticeFormPage extends BasePage {
     @FindBy(id = "subjects-label")
     private WebElement subjectsLabel;
 
+    private final JavaScriptUtility javaScriptUtility;
+
     public PracticeFormPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
+        this.javaScriptUtility = new JavaScriptUtility(driver);
     }
 
     // Rest of the methods remain the same, just replace `find(By)` with the corresponding WebElement field.
@@ -206,7 +207,7 @@ public class PracticeFormPage extends BasePage {
     }
 
     public String getDateOfBirthFromModal() {
-        scrollToElementJS(dateOfBirthForm);
+        javaScriptUtility.scrollToElementJS(dateOfBirthForm);
         return dateOfBirthForm.getText();
     }
 
@@ -266,7 +267,7 @@ public class PracticeFormPage extends BasePage {
     }
 
     public void setEmail(String email) {
-        scrollToElementJS(this.email);
+        javaScriptUtility.scrollToElementJS(this.email);
         this.email.click();
         set(this.email, email);
     }
@@ -279,24 +280,24 @@ public class PracticeFormPage extends BasePage {
     public void setCurrentAddress(String currentAddress) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOf(this.currentAddressArea));
-        scrollToElementJS(currentAddressArea);
+        javaScriptUtility.scrollToElementJS(currentAddressArea);
         currentAddressArea.click();
         set(this.currentAddressArea, currentAddress);
     }
 
     public void clickGenderRadioButton(String gender) {
         switch (gender) {
-            case "Male" -> clickJS(maleRadioButton);
-            case "Female" -> clickJS(femaleRadioButton);
-            case "Other" -> clickJS(otherRadioButton);
+            case "Male" -> javaScriptUtility.clickJS(maleRadioButton);
+            case "Female" -> javaScriptUtility.clickJS(femaleRadioButton);
+            case "Other" -> javaScriptUtility.clickJS(otherRadioButton);
         }
     }
 
     public void setDateOfBirth(String month,String year,String day) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement dateOfBirthInput = wait.until(ExpectedConditions.visibilityOf(this.dateOfBirth));
-        scrollToElementJS(dateOfBirth);
-        clickJS(dateOfBirthInput);
+        javaScriptUtility.scrollToElementJS(dateOfBirth);
+        javaScriptUtility.clickJS(dateOfBirthInput);
 
         WebElement monthSelectElement = wait.until(ExpectedConditions.visibilityOf(select_month));
         Select monthSelect = new Select(monthSelectElement);
@@ -304,11 +305,11 @@ public class PracticeFormPage extends BasePage {
 
         WebElement yearSelectElement = wait.until(ExpectedConditions.visibilityOf(select_year));
         Select yearSelect = new Select(yearSelectElement);
-        clickJS(yearSelectElement);
+        javaScriptUtility.clickJS(yearSelectElement);
         yearSelect.selectByVisibleText(year);
 
         WebElement dateSelectElement = wait.until(ExpectedConditions.visibilityOf(select_date));
-        clickJS(dateSelectElement);
+        javaScriptUtility.clickJS(dateSelectElement);
     }
 
     public boolean isFemaleRadioButtonSelected() {
@@ -325,34 +326,34 @@ public class PracticeFormPage extends BasePage {
 
     public void clickSportHobbyCheckbox() {
         if (!sportHobbyCheckbox.isSelected()) {
-            scrollToElementJS(sportHobbyCheckbox);
-            clickJS(sportHobbyCheckbox);
+            javaScriptUtility.scrollToElementJS(sportHobbyCheckbox);
+            javaScriptUtility.clickJS(sportHobbyCheckbox);
         }
     }
 
     public void clickReadingHobbyCheckbox() {
         if (!readingHobbyCheckbox.isSelected()) {
-            scrollToElementJS(readingHobbyCheckbox);
-            clickJS(readingHobbyCheckbox);
+            javaScriptUtility.scrollToElementJS(readingHobbyCheckbox);
+            javaScriptUtility.clickJS(readingHobbyCheckbox);
         }
     }
 
     public void clickMusicHobbyCheckbox() {
         if (!musicHobbyCheckbox.isSelected()) {
-            scrollToElementJS(musicHobbyCheckbox);
-            clickJS(musicHobbyCheckbox);
+            javaScriptUtility.scrollToElementJS(musicHobbyCheckbox);
+            javaScriptUtility.clickJS(musicHobbyCheckbox);
         }
     }
 
     public void unClickReadingHobbyCheckbox() {
         if (readingHobbyCheckbox.isSelected()) {
-            scrollToElementJS(readingHobbyCheckbox);
-            clickJS(readingHobbyCheckbox);
+            javaScriptUtility.scrollToElementJS(readingHobbyCheckbox);
+            javaScriptUtility.clickJS(readingHobbyCheckbox);
         }
     }
 
     public void clickSubmitButton() {
-        scrollToElementJS(submitButton);
+        javaScriptUtility.scrollToElementJS(submitButton);
         submitButton.click();
     }
 
@@ -361,7 +362,7 @@ public class PracticeFormPage extends BasePage {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.textToBePresentInElementValue(this.currentAddressArea, ""));
 
-        scrollToElementJS(submitButton);
+        javaScriptUtility.scrollToElementJS(submitButton);
         submitButton.click();
     }
 

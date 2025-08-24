@@ -8,13 +8,19 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class SwitchToUtility extends Utility {
+public class SwitchToUtility {
 
-    private static WebDriver.TargetLocator switchTo() {
+    private final WebDriver driver;
+
+    public SwitchToUtility(WebDriver driver) {
+        this.driver = driver;
+    }
+
+    private WebDriver.TargetLocator switchTo() {
         return driver.switchTo();
     }
 
-    public static String getAlertText() {
+    public String getAlertText() {
         Alert alert;
         String az = "";
 
@@ -28,46 +34,44 @@ public class SwitchToUtility extends Utility {
                 try {
                     Thread.sleep(100);
                 } catch (InterruptedException ex) {
-
+                    Thread.currentThread().interrupt();
+                    break;
                 }
             }
         }
 
         return az;
-
     }
 
-    public static void setAlertText(String text) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        Alert alert = wait.until(ExpectedConditions.alertIsPresent());
+    public void setAlertText(String text) {    
         switchTo().alert().sendKeys(text);
     }
 
-    public static void acceptAlert() {
+    public void acceptAlert() {
         switchTo().alert().accept();
     }
 
-    public static void dismissAlert() {
+    public void dismissAlert() {
         switchTo().alert().dismiss();
     }
 
-    public static void switchToFrameString(String value) {
+    public void switchToFrameString(String value) {
         switchTo().frame(value);
     }
 
-    public static void switchToDefaultContent() {
+    public void switchToDefaultContent() {
         switchTo().defaultContent();
     }
 
-    public static void switchToFrameIndex(int index) {
+    public void switchToFrameIndex(int index) {
         switchTo().frame(index);
     }
 
-    public static void switchToFrameElement(WebElement element) {
+    public void switchToFrameElement(WebElement element) {
         switchTo().frame(element);
     }
 
-    public static void switchToWindow(String handle) {
+    public void switchToWindow(String handle) {
         switchTo().window(handle);
     }
 }

@@ -8,10 +8,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utilities.JavaScriptUtility;
 
 import java.time.Duration;
-
-import static utilities.JavaScriptUtility.scrollToElementJS;
 
 public class DatePickerPage extends BasePage {
     @FindBy(id = "datePickerMonthYearInput")
@@ -29,9 +28,12 @@ public class DatePickerPage extends BasePage {
     @FindBy(xpath = "(//div[@class='col-md-3 col-sm-12'])[2]")
     private WebElement dateAndTimeText;
 
+    private final JavaScriptUtility javaScriptUtility;
+
     public DatePickerPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
+        this.javaScriptUtility = new JavaScriptUtility(driver);
     }
 
     public String getSelectDateText() {
@@ -55,7 +57,7 @@ public class DatePickerPage extends BasePage {
     }
 
     public void selectDate(String expectedDate) {
-        scrollToElementJS(sectionOneHeading);
+        javaScriptUtility.scrollToElementJS(sectionOneHeading);
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(4));
         wait.until(ExpectedConditions.visibilityOf(sectionOneHeading));
@@ -72,7 +74,7 @@ public class DatePickerPage extends BasePage {
     }
 
     public void selectDateAndTime(String expectedDate) {
-        scrollToElementJS(sectionTwoHeading);
+        javaScriptUtility.scrollToElementJS(sectionTwoHeading);
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(4));
         wait.until(ExpectedConditions.visibilityOf(sectionTwoHeading));
 

@@ -8,10 +8,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utilities.JavaScriptUtility;
 
 import java.time.Duration;
-
-import static utilities.JavaScriptUtility.scrollToElementJS;
 
 public class ButtonsPage extends BasePage {
 
@@ -30,9 +29,12 @@ public class ButtonsPage extends BasePage {
     @FindBy(id = "dynamicClickMessage")
     WebElement clickMeButtonMessage;
 
+    private final JavaScriptUtility javaScriptUtility;
+
     public ButtonsPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
+        this.javaScriptUtility = new JavaScriptUtility(driver);
     }
 
     public String getDoubleButtonText() {
@@ -91,7 +93,7 @@ public class ButtonsPage extends BasePage {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(6));
         wait.until(ExpectedConditions.visibilityOf(doubleClickMeButton));
 
-        scrollToElementJS(doubleClickMessage);
+        javaScriptUtility.scrollToElementJS(doubleClickMessage);
         return doubleClickMessage.getText();
     }
 
@@ -99,7 +101,7 @@ public class ButtonsPage extends BasePage {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(6));
         wait.until(ExpectedConditions.visibilityOf(rightClickMessage));
 
-        scrollToElementJS(rightClickMessage);
+        javaScriptUtility.scrollToElementJS(rightClickMessage);
         return rightClickMessage.getText();
     }
 
@@ -109,7 +111,10 @@ public class ButtonsPage extends BasePage {
     }
 
     public void clickOnClickMeButton() {
-        scrollToElementJS(clickMeButton);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(6));
+        wait.until(ExpectedConditions.visibilityOf(clickMeButton));
+
+        javaScriptUtility.scrollToElementJS(clickMeButton);
         clickMeButton.click();
     }
 }

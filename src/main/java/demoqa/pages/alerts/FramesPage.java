@@ -6,8 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-
-import static utilities.JavaScriptUtility.scrollToElementJS;
+import utilities.JavaScriptUtility;
 
 public class FramesPage extends BasePage {
 
@@ -26,9 +25,12 @@ public class FramesPage extends BasePage {
     @FindBy(id = "frame2Wrapper")
     WebElement frame2wrapper;
 
+    private final JavaScriptUtility javaScriptUtility;
+
     public FramesPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
+        this.javaScriptUtility = new JavaScriptUtility(driver);
     }
 
     public String getFramesHeadingText() {
@@ -40,13 +42,13 @@ public class FramesPage extends BasePage {
     }
 
     public String getHeadingTextInFirstIframe() {
-        scrollToElementJS(frame1wrapper);
+        javaScriptUtility.scrollToElementJS(frame1wrapper);
         WebElement firstHeadingWebElement = driver.switchTo().frame(frame1).findElement(firstHeading);
         return firstHeadingWebElement.getText();
     }
 
     public String getHeadingTextInSecondIframe() {
-        scrollToElementJS(frame2wrapper);
+        javaScriptUtility.scrollToElementJS(frame2wrapper);
         WebElement secondHeadingWebElement = driver.switchTo().frame(frame2).findElement(secondHeading);
         return secondHeadingWebElement.getText();
     }

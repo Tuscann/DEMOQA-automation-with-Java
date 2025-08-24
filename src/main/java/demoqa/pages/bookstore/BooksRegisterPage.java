@@ -10,7 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-import static utilities.JavaScriptUtility.scrollToElementJS;
+import utilities.JavaScriptUtility;
 
 public class BooksRegisterPage extends BasePage {
     @FindBy(id = "firstname")
@@ -67,9 +67,12 @@ public class BooksRegisterPage extends BasePage {
     @FindBy(xpath = "//label[@id='password-label']")
     private WebElement passwordLabel;
 
+    private final JavaScriptUtility javaScriptUtility;
+
     public BooksRegisterPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
+        this.javaScriptUtility = new JavaScriptUtility(driver);
     }
 
     public String getFirstNamePlaceholderText() {
@@ -127,25 +130,25 @@ public class BooksRegisterPage extends BasePage {
     }
 
     public void setFirstName(String firstNameText) {
-        scrollToElementJS(firstName);
+        javaScriptUtility.scrollToElementJS(firstName);
         firstName.click();
         firstName.sendKeys(firstNameText);
     }
 
     public void setLastName(String lastNameText) {
-        scrollToElementJS(lastName);
+        javaScriptUtility.scrollToElementJS(lastName);
         lastName.click();
         lastName.sendKeys(lastNameText);
     }
 
     public void setUsername(String usernameText) {
-        scrollToElementJS(username);
+        javaScriptUtility.scrollToElementJS(username);
         username.click();
         username.sendKeys(usernameText);
     }
 
     public void setPassword(String passwordText) {
-        scrollToElementJS(password);
+        javaScriptUtility.scrollToElementJS(password);
         password.click();
         password.sendKeys(passwordText);
     }

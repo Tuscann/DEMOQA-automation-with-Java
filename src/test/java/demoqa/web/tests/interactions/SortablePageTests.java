@@ -157,10 +157,10 @@ public class SortablePageTests extends BaseTest {
     public void dragAndDropFromListTab(String dragFromPlace, String dropOnPlace, String expectedOrder) {
         // Arrange & Act
         sortablePage.moveOverList(dragFromPlace, dropOnPlace);
-        String actualListSix = sortablePage.getListOrder();
+        String actualList = sortablePage.getListOrder();
 
         // Assert
-        softAssert.assertEquals(actualListSix, expectedOrder, LIST_ORDER_ERROR);
+        softAssert.assertEquals(actualList, expectedOrder, LIST_ORDER_ERROR);
         softAssert.assertAll();
     }
 
@@ -265,10 +265,10 @@ public class SortablePageTests extends BaseTest {
         // Arrange & Act
         sortablePage.clickGridTab();
         sortablePage.moveOverGrid(dragFromPlace, dropOnPlace);
-        String actualListSix = sortablePage.getGridOrder();
+        String actualList = sortablePage.getGridOrder();
 
         // Assert
-        softAssert.assertEquals(actualListSix, expectedOrder, GRID_ORDER_ERROR);
+        softAssert.assertEquals(actualList, expectedOrder, GRID_ORDER_ERROR);
         softAssert.assertAll();
     }
 }

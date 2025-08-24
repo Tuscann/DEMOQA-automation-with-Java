@@ -10,7 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-import static utilities.JavaScriptUtility.scrollToElementJS;
+import utilities.JavaScriptUtility;
 
 public class BooksLoginPage extends BasePage {
 
@@ -49,9 +49,12 @@ public class BooksLoginPage extends BasePage {
     @FindBy(id = "userName-value")
     WebElement profile;
 
+    private final JavaScriptUtility javaScriptUtility;
+
     public BooksLoginPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
+        this.javaScriptUtility = new JavaScriptUtility(driver);
     }
 
     public String getLoadingLabel() {
@@ -109,7 +112,7 @@ public class BooksLoginPage extends BasePage {
     }
 
     public void clickLoginButton() {
-        scrollToElementJS(loginButton);
+        javaScriptUtility.scrollToElementJS(loginButton);
         loginButton.click();
     }
 
@@ -121,7 +124,7 @@ public class BooksLoginPage extends BasePage {
     }
 
     public void setUsername(String username2) {
-        scrollToElementJS(username);
+        javaScriptUtility.scrollToElementJS(username);
         set(username, username2);
     }
 

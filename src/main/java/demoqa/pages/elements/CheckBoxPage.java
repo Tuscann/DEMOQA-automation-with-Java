@@ -5,10 +5,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import utilities.JavaScriptUtility;
 
 import java.util.List;
-
-import static utilities.JavaScriptUtility.scrollToElementJS;
 
 public class CheckBoxPage extends BasePage {
 
@@ -78,9 +77,12 @@ public class CheckBoxPage extends BasePage {
     @FindBy(id = "result")
     private List<WebElement> resultMessageList;
 
+    private final JavaScriptUtility javaScriptUtility;
+
     public CheckBoxPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
+        this.javaScriptUtility = new JavaScriptUtility(driver);
     }
 
     public boolean isResultMessageEmpty() {
@@ -128,7 +130,7 @@ public class CheckBoxPage extends BasePage {
     }
 
     public void clickWorkSpaceReact() {
-        scrollToElementJS(react);
+        javaScriptUtility.scrollToElementJS(react);
         react.click();
     }
 
@@ -137,17 +139,17 @@ public class CheckBoxPage extends BasePage {
     }
 
     public void clickDownloads() {
-        scrollToElementJS(downloads);
+        javaScriptUtility.scrollToElementJS(downloads);
         downloads.click();
     }
 
     public void clickWordFileDoc() {
-        scrollToElementJS(wordFileDoc);
+        javaScriptUtility.scrollToElementJS(wordFileDoc);
         wordFileDoc.click();
     }
 
     public void clickExcelFileDoc() {
-        scrollToElementJS(excelFileDoc);
+        javaScriptUtility.scrollToElementJS(excelFileDoc);
         excelFileDoc.click();
     }
 
@@ -156,12 +158,12 @@ public class CheckBoxPage extends BasePage {
     }
 
     public void clickNotes() {
-        scrollToElementJS(notes);
+        javaScriptUtility.scrollToElementJS(notes);
         notes.click();
     }
 
     public void clickCommands() {
-        scrollToElementJS(commands);
+        javaScriptUtility.scrollToElementJS(commands);
         commands.click();
     }
 

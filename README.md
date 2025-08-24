@@ -18,4 +18,19 @@ The automation tests in this project are written in Java using Maven framework.
 3. TestNG - 7.11
 4. Selenium WebDriver - 4.35
 
-In order the tests to start you need Chrome/Edge browser instaled on your system.
+## Installation
+
+Open terminal in IDE and git clone the repository
+git clone git@github.com:Tuscann/DEMOQA-automation-with-Java.git
+
+## Executing program
+
+Run all tests from ModalDialogsPageTests from terminal with:
+
+```mvn test -Dtest=demoqa.web.tests.alerts.ModalDialogsPagePageTests```
+
+Run all tests in project from terminal with:
+
+```mvn test```
+
+![img.png](img.png)

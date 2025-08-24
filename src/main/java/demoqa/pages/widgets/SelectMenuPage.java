@@ -8,11 +8,10 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
+import utilities.JavaScriptUtility;
 
 import java.util.List;
 import java.util.stream.Collectors;
-
-import static utilities.JavaScriptUtility.scrollToElementJS;
 
 public class SelectMenuPage extends BasePage {
     @FindBy(id = "react-select-2-input")
@@ -72,9 +71,12 @@ public class SelectMenuPage extends BasePage {
     @FindBy(xpath = "//b[contains(.,'Standard multi select')]")
     private WebElement expectedStandardMultiSelectLabel;
 
+    private final JavaScriptUtility javaScriptUtility;
+
     public SelectMenuPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
+        this.javaScriptUtility = new JavaScriptUtility(driver);
     }
 
     public String getSelectedValue() {
@@ -163,19 +165,19 @@ public class SelectMenuPage extends BasePage {
     }
 
     public void selectStandardMultiByText(String text) {
-        scrollToElementJS(standardMultiSelect);
+        javaScriptUtility.scrollToElementJS(standardMultiSelect);
         Select select = new Select(standardMultiSelect);
         select.selectByVisibleText(text);
     }
 
     public void selectStandardMultiByIndex(int index) {
-        scrollToElementJS(standardMultiSelect);
+        javaScriptUtility.scrollToElementJS(standardMultiSelect);
         Select select = new Select(standardMultiSelect);
         select.selectByIndex(index);
     }
 
     public void deselectStandardMulti(String value) {
-        scrollToElementJS(standardMultiSelect);
+        javaScriptUtility.scrollToElementJS(standardMultiSelect);
         Select select = new Select(standardMultiSelect);
         select.deselectByValue(value);
     }

@@ -7,11 +7,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utilities.ActionUtility;
 
 import java.time.Duration;
-
-import static utilities.ActionUtility.dragAndDropBy;
-
 
 public class SliderPage extends BasePage {
     @FindBy(id = "sliderValue")
@@ -20,9 +18,12 @@ public class SliderPage extends BasePage {
     @FindBy(className = "range-slider__wrap")
     private WebElement slider;
 
+    private final ActionUtility actionUtility;
+
     public SliderPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
+        this.actionUtility = new ActionUtility(driver);
     }
 
     public String getSliderValue() {
@@ -32,7 +33,7 @@ public class SliderPage extends BasePage {
     public void moveSlider(int x, int y) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         wait.until(ExpectedConditions.elementToBeClickable(slider));
-        dragAndDropBy(slider, x, y);
+        actionUtility.dragAndDropBy(slider, x, y);
     }
 
     public int getSliderPixels(WebElement slider, double amount, double sliderMax, double sliderMin) {

@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import static utilities.JavaScriptUtility.scrollToElementJS;
+import utilities.JavaScriptUtility;
 
 public class InteractionsPage extends BasePage {
     @FindBy(xpath = "//li[@id='item-0']/span[text()='Sortable']")
@@ -33,28 +33,31 @@ public class InteractionsPage extends BasePage {
     @FindBy(xpath = "//span[text()='Frames']")
     private WebElement frames;
 
+    private final JavaScriptUtility javaScriptUtility;
+
     public InteractionsPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
+        this.javaScriptUtility = new JavaScriptUtility(driver);
     }
 
     public void clickSortable() {
-        scrollToElementJS(sortable);
+        javaScriptUtility.scrollToElementJS(sortable);
         sortable.click();
     }
 
     public void clickSelectable() {
-        scrollToElementJS(selectable);
+        javaScriptUtility.scrollToElementJS(selectable);
         selectable.click();
     }
 
     public void clickResizable() {
-        scrollToElementJS(resizable);
+        javaScriptUtility.scrollToElementJS(resizable);
         resizable.click();
     }
 
     public void clickDroppable() {
-        scrollToElementJS(droppable);
+        javaScriptUtility.scrollToElementJS(droppable);
         droppable.click();
     }
 
@@ -63,7 +66,7 @@ public class InteractionsPage extends BasePage {
     }
 
     public void clickInteractions() {
-        scrollToElementJS(interactionsHeader);
+        javaScriptUtility.scrollToElementJS(interactionsHeader);
         interactionsHeader.click();
     }
 
@@ -81,7 +84,7 @@ public class InteractionsPage extends BasePage {
     }
 
     public void clickDraggable() {
-        scrollToElementJS(draggable);
+        javaScriptUtility.scrollToElementJS(draggable);
         draggable.click();
     }
 }

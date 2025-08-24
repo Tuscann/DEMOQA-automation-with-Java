@@ -7,11 +7,10 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utilities.ActionUtility;
+import utilities.JavaScriptUtility;
 
 import java.time.Duration;
-
-import static utilities.ActionUtility.MoveToElementSelenium;
-import static utilities.JavaScriptUtility.scrollToElementJS;
 
 public class TextBoxPage extends BasePage {
 
@@ -60,9 +59,14 @@ public class TextBoxPage extends BasePage {
     @FindBy(id = "output")
     private WebElement output;
 
+    private final ActionUtility actionUtility;
+    private final JavaScriptUtility javaScriptUtility;
+
     public TextBoxPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
+        this.actionUtility = new ActionUtility(driver);
+        this.javaScriptUtility = new JavaScriptUtility(driver);
     }
 
     public String getFullNameLabel() {
@@ -126,27 +130,27 @@ public class TextBoxPage extends BasePage {
     }
 
     public void setFullNameField(String fullName) {
-        MoveToElementSelenium(fullNameField);
+        actionUtility.MoveToElementSelenium(fullNameField);
         set(fullNameField, fullName);
     }
 
     public void setEmailField(String email) {
-        scrollToElementJS(emailField);
+        javaScriptUtility.scrollToElementJS(emailField);
         set(emailField, email);
     }
 
     public void setCurrentAddressField(String currentAddress) {
-        scrollToElementJS(currentAddressField);
+        javaScriptUtility.scrollToElementJS(currentAddressField);
         set(currentAddressField, currentAddress);
     }
 
     public void setPermanentAddressField(String permanentAddress2) {
-        scrollToElementJS(permanentAddress);
+        javaScriptUtility.scrollToElementJS(permanentAddress);
         set(permanentAddress, permanentAddress2);
     }
 
     public void clickSubmitButton() {
-        scrollToElementJS(submitButton);
+        javaScriptUtility.scrollToElementJS(submitButton);
         submitButton.click();
     }
 

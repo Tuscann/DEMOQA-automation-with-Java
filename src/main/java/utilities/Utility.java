@@ -1,13 +1,6 @@
 package utilities;
 
-import demoqa.base.BasePage;
-import org.openqa.selenium.WebDriver;
-
 public class Utility {
-
-    public static WebDriver driver;
-
-    public static void setUtilityDriver() {
-        driver = BasePage.driver;
-    }
+    // Utility class for common operations
+    // Driver management is now handled by BasePage instances
 }

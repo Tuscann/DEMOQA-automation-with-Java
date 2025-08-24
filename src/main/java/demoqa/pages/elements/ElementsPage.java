@@ -7,10 +7,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utilities.JavaScriptUtility;
 
 import java.time.Duration;
-
-import static utilities.JavaScriptUtility.scrollToElementJS;
 
 public class ElementsPage extends BasePage {
 
@@ -50,9 +49,12 @@ public class ElementsPage extends BasePage {
     @FindBy(xpath = "//div[contains(@class,'element-list collapse')]")
     private WebElement collapseDiv;
 
+    private final JavaScriptUtility javaScriptUtility;
+
     public ElementsPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
+        this.javaScriptUtility = new JavaScriptUtility(driver);
     }
 
     public String getText() {
@@ -92,7 +94,7 @@ public class ElementsPage extends BasePage {
     }
 
     public void clickLinks() {
-        scrollToElementJS(links);
+        javaScriptUtility.scrollToElementJS(links);
         links.click();
     }
 

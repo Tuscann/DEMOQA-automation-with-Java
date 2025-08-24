@@ -12,7 +12,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-import static utilities.JavaScriptUtility.scrollToElementJS;
+import utilities.JavaScriptUtility;
 
 public class DraggablePage extends BasePage {
 
@@ -55,9 +55,12 @@ public class DraggablePage extends BasePage {
     @FindBy(id = "cursorBottom")
     private WebElement cursorStyleThirdText;
 
+    private final JavaScriptUtility javaScriptUtility;
+
     public DraggablePage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
+        this.javaScriptUtility = new JavaScriptUtility(driver);
     }
 
     public String getPageTitle() {
@@ -189,7 +192,7 @@ public class DraggablePage extends BasePage {
     }
 
     public Point getInitLocationContainedInParent() {
-        scrollToElementJS(containerRestrictedSecondText);
+        javaScriptUtility.scrollToElementJS(containerRestrictedSecondText);
         return containerRestrictedSecondText.getLocation();
     }
 

@@ -5,10 +5,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import utilities.JavaScriptUtility;
 
 import java.util.List;
-
-import static utilities.JavaScriptUtility.scrollToElementJS;
 
 public class AlertsPage extends BasePage {
 
@@ -35,9 +34,12 @@ public class AlertsPage extends BasePage {
     @FindBy(xpath = "//span[contains(.,'On button click, prompt box will appear')]")
     WebElement alertFourthTitle;
 
+    private final JavaScriptUtility javaScriptUtility;
+
     public AlertsPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
+        this.javaScriptUtility = new JavaScriptUtility(driver);
     }
 
     public String getHeaderText() {
@@ -85,7 +87,7 @@ public class AlertsPage extends BasePage {
     }
 
     public void clickConfirmationTimeAlertButton() {
-        scrollToElementJS(confirmationTimeAlertButton);
+        javaScriptUtility.scrollToElementJS(confirmationTimeAlertButton);
         confirmationTimeAlertButton.click();
     }
 }

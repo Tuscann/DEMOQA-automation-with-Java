@@ -2,29 +2,35 @@ package utilities;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class JavaScriptUtility extends Utility {
+public class JavaScriptUtility {
 
-    public static void scrollToElementJS(By locator) {
+    private final WebDriver driver;
+
+    public JavaScriptUtility(WebDriver driver) {
+        this.driver = driver;
+    }
+
+    public void scrollToElementJS(By locator) {
         WebElement element = driver.findElement(locator);
         String jsScript = "arguments[0].scrollIntoView();";
         ((JavascriptExecutor) driver).executeScript(jsScript, element);
     }
 
-    public static void scrollToElementJS(WebElement webElement) {
-
+    public void scrollToElementJS(WebElement webElement) {
         String jsScript = "arguments[0].scrollIntoView();";
         ((JavascriptExecutor) driver).executeScript(jsScript, webElement);
     }
 
-    public static void clickJS(By locator) {
+    public void clickJS(By locator) {
         WebElement element = driver.findElement(locator);
         JavascriptExecutor executor = (JavascriptExecutor) driver;
         executor.executeScript("arguments[0].click();", element);
     }
 
-    public static void clickJS(WebElement webElement) {
+    public void clickJS(WebElement webElement) {
         JavascriptExecutor executor = (JavascriptExecutor) driver;
         executor.executeScript("arguments[0].click();", webElement);
     }

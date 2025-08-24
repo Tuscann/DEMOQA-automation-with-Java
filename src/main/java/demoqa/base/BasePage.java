@@ -5,24 +5,24 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class BasePage {
-    public static WebDriver driver;
+    protected final WebDriver driver;
 
     public BasePage(WebDriver driver) {
-        BasePage.driver = driver;
+        this.driver = driver;
     }
 
     public static void delay(int milliseconds) {
         try {
             Thread.sleep(milliseconds);
         } catch (InterruptedException exc) {
-            exc.printStackTrace();
+            Thread.currentThread().interrupt();
+            throw new RuntimeException("Thread interrupted during delay", exc);
         }
     }
 
     protected WebElement find(By locator) {
         return driver.findElement(locator);
     }
-
 
     protected void set(WebElement locator, String text) {
         locator.clear();

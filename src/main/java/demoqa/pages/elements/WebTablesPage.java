@@ -10,11 +10,10 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utilities.JavaScriptUtility;
 
 import java.time.Duration;
 import java.util.List;
-
-import static utilities.JavaScriptUtility.scrollToElementJS;
 
 public class WebTablesPage extends BasePage {
 
@@ -144,9 +143,12 @@ public class WebTablesPage extends BasePage {
     private WebElement firstRowDepartment;
 
 
+    private final JavaScriptUtility javaScriptUtility;
+
     public WebTablesPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
+        this.javaScriptUtility = new JavaScriptUtility(driver);
     }
 
     public String getSearchBoxPlaceholder() {
@@ -384,13 +386,13 @@ public class WebTablesPage extends BasePage {
 
     public void clickEdit(String email) {
         WebElement editButton = driver.findElement(By.xpath("//div[text()='" + email + "']//following::span[@title='Edit']"));
-        scrollToElementJS(editButton);
+        javaScriptUtility.scrollToElementJS(editButton);
         editButton.click();
     }
 
     public void clickDeleteByEmail(String email) {
         WebElement deleteButton = driver.findElement(By.xpath("//div[text()='" + email + "']//following::span[@title='Delete']"));
-        scrollToElementJS(deleteButton);
+        javaScriptUtility.scrollToElementJS(deleteButton);
         deleteButton.click();
     }
 

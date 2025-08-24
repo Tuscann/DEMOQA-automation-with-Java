@@ -7,10 +7,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utilities.JavaScriptUtility;
 
 import java.time.Duration;
-
-import static utilities.JavaScriptUtility.scrollToElementJS;
 
 public class AccordianPage extends BasePage {
     @FindBy(id = "section1Heading")
@@ -34,9 +33,12 @@ public class AccordianPage extends BasePage {
     @FindBy(xpath = "//h1[contains(.,'Accordian')]")
     private WebElement heading;
 
+    private final JavaScriptUtility javaScriptUtility;
+
     public AccordianPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
+        this.javaScriptUtility = new JavaScriptUtility(driver);
     }
 
     public String getHeading() {
@@ -82,12 +84,12 @@ public class AccordianPage extends BasePage {
     }
 
     public void clickTwoHeading() {
-        scrollToElementJS(sectionTwoHeading);
+        javaScriptUtility.scrollToElementJS(sectionTwoHeading);
         sectionTwoHeading.click();
     }
 
     public void clickThrirdHeading() {
-        scrollToElementJS(sectionTwoHeading);
+        javaScriptUtility.scrollToElementJS(sectionTwoHeading);
         sectionThreeHeading.click();
     }
 }

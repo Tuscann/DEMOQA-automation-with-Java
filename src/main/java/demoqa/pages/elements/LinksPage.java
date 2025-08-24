@@ -7,11 +7,10 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utilities.JavaScriptUtility;
 
 import java.time.Duration;
 import java.util.ArrayList;
-
-import static utilities.JavaScriptUtility.scrollToElementJS;
 
 public class LinksPage extends BasePage {
 
@@ -54,9 +53,12 @@ public class LinksPage extends BasePage {
     @FindBy(id = "linkResponse")
     private WebElement responseLink;
 
+    private final JavaScriptUtility javaScriptUtility;
+
     public LinksPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
+        this.javaScriptUtility = new JavaScriptUtility(driver);
     }
 
     public String getLinksText() {
@@ -104,51 +106,51 @@ public class LinksPage extends BasePage {
     }
 
     public void clickSimpleTab() {
-        scrollToElementJS(simpleLink);
+        javaScriptUtility.scrollToElementJS(simpleLink);
         simpleLink.click();
         ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
         driver.switchTo().window(tabs.get(1));
     }
 
     public void clickDynamicTab() {
-        scrollToElementJS(dynamicLink);
+        javaScriptUtility.scrollToElementJS(dynamicLink);
         dynamicLink.click();
         ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
         driver.switchTo().window(tabs.get(1));
     }
 
     public void clickCreatedLink() {
-        scrollToElementJS(createdRequestLink);
+        javaScriptUtility.scrollToElementJS(createdRequestLink);
         createdRequestLink.click();
     }
 
     public void clickNoContentRequestLink() {
-        scrollToElementJS(noContentRequestLink);
+        javaScriptUtility.scrollToElementJS(noContentRequestLink);
         noContentRequestLink.click();
     }
 
     public void clickMovedLink() {
-        scrollToElementJS(movedRequestLink);
+        javaScriptUtility.scrollToElementJS(movedRequestLink);
         movedRequestLink.click();
     }
 
     public void clickBadRequestLink() {
-        scrollToElementJS(badRequestLink);
+        javaScriptUtility.scrollToElementJS(badRequestLink);
         badRequestLink.click();
     }
 
     public void clickUnauthorizedLink() {
-        scrollToElementJS(unauthorizedRequestLink);
+        javaScriptUtility.scrollToElementJS(unauthorizedRequestLink);
         unauthorizedRequestLink.click();
     }
 
     public void clickForbiddenLink() {
-        scrollToElementJS(forbiddenRequestLink);
+        javaScriptUtility.scrollToElementJS(forbiddenRequestLink);
         forbiddenRequestLink.click();
     }
 
     public void clickNotFoundLink() {
-        scrollToElementJS(notFoundRequestLink);
+        javaScriptUtility.scrollToElementJS(notFoundRequestLink);
         notFoundRequestLink.click();
     }
 

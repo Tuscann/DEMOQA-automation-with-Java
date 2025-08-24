@@ -11,7 +11,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-import static utilities.JavaScriptUtility.scrollToElementJS;
+import utilities.JavaScriptUtility;
 
 public class SortablePage extends BasePage {
 
@@ -75,18 +75,21 @@ public class SortablePage extends BasePage {
     @FindBy(id = "demo-tabpane-grid")
     private WebElement gridOrder;
 
+    private final JavaScriptUtility javaScriptUtility;
+
     public SortablePage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
+        this.javaScriptUtility = new JavaScriptUtility(driver);
     }
 
     public void clickGridTab() {
-        scrollToElementJS(gridTab);
+        javaScriptUtility.scrollToElementJS(gridTab);
         gridTab.click();
     }
 
     public String getPageTitle() {
-        scrollToElementJS(pageTitle);
+        javaScriptUtility.scrollToElementJS(pageTitle);
         return pageTitle.getText();
     }
 
@@ -119,14 +122,14 @@ public class SortablePage extends BasePage {
     }
 
     public String getGridTab() {
-        scrollToElementJS(gridTab);
+        javaScriptUtility.scrollToElementJS(gridTab);
         return gridTab.getText();
     }
 
     public String getGridOne() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(4));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(7));
         wait.until(ExpectedConditions.visibilityOf(this.gridOne));
-        scrollToElementJS(gridOne);
+        javaScriptUtility.scrollToElementJS(gridOne);
         return gridOne.getText();
     }
 
@@ -166,7 +169,10 @@ public class SortablePage extends BasePage {
         return listOrder.getText();
     }
 
-    public String getGridOrder() {
+    public String getGridOrder() {       
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(7));
+        wait.until(ExpectedConditions.visibilityOf(this.gridOrder));
+        javaScriptUtility.scrollToElementJS(gridOrder);
         return gridOrder.getText();
     }
 
@@ -174,7 +180,7 @@ public class SortablePage extends BasePage {
         WebElement draggable = getGridElementByName(gridOne);
         WebElement droppable = getGridElementByName(gridSix);
 
-        scrollToElementJS(draggable);
+        javaScriptUtility.scrollToElementJS(draggable);
 
         if (draggable != null && droppable != null) {
             Actions actions = new Actions(driver);
@@ -186,7 +192,7 @@ public class SortablePage extends BasePage {
         WebElement draggable = getListElementByName(listOne);
         WebElement droppable = getListElementByName(listSix);
 
-        scrollToElementJS(draggable);
+        javaScriptUtility.scrollToElementJS(draggable);
 
         if (draggable != null && droppable != null) {
             Actions actions = new Actions(driver);

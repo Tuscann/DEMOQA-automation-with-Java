@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import static utilities.JavaScriptUtility.scrollToElementJS;
+import utilities.JavaScriptUtility;
 
 public class BrokenLinksImagesPage extends BasePage {
 
@@ -25,9 +25,12 @@ public class BrokenLinksImagesPage extends BasePage {
     @FindBy(xpath = "//a[contains(.,'Click Here for Broken Link')]")
     WebElement clickHereBrokenLinkText;
 
+    private final JavaScriptUtility javaScriptUtility;
+
     public BrokenLinksImagesPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
+        this.javaScriptUtility = new JavaScriptUtility(driver);
     }
 
     public String getHeaderText() {
@@ -63,12 +66,12 @@ public class BrokenLinksImagesPage extends BasePage {
     }
 
     public void ClickOnClickHereValidLink() {
-        scrollToElementJS(clickHereValidLinkText);
+        javaScriptUtility.scrollToElementJS(clickHereValidLinkText);
         clickHereValidLinkText.click();
     }
 
     public void clickOnClickHereBrokenLink() {
-        scrollToElementJS(clickHereBrokenLinkText);
+        javaScriptUtility.scrollToElementJS(clickHereBrokenLinkText);
         clickHereBrokenLinkText.click();
     }
 }

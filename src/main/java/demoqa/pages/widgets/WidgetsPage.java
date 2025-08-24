@@ -5,8 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-
-import static utilities.JavaScriptUtility.scrollToElementJS;
+import utilities.JavaScriptUtility;
 
 public class WidgetsPage extends BasePage {
 
@@ -43,53 +42,56 @@ public class WidgetsPage extends BasePage {
     @FindBy(xpath = "//div[@class='col-12 mt-4 col-md-6'][contains(.,'Please select an item from left to start practice.')]")
     private WebElement text;
 
+    private final JavaScriptUtility javaScriptUtility;
+
     public WidgetsPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
+        this.javaScriptUtility = new JavaScriptUtility(driver);
     }
 
     public void clickAccordion() {
-        scrollToElementJS(selectAccordion);
+        javaScriptUtility.scrollToElementJS(selectAccordion);
         selectAccordion.click();
     }
 
     public void clickAutoComplete() {
-        scrollToElementJS(selectAutoComplete);
+        javaScriptUtility.scrollToElementJS(selectAutoComplete);
         selectAutoComplete.click();
     }
 
     public void clickDatePicker() {
-        scrollToElementJS(datePickerMenuItem);
+        javaScriptUtility.scrollToElementJS(datePickerMenuItem);
         datePickerMenuItem.click();
     }
 
     public void clickSlider() {
-        scrollToElementJS(sliderMenuItem);
+        javaScriptUtility.scrollToElementJS(sliderMenuItem);
         sliderMenuItem.click();
     }
 
     public void clickProgressBar() {
-        scrollToElementJS(progressBarMenuItem);
+        javaScriptUtility.scrollToElementJS(progressBarMenuItem);
         progressBarMenuItem.click();
     }
 
     public void clickTabs() {
-        scrollToElementJS(selectTabs);
+        javaScriptUtility.scrollToElementJS(selectTabs);
         selectTabs.click();
     }
 
     public void clickToolTips() {
-        scrollToElementJS(selectToolTips);
+        javaScriptUtility.scrollToElementJS(selectToolTips);
         selectToolTips.click();
     }
 
     public void clickMenu() {
-        scrollToElementJS(selectMenu);
+        javaScriptUtility.scrollToElementJS(selectMenu);
         selectMenu.click();
     }
 
     public void clickSelectMenu() {
-        scrollToElementJS(selectSelectMenu);
+        javaScriptUtility.scrollToElementJS(selectSelectMenu);
         selectSelectMenu.click();
     }
 

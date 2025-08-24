@@ -5,10 +5,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import utilities.JavaScriptUtility;
 
 import java.util.List;
 
-import static utilities.JavaScriptUtility.scrollToElementJS;
 import static utilities.StaticVariables.HOME_MENU_ITEMS;
 
 public class HomePage extends BasePage {
@@ -40,13 +40,16 @@ public class HomePage extends BasePage {
     @FindBy(xpath = "//span[contains(.,'© 2013-2020 TOOLSQA.COM | ALL RIGHTS RESERVED.')]")
     private WebElement footer;
 
+    private final JavaScriptUtility javaScriptUtility;
+
     public HomePage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
+        this.javaScriptUtility = new JavaScriptUtility(driver);
     }
 
     public void clickJoinNowButton() {
-        scrollToElementJS(joinNow);
+        javaScriptUtility.scrollToElementJS(joinNow);
         joinNow.click();
     }
 
@@ -79,38 +82,38 @@ public class HomePage extends BasePage {
     }
 
     public void goToForms() {
-        scrollToElementJS(formsCard);
+        javaScriptUtility.scrollToElementJS(formsCard);
         formsCard.click();
     }
 
     public void goToInteractions() {
-        scrollToElementJS(interactionsCard);
+        javaScriptUtility.scrollToElementJS(interactionsCard);
         interactionsCard.click();
     }
 
     public void goToBooks() {
-        scrollToElementJS(bookStoreApplicationCard);
+        javaScriptUtility.scrollToElementJS(bookStoreApplicationCard);
         bookStoreApplicationCard.click();
     }
 
     public void goToElements() {
-        scrollToElementJS(elementsCard);
+        javaScriptUtility.scrollToElementJS(elementsCard);
         elementsCard.click();
     }
 
     public void goToWidgets() {
-        scrollToElementJS(widgetsCard);
+        javaScriptUtility.scrollToElementJS(widgetsCard);
         widgetsCard.click();
     }
 
     public void goToAlertsFramesWindowsCard() {
-        scrollToElementJS(alertsFrameWindowsCard);
+        javaScriptUtility.scrollToElementJS(alertsFrameWindowsCard);
         alertsFrameWindowsCard.click();
     }
 
     public void chooseHomePageMenu(String homeMenu) {
         int indexOfElement = HOME_MENU_ITEMS.indexOf(homeMenu);
-        scrollToElementJS(clickHomePageItems.getFirst());
+        javaScriptUtility.scrollToElementJS(clickHomePageItems.getFirst());
 
         for (int i = 0; i < 3 && i < clickHomePageItems.size(); i++) {
             if (i == indexOfElement) {

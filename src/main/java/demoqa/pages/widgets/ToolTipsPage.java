@@ -8,10 +8,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utilities.JavaScriptUtility;
 
 import java.time.Duration;
-
-import static utilities.JavaScriptUtility.scrollToElementJS;
 
 public class ToolTipsPage extends BasePage {
     @FindBy(xpath = "//*[@id='buttonToolTopContainer']/p")
@@ -50,13 +49,16 @@ public class ToolTipsPage extends BasePage {
     @FindBy(xpath = "//*[@id=\"sectionToolTip\"]/div[2]")
     private WebElement sectionToolTip;
 
+    private final JavaScriptUtility javaScriptUtility;
+
     public ToolTipsPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
+        this.javaScriptUtility = new JavaScriptUtility(driver);
     }
 
     public String getHoverOverHoverMeToSeeButtonReturnToolTipText() {
-        scrollToElementJS(header);
+        javaScriptUtility.scrollToElementJS(header);
 
         Actions actions = new Actions(driver);
         actions.moveToElement(hoverMeToSeeButton).perform();

@@ -5,7 +5,7 @@ import demoqa.web.base.BaseTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import static utilities.SwitchToUtility.*;
+import utilities.SwitchToUtility;
 
 public class AlertsPageTests extends BaseTest {
     // Page Text Constants
@@ -42,11 +42,13 @@ public class AlertsPageTests extends BaseTest {
 
     private static final String ALERTS_PAGE_URL = "alerts";
     private AlertsPage alertsPage;
+    private SwitchToUtility switchToUtility;
 
     @BeforeMethod
     public void goToAlertsWindowsPage() {
         navigateToUrl(ALERTS_PAGE_URL);
         alertsPage = new AlertsPage(driver);
+        switchToUtility = new SwitchToUtility(driver);
     }
 
     @Test(enabled = true, description = "Verify all static texts on alerts page")
@@ -66,7 +68,7 @@ public class AlertsPageTests extends BaseTest {
     public void verifyPromptAlertWithTextInputAndAccept() {
         // Arrange & Act
         alertsPage.clickInformationAlertButton();
-        String actualAlertMessage = getAlertText();
+        String actualAlertMessage = switchToUtility.getAlertText();
 
         // Assert
         softAssert.assertEquals(actualAlertMessage, INFO_ALERT_MESSAGE, INFO_ALERT_MISMATCH_ERROR);
@@ -77,7 +79,7 @@ public class AlertsPageTests extends BaseTest {
     public void verifyTextOfPromptAlertAfter5seconds() {
         // Arrange & Act
         alertsPage.clickConfirmationTimeAlertButton();
-        String actualAlertMessage = getAlertText();
+        String actualAlertMessage = switchToUtility.getAlertText();
 
         // Assert
         softAssert.assertEquals(actualAlertMessage, TIMED_ALERT_MESSAGE, TIMED_ALERT_MISMATCH_ERROR);
@@ -88,7 +90,7 @@ public class AlertsPageTests extends BaseTest {
     public void verifyTextOfConfirmationAlertCancel() {
         // Arrange & Act
         alertsPage.clickConfirmationAlertButton();
-        dismissAlert();
+        switchToUtility.dismissAlert();
         String actualResult = alertsPage.getConfirmationResult();
 
         // Assert
@@ -100,7 +102,7 @@ public class AlertsPageTests extends BaseTest {
     public void verifyTextOfConfirmationAlertYes() {
         // Arrange & Act
         alertsPage.clickConfirmationAlertButton();
-        acceptAlert();
+        switchToUtility.acceptAlert();
         String actualResult = alertsPage.getConfirmationResult();
 
         // Assert
@@ -115,8 +117,8 @@ public class AlertsPageTests extends BaseTest {
 
         // Act
         alertsPage.clickPromptAlertButton();
-        setAlertText(PROMPT_INPUT_TEXT);
-        acceptAlert();
+        switchToUtility.setAlertText(PROMPT_INPUT_TEXT);
+        switchToUtility.acceptAlert();
         String actualResult = alertsPage.getPromptAlertResult();
 
         // Assert
@@ -128,7 +130,7 @@ public class AlertsPageTests extends BaseTest {
     public void verifyTextOfPromptAlertOK() {
         // Arrange & Act
         alertsPage.clickPromptAlertButton();
-        acceptAlert();
+        switchToUtility.acceptAlert();
         boolean isResultMissing = alertsPage.verifyNoAlertResult();
 
         // Assert
@@ -140,7 +142,7 @@ public class AlertsPageTests extends BaseTest {
     public void verifyTextOfPromptAlertCancel() {
         // Arrange & Act
         alertsPage.clickPromptAlertButton();
-        dismissAlert();
+        switchToUtility.dismissAlert();
         boolean isResultMissing = alertsPage.verifyNoAlertResult();
 
         // Assert

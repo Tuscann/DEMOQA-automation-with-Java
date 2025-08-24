@@ -6,11 +6,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.*;
+import utilities.JavaScriptUtility;
 
 import java.time.Duration;
 import java.util.Objects;
-
-import static utilities.JavaScriptUtility.scrollToElementJS;
 
 public class ProgressBarPage extends BasePage {
     @FindBy(xpath = "//div[contains(@class, 'mb-3')]")
@@ -28,9 +27,12 @@ public class ProgressBarPage extends BasePage {
     @FindBy(xpath = "//h1[@class='text-center'][contains(.,'Progress Bar')]")
     private WebElement header;
 
+    private final JavaScriptUtility javaScriptUtility;
+
     public ProgressBarPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
+        this.javaScriptUtility = new JavaScriptUtility(driver);
     }
 
     public String getHeaderText() {
@@ -72,7 +74,7 @@ public class ProgressBarPage extends BasePage {
     }
 
     public void clickStartButton() {
-        scrollToElementJS(progressBarText);
+        javaScriptUtility.scrollToElementJS(progressBarText);
         startStopButton.click();
     }
 

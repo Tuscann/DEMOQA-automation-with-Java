@@ -12,7 +12,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 import java.util.List;
 
-import static utilities.JavaScriptUtility.scrollToElementJS;
+import utilities.JavaScriptUtility;
 
 public class BooksPage extends BasePage {
     @FindBy(xpath = "//button[contains(.,'Next')]")
@@ -69,9 +69,12 @@ public class BooksPage extends BasePage {
     @FindBy(xpath = "(//div[contains(@class,'rt-resizable-header-content')])[4]")
     private WebElement publisher;
 
+    private final JavaScriptUtility javaScriptUtility;
+
     public BooksPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
+        this.javaScriptUtility = new JavaScriptUtility(driver);
     }
 
     public void clickTitle() {
@@ -95,12 +98,12 @@ public class BooksPage extends BasePage {
     }
 
     public boolean checkPreviousButtonIsActive() {
-        scrollToElementJS(previousButton);
+        javaScriptUtility.scrollToElementJS(previousButton);
         return previousButton.isEnabled();
     }
 
     public boolean checkNextButtonIsActive() {
-        scrollToElementJS(nextButton);
+        javaScriptUtility.scrollToElementJS(nextButton);
         return nextButton.isEnabled();
     }
 
@@ -114,7 +117,7 @@ public class BooksPage extends BasePage {
     }
 
     public void clickLoginLink() {
-        scrollToElementJS(loginLink);
+        javaScriptUtility.scrollToElementJS(loginLink);
         loginLink.click();
     }
 
@@ -123,7 +126,7 @@ public class BooksPage extends BasePage {
     }
 
     public void clickBookStoreApplicationLink() {
-        scrollToElementJS(bookStoreApplication);
+        javaScriptUtility.scrollToElementJS(bookStoreApplication);
         bookStoreApplication.click();
     }
 
@@ -132,7 +135,7 @@ public class BooksPage extends BasePage {
     }
 
     public void clickBookStoreAPILink() {
-        scrollToElementJS(bookStoreAPILink);
+        javaScriptUtility.scrollToElementJS(bookStoreAPILink);
         bookStoreAPILink.click();
     }
 

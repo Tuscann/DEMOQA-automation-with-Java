@@ -10,7 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-import static utilities.JavaScriptUtility.scrollToElementJS;
+import utilities.JavaScriptUtility;
 
 public class BooksProfilePage extends BasePage {
     @FindBy(id = "userName-value")
@@ -28,9 +28,12 @@ public class BooksProfilePage extends BasePage {
     @FindBy(id = "userName-value")
     WebElement profile;
 
+    private final JavaScriptUtility javaScriptUtility;
+
     public BooksProfilePage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
+        this.javaScriptUtility = new JavaScriptUtility(driver);
     }
 
     public String getUsername() {
@@ -61,7 +64,7 @@ public class BooksProfilePage extends BasePage {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(12));
         wait.until(ExpectedConditions.urlToBe("https://demoqa.com/profile"));
         wait.until(ExpectedConditions.elementToBeClickable(profile));
-        scrollToElementJS(goToBookStoreButton);
+        javaScriptUtility.scrollToElementJS(goToBookStoreButton);
         goToBookStoreButton.click();
     }
 }
