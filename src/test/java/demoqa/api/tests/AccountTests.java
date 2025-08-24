@@ -4,7 +4,6 @@ import demoqa.api.models.ErrorResponse;
 import demoqa.api.models.Token;
 import demoqa.api.models.User;
 import demoqa.api.spec.TodoClient;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
@@ -55,30 +54,37 @@ public class AccountTests extends BaseTestApi {
 
     @Test(description = "Authorized user with POST", suiteName = "api", enabled = true)
     void authorizeUser() throws IOException, InterruptedException {
+        // Arrange & Act
         TodoClient todoClient = new TodoClient();
 
         String isUserFound = todoClient.AuthorizeUser(VALID_USERNAME, VALID_PASSWORD);
 
-        Assert.assertEquals(isUserFound, EXPECTED_AUTHORIZED_RESPONSE, AUTHORIZATION_ERROR);
+        // Assert
+        softAssert.assertEquals(isUserFound, EXPECTED_AUTHORIZED_RESPONSE, AUTHORIZATION_ERROR);
+        softAssert.assertAll();
     }
 
     @Test(description = "Try to authorized non existing user with POST", suiteName = "api", enabled = true)
-    void tryToAuthorizeUser() throws IOException, InterruptedException {
+    void authorizeWithNonExistingUser() throws IOException, InterruptedException {
+        // Arrange & Act
         TodoClient todoClient = new TodoClient();
 
         String response = todoClient.AuthorizeUser(INVALID_USERNAME, VALID_PASSWORD);
 
-        Assert.assertEquals(response, EXPECTED_USER_NOT_FOUND_RESPONSE, API_RESPONSE_ERROR);
+        // Assert
+        softAssert.assertEquals(response, EXPECTED_USER_NOT_FOUND_RESPONSE, API_RESPONSE_ERROR);
+        softAssert.assertAll();
     }
 
     @Test(description = "Generate Token with POST", suiteName = "api", enabled = true)
     void generateToken() throws IOException, InterruptedException {
+        // Arrange & Act
         TodoClient todoClient = new TodoClient();
 
         Token token = todoClient.GenerateToken(VALID_USERNAME, VALID_PASSWORD);
 
+        // Assert
         softAssert.assertNotNull(token, TOKEN_NULL_ERROR);
-
         softAssert.assertNotNull(token.getToken(), TOKEN_FIELD_NULL_ERROR);
         softAssert.assertNotNull(token.getExpires(), EXPIRES_FIELD_NULL_ERROR);
         softAssert.assertNotNull(token.getStatus(), STATUS_FIELD_NULL_ERROR);
@@ -92,11 +98,13 @@ public class AccountTests extends BaseTestApi {
 
     @Test(description = "Generate new valid user with POST", suiteName = "api", enabled = true)
     void generateNewUser() throws IOException, InterruptedException {
+        // Arrange & Act
         TodoClient todoClient = new TodoClient();
 
         String username = VALID_USERNAME + 100 + (int) (Math.random() * 899);
-
         Object response = todoClient.GenerateNewUser(username, VALID_PASSWORD);
+
+        // Assert
         softAssert.assertNotNull(response, USER_CREATION_RESPONSE_NULL_ERROR);
         softAssert.assertTrue(response instanceof User, RESPONSE_TYPE_ERROR);
 
@@ -112,10 +120,12 @@ public class AccountTests extends BaseTestApi {
 
     @Test(description = "Try to generate new user with existing user with POST", suiteName = "api", enabled = true)
     void generateNewUserWithExistingUser() throws IOException, InterruptedException {
+        // Arrange & Act
         TodoClient todoClient = new TodoClient();
 
         Object response = todoClient.GenerateNewUser(VALID_USERNAME, VALID_PASSWORD);
 
+        // Assert
         softAssert.assertNotNull(response, API_RESPONSE_NULL_ERROR);
         softAssert.assertTrue(response instanceof ErrorResponse, ERROR_RESPONSE_TYPE_ERROR);
 
@@ -127,11 +137,13 @@ public class AccountTests extends BaseTestApi {
     }
 
     @Test(description = "Try to delete user with not authorized user with DELETE", suiteName = "api", enabled = true)
-    void tryToDeleteUser() throws IOException, InterruptedException {
+    void tryToDeleteUserWithoutAutorization() throws IOException, InterruptedException {
+        // Arrange & Act
         TodoClient todoClient = new TodoClient();
 
         Object response = todoClient.DeleteUser(USER_ID);
 
+        // Assert
         softAssert.assertNotNull(response, API_RESPONSE_NULL_ERROR);
         softAssert.assertTrue(response instanceof ErrorResponse, ERROR_RESPONSE_TYPE_ERROR);
 
@@ -143,11 +155,13 @@ public class AccountTests extends BaseTestApi {
     }
 
     @Test(description = "Try to get user information with not authorized user with GET", suiteName = "api", enabled = true)
-    void getInformation() throws IOException, InterruptedException {
+    void getUserInformationWithNonAuthorizedUser() throws IOException, InterruptedException {
+        // Arrange & Act
         TodoClient todoClient = new TodoClient();
 
         Object response = todoClient.GetUserByUUID(USER_ID);
 
+        // Assert
         softAssert.assertNotNull(response, API_RESPONSE_NULL_ERROR);
         softAssert.assertTrue(response instanceof ErrorResponse, ERROR_RESPONSE_TYPE_ERROR);
 
@@ -160,10 +174,12 @@ public class AccountTests extends BaseTestApi {
 
     @Test(description = "Try to2", suiteName = "api", enabled = false)
     void getInformation2() throws IOException, InterruptedException {
+        // Arrange & Act
         TodoClient todoClient = new TodoClient();
 
         Object response = todoClient.GetUserByUUID(USER_ID_2);
 
+        // Assert
         softAssert.assertNotNull(response, API_RESPONSE_NULL_ERROR);
         softAssert.assertTrue(response instanceof ErrorResponse, ERROR_RESPONSE_TYPE_ERROR);
 

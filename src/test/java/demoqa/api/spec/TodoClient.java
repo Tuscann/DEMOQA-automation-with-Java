@@ -14,6 +14,7 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
+import java.util.Base64;
 import java.util.List;
 
 import static demoqa.web.base.BaseTest.DEMO_QA_URL;
@@ -37,10 +38,9 @@ public class TodoClient {
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
         String prettyJson = objectMapper.readTree(response.body()).get("books").toPrettyString();
-        List<Book> books = objectMapper.readValue(prettyJson, new TypeReference<>() {
-        });
 
-        return books;
+        return objectMapper.readValue(prettyJson, new TypeReference<>() {
+        });
     }
 
     public Book GetBookByISBN(String ISBN) throws IOException, InterruptedException {
@@ -51,10 +51,8 @@ public class TodoClient {
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
         String prettyJson = objectMapper.readTree(response.body()).toPrettyString();
 
-        Book book = objectMapper.readValue(prettyJson, new TypeReference<>() {
+        return objectMapper.readValue(prettyJson, new TypeReference<>() {
         });
-
-        return book;
     }
 
     public String AuthorizeUser(String username, String password) throws IOException, InterruptedException {
@@ -121,6 +119,51 @@ public class TodoClient {
         }
     }
 
+    public String CreateBook(String username, String password, String userId) throws IOException, InterruptedException {
+
+        String isbn = "9781449331818";
+        String basicAuth = Base64.getEncoder().encodeToString((username + ":" + password).getBytes());
+
+        String jsonBody = """
+                {
+                  "userId": "%s",
+                  "collectionOfIsbns": [
+                    {
+                      "isbn": "%s"
+                    }
+                  ]
+                }
+                """.formatted(userId, isbn);
+
+        HttpClient client = HttpClient.newHttpClient();
+
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(DEMO_QA_URL + "BookStore/v1/Books"))
+                .header("accept", "application/json")
+                .header("authorization", "Basic " + basicAuth)
+                .header("Content-Type", "application/json")
+                .POST(HttpRequest.BodyPublishers.ofString(jsonBody))
+                .build();
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        return response.body();
+    }
+
+    public String DeleteAllBooksForUser(String username, String password, String userId) throws IOException, InterruptedException {
+
+        String basicAuth = Base64.getEncoder().encodeToString((username + ":" + password).getBytes());
+
+        HttpClient client = HttpClient.newHttpClient();
+
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(DEMO_QA_URL + "BookStore/v1/Books?UserId=" + userId))
+                .header("accept", "application/json")
+                .header("authorization", "Basic " + basicAuth)
+                .DELETE()
+                .build();
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        return response.body();
+    }
+
     public Object GetUserByUUID(String userId) throws IOException, InterruptedException {
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(DEMO_QA_URL + "Account/v1/User/" + userId))
@@ -134,5 +177,29 @@ public class TodoClient {
         } catch (Exception e) {
             return objectMapper.readValue(response.body(), ErrorResponse.class);
         }
+    }
+
+    public String DeleteBookForUserByIsbn(String validUsername, String validPassword, String userId, String isbn) throws IOException, InterruptedException {
+
+        String basicAuth = Base64.getEncoder().encodeToString((validUsername + ":" + validPassword).getBytes());
+
+        HttpClient client = HttpClient.newHttpClient();
+
+        String jsonBody = """
+                {
+                  "isbn": "%s",
+                  "userId": "%s"
+                }
+                """.formatted(isbn, userId);
+
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(DEMO_QA_URL + "BookStore/v1/Book"))
+                .header("accept", "application/json")
+                .header("authorization", "Basic " + basicAuth)
+                .header("Content-Type", "application/json")
+                .method("DELETE", HttpRequest.BodyPublishers.ofString(jsonBody))
+                .build();
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        return response.body();
     }
 }
