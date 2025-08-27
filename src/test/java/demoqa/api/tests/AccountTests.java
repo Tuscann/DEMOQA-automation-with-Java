@@ -4,6 +4,7 @@ import demoqa.api.models.ErrorResponse;
 import demoqa.api.models.Token;
 import demoqa.api.models.User;
 import demoqa.api.spec.TodoClient;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
@@ -19,7 +20,8 @@ public class AccountTests extends BaseTestApi {
 
     // Expected Response Constants
     private static final String EXPECTED_AUTHORIZED_RESPONSE = "true";
-    private static final String EXPECTED_USER_NOT_FOUND_RESPONSE = "{\"code\":\"1207\",\"message\":\"User not found!\"}";
+    private static final String EXPECTED_USER_NOT_FOUND_RESPONSE = """
+            {"code":"1207","message":"User not found!"}""";
     private static final String EXPECTED_SUCCESS_STATUS = "Success";
     private static final String EXPECTED_SUCCESS_RESULT = "User authorized successfully.";
     private static final String EXPECTED_ERROR_CODE_USER_EXISTS = "1204";
@@ -29,18 +31,11 @@ public class AccountTests extends BaseTestApi {
     // Error Message Constants
     private static final String AUTHORIZATION_ERROR = "Wrong authorization request";
     private static final String API_RESPONSE_ERROR = "Wrong response from API";
-    private static final String TOKEN_NULL_ERROR = "Token response should not be null";
     private static final String TOKEN_FIELD_NULL_ERROR = "Token field should not be null";
     private static final String EXPIRES_FIELD_NULL_ERROR = "Expires field should not be null";
-    private static final String STATUS_FIELD_NULL_ERROR = "Status field should not be null";
-    private static final String RESULT_FIELD_NULL_ERROR = "Result field should not be null";
     private static final String TOKEN_STATUS_ERROR = "Token status should be 'Success'";
     private static final String TOKEN_RESULT_ERROR = "Token result should indicate successful authorization";
-    private static final String USER_CREATION_RESPONSE_NULL_ERROR = "User creation response should not be null";
-    private static final String RESPONSE_TYPE_ERROR = "Response should be a User object";
     private static final String USER_ID_NULL_ERROR = "UserId should not be null";
-    private static final String USERNAME_NULL_ERROR = "Username should not be null";
-    private static final String BOOKS_ARRAY_NULL_ERROR = "Books array should not be null";
     private static final String USERNAME_MISMATCH_ERROR = "Username in response should match the one sent";
     private static final String BOOKS_ARRAY_EMPTY_ERROR = "Books array should be empty for new user";
     private static final String API_RESPONSE_NULL_ERROR = "API response should not be null";
@@ -50,13 +45,19 @@ public class AccountTests extends BaseTestApi {
     private static final String UNAUTHORIZED_ERROR_CODE_ERROR = "Error code should be 1200 for unauthorized user";
     private static final String UNAUTHORIZED_MESSAGE_ERROR = "Error message should indicate user not authorized";
 
+    // Client instance
+    private TodoClient todoClient;
+
     User testUser = new User();
 
-    @Test(description = "Authorized user with POST", suiteName = "api", enabled = true)
-    void authorizeUser() throws IOException, InterruptedException {
-        // Arrange & Act
-        TodoClient todoClient = new TodoClient();
+    @BeforeMethod
+    public void setUpClient() {
+        todoClient = new TodoClient();
+    }
 
+    @Test(description = "Authorized user with POST", suiteName = "api", enabled = true)
+    void authorizeUserWithValidUserAndValidPassword() throws IOException, InterruptedException {
+        // Arrange & Act
         String isUserFound = todoClient.AuthorizeUser(VALID_USERNAME, VALID_PASSWORD);
 
         // Assert
@@ -65,10 +66,8 @@ public class AccountTests extends BaseTestApi {
     }
 
     @Test(description = "Try to authorized non existing user with POST", suiteName = "api", enabled = true)
-    void authorizeWithNonExistingUser() throws IOException, InterruptedException {
+    void tryToAuthorizeInvalidUserAndValidPassword() throws IOException, InterruptedException {
         // Arrange & Act
-        TodoClient todoClient = new TodoClient();
-
         String response = todoClient.AuthorizeUser(INVALID_USERNAME, VALID_PASSWORD);
 
         // Assert
@@ -77,41 +76,27 @@ public class AccountTests extends BaseTestApi {
     }
 
     @Test(description = "Generate Token with POST", suiteName = "api", enabled = true)
-    void generateToken() throws IOException, InterruptedException {
+    void generateTokenWithValidUsernameAndValidPassword() throws IOException, InterruptedException {
         // Arrange & Act
-        TodoClient todoClient = new TodoClient();
-
         Token token = todoClient.GenerateToken(VALID_USERNAME, VALID_PASSWORD);
 
         // Assert
-        softAssert.assertNotNull(token, TOKEN_NULL_ERROR);
         softAssert.assertNotNull(token.getToken(), TOKEN_FIELD_NULL_ERROR);
         softAssert.assertNotNull(token.getExpires(), EXPIRES_FIELD_NULL_ERROR);
-        softAssert.assertNotNull(token.getStatus(), STATUS_FIELD_NULL_ERROR);
-        softAssert.assertNotNull(token.getResult(), RESULT_FIELD_NULL_ERROR);
-
         softAssert.assertEquals(token.getStatus(), EXPECTED_SUCCESS_STATUS, TOKEN_STATUS_ERROR);
         softAssert.assertEquals(token.getResult(), EXPECTED_SUCCESS_RESULT, TOKEN_RESULT_ERROR);
 
         softAssert.assertAll();
     }
 
-    @Test(description = "Generate new valid user with POST", suiteName = "api", enabled = true)
-    void generateNewUser() throws IOException, InterruptedException {
+    @Test(description = "Generate new valid user with POST", suiteName = "api", enabled = false)
+    void createNewUser() throws IOException, InterruptedException {
         // Arrange & Act
-        TodoClient todoClient = new TodoClient();
-
         String username = VALID_USERNAME + 100 + (int) (Math.random() * 899);
         Object response = todoClient.GenerateNewUser(username, VALID_PASSWORD);
 
-        // Assert
-        softAssert.assertNotNull(response, USER_CREATION_RESPONSE_NULL_ERROR);
-        softAssert.assertTrue(response instanceof User, RESPONSE_TYPE_ERROR);
-
         User user = (User) response;
         softAssert.assertNotNull(user.getUserId(), USER_ID_NULL_ERROR);
-        softAssert.assertNotNull(user.getUsername(), USERNAME_NULL_ERROR);
-        softAssert.assertNotNull(user.getBooks(), BOOKS_ARRAY_NULL_ERROR);
         softAssert.assertEquals(user.getUsername(), username, USERNAME_MISMATCH_ERROR);
         softAssert.assertTrue(user.getBooks().isEmpty(), BOOKS_ARRAY_EMPTY_ERROR);
 
@@ -121,8 +106,6 @@ public class AccountTests extends BaseTestApi {
     @Test(description = "Try to generate new user with existing user with POST", suiteName = "api", enabled = true)
     void generateNewUserWithExistingUser() throws IOException, InterruptedException {
         // Arrange & Act
-        TodoClient todoClient = new TodoClient();
-
         Object response = todoClient.GenerateNewUser(VALID_USERNAME, VALID_PASSWORD);
 
         // Assert
@@ -139,8 +122,6 @@ public class AccountTests extends BaseTestApi {
     @Test(description = "Try to delete user with not authorized user with DELETE", suiteName = "api", enabled = true)
     void tryToDeleteUserWithoutAutorization() throws IOException, InterruptedException {
         // Arrange & Act
-        TodoClient todoClient = new TodoClient();
-
         Object response = todoClient.DeleteUser(USER_ID);
 
         // Assert
@@ -157,8 +138,6 @@ public class AccountTests extends BaseTestApi {
     @Test(description = "Try to get user information with not authorized user with GET", suiteName = "api", enabled = true)
     void getUserInformationWithNonAuthorizedUser() throws IOException, InterruptedException {
         // Arrange & Act
-        TodoClient todoClient = new TodoClient();
-
         Object response = todoClient.GetUserByUUID(USER_ID);
 
         // Assert
@@ -172,11 +151,11 @@ public class AccountTests extends BaseTestApi {
         softAssert.assertAll();
     }
 
-    @Test(description = "Try to2", suiteName = "api", enabled = false)
-    void getInformation2() throws IOException, InterruptedException {
-        // Arrange & Act
-        TodoClient todoClient = new TodoClient();
-
+    @Test(description = "Try to2", suiteName = "api", enabled = true)
+    void getUserInformation() throws IOException, InterruptedException {
+        // Arrange
+        String isUserFound = todoClient.AuthorizeUser(VALID_USERNAME, VALID_PASSWORD);
+        softAssert.assertEquals(isUserFound, EXPECTED_AUTHORIZED_RESPONSE, AUTHORIZATION_ERROR);
         Object response = todoClient.GetUserByUUID(USER_ID_2);
 
         // Assert

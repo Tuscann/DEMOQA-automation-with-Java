@@ -61,7 +61,7 @@ public class ElementsPage extends BasePage {
         return text.getText();
     }
 
-    public void clickTextBox() {
+    public void clickLeftTabTextBox() {
         textBoxTab.click();
     }
 

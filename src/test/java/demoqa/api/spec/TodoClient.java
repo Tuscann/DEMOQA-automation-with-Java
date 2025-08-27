@@ -43,9 +43,9 @@ public class TodoClient {
         });
     }
 
-    public Book GetBookByISBN(String ISBN) throws IOException, InterruptedException {
+    public Book GetBookWithCorrectIsbn(String isbn) throws IOException, InterruptedException {
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(DEMO_QA_URL + "BookStore/v1/Book?ISBN=" + ISBN))
+                .uri(URI.create(DEMO_QA_URL + "BookStore/v1/Book?ISBN=" + isbn))
                 .GET()
                 .build();
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
@@ -102,6 +102,8 @@ public class TodoClient {
         } catch (Exception e) {
             return objectMapper.readValue(response.body(), ErrorResponse.class);
         }
+
+
     }
 
     public Object DeleteUser(String userId) throws IOException, InterruptedException {
@@ -119,9 +121,8 @@ public class TodoClient {
         }
     }
 
-    public String CreateBook(String username, String password, String userId) throws IOException, InterruptedException {
+    public String CreateBook(String username, String password, String userId, String isbn) throws IOException, InterruptedException {
 
-        String isbn = "9781449331818";
         String basicAuth = Base64.getEncoder().encodeToString((username + ":" + password).getBytes());
 
         String jsonBody = """
@@ -200,6 +201,40 @@ public class TodoClient {
                 .method("DELETE", HttpRequest.BodyPublishers.ofString(jsonBody))
                 .build();
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        return response.body();
+    }
+
+    public String putBookToUserCollection(String validUsername, String validPassword, String userId, String isbn) throws IOException, InterruptedException {
+
+        String basicAuth = Base64.getEncoder().encodeToString((validUsername + ":" + validPassword).getBytes());
+
+        HttpClient client = HttpClient.newHttpClient();
+
+        String jsonBody = """
+                {
+                  "userId": "%s",
+                  "isbn": "%s"
+                }
+                """.formatted(userId, isbn);
+
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(DEMO_QA_URL + "BookStore/v1/Books/" + isbn))
+                .header("accept", "application/json")
+                .header("authorization", "Basic " + basicAuth)
+                .header("Content-Type", "application/json")
+                .method("PUT", HttpRequest.BodyPublishers.ofString(jsonBody))
+                .build();
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        return response.body();
+    }
+
+    public String GetBookWithWrongIsbn(String isbn) throws IOException, InterruptedException {
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(DEMO_QA_URL + "BookStore/v1/Book?ISBN=" + isbn))
+                .GET()
+                .build();
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
         return response.body();
     }
 }

@@ -39,7 +39,7 @@ public class FormsPageTests extends BaseTest {
     public void verifyPracticeFormLink() {
         // Arrange & Act
         formsPage.clickPracticeFormLink();
-        String actualUrl = formsPage.checkUrl();
+        String actualUrl = formsPage.checkCurrentUrl();
 
         // Assert
         softAssert.assertEquals(actualUrl, PRACTICE_FORM_FULL_URL, URL_NAVIGATION_ERROR);

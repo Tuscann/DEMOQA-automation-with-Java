@@ -44,34 +44,34 @@ public class ElementsPageTests extends BaseTest {
     }
 
     @Test(enabled = true, description = "Verify navigation to all nine element pages and validate URLs")
-    public void checkAllNinePagesLinks() {
+    public void verifyAllNinePagesLinks() {
         // Arrange & Act
-        elementsPage.clickTextBox();
-        String actualTextBoxUrl = elementsPage.checkUrl();
+        elementsPage.clickLeftTabTextBox();
+        String actualTextBoxUrl = elementsPage.checkCurrentUrl();
 
         elementsPage.clickCheckBox();
-        String actualCheckBoxUrl = elementsPage.checkUrl();
+        String actualCheckBoxUrl = elementsPage.checkCurrentUrl();
 
         elementsPage.clickRadioButton();
-        String actualRadioButtonUrl = elementsPage.checkUrl();
+        String actualRadioButtonUrl = elementsPage.checkCurrentUrl();
 
         elementsPage.clickWebTables();
-        String actualWebTablesUrl = elementsPage.checkUrl();
+        String actualWebTablesUrl = elementsPage.checkCurrentUrl();
 
         elementsPage.clickButtons();
-        String actualButtonsUrl = elementsPage.checkUrl();
+        String actualButtonsUrl = elementsPage.checkCurrentUrl();
 
         elementsPage.clickLinks();
-        String actualLinksUrl = elementsPage.checkUrl();
+        String actualLinksUrl = elementsPage.checkCurrentUrl();
 
         elementsPage.clickBrokenLinksImages();
-        String actualBrokenUrl = elementsPage.checkUrl();
+        String actualBrokenUrl = elementsPage.checkCurrentUrl();
 
         elementsPage.clickUploadAndDownload();
-        String actualUploadDownloadUrl = elementsPage.checkUrl();
+        String actualUploadDownloadUrl = elementsPage.checkCurrentUrl();
 
         elementsPage.clickDynamicProperties();
-        String actualDynamicPropertiesUrl = elementsPage.checkUrl();
+        String actualDynamicPropertiesUrl = elementsPage.checkCurrentUrl();
 
         // Assert
         softAssert.assertEquals(actualTextBoxUrl, TEXT_BOX_URL, TEXT_BOX_URL_MISMATCH);

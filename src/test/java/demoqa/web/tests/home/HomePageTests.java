@@ -57,7 +57,7 @@ public class HomePageTests extends BaseTest {
     public void clickAndVerifyCardNavigation(String cardName, String expectedUrl, Runnable clickAction) {
         // Arrange & Act
         clickAction.run();
-        String actualUrl = homePage.checkUrl();
+        String actualUrl = homePage.checkCurrentUrl();
         // Assert
         softAssert.assertEquals(actualUrl, expectedUrl, String.format(CARD_NAVIGATION_ERROR, cardName));
         softAssert.assertAll();

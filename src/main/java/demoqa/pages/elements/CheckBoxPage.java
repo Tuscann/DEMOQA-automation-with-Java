@@ -77,6 +77,10 @@ public class CheckBoxPage extends BasePage {
     @FindBy(id = "result")
     private List<WebElement> resultMessageList;
 
+    @FindBy(xpath = "//span[@class='text-success'][1]")
+    private WebElement firstSelectedNotesCheckbox;
+
+
     private final JavaScriptUtility javaScriptUtility;
 
     public CheckBoxPage(WebDriver driver) {
@@ -181,5 +185,9 @@ public class CheckBoxPage extends BasePage {
 
     public boolean verifyResultMessageIsMissing() {
         return resultMessageList.isEmpty();
+    }
+
+    public String getResultMessageColor() {
+        return firstSelectedNotesCheckbox.getCssValue("color");
     }
 }

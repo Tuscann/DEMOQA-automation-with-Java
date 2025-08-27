@@ -53,7 +53,7 @@ public class BookRegisterPageTests extends BaseTest {
     @Test(enabled = true, description = "Verify all static text elements on the register page")
     public void verifyAllTextOnPage() {
         // Arrange & Act        
-        String actualTitleText = booksRegisterPage.getTitle();
+        String actualHeaderText = booksRegisterPage.getTitle();
         String actualFirstText = booksRegisterPage.getFirstText();
         String actualFirstNameLabel = booksRegisterPage.getFirstNameLabel();
         String actualLastNameLabel = booksRegisterPage.getLastNameLabel();
@@ -72,7 +72,7 @@ public class BookRegisterPageTests extends BaseTest {
         softAssert.assertEquals(actualLastNamePlaceholder, LAST_NAME_PLACEHOLDER, LAST_NAME_PLACEHOLDER_ERROR);
         softAssert.assertEquals(actualUserNamePlaceholder, USERNAME_PLACEHOLDER, USERNAME_PLACEHOLDER_ERROR);
         softAssert.assertEquals(actualPasswordPlaceholder, PASSWORD_PLACEHOLDER, PASSWORD_PLACEHOLDER_ERROR);
-        softAssert.assertEquals(actualTitleText, PAGE_TITLE, PAGE_TITLE_ERROR);
+        softAssert.assertEquals(actualHeaderText, PAGE_TITLE, PAGE_TITLE_ERROR);
         softAssert.assertEquals(actualFirstText, HEADER_TEXT, HEADER_TEXT_ERROR);
         softAssert.assertEquals(actualFirstNameLabel, FIRST_NAME_LABEL, FIRST_NAME_LABEL_ERROR);
         softAssert.assertEquals(actualLastNameLabel, LAST_NAME_LABEL, LAST_NAME_LABEL_ERROR);
@@ -89,14 +89,13 @@ public class BookRegisterPageTests extends BaseTest {
         String expectedFirstName = faker.name().firstName();
         String expectedLastName = faker.name().lastName();
         String expectedUsername = faker.name().username();
-        String expectedPassword = faker.internet().password(8, 16, true, false, true) + "A1!";
+        String expectedPassword = faker.internet().password(8, 16, true, false, true);
 
         // Act
         booksRegisterPage.setFirstName(expectedFirstName);
         booksRegisterPage.setLastName(expectedLastName);
         booksRegisterPage.setUsername(expectedUsername);
         booksRegisterPage.setPassword(expectedPassword);
-        booksRegisterPage.clickIamRobotButton();
         booksRegisterPage.clickRegisterButton();
         String actualErrorMessage = booksRegisterPage.getErrorMessage();
 

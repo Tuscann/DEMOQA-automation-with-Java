@@ -8,11 +8,10 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utilities.JavaScriptUtility;
 
 import java.time.Duration;
 import java.util.List;
-
-import utilities.JavaScriptUtility;
 
 public class BooksPage extends BasePage {
     @FindBy(xpath = "//button[contains(.,'Next')]")
@@ -116,7 +115,7 @@ public class BooksPage extends BasePage {
         return topRowTable.getText();
     }
 
-    public void clickLoginLink() {
+    public void clickLogLeftTab() {
         javaScriptUtility.scrollToElementJS(loginLink);
         loginLink.click();
     }
@@ -125,16 +124,16 @@ public class BooksPage extends BasePage {
         loginButton.click();
     }
 
-    public void clickBookStoreApplicationLink() {
+    public void clickBookStoreApplicationHeader() {
         javaScriptUtility.scrollToElementJS(bookStoreApplication);
         bookStoreApplication.click();
     }
 
-    public void clickProfileLink() {
+    public void clickProfileLeftTab() {
         profileLink.click();
     }
 
-    public void clickBookStoreAPILink() {
+    public void clickBookStoreApiLeftLink() {
         javaScriptUtility.scrollToElementJS(bookStoreAPILink);
         bookStoreAPILink.click();
     }
@@ -186,7 +185,7 @@ public class BooksPage extends BasePage {
         return bookStoreApplication.isDisplayed();
     }
 
-    public void clickBookStoreLink() {
+    public void clickBookStoreLeftTab() {
         bookStoreLink.click();
     }
 }

@@ -41,52 +41,39 @@ public class RadioButtonPageTests extends BaseTest {
     }
 
     @Test(enabled = true, description = "Verify all text elements on the radio button page")
-    public void checkAllTextOnPage() {
-        // Arrange & Act
-        String actualRadioButtonHeaderText = radioButtonPage.getHeaderText();
-        String actualQuestionText = radioButtonPage.getQuestionText();
-        String actualYesAnswerText = radioButtonPage.getYesAnswerLabel();
-        String actualImpressiveAnswerText = radioButtonPage.getImpressiveAnswerLabel();
-        String actualNoAnswerText = radioButtonPage.getNoAnswerLabel();
-
-        // Assert
-        softAssert.assertEquals(actualRadioButtonHeaderText, EXPECTED_RADIO_BUTTON_HEADER, HEADER_TEXT_MISMATCH);
-        softAssert.assertEquals(actualYesAnswerText, YES_ANSWER, YES_ANSWER_LABEL_MISMATCH);
-        softAssert.assertEquals(actualNoAnswerText, NO_ANSWER, NO_ANSWER_LABEL_MISMATCH);
-        softAssert.assertEquals(actualQuestionText, EXPECTED_QUESTION_TEXT, QUESTION_TEXT_MISMATCH);
-        softAssert.assertEquals(actualImpressiveAnswerText, IMPRESSIVE_ANSWER, IMPRESSIVE_ANSWER_LABEL_MISMATCH);
+    public void verifyAllTextOnPage() {
+        // Arrange & Act & Assert
+        softAssert.assertEquals(radioButtonPage.getHeaderText(), EXPECTED_RADIO_BUTTON_HEADER, HEADER_TEXT_MISMATCH);
+        softAssert.assertEquals(radioButtonPage.getQuestionText(), EXPECTED_QUESTION_TEXT, QUESTION_TEXT_MISMATCH);
+        softAssert.assertEquals(radioButtonPage.getYesAnswerLabel(), YES_ANSWER, YES_ANSWER_LABEL_MISMATCH);
+        softAssert.assertEquals(radioButtonPage.getImpressiveAnswerLabel(), IMPRESSIVE_ANSWER, IMPRESSIVE_ANSWER_LABEL_MISMATCH);
+        softAssert.assertEquals(radioButtonPage.getNoAnswerLabel(), NO_ANSWER, NO_ANSWER_LABEL_MISMATCH);
         softAssert.assertFalse(radioButtonPage.isResultMessageDisplayed());
         softAssert.assertAll();
     }
 
     @Test(enabled = true, description = "Verify that the No answer option is disabled")
     public void verifyAnswerNoIsDisabled() {
-        // Arrange & Act
+        // Arrange & Act & Assert
         softAssert.assertFalse(radioButtonPage.isAnswerEnabled(NO_ANSWER));
-        // Assert
         softAssert.assertAll();
     }
 
     @Test(enabled = true, description = "Verify that the Yes And Impressive  answers option are enabled")
     public void verifyAnswerYesAndImpressiveAreEnabled() {
-        // Arrange & Act
+        // Arrange & Act & Assert
         softAssert.assertTrue(radioButtonPage.isAnswerEnabled(IMPRESSIVE_ANSWER));
         softAssert.assertTrue(radioButtonPage.isAnswerEnabled(YES_ANSWER));
-        // Assert
         softAssert.assertAll();
     }
-
 
     @Test(enabled = true, description = "Choose Yes answer and verify selection message")
     public void chooseAnswerYes() {
         // Arrange & Act
         radioButtonPage.clickAnswer(YES_ANSWER);
 
-        String actualYesAnswer = radioButtonPage.getResultMessage();
-
         // Assert
-        softAssert.assertTrue(radioButtonPage.isResultMessageDisplayed());
-        softAssert.assertEquals(actualYesAnswer, EXPECTED_YES_SELECTION_MESSAGE, YES_ANSWER_NOT_CHOSEN_ERROR);
+        softAssert.assertEquals(radioButtonPage.getResultMessage(), EXPECTED_YES_SELECTION_MESSAGE, YES_ANSWER_NOT_CHOSEN_ERROR);
         softAssert.assertAll();
     }
 
@@ -94,11 +81,9 @@ public class RadioButtonPageTests extends BaseTest {
     public void chooseAnswerImpressive() {
         // Arrange & Act
         radioButtonPage.clickAnswer(IMPRESSIVE_ANSWER);
-        String actualImpressiveAnswer = radioButtonPage.getResultMessage();
 
         // Assert
-        softAssert.assertTrue(radioButtonPage.isResultMessageDisplayed());
-        softAssert.assertEquals(actualImpressiveAnswer, EXPECTED_IMPRESSIVE_SELECTION_MESSAGE, IMPRESSIVE_ANSWER_NOT_CHOSEN_ERROR);
+        softAssert.assertEquals(radioButtonPage.getResultMessage(), EXPECTED_IMPRESSIVE_SELECTION_MESSAGE, IMPRESSIVE_ANSWER_NOT_CHOSEN_ERROR);
         softAssert.assertAll();
     }
 
@@ -106,15 +91,11 @@ public class RadioButtonPageTests extends BaseTest {
     public void verifyGreenColorOfResultMessage() {
         // Arrange & Act
         radioButtonPage.clickAnswer(IMPRESSIVE_ANSWER);
-        String actualColor = radioButtonPage.isColorGreen();
-
-        softAssert.assertEquals(actualColor, EXPECTED_GREEN_COLOR, GREEN_COLOR_IMPRESSIVE_ERROR);
-
+        softAssert.assertEquals(radioButtonPage.getResultMessageColor(), EXPECTED_GREEN_COLOR, GREEN_COLOR_IMPRESSIVE_ERROR);
         radioButtonPage.clickAnswer(YES_ANSWER);
-        actualColor = radioButtonPage.isColorGreen();
 
         // Assert
-        softAssert.assertEquals(actualColor, EXPECTED_GREEN_COLOR, GREEN_COLOR_YES_ERROR);
+        softAssert.assertEquals(radioButtonPage.getResultMessageColor(), EXPECTED_GREEN_COLOR, GREEN_COLOR_YES_ERROR);
         softAssert.assertAll();
     }
 }

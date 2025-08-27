@@ -55,7 +55,7 @@ public class RadioButtonPage extends BasePage {
         return resultMessage.getText();
     }
 
-    public String isColorGreen() {
+    public String getResultMessageColor() {
         return textSuccessMessage.getCssValue("color");
     }
 

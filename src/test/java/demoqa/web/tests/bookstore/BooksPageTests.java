@@ -16,8 +16,9 @@ public class BooksPageTests extends BaseTest {
     private static final String EXPECTED_SWAGGER_URL = DEMO_QA_URL + "swagger/";
     private static final String EXPECTED_NO_ROWS_MESSAGE = "No rows found";
     private static final String SEARCHED_BOOK_ECMASCRIPT = "Understanding ECMAScript 6";
-    private static final String SEARCHED_BOOK_JAVASCRIPT = "javascript";
-    private static final String SEARCHED_BOOK_ZHIVKO = "Zhivko";
+    private static final String SEARCHED_BOOK_AUTHOR = "Richard E. Silverman";
+    private static final String SEARCHED_BOOK_PUBLISHER = "No Starch Press";
+    private static final String SEARCHED_BOOK_IVAN = "Ivan";
     private static final String BOOKS_PER_PAGE_5 = "5 rows";
     private static final String BOOKS_PER_PAGE_10 = "10 rows";
     private static final String BOOKS_PER_PAGE_20 = "20 rows";
@@ -29,6 +30,14 @@ public class BooksPageTests extends BaseTest {
     private static final String EXPECTED_ECMASCRIPT_BOOK = """
             Understanding ECMAScript 6
             Nicholas C. Zakas
+            No Starch Press""";
+    private static final String EXPECTED_BOOK_AUTHOR = """
+            Git Pocket Guide
+            Richard E. Silverman
+            O'Reilly Media""";
+    private static final String EXPECTED_BOOK_PUBLISHER = """
+            Eloquent JavaScript, Second Edition
+            Marijn Haverbeke
             No Starch Press""";
 
     // Error Message Constants
@@ -83,9 +92,20 @@ public class BooksPageTests extends BaseTest {
     }
 
     private void verifyUrlNavigation(String expectedUrl, String errorMessage) {
-        String actualUrl = booksPage.checkUrl();
+        String actualUrl = booksPage.checkCurrentUrl();
         softAssert.assertEquals(actualUrl, expectedUrl, errorMessage);
         logger.debug("URL verification: expected={}, actual={}", expectedUrl, actualUrl);
+    }
+
+    // Helper method for testing individual rows per page option
+    private void testRowsPerPageOption(String rowsPerPage, int expectedCount, String errorMessage) {
+        logger.debug("Testing rows per page option: {} -> {} books", rowsPerPage, expectedCount);
+
+        booksPage.chooseBooksPerPage(rowsPerPage);
+        verifyBookCount(expectedCount, errorMessage);
+
+        // Note: For rows per page > 8, the page will show all available books (8 total)
+        // This is the expected behavior when there are fewer books than the selected rows per page
     }
 
     // Data Providers for Similar Test Scenarios
@@ -101,14 +121,6 @@ public class BooksPageTests extends BaseTest {
         };
     }
 
-    @DataProvider(name = "bookSearchData")
-    public Object[][] bookSearchDataProvider() {
-        return new Object[][]{
-                {SEARCHED_BOOK_ECMASCRIPT, EXPECTED_ECMASCRIPT_BOOK, BOOK_SEARCH_RESULT_ERROR},
-                {SEARCHED_BOOK_JAVASCRIPT, "Learning JavaScript Design Patterns\nAddy Osmani\nO'Reilly Media", BOOK_SEARCH_RESULT_ERROR}, // Actual result shows only 1 book
-                {SEARCHED_BOOK_ZHIVKO, EXPECTED_NO_ROWS_MESSAGE, NO_ROWS_MESSAGE_ERROR}
-        };
-    }
 
     @DataProvider(name = "paginationData")
     public Object[][] paginationDataProvider() {
@@ -130,49 +142,51 @@ public class BooksPageTests extends BaseTest {
     }
 
     @Test(enabled = true, description = "Verify show/hide left dropdown menu functionality")
-    public void clickLeftDropdownMenu() {
+    public void clickBookStoreApplicationHideLeftDropdownMenu() {
         logger.info("Starting dropdown menu functionality test");
 
         // Arrange & Act
-        boolean TextBoxIsVisible = booksPage.verifyLoginIsVisible();
-        logger.debug("Initial dropdown state: visible={}", TextBoxIsVisible);
+        boolean textBoxIsVisible = booksPage.verifyLoginIsVisible();
+        logger.debug("Initial dropdown state: visible={}", textBoxIsVisible);
 
-        booksPage.clickBookStoreApplicationLink();
-        logger.debug("Clicked Book Store Application link");
+        softAssert.assertTrue(textBoxIsVisible, DROPDOWN_LOGIN_NOT_SHOWN_ERROR);
 
-        boolean TextBoxIsVisible2 = booksPage.verifyLoginIsNotVisible();
-        logger.debug("Dropdown state after click: visible={}", TextBoxIsVisible2);
+        booksPage.clickBookStoreApplicationHeader();
+        logger.debug("Clicked Book Store Application Header");
+
+        textBoxIsVisible = booksPage.verifyLoginIsNotVisible();
+        logger.debug("Dropdown state after click: visible={}", textBoxIsVisible);
 
         // Assert
-        softAssert.assertTrue(TextBoxIsVisible, DROPDOWN_LOGIN_NOT_SHOWN_ERROR);
-        softAssert.assertFalse(TextBoxIsVisible2, DROPDOWN_LOGIN_SHOWN_ERROR);
+
+        softAssert.assertFalse(textBoxIsVisible, DROPDOWN_LOGIN_SHOWN_ERROR);
         softAssert.assertAll();
 
         logger.info("Dropdown menu functionality test completed successfully");
     }
 
     @Test(enabled = true, description = "Verify navigation to all four left side menu links")
-    public void checkAllFourPagesLinks() {
+    public void checkFourLeftTabLinks() {
         logger.info("Starting navigation test for all four left side menu links");
 
         // Act & Assert - Login Link
         logger.debug("Testing Login link navigation");
-        booksPage.clickLoginLink();
+        booksPage.clickLogLeftTab();
         verifyUrlNavigation(EXPECTED_LOGIN_URL, LOGIN_URL_ERROR);
 
         // Act & Assert - Books Link
         logger.debug("Testing Books link navigation");
-        booksPage.clickBookStoreLink();
+        booksPage.clickBookStoreLeftTab();
         verifyUrlNavigation(EXPECTED_BOOKS_URL, BOOKS_URL_ERROR);
 
         // Act & Assert - Profile Link
         logger.debug("Testing Profile link navigation");
-        booksPage.clickProfileLink();
+        booksPage.clickProfileLeftTab();
         verifyUrlNavigation(EXPECTED_PROFILE_URL, PROFILE_URL_ERROR);
 
         // Act & Assert - Swagger Link
         logger.debug("Testing Swagger link navigation");
-        booksPage.clickBookStoreAPILink();
+        booksPage.clickBookStoreApiLeftLink();
         verifyUrlNavigation(EXPECTED_SWAGGER_URL, SWAGGER_URL_ERROR);
 
         softAssert.assertAll();
@@ -180,7 +194,7 @@ public class BooksPageTests extends BaseTest {
     }
 
     @Test(enabled = true, description = "Verify table header columns are displayed correctly")
-    public void getFirstRowOfTable() {
+    public void verifyFirstRowOfTable() {
         logger.info("Starting table header verification test");
 
         // Arrange
@@ -217,7 +231,7 @@ public class BooksPageTests extends BaseTest {
     }
 
     @Test(enabled = true, description = "Click login button and verify navigation to login page")
-    public void clickLoginButton() {
+    public void verifyClickLoginButtonGoToLoginPage() {
         logger.info("Starting login button navigation test");
 
         // Act & Assert
@@ -229,24 +243,46 @@ public class BooksPageTests extends BaseTest {
         logger.info("Login button navigation test completed successfully");
     }
 
-    @Test(enabled = true, description = "Search for book and verify found book details")
-    public void searchAndFindOneBook() {
-        logger.info("Starting book search test for '{}'", SEARCHED_BOOK_ECMASCRIPT);
+    @Test(enabled = true, description = "Search by book title and find one book and verify book details")
+    public void searchBookByTitleAndFindOneBook() {
+        logger.info("Starting book search by title test for '{}'", SEARCHED_BOOK_ECMASCRIPT);
 
         // Act & Assert
         searchAndVerifyBooks(SEARCHED_BOOK_ECMASCRIPT, EXPECTED_ECMASCRIPT_BOOK, BOOK_SEARCH_RESULT_ERROR);
         softAssert.assertAll();
 
-        logger.info("Book search test completed successfully");
+        logger.info("Book search by title test completed successfully");
+    }
+
+    @Test(enabled = true, description = "Search by book author and find one book and verify book details")
+    public void searchBookByAuthorAndFindOneBook() {
+        logger.info("Starting book search by author test for '{}'", SEARCHED_BOOK_AUTHOR);
+
+        // Act & Assert
+        searchAndVerifyBooks(SEARCHED_BOOK_AUTHOR, EXPECTED_BOOK_AUTHOR, BOOK_SEARCH_RESULT_ERROR);
+        softAssert.assertAll();
+
+        logger.info("Book search by author test completed successfully");
+    }
+
+    @Test(enabled = true, description = "Search by book publisher and find one book and verify book details")
+    public void searchBookByPublisherAndFindOneBook() {
+        logger.info("Starting book search by publisher test for '{}'", SEARCHED_BOOK_AUTHOR);
+
+        // Act & Assert
+        searchAndVerifyBooks(SEARCHED_BOOK_PUBLISHER, EXPECTED_BOOK_PUBLISHER, BOOK_SEARCH_RESULT_ERROR);
+        softAssert.assertAll();
+
+        logger.info("Book search by publisher test completed successfully");
     }
 
     @Test(enabled = true, description = "Search for book and verify no books are found message")
-    public void searchAndFindNoBook() {
-        logger.info("Starting no books found test for search term '{}'", SEARCHED_BOOK_ZHIVKO);
+    public void searchBookAndFindNoBook() {
+        logger.info("Starting no books found test for search term '{}'", SEARCHED_BOOK_IVAN);
 
         // Act & Assert
         logger.debug("Searching for books and verifying no results message");
-        booksPage.searchBooksWithWord(SEARCHED_BOOK_ZHIVKO);
+        booksPage.searchBooksWithWord(SEARCHED_BOOK_IVAN);
         String actualMessage = booksPage.noRowsFound();
         softAssert.assertEquals(actualMessage, EXPECTED_NO_ROWS_MESSAGE, NO_ROWS_MESSAGE_ERROR);
 
@@ -309,7 +345,6 @@ public class BooksPageTests extends BaseTest {
         logger.info("Rows per page functionality test completed");
     }
 
-    // Data-driven test for rows per page
     @Test(dataProvider = "rowsPerPageData", enabled = true, description = "Verify rows per page functionality with data provider")
     public void verifyRowsPerPageWithDataProvider(String rowsPerPage, int expectedCount, String errorMessage) {
         logger.info("Testing rows per page: {} (expected count: {})", rowsPerPage, expectedCount);
@@ -327,17 +362,6 @@ public class BooksPageTests extends BaseTest {
         } finally {
             softAssert.assertAll();
         }
-    }
-
-    // Helper method for testing individual rows per page option
-    private void testRowsPerPageOption(String rowsPerPage, int expectedCount, String errorMessage) {
-        logger.debug("Testing rows per page option: {} -> {} books", rowsPerPage, expectedCount);
-
-        booksPage.chooseBooksPerPage(rowsPerPage);
-        verifyBookCount(expectedCount, errorMessage);
-
-        // Note: For rows per page > 8, the page will show all available books (8 total)
-        // This is the expected behavior when there are fewer books than the selected rows per page
     }
 
     @Test(enabled = true, description = "Order books by title, author, and publisher in descending order")
@@ -549,7 +573,7 @@ public class BooksPageTests extends BaseTest {
     }
 
     @Test(enabled = true, description = "Search for books and order results in ascending order")
-    public void searchAndOrderResultAscendingBooks() {
+    public void searchForBookAndOrderResultAscendingOrderByTitleByAuthorByPublisher() {
         // Arrange
         String searchedBook = "javascript";
 
@@ -636,7 +660,7 @@ public class BooksPageTests extends BaseTest {
     }
 
     @Test(enabled = true, description = "Search for books and order results in descending order")
-    public void searchForBookAndOrderResultDescendingBooks() {
+    public void searchForBookAndOrderResultDescendingOrderByTitleByAuthorByPublisher() {
         // Arrange
         String searchedBook = "javascript";
 
@@ -722,33 +746,6 @@ public class BooksPageTests extends BaseTest {
         softAssert.assertAll();
     }
 
-    // Data-driven test for book search scenarios
-    @Test(dataProvider = "bookSearchData", enabled = true, description = "Verify book search functionality with data provider")
-    public void verifyBookSearchWithDataProvider(String searchTerm, String expectedResult, String errorMessage) {
-        logger.info("Testing book search for term: '{}'", searchTerm);
-
-        try {
-            if (searchTerm.equals(SEARCHED_BOOK_ZHIVKO)) {
-                // Special case for no results
-                booksPage.searchBooksWithWord(searchTerm);
-                String actualMessage = booksPage.noRowsFound();
-                softAssert.assertEquals(actualMessage, expectedResult, errorMessage);
-                logger.debug("No results search: expected='{}', actual='{}'", expectedResult, actualMessage);
-            } else {
-                // Normal search with results
-                searchAndVerifyBooks(searchTerm, expectedResult, errorMessage);
-            }
-
-            logger.info("Book search test completed for term: '{}'", searchTerm);
-        } catch (Exception e) {
-            logger.error("Error in book search test for term '{}': {}", searchTerm, e.getMessage());
-            softAssert.fail("Test failed for search term '" + searchTerm + "': " + e.getMessage());
-        } finally {
-            softAssert.assertAll();
-        }
-    }
-
-    // Data-driven test for pagination scenarios
     @Test(dataProvider = "paginationData", enabled = true, description = "Verify pagination functionality with data provider")
     public void verifyPaginationWithDataProvider(String scenario, int expectedCount, boolean previousActive, boolean nextActive, String description) {
         logger.info("Testing pagination scenario: {} - {}", scenario, description);

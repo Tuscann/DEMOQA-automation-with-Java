@@ -160,4 +160,8 @@ public class TextBoxPage extends BasePage {
 
         return emailField.getCssValue("border");
     }
+
+    public String getSubmitButtonColor() {
+        return submitButton.getCssValue("background-color");
+    }
 }

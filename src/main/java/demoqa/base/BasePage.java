@@ -38,7 +38,7 @@ public class BasePage {
         find(locator).click();
     }
 
-    public String checkUrl() {
+    public String checkCurrentUrl() {
         return driver.getCurrentUrl();
     }
 }

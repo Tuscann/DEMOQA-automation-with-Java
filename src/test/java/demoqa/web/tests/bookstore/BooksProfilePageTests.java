@@ -6,6 +6,10 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class BooksProfilePageTests extends BaseTest {
+    // Page Content
+    private static final String VALID_USERNAME = "fbinnzhivko";
+    private static final String VALID_PASSWORD = "Karma1987!@";
+
     // URL Constants
     private static final String BOOKS_PROFILE_PAGE_URL = "profile";
     private static final String EXPECTED_LOGIN_URL = DEMO_QA_URL + "login";
@@ -41,7 +45,7 @@ public class BooksProfilePageTests extends BaseTest {
     public void verifyLoginLink() {
         // Arrange & Act
         booksProfilePage.clickLoginLink();
-        String actualUrl = booksProfilePage.getLoginLink();
+        String actualUrl = booksProfilePage.getCurrentUrl();
 
         // Assert
         softAssert.assertEquals(actualUrl, EXPECTED_LOGIN_URL, LOGIN_URL_MISMATCH);
@@ -52,7 +56,7 @@ public class BooksProfilePageTests extends BaseTest {
     public void verifyRegisterLink() {
         // Arrange & Act
         booksProfilePage.clickRegisterLink();
-        String actualUrl = booksProfilePage.getLoginLink();
+        String actualUrl = booksProfilePage.getCurrentUrl();
 
         // Assert
         softAssert.assertEquals(actualUrl, EXPECTED_REGISTER_URL, REGISTER_URL_MISMATCH);

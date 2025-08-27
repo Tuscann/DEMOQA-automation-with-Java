@@ -57,19 +57,19 @@ public class InteractionPageTests extends BaseTest {
     public void checkAllNinePagesLinks() {
         // Arrange & Act
         interactionsPage.clickSortable();
-        String actualSortableUrl = interactionsPage.checkUrl();
+        String actualSortableUrl = interactionsPage.checkCurrentUrl();
 
         interactionsPage.clickSelectable();
-        String actualSelectableUrl = interactionsPage.checkUrl();
+        String actualSelectableUrl = interactionsPage.checkCurrentUrl();
 
         interactionsPage.clickResizable();
-        String actualResizableUrl = interactionsPage.checkUrl();
+        String actualResizableUrl = interactionsPage.checkCurrentUrl();
 
         interactionsPage.clickDroppable();
-        String actualDroppableUrl = interactionsPage.checkUrl();
+        String actualDroppableUrl = interactionsPage.checkCurrentUrl();
 
         interactionsPage.clickDraggable();
-        String actualDragabbleUrl = interactionsPage.checkUrl();
+        String actualDragabbleUrl = interactionsPage.checkCurrentUrl();
 
         // Assert
         softAssert.assertEquals(actualSortableUrl, SORTABLE_URL, SORTABLE_URL_ERROR);

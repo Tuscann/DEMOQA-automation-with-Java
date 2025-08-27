@@ -7,10 +7,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utilities.JavaScriptUtility;
 
 import java.time.Duration;
-
-import utilities.JavaScriptUtility;
 
 public class BooksRegisterPage extends BasePage {
     @FindBy(id = "firstname")
@@ -151,12 +150,6 @@ public class BooksRegisterPage extends BasePage {
         javaScriptUtility.scrollToElementJS(password);
         password.click();
         password.sendKeys(passwordText);
-    }
-
-    public void clickIamRobotButton() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(4));
-        wait.until(ExpectedConditions.visibilityOf(iamRobotButton));
-        iamRobotButton.click();
     }
 
     public void clickRegisterButton() {

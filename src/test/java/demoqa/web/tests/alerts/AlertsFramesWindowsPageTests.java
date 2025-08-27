@@ -38,19 +38,19 @@ public class AlertsFramesWindowsPageTests extends BaseTest {
     public void checkAllFivePagesLinksAndText() {
         // Arrange & Act
         alerts_frames_windowsPage.clickBrowserWindowsTab();
-        softAssert.assertEquals(alerts_frames_windowsPage.checkUrl(), BROWSER_WINDOWS_URL, BROWSER_WINDOWS_URL_ERROR);
+        softAssert.assertEquals(alerts_frames_windowsPage.checkCurrentUrl(), BROWSER_WINDOWS_URL, BROWSER_WINDOWS_URL_ERROR);
 
         alerts_frames_windowsPage.clickAlertsTab();
-        softAssert.assertEquals(alerts_frames_windowsPage.checkUrl(), ALERTS_URL, ALERTS_URL_ERROR);
+        softAssert.assertEquals(alerts_frames_windowsPage.checkCurrentUrl(), ALERTS_URL, ALERTS_URL_ERROR);
 
         alerts_frames_windowsPage.clickFramesTab();
-        softAssert.assertEquals(alerts_frames_windowsPage.checkUrl(), FRAMES_URL, FRAMES_URL_ERROR);
+        softAssert.assertEquals(alerts_frames_windowsPage.checkCurrentUrl(), FRAMES_URL, FRAMES_URL_ERROR);
 
         alerts_frames_windowsPage.clickNestedFramesTab();
-        softAssert.assertEquals(alerts_frames_windowsPage.checkUrl(), NESTED_FRAMES_URL, NESTED_FRAMES_URL_ERROR);
+        softAssert.assertEquals(alerts_frames_windowsPage.checkCurrentUrl(), NESTED_FRAMES_URL, NESTED_FRAMES_URL_ERROR);
 
         alerts_frames_windowsPage.clickModalDialogsTab();
-        softAssert.assertEquals(alerts_frames_windowsPage.checkUrl(), MODAL_DIALOGS_URL, MODAL_DIALOGS_URL_ERROR);
+        softAssert.assertEquals(alerts_frames_windowsPage.checkCurrentUrl(), MODAL_DIALOGS_URL, MODAL_DIALOGS_URL_ERROR);
 
         // Assert
         softAssert.assertAll();
