@@ -37,9 +37,8 @@ public class InteractionPageTests extends BaseTest {
 
     @Test(enabled = true, description = "Click left dropdown menu")
     public void clickLeftDropdownMenu() {
-        // Arrange & Act        
-        String actualString = interactionsPage.getMainText();
-        softAssert.assertEquals(actualString, MAIN_TEXT, MAIN_TEXT_ERROR);
+        // Arrange & Act
+        softAssert.assertEquals(interactionsPage.getMainText(), MAIN_TEXT, MAIN_TEXT_ERROR);
 
         boolean TextBoxIsVisible = interactionsPage.verifySortableIsVisible();
         softAssert.assertTrue(TextBoxIsVisible, SORTABLE_VISIBILITY_ERROR);
@@ -54,7 +53,7 @@ public class InteractionPageTests extends BaseTest {
     }
 
     @Test(enabled = true, description = "Verify nine pages links")
-    public void checkAllNinePagesLinks() {
+    public void checkAllFivePagesLinks() {
         // Arrange & Act
         interactionsPage.clickSortable();
         String actualSortableUrl = interactionsPage.checkCurrentUrl();

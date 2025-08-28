@@ -47,6 +47,9 @@ public class SelectMenuPage extends BasePage {
     @FindBy(xpath = "(//div[contains(@class,' css-1hwfws3')])[2]")
     private WebElement selectedOne;
 
+    @FindBy(xpath = "(//div[contains(@class,' css-1hwfws3')])[3]")
+    private WebElement selectedResults;
+
     @FindBy(xpath = "(//div[contains(@class,' css-1uccc91-singleValue')])[1]")
     private WebElement selectedValue;
 
@@ -55,6 +58,9 @@ public class SelectMenuPage extends BasePage {
 
     @FindBy(xpath = "//div[@class=' css-1wa3eu0-placeholder'][contains(.,'Select Title')]")
     private WebElement expectedSelectTitlePlaceholder;
+
+    @FindBy(xpath = "(//div[@class=' css-tlfecz-indicatorContainer'])[3]")
+    private WebElement closeAllDropDown;
 
     @FindBy(xpath = "//div[@class='col-md-6 col-sm-12'][contains(.,'Old Style Select Menu')]")
     private WebElement oldStyleSelectMenuLabel;
@@ -180,5 +186,13 @@ public class SelectMenuPage extends BasePage {
         javaScriptUtility.scrollToElementJS(standardMultiSelect);
         Select select = new Select(standardMultiSelect);
         select.deselectByValue(value);
+    }
+
+    public String getMultiSelectDropdownValue() {
+        return selectedResults.getText();
+    }
+
+    public void closeAllMultiSelectDropdown() {
+        closeAllDropDown.click();
     }
 }

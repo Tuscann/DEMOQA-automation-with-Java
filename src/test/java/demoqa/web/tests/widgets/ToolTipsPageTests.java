@@ -22,6 +22,7 @@ public class ToolTipsPageTests extends BaseTest {
     private static final String EXPECTED_SECTION_LINK_TOOLTIP = "You hovered over the 1.10.32";
 
     // Error Message Constants
+    private static final String BUTTON_COLOR_ERROR = "Missing button color";
     private static final String HEADER_MISSING_ERROR = "Missing header text";
     private static final String PRACTICE_TEXT_MISSING_ERROR = "Missing practice ToolTips text";
     private static final String BUTTON_TEXT_MISSING_ERROR = "Missing hover me to see button text";
@@ -32,6 +33,7 @@ public class ToolTipsPageTests extends BaseTest {
     private static final String CONTRARY_TOOLTIP_MISSING_ERROR = "Missing contrary link tooltip";
     private static final String SECTION_TOOLTIP_MISSING_ERROR = "Missing section link tooltip";
 
+    private static final String EXPECTED_GREEN_COLOR = "rgba(40, 167, 69, 1)";
     private ToolTipsPage toolTipsPage;
     private static final String TOOL_TIPS_URL = "tool-tips";
 
@@ -43,19 +45,15 @@ public class ToolTipsPageTests extends BaseTest {
 
     @Test(enabled = true, description = "Verify all text on page")
     public void verifyAllTextOnPage() {
-        // Arrange and Act
-        String actualHeader = toolTipsPage.getHeaderText();
-        String actualPracticeToolTipsText = toolTipsPage.getPracticeToolTips();
-        String actualHoverMeToSeeButtonText = toolTipsPage.getHoverMeButtonButton();
-        String actualHoverMeToSeeButtonPlaceholder = toolTipsPage.getHoverMeToSeeButtonPlaceholder();
-        String actualMainText = toolTipsPage.getMainText();
+        // Arrange & Act & Assert
+        String buttonColor = toolTipsPage.getGreenColorButton();
 
-        // Assert
-        softAssert.assertEquals(actualHeader, EXPECTED_HEADER_TEXT, HEADER_MISSING_ERROR);
-        softAssert.assertEquals(actualPracticeToolTipsText, EXPECTED_PRACTICE_TEXT, PRACTICE_TEXT_MISSING_ERROR);
-        softAssert.assertEquals(actualHoverMeToSeeButtonText, EXPECTED_BUTTON_TEXT, BUTTON_TEXT_MISSING_ERROR);
-        softAssert.assertEquals(actualHoverMeToSeeButtonPlaceholder, EXPECTED_TEXT_FIELD_PLACEHOLDER, PLACEHOLDER_MISSING_ERROR);
-        softAssert.assertEquals(actualMainText, EXPECTED_MAIN_PARAGRAPH_TEXT, MAIN_TEXT_MISSING_ERROR);
+        softAssert.assertEquals(buttonColor, EXPECTED_GREEN_COLOR, BUTTON_COLOR_ERROR);
+        softAssert.assertEquals(toolTipsPage.getToolTipsHeaderText(), EXPECTED_HEADER_TEXT, HEADER_MISSING_ERROR);
+        softAssert.assertEquals(toolTipsPage.getPracticeToolTipsText(), EXPECTED_PRACTICE_TEXT, PRACTICE_TEXT_MISSING_ERROR);
+        softAssert.assertEquals(toolTipsPage.getHoverMeButtonText(), EXPECTED_BUTTON_TEXT, BUTTON_TEXT_MISSING_ERROR);
+        softAssert.assertEquals(toolTipsPage.getHoverMeToSeeDivPlaceholder(), EXPECTED_TEXT_FIELD_PLACEHOLDER, PLACEHOLDER_MISSING_ERROR);
+        softAssert.assertEquals(toolTipsPage.getMainText(), EXPECTED_MAIN_PARAGRAPH_TEXT, MAIN_TEXT_MISSING_ERROR);
         softAssert.assertAll();
     }
 

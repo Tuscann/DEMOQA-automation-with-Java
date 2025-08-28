@@ -166,4 +166,8 @@ public class MenuPage extends BasePage {
     public String getMainItem2SubSubListSubItem2() {
         return mainItem2SubSubListSubSubItem2.getText();
     }
+
+    public String getGreenColorButton() {
+        return mainItem1.getCssValue("background-color");
+    }
 }

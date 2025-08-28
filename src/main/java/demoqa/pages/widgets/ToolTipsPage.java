@@ -99,23 +99,28 @@ public class ToolTipsPage extends BasePage {
         return sectionToolTip.getText();
     }
 
-    public String getHeaderText() {
+    public String getToolTipsHeaderText() {
         return header.getText();
     }
 
-    public String getPracticeToolTips() {
+    public String getPracticeToolTipsText() {
         return practiceToolTipsText.getText();
     }
 
-    public String getHoverMeButtonButton() {
+    public String getHoverMeButtonText() {
         return hoverMeToSeeButton.getText();
     }
 
-    public String getHoverMeToSeeButtonPlaceholder() {
+    public String getHoverMeToSeeDivPlaceholder() {
         return hoverMeTextField.getDomAttribute("placeholder");
     }
 
     public String getMainText() {
         return mainText.getText();
+    }
+
+
+    public String getGreenColorButton() {
+        return hoverMeToSeeButton.getCssValue("background-color");
     }
 }

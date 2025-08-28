@@ -160,7 +160,7 @@ public class LinksPage extends BasePage {
         return responseLink.getText();
     }
 
-    public String getUrl() {
+    public String getCurrentUrl() {
         return driver.getCurrentUrl();
     }
 }

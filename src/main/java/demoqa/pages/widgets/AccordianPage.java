@@ -92,4 +92,9 @@ public class AccordianPage extends BasePage {
         javaScriptUtility.scrollToElementJS(sectionTwoHeading);
         sectionThreeHeading.click();
     }
+
+    public boolean isFirstHeadingVisible() {
+
+        return sectionOneHeading.isDisplayed();
+    }
 }

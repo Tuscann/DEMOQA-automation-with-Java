@@ -16,6 +16,13 @@ public class AutoCompletePageTests extends BaseTest {
     private static final String COLOR_BLUE = "Blue";
     private static final String COLOR_WHITE = "White";
     private static final String COLOR_GREEN = "Green";
+    private static final String COLOR_YELLOW = "Yellow";
+    private static final String COLOR_PURPLE = "Purple";
+    private static final String COLOR_VOILET = "Voilet";
+    private static final String COLOR_MAGENTA = "Magenta";
+    private static final String COLOR_BLACK = "Black";
+    private static final String COLOR_AQUA = "Aqua";
+    private static final String COLOR_INDIGO = "Indigo";
 
     // Error Message Constants
     private static final String PAGE_HEADING_ERROR = "Page heading mismatch";
@@ -39,78 +46,109 @@ public class AutoCompletePageTests extends BaseTest {
 
     @Test(enabled = true, description = "Verify all text on page")
     public void verifyAllTextOnPage() {
-        // Arrange & Act
-        String actualText = autoCompletePage.getText();
-        String actualTypeMultipleText = autoCompletePage.getMultipleContainerText();
-        String actualTypeSingleText = autoCompletePage.getAutoCompleteSingleText();
-
-        // Assert
-        softAssert.assertEquals(actualText, AUTO_COMPLETE_HEADING, PAGE_HEADING_ERROR);
-        softAssert.assertEquals(actualTypeMultipleText, TYPE_MULTIPLE_TEXT, TYPE_MULTIPLE_TEXT_ERROR);
-        softAssert.assertEquals(actualTypeSingleText, TYPE_SINGLE_TEXT, TYPE_SINGLE_TEXT_ERROR);
+        // Arrange & Act & Assert
+        softAssert.assertEquals(autoCompletePage.getHeadingText(), AUTO_COMPLETE_HEADING, PAGE_HEADING_ERROR);
+        softAssert.assertEquals(autoCompletePage.getMultipleContainerText(), TYPE_MULTIPLE_TEXT, TYPE_MULTIPLE_TEXT_ERROR);
+        softAssert.assertEquals(autoCompletePage.getAutoCompleteSingleText(), TYPE_SINGLE_TEXT, TYPE_SINGLE_TEXT_ERROR);
 
         softAssert.assertAll();
     }
 
-    @Test(enabled = true, description = "Select two colors multiple")
-    public void selectTwoColorsMultiple() {
+    @Test(enabled = true, description = "Select two multiple colors")
+    public void selectTwoMultipleColors() {
         // Arrange & Act
         autoCompletePage.waitForPageReady();
 
         autoCompletePage.multiAutoCompleteSelectColor(COLOR_RED);
         autoCompletePage.multiAutoCompleteSelectColor(COLOR_BLUE);
 
-        String actualSelectedColors = autoCompletePage.getAllSelectedMultiColorNames();
-
         // Assert
-        softAssert.assertEquals(actualSelectedColors, COLOR_RED + "\n" + COLOR_BLUE, COLORS_SELECTED_ERROR);
+        softAssert.assertEquals(autoCompletePage.getAllSelectedMultiColorNames(), COLOR_RED + "\n" + COLOR_BLUE, COLORS_SELECTED_ERROR);
         softAssert.assertAll();
     }
 
-    @Test(enabled = true, description = "Select two colors and delete two multiple")
-    public void selectTwoColorsAndDeleteTwoMultiple() {
+    @Test(enabled = true, description = "Select two multiple colors")
+    public void selectTwoMultipleColorsAndCloseFirst() {
+        // Arrange & Act
+        autoCompletePage.waitForPageReady();
+        autoCompletePage.multiAutoCompleteSelectColor(COLOR_RED);
+        autoCompletePage.multiAutoCompleteSelectColor(COLOR_BLUE);
+
+        autoCompletePage.closeFirstSelectedColor();
+
+        // Assert
+        softAssert.assertEquals(autoCompletePage.getAllSelectedMultiColorNames(), COLOR_BLUE, COLORS_SELECTED_ERROR);
+        softAssert.assertAll();
+    }
+
+    @Test(enabled = true, description = "Select two multiple colors")
+    public void selectAllMultipleColorsAndCloseAllOneByOne() {
         // Arrange & Act
         autoCompletePage.waitForPageReady();
 
         autoCompletePage.multiAutoCompleteSelectColor(COLOR_RED);
         autoCompletePage.multiAutoCompleteSelectColor(COLOR_BLUE);
-        String actualSelectedColors = autoCompletePage.getAllSelectedMultiColorNames();
-        softAssert.assertEquals(actualSelectedColors, COLOR_RED + "\n" + COLOR_BLUE, COLORS_SELECTED_FIRST_ERROR);
+        autoCompletePage.multiAutoCompleteSelectColor(COLOR_WHITE);
+        autoCompletePage.multiAutoCompleteSelectColor(COLOR_GREEN);
+        autoCompletePage.multiAutoCompleteSelectColor(COLOR_YELLOW);
+        autoCompletePage.multiAutoCompleteSelectColor(COLOR_PURPLE);
+        autoCompletePage.multiAutoCompleteSelectColor(COLOR_VOILET);
+        autoCompletePage.multiAutoCompleteSelectColor(COLOR_MAGENTA);
+        autoCompletePage.multiAutoCompleteSelectColor(COLOR_BLACK);
+        autoCompletePage.multiAutoCompleteSelectColor(COLOR_AQUA);
+        autoCompletePage.multiAutoCompleteSelectColor(COLOR_INDIGO);
 
-        autoCompletePage.clickCloseButton();
+        for (int i = 0; i < 11; i++) {
+            autoCompletePage.closeFirstSelectedColor();
+        }
+
+        // Assert
+        softAssert.assertEquals(autoCompletePage.getAllSelectedMultiColorNames(), "", COLORS_SELECTED_ERROR);
+        softAssert.assertAll();
+    }
+
+    @Test(enabled = true, description = "Select four multiple colors delete and two new")
+    public void selectFourMultipleColorsAndDeleteAddTwo() {
+        // Arrange & Act
+        autoCompletePage.waitForPageReady();
+
+        autoCompletePage.multiAutoCompleteSelectColor(COLOR_RED);
+        autoCompletePage.multiAutoCompleteSelectColor(COLOR_BLUE);
+        autoCompletePage.multiAutoCompleteSelectColor(COLOR_WHITE);
+        autoCompletePage.multiAutoCompleteSelectColor(COLOR_GREEN);
+
+        softAssert.assertEquals(autoCompletePage.getAllSelectedMultiColorNames(), COLOR_RED + "\n" + COLOR_BLUE + "\n" + COLOR_WHITE + "\n" + COLOR_GREEN, COLORS_SELECTED_FIRST_ERROR);
+
+        autoCompletePage.clickCloseAllColorsButton();
 
         autoCompletePage.multiAutoCompleteSelectColor(COLOR_WHITE);
         autoCompletePage.multiAutoCompleteSelectColor(COLOR_GREEN);
-        actualSelectedColors = autoCompletePage.getAllSelectedMultiColorNames();
-        softAssert.assertEquals(actualSelectedColors, COLOR_WHITE + "\n" + COLOR_GREEN, COLORS_SELECTED_SECOND_ERROR);
+
+        softAssert.assertEquals(autoCompletePage.getAllSelectedMultiColorNames(), COLOR_WHITE + "\n" + COLOR_GREEN, COLORS_SELECTED_SECOND_ERROR);
 
         softAssert.assertAll();
     }
 
-    @Test(enabled = true, description = "Select one color clear add new color single")
-    public void selectOneColorClearAddNewColorSingle() {
+    @Test(enabled = true, description = "Select one color clear and add new single color ")
+    public void selectOneSingleColorAndChangeColor() {
         // Arrange & Act
         autoCompletePage.singleAutoComplete(COLOR_GREEN);
-        String actualSelectedColors = autoCompletePage.getAllSingleColorNames();
-
-        softAssert.assertEquals(actualSelectedColors, COLOR_GREEN, FIRST_COLOR_SELECTED_ERROR);
+        softAssert.assertEquals(autoCompletePage.getAllSingleColorNames(), COLOR_GREEN, FIRST_COLOR_SELECTED_ERROR);
 
         autoCompletePage.clickSingleAutoComplete();
         autoCompletePage.singleAutoComplete(COLOR_BLUE);
-        actualSelectedColors = autoCompletePage.getAllSingleColorNames();
 
-        softAssert.assertEquals(actualSelectedColors, COLOR_BLUE, SECOND_COLOR_SELECTED_ERROR);
+        softAssert.assertEquals(autoCompletePage.getAllSingleColorNames(), COLOR_BLUE, SECOND_COLOR_SELECTED_ERROR);
         softAssert.assertAll();
     }
 
-    @Test(enabled = true, description = "Select one color single")
-    public void selectOneColorSingle() {
+    @Test(enabled = true, description = "Select one single color.")
+    public void selectOneSingleColor() {
         // Arrange & Act
         autoCompletePage.singleAutoComplete(COLOR_GREEN);
-        String actualSelectedColors = autoCompletePage.getAllSingleColorNames();
 
         // Assert
-        softAssert.assertEquals(actualSelectedColors, COLOR_GREEN, GREEN_COLOR_SELECTED_ERROR);
+        softAssert.assertEquals(autoCompletePage.getAllSingleColorNames(), COLOR_GREEN, GREEN_COLOR_SELECTED_ERROR);
         softAssert.assertAll();
     }
 }

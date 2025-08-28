@@ -156,6 +156,8 @@ public class WebTablesPage extends BasePage {
     }
 
     public String getRegistrationFirstNameLabel() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(6));
+        wait.until(ExpectedConditions.visibilityOf(registrationFirstNameLabel));
         return registrationFirstNameLabel.getText();
     }
 

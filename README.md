@@ -1,6 +1,6 @@
 # Test automation project for [DemoQA](https://demoqa.com) using Java
 
-<p align="center">
+<p>
 <img src="resources/logotypes/toolsqa.jpg" alt="Toolsqa">
 </p>
 

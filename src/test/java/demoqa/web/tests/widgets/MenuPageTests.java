@@ -8,15 +8,15 @@ import org.testng.annotations.Test;
 
 public class MenuPageTests extends BaseTest {
     // Text Constants
-    private static final String EXPECTED_PAGE_HEADER = "Menu";
+    private static final String EXPECTED_PAGE_HEADER_TEXT = "Menu";
     private static final String EXPECTED_MAIN_ITEM_1 = "Main Item 1";
     private static final String EXPECTED_MAIN_ITEM_2 = "Main Item 2";
+    private static final String EXPECTED_MAIN_ITEM_3 = "Main Item 3";
     private static final String EXPECTED_MAIN_ITEM_2_SUB_ITEM_1 = "Sub Item";
     private static final String EXPECTED_MAIN_ITEM_2_SUB_ITEM_2 = "Sub Item";
     private static final String EXPECTED_MAIN_ITEM_2_SUB_SUB_LIST = "SUB SUB LIST »";
     private static final String EXPECTED_MAIN_ITEM_2_SUB_SUB_LIST_SUB_ITEM_1 = "Sub Sub Item 1";
     private static final String EXPECTED_MAIN_ITEM_2_SUB_SUB_LIST_SUB_ITEM_2 = "Sub Sub Item 2";
-    private static final String EXPECTED_MAIN_ITEM_3 = "Main Item 3";
 
     // Color Constants
     private static final String EXPECTED_COLOR_BEFORE_SELECTION = "rgba(36, 175, 21, 1)";
@@ -44,28 +44,6 @@ public class MenuPageTests extends BaseTest {
         menuPage = new MenuPage(driver);
     }
 
-    // Data Provider for Menu Item Text Testing
-    @DataProvider(name = "menuItemTextData")
-    public Object[][] menuItemTextDataProvider() {
-        return new Object[][]{
-                {"Main Item 1", EXPECTED_MAIN_ITEM_1, "Main Item 1 text verification"},
-                {"Main Item 2", EXPECTED_MAIN_ITEM_2, "Main Item 2 text verification"},
-                {"Main Item 3", EXPECTED_MAIN_ITEM_3, "Main Item 3 text verification"}
-        };
-    }
-
-    // Data Provider for Sub Item Text Testing
-    @DataProvider(name = "subItemTextData")
-    public Object[][] subItemTextDataProvider() {
-        return new Object[][]{
-                {"Sub Item 1", EXPECTED_MAIN_ITEM_2_SUB_ITEM_1, "Sub Item 1 text verification"},
-                {"Sub Item 2", EXPECTED_MAIN_ITEM_2_SUB_ITEM_2, "Sub Item 2 text verification"},
-                {"Sub Sub List", EXPECTED_MAIN_ITEM_2_SUB_SUB_LIST, "Sub Sub List text verification"},
-                {"Sub Sub Item 1", EXPECTED_MAIN_ITEM_2_SUB_SUB_LIST_SUB_ITEM_1, "Sub Sub Item 1 text verification"},
-                {"Sub Sub Item 2", EXPECTED_MAIN_ITEM_2_SUB_SUB_LIST_SUB_ITEM_2, "Sub Sub Item 2 text verification"}
-        };
-    }
-
     // Data Provider for Menu Item Hover Color Testing
     @DataProvider(name = "menuItemHoverColorData")
     public Object[][] menuItemHoverColorDataProvider() {
@@ -76,88 +54,23 @@ public class MenuPageTests extends BaseTest {
         };
     }
 
-    // Data Provider for Sub Item Hover Color Testing
-    @DataProvider(name = "subItemHoverColorData")
-    public Object[][] subItemHoverColorDataProvider() {
-        return new Object[][]{
-                {"Sub Item 1", "Sub Item 1 hover color verification"},
-                {"Sub Item 2", "Sub Item 2 hover color verification"},
-                {"Sub Sub List", "Sub Sub List hover color verification"},
-                {"Sub Sub Item 1", "Sub Sub Item 1 hover color verification"},
-                {"Sub Sub Item 2", "Sub Sub Item 2 hover color verification"}
-        };
-    }
-
     @Test(enabled = true, description = "Verify all text on page")
     public void checkAllTextOnPage() {
         // Arrange
         menuPage.selectMainItem2();
         menuPage.selectMainItem2SubSubList();
 
-        // Act
-        String actualPageHeader = menuPage.getHeaderText();
-        String actualMainItem1 = menuPage.getMainItem1();
-        String actualMainItem2 = menuPage.getMainItem2();
-        String actualMainItem2SubItem1 = menuPage.getMainItem2SubItem1();
-        String actualMainItem2SubItem2 = menuPage.getMainItem2SubItem2();
-        String actualMainItem2SubSubList = menuPage.getMainItem2SubSubList();
-        String actualMainItem2SubSubListSubItem1 = menuPage.getMainItem2SubSubListSubItem1();
-        String actualMainItem2SubSubListSubItem2 = menuPage.getMainItem2SubSubListSubItem2();
-        String actualMainItem3 = menuPage.getMainItem3();
+        // Act & Assert
+        softAssert.assertEquals(menuPage.getHeaderText(), EXPECTED_PAGE_HEADER_TEXT, PAGE_HEADER_ERROR);
+        softAssert.assertEquals(menuPage.getMainItem1(), EXPECTED_MAIN_ITEM_1, MAIN_ITEM_1_ERROR);
+        softAssert.assertEquals(menuPage.getMainItem2(), EXPECTED_MAIN_ITEM_2, MAIN_ITEM_2_ERROR);
+        softAssert.assertEquals(menuPage.getMainItem3(), EXPECTED_MAIN_ITEM_3, MAIN_ITEM_3_ERROR);
+        softAssert.assertEquals(menuPage.getMainItem2SubItem1(), EXPECTED_MAIN_ITEM_2_SUB_ITEM_1, MAIN_ITEM_2_SUB_ITEM_1_ERROR);
+        softAssert.assertEquals(menuPage.getMainItem2SubItem2(), EXPECTED_MAIN_ITEM_2_SUB_ITEM_2, MAIN_ITEM_2_SUB_ITEM_2_ERROR);
+        softAssert.assertEquals(menuPage.getMainItem2SubSubList(), EXPECTED_MAIN_ITEM_2_SUB_SUB_LIST, MAIN_ITEM_2_SUB_SUB_LIST_ERROR);
+        softAssert.assertEquals(menuPage.getMainItem2SubSubListSubItem1(), EXPECTED_MAIN_ITEM_2_SUB_SUB_LIST_SUB_ITEM_1, MAIN_ITEM_2_SUB_SUB_LIST_SUB_ITEM_1_ERROR);
+        softAssert.assertEquals(menuPage.getMainItem2SubSubListSubItem2(), EXPECTED_MAIN_ITEM_2_SUB_SUB_LIST_SUB_ITEM_2, MAIN_ITEM_2_SUB_SUB_LIST_SUB_ITEM_2_ERROR);
 
-        // Assert
-        softAssert.assertEquals(actualPageHeader, EXPECTED_PAGE_HEADER, PAGE_HEADER_ERROR);
-        softAssert.assertEquals(actualMainItem1, EXPECTED_MAIN_ITEM_1, MAIN_ITEM_1_ERROR);
-        softAssert.assertEquals(actualMainItem2, EXPECTED_MAIN_ITEM_2, MAIN_ITEM_2_ERROR);
-        softAssert.assertEquals(actualMainItem2SubItem1, EXPECTED_MAIN_ITEM_2_SUB_ITEM_1, MAIN_ITEM_2_SUB_ITEM_1_ERROR);
-        softAssert.assertEquals(actualMainItem2SubItem2, EXPECTED_MAIN_ITEM_2_SUB_ITEM_2, MAIN_ITEM_2_SUB_ITEM_2_ERROR);
-        softAssert.assertEquals(actualMainItem2SubSubList, EXPECTED_MAIN_ITEM_2_SUB_SUB_LIST, MAIN_ITEM_2_SUB_SUB_LIST_ERROR);
-        softAssert.assertEquals(actualMainItem2SubSubListSubItem1, EXPECTED_MAIN_ITEM_2_SUB_SUB_LIST_SUB_ITEM_1, MAIN_ITEM_2_SUB_SUB_LIST_SUB_ITEM_1_ERROR);
-        softAssert.assertEquals(actualMainItem2SubSubListSubItem2, EXPECTED_MAIN_ITEM_2_SUB_SUB_LIST_SUB_ITEM_2, MAIN_ITEM_2_SUB_SUB_LIST_SUB_ITEM_2_ERROR);
-        softAssert.assertEquals(actualMainItem3, EXPECTED_MAIN_ITEM_3, MAIN_ITEM_3_ERROR);
-
-        softAssert.assertAll();
-    }
-
-    // New Data-Driven Test for Menu Item Text
-    @Test(dataProvider = "menuItemTextData", enabled = true, description = "Test menu item text with data provider")
-    public void testMenuItemTextWithDataProvider(String itemName, String expectedText, String testDescription) {
-        // Act - Get the appropriate menu item text based on itemName
-        String actualText = switch (itemName) {
-            case "Main Item 1" -> menuPage.getMainItem1();
-            case "Main Item 2" -> menuPage.getMainItem2();
-            case "Main Item 3" -> menuPage.getMainItem3();
-            default -> "";
-        };
-
-        // Assert
-        softAssert.assertEquals(actualText, expectedText,
-                String.format("Text mismatch for %s", itemName));
-        softAssert.assertAll();
-    }
-
-    // New Data-Driven Test for Sub Item Text
-    @Test(dataProvider = "subItemTextData", enabled = true, description = "Test sub item text with data provider")
-    public void testSubItemTextWithDataProvider(String itemName, String expectedText, String testDescription) {
-        // Arrange - Ensure sub items are visible
-        menuPage.selectMainItem2();
-        if (itemName.startsWith("Sub Sub")) {
-            menuPage.selectMainItem2SubSubList();
-        }
-
-        // Act - Get the appropriate sub item text based on itemName
-        String actualText = switch (itemName) {
-            case "Sub Item 1" -> menuPage.getMainItem2SubItem1();
-            case "Sub Item 2" -> menuPage.getMainItem2SubItem2();
-            case "Sub Sub List" -> menuPage.getMainItem2SubSubList();
-            case "Sub Sub Item 1" -> menuPage.getMainItem2SubSubListSubItem1();
-            case "Sub Sub Item 2" -> menuPage.getMainItem2SubSubListSubItem2();
-            default -> "";
-        };
-
-        // Assert
-        softAssert.assertEquals(actualText, expectedText,
-                String.format("Text mismatch for %s", itemName));
         softAssert.assertAll();
     }
 
@@ -219,39 +132,6 @@ public class MenuPageTests extends BaseTest {
         actualColorSelected = menuPage.takeBackgroundColorMainItem3();
         softAssert.assertEquals(actualColorSelected, EXPECTED_COLOR_AFTER_SELECTION, COLOR_AFTER_SELECTION_ERROR);
 
-        softAssert.assertAll();
-    }
-
-    // New Data-Driven Test for Menu Item Hover Colors
-    @Test(dataProvider = "menuItemHoverColorData", enabled = true, description = "Test menu item hover colors with data provider")
-    public void testMenuItemHoverColorsWithDataProvider(String itemName, String testDescription) {
-        // Act - Test hover color for the specified menu item
-        String actualColorBefore = "";
-        String actualColorAfter = "";
-
-        switch (itemName) {
-            case "Main Item 1":
-                actualColorBefore = menuPage.takeBackgroundColorMainItem1();
-                menuPage.selectMainItem1();
-                actualColorAfter = menuPage.takeBackgroundColorMainItem1();
-                break;
-            case "Main Item 2":
-                actualColorBefore = menuPage.takeBackgroundColorMainItem2();
-                menuPage.selectMainItem2();
-                actualColorAfter = menuPage.takeBackgroundColorMainItem2();
-                break;
-            case "Main Item 3":
-                actualColorBefore = menuPage.takeBackgroundColorMainItem3();
-                menuPage.selectMainItem3();
-                actualColorAfter = menuPage.takeBackgroundColorMainItem3();
-                break;
-        }
-
-        // Assert
-        softAssert.assertEquals(actualColorBefore, EXPECTED_COLOR_BEFORE_SELECTION,
-                String.format("Before selection color mismatch for %s", itemName));
-        softAssert.assertEquals(actualColorAfter, EXPECTED_COLOR_AFTER_SELECTION,
-                String.format("After selection color mismatch for %s", itemName));
         softAssert.assertAll();
     }
 }

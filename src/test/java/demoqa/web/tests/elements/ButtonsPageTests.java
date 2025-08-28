@@ -43,29 +43,17 @@ public class ButtonsPageTests extends BaseTest {
 
     @Test(enabled = true, description = "Verify all button text elements and color properties on the buttons page")
     public void verifyAllTextOnPage() {
-        // Arrange & Act        
-        String actualHeaderButtonText = buttonsPage.getButtonsText();
-        String actualDoubleClickButtonText = buttonsPage.getDoubleButtonText();
-        String doubleClickButtonBorderColor = buttonsPage.getDoubleClickButtonBorderColor();
-        String doubleClickButtonBackGroundColor = buttonsPage.getDoubleClickButtonBackGroundColor();
-        String actualRightClickMeButtonText = buttonsPage.getRightButtonText();
-        String rightClickMeButtonBorderColor = buttonsPage.getRightClickMeButtonBorderColor();
-        String rightClickMeButtonBackGroundColor = buttonsPage.getRightClickMeButtonBackGroundColor();
-        String actualClickMeButtonText = buttonsPage.getDynamicButtonText();
-        String clickMeButtonBorderColor = buttonsPage.getClickMeButtonBorderColor();
-        String clickMeButtonBackGroundColor = buttonsPage.getClickMeButtonBackGroundColor();
-
-        // Assert
-        softAssert.assertEquals(actualHeaderButtonText, EXPECTED_HEADER_TEXT, HEADER_TEXT_MISMATCH);
-        softAssert.assertEquals(actualDoubleClickButtonText, EXPECTED_DOUBLE_CLICK_TEXT, DOUBLE_CLICK_BUTTON_TEXT_MISMATCH);
-        softAssert.assertEquals(doubleClickButtonBorderColor, EXPECTED_BORDER_COLOR, BORDER_COLOR_MISMATCH);
-        softAssert.assertEquals(doubleClickButtonBackGroundColor, EXPECTED_BACKGROUND_COLOR, BACKGROUND_COLOR_MISMATCH);
-        softAssert.assertEquals(actualRightClickMeButtonText, EXPECTED_RIGHT_CLICK_TEXT, RIGHT_CLICK_BUTTON_TEXT_MISMATCH);
-        softAssert.assertEquals(rightClickMeButtonBorderColor, EXPECTED_BORDER_COLOR, BORDER_COLOR_MISMATCH);
-        softAssert.assertEquals(rightClickMeButtonBackGroundColor, EXPECTED_BACKGROUND_COLOR, BACKGROUND_COLOR_MISMATCH);
-        softAssert.assertEquals(actualClickMeButtonText, EXPECTED_DYNAMIC_CLICK_TEXT, DYNAMIC_CLICK_BUTTON_TEXT_MISMATCH);
-        softAssert.assertEquals(clickMeButtonBorderColor, EXPECTED_BORDER_COLOR, BORDER_COLOR_MISMATCH);
-        softAssert.assertEquals(clickMeButtonBackGroundColor, EXPECTED_BACKGROUND_COLOR, BACKGROUND_COLOR_MISMATCH);
+        // Arrange & Act & Assert
+        softAssert.assertEquals(buttonsPage.getButtonsText(), EXPECTED_HEADER_TEXT, HEADER_TEXT_MISMATCH);
+        softAssert.assertEquals(buttonsPage.getDoubleButtonText(), EXPECTED_DOUBLE_CLICK_TEXT, DOUBLE_CLICK_BUTTON_TEXT_MISMATCH);
+        softAssert.assertEquals(buttonsPage.getDoubleClickButtonBorderColor(), EXPECTED_BORDER_COLOR, BORDER_COLOR_MISMATCH);
+        softAssert.assertEquals(buttonsPage.getDoubleClickButtonBackGroundColor(), EXPECTED_BACKGROUND_COLOR, BACKGROUND_COLOR_MISMATCH);
+        softAssert.assertEquals(buttonsPage.getRightButtonText(), EXPECTED_RIGHT_CLICK_TEXT, RIGHT_CLICK_BUTTON_TEXT_MISMATCH);
+        softAssert.assertEquals(buttonsPage.getRightClickMeButtonBorderColor(), EXPECTED_BORDER_COLOR, BORDER_COLOR_MISMATCH);
+        softAssert.assertEquals(buttonsPage.getRightClickMeButtonBackGroundColor(), EXPECTED_BACKGROUND_COLOR, BACKGROUND_COLOR_MISMATCH);
+        softAssert.assertEquals(buttonsPage.getDynamicButtonText(), EXPECTED_DYNAMIC_CLICK_TEXT, DYNAMIC_CLICK_BUTTON_TEXT_MISMATCH);
+        softAssert.assertEquals(buttonsPage.getClickMeButtonBorderColor(), EXPECTED_BORDER_COLOR, BORDER_COLOR_MISMATCH);
+        softAssert.assertEquals(buttonsPage.getClickMeButtonBackGroundColor(), EXPECTED_BACKGROUND_COLOR, BACKGROUND_COLOR_MISMATCH);
         softAssert.assertAll();
     }
 
@@ -76,14 +64,10 @@ public class ButtonsPageTests extends BaseTest {
         buttonsPage.rightClickOnButton();
         buttonsPage.clickOnClickMeButton();
 
-        String actualDoubleClickMessage = buttonsPage.getDoubleClickMessage();
-        String actualRightClickMessage = buttonsPage.getRightClickMessage();
-        String actualClickMeMessage = buttonsPage.getClickMeClickMessage();
-
         // Assert
-        softAssert.assertEquals(actualDoubleClickMessage, EXPECTED_DOUBLE_CLICK_MESSAGE, DOUBLE_CLICK_MESSAGE_MISMATCH);
-        softAssert.assertEquals(actualRightClickMessage, EXPECTED_RIGHT_CLICK_MESSAGE, RIGHT_CLICK_MESSAGE_MISMATCH);
-        softAssert.assertEquals(actualClickMeMessage, EXPECTED_DYNAMIC_CLICK_MESSAGE, DYNAMIC_CLICK_MESSAGE_MISMATCH);
+        softAssert.assertEquals(buttonsPage.getDoubleClickMessage(), EXPECTED_DOUBLE_CLICK_MESSAGE, DOUBLE_CLICK_MESSAGE_MISMATCH);
+        softAssert.assertEquals(buttonsPage.getRightClickMessage(), EXPECTED_RIGHT_CLICK_MESSAGE, RIGHT_CLICK_MESSAGE_MISMATCH);
+        softAssert.assertEquals(buttonsPage.getClickMeClickMessage(), EXPECTED_DYNAMIC_CLICK_MESSAGE, DYNAMIC_CLICK_MESSAGE_MISMATCH);
         softAssert.assertAll();
     }
 }

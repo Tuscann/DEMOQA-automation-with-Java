@@ -34,6 +34,9 @@ public class AutoCompletePage extends BasePage {
     @FindBy(xpath = "//div[contains(@class,'value-container')]")
     private WebElement allSelectedMultiColorNames;
 
+    @FindBy(xpath = "(//div[contains(@class,'remove')])[1]")
+    private WebElement closeFirstButton;
+
     public AutoCompletePage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
@@ -43,7 +46,7 @@ public class AutoCompletePage extends BasePage {
         return multipleContainerText.getText();
     }
 
-    public String getText() {
+    public String getHeadingText() {
         return text.getText();
     }
 
@@ -102,7 +105,7 @@ public class AutoCompletePage extends BasePage {
         }
     }
 
-    public void clickCloseButton() {
+    public void clickCloseAllColorsButton() {
         closeButton.click();
     }
 
@@ -123,12 +126,6 @@ public class AutoCompletePage extends BasePage {
             Thread.currentThread().interrupt();
         }
         input.sendKeys(Keys.ENTER);
-
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
-        }
 
         try {
             Thread.sleep(1000);
@@ -157,13 +154,6 @@ public class AutoCompletePage extends BasePage {
         // Press Enter to select
         input.sendKeys(Keys.ENTER);
 
-        // Wait for selection to be processed
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
-        }
-
         // Additional wait to ensure the selection is fully processed
         try {
             Thread.sleep(1000);
@@ -183,5 +173,9 @@ public class AutoCompletePage extends BasePage {
         } catch (Exception e) {
             // Continue if some elements are not immediately visible
         }
+    }
+
+    public void closeFirstSelectedColor() {
+        closeFirstButton.click();
     }
 }

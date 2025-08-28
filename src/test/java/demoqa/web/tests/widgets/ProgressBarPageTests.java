@@ -15,7 +15,6 @@ public class ProgressBarPageTests extends BaseTest {
 
     // Progress Values
     private static final String EXPECTED_100_PERCENT_TEXT = "100";
-    private static final int STOP_VALUE = 14;
     private static final int STOP_VALUE_31 = 31;
 
     // Color Constants
@@ -45,13 +44,9 @@ public class ProgressBarPageTests extends BaseTest {
     @Test(enabled = true, description = "Verify all text on page")
     public void verifyAllTextOnPage() {
         // Arrange & Act
-        String actualHeaderText = progressBarPage.getHeaderText();
-        String actualProgressButtonText = progressBarPage.getProgressBarText();
-        String actualStartButtonText = progressBarPage.getStartStopButtonText();
-
-        softAssert.assertEquals(actualHeaderText, EXPECTED_HEADER_TEXT, HEADER_VALUE_ERROR);
-        softAssert.assertEquals(actualProgressButtonText, EXPECTED_PROGRESS_BAR_TEXT, BUTTON_VALUE_ERROR);
-        softAssert.assertEquals(actualStartButtonText, EXPECTED_START_BUTTON_TEXT, BUTTON_VALUE_ERROR);
+        softAssert.assertEquals(progressBarPage.getHeaderText(), EXPECTED_HEADER_TEXT, HEADER_VALUE_ERROR);
+        softAssert.assertEquals(progressBarPage.getProgressBarText(), EXPECTED_PROGRESS_BAR_TEXT, BUTTON_VALUE_ERROR);
+        softAssert.assertEquals(progressBarPage.getStartStopButtonText(), EXPECTED_START_BUTTON_TEXT, BUTTON_VALUE_ERROR);
 
         // Assert
         softAssert.assertAll();
@@ -64,14 +59,14 @@ public class ProgressBarPageTests extends BaseTest {
 
         String actualNotGreenColor = progressBarPage.getColorProgressBar();
         String actualStartStopButtonText = progressBarPage.getStartStopButtonText();
-        String actualText = progressBarPage.getValueOfProgressBarOnValue100();
+        String progressBarOnValue100 = progressBarPage.getValueOfProgressBarOnValue100();
         String actualGreenColor = progressBarPage.getColorProgressBar();
-        String textOfResetButton = progressBarPage.getResetButtonText();
+        String resetButtonText = progressBarPage.getResetButtonText();
 
-        softAssert.assertEquals(actualText, EXPECTED_100_PERCENT_TEXT, NOT_100_PERCENT_ERROR);
+        softAssert.assertEquals(progressBarOnValue100, EXPECTED_100_PERCENT_TEXT, NOT_100_PERCENT_ERROR);
         softAssert.assertEquals(actualGreenColor, EXPECTED_GREEN_COLOR, WRONG_COLOR_VALUE_ERROR);
         softAssert.assertEquals(actualNotGreenColor, EXPECTED_START_COLOR, WRONG_COLOR_VALUE_ERROR);
-        softAssert.assertEquals(textOfResetButton, EXPECTED_RESET_BUTTON_TEXT, NOT_RESET_BUTTON_ERROR);
+        softAssert.assertEquals(resetButtonText, EXPECTED_RESET_BUTTON_TEXT, NOT_RESET_BUTTON_ERROR);
         softAssert.assertEquals(actualStartStopButtonText, EXPECTED_STOP_BUTTON_TEXT, NOT_STOP_BUTTON_ERROR);
 
         // Assert
@@ -84,10 +79,10 @@ public class ProgressBarPageTests extends BaseTest {
         progressBarPage.clickStartButton();
         String actualText = progressBarPage.getValueOfProgressBarOnValue100();
         progressBarPage.clickResetButton();
-        String actualStartButtonText = progressBarPage.getStartStopButtonText();
+        String actualResetButtonText = progressBarPage.getStartStopButtonText();
 
         softAssert.assertEquals(actualText, EXPECTED_100_PERCENT_TEXT, NOT_100_PERCENT_ERROR);
-        softAssert.assertEquals(actualStartButtonText, EXPECTED_START_BUTTON_TEXT, WRONG_START_BUTTON_VALUE_ERROR);
+        softAssert.assertEquals(actualResetButtonText, EXPECTED_START_BUTTON_TEXT, WRONG_START_BUTTON_VALUE_ERROR);
 
         // Assert
         softAssert.assertAll();
@@ -97,12 +92,12 @@ public class ProgressBarPageTests extends BaseTest {
     public void clickStartStopStartCheckProgressBarEndValue() {
         // Arrange & Act
         progressBarPage.clickStartButton();
-        progressBarPage.stopProgressBarOnValue2(STOP_VALUE);
+        progressBarPage.stopProgressBarOnValue2(STOP_VALUE_31);
         int actualProgressBarText = progressBarPage.getValueProgressBar();
         progressBarPage.clickStartButton();
         String endProgressBarText = progressBarPage.getValueOfProgressBarOnValue100();
 
-        softAssert.assertEquals(actualProgressBarText, STOP_VALUE, NOT_STOP_ON_VALUE_ERROR + STOP_VALUE);
+        softAssert.assertEquals(actualProgressBarText, STOP_VALUE_31, NOT_STOP_ON_VALUE_ERROR + STOP_VALUE_31);
         softAssert.assertEquals(endProgressBarText, EXPECTED_100_PERCENT_TEXT, NOT_STOP_100_PERCENT_ERROR);
 
         // Assert
@@ -114,10 +109,9 @@ public class ProgressBarPageTests extends BaseTest {
         // Arrange & Act
         progressBarPage.clickStartButton();
         progressBarPage.stopProgressBarOnValue2(STOP_VALUE_31);
-        int actualValueOfProgressBar = progressBarPage.getValueProgressBar();
 
         // Assert
-        softAssert.assertEquals(actualValueOfProgressBar, STOP_VALUE_31, NOT_STOP_ON_VALUE_ERROR + STOP_VALUE_31);
+        softAssert.assertEquals(progressBarPage.getValueProgressBar(), STOP_VALUE_31, NOT_STOP_ON_VALUE_ERROR + STOP_VALUE_31);
         softAssert.assertAll();
     }
 }

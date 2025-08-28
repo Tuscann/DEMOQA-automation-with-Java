@@ -55,7 +55,7 @@ public class WidgetsPageTests extends BaseTest {
         // Act
         widgetActions.forEach((expectedUrl, action) -> {
             action.run();
-            String actualUrl = widgetsPage.checkUrl();
+            String actualUrl = widgetsPage.checkCurrentUrl();
             softAssert.assertEquals(actualUrl, expectedUrl, URL_MISMATCH_ERROR + ": " + expectedUrl);
         });
         // Assert

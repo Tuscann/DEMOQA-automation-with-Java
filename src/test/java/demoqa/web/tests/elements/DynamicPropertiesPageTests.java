@@ -39,19 +39,12 @@ public class DynamicPropertiesPageTests extends BaseTest {
 
     @Test(enabled = true, description = "Verify all text elements on the dynamic properties page")
     public void verifyAllTextOnPage() {
-        // Arrange & Act
-        String dynamicPropertiesText = dynamicPropertiesPage.getDynamicPropertiesText();
-        String randomIdText = dynamicPropertiesPage.getTextWithRandomIdText();
-        String willEnable5SecondsButtonText = dynamicPropertiesPage.getWillEnable5SecondsButtonText();
-        String colorChangeButton = dynamicPropertiesPage.getColorChangeButtonText();
-        String visibleAfter5SecondsButtonText = dynamicPropertiesPage.getVisibleAfter5SecondsButtonTextAfter5seconds();
-
-        // Assert
-        softAssert.assertEquals(dynamicPropertiesText, EXPECTED_PROPERTIES_TEXT, DYNAMIC_PROPERTIES_TEXT_MISMATCH);
-        softAssert.assertEquals(randomIdText, EXPECTED_RANDOM_ID_TEXT, RANDOM_ID_TEXT_MISMATCH);
-        softAssert.assertEquals(willEnable5SecondsButtonText, EXPECTED_ENABLE_BUTTON_TEXT, ENABLE_BUTTON_TEXT_MISMATCH);
-        softAssert.assertEquals(colorChangeButton, EXPECTED_COLOR_CHANGE_TEXT, COLOR_CHANGE_TEXT_MISMATCH);
-        softAssert.assertEquals(visibleAfter5SecondsButtonText, EXPECTED_VISIBLE_AFTER_5_SEC_TEXT, VISIBLE_AFTER_5_SEC_TEXT_MISMATCH);
+        // Arrange & Act & Assert
+        softAssert.assertEquals(dynamicPropertiesPage.getDynamicPropertiesText(), EXPECTED_PROPERTIES_TEXT, DYNAMIC_PROPERTIES_TEXT_MISMATCH);
+        softAssert.assertEquals(dynamicPropertiesPage.getTextWithRandomIdText(), EXPECTED_RANDOM_ID_TEXT, RANDOM_ID_TEXT_MISMATCH);
+        softAssert.assertEquals(dynamicPropertiesPage.getWillEnable5SecondsButtonText(), EXPECTED_ENABLE_BUTTON_TEXT, ENABLE_BUTTON_TEXT_MISMATCH);
+        softAssert.assertEquals(dynamicPropertiesPage.getColorChangeButtonText(), EXPECTED_COLOR_CHANGE_TEXT, COLOR_CHANGE_TEXT_MISMATCH);
+        softAssert.assertEquals(dynamicPropertiesPage.getVisibleAfter5SecondsButtonTextAfter5seconds(), EXPECTED_VISIBLE_AFTER_5_SEC_TEXT, VISIBLE_AFTER_5_SEC_TEXT_MISMATCH);
         softAssert.assertAll();
     }
 

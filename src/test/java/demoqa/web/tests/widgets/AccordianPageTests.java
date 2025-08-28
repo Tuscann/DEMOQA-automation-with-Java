@@ -47,7 +47,7 @@ public class AccordianPageTests extends BaseTest {
     }
 
     @Test(enabled = true, description = "Select first heading")
-    public void selectFirstHeading() {
+    public void verifyTextAfterSelectFirstHeading() {
         // Arrange & Act
         accordianPage.clickFirstHeading();
 
@@ -57,7 +57,7 @@ public class AccordianPageTests extends BaseTest {
     }
 
     @Test(enabled = true, description = "Select second heading")
-    public void selectSecondHeading() {
+    public void verifyTextAfterSelectSecondHeading() {
         // Arrange & Act
         accordianPage.clickTwoHeading();
 
@@ -67,12 +67,25 @@ public class AccordianPageTests extends BaseTest {
     }
 
     @Test(enabled = true, description = "Select third heading")
-    public void selectThirdHeading() {
+    public void verifyTextAfterSelectThirdHeading() {
         // Arrange & Act
         accordianPage.clickThrirdHeading();
 
         // Assert
         softAssert.assertEquals(accordianPage.getThirdSectionText(), SECTION_THREE_TEXT, SECTION_THREE_TEXT_ERROR);
+        softAssert.assertAll();
+    }
+
+    @Test(enabled = true, description = "Select second heading")
+    public void clickFirstHeadingAndSecondHeading() {
+        // Arrange & Act
+        accordianPage.clickFirstHeading();
+        accordianPage.clickTwoHeading();
+
+        boolean isFirstHeadingClosed = accordianPage.isFirstHeadingVisible();
+
+        // Assert
+        softAssert.assertTrue(isFirstHeadingClosed);
         softAssert.assertAll();
     }
 }

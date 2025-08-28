@@ -99,10 +99,9 @@ public class LinksPageTests extends BaseTest {
     public void openNewTabFromSimpleLink() {
         // Arrange & Act
         linksPage.clickSimpleTab();
-        String urlNewTab = linksPage.getUrl();
 
         // Assert
-        softAssert.assertEquals(urlNewTab, DEMO_QA_URL, NEW_TAB_URL_MISMATCH);
+        softAssert.assertEquals(linksPage.getCurrentUrl(), DEMO_QA_URL, NEW_TAB_URL_MISMATCH);
         softAssert.assertAll();
     }
 
@@ -110,10 +109,9 @@ public class LinksPageTests extends BaseTest {
     public void openNewTabFromDynamicLink() {
         // Arrange & Act
         linksPage.clickDynamicTab();
-        String urlNewTab = linksPage.getUrl();
 
         // Assert
-        softAssert.assertEquals(urlNewTab, DEMO_QA_URL, NEW_TAB_URL_MISMATCH);
+        softAssert.assertEquals(linksPage.getCurrentUrl(), DEMO_QA_URL, NEW_TAB_URL_MISMATCH);
         softAssert.assertAll();
     }
 

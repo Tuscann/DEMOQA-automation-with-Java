@@ -51,7 +51,7 @@ public class ProgressBarPage extends BasePage {
         return resetButton.getText();
     }
 
-    public Integer getValueProgressBar() {
+    public int getValueProgressBar() {
         return Integer.parseInt(Objects.requireNonNull(progressBarCurrent.getDomAttribute("aria-valuenow")));
     }
 
@@ -68,7 +68,7 @@ public class ProgressBarPage extends BasePage {
     }
 
     public String getValueOfProgressBarOnValue100() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.attributeToBe(progressBarCurrent, "aria-valuenow", "100"));
         return progressBarCurrent.getDomAttribute("aria-valuenow");
     }

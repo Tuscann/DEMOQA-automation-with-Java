@@ -34,15 +34,10 @@ public class UploadAndDownloadPageTests extends BaseTest {
 
     @Test(enabled = true, description = "Verify all text elements on the upload and download page")
     public void verifyAllTextOnPage() {
-        // Arrange & Act
-        String uploadAndDownloadText = uploadAndDownloadPage.getUploadAndDownloadText();
-        String downloadButtonText = uploadAndDownloadPage.getDownloadButtonText();
-        String selectAFileText = uploadAndDownloadPage.getSelectAFileText();
-
-        // Assert
-        softAssert.assertEquals(uploadAndDownloadText, EXPECTED_UPLOAD_AND_DOWNLOAD_TEXT, UPLOAD_DOWNLOAD_TEXT_MISMATCH);
-        softAssert.assertEquals(downloadButtonText, EXPECTED_DOWNLOAD_BUTTON_TEXT, DOWNLOAD_BUTTON_TEXT_MISMATCH);
-        softAssert.assertEquals(selectAFileText, EXPECTED_SELECT_A_FILE_TEXT, SELECT_A_FILE_TEXT_MISMATCH);
+        // Arrange & Act & Assert
+        softAssert.assertEquals(uploadAndDownloadPage.getUploadAndDownloadText(), EXPECTED_UPLOAD_AND_DOWNLOAD_TEXT, UPLOAD_DOWNLOAD_TEXT_MISMATCH);
+        softAssert.assertEquals(uploadAndDownloadPage.getDownloadButtonText(), EXPECTED_DOWNLOAD_BUTTON_TEXT, DOWNLOAD_BUTTON_TEXT_MISMATCH);
+        softAssert.assertEquals(uploadAndDownloadPage.getSelectAFileText(), EXPECTED_SELECT_A_FILE_TEXT, SELECT_A_FILE_TEXT_MISMATCH);
         softAssert.assertAll();
     }
 

@@ -43,75 +43,29 @@ public class TabsPageTests extends BaseTest {
         tabsPage = new TabsPage(driver);
     }
 
-    // Data Provider for Tab Content Testing
-    @DataProvider(name = "tabContentData")
-    public Object[][] tabContentDataProvider() {
-        return new Object[][]{
-                {"What", EXPECTED_WHAT_TAB_CONTENT, "What tab content verification"},
-                {"Origin", EXPECTED_ORIGIN_TAB_CONTENT, "Origin tab content verification"},
-                {"Use", EXPECTED_USE_TAB_CONTENT, "Use tab content verification"}
-        };
-    }
-
-    // Data Provider for Tab Navigation Testing
     @DataProvider(name = "tabNavigationData")
-    public Object[][] tabNavigationDataProvider() {
-        return new Object[][]{
-                {"What", "What tab navigation and content verification"},
-                {"Origin", "Origin tab navigation and content verification"},
-                {"Use", "Use tab navigation and content verification"}
+    public Object[] tabNavigationDataProvider() {
+        return new Object[]{
+                "What",
+                "Origin",
+                "Use"
         };
     }
 
     @Test(enabled = true, description = "Verify all text on page")
     public void checkAllTextOnPage() {
-        // Arrange
-        // Act
-        String actualHead = tabsPage.getTabsText();
-        String actualString = tabsPage.getUnderTitleText();
-        String actualWhatText = tabsPage.getWhatTabText();
-        String actualOriginText = tabsPage.getOriginTabText();
-        String actualUseText = tabsPage.getUseTabText();
-        String actualMoreText = tabsPage.getMoreTabText();
-
-        // Assert
-        softAssert.assertEquals(actualHead, EXPECTED_HEADER_TEXT, HEADER_TEXT_ERROR);
-        softAssert.assertEquals(actualString, EXPECTED_SUBTITLE_TEXT, SUBTITLE_TEXT_ERROR);
-        softAssert.assertEquals(actualWhatText, EXPECTED_WHAT_TAB_TEXT, WHAT_TAB_TEXT_ERROR);
-        softAssert.assertEquals(actualOriginText, EXPECTED_ORIGIN_TAB_TEXT, ORIGIN_TAB_TEXT_ERROR);
-        softAssert.assertEquals(actualUseText, EXPECTED_USE_TAB_TEXT, USE_TAB_TEXT_ERROR);
-        softAssert.assertEquals(actualMoreText, EXPECTED_MORE_TAB_TEXT, MORE_TAB_TEXT_ERROR);
+        // Arrange & Act & Assert
+        softAssert.assertEquals(tabsPage.getTabsText(), EXPECTED_HEADER_TEXT, HEADER_TEXT_ERROR);
+        softAssert.assertEquals(tabsPage.getUnderTitleText(), EXPECTED_SUBTITLE_TEXT, SUBTITLE_TEXT_ERROR);
+        softAssert.assertEquals(tabsPage.getWhatTabText(), EXPECTED_WHAT_TAB_TEXT, WHAT_TAB_TEXT_ERROR);
+        softAssert.assertEquals(tabsPage.getOriginTabText(), EXPECTED_ORIGIN_TAB_TEXT, ORIGIN_TAB_TEXT_ERROR);
+        softAssert.assertEquals(tabsPage.getUseTabText(), EXPECTED_USE_TAB_TEXT, USE_TAB_TEXT_ERROR);
+        softAssert.assertEquals(tabsPage.getMoreTabText(), EXPECTED_MORE_TAB_TEXT, MORE_TAB_TEXT_ERROR);
         softAssert.assertAll();
     }
 
-    // New Data-Driven Test for Tab Content
-    @Test(dataProvider = "tabContentData", enabled = true, description = "Test tab content with data provider")
-    public void testTabContentWithDataProvider(String tabName, String expectedContent, String testDescription) {
-        // Act - Click the appropriate tab based on tabName
-        switch (tabName) {
-            case "What":
-                tabsPage.clickWhatTab();
-                String actualWhatText = tabsPage.getWhatTabInternalText();
-                softAssert.assertEquals(actualWhatText, expectedContent, WHAT_TAB_CONTENT_ERROR);
-                break;
-            case "Origin":
-                tabsPage.clickOriginTab();
-                String actualOriginText = tabsPage.getOriginTabInternalText();
-                softAssert.assertEquals(actualOriginText, expectedContent, ORIGIN_TAB_CONTENT_ERROR);
-                break;
-            case "Use":
-                tabsPage.clickUseTab();
-                String actualUseText = tabsPage.getUseTabInternalText();
-                softAssert.assertEquals(actualUseText, expectedContent, USE_TAB_CONTENT_ERROR);
-                break;
-        }
-        softAssert.assertAll();
-    }
-
-    // New Data-Driven Test for Tab Navigation
     @Test(dataProvider = "tabNavigationData", enabled = true, description = "Test tab navigation with data provider")
-    public void testTabNavigationWithDataProvider(String tabName, String testDescription) {
-        // Act - Click the appropriate tab based on tabName
+    public void testTabNavigationWithDataProvider(String tabName) {
         switch (tabName) {
             case "What":
                 tabsPage.clickWhatTab();
@@ -129,39 +83,6 @@ public class TabsPageTests extends BaseTest {
                 softAssert.assertEquals(actualUseText, EXPECTED_USE_TAB_CONTENT, USE_TAB_CONTENT_ERROR);
                 break;
         }
-        softAssert.assertAll();
-    }
-
-    @Test(enabled = true, description = "Select what tab and check text")
-    public void selectWhatTabAndCheckText() {
-        // Arrange & Act
-        tabsPage.clickWhatTab();
-        String actualText = tabsPage.getWhatTabInternalText();
-
-        // Assert
-        softAssert.assertEquals(actualText, EXPECTED_WHAT_TAB_CONTENT, WHAT_TAB_CONTENT_ERROR);
-        softAssert.assertAll();
-    }
-
-    @Test(enabled = true, description = "Select origin tab and check text")
-    public void selectOriginTabAndCheckText() {
-        // Arrange and Act
-        tabsPage.clickOriginTab();
-        String actualText = tabsPage.getOriginTabInternalText();
-
-        // Assert
-        softAssert.assertEquals(actualText, EXPECTED_ORIGIN_TAB_CONTENT, ORIGIN_TAB_CONTENT_ERROR);
-        softAssert.assertAll();
-    }
-
-    @Test(enabled = true, description = "Select use tab and check text")
-    public void selectUseTabAndCheckText() {
-        // Arrange & Act
-        tabsPage.clickUseTab();
-        String actualText = tabsPage.getUseTabInternalText();
-
-        // Assert
-        softAssert.assertEquals(actualText, EXPECTED_USE_TAB_CONTENT, USE_TAB_CONTENT_ERROR);
         softAssert.assertAll();
     }
 }

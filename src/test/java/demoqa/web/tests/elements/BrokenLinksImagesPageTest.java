@@ -40,23 +40,14 @@ public class BrokenLinksImagesPageTest extends BaseTest {
 
     @Test(enabled = true, description = "Verify all static text elements on the broken links and images page")
     public void verifyAllTextOnPage() {
-        // Arrange & Act        
-        String actualHeaderText = brokenLinksImagesPage.getHeaderText();
-        String actualClickHereValidLinkText = brokenLinksImagesPage.getClickHereValidLinkText();
-        String actualBrokenImageText = brokenLinksImagesPage.getBrokenImageText();
-        String actualValidLinkText = brokenLinksImagesPage.getValidLinkText();
-        String actualValidImageText = brokenLinksImagesPage.getValidImageText();
-        String actualBrokenLinkText = brokenLinksImagesPage.getBrokenLinkText();
-        String actualClickHereBrokenLinkText = brokenLinksImagesPage.getClickHereBrokenLinkText();
-
-        // Assert
-        softAssert.assertEquals(actualHeaderText, EXPECTED_HEADER, HEADER_TEXT_MISMATCH);
-        softAssert.assertEquals(actualClickHereValidLinkText, EXPECTED_CLICK_HERE_VALID_LINK_TEXT, CLICK_HERE_VALID_LINK_TEXT_MISMATCH);
-        softAssert.assertEquals(actualBrokenImageText, EXPECTED_BROKEN_IMAGE_TEXT, BROKEN_IMAGE_TEXT_MISMATCH);
-        softAssert.assertEquals(actualValidLinkText, EXPECTED_VALID_LINK_TEXT, VALID_LINK_TEXT_MISMATCH);
-        softAssert.assertEquals(actualValidImageText, EXPECTED_VALID_IMAGE_TEXT, VALID_IMAGE_TEXT_MISMATCH);
-        softAssert.assertEquals(actualBrokenLinkText, EXPECTED_BROKEN_LINK_TEXT, BROKEN_LINK_TEXT_MISMATCH);
-        softAssert.assertEquals(actualClickHereBrokenLinkText, EXPECTED_CLICK_HERE_BROKEN_LINK_TEXT, CLICK_HERE_BROKEN_LINK_TEXT_MISMATCH);
+        // Arrange & Act & Assert
+        softAssert.assertEquals(brokenLinksImagesPage.getHeaderText(), EXPECTED_HEADER, HEADER_TEXT_MISMATCH);
+        softAssert.assertEquals(brokenLinksImagesPage.getClickHereValidLinkText(), EXPECTED_CLICK_HERE_VALID_LINK_TEXT, CLICK_HERE_VALID_LINK_TEXT_MISMATCH);
+        softAssert.assertEquals(brokenLinksImagesPage.getBrokenImageText(), EXPECTED_BROKEN_IMAGE_TEXT, BROKEN_IMAGE_TEXT_MISMATCH);
+        softAssert.assertEquals(brokenLinksImagesPage.getValidLinkText(), EXPECTED_VALID_LINK_TEXT, VALID_LINK_TEXT_MISMATCH);
+        softAssert.assertEquals(brokenLinksImagesPage.getValidImageText(), EXPECTED_VALID_IMAGE_TEXT, VALID_IMAGE_TEXT_MISMATCH);
+        softAssert.assertEquals(brokenLinksImagesPage.getBrokenLinkText(), EXPECTED_BROKEN_LINK_TEXT, BROKEN_LINK_TEXT_MISMATCH);
+        softAssert.assertEquals(brokenLinksImagesPage.getClickHereBrokenLinkText(), EXPECTED_CLICK_HERE_BROKEN_LINK_TEXT, CLICK_HERE_BROKEN_LINK_TEXT_MISMATCH);
         softAssert.assertAll();
     }
 
@@ -64,10 +55,9 @@ public class BrokenLinksImagesPageTest extends BaseTest {
     public void clickOnClickHereForValidLink() {
         // Arrange & Act
         brokenLinksImagesPage.ClickOnClickHereValidLink();
-        String currentUrl = brokenLinksImagesPage.getCurrentUrl();
 
         // Assert
-        softAssert.assertEquals(currentUrl, DEMO_QA_URL, VALID_LINK_URL_MISMATCH);
+        softAssert.assertEquals(brokenLinksImagesPage.getCurrentUrl(), DEMO_QA_URL, VALID_LINK_URL_MISMATCH);
         softAssert.assertAll();
     }
 
@@ -75,10 +65,9 @@ public class BrokenLinksImagesPageTest extends BaseTest {
     public void clickOnClickHereForBrokenLink() {
         // Arrange & Act
         brokenLinksImagesPage.clickOnClickHereBrokenLink();
-        String currentUrl = brokenLinksImagesPage.getCurrentUrl();
 
         // Assert
-        softAssert.assertEquals(currentUrl, EXPECTED_BROKEN_LINK_URL, BROKEN_LINK_URL_MISMATCH);
+        softAssert.assertEquals(brokenLinksImagesPage.getCurrentUrl(), EXPECTED_BROKEN_LINK_URL, BROKEN_LINK_URL_MISMATCH);
         softAssert.assertAll();
     }
 }

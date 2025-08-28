@@ -1,6 +1,7 @@
 package demoqa.pages.widgets;
 
 import demoqa.base.BasePage;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -86,5 +87,23 @@ public class DatePickerPage extends BasePage {
         }
         sectionTwoHeading.sendKeys(expectedDate);
         sectionTwoHeading.sendKeys(Keys.chord(Keys.ENTER));
+    }
+
+    public void createNewSelectDate() throws InterruptedException {
+        WebElement dateInput = driver.findElement(By.id("datePickerMonthYearInput"));
+        dateInput.click();
+        Thread.sleep(500); // Wait for date picker to open
+
+        // Click the month dropdown and select February
+        driver.findElement(By.className("react-datepicker__month-select")).click();
+        driver.findElement(By.xpath("//option[@value='1']")).click(); // February is value 1 (0-based)
+
+        // Click the year dropdown and select 2025
+        driver.findElement(By.className("react-datepicker__year-select")).click();
+        driver.findElement(By.xpath("//option[@value='2025']")).click();
+
+        // Click the specific date (14th)
+        driver.findElement(By.xpath("//div[contains(@class, 'react-datepicker__day--014')][@role='option']")).click();
+        Thread.sleep(500); // Wait for date picker to update
     }
 }

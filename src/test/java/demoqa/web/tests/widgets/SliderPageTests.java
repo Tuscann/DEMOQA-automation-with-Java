@@ -31,29 +31,21 @@ public class SliderPageTests extends BaseTest {
     @Test(enabled = false, description = "Test slider result zero")
     public void testSliderResultZero() throws InterruptedException {
         // Arrange
-        String expectedValue = "60";
         int x = 90;
         int y = 0;
 
         // Act
         sliderPage.moveSlider(x, y);
-        String actualValue = sliderPage.getSliderValue();
 
         // Assert
-        softAssert.assertEquals(actualValue, expectedValue, "Actual value is not equal to expected value");
+        softAssert.assertEquals(sliderPage.getSliderValue(), "60", "Actual value is not equal to expected value");
         softAssert.assertAll();
     }
 
     @Test(enabled = true, description = "Check default value slider")
     public void checkDefaultValueSlider() {
-        // Arrange
-        String expectedValue = "25";
-
-        // Act
-        String actualValue = sliderPage.getSliderValue();
-
-        // Assert
-        softAssert.assertEquals(actualValue, expectedValue, "Actual value is not default 25");
+        // Arrange & Act & Assert
+        softAssert.assertEquals(sliderPage.getSliderValue(), "25", "Actual value is not default 25");
         softAssert.assertAll();
     }
 }

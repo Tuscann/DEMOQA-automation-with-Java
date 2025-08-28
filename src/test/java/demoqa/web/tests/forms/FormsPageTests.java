@@ -27,11 +27,8 @@ public class FormsPageTests extends BaseTest {
 
     @Test(enabled = true, description = "Verify all text on page")
     public void checkAllTextOnPage() {
-        // Arrange & Act
-        String actualText = formsPage.getText();
-
-        // Assert
-        softAssert.assertEquals(actualText, EMPTY_STATE_MESSAGE, EMPTY_STATE_ERROR);
+        // Arrange & Act & Assert
+        softAssert.assertEquals(formsPage.getText(), EMPTY_STATE_MESSAGE, EMPTY_STATE_ERROR);
         softAssert.assertAll();
     }
 
@@ -39,10 +36,9 @@ public class FormsPageTests extends BaseTest {
     public void verifyPracticeFormLink() {
         // Arrange & Act
         formsPage.clickPracticeFormLink();
-        String actualUrl = formsPage.checkCurrentUrl();
 
         // Assert
-        softAssert.assertEquals(actualUrl, PRACTICE_FORM_FULL_URL, URL_NAVIGATION_ERROR);
+        softAssert.assertEquals(formsPage.checkCurrentUrl(), PRACTICE_FORM_FULL_URL, URL_NAVIGATION_ERROR);
         softAssert.assertAll();
     }
 }

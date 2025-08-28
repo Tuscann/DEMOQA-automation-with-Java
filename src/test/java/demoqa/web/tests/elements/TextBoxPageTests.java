@@ -111,16 +111,11 @@ public class TextBoxPageTests extends BaseTest {
         textBoxPage.setPermanentAddressField(PERMANENT_ADDRESS);
         textBoxPage.clickSubmitButton();
 
-        String actualFullName = textBoxPage.getExpectedName();
-        String actualEmail = textBoxPage.getExpectedEmail();
-        String actualCurrentAddress = textBoxPage.getExpectedCurrentAddress();
-        String actualPermanentAddress = textBoxPage.getExpectedPermanentAddress();
-
         // Assert
-        softAssert.assertEquals(actualFullName, NAME_PREFIX + FULL_NAME, FULL_NAME_MISMATCH);
-        softAssert.assertEquals(actualEmail, EMAIL_PREFIX + VALID_EMAIL, EMAIL_MISMATCH);
-        softAssert.assertEquals(actualCurrentAddress, CURRENT_ADDRESS_PREFIX + CURRENT_ADDRESS, CURRENT_ADDRESS_MISMATCH);
-        softAssert.assertEquals(actualPermanentAddress, PERMANENT_ADDRESS_PREFIX + PERMANENT_ADDRESS, PERMANENT_ADDRESS_MISMATCH);
+        softAssert.assertEquals(textBoxPage.getExpectedName(), NAME_PREFIX + FULL_NAME, FULL_NAME_MISMATCH);
+        softAssert.assertEquals(textBoxPage.getExpectedEmail(), EMAIL_PREFIX + VALID_EMAIL, EMAIL_MISMATCH);
+        softAssert.assertEquals(textBoxPage.getExpectedCurrentAddress(), CURRENT_ADDRESS_PREFIX + CURRENT_ADDRESS, CURRENT_ADDRESS_MISMATCH);
+        softAssert.assertEquals(textBoxPage.getExpectedPermanentAddress(), PERMANENT_ADDRESS_PREFIX + PERMANENT_ADDRESS, PERMANENT_ADDRESS_MISMATCH);
 
         softAssert.assertAll();
     }
@@ -130,11 +125,8 @@ public class TextBoxPageTests extends BaseTest {
         // Arrange & Act
         textBoxPage.clickSubmitButton();
 
-        String actualOutput = textBoxPage.getOutput();
-        String expectedOutput = "";
-
         // Assert
-        softAssert.assertEquals(actualOutput, expectedOutput, OUTPUT_NOT_EMPTY_ERROR);
+        softAssert.assertEquals(textBoxPage.getOutput(), "", OUTPUT_NOT_EMPTY_ERROR);
         softAssert.assertAll();
     }
 
@@ -161,7 +153,7 @@ public class TextBoxPageTests extends BaseTest {
     }
 
     @Test(enabled = true, description = "Submit invalid email and verify red border validation")
-    public void submitInvalidEmailAndCheckRedLine() {
+    public void submitFormWithInvalidEmailAndCheckRedLine() {
         // Arrange & Act
         textBoxPage.setEmailField(INVALID_EMAIL);
         textBoxPage.clickSubmitButton();
