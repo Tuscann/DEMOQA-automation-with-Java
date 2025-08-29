@@ -38,6 +38,9 @@ public class ModalDialogsPage extends BasePage {
     WebElement smallText;
     @FindBy(id = "showLargeModal")
     WebElement largeText;
+    @FindBy(xpath = "//span[contains(@aria-hidden,'true')]")
+    WebElement clickXCLoseButton;
+
 
     public ModalDialogsPage(WebDriver driver) {
         super(driver);
@@ -96,5 +99,25 @@ public class ModalDialogsPage extends BasePage {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(6));
         wait.until(ExpectedConditions.visibilityOf(smallModalTextHeader));
         return smallModalTextHeader.getText();
+    }
+
+    public String getSmallModalDialogsBackgroundColor() {
+        return smallModalButton.getCssValue("background-color");
+    }
+
+    public String getLargeModalDialogsBackgroundColor() {
+        return largeModalButton.getCssValue("background-color");
+    }
+
+    public String getLargeModalDialogCloseButtonBackgroundColor() {
+        return largeCloseButton.getCssValue("background-color");
+    }
+
+    public String getSmaillModalDialogCloseButtonBackgroundColor() {
+        return smallCloseButton.getCssValue("background-color");
+    }
+
+    public void clickXSmallCloseButton() {
+        clickXCLoseButton.click();
     }
 }

@@ -107,8 +107,23 @@ public class AutoCompletePageTests extends BaseTest {
         softAssert.assertAll();
     }
 
+    @Test(enabled = true, description = "Select two multiple colors")
+    public void selectTwoMultipleColorsAndCloseAll() {
+        // Arrange & Act
+        autoCompletePage.waitForPageReady();
+
+        autoCompletePage.multiAutoCompleteSelectColor(COLOR_RED);
+        autoCompletePage.multiAutoCompleteSelectColor(COLOR_BLUE);
+
+        autoCompletePage.clickCloseAllColorsButton();
+
+        // Assert
+        softAssert.assertEquals(autoCompletePage.getAllSelectedMultiColorNames(), "", COLORS_SELECTED_ERROR);
+        softAssert.assertAll();
+    }
+
     @Test(enabled = true, description = "Select four multiple colors delete and two new")
-    public void selectFourMultipleColorsAndDeleteAddTwo() {
+    public void selectFourMultipleColorsCloseAlAddNewTwoColors() {
         // Arrange & Act
         autoCompletePage.waitForPageReady();
 
@@ -129,6 +144,16 @@ public class AutoCompletePageTests extends BaseTest {
         softAssert.assertAll();
     }
 
+    @Test(enabled = true, description = "Select one single color.")
+    public void selectOneSingleColor() {
+        // Arrange & Act
+        autoCompletePage.singleAutoComplete(COLOR_GREEN);
+
+        // Assert
+        softAssert.assertEquals(autoCompletePage.getAllSingleColorNames(), COLOR_GREEN, GREEN_COLOR_SELECTED_ERROR);
+        softAssert.assertAll();
+    }
+
     @Test(enabled = true, description = "Select one color clear and add new single color ")
     public void selectOneSingleColorAndChangeColor() {
         // Arrange & Act
@@ -139,16 +164,6 @@ public class AutoCompletePageTests extends BaseTest {
         autoCompletePage.singleAutoComplete(COLOR_BLUE);
 
         softAssert.assertEquals(autoCompletePage.getAllSingleColorNames(), COLOR_BLUE, SECOND_COLOR_SELECTED_ERROR);
-        softAssert.assertAll();
-    }
-
-    @Test(enabled = true, description = "Select one single color.")
-    public void selectOneSingleColor() {
-        // Arrange & Act
-        autoCompletePage.singleAutoComplete(COLOR_GREEN);
-
-        // Assert
-        softAssert.assertEquals(autoCompletePage.getAllSingleColorNames(), COLOR_GREEN, GREEN_COLOR_SELECTED_ERROR);
         softAssert.assertAll();
     }
 }

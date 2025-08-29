@@ -2,11 +2,6 @@ package utilities;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
 
 public class SwitchToUtility {
 
@@ -43,7 +38,7 @@ public class SwitchToUtility {
         return az;
     }
 
-    public void setAlertText(String text) {    
+    public void setAlertText(String text) {
         switchTo().alert().sendKeys(text);
     }
 
@@ -53,25 +48,5 @@ public class SwitchToUtility {
 
     public void dismissAlert() {
         switchTo().alert().dismiss();
-    }
-
-    public void switchToFrameString(String value) {
-        switchTo().frame(value);
-    }
-
-    public void switchToDefaultContent() {
-        switchTo().defaultContent();
-    }
-
-    public void switchToFrameIndex(int index) {
-        switchTo().frame(index);
-    }
-
-    public void switchToFrameElement(WebElement element) {
-        switchTo().frame(element);
-    }
-
-    public void switchToWindow(String handle) {
-        switchTo().window(handle);
     }
 }

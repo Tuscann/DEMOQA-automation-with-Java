@@ -7,7 +7,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-
 import utilities.JavaScriptUtility;
 
 public class ResizablePage extends BasePage {
@@ -93,5 +92,9 @@ public class ResizablePage extends BasePage {
         } catch (Exception e) {
             return false;
         }
+    }
+
+    public String getResizableBoxWithRestrictionBackgroudColor() {
+        return resizableBoxWithRestriction.getCssValue("background-color");
     }
 }

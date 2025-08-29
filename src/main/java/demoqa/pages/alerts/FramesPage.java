@@ -15,7 +15,7 @@ public class FramesPage extends BasePage {
     @FindBy(xpath = "//h1[contains(.,'Frames')]")
     WebElement newTabButton;
     @FindBy(xpath = "(//div[contains(.,'Sample Iframe page There are 2 Iframes in this page. Use browser inspecter or firebug to check out the HTML source. In total you can switch between the parent frame, which is this window, and the two frames below')])[7]")
-    WebElement text;
+    WebElement firstFrame;
     @FindBy(id = "frame1")
     WebElement frame1;
     @FindBy(id = "frame2")
@@ -37,8 +37,8 @@ public class FramesPage extends BasePage {
         return newTabButton.getText();
     }
 
-    public String getText() {
-        return text.getText();
+    public String getFirstFrame() {
+        return firstFrame.getText();
     }
 
     public String getHeadingTextInFirstIframe() {

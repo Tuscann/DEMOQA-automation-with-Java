@@ -7,7 +7,24 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 public class ResizablePageTests extends BaseTest {
+
+    // Text Constants
+    private static final String EXPECTED_PAGE_TITLE = "Resizable";
+    private static final String EXPECTED_RESIZABLE_BOX_WITH_RESTRICTION_TEXT = "Resizable box, starting at 200x200. Min size is 150x150, max is 500x300.";
+    private static final String EXPECTED_RESIZABLE_TEXT = "Resizable";
+
+    // Error Message Constants
+    private static final String WRONG_PAGE_TITLE = "\nWrong page title.\n";
+    private static final String WRONG_RESIZABLE_BOX_TEXT = "\nWrong resizable text.\n";
+    private static final String WRONG_RESIZABLE_TEXT = "\nWrong resizable text.\n";
+    private static final String WRONG_COLOR_SELECTED = "\nWrong color selected.\n";
+    private static final String WRONG_NEW_SIZE = "\nWrong new size.\n";
+    private static final String WRONG_SIZE_AFTER_DIAGONAL_RESIZE = "\nWrong size after diagonal resize.\n";
+    private static final String RESIZE_HANDLE_SHOULD_BE_VISIBLE = "\nResize handle should be visible.\n";
+    private static final String SECOND_RESIZE_HANDLE_SHOULD_BE_VISIBLE = "\nSecond resize handle should be visible.\n";
+
     public static final String RESIZABLE_URL = "resizable";
+    private static final String EXPECTED_GREY_COLOR = "rgba(255, 255, 255, 1)";
     private ResizablePage resizablePage;
 
     @BeforeMethod
@@ -18,20 +35,17 @@ public class ResizablePageTests extends BaseTest {
 
     @Test(enabled = true, description = "Verify all text on page")
     public void verifyAllTextOnPage() {
-        // Arrange
-        String pageTitle = "Resizable";
-        String resizableBoxWithRestrictionText = "Resizable box, starting at 200x200. Min size is 150x150, max is 500x300.";
-        String resizableText = "Resizable";
-
-        // Act
+        // Arrange & Act
         String actualPageTitle = resizablePage.getPageTitleText();
         String actualResizableBoxWithRestrictionText = resizablePage.getResizableBoxWithRestrictionText();
         String actualResizableText = resizablePage.getResizableText();
+        String actualBackgroundColor = resizablePage.getResizableBoxWithRestrictionBackgroudColor();
 
         // Assert
-        softAssert.assertEquals(actualPageTitle, pageTitle, "\nWrong page title.\n");
-        softAssert.assertEquals(actualResizableBoxWithRestrictionText, resizableBoxWithRestrictionText, "\nWrong resizable text.\n");
-        softAssert.assertEquals(actualResizableText, resizableText, "\nWrong resizable text.\n");
+        softAssert.assertEquals(actualPageTitle, EXPECTED_PAGE_TITLE, WRONG_PAGE_TITLE);
+        softAssert.assertEquals(actualResizableBoxWithRestrictionText, EXPECTED_RESIZABLE_BOX_WITH_RESTRICTION_TEXT, WRONG_RESIZABLE_BOX_TEXT);
+        softAssert.assertEquals(actualResizableText, EXPECTED_RESIZABLE_TEXT, WRONG_RESIZABLE_TEXT);
+        softAssert.assertEquals(actualBackgroundColor, EXPECTED_GREY_COLOR, WRONG_COLOR_SELECTED);
 
         softAssert.assertAll();
     }
@@ -54,7 +68,7 @@ public class ResizablePageTests extends BaseTest {
         String actualNewSize = resizablePage.getNewSizeBox();
 
         // Assert
-        softAssert.assertEquals(actualNewSize, "(" + expectedWidth + ", " + expectedHeight + ")", "\nWrong new size.\n");
+        softAssert.assertEquals(actualNewSize, "(" + expectedWidth + ", " + expectedHeight + ")", WRONG_NEW_SIZE);
         softAssert.assertAll();
     }
 
@@ -76,7 +90,7 @@ public class ResizablePageTests extends BaseTest {
         String actualNewSize = resizablePage.getNewSizeBox2();
 
         // Assert
-        softAssert.assertEquals(actualNewSize, "(" + expectedWidth + ", " + expectedHeight + ")", "\nWrong new size.\n");
+        softAssert.assertEquals(actualNewSize, "(" + expectedWidth + ", " + expectedHeight + ")", WRONG_NEW_SIZE);
         softAssert.assertAll();
     }
 
@@ -85,7 +99,7 @@ public class ResizablePageTests extends BaseTest {
         return new Object[][]{
                 {100, 100, 300, 300},  // Diagonal resize within limits
                 //  {400, 400, 500, 300},  // Diagonal resize beyond max limits
-                {-100, -100, 150, 150}, // Diagonal resize to min limits
+                {-100, -100, 150, 150}, // Diagonal resize to min limits (constrained by minimum size)
         };
     }
 
@@ -96,15 +110,15 @@ public class ResizablePageTests extends BaseTest {
         String actualNewSize = resizablePage.getNewSizeBox();
 
         // Assert
-        softAssert.assertEquals(actualNewSize, "(" + expectedWidth + ", " + expectedHeight + ")", "\nWrong size after diagonal resize.\n");
+        softAssert.assertEquals(actualNewSize, "(" + expectedWidth + ", " + expectedHeight + ")", WRONG_SIZE_AFTER_DIAGONAL_RESIZE);
         softAssert.assertAll();
     }
 
     @Test(description = "Test resize handle visibility", enabled = true)
     public void resizeHandleVisibility() {
         // Arrange & Act & Assert
-        softAssert.assertTrue(resizablePage.isResizeHandleVisible(), "\nResize handle should be visible.\n");
-        softAssert.assertTrue(resizablePage.isResizeHandle2Visible(), "\nSecond resize handle should be visible.\n");
+        softAssert.assertTrue(resizablePage.isResizeHandleVisible(), RESIZE_HANDLE_SHOULD_BE_VISIBLE);
+        softAssert.assertTrue(resizablePage.isResizeHandle2Visible(), SECOND_RESIZE_HANDLE_SHOULD_BE_VISIBLE);
         softAssert.assertAll();
     }
 }

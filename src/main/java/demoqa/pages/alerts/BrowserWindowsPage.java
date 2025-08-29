@@ -58,9 +58,9 @@ public class BrowserWindowsPage extends BasePage {
 
             Set<String> windows = driver.getWindowHandles();
             String newWindow = windows.stream()
-                .filter(handle -> !handle.equals(originalWindow))
-                .findFirst()
-                .orElse(null);
+                    .filter(handle -> !handle.equals(originalWindow))
+                    .findFirst()
+                    .orElse(null);
 
             if (newWindow != null) {
                 driver.switchTo().window(newWindow);
@@ -141,5 +141,17 @@ public class BrowserWindowsPage extends BasePage {
 
     public String getBrowserWindowsText() {
         return header.getText();
+    }
+
+    public String getBrowserWindowsColor() {
+        return newTabButton.getCssValue("background-color");
+    }
+
+    public String getNewWindowColor() {
+        return newWindowButton.getCssValue("background-color");
+    }
+
+    public String getNewWindowMessageColor() {
+        return newWindowMessageButton.getCssValue("background-color");
     }
 }

@@ -30,20 +30,12 @@ public class FramesPageTests extends BaseTest {
     public void verifyAllTextOnPage() {
         // Arrange & Act
         String actualHeadingText = framesPage.getFramesHeadingText();
-        String actualText = framesPage.getText();
+        String actualText = framesPage.getFirstFrame();
+        String actualFirstIFrameHeadingText = framesPage.getHeadingTextInFirstIframe();
 
         // Assert
         softAssert.assertEquals(actualHeadingText, PAGE_HEADING, PAGE_HEADING_ERROR);
         softAssert.assertEquals(actualText, PAGE_DESCRIPTION, PAGE_DESCRIPTION_ERROR);
-        softAssert.assertAll();
-    }
-
-    @Test(enabled = true, description = "Verify heading in first Iframe")
-    public void verifyHeadingTextInFirstIframe() {
-        // Arrange & Act
-        String actualFirstIFrameHeadingText = framesPage.getHeadingTextInFirstIframe();
-
-        // Assert
         softAssert.assertEquals(actualFirstIFrameHeadingText, IFRAME_HEADING, FIRST_IFRAME_HEADING_ERROR);
         softAssert.assertAll();
     }

@@ -50,6 +50,10 @@ public class DroppablePage extends BasePage {
     @FindBy(id = "notGreedyDropBox")
     private WebElement preventPropagationNotGreedyDropBox;
 
+    @FindBy(xpath = "(//p[contains(.,'Outer droppable')])[1]")
+    private WebElement outerDroppable;
+
+
     @FindBy(id = "greedyDropBoxInner")
     private WebElement preventPropagationGreedyDropBox;
 
@@ -239,10 +243,12 @@ public class DroppablePage extends BasePage {
 
     public void dragAndDropPropagationOuterDroppableNotGreedy() {
         Actions actions = new Actions(driver);
-        actions.dragAndDrop(preventPropagationDragMe, preventPropagationNotGreedyDropBox).perform();
+        actions.dragAndDrop(preventPropagationDragMe, outerDroppable).perform();
     }
 
     public String getOuterDroppableNotGreedyColor() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.visibilityOf(preventPropagationNotGreedyDropBox));
         return preventPropagationNotGreedyDropBox.getCssValue("background-color");
     }
 
@@ -253,6 +259,8 @@ public class DroppablePage extends BasePage {
     }
 
     public String getOuterDroppableNotGreedyText() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.visibilityOf(preventPropagationNotGreedyDropBox));
         return preventPropagationNotGreedyDropBox.getText();
     }
 
@@ -262,6 +270,8 @@ public class DroppablePage extends BasePage {
     }
 
     public String getInnerDroppableGreedyColor() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOf(preventPropagationGreedyDropBox));
         return preventPropagationGreedyDropBox.getCssValue("background-color");
     }
 
@@ -310,5 +320,10 @@ public class DroppablePage extends BasePage {
     public Point getEndLocation(int initialLocationX, int initialLocationY) {
         delay(500); //TODO
         return willRevert.getLocation();
+    }
+
+    public void dragAndDropPropagationInnerDroppableNotGreedy() {
+        Actions actions = new Actions(driver);
+        actions.dragAndDrop(preventPropagationDragMe, notGreedyInnerDropBox).perform();
     }
 }

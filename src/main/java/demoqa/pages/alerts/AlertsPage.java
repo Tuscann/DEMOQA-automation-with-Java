@@ -42,7 +42,7 @@ public class AlertsPage extends BasePage {
         this.javaScriptUtility = new JavaScriptUtility(driver);
     }
 
-    public String getHeaderText() {
+    public String getAlertsHeaderText() {
         return alertHeaderTitle.getText();
     }
 
@@ -89,5 +89,38 @@ public class AlertsPage extends BasePage {
     public void clickConfirmationTimeAlertButton() {
         javaScriptUtility.scrollToElementJS(confirmationTimeAlertButton);
         confirmationTimeAlertButton.click();
+    }
+
+    public String getFirstButtonBackGroundColor() {
+        return informationAlertButton.getCssValue("background-color");
+    }
+
+    public String getSecondButtonBackGroundColor() {
+        return confirmationAlertButton.getCssValue("background-color");
+    }
+
+    public String getThirdButtonBackGroundColor() {
+        return confirmationTimeAlertButton.getCssValue("background-color");
+    }
+
+    public String getFourthButtonBackGroundColor() {
+        return promptAlertButton.getCssValue("background-color");
+    }
+
+
+    public String getFirstButtonText() {
+        return informationAlertButton.getText();
+    }
+
+    public String getSecondButtonText() {
+        return confirmationAlertButton.getText();
+    }
+
+    public String getThirdButtonText() {
+        return confirmationTimeAlertButton.getText();
+    }
+
+    public String getFourButtonText() {
+        return promptAlertButton.getText();
     }
 }

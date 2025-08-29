@@ -25,7 +25,13 @@ public class DroppablePageTests extends BaseTest {
     private static final String NOT_REVERT_TEXT = "Not Revert";
     private static final String DROPPED_TEXT = "Dropped!";
     private static final String DROPPED_TEXT_DOUBLE = "Dropped!\nDropped!";
-    private static final String OUTER_DROPPABLE_DROPPED_TEXT = "Outer droppable\nDropped!";
+    private static final String OUTER_DROPPABLE_BEFORE_TEXT = "Outer droppable\n" +
+            "Inner droppable (not greedy)";
+    private static final String OUTER_DROPPABLE_AFTER_TEXT = "Dropped!\n" +
+            "Inner droppable (not greedy)";
+    private static final String OUTER_DROPPABLE_GREEDY_TEXT_BEFORE = "Outer droppable\n" +
+            "Inner droppable (greedy)";
+    private static final String OUTER_DROPPABLE_GREEDY_DROPPED_TEXT = "Outer droppable\nDropped!";
     private static final String OUTER_DROPPABLE_INNER_DROPPABLE_TEXT = "Dropped!\nInner droppable (greedy)";
 
     // Color Constants
@@ -170,45 +176,56 @@ public class DroppablePageTests extends BaseTest {
     }
 
     @Test(enabled = true, description = "Prevent propagation outer droppable not greedy")
-    public void preventPropagationInnerDroppableNotGreedy() {
+    public void preventPropagationOuterDroppableNotGreedy() {
         // Arrange & Act
         droppablePage.clickPreventPropagationTab();
 
-        String actualInnerNotGreedyColor = droppablePage.getInnerDroppableNotGreedyColor();
         String actualOuterNotGreedyColor = droppablePage.getOuterDroppableNotGreedyColor();
+        String actualInnerNotGreedyColor = droppablePage.getInnerDroppableNotGreedyColor();
+        String actualOuterDroppableNotGreedyText = droppablePage.getOuterDroppableNotGreedyText();
 
-        softAssert.assertEquals(actualInnerNotGreedyColor, TRANSPARENT_COLOR, INNER_COLOR_ERROR);
         softAssert.assertEquals(actualOuterNotGreedyColor, TRANSPARENT_COLOR, OUTER_COLOR_ERROR);
+        softAssert.assertEquals(actualInnerNotGreedyColor, TRANSPARENT_COLOR, INNER_COLOR_ERROR);
+        softAssert.assertEquals(actualOuterDroppableNotGreedyText, OUTER_DROPPABLE_BEFORE_TEXT, DROPPED_TEXT_DOUBLE_ERROR);
 
         droppablePage.dragAndDropPropagationOuterDroppableNotGreedy();
 
-        actualInnerNotGreedyColor = droppablePage.getInnerDroppableNotGreedyColor();
         actualOuterNotGreedyColor = droppablePage.getOuterDroppableNotGreedyColor();
-        String actualOuterDroppableNotGreedyText = droppablePage.getOuterDroppableNotGreedyText();
+        actualInnerNotGreedyColor = droppablePage.getInnerDroppableNotGreedyColor();
+        actualOuterDroppableNotGreedyText = droppablePage.getOuterDroppableNotGreedyText();
 
         // Assert
-        softAssert.assertEquals(actualInnerNotGreedyColor, NEW_BACKGROUND_COLOR, INNER_COLOR_ERROR);
         softAssert.assertEquals(actualOuterNotGreedyColor, NEW_BACKGROUND_COLOR, OUTER_COLOR_ERROR);
-        softAssert.assertEquals(actualOuterDroppableNotGreedyText, DROPPED_TEXT_DOUBLE, DROPPED_TEXT_DOUBLE_ERROR);
+        softAssert.assertEquals(actualInnerNotGreedyColor, TRANSPARENT_COLOR, INNER_COLOR_ERROR);
+        softAssert.assertEquals(actualOuterDroppableNotGreedyText, OUTER_DROPPABLE_AFTER_TEXT, DROPPED_TEXT_DOUBLE_ERROR);
 
         softAssert.assertAll();
     }
 
-    @Test(enabled = true, description = "Prevent propagation inner droppable greedy")
-    public void preventPropagationInnerDroppableGreedy() {
+    @Test(enabled = true, description = "Prevent propagation inner droppable not greedy")
+    public void preventPropagationInnerDroppableNotGreedy() {
         // Arrange & Act
         droppablePage.clickPreventPropagationTab();
-        droppablePage.dragAndDropPropagationInnerDroppableGreedy();
 
-        String actualInnerGreedyColor = droppablePage.getInnerDroppableGreedyColor();
-        String actualOuterDroppableGreedyColor = droppablePage.getOuterDroppableGreedyColor();
-        String actualOuterDroppableNotGreedyText = droppablePage.getOuterDroppableGreedyText();
+        String actualOuterNotGreedyColor = droppablePage.getOuterDroppableNotGreedyColor();
+        String actualInnerNotGreedyColor = droppablePage.getInnerDroppableNotGreedyColor();
+        String actualOuterDroppableNotGreedyText = droppablePage.getOuterDroppableNotGreedyText();
+
+        softAssert.assertEquals(actualOuterNotGreedyColor, TRANSPARENT_COLOR, OUTER_COLOR_ERROR);
+        softAssert.assertEquals(actualInnerNotGreedyColor, TRANSPARENT_COLOR, INNER_COLOR_ERROR);
+        softAssert.assertEquals(actualOuterDroppableNotGreedyText, OUTER_DROPPABLE_BEFORE_TEXT, DROPPED_TEXT_DOUBLE_ERROR);
+
+        droppablePage.dragAndDropPropagationInnerDroppableNotGreedy();
+
+        String actualOuterDroppableNotGreedyColor = droppablePage.getOuterDroppableNotGreedyColor();
+        String actualInnerGreedyColor = droppablePage.getInnerDroppableNotGreedyColor();
+        String actualOuterDroppableNotGreedyText1 = droppablePage.getOuterDroppableNotGreedyText();
+
+        softAssert.assertEquals(actualOuterDroppableNotGreedyColor, NEW_BACKGROUND_COLOR, OUTER_COLOR_ERROR);
+        softAssert.assertEquals(actualInnerGreedyColor, NEW_BACKGROUND_COLOR, INNER_COLOR_ERROR);
+        softAssert.assertEquals(actualOuterDroppableNotGreedyText1, DROPPED_TEXT_DOUBLE, OUTER_DROPPABLE_NOT_GREEDY_TEXT_ERROR);
 
         // Assert
-        softAssert.assertEquals(actualInnerGreedyColor, NEW_BACKGROUND_COLOR, INNER_COLOR_ERROR);
-        softAssert.assertEquals(actualOuterDroppableGreedyColor, TRANSPARENT_COLOR, OUTER_COLOR_ERROR);
-        softAssert.assertEquals(actualOuterDroppableNotGreedyText, OUTER_DROPPABLE_DROPPED_TEXT, OUTER_DROPPABLE_NOT_GREEDY_TEXT_ERROR);
-
         softAssert.assertAll();
     }
 
@@ -216,17 +233,51 @@ public class DroppablePageTests extends BaseTest {
     public void preventPropagationOuterDroppableGreedy() {
         // Arrange & Act
         droppablePage.clickPreventPropagationTab();
-        droppablePage.dragAndDropPropagationOuterDroppableGreedy();
 
         String actualInnerGreedyColor = droppablePage.getInnerDroppableGreedyColor();
         String actualOuterDroppableGreedyColor = droppablePage.getOuterDroppableGreedyColor();
         String actualOuterDroppableNotGreedyText = droppablePage.getOuterDroppableGreedyText();
 
-        // Assert
         softAssert.assertEquals(actualInnerGreedyColor, TRANSPARENT_COLOR, INNER_COLOR_ERROR);
-        softAssert.assertEquals(actualOuterDroppableGreedyColor, NEW_BACKGROUND_COLOR, OUTER_COLOR_ERROR);
-        softAssert.assertEquals(actualOuterDroppableNotGreedyText, OUTER_DROPPABLE_INNER_DROPPABLE_TEXT, OUTER_DROPPABLE_GREEDY_TEXT_ERROR);
+        softAssert.assertEquals(actualOuterDroppableGreedyColor, TRANSPARENT_COLOR, OUTER_COLOR_ERROR);
+        softAssert.assertEquals(actualOuterDroppableNotGreedyText, OUTER_DROPPABLE_GREEDY_TEXT_BEFORE, OUTER_DROPPABLE_GREEDY_TEXT_ERROR);
 
+        droppablePage.dragAndDropPropagationOuterDroppableGreedy();
+
+        actualOuterDroppableGreedyColor = droppablePage.getOuterDroppableGreedyColor();
+        actualInnerGreedyColor = droppablePage.getInnerDroppableGreedyColor();
+        actualOuterDroppableNotGreedyText = droppablePage.getOuterDroppableGreedyText();
+
+        // Assert
+        softAssert.assertEquals(actualOuterDroppableGreedyColor, NEW_BACKGROUND_COLOR, OUTER_COLOR_ERROR);
+        softAssert.assertEquals(actualInnerGreedyColor, TRANSPARENT_COLOR, INNER_COLOR_ERROR);
+        softAssert.assertEquals(actualOuterDroppableNotGreedyText, OUTER_DROPPABLE_INNER_DROPPABLE_TEXT, OUTER_DROPPABLE_GREEDY_TEXT_ERROR);
+        softAssert.assertAll();
+    }
+
+    @Test(enabled = true, description = "Prevent propagation inner droppable greedy")
+    public void preventPropagationInnerDroppableGreedy() {
+        // Arrange & Act
+        droppablePage.clickPreventPropagationTab();
+
+        String actualInnerGreedyColor = droppablePage.getInnerDroppableGreedyColor();
+        String actualOuterDroppableGreedyColor = droppablePage.getOuterDroppableGreedyColor();
+        String actualOuterDroppableNotGreedyText = droppablePage.getOuterDroppableGreedyText();
+
+        softAssert.assertEquals(actualInnerGreedyColor, TRANSPARENT_COLOR, INNER_COLOR_ERROR);
+        softAssert.assertEquals(actualOuterDroppableGreedyColor, TRANSPARENT_COLOR, OUTER_COLOR_ERROR);
+        softAssert.assertEquals(actualOuterDroppableNotGreedyText, OUTER_DROPPABLE_GREEDY_TEXT_BEFORE, OUTER_DROPPABLE_GREEDY_TEXT_ERROR);
+
+        droppablePage.dragAndDropPropagationInnerDroppableGreedy();
+
+        actualOuterDroppableGreedyColor = droppablePage.getOuterDroppableGreedyColor();
+        actualInnerGreedyColor = droppablePage.getInnerDroppableGreedyColor();
+        actualOuterDroppableNotGreedyText = droppablePage.getOuterDroppableGreedyText();
+
+        // Assert
+        softAssert.assertEquals(actualOuterDroppableGreedyColor, TRANSPARENT_COLOR, OUTER_COLOR_ERROR);
+        softAssert.assertEquals(actualInnerGreedyColor, NEW_BACKGROUND_COLOR, INNER_COLOR_ERROR);
+        softAssert.assertEquals(actualOuterDroppableNotGreedyText, OUTER_DROPPABLE_GREEDY_DROPPED_TEXT, OUTER_DROPPABLE_GREEDY_TEXT_ERROR);
         softAssert.assertAll();
     }
 

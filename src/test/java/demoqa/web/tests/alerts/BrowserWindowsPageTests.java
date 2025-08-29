@@ -29,6 +29,7 @@ public class BrowserWindowsPageTests extends BaseTest {
 
     private static final String FRAMES_URL = "browser-windows";
     private BrowserWindowsPage browserWindowsPage;
+    private static final String EXPECTED_BLUE_COLOR = "rgba(0, 123, 255, 1)";
 
     @BeforeMethod
     public void goToBrowserWindowsPage() {
@@ -43,12 +44,18 @@ public class BrowserWindowsPageTests extends BaseTest {
         String actualNewTabText = browserWindowsPage.getNewTabText();
         String actualNewWindowText = browserWindowsPage.getNewWindowText();
         String actualNewWindowMessageText = browserWindowsPage.getNewWindowMessageText();
+        String actualBrowserWindowsColor = browserWindowsPage.getBrowserWindowsColor();
+        String actualNewWindowColor = browserWindowsPage.getNewWindowColor();
+        String actualNewWindowMessageColor = browserWindowsPage.getNewWindowMessageColor();
 
         // Assert
         softAssert.assertEquals(actualBrowserWindowsText, BROWSER_WINDOWS_TEXT, BROWSER_WINDOWS_TEXT_ERROR);
         softAssert.assertEquals(actualNewTabText, NEW_TAB_TEXT, NEW_TAB_TEXT_ERROR);
+        softAssert.assertEquals(actualBrowserWindowsColor, EXPECTED_BLUE_COLOR, "Wrong blue color for NewTab");
         softAssert.assertEquals(actualNewWindowText, NEW_WINDOW_TEXT, NEW_WINDOW_TEXT_ERROR);
+        softAssert.assertEquals(actualNewWindowColor, EXPECTED_BLUE_COLOR, "Wrong blue color for New Window");
         softAssert.assertEquals(actualNewWindowMessageText, NEW_WINDOW_MESSAGE_TEXT, NEW_WINDOW_MESSAGE_TEXT_ERROR);
+        softAssert.assertEquals(actualNewWindowMessageColor, EXPECTED_BLUE_COLOR, "Wrong blue color for New Window Message");
 
         softAssert.assertAll();
     }
@@ -57,10 +64,9 @@ public class BrowserWindowsPageTests extends BaseTest {
     public void clickNewTabButton() {
         // Arrange & Act
         browserWindowsPage.clickNewTabButton();
-        String actualNewTabUrl = browserWindowsPage.getNewTabUrl();
 
         // Assert
-        softAssert.assertEquals(actualNewTabUrl, EXPECTED_SAMPLE_URL, NEW_TAB_URL_ERROR);
+        softAssert.assertEquals(browserWindowsPage.getNewTabUrl(), EXPECTED_SAMPLE_URL, NEW_TAB_URL_ERROR);
         softAssert.assertAll();
     }
 
