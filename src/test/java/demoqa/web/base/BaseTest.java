@@ -19,8 +19,8 @@ import static demoqa.base.BasePage.delay;
 
 public class BaseTest {
 
-    private static final ThreadLocal<WebDriver> threadDriver = new ThreadLocal<>();
     public static final String DEMO_QA_URL = "https://demoqa.com/";
+    private static final ThreadLocal<WebDriver> threadDriver = new ThreadLocal<>();
     public WebDriver driver;
     public SoftAssert softAssert;
     protected BasePage basePage;
@@ -29,11 +29,16 @@ public class BaseTest {
     public void setUp() {
         if (threadDriver.get() == null) {
             ChromeOptions options = new ChromeOptions();
-            options.addArguments("--headless=new");
+
+            // In headless mode, Chrome ignores maximize and instead requires you to explicitly set a window size.
+            boolean isHeadless = Boolean.parseBoolean(System.getProperty("headless", "false"));
+            if (isHeadless) {
+                options.addArguments("--headless=new");
+                options.addArguments("--window-size=1920,1080"); // required in headless
+            } else {
+                options.addArguments("--start-maximized"); // works only with UI mode
+            }
             options.addArguments("--disable-gpu");
-            // options.addArguments("--window-size=1680,1050");
-            //  options.addArguments("--window-size=1920,1080");
-            options.addArguments("--start-maximized");
 
             driver = new ChromeDriver(options);
             threadDriver.set(driver);

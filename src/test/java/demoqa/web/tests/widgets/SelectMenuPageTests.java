@@ -9,6 +9,7 @@ import java.util.List;
 
 public class SelectMenuPageTests extends BaseTest {
 
+    public static final String SELECT_MENU_URL = "select-menu";
     // Text Constants
     private static final String EXPECTED_SELECT_MENU_TEXT = "Select Menu";
     private static final String EXPECTED_SELECTED_VALUE_LABEL = "Select Value";
@@ -25,7 +26,6 @@ public class SelectMenuPageTests extends BaseTest {
             Saab
             Opel
             Audi""";
-
     // Error Message Constants
     private static final String WRONG_SELECT_MENU_TEXT = "Wrong selected menu text";
     private static final String WRONG_SELECTED_VALUE_LABEL = "Wrong selected value label";
@@ -38,8 +38,6 @@ public class SelectMenuPageTests extends BaseTest {
     private static final String WRONG_MULTISELECT_DROPDOWN_PLACEHOLDER = "Wrong selected menu placeholder";
     private static final String WRONG_STANDARD_MULTI_SELECT_LABEL = "Wrong selected menu label";
     private static final String WRONG_STANDARD_MULTI_SELECT = "Wrong selected menu placeholder";
-
-    public static final String SELECT_MENU_URL = "select-menu";
     private SelectMenuPage selectMenuPage;
 
     @BeforeMethod
@@ -49,7 +47,7 @@ public class SelectMenuPageTests extends BaseTest {
     }
 
     @Test(enabled = true, description = "Verify main page header and labels")
-    public void verifyMainPageElements() {
+    public void verifyAllElementsOnPage() {
         // Arrange & Act
         String actualSelectMenuText = selectMenuPage.getSelectMenuText();
         String actualSelectedValueLabel = selectMenuPage.getSelectedValueLabelText();
@@ -57,6 +55,10 @@ public class SelectMenuPageTests extends BaseTest {
         String actualOldStyleSelectMenuLabel = selectMenuPage.getOldStyleSelectMenuLabel();
         String actualMultiselectDropdownLabel = selectMenuPage.getMultiselectDropdownLabel();
         String actualStandardMultiSelectLabel = selectMenuPage.getStandardMultiSelectLabel();
+        String actualSelectedValuePlaceholder = selectMenuPage.getSelectedValuePlaceholder();
+        String actualSelectOnePlaceholder = selectMenuPage.getSelectTitlePlaceholder();
+        String actualOldStyleSelectMenuPlaceholder = selectMenuPage.getOldStyleSelectMenuPlaceholder();
+        String actualMultiselectDropdownPlaceholder = selectMenuPage.getMultiselectDropdownPlaceholder();
 
         // Assert
         softAssert.assertEquals(actualSelectMenuText, EXPECTED_SELECT_MENU_TEXT, WRONG_SELECT_MENU_TEXT);
@@ -65,28 +67,10 @@ public class SelectMenuPageTests extends BaseTest {
         softAssert.assertEquals(actualOldStyleSelectMenuLabel, EXPECTED_OLD_STYLE_SELECT_MENU_LABEL, WRONG_OLD_STYLE_SELECT_MENU_LABEL);
         softAssert.assertEquals(actualMultiselectDropdownLabel, EXPECTED_MULTISELECT_DROPDOWN_LABEL, WRONG_MULTISELECT_DROPDOWN_LABEL);
         softAssert.assertEquals(actualStandardMultiSelectLabel, EXPECTED_STANDARD_MULTI_SELECT_LABEL, WRONG_STANDARD_MULTI_SELECT_LABEL);
-        softAssert.assertAll();
-    }
-
-    @Test(enabled = true, description = "Verify form placeholders and default values")
-    public void verifyFormElements() {
-        // Arrange & Act
-        String actualSelectedValuePlaceholder = selectMenuPage.getSelectedValuePlaceholder();
-        String actualSelectTitlePlaceholder = selectMenuPage.getSelectTitlePlaceholder();
-        String actualOldStyleSelectMenuPlaceholder = selectMenuPage.getOldStyleSelectMenuPlaceholder();
-        String actualMultiselectDropdownPlaceholder = selectMenuPage.getMultiselectDropdownPlaceholder();
-
-        // Assert
         softAssert.assertEquals(actualSelectedValuePlaceholder, EXPECTED_SELECTED_VALUE_PLACEHOLDER, WRONG_SELECTED_VALUE_PLACEHOLDER);
-        softAssert.assertEquals(actualSelectTitlePlaceholder, EXPECTED_SELECT_TITLE_PLACEHOLDER, WRONG_SELECT_TITLE_PLACEHOLDER);
+        softAssert.assertEquals(actualSelectOnePlaceholder, EXPECTED_SELECT_TITLE_PLACEHOLDER, WRONG_SELECT_TITLE_PLACEHOLDER);
         softAssert.assertEquals(actualOldStyleSelectMenuPlaceholder, EXPECTED_OLD_STYLE_SELECT_MENU_PLACEHOLDER, WRONG_OLD_STYLE_SELECT_MENU_PLACEHOLDER);
         softAssert.assertEquals(actualMultiselectDropdownPlaceholder, EXPECTED_MULTISELECT_DROPDOWN_PLACEHOLDER, WRONG_MULTISELECT_DROPDOWN_PLACEHOLDER);
-        softAssert.assertAll();
-    }
-
-    @Test(enabled = true, description = "Verify standard multi select options")
-    public void verifyMultiSelectElements() {
-        // Arrange & Act & Assert
         softAssert.assertEquals(selectMenuPage.getStandardMultiSelect(), EXPECTED_STANDARD_MULTI_SELECT, WRONG_STANDARD_MULTI_SELECT);
         softAssert.assertAll();
     }
@@ -123,8 +107,7 @@ public class SelectMenuPageTests extends BaseTest {
                 case 2 -> "Mrs.";
                 case 3 -> "Ms.";
                 case 4 -> "Prof.";
-                case 5 -> "Other";
-                default -> "Error";
+                default -> "Other";
             };
 
             selectMenuPage.selectSelectOne(expectedSelectOne);
@@ -177,7 +160,7 @@ public class SelectMenuPageTests extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(enabled = false, description = "Select all values from multi select dropdown menu")
+    @Test(enabled = false, description = "Select all values from multi select dropdown menu and close all same time")
     public void closeAllSelectValuesFromMultiSelectDropdown() {
         // Arrange
         String[] expectedColors = {"Green", "Blue", "Black", "Red"};
@@ -185,11 +168,25 @@ public class SelectMenuPageTests extends BaseTest {
         for (String expectedColor : expectedColors) {
             selectMenuPage.multiSelectOne(expectedColor);
         }
-
-        String expectedValue = "Green\nBlue\nBlack\nRed";
-        softAssert.assertEquals(selectMenuPage.getMultiSelectDropdownValue(), expectedValue, "Wrong selected colors");
         selectMenuPage.closeAllMultiSelectDropdown();
         softAssert.assertEquals(selectMenuPage.getMultiSelectDropdownValue(), EXPECTED_MULTISELECT_DROPDOWN_PLACEHOLDER, "Empty values");
+        softAssert.assertAll();
+    }
+
+    @Test(enabled = false, description = "Select all values from multi select dropdown menu and close all one by one")
+    public void closeOneByOneAllSelectValuesFromMultiSelectDropdown() {
+        // Arrange
+        String[] expectedColors = {"Green", "Blue", "Black", "Red"};
+
+        for (String expectedColor : expectedColors) {
+            selectMenuPage.multiSelectOne(expectedColor);
+        }
+
+        for (int i = 0; i < 4; i++) {
+            selectMenuPage.closeMultiSelectOne();
+        }
+
+        softAssert.assertEquals(selectMenuPage.getMultiSelectDropdownValue(), EXPECTED_MULTISELECT_DROPDOWN_PLACEHOLDER, "Expected Select..");
         softAssert.assertAll();
     }
 

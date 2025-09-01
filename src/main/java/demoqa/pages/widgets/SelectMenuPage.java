@@ -14,70 +14,53 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class SelectMenuPage extends BasePage {
+    private final JavaScriptUtility javaScriptUtility;
     @FindBy(id = "react-select-2-input")
     private WebElement selectValue;
-
     @FindBy(id = "react-select-3-input")
     private WebElement selectOne;
-
     @FindBy(id = "oldSelectMenu")
     private WebElement oldStyle;
-
     @FindBy(id = "cars")
     private WebElement standardMultiSelect;
-
     @FindBy(xpath = "//h1[@class='text-center'][contains(.,'Select Menu')]")
     private WebElement selectMenuLabel;
-
     @FindBy(xpath = "//div[@class='col-md-6 col-sm-12'][contains(.,'Select Value')]")
     private WebElement selectedValueLabel;
-
     @FindBy(xpath = "//div[@class=' css-1wa3eu0-placeholder'][contains(.,'Select Option')]")
     private WebElement selectedValuePlaceholder;
-
-    @FindBy(xpath = "//div[@class=' css-1hwfws3'][contains(.,'Select...')]")
+    @FindBy(xpath = "(//div[@class=' css-1hwfws3'])[3]")
     private WebElement selectDropDown;
-
     @FindBy(xpath = "(//div[contains(@class,' css-1wa3eu0-placeholder')])[3]")
     private WebElement multiSelectDropDown;
-
     @FindBy(xpath = "//div[contains(@class,' css-2b097c-container')]")
     private WebElement multiSelectDropDown2;
-
     @FindBy(xpath = "(//div[contains(@class,' css-1hwfws3')])[2]")
     private WebElement selectedOne;
-
     @FindBy(xpath = "(//div[contains(@class,' css-1hwfws3')])[3]")
     private WebElement selectedResults;
-
     @FindBy(xpath = "(//div[contains(@class,' css-1uccc91-singleValue')])[1]")
     private WebElement selectedValue;
-
     @FindBy(xpath = "//div[@class='col-md-6 col-sm-12'][contains(.,'Select One')]")
     private WebElement selectTitleLabel;
-
     @FindBy(xpath = "//div[@class=' css-1wa3eu0-placeholder'][contains(.,'Select Title')]")
     private WebElement expectedSelectTitlePlaceholder;
-
     @FindBy(xpath = "(//div[@class=' css-tlfecz-indicatorContainer'])[3]")
     private WebElement closeAllDropDown;
-
     @FindBy(xpath = "//div[@class='col-md-6 col-sm-12'][contains(.,'Old Style Select Menu')]")
     private WebElement oldStyleSelectMenuLabel;
-
     @FindBy(xpath = "//*[@id='oldSelectMenu']/option[1]")
     private WebElement oldStyleSelectMenuPlaceholder;
-
     @FindBy(xpath = "//b[contains(.,'Multiselect drop down')]")
     private WebElement expectedMultiselectDropdownLabel;
-
     @FindBy(xpath = "//div[@class=' css-1wa3eu0-placeholder'][contains(.,'Select...')]")
     private WebElement expectedMultiselectDropdownPlaceholder;
-
     @FindBy(xpath = "//b[contains(.,'Standard multi select')]")
     private WebElement expectedStandardMultiSelectLabel;
 
-    private final JavaScriptUtility javaScriptUtility;
+    @FindBy(xpath = "//div[@class='css-xb97g8']")
+    private List<WebElement> fourColors;
+
 
     public SelectMenuPage(WebDriver driver) {
         super(driver);
@@ -194,5 +177,12 @@ public class SelectMenuPage extends BasePage {
 
     public void closeAllMultiSelectDropdown() {
         closeAllDropDown.click();
+    }
+
+    public void closeMultiSelectOne() {
+
+        var d = fourColors.get(1);
+
+        fourColors.getFirst().click();
     }
 }

@@ -42,10 +42,10 @@ public class BrokenLinksImagesPageTest extends BaseTest {
     public void verifyAllTextOnPage() {
         // Arrange & Act & Assert
         softAssert.assertEquals(brokenLinksImagesPage.getHeaderText(), EXPECTED_HEADER, HEADER_TEXT_MISMATCH);
-        softAssert.assertEquals(brokenLinksImagesPage.getClickHereValidLinkText(), EXPECTED_CLICK_HERE_VALID_LINK_TEXT, CLICK_HERE_VALID_LINK_TEXT_MISMATCH);
+        softAssert.assertEquals(brokenLinksImagesPage.getValidImageText(), EXPECTED_VALID_IMAGE_TEXT, VALID_IMAGE_TEXT_MISMATCH);
         softAssert.assertEquals(brokenLinksImagesPage.getBrokenImageText(), EXPECTED_BROKEN_IMAGE_TEXT, BROKEN_IMAGE_TEXT_MISMATCH);
         softAssert.assertEquals(brokenLinksImagesPage.getValidLinkText(), EXPECTED_VALID_LINK_TEXT, VALID_LINK_TEXT_MISMATCH);
-        softAssert.assertEquals(brokenLinksImagesPage.getValidImageText(), EXPECTED_VALID_IMAGE_TEXT, VALID_IMAGE_TEXT_MISMATCH);
+        softAssert.assertEquals(brokenLinksImagesPage.getClickHereValidLinkText(), EXPECTED_CLICK_HERE_VALID_LINK_TEXT, CLICK_HERE_VALID_LINK_TEXT_MISMATCH);
         softAssert.assertEquals(brokenLinksImagesPage.getBrokenLinkText(), EXPECTED_BROKEN_LINK_TEXT, BROKEN_LINK_TEXT_MISMATCH);
         softAssert.assertEquals(brokenLinksImagesPage.getClickHereBrokenLinkText(), EXPECTED_CLICK_HERE_BROKEN_LINK_TEXT, CLICK_HERE_BROKEN_LINK_TEXT_MISMATCH);
         softAssert.assertAll();
@@ -54,7 +54,7 @@ public class BrokenLinksImagesPageTest extends BaseTest {
     @Test(enabled = true, description = "Click on valid link and verify navigation to correct URL")
     public void clickOnClickHereForValidLink() {
         // Arrange & Act
-        brokenLinksImagesPage.ClickOnClickHereValidLink();
+        brokenLinksImagesPage.clickOnClickHereForValidLink();
 
         // Assert
         softAssert.assertEquals(brokenLinksImagesPage.getCurrentUrl(), DEMO_QA_URL, VALID_LINK_URL_MISMATCH);
@@ -64,7 +64,7 @@ public class BrokenLinksImagesPageTest extends BaseTest {
     @Test(enabled = true, description = "Click on broken link and verify navigation to error page URL")
     public void clickOnClickHereForBrokenLink() {
         // Arrange & Act
-        brokenLinksImagesPage.clickOnClickHereBrokenLink();
+        brokenLinksImagesPage.clickOnClickHereForBrokenLink();
 
         // Assert
         softAssert.assertEquals(brokenLinksImagesPage.getCurrentUrl(), EXPECTED_BROKEN_LINK_URL, BROKEN_LINK_URL_MISMATCH);

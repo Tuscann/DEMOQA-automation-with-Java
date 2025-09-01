@@ -3,36 +3,56 @@ package demoqa.web.tests.interactions;
 import demoqa.pages.interactions.InteractionsPage;
 import demoqa.web.base.BaseTest;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 public class InteractionPageTests extends BaseTest {
+    public static final String INTERACTION_URL = "interaction";
     // Text Constants
     private static final String MAIN_TEXT = "Please select an item from left to start practice.";
-
     // URL Constants
     private static final String SORTABLE_URL = DEMO_QA_URL + "sortable";
     private static final String SELECTABLE_URL = DEMO_QA_URL + "selectable";
     private static final String RESIZABLE_URL = DEMO_QA_URL + "resizable";
     private static final String DROPPABLE_URL = DEMO_QA_URL + "droppable";
     private static final String DRAGGABLE_URL = DEMO_QA_URL + "dragabble";
-
     // Error Message Constants
     private static final String MAIN_TEXT_ERROR = "Main text mismatch";
     private static final String SORTABLE_VISIBILITY_ERROR = "Sortable should be visible";
     private static final String FRAMES_VISIBILITY_ERROR = "Frames should not be visible";
-    private static final String SORTABLE_URL_ERROR = "Sortable URL mismatch";
-    private static final String SELECTABLE_URL_ERROR = "Selectable URL mismatch";
-    private static final String RESIZABLE_URL_ERROR = "Resizable URL mismatch";
-    private static final String DROPPABLE_URL_ERROR = "Droppable URL mismatch";
-    private static final String DRAGGABLE_URL_ERROR = "Draggable URL mismatch";
-
-    public static final String INTERACTION_URL = "interaction";
+    private static final String HOME_ADDRESS_ERROR = "Wrong home address";
+    private static final String CARD_NAVIGATION_ERROR = "Failed for card: %s";
     private InteractionsPage interactionsPage;
 
     @BeforeMethod
     public void goToInteractionsPage() {
         navigateToUrl(INTERACTION_URL);
         interactionsPage = new InteractionsPage(driver);
+    }
+
+    @DataProvider(name = "homePageCards")
+    public Object[][] homePageCards() {
+        return new Object[][]{
+                {"Sortable", SORTABLE_URL, (Runnable) () -> interactionsPage.clickSortable()},
+                {"Selectable", SELECTABLE_URL, (Runnable) () -> interactionsPage.clickSelectable()},
+                {"Resizable", RESIZABLE_URL, (Runnable) () -> interactionsPage.clickResizable()},
+                {"Droppable", DROPPABLE_URL, (Runnable) () -> interactionsPage.clickDroppable()},
+                {"Dragabble", DRAGGABLE_URL, (Runnable) () -> interactionsPage.clickDraggable()}
+        };
+    }
+
+    @Test(dataProvider = "homePageCards", description = "Click and verify card: {0} ")
+    public void checkAllFivePagesLinks(String cardName, String expectedUrl, Runnable clickAction) {
+        // Arrange & Act
+        clickAction.run();
+        String actualUrl = interactionsPage.checkCurrentUrl();
+        interactionsPage.clickTopImage();
+        String url = interactionsPage.checkCurrentUrl();
+
+        // Assert
+        softAssert.assertEquals(actualUrl, expectedUrl, String.format(CARD_NAVIGATION_ERROR, cardName));
+        softAssert.assertEquals(url, DEMO_QA_URL, HOME_ADDRESS_ERROR);
+        softAssert.assertAll();
     }
 
     @Test(enabled = true, description = "Click left dropdown menu")
@@ -49,33 +69,6 @@ public class InteractionPageTests extends BaseTest {
         softAssert.assertFalse(TextBoxIsVisible, FRAMES_VISIBILITY_ERROR);
 
         // Assert
-        softAssert.assertAll();
-    }
-
-    @Test(enabled = true, description = "Verify nine pages links")
-    public void checkAllFivePagesLinks() {
-        // Arrange & Act
-        interactionsPage.clickSortable();
-        String actualSortableUrl = interactionsPage.checkCurrentUrl();
-
-        interactionsPage.clickSelectable();
-        String actualSelectableUrl = interactionsPage.checkCurrentUrl();
-
-        interactionsPage.clickResizable();
-        String actualResizableUrl = interactionsPage.checkCurrentUrl();
-
-        interactionsPage.clickDroppable();
-        String actualDroppableUrl = interactionsPage.checkCurrentUrl();
-
-        interactionsPage.clickDraggable();
-        String actualDragabbleUrl = interactionsPage.checkCurrentUrl();
-
-        // Assert
-        softAssert.assertEquals(actualSortableUrl, SORTABLE_URL, SORTABLE_URL_ERROR);
-        softAssert.assertEquals(actualSelectableUrl, SELECTABLE_URL, SELECTABLE_URL_ERROR);
-        softAssert.assertEquals(actualResizableUrl, RESIZABLE_URL, RESIZABLE_URL_ERROR);
-        softAssert.assertEquals(actualDroppableUrl, DROPPABLE_URL, DROPPABLE_URL_ERROR);
-        softAssert.assertEquals(actualDragabbleUrl, DRAGGABLE_URL, DRAGGABLE_URL_ERROR);
         softAssert.assertAll();
     }
 }

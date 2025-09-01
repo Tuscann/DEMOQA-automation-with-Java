@@ -3,9 +3,13 @@ package demoqa.base;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 public class BasePage {
+
     protected final WebDriver driver;
+    @FindBy(xpath = "//img[@src='/images/Toolsqa.jpg']")
+    private WebElement topImageLink;
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
@@ -40,5 +44,9 @@ public class BasePage {
 
     public String checkCurrentUrl() {
         return driver.getCurrentUrl();
+    }
+
+    public void clickTopImage() {
+        topImageLink.click();
     }
 }

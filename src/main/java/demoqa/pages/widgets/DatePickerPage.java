@@ -14,22 +14,17 @@ import utilities.JavaScriptUtility;
 import java.time.Duration;
 
 public class DatePickerPage extends BasePage {
+    private final JavaScriptUtility javaScriptUtility;
     @FindBy(id = "datePickerMonthYearInput")
     private WebElement sectionOneHeading;
-
     @FindBy(id = "dateAndTimePickerInput")
     private WebElement sectionTwoHeading;
-
     @FindBy(xpath = "//h1[contains(.,'Date Picker')]")
     private WebElement datePickerText;
-
     @FindBy(xpath = "(//div[@class='col-md-3 col-sm-12'])[1]")
     private WebElement selectDateText;
-
     @FindBy(xpath = "(//div[@class='col-md-3 col-sm-12'])[2]")
     private WebElement dateAndTimeText;
-
-    private final JavaScriptUtility javaScriptUtility;
 
     public DatePickerPage(WebDriver driver) {
         super(driver);
@@ -61,15 +56,15 @@ public class DatePickerPage extends BasePage {
         javaScriptUtility.scrollToElementJS(sectionOneHeading);
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(4));
-        wait.until(ExpectedConditions.visibilityOf(sectionOneHeading));
+        wait.until(ExpectedConditions.elementToBeClickable(sectionOneHeading));
 
-        String osName = System.getProperty("os.name").toLowerCase();
-        if (osName.contains("mac")) {
-            sectionOneHeading.sendKeys(Keys.COMMAND + "a");
-            sectionOneHeading.clear();
-        } else {
-            sectionOneHeading.sendKeys(Keys.CONTROL + "a");
-        }
+//        String osName = System.getProperty("os.name").toLowerCase();
+//        if (osName.contains("mac")) {
+//            sectionOneHeading.sendKeys(Keys.COMMAND + "a");
+//            sectionOneHeading.clear();
+//        } else {
+//            sectionOneHeading.sendKeys(Keys.CONTROL + "a");
+//        }
         sectionOneHeading.sendKeys(expectedDate);
         sectionOneHeading.sendKeys(Keys.chord(Keys.ENTER));
     }

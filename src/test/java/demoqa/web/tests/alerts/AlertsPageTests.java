@@ -50,8 +50,9 @@ public class AlertsPageTests extends BaseTest {
 
     @BeforeMethod
     public void goToAlertsWindowsPage() {
-        navigateToUrl(ALERTS_PAGE_URL);
         alertsPage = new AlertsPage(driver);
+        navigateToUrl(ALERTS_PAGE_URL);
+
         switchToUtility = new SwitchToUtility(driver);
     }
 

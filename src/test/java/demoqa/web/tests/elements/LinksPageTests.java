@@ -20,20 +20,26 @@ public class LinksPageTests extends BaseTest {
     private static final String EXPECTED_NOT_FOUND_TEXT = "Not Found";
 
     // HTTP Status Constants
-    private static final String EXPECTED_CREATED_STATUS = "201";
-    private static final String EXPECTED_CREATED_STATUS_TEXT = "Created";
-    private static final String EXPECTED_NO_CONTENT_STATUS = "204";
-    private static final String EXPECTED_NO_CONTENT_STATUS_TEXT = "No Content";
-    private static final String EXPECTED_MOVED_STATUS = "301";
-    private static final String EXPECTED_MOVED_STATUS_TEXT = "Moved Permanently";
-    private static final String EXPECTED_BAD_REQUEST_STATUS = "400";
-    private static final String EXPECTED_BAD_REQUEST_STATUS_TEXT = "Bad Request";
-    private static final String EXPECTED_UNAUTHORIZED_STATUS = "401";
-    private static final String EXPECTED_UNAUTHORIZED_STATUS_TEXT = "Unauthorized";
-    private static final String EXPECTED_FORBIDDEN_STATUS = "403";
-    private static final String EXPECTED_FORBIDDEN_STATUS_TEXT = "Forbidden";
-    private static final String EXPECTED_NOT_FOUND_STATUS = "404";
-    private static final String EXPECTED_NOT_FOUND_STATUS_TEXT = "Not Found";
+    private static final String RESPONCECREATED =
+            "Link has responded with staus 201 and status text Created";
+
+    private static final String RESPONSE_NO_CONTENT =
+            "Link has responded with staus 204 and status text No Content";
+
+    private static final String RESPONSE_MOVED =
+            "Link has responded with staus 301 and status text Moved Permanently";
+
+    private static final String BAD_REQUEST_RESPONSE =
+            "Link has responded with staus 400 and status text Bad Request";
+
+    private static final String UNAUTHORIZED_REQUEST_RESPONSE =
+            "Link has responded with staus 401 and status text Unauthorized";
+
+    private static final String FORBIDDEN_REQUEST_RESPONSE =
+            "Link has responded with staus 403 and status text Forbidden";
+
+    private static final String NOT_FOUND_REQUEST_RESPONSE =
+            "Link has responded with staus 404 and status text Not Found";
 
     // Error Message Constants
     private static final String HEADER_TEXT_MISMATCH = "Links header text mismatch";
@@ -48,6 +54,7 @@ public class LinksPageTests extends BaseTest {
     private static final String FORBIDDEN_TEXT_MISMATCH = "Forbidden text mismatch";
     private static final String NOT_FOUND_TEXT_MISMATCH = "Not found text mismatch";
     private static final String NEW_TAB_URL_MISMATCH = "New tab URL mismatch";
+    private static final String NEW_TAB_DYNAMIC_URL_MISMATCH = "New tab URL mismatch";
     private static final String CREATED_LINK_RESPONSE_ERROR = "Created link response error";
     private static final String NO_CONTENT_LINK_RESPONSE_ERROR = "No content link response error";
     private static final String MOVED_LINK_RESPONSE_ERROR = "Moved link response error";
@@ -111,7 +118,7 @@ public class LinksPageTests extends BaseTest {
         linksPage.clickDynamicTab();
 
         // Assert
-        softAssert.assertEquals(linksPage.getCurrentUrl(), DEMO_QA_URL, NEW_TAB_URL_MISMATCH);
+        softAssert.assertEquals(linksPage.getCurrentUrl(), DEMO_QA_URL, NEW_TAB_DYNAMIC_URL_MISMATCH);
         softAssert.assertAll();
     }
 
@@ -119,12 +126,9 @@ public class LinksPageTests extends BaseTest {
     public void clickOnCreatedLink() {
         // Arrange & Act
         linksPage.clickCreatedLink();
-        String actualResponseText = linksPage.getResponse();
 
         // Assert
-        softAssert.assertTrue(actualResponseText.contains(EXPECTED_CREATED_STATUS)
-                        && actualResponseText.contains(EXPECTED_CREATED_STATUS_TEXT),
-                CREATED_LINK_RESPONSE_ERROR);
+        softAssert.assertEquals(linksPage.getResponse(), RESPONCECREATED, CREATED_LINK_RESPONSE_ERROR);
         softAssert.assertAll();
     }
 
@@ -132,12 +136,9 @@ public class LinksPageTests extends BaseTest {
     public void clickOnNoContentLink() {
         // Arrange & Act
         linksPage.clickNoContentRequestLink();
-        String actualResponse = linksPage.getResponse();
 
         // Assert
-        softAssert.assertTrue(actualResponse.contains(EXPECTED_NO_CONTENT_STATUS)
-                        && actualResponse.contains(EXPECTED_NO_CONTENT_STATUS_TEXT),
-                NO_CONTENT_LINK_RESPONSE_ERROR);
+        softAssert.assertEquals(linksPage.getResponse(), RESPONSE_NO_CONTENT, NO_CONTENT_LINK_RESPONSE_ERROR);
         softAssert.assertAll();
     }
 
@@ -145,25 +146,20 @@ public class LinksPageTests extends BaseTest {
     public void clickOnMovedLink() {
         // Arrange & Act
         linksPage.clickMovedLink();
-        String actualResponse = linksPage.getResponse();
 
         // Assert
-        softAssert.assertTrue(actualResponse.contains(EXPECTED_MOVED_STATUS)
-                        && actualResponse.contains(EXPECTED_MOVED_STATUS_TEXT),
-                MOVED_LINK_RESPONSE_ERROR);
+        softAssert.assertEquals(linksPage.getResponse(), RESPONSE_MOVED, MOVED_LINK_RESPONSE_ERROR);
         softAssert.assertAll();
+
     }
 
     @Test(enabled = true, description = "Click on bad request link and verify response")
     public void clickOnBadRequestLink() {
         // Arrange & Act
         linksPage.clickBadRequestLink();
-        String actualResponse = linksPage.getResponse();
 
         // Assert
-        softAssert.assertTrue(actualResponse.contains(EXPECTED_BAD_REQUEST_STATUS)
-                        && actualResponse.contains(EXPECTED_BAD_REQUEST_STATUS_TEXT),
-                BAD_REQUEST_LINK_RESPONSE_ERROR);
+        softAssert.assertEquals(linksPage.getResponse(), BAD_REQUEST_RESPONSE, BAD_REQUEST_LINK_RESPONSE_ERROR);
         softAssert.assertAll();
     }
 
@@ -171,12 +167,9 @@ public class LinksPageTests extends BaseTest {
     public void clickOnUnauthorizedLink() {
         // Arrange & Act
         linksPage.clickUnauthorizedLink();
-        String actualResponse = linksPage.getResponse();
 
         // Assert
-        softAssert.assertTrue(actualResponse.contains(EXPECTED_UNAUTHORIZED_STATUS)
-                        && actualResponse.contains(EXPECTED_UNAUTHORIZED_STATUS_TEXT),
-                UNAUTHORIZED_LINK_RESPONSE_ERROR);
+        softAssert.assertEquals(linksPage.getResponse(), UNAUTHORIZED_REQUEST_RESPONSE, UNAUTHORIZED_LINK_RESPONSE_ERROR);
         softAssert.assertAll();
     }
 
@@ -184,12 +177,9 @@ public class LinksPageTests extends BaseTest {
     public void clickOnForbiddenLink() {
         // Arrange & Act
         linksPage.clickForbiddenLink();
-        String actualResponse = linksPage.getResponse();
 
         // Assert
-        softAssert.assertTrue(actualResponse.contains(EXPECTED_FORBIDDEN_STATUS)
-                        && actualResponse.contains(EXPECTED_FORBIDDEN_STATUS_TEXT),
-                FORBIDDEN_LINK_RESPONSE_ERROR);
+        softAssert.assertEquals(linksPage.getResponse(),  FORBIDDEN_REQUEST_RESPONSE, FORBIDDEN_LINK_RESPONSE_ERROR);
         softAssert.assertAll();
     }
 
@@ -197,12 +187,9 @@ public class LinksPageTests extends BaseTest {
     public void clickOnNotFoundLink() {
         // Arrange & Act
         linksPage.clickNotFoundLink();
-        String actualResponse = linksPage.getResponse();
 
         // Assert
-        softAssert.assertTrue(actualResponse.contains(EXPECTED_NOT_FOUND_STATUS)
-                        && actualResponse.contains(EXPECTED_NOT_FOUND_STATUS_TEXT),
-                NOT_FOUND_LINK_RESPONSE_ERROR);
+        softAssert.assertEquals(linksPage.getResponse(),  NOT_FOUND_REQUEST_RESPONSE, NOT_FOUND_LINK_RESPONSE_ERROR);
         softAssert.assertAll();
     }
 }

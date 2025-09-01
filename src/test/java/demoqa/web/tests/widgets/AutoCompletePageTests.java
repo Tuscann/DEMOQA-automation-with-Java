@@ -6,11 +6,11 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class AutoCompletePageTests extends BaseTest {
+    public static final String AUTO_COMPLETE_URL = "auto-complete";
     // Text Constants
     private static final String AUTO_COMPLETE_HEADING = "Auto Complete";
     private static final String TYPE_MULTIPLE_TEXT = "Type multiple color names";
     private static final String TYPE_SINGLE_TEXT = "Type single color name";
-
     // Color Constants
     private static final String COLOR_RED = "Red";
     private static final String COLOR_BLUE = "Blue";
@@ -18,12 +18,11 @@ public class AutoCompletePageTests extends BaseTest {
     private static final String COLOR_GREEN = "Green";
     private static final String COLOR_YELLOW = "Yellow";
     private static final String COLOR_PURPLE = "Purple";
-    private static final String COLOR_VOILET = "Voilet";
+    private static final String COLOR_VIOLET = "Voilet";
     private static final String COLOR_MAGENTA = "Magenta";
     private static final String COLOR_BLACK = "Black";
     private static final String COLOR_AQUA = "Aqua";
     private static final String COLOR_INDIGO = "Indigo";
-
     // Error Message Constants
     private static final String PAGE_HEADING_ERROR = "Page heading mismatch";
     private static final String TYPE_MULTIPLE_TEXT_ERROR = "Type multiple color names text mismatch";
@@ -34,8 +33,6 @@ public class AutoCompletePageTests extends BaseTest {
     private static final String FIRST_COLOR_SELECTED_ERROR = "Wrong first color selected";
     private static final String SECOND_COLOR_SELECTED_ERROR = "Wrong second color selected";
     private static final String GREEN_COLOR_SELECTED_ERROR = "Wrong green color selected";
-
-    public static final String AUTO_COMPLETE_URL = "auto-complete";
     private AutoCompletePage autoCompletePage;
 
     @BeforeMethod
@@ -71,13 +68,13 @@ public class AutoCompletePageTests extends BaseTest {
     public void selectTwoMultipleColorsAndCloseFirst() {
         // Arrange & Act
         autoCompletePage.waitForPageReady();
-        autoCompletePage.multiAutoCompleteSelectColor(COLOR_RED);
-        autoCompletePage.multiAutoCompleteSelectColor(COLOR_BLUE);
+        autoCompletePage.multiAutoCompleteSelectColor(COLOR_INDIGO);
+        autoCompletePage.multiAutoCompleteSelectColor(COLOR_GREEN);
 
         autoCompletePage.closeFirstSelectedColor();
 
         // Assert
-        softAssert.assertEquals(autoCompletePage.getAllSelectedMultiColorNames(), COLOR_BLUE, COLORS_SELECTED_ERROR);
+        softAssert.assertEquals(autoCompletePage.getAllSelectedMultiColorNames(), COLOR_GREEN, COLORS_SELECTED_ERROR);
         softAssert.assertAll();
     }
 
@@ -92,7 +89,7 @@ public class AutoCompletePageTests extends BaseTest {
         autoCompletePage.multiAutoCompleteSelectColor(COLOR_GREEN);
         autoCompletePage.multiAutoCompleteSelectColor(COLOR_YELLOW);
         autoCompletePage.multiAutoCompleteSelectColor(COLOR_PURPLE);
-        autoCompletePage.multiAutoCompleteSelectColor(COLOR_VOILET);
+        autoCompletePage.multiAutoCompleteSelectColor(COLOR_VIOLET);
         autoCompletePage.multiAutoCompleteSelectColor(COLOR_MAGENTA);
         autoCompletePage.multiAutoCompleteSelectColor(COLOR_BLACK);
         autoCompletePage.multiAutoCompleteSelectColor(COLOR_AQUA);

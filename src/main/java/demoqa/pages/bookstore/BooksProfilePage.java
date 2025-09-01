@@ -12,6 +12,7 @@ import utilities.JavaScriptUtility;
 import java.time.Duration;
 
 public class BooksProfilePage extends BasePage {
+    private final JavaScriptUtility javaScriptUtility;
     @FindBy(id = "userName-value")
     WebElement username;
     @FindBy(id = "notLoggin-label")
@@ -42,8 +43,6 @@ public class BooksProfilePage extends BasePage {
     WebElement modalCancelButton;
     @FindBy(xpath = "//button[@type='button'][contains(.,'Delete Account')]")
     WebElement deleteAccountButton;
-
-    private final JavaScriptUtility javaScriptUtility;
 
     public BooksProfilePage(WebDriver driver) {
         super(driver);
@@ -94,6 +93,7 @@ public class BooksProfilePage extends BasePage {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(12));
         wait.until(ExpectedConditions.urlToBe("https://demoqa.com/profile"));
         wait.until(ExpectedConditions.elementToBeClickable(deleteAllBooksButton));
+        javaScriptUtility.scrollToElementJS(deleteAccountButton);
         deleteAllBooksButton.click();
     }
 
@@ -124,6 +124,7 @@ public class BooksProfilePage extends BasePage {
     public void clickDeleteAccountButton() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(12));
         wait.until(ExpectedConditions.elementToBeClickable(deleteAccountButton));
+        javaScriptUtility.scrollToElementJS(deleteAccountButton);
         deleteAccountButton.click();
     }
 }

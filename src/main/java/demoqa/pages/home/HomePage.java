@@ -13,34 +13,27 @@ import static utilities.StaticVariables.HOME_MENU_ITEMS;
 
 public class HomePage extends BasePage {
 
+    private final JavaScriptUtility javaScriptUtility;
     @FindBy(xpath = "//*[@id=\"app\"]/div/div/div[1]/a/img")
     private WebElement joinNow;
-
     @FindBy(xpath = "//div[@id='app']//h5[text()='Elements']")
     private WebElement elementsCard;
-
     @FindBy(xpath = "//div[@id='app']//h5[text()='Forms']")
     private WebElement formsCard;
-
     @FindBy(xpath = "//div[@id='app']//h5[contains(text(),'Alerts')]")
     private WebElement alertsFrameWindowsCard;
-
     @FindBy(xpath = "//div[@id='app']//h5[text()='Widgets']")
     private WebElement widgetsCard;
-
     @FindBy(xpath = "//div[@id='app']//h5[text()='Interactions']")
     private WebElement interactionsCard;
-
     @FindBy(xpath = "//div[@id='app']//h5[text()='Book Store Application']")
     private WebElement bookStoreApplicationCard;
-
     @FindBy(xpath = "(//div[@class='card-up'])")
     private List<WebElement> clickHomePageItems;
-
+    @FindBy(xpath = "//div[contains(@class,'home-banner')]")
+    private WebElement backgroundColor;
     @FindBy(xpath = "//span[contains(.,'© 2013-2020 TOOLSQA.COM | ALL RIGHTS RESERVED.')]")
     private WebElement footer;
-
-    private final JavaScriptUtility javaScriptUtility;
 
     public HomePage(WebDriver driver) {
         super(driver);
@@ -121,4 +114,9 @@ public class HomePage extends BasePage {
             }
         }
     }
+
+    public String getBackgroundColor() {
+        return backgroundColor.getCssValue("background-color");
+    }
+
 }

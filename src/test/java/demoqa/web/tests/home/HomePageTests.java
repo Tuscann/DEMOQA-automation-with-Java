@@ -15,6 +15,7 @@ public class HomePageTests extends BaseTest {
     private static final String BOOKS_URL = DEMO_QA_URL + "books";
     private static final String SELENIUM_TRAINING_URL = "https://www.toolsqa.com/selenium-training/";
 
+    private static final String HOME_ADDRESS_ERROR = "Wrong home address";
     private static final String ELEMENTS_TEXT = "Elements";
     private static final String FORMS_TEXT = "Forms";
     private static final String ALERTS_TEXT = "Alerts, Frame & Windows";
@@ -22,6 +23,9 @@ public class HomePageTests extends BaseTest {
     private static final String INTERACTIONS_TEXT = "Interactions";
     private static final String BOOKS_TEXT = "Book Store Application";
     private static final String FOOTER_TEXT = "© 2013-2020 TOOLSQA.COM | ALL RIGHTS RESERVED.";
+
+    // Color Constants
+    private static final String EXPECTED_RED_COLOR = "rgba(55, 142, 196, 1)";
 
     // Error Message Constants
     private static final String CARD_NAVIGATION_ERROR = "Failed for card: %s";
@@ -33,6 +37,7 @@ public class HomePageTests extends BaseTest {
     private static final String BOOKS_TEXT_ERROR = "Books card text mismatch";
     private static final String FOOTER_TEXT_ERROR = "Footer text mismatch";
     private static final String SELENIUM_TRAINING_URL_ERROR = "Selenium training URL mismatch";
+    private static final String BACKGROUND_COLOR_ERROR = "Elements card text mismatch";
 
     private HomePage homePage;
 
@@ -58,14 +63,19 @@ public class HomePageTests extends BaseTest {
         // Arrange & Act
         clickAction.run();
         String actualUrl = homePage.checkCurrentUrl();
+        homePage.clickTopImage();
+        String url = homePage.checkCurrentUrl();
+
         // Assert
         softAssert.assertEquals(actualUrl, expectedUrl, String.format(CARD_NAVIGATION_ERROR, cardName));
+        softAssert.assertEquals(url, DEMO_QA_URL, HOME_ADDRESS_ERROR);
         softAssert.assertAll();
     }
 
     @Test(enabled = true, description = "Verify all text on page")
     public void verifyAllHomePageTexts() {
         // Arrange & Act & Assert
+        softAssert.assertEquals(homePage.getBackgroundColor(), EXPECTED_RED_COLOR, BACKGROUND_COLOR_ERROR);
         softAssert.assertEquals(homePage.getElementsText(), ELEMENTS_TEXT, ELEMENTS_TEXT_ERROR);
         softAssert.assertEquals(homePage.getFormsText(), FORMS_TEXT, FORMS_TEXT_ERROR);
         softAssert.assertEquals(homePage.getAlertsFramesWindowsText(), ALERTS_TEXT, ALERTS_TEXT_ERROR);

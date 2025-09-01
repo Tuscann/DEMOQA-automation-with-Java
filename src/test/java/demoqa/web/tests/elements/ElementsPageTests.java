@@ -3,6 +3,7 @@ package demoqa.web.tests.elements;
 import demoqa.pages.elements.ElementsPage;
 import demoqa.web.base.BaseTest;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 public class ElementsPageTests extends BaseTest {
@@ -18,9 +19,10 @@ public class ElementsPageTests extends BaseTest {
     private static final String DYNAMIC_PROPERTIES_URL = DEMO_QA_URL + "dynamic-properties";
 
     // Text Constants
-    private static final String LEFT_PANEL_INFO_TEXT = "Please select an item from left to start practice.";
+    private static final String MAIN_TEXT = "Please select an item from left to start practice.";
 
     // Error Message Constants
+    private static final String HOME_ADDRESS_ERROR = "Wrong home address";
     private static final String TEXT_BOX_URL_MISMATCH = "Text box URL mismatch";
     private static final String CHECK_BOX_URL_MISMATCH = "Checkbox URL mismatch";
     private static final String RADIO_BUTTON_URL_MISMATCH = "Radio button URL mismatch";
@@ -33,9 +35,9 @@ public class ElementsPageTests extends BaseTest {
     private static final String LEFT_PANEL_TEXT_MISMATCH = "Left panel text mismatch";
     private static final String DROPDOWN_NOT_VISIBLE_ERROR = "Dropdown menu is not visible";
     private static final String DROPDOWN_STILL_VISIBLE_ERROR = "Dropdown menu is still visible after clicking";
-
-    private ElementsPage elementsPage;
+    private static final String CARD_NAVIGATION_ERROR = "Failed for card: %s";
     private static final String ELEMENTS_URL = "elements";
+    private ElementsPage elementsPage;
 
     @BeforeMethod
     public void goToProfilePage() {
@@ -43,46 +45,32 @@ public class ElementsPageTests extends BaseTest {
         elementsPage = new ElementsPage(driver);
     }
 
-    @Test(enabled = true, description = "Verify navigation to all nine element pages and validate URLs")
-    public void verifyAllNinePagesLinks() {
+    @DataProvider(name = "homePageCards")
+    public Object[][] homePageCards() {
+        return new Object[][]{
+                {"Text Box", TEXT_BOX_URL, (Runnable) () -> elementsPage.clickLeftTabTextBox()},
+                {"Check Box", CHECK_BOX_URL, (Runnable) () -> elementsPage.clickCheckBox()},
+                {"Radio Button", RADIO_BUTTON_URL, (Runnable) () -> elementsPage.clickRadioButton()},
+                {"Web Tables", WEB_TABLES_URL, (Runnable) () -> elementsPage.clickWebTables()},
+                {"Buttons", BUTTONS_URL, (Runnable) () -> elementsPage.clickButtons()},
+                {"Links", LINKS_URL, (Runnable) () -> elementsPage.clickLinks()},
+                {"Broken Links - Images", BROKEN_LINKS_IMAGES_URL, (Runnable) () -> elementsPage.clickBrokenLinksImages()},
+                {"Upload and Download", UPLOAD_DOWNLOAD_URL, (Runnable) () -> elementsPage.clickUploadAndDownload()},
+                {"Dynamic Properties", DYNAMIC_PROPERTIES_URL, (Runnable) () -> elementsPage.clickDynamicProperties()},
+        };
+    }
+
+    @Test(dataProvider = "homePageCards", description = "Click and verify card: {0} ")
+    public void checkAllFivePagesLinks(String cardName, String expectedUrl, Runnable clickAction) {
         // Arrange & Act
-        elementsPage.clickLeftTabTextBox();
-        String actualTextBoxUrl = elementsPage.checkCurrentUrl();
-
-        elementsPage.clickCheckBox();
-        String actualCheckBoxUrl = elementsPage.checkCurrentUrl();
-
-        elementsPage.clickRadioButton();
-        String actualRadioButtonUrl = elementsPage.checkCurrentUrl();
-
-        elementsPage.clickWebTables();
-        String actualWebTablesUrl = elementsPage.checkCurrentUrl();
-
-        elementsPage.clickButtons();
-        String actualButtonsUrl = elementsPage.checkCurrentUrl();
-
-        elementsPage.clickLinks();
-        String actualLinksUrl = elementsPage.checkCurrentUrl();
-
-        elementsPage.clickBrokenLinksImages();
-        String actualBrokenUrl = elementsPage.checkCurrentUrl();
-
-        elementsPage.clickUploadAndDownload();
-        String actualUploadDownloadUrl = elementsPage.checkCurrentUrl();
-
-        elementsPage.clickDynamicProperties();
-        String actualDynamicPropertiesUrl = elementsPage.checkCurrentUrl();
+        clickAction.run();
+        String actualUrl = elementsPage.checkCurrentUrl();
+        elementsPage.clickTopImage();
+        String url = elementsPage.checkCurrentUrl();
 
         // Assert
-        softAssert.assertEquals(actualTextBoxUrl, TEXT_BOX_URL, TEXT_BOX_URL_MISMATCH);
-        softAssert.assertEquals(actualCheckBoxUrl, CHECK_BOX_URL, CHECK_BOX_URL_MISMATCH);
-        softAssert.assertEquals(actualRadioButtonUrl, RADIO_BUTTON_URL, RADIO_BUTTON_URL_MISMATCH);
-        softAssert.assertEquals(actualWebTablesUrl, WEB_TABLES_URL, WEB_TABLES_URL_MISMATCH);
-        softAssert.assertEquals(actualButtonsUrl, BUTTONS_URL, BUTTONS_URL_MISMATCH);
-        softAssert.assertEquals(actualLinksUrl, LINKS_URL, LINKS_URL_MISMATCH);
-        softAssert.assertEquals(actualBrokenUrl, BROKEN_LINKS_IMAGES_URL, BROKEN_LINKS_IMAGES_URL_MISMATCH);
-        softAssert.assertEquals(actualUploadDownloadUrl, UPLOAD_DOWNLOAD_URL, UPLOAD_DOWNLOAD_URL_MISMATCH);
-        softAssert.assertEquals(actualDynamicPropertiesUrl, DYNAMIC_PROPERTIES_URL, DYNAMIC_PROPERTIES_URL_MISMATCH);
+        softAssert.assertEquals(actualUrl, expectedUrl, String.format(CARD_NAVIGATION_ERROR, cardName));
+        softAssert.assertEquals(url, DEMO_QA_URL, HOME_ADDRESS_ERROR);
         softAssert.assertAll();
     }
 
@@ -95,7 +83,7 @@ public class ElementsPageTests extends BaseTest {
         boolean textBoxIsVisible2 = elementsPage.verifyTextBoxIsNotVisible();
 
         // Assert
-        softAssert.assertEquals(expectedString, LEFT_PANEL_INFO_TEXT, LEFT_PANEL_TEXT_MISMATCH);
+        softAssert.assertEquals(expectedString, MAIN_TEXT, LEFT_PANEL_TEXT_MISMATCH);
         softAssert.assertTrue(textBoxTabIsVisible, DROPDOWN_NOT_VISIBLE_ERROR);
         softAssert.assertFalse(textBoxIsVisible2, DROPDOWN_STILL_VISIBLE_ERROR);
         softAssert.assertAll();

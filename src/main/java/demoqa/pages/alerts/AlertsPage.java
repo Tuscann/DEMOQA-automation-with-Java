@@ -11,6 +11,7 @@ import java.util.List;
 
 public class AlertsPage extends BasePage {
 
+    private final JavaScriptUtility javaScriptUtility;
     @FindBy(id = "alertButton")
     WebElement informationAlertButton;
     @FindBy(id = "confirmButton")
@@ -33,8 +34,6 @@ public class AlertsPage extends BasePage {
     WebElement alertThirdTitle;
     @FindBy(xpath = "//span[contains(.,'On button click, prompt box will appear')]")
     WebElement alertFourthTitle;
-
-    private final JavaScriptUtility javaScriptUtility;
 
     public AlertsPage(WebDriver driver) {
         super(driver);
@@ -75,10 +74,12 @@ public class AlertsPage extends BasePage {
     }
 
     public void clickConfirmationAlertButton() {
+        //  javaScriptUtility.scrollToElementJS(confirmationAlertButton);
         confirmationAlertButton.click();
     }
 
     public void clickPromptAlertButton() {
+        //    javaScriptUtility.scrollToElementJS(promptAlertButton);
         promptAlertButton.click();
     }
 
@@ -87,7 +88,7 @@ public class AlertsPage extends BasePage {
     }
 
     public void clickConfirmationTimeAlertButton() {
-        javaScriptUtility.scrollToElementJS(confirmationTimeAlertButton);
+        //   javaScriptUtility.scrollToElementJS(confirmationTimeAlertButton);
         confirmationTimeAlertButton.click();
     }
 
@@ -106,7 +107,6 @@ public class AlertsPage extends BasePage {
     public String getFourthButtonBackGroundColor() {
         return promptAlertButton.getCssValue("background-color");
     }
-
 
     public String getFirstButtonText() {
         return informationAlertButton.getText();

@@ -65,12 +65,12 @@ public class BrokenLinksImagesPage extends BasePage {
         return driver.getCurrentUrl();
     }
 
-    public void ClickOnClickHereValidLink() {
+    public void clickOnClickHereForValidLink() {
         javaScriptUtility.scrollToElementJS(clickHereValidLinkText);
         clickHereValidLinkText.click();
     }
 
-    public void clickOnClickHereBrokenLink() {
+    public void clickOnClickHereForBrokenLink() {
         javaScriptUtility.scrollToElementJS(clickHereBrokenLinkText);
         clickHereBrokenLinkText.click();
     }

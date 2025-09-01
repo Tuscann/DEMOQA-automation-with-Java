@@ -64,10 +64,18 @@ public class UploadAndDownloadPage extends BasePage {
         chooseFileButton.sendKeys(pathOfFile);
     }
 
+    public String getUploadFileText( ){
+       return chooseFileButton.getText();
+    }
+
     public boolean checkIfFileExists(String fileName) {
         String downloadDir = Paths.get(System.getProperty("user.home"), "Downloads").toString();
         File downloadedFile = new File(downloadDir + File.separator + fileName);
 
         return downloadedFile.exists();
+    }
+
+    public String getButtonDownloadBackgroundColor() {
+        return downloadButton.getCssValue("background-color");
     }
 }

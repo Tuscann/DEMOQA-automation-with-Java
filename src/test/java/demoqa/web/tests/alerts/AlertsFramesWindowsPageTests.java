@@ -3,6 +3,7 @@ package demoqa.web.tests.alerts;
 import demoqa.pages.alerts.Alerts_Frames_WindowsPage;
 import demoqa.web.base.BaseTest;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 public class AlertsFramesWindowsPageTests extends BaseTest {
@@ -17,14 +18,11 @@ public class AlertsFramesWindowsPageTests extends BaseTest {
     private static final String EXPECTED_MAIN_TEXT = "Please select an item from left to start practice.";
 
     // Error Message Constants
-    private static final String BROWSER_WINDOWS_URL_ERROR = "Browser windows URL mismatch";
-    private static final String ALERTS_URL_ERROR = "Alerts URL mismatch";
-    private static final String FRAMES_URL_ERROR = "Frames URL mismatch";
-    private static final String NESTED_FRAMES_URL_ERROR = "Nested frames URL mismatch";
-    private static final String MODAL_DIALOGS_URL_ERROR = "Modal dialogs URL mismatch";
     private static final String MAIN_TEXT_ERROR = "Main text mismatch";
     private static final String FRAMES_VISIBLE_ERROR = "Frames should be visible";
     private static final String FRAMES_NOT_VISIBLE_ERROR = "Frames should not be visible";
+    private static final String HOME_ADDRESS_ERROR = "Wrong home address";
+    private static final String CARD_NAVIGATION_ERROR = "Failed for card: %s";
 
     private Alerts_Frames_WindowsPage alerts_frames_windowsPage;
 
@@ -34,25 +32,28 @@ public class AlertsFramesWindowsPageTests extends BaseTest {
         alerts_frames_windowsPage = new Alerts_Frames_WindowsPage(driver);
     }
 
-    @Test(enabled = true, description = "Verify navigation to all 5 sub-pages in left menu")
-    public void checkAllFivePagesLinksAndText() {
+    @DataProvider(name = "homePageCards")
+    public Object[][] homePageCards() {
+        return new Object[][]{
+                {"Browser Windows", BROWSER_WINDOWS_URL, (Runnable) () -> alerts_frames_windowsPage.clickBrowserWindowsTab()},
+                {"Alerts", ALERTS_URL, (Runnable) () -> alerts_frames_windowsPage.clickAlertsTab()},
+                {"Frames", FRAMES_URL, (Runnable) () -> alerts_frames_windowsPage.clickFramesTab()},
+                {"Nested Frames", NESTED_FRAMES_URL, (Runnable) () -> alerts_frames_windowsPage.clickNestedFramesTab()},
+                {"Modal Dialogs", MODAL_DIALOGS_URL, (Runnable) () -> alerts_frames_windowsPage.clickModalDialogsTab()}
+        };
+    }
+
+    @Test(dataProvider = "homePageCards", description = "Click and verify card: {0} ")
+    public void checkAllFivePagesLinks(String cardName, String expectedUrl, Runnable clickAction) {
         // Arrange & Act
-        alerts_frames_windowsPage.clickBrowserWindowsTab();
-        softAssert.assertEquals(alerts_frames_windowsPage.checkCurrentUrl(), BROWSER_WINDOWS_URL, BROWSER_WINDOWS_URL_ERROR);
-
-        alerts_frames_windowsPage.clickAlertsTab();
-        softAssert.assertEquals(alerts_frames_windowsPage.checkCurrentUrl(), ALERTS_URL, ALERTS_URL_ERROR);
-
-        alerts_frames_windowsPage.clickFramesTab();
-        softAssert.assertEquals(alerts_frames_windowsPage.checkCurrentUrl(), FRAMES_URL, FRAMES_URL_ERROR);
-
-        alerts_frames_windowsPage.clickNestedFramesTab();
-        softAssert.assertEquals(alerts_frames_windowsPage.checkCurrentUrl(), NESTED_FRAMES_URL, NESTED_FRAMES_URL_ERROR);
-
-        alerts_frames_windowsPage.clickModalDialogsTab();
-        softAssert.assertEquals(alerts_frames_windowsPage.checkCurrentUrl(), MODAL_DIALOGS_URL, MODAL_DIALOGS_URL_ERROR);
+        clickAction.run();
+        String actualUrl = alerts_frames_windowsPage.checkCurrentUrl();
+        alerts_frames_windowsPage.clickTopImage();
+        String url = alerts_frames_windowsPage.checkCurrentUrl();
 
         // Assert
+        softAssert.assertEquals(actualUrl, expectedUrl, String.format(CARD_NAVIGATION_ERROR, cardName));
+        softAssert.assertEquals(url, DEMO_QA_URL, HOME_ADDRESS_ERROR);
         softAssert.assertAll();
     }
 

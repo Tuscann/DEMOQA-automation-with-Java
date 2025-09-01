@@ -26,6 +26,9 @@ public class UploadAndDownloadPageTests extends BaseTest {
     private UploadAndDownloadPage uploadAndDownloadPage;
     private static final String UPLOAD_DOWNLOAD_URL = "upload-download";
 
+    // Color Constants
+    private static final String EXPECTED_BLUE_COLOR = "rgba(0, 123, 255, 1)";
+
     @BeforeMethod
     public void goToUploadDownloadPage() {
         navigateToUrl(UPLOAD_DOWNLOAD_URL);
@@ -38,6 +41,7 @@ public class UploadAndDownloadPageTests extends BaseTest {
         softAssert.assertEquals(uploadAndDownloadPage.getUploadAndDownloadText(), EXPECTED_UPLOAD_AND_DOWNLOAD_TEXT, UPLOAD_DOWNLOAD_TEXT_MISMATCH);
         softAssert.assertEquals(uploadAndDownloadPage.getDownloadButtonText(), EXPECTED_DOWNLOAD_BUTTON_TEXT, DOWNLOAD_BUTTON_TEXT_MISMATCH);
         softAssert.assertEquals(uploadAndDownloadPage.getSelectAFileText(), EXPECTED_SELECT_A_FILE_TEXT, SELECT_A_FILE_TEXT_MISMATCH);
+        softAssert.assertEquals(uploadAndDownloadPage.getButtonDownloadBackgroundColor(), EXPECTED_BLUE_COLOR, SELECT_A_FILE_TEXT_MISMATCH);
         softAssert.assertAll();
     }
 
