@@ -12,6 +12,7 @@ public class FramesPage extends BasePage {
 
     private final By firstHeading = By.id("sampleHeading");
     private final By secondHeading = By.id("sampleHeading");
+    private final JavaScriptUtility javaScriptUtility;
     @FindBy(xpath = "//h1[contains(.,'Frames')]")
     WebElement newTabButton;
     @FindBy(xpath = "(//div[contains(.,'Sample Iframe page There are 2 Iframes in this page. Use browser inspecter or firebug to check out the HTML source. In total you can switch between the parent frame, which is this window, and the two frames below')])[7]")
@@ -24,8 +25,6 @@ public class FramesPage extends BasePage {
     WebElement frame1wrapper;
     @FindBy(id = "frame2Wrapper")
     WebElement frame2wrapper;
-
-    private final JavaScriptUtility javaScriptUtility;
 
     public FramesPage(WebDriver driver) {
         super(driver);
@@ -51,5 +50,15 @@ public class FramesPage extends BasePage {
         javaScriptUtility.scrollToElementJS(frame2wrapper);
         WebElement secondHeadingWebElement = driver.switchTo().frame(frame2).findElement(secondHeading);
         return secondHeadingWebElement.getText();
+    }
+
+    public String getFirstIFrameBackgroundColor() {
+        WebElement firstHeadingWebElement = driver.findElement(By.tagName("body"));
+        return firstHeadingWebElement.getCssValue("background-color");
+    }
+
+    public String getSecondIFrameBackgroundColor() {
+        WebElement firstHeadingWebElement = driver.findElement(By.tagName("body"));
+        return firstHeadingWebElement.getCssValue("background-color");
     }
 }

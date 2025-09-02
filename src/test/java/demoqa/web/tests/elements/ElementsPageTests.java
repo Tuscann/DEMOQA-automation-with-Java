@@ -23,15 +23,6 @@ public class ElementsPageTests extends BaseTest {
 
     // Error Message Constants
     private static final String HOME_ADDRESS_ERROR = "Wrong home address";
-    private static final String TEXT_BOX_URL_MISMATCH = "Text box URL mismatch";
-    private static final String CHECK_BOX_URL_MISMATCH = "Checkbox URL mismatch";
-    private static final String RADIO_BUTTON_URL_MISMATCH = "Radio button URL mismatch";
-    private static final String WEB_TABLES_URL_MISMATCH = "Web tables URL mismatch";
-    private static final String BUTTONS_URL_MISMATCH = "Buttons URL mismatch";
-    private static final String LINKS_URL_MISMATCH = "Links URL mismatch";
-    private static final String BROKEN_LINKS_IMAGES_URL_MISMATCH = "Broken links URL mismatch";
-    private static final String UPLOAD_DOWNLOAD_URL_MISMATCH = "Upload and download URL mismatch";
-    private static final String DYNAMIC_PROPERTIES_URL_MISMATCH = "Dynamic properties URL mismatch";
     private static final String LEFT_PANEL_TEXT_MISMATCH = "Left panel text mismatch";
     private static final String DROPDOWN_NOT_VISIBLE_ERROR = "Dropdown menu is not visible";
     private static final String DROPDOWN_STILL_VISIBLE_ERROR = "Dropdown menu is still visible after clicking";

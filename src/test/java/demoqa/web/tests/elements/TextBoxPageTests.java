@@ -61,9 +61,8 @@ public class TextBoxPageTests extends BaseTest {
     private static final String RED_BORDER_COLOR_MISMATCH = "Red border color mismatch";
     private static final String CURRENT_ADDRESS_DOES_NOT_MATCH_ERROR = "Current address does not match";
     private static final String PERMANENT_ADDRESS_DOES_NOT_MATCH_ERROR = "Permanent address does not match";
-
-    private TextBoxPage textBoxPage;
     private static final String TEXT_BOX_URL = "text-box";
+    private TextBoxPage textBoxPage;
 
     @BeforeMethod
     public void goToTextBoxPage() {
@@ -153,7 +152,7 @@ public class TextBoxPageTests extends BaseTest {
     }
 
     @Test(enabled = true, description = "Submit invalid email and verify red border validation")
-    public void submitFormWithInvalidEmailAndCheckRedLine() {
+    public void tryToSubmitWithInvalidEmailAndCheckRedLine() {
         // Arrange & Act
         textBoxPage.setEmailField(INVALID_EMAIL);
         textBoxPage.clickSubmitButton();

@@ -58,18 +58,15 @@ public class CheckBoxPageTests extends BaseTest {
     private static final String DESKTOP_HOME_COMMANDS_SELECTION_ERROR = "Desktop, home, and commands checkboxes not selected properly";
     private static final String NOTES_DESELECTION_ERROR = "Notes checkbox not deselected properly";
     private static final String RESULT_MESSAGE_SHOWN_ERROR = "Result message shown incorrectly";
-    private static final String COMMANDS_SELECTION_ERROR = "Commands checkbox not selected properly";
     private static final String NOTES_OFFICE_PUBLIC_SELECTION_ERROR = "Notes and office public checkboxes not selected properly";
     private static final String COLLAPSED_SELECTION_ERROR = "Collapsed selection not working properly";
     private static final String HOME_SELECTION_ERROR = "Home checkbox selection not working properly";
     private static final String DESKTOP_DOCUMENTS_DOWNLOADS_SELECTION_ERROR = "Desktop, documents, and downloads checkboxes not selected properly";
     private static final String ALL_CHECKBOXES_SELECTION_ERROR = "All checkboxes not selected properly";
     private static final String ALL_CHECKBOXES_DESELECTION_ERROR = "All checkboxes not deselected properly";
-
-    private CheckBoxPage checkBoxPage;
     private static final String CHECK_BOX_URL = "checkbox";
-
     private static final String EXPECTED_SUBMIT_BUTTON_COLOR = "rgba(40, 167, 69, 1)";
+    private CheckBoxPage checkBoxPage;
 
     @BeforeMethod
     public void goToCheckBoxPage() {

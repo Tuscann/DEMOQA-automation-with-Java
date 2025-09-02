@@ -17,133 +17,89 @@ import java.util.List;
 
 public class WebTablesPage extends BasePage {
 
+    private final JavaScriptUtility javaScriptUtility;
     @FindBy(xpath = "//h1[@class='text-center'][contains(.,'Web Tables')]")
     private WebElement header;
-
     @FindBy(xpath = "//div[@id='registration-form-modal']")
     private WebElement registrationFormText;
-
     @FindBy(id = "firstName-label")
     private WebElement registrationFirstNameLabel;
-
     @FindBy(id = "firstName")
     private WebElement registrationFirstNameField;
-
     @FindBy(id = "lastName-label")
     private WebElement registrationLastNameLabel;
-
     @FindBy(id = "lastName")
     private WebElement registrationLastNameField;
-
     @FindBy(id = "userEmail-label")
     private WebElement registrationEmailLabel;
-
     @FindBy(id = "userEmail")
     private WebElement registrationEmailField;
-
     @FindBy(id = "age-label")
     private WebElement registrationAgeLabel;
-
     @FindBy(id = "age")
     private WebElement registrationAgeField;
-
     @FindBy(id = "salary-label")
     private WebElement registrationSalaryLabel;
-
     @FindBy(id = "salary")
     private WebElement registrationSalaryField;
-
     @FindBy(id = "department-label")
     private WebElement registrationDepartmentLabel;
-
     @FindBy(id = "department")
     private WebElement registrationDepartmentField;
-
     @FindBy(id = "submit")
     private WebElement submitButton;
-
     @FindBy(id = "addNewRecordButton")
     private WebElement addNewRecordButton;
-
     @FindBy(id = "searchBox")
     private WebElement searchBox;
-
     @FindBy(xpath = "//button[contains(.,'Next')]")
     private WebElement nextButton;
-
     @FindBy(xpath = "//button[contains(.,'Previous')]")
     private WebElement previousButton;
-
     @FindBy(xpath = "//*[@id=\"app\"]/div/div/div/div[2]/div[2]/div[3]/div[3]")
     private WebElement noRowsFound;
-
     @FindBy(xpath = "//select[@aria-label='rows per page']")
     private WebElement rowsPerPage;
-
     @FindBy(className = "rt-tr-group")
     private List<WebElement> lineCounts;
-
     @FindBy(className = "-pageInfo")
     private WebElement pageInfo;
-
     @FindBy(xpath = "//input[@aria-label='jump to page']")
     private WebElement pageJump;
-
     @FindBy(className = "rt-thead")
     private WebElement tableHeader;
-
     @FindBy(xpath = "(//div[contains(@class, 'rt-tr -odd')])[1]")
     private WebElement firstRow;
-
     @FindBy(xpath = "(//div[contains(@class, 'rt-tr -even')])[1]")
     private WebElement secondRow;
-
     @FindBy(xpath = "(//div[contains(@class, 'rt-tr -odd')])[2]")
     private WebElement thirdRow;
-
-
     @FindBy(xpath = "(//div[contains(@class, 'rt-resizable-header-content')])[1]")
     private WebElement firstNameHeader;
-
     @FindBy(xpath = "(//div[contains(@class, 'rt-resizable-header-content')])[2]")
     private WebElement lastNameHeader;
-
     @FindBy(xpath = "(//div[contains(@class, 'rt-resizable-header-content')])[3] ")
     private WebElement ageHeader;
-
     @FindBy(xpath = "(//div[contains(@class, 'rt-resizable-header-content')])[4] ")
     private WebElement emailHeader;
-
     @FindBy(xpath = "(//div[contains(@class, 'rt-resizable-header-content')])[5] ")
     private WebElement salaryHeader;
-
     @FindBy(xpath = "(//div[contains(@class, 'rt-resizable-header-content')])[6] ")
     private WebElement departmentHeader;
-
-
     @FindBy(className = "rt-tr-group")
     private List<WebElement> tableInformation;
-
     @FindBy(xpath = "(//div[contains(@class, 'rt-tr -odd')])[1]/div[@class='rt-td'][1] ")
     private WebElement firstRowFirstName;
-
     @FindBy(xpath = "(//div[contains(@class, 'rt-tr -odd')])[1]/div[@class='rt-td'][2] ")
     private WebElement firstRowLastName;
-
     @FindBy(xpath = "(//div[contains(@class, 'rt-tr -odd')])[1]/div[@class='rt-td'][3] ")
     private WebElement firstRowAge;
-
     @FindBy(xpath = "(//div[contains(@class, 'rt-tr -odd')])[1]/div[@class='rt-td'][4] ")
     private WebElement firstRowEmail;
-
     @FindBy(xpath = "(//div[contains(@class, 'rt-tr -odd')])[1]/div[@class='rt-td'][5] ")
     private WebElement firstRowSalary;
-
     @FindBy(xpath = "(//div[contains(@class, 'rt-tr -odd')])[1]/div[@class='rt-td'][6] ")
     private WebElement firstRowDepartment;
-
-
-    private final JavaScriptUtility javaScriptUtility;
 
     public WebTablesPage(WebDriver driver) {
         super(driver);
@@ -370,6 +326,7 @@ public class WebTablesPage extends BasePage {
     }
 
     public void clickNextButton() {
+        javaScriptUtility.scrollToElementJS(nextButton);
         nextButton.click();
     }
 
@@ -567,5 +524,9 @@ public class WebTablesPage extends BasePage {
 
         wait.until(ExpectedConditions.visibilityOf(registrationDepartmentField))
                 .sendKeys(Keys.chord(Keys.CONTROL, "a"), Keys.chord(Keys.DELETE));
+    }
+
+    public String getSubmitButtonBackGroundColor() {
+        return submitButton.getCssValue("background-color");
     }
 }

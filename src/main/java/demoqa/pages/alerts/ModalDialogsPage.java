@@ -51,11 +51,11 @@ public class ModalDialogsPage extends BasePage {
         return clickText.getText();
     }
 
-    public String getSmallText() {
+    public String getSmallModalButtonText() {
         return smallText.getText();
     }
 
-    public String getLargeText() {
+    public String getLargeModalButtonText() {
         return largeText.getText();
     }
 
@@ -113,11 +113,19 @@ public class ModalDialogsPage extends BasePage {
         return largeCloseButton.getCssValue("background-color");
     }
 
-    public String getSmaillModalDialogCloseButtonBackgroundColor() {
+    public String getSmallModalDialogCloseButtonBackgroundColor() {
         return smallCloseButton.getCssValue("background-color");
     }
 
     public void clickXSmallCloseButton() {
         clickXCLoseButton.click();
+    }
+
+    public void clickSmallCloseButton() {
+        smallCloseButton.click();
+    }
+
+    public void clickLargeCloseButton() {
+        largeCloseButton.click();
     }
 }

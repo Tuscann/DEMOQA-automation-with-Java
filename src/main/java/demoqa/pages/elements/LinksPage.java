@@ -14,46 +14,33 @@ import java.util.ArrayList;
 
 public class LinksPage extends BasePage {
 
+    private final JavaScriptUtility javaScriptUtility;
     @FindBy(xpath = "//h1[@class='text-center'][contains(.,'Links')]")
     private WebElement linksText;
-
     @FindBy(xpath = "//strong[contains(.,'Following links will open new tab')]")
     private WebElement newTab;
-
     @FindBy(id = "simpleLink")
     private WebElement simpleLink;
-
     @FindBy(id = "dynamicLink")
     private WebElement dynamicLink;
-
     @FindBy(xpath = "//strong[contains(.,'Following links will send an api call')]")
     private WebElement apiCallText;
-
     @FindBy(id = "created")
     private WebElement createdRequestLink;
-
     @FindBy(id = "no-content")
     private WebElement noContentRequestLink;
-
     @FindBy(id = "moved")
     private WebElement movedRequestLink;
-
     @FindBy(id = "bad-request")
     private WebElement badRequestLink;
-
     @FindBy(id = "unauthorized")
     private WebElement unauthorizedRequestLink;
-
     @FindBy(id = "forbidden")
     private WebElement forbiddenRequestLink;
-
     @FindBy(id = "invalid-url")
     private WebElement notFoundRequestLink;
-
     @FindBy(id = "linkResponse")
     private WebElement responseLink;
-
-    private final JavaScriptUtility javaScriptUtility;
 
     public LinksPage(WebDriver driver) {
         super(driver);
@@ -105,14 +92,14 @@ public class LinksPage extends BasePage {
         return notFoundRequestLink.getText();
     }
 
-    public void clickSimpleTab() {
+    public void clickSimpleLinkHome() {
         javaScriptUtility.scrollToElementJS(simpleLink);
         simpleLink.click();
         ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
         driver.switchTo().window(tabs.get(1));
     }
 
-    public void clickDynamicTab() {
+    public void clickDynamicLinkHome() {
         javaScriptUtility.scrollToElementJS(dynamicLink);
         dynamicLink.click();
         ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
@@ -162,5 +149,9 @@ public class LinksPage extends BasePage {
 
     public String getCurrentUrl() {
         return driver.getCurrentUrl();
+    }
+
+    public int getDynamicLinkTextLength() {
+        return dynamicLink.getText().length();
     }
 }

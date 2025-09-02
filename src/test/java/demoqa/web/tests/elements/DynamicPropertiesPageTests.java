@@ -15,6 +15,7 @@ public class DynamicPropertiesPageTests extends BaseTest {
 
     // Color Constants
     private static final String EXPECTED_WHITE_COLOR = "rgba(255, 255, 255, 1)";
+    private static final String EXPECTED_RED_COLOR = "rgba(255, 255, 255, 1)";
 
     // Error Message Constants
     private static final String DYNAMIC_PROPERTIES_TEXT_MISMATCH = "Dynamic properties text mismatch";
@@ -27,9 +28,8 @@ public class DynamicPropertiesPageTests extends BaseTest {
     private static final String VISIBLE_BUTTON_VISIBLE_ERROR = "Visible after 5 seconds button should not be visible initially";
     private static final String ENABLE_BUTTON_NOT_ENABLED_ERROR = "Enable button should be enabled after 5 seconds";
     private static final String VISIBLE_BUTTON_NOT_VISIBLE_ERROR = "Visible after 5 seconds button should be visible after 5 seconds";
-
-    private DynamicPropertiesPage dynamicPropertiesPage;
     private static final String DYNAMIC_PROPERTIES_URL = "dynamic-properties";
+    private DynamicPropertiesPage dynamicPropertiesPage;
 
     @BeforeMethod
     public void goToProfilePage() {
@@ -69,12 +69,14 @@ public class DynamicPropertiesPageTests extends BaseTest {
         String visibleAfter5SecondsButtonText = dynamicPropertiesPage.getVisibleAfter5SecondsButtonTextAfter5seconds();
         boolean isEnableButton = dynamicPropertiesPage.checkButtonWillEnable5Seconds();
         boolean isVisibleAfter5SecondsButton = dynamicPropertiesPage.checkButtonVisibleAfter5Seconds();
+        String colorOfColorChangeButtonAfter = dynamicPropertiesPage.getColorOfChangeButton();
 
         // Assert
         softAssert.assertTrue(isEnableButton, ENABLE_BUTTON_NOT_ENABLED_ERROR);
         softAssert.assertEquals(colorOfColorChangeButton, EXPECTED_WHITE_COLOR, COLOR_CHANGE_COLOR_MISMATCH);
         softAssert.assertTrue(isVisibleAfter5SecondsButton, VISIBLE_BUTTON_NOT_VISIBLE_ERROR);
         softAssert.assertEquals(visibleAfter5SecondsButtonText, EXPECTED_VISIBLE_AFTER_5_SEC_TEXT, VISIBLE_AFTER_5_SEC_TEXT_MISMATCH);
+        softAssert.assertEquals(colorOfColorChangeButton, EXPECTED_RED_COLOR, COLOR_CHANGE_COLOR_MISMATCH);
 
         softAssert.assertAll();
     }

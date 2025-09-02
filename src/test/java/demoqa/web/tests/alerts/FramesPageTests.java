@@ -16,7 +16,9 @@ public class FramesPageTests extends BaseTest {
     private static final String PAGE_DESCRIPTION_ERROR = "Page description text mismatch";
     private static final String FIRST_IFRAME_HEADING_ERROR = "First iframe heading mismatch";
     private static final String SECOND_IFRAME_HEADING_ERROR = "Second iframe heading mismatch";
+    private static final String BACKGROUND_COLOR__ERROR = "Wrong background color";
 
+    private static final String EXPECTED_GREY_COLOR = "rgba(169, 169, 169, 1)";
     private static final String FRAMES_URL = "frames";
     private FramesPage framesPage;
 
@@ -30,12 +32,14 @@ public class FramesPageTests extends BaseTest {
     public void verifyAllTextOnPage() {
         // Arrange & Act
         String actualHeadingText = framesPage.getFramesHeadingText();
-        String actualText = framesPage.getFirstFrame();
+        String actualPageDescriptionText = framesPage.getFirstFrame();
         String actualFirstIFrameHeadingText = framesPage.getHeadingTextInFirstIframe();
+        String actualFirstIFrameBackgroundColor = framesPage.getFirstIFrameBackgroundColor();
 
         // Assert
         softAssert.assertEquals(actualHeadingText, PAGE_HEADING, PAGE_HEADING_ERROR);
-        softAssert.assertEquals(actualText, PAGE_DESCRIPTION, PAGE_DESCRIPTION_ERROR);
+        softAssert.assertEquals(actualPageDescriptionText, PAGE_DESCRIPTION, PAGE_DESCRIPTION_ERROR);
+        softAssert.assertEquals(actualFirstIFrameBackgroundColor, EXPECTED_GREY_COLOR, BACKGROUND_COLOR__ERROR);
         softAssert.assertEquals(actualFirstIFrameHeadingText, IFRAME_HEADING, FIRST_IFRAME_HEADING_ERROR);
         softAssert.assertAll();
     }
@@ -44,8 +48,10 @@ public class FramesPageTests extends BaseTest {
     public void verifyHeadingTextInSecondIframe() {
         // Arrange & Act
         String actualSecondIFrameHeadingText = framesPage.getHeadingTextInSecondIframe();
+        String actualSecondIFrameBackgroundColor = framesPage.getSecondIFrameBackgroundColor();
 
         // Assert
+        softAssert.assertEquals(actualSecondIFrameBackgroundColor, EXPECTED_GREY_COLOR, BACKGROUND_COLOR__ERROR);
         softAssert.assertEquals(actualSecondIFrameHeadingText, IFRAME_HEADING, SECOND_IFRAME_HEADING_ERROR);
         softAssert.assertAll();
     }

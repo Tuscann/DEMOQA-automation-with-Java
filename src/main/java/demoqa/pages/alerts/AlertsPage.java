@@ -123,4 +123,12 @@ public class AlertsPage extends BasePage {
     public String getFourButtonText() {
         return promptAlertButton.getText();
     }
+
+    public String getConfirmationResultBackgroundColor() {
+        return confirmationResult.getCssValue("color");
+    }
+
+    public String getPromptResultBackgroundColor() {
+        return promptResult.getFirst().getCssValue("color");
+    }
 }

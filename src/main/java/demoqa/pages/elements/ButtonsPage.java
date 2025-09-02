@@ -6,11 +6,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import utilities.JavaScriptUtility;
-
-import java.time.Duration;
 
 public class ButtonsPage extends BasePage {
 
@@ -29,12 +24,9 @@ public class ButtonsPage extends BasePage {
     @FindBy(id = "dynamicClickMessage")
     WebElement clickMeButtonMessage;
 
-    private final JavaScriptUtility javaScriptUtility;
-
     public ButtonsPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
-        this.javaScriptUtility = new JavaScriptUtility(driver);
     }
 
     public String getDoubleButtonText() {
@@ -82,26 +74,15 @@ public class ButtonsPage extends BasePage {
     }
 
     public void doubleClickOnButton() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(6));
-        wait.until(ExpectedConditions.visibilityOf(doubleClickMeButton));
-
         Actions actions = new Actions(driver);
         actions.doubleClick(doubleClickMeButton).perform();
     }
 
     public String getDoubleClickMessage() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(6));
-        wait.until(ExpectedConditions.visibilityOf(doubleClickMeButton));
-
-        javaScriptUtility.scrollToElementJS(doubleClickMessage);
         return doubleClickMessage.getText();
     }
 
     public String getRightClickMessage() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(6));
-        wait.until(ExpectedConditions.visibilityOf(rightClickMessage));
-
-        javaScriptUtility.scrollToElementJS(rightClickMessage);
         return rightClickMessage.getText();
     }
 
@@ -111,10 +92,6 @@ public class ButtonsPage extends BasePage {
     }
 
     public void clickOnClickMeButton() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(6));
-        wait.until(ExpectedConditions.visibilityOf(clickMeButton));
-
-        javaScriptUtility.scrollToElementJS(clickMeButton);
         clickMeButton.click();
     }
 }

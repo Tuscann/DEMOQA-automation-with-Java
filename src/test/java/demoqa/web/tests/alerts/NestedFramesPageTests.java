@@ -29,25 +29,17 @@ public class NestedFramesPageTests extends BaseTest {
         nestedFramesPage = new NestedFramesPage(driver);
     }
 
-    @Test(enabled = true, description = "Verify all text on page")
-    public void verifyAllTextOnPage() {
+    @Test(enabled = true, description = "Verify all text on page and heading text in parent Iframe")
+    public void verifyHeadingTextInParentIframe() {
         // Arrange & Act
         String actualMainText = nestedFramesPage.getMainText();
         String actualHeadingText = nestedFramesPage.getHeadingText();
-
-        // Assert
-        softAssert.assertEquals(actualHeadingText, PAGE_HEADING_TEXT, HEADING_MISMATCH_ERROR);
-        softAssert.assertEquals(actualMainText, MAIN_DESCRIPTION_TEXT, MAIN_TEXT_MISMATCH_ERROR);
-        softAssert.assertAll();
-    }
-
-    @Test(enabled = true, description = "Verify heading text in parent Iframe")
-    public void verifyHeadingTextInParentIframe() {
-        // Arrange & Act
         nestedFramesPage.selectParentIframe();
         String actualParentText = nestedFramesPage.getParentIframeText();
 
         // Assert
+        softAssert.assertEquals(actualHeadingText, PAGE_HEADING_TEXT, HEADING_MISMATCH_ERROR);
+        softAssert.assertEquals(actualMainText, MAIN_DESCRIPTION_TEXT, MAIN_TEXT_MISMATCH_ERROR);
         softAssert.assertEquals(actualParentText, PARENT_FRAME_TEXT, PARENT_FRAME_TEXT_ERROR);
         softAssert.assertAll();
     }

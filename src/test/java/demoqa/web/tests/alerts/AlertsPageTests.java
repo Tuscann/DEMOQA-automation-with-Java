@@ -25,6 +25,7 @@ public class AlertsPageTests extends BaseTest {
 
     // Color Constants
     private static final String EXPECTED_BLUE_COLOR = "rgba(0, 123, 255, 1)";
+    private static final String EXPECTED_GREEN_COLOR = "rgba(40, 167, 69, 1)";
 
     // Prompt Alert Constants
     private static final String PROMPT_INPUT_TEXT = "Selenium With Java";
@@ -80,7 +81,7 @@ public class AlertsPageTests extends BaseTest {
     }
 
     @Test(enabled = true, description = "Verify text of Information alert")
-    public void verifyPromptAlertWithTextInputAndAccept() {
+    public void verifyPromptAlertWithTextInput() {
         // Arrange & Act
         alertsPage.clickInformationAlertButton();
         String actualAlertMessage = switchToUtility.getAlertText();
@@ -106,8 +107,10 @@ public class AlertsPageTests extends BaseTest {
         // Arrange & Act
         alertsPage.clickConfirmationAlertButton();
         switchToUtility.dismissAlert();
+        String resultBackgroundColor = alertsPage.getConfirmationResultBackgroundColor();
 
         // Assert
+        softAssert.assertEquals(resultBackgroundColor, EXPECTED_GREEN_COLOR, CLICK_ME_BUTTON_COLOR_ERROR);
         softAssert.assertEquals(alertsPage.getConfirmationResult(), CANCEL_RESULT, CANCEL_SELECTION_ERROR);
         softAssert.assertAll();
     }
@@ -117,22 +120,11 @@ public class AlertsPageTests extends BaseTest {
         // Arrange & Act
         alertsPage.clickConfirmationAlertButton();
         switchToUtility.acceptAlert();
+        String resultBackgroundColor = alertsPage.getConfirmationResultBackgroundColor();
 
         // Assert
+        softAssert.assertEquals(resultBackgroundColor, EXPECTED_GREEN_COLOR, CLICK_ME_BUTTON_COLOR_ERROR);
         softAssert.assertEquals(alertsPage.getConfirmationResult(), OK_RESULT, OK_SELECTION_ERROR);
-        softAssert.assertAll();
-    }
-
-    @Test(enabled = true, description = "Verify text of message after of prompt alert")
-    public void verifyTextOfPromptAlertAccept() {
-        // Arrange & Act
-        alertsPage.clickPromptAlertButton();
-        switchToUtility.setAlertText(PROMPT_INPUT_TEXT);
-        switchToUtility.acceptAlert();
-        String actualResult = alertsPage.getPromptAlertResult();
-
-        // Assert
-        softAssert.assertEquals(actualResult, PROMPT_RESULT_PREFIX + PROMPT_INPUT_TEXT, PROMPT_RESULT_MISMATCH_ERROR);
         softAssert.assertAll();
     }
 
@@ -157,6 +149,21 @@ public class AlertsPageTests extends BaseTest {
 
         // Assert
         softAssert.assertTrue(isResultMissing, ALERT_RESULT_VISIBILITY_ERROR);
+        softAssert.assertAll();
+    }
+
+    @Test(enabled = true, description = "Verify text of message after of prompt alert")
+    public void verifyTextOfPromptAlertAccept() {
+        // Arrange & Act
+        alertsPage.clickPromptAlertButton();
+        switchToUtility.setAlertText(PROMPT_INPUT_TEXT);
+        switchToUtility.acceptAlert();
+        String actualResult = alertsPage.getPromptAlertResult();
+        String promptResultBackgroundColor = alertsPage.getPromptResultBackgroundColor();
+
+        // Assert
+        softAssert.assertEquals(promptResultBackgroundColor, EXPECTED_GREEN_COLOR, CLICK_ME_BUTTON_COLOR_ERROR);
+        softAssert.assertEquals(actualResult, PROMPT_RESULT_PREFIX + PROMPT_INPUT_TEXT, PROMPT_RESULT_MISMATCH_ERROR);
         softAssert.assertAll();
     }
 }

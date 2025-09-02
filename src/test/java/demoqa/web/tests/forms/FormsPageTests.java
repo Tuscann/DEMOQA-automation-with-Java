@@ -23,16 +23,10 @@ public class FormsPageTests extends BaseTest {
         formsPage = new FormsPage(driver);
     }
 
-    @Test(enabled = true, description = "Verify all text on page")
-    public void checkAllTextOnPage() {
-        // Arrange & Act & Assert
-        softAssert.assertEquals(formsPage.getText(), EMPTY_STATE_MESSAGE, EMPTY_STATE_ERROR);
-        softAssert.assertAll();
-    }
-
     @Test(enabled = true, description = "Verify practice form link")
-    public void verifyPracticeFormLink() {
+    public void verifyPracticeFormLinkAndAllTextOnPage() {
         // Arrange & Act
+        softAssert.assertEquals(formsPage.getText(), EMPTY_STATE_MESSAGE, EMPTY_STATE_ERROR);
         formsPage.clickPracticeFormLink();
         String actualUrl = formsPage.checkCurrentUrl();
         formsPage.clickTopImage();

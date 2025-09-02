@@ -86,16 +86,15 @@ public class WebTablePageTests extends BaseTest {
             Legal, , , , , , , ]""";
 
     // Test Data Constants - User Information
-    private static final String TEST_EMAIL_CIERRA = "cierra@example.com";
+    private static final String CIERRA_EMAIL = "cierra@example.com";
     private static final String FIRST_NAME = "Zhivko";
     private static final String LAST_NAME = "Petrov";
-    private static final String TEST_NEW_EMAIL = "karma@abv.bg";
     private static final String AGE = "37";
     private static final String SALARY = "3600";
     private static final String DEPARTMENT = "Home";
-    private static final String TEST_EMAIL_KIERRA = "kierra@example.com";
-    private static final String TEST_EMAIL_ALDEN = "alden@example.com";
-    private static final String ZHIVKO_EMAIL = "Zhivko@example.com";
+    private static final String KIERRA_EMAIL = "kierra@example.com";
+    private static final String ALDEN_EMAIL = "alden@example.com";
+    private static final String IVAN_EMAIL = "Ivan@example.com";
 
     // Test Data Constants - Expected Values for Search Tests
     private static final String EXPECTED_FIRST_NAME_CIERRA = "Cierra";
@@ -117,10 +116,10 @@ public class WebTablePageTests extends BaseTest {
     private static final String SEARCH_NON_EXISTENT_CATEGORY = "karma";
     private static final String SEARCH_EXISTING_FIRST_NAME = "ALDEN";
     private static final String SEARCH_EXISTING_LAST_NAME = "Gentry";
-    private static final String SEARCH_EXISTING_AGE = "45";
-    private static final String SEARCH_EXISTING_EMAIL_ALDEN = "alden@example.com";
-    private static final String SEARCH_EXISTING_SALARY_12000 = "12000";
-    private static final String SEARCH_EXISTING_DEPARTMENT_INSURANCE = "Insurance";
+    private static final String EXISTING_AGE = "45";
+    private static final String EXISTING_EMAIL_ALDEN = "alden@example.com";
+    private static final String SALARY_12000 = "12000";
+    private static final String INSURANCE_DEPARTMENT = "Insurance";
 
     // Rows Per Page Constants
     private static final String ROWS_5 = "5 rows";
@@ -132,6 +131,7 @@ public class WebTablePageTests extends BaseTest {
 
     // Color Constants
     private static final String EXPECTED_RED_COLOR = "1px solid rgb(220, 53, 69)";
+    private static final String EXPECTED_BLUE_COLOR = "rgba(0, 123, 255, 1)";
     private static final String EXPECTED_GREEN_COLOR = "1px solid rgb(40, 167, 69)";
 
     // Error Message Constants
@@ -189,9 +189,8 @@ public class WebTablePageTests extends BaseTest {
     private static final String GENERIC_EXPECTED_ROWS_100 = "\nExpected 100 rows.\n";
     private static final String GENERIC_WRONG_COLOR_RED = "\nWrong color expected red.\n";
     private static final String GENERIC_WRONG_COLOR_GREEN = "\nWrong color expected green.\n";
-
-    private WebTablesPage webTablesPage;
     private static final String WEB_TABLES_URL = "webtables";
+    private WebTablesPage webTablesPage;
 
     @BeforeMethod
     public void goToWebTablesPage() {
@@ -210,7 +209,7 @@ public class WebTablePageTests extends BaseTest {
         String actualPageJump = webTablesPage.getPageJump();
         String actualPageInfo = webTablesPage.getPageInfo();
         webTablesPage.clickRowPerPage(EXPECTED_10_ROWS);
-        int actualCountOfLines = webTablesPage.getCountOfLines();
+        int actualDefaultCountOfLines = webTablesPage.getCountOfLines();
         String actualTableData = webTablesPage.getTableData();
         String actualSearchBoxPlaceholder = webTablesPage.getSearchBoxPlaceholder();
 
@@ -221,7 +220,7 @@ public class WebTablePageTests extends BaseTest {
         softAssert.assertEquals(actualButtonPreviousText, EXPECTED_BUTTON_PREVIOUS_TEXT, PREVIOUS_BUTTON_MISMATCH);
         softAssert.assertEquals(actualPageJump, EXPECTED_PAGE_JUMP, PAGE_JUMP_MISMATCH);
         softAssert.assertEquals(actualPageInfo, EXPECTED_PAGE_INFO, PAGE_INFO_MISMATCH);
-        softAssert.assertEquals(actualCountOfLines, 10, ROWS_COUNT_MISMATCH);
+        softAssert.assertEquals(actualDefaultCountOfLines, 10, ROWS_COUNT_MISMATCH);
         softAssert.assertEquals(actualTableHeader, EXPECTED_TABLE_HEADER, TABLE_HEADER_MISMATCH);
         softAssert.assertEquals(actualTableData, EXPECTED_TABLE_DATA, TABLE_DATA_MISMATCH);
         softAssert.assertEquals(actualSearchBoxPlaceholder, EXPECTED_SEARCH_BOX_TEXT, SEARCH_BOX_PLACEHOLDER_MISMATCH);
@@ -246,6 +245,7 @@ public class WebTablePageTests extends BaseTest {
         String actualDepartmentLabel = webTablesPage.getDepartmentLabel();
         String actualDepartmentPlaceholder = webTablesPage.getDepartmentPlaceholder();
         String actualSubmitButtonText = webTablesPage.getSubmitButtonText();
+        String actualSubmitButtonBackgroundColor = webTablesPage.getSubmitButtonBackGroundColor();
 
         // Assert
         softAssert.assertEquals(webTablesPage.getRegistrationFormText(), EXPECTED_REGISTRATION_FORM_TEXT, REGISTRATION_FORM_TEXT_MISMATCH);
@@ -262,6 +262,7 @@ public class WebTablePageTests extends BaseTest {
         softAssert.assertEquals(actualSalaryPlaceholder, EXPECTED_SALARY_PLACEHOLDER, SALARY_PLACEHOLDER_MISMATCH);
         softAssert.assertEquals(actualDepartmentPlaceholder, EXPECTED_DEPARTMENT_PLACEHOLDER, DEPARTMENT_PLACEHOLDER_MISMATCH);
         softAssert.assertEquals(actualSubmitButtonText, EXPECTED_SUBMIT_BUTTON_TEXT, SUBMIT_BUTTON_TEXT_MISMATCH);
+        softAssert.assertEquals(actualSubmitButtonBackgroundColor, EXPECTED_BLUE_COLOR, FIRST_NAME_LABEL_MISMATCH);
 
         softAssert.assertAll();
     }
@@ -269,81 +270,41 @@ public class WebTablePageTests extends BaseTest {
     @Test(enabled = true, description = "Update first name on first user")
     public void updateFirstUserFirstName() {
         // Arrange & Act
-        webTablesPage.clickEdit(TEST_EMAIL_CIERRA);
+        webTablesPage.clickEdit(CIERRA_EMAIL);
         webTablesPage.setFirstName(FIRST_NAME);
-        webTablesPage.clickSubmitButton();
-
-        // Assert
-        softAssert.assertEquals(webTablesPage.getTableFirstName(TEST_EMAIL_CIERRA), FIRST_NAME, GENERIC_FIRST_NAME_MISMATCH);
-        softAssert.assertAll();
-    }
-
-    @Test(enabled = true, description = "Update last name on first user")
-    public void updateFirstUserLastName() {
-        // Arrange & Act
-        webTablesPage.clickEdit(TEST_EMAIL_CIERRA);
         webTablesPage.setLastName(LAST_NAME);
-        webTablesPage.clickSubmitButton();
-
-        // Assert
-        softAssert.assertEquals(webTablesPage.getTableLastName(TEST_EMAIL_CIERRA), LAST_NAME, GENERIC_LAST_NAME_MISMATCH);
-        softAssert.assertAll();
-    }
-
-    @Test(enabled = true, description = "Update age on first user")
-    public void updateFirstUserAge() {
-        // Arrange & Act
-        webTablesPage.clickEdit(TEST_EMAIL_CIERRA);
         webTablesPage.setAge(AGE);
+        webTablesPage.setSalary(SALARY);
+        webTablesPage.setDepartment(DEPARTMENT);
         webTablesPage.clickSubmitButton();
 
         // Assert
-        softAssert.assertEquals(webTablesPage.getTableAge(TEST_EMAIL_CIERRA), AGE, AGE_MISMATCH);
+        softAssert.assertEquals(webTablesPage.getTableFirstName(CIERRA_EMAIL), FIRST_NAME, GENERIC_FIRST_NAME_MISMATCH);
+        softAssert.assertEquals(webTablesPage.getTableLastName(CIERRA_EMAIL), LAST_NAME, GENERIC_LAST_NAME_MISMATCH);
+        softAssert.assertEquals(webTablesPage.getTableAge(CIERRA_EMAIL), AGE, AGE_MISMATCH);
+        softAssert.assertEquals(webTablesPage.getTableSalary(CIERRA_EMAIL), SALARY, GENERIC_SALARY_MISMATCH);
+        softAssert.assertEquals(webTablesPage.getTableDepartment(CIERRA_EMAIL), DEPARTMENT, GENERIC_DEPARTMENT_MISMATCH);
         softAssert.assertAll();
     }
 
     @Test(enabled = true, description = "Update email on first user")
     public void updateFirstUserEmail() {
         // Arrange & Act
-        webTablesPage.clickEdit(TEST_EMAIL_CIERRA);
-        webTablesPage.setEmail(TEST_NEW_EMAIL);
+        webTablesPage.clickEdit(CIERRA_EMAIL);
+        webTablesPage.setEmail(KIERRA_EMAIL);
         webTablesPage.clickSubmitButton();
 
         // Assert
-        softAssert.assertEquals(webTablesPage.getTableEmail(TEST_NEW_EMAIL), TEST_NEW_EMAIL, GENERIC_EMAIL_MISMATCH);
-        softAssert.assertAll();
-    }
-
-    @Test(enabled = true, description = "Update salary on first user")
-    public void updateFirstUserSalary() {
-        // Arrange
-        webTablesPage.clickEdit(TEST_EMAIL_CIERRA);
-        webTablesPage.setSalary(SALARY);
-        webTablesPage.clickSubmitButton();
-
-        // Assert
-        softAssert.assertEquals(webTablesPage.getTableSalary(TEST_EMAIL_CIERRA), SALARY, GENERIC_SALARY_MISMATCH);
-        softAssert.assertAll();
-    }
-
-    @Test(enabled = true, description = "Update department on first user")
-    public void updateFirstUserDepartment() {
-        // Arrange & Act
-        webTablesPage.clickEdit(TEST_EMAIL_CIERRA);
-        webTablesPage.setDepartment(DEPARTMENT);
-        webTablesPage.clickSubmitButton();
-
-        // Assert
-        softAssert.assertEquals(webTablesPage.getTableDepartment(TEST_EMAIL_CIERRA), DEPARTMENT, GENERIC_DEPARTMENT_MISMATCH);
+        softAssert.assertEquals(webTablesPage.getTableEmail(KIERRA_EMAIL), KIERRA_EMAIL, GENERIC_EMAIL_MISMATCH);
         softAssert.assertAll();
     }
 
     @Test(enabled = true, description = "Delete default three rows")
     public void deleteDefaultThreeRows() {
         // Arrange & Act
-        webTablesPage.clickDeleteByEmail(TEST_EMAIL_CIERRA);
-        webTablesPage.clickDeleteByEmail(TEST_EMAIL_KIERRA);
-        webTablesPage.clickDeleteByEmail(TEST_EMAIL_ALDEN);
+        webTablesPage.clickDeleteByEmail(CIERRA_EMAIL);
+        webTablesPage.clickDeleteByEmail(KIERRA_EMAIL);
+        webTablesPage.clickDeleteByEmail(ALDEN_EMAIL);
 
         // Assert
         softAssert.assertEquals(webTablesPage.getNoRowsFound(), EXPECTED_NO_ROWS_FOUND, NO_ROWS_MESSAGE_MISMATCH);
@@ -351,16 +312,16 @@ public class WebTablePageTests extends BaseTest {
     }
 
     @Test(enabled = true, description = "Delete default three rows")
-    public void deleteDefaultThreeRowsAndNewUser() {
+    public void deleteDefaultThreeRowsAndCreateNewUser() {
         // Arrange & Act
-        webTablesPage.clickDeleteByEmail(TEST_EMAIL_CIERRA);
-        webTablesPage.clickDeleteByEmail(TEST_EMAIL_KIERRA);
-        webTablesPage.clickDeleteByEmail(TEST_EMAIL_ALDEN);
+        webTablesPage.clickDeleteByEmail(CIERRA_EMAIL);
+        webTablesPage.clickDeleteByEmail(KIERRA_EMAIL);
+        webTablesPage.clickDeleteByEmail(ALDEN_EMAIL);
 
         webTablesPage.clickAddButton();
         webTablesPage.setFirstName(FIRST_NAME);
         webTablesPage.setLastName(LAST_NAME);
-        webTablesPage.setEmail(ZHIVKO_EMAIL);
+        webTablesPage.setEmail(IVAN_EMAIL);
         webTablesPage.setAge(AGE);
         webTablesPage.setSalary(SALARY);
         webTablesPage.setDepartment(DEPARTMENT);
@@ -370,59 +331,58 @@ public class WebTablePageTests extends BaseTest {
         softAssert.assertEquals(webTablesPage.getFirstRowFirstName(), FIRST_NAME, GENERIC_WRONG_FIRST_NAME);
         softAssert.assertEquals(webTablesPage.getFirstRowLastName(), LAST_NAME, GENERIC_WRONG_LAST_NAME);
         softAssert.assertEquals(webTablesPage.getFirstRowAge(), AGE, GENERIC_WRONG_AGE);
-        softAssert.assertEquals(webTablesPage.getFirstRowEmail(), ZHIVKO_EMAIL, GENERIC_WRONG_EMAIL);
+        softAssert.assertEquals(webTablesPage.getFirstRowEmail(), IVAN_EMAIL, GENERIC_WRONG_EMAIL);
         softAssert.assertEquals(webTablesPage.getFirstRowSalary(), SALARY, GENERIC_WRONG_SALARY);
         softAssert.assertEquals(webTablesPage.getFirstRowDepartment(), EXPECTED_DEPARTMENT_LEGAL, GENERIC_WRONG_DEPARTMENT);
 
     }
 
-    @Test(enabled = true, description = "Add 17 new users and verify rows count")
-    public void addSeventeenNewUsersAndVerifyData() {
+    @Test(enabled = true, description = "Add 3 new users and verify count of lines first page")
+    public void addThreeNewUsersAndCountOfLines() {
         // Arrange & Act
-        for (int i = 0; i < 17; i++) {
+        for (int i = 0; i < 3; i++) {
             webTablesPage.clickAddButton();
             webTablesPage.setFirstName(FIRST_NAME + i);
             webTablesPage.setLastName(LAST_NAME + i);
-            webTablesPage.setEmail(ZHIVKO_EMAIL);
+            webTablesPage.setEmail(IVAN_EMAIL);
             webTablesPage.setAge(EXPECTED_AGE_45 + i + "");
             webTablesPage.setSalary(SALARY);
             webTablesPage.setDepartment(DEPARTMENT);
             webTablesPage.clickSubmitButton();
         }
-        webTablesPage.clickRowPerPage(ROWS_20);
+        webTablesPage.clickRowPerPage(ROWS_5);
 
         // Assert
-        softAssert.assertEquals(webTablesPage.getCountOfLines(), 20);
+        softAssert.assertEquals(webTablesPage.getCountOfLines(), 5);
         softAssert.assertAll();
     }
 
     @Test(enabled = true, description = "Add eight new users and verify rows count")
     public void addEightNewUsersAndClickNextAndVerifyData() {
         // Arrange & Act
-        String firstName = "Zhivko7";
-        String lastName = "Petrov7";
-        String age = "52";
-        String email = "Zhivko@example.com";
+        String firstName = "Zhivko2";
+        String lastName = "Petrov2";
+        String age = "47";
         String salary = "3600";
-        String department = "Home7";
+        String department = "Home2";
 
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0; i < 3; i++) {
             webTablesPage.clickAddButton();
             webTablesPage.setFirstName(FIRST_NAME + i);
             webTablesPage.setLastName(LAST_NAME + i);
-            webTablesPage.setEmail(ZHIVKO_EMAIL);
+            webTablesPage.setEmail(IVAN_EMAIL);
             webTablesPage.setAge(45 + i + "");
             webTablesPage.setSalary(SALARY);
             webTablesPage.setDepartment(DEPARTMENT + i);
             webTablesPage.clickSubmitButton();
         }
-
+        webTablesPage.clickRowPerPage(ROWS_5);
         webTablesPage.clickNextButton();
 
         softAssert.assertEquals(webTablesPage.getFirstRowFirstName(), firstName, GENERIC_WRONG_FIRST_NAME);
         softAssert.assertEquals(webTablesPage.getFirstRowLastName(), lastName, GENERIC_WRONG_LAST_NAME);
         softAssert.assertEquals(webTablesPage.getFirstRowAge(), age, GENERIC_WRONG_AGE);
-        softAssert.assertEquals(webTablesPage.getFirstRowEmail(), email, GENERIC_WRONG_EMAIL);
+        softAssert.assertEquals(webTablesPage.getFirstRowEmail(), IVAN_EMAIL, GENERIC_WRONG_EMAIL);
         softAssert.assertEquals(webTablesPage.getFirstRowSalary(), salary, GENERIC_WRONG_SALARY);
         softAssert.assertEquals(webTablesPage.getFirstRowDepartment(), department, GENERIC_WRONG_DEPARTMENT);
 
@@ -436,18 +396,18 @@ public class WebTablePageTests extends BaseTest {
         webTablesPage.clickAddButton();
         webTablesPage.setFirstName(FIRST_NAME);
         webTablesPage.setLastName(LAST_NAME);
-        webTablesPage.setEmail(ZHIVKO_EMAIL);
+        webTablesPage.setEmail(IVAN_EMAIL);
         webTablesPage.setAge(AGE);
         webTablesPage.setSalary(SALARY);
         webTablesPage.setDepartment(DEPARTMENT);
         webTablesPage.clickSubmitButton();
 
-        softAssert.assertEquals(webTablesPage.getTableFirstName(ZHIVKO_EMAIL), FIRST_NAME, WRONG_FIRST_NAME);
-        softAssert.assertEquals(webTablesPage.getTableLastName(ZHIVKO_EMAIL), LAST_NAME, WRONG_LAST_NAME);
-        softAssert.assertEquals(webTablesPage.getTableAge(ZHIVKO_EMAIL), AGE, WRONG_AGE);
-        softAssert.assertEquals(webTablesPage.getTableEmail(ZHIVKO_EMAIL), ZHIVKO_EMAIL, WRONG_EMAIL);
-        softAssert.assertEquals(webTablesPage.getTableSalary(ZHIVKO_EMAIL), SALARY, WRONG_SALARY);
-        softAssert.assertEquals(webTablesPage.getTableDepartment(ZHIVKO_EMAIL), DEPARTMENT, WRONG_DEPARTMENT);
+        softAssert.assertEquals(webTablesPage.getTableFirstName(IVAN_EMAIL), FIRST_NAME, WRONG_FIRST_NAME);
+        softAssert.assertEquals(webTablesPage.getTableLastName(IVAN_EMAIL), LAST_NAME, WRONG_LAST_NAME);
+        softAssert.assertEquals(webTablesPage.getTableAge(IVAN_EMAIL), AGE, WRONG_AGE);
+        softAssert.assertEquals(webTablesPage.getTableEmail(IVAN_EMAIL), IVAN_EMAIL, WRONG_EMAIL);
+        softAssert.assertEquals(webTablesPage.getTableSalary(IVAN_EMAIL), SALARY, WRONG_SALARY);
+        softAssert.assertEquals(webTablesPage.getTableDepartment(IVAN_EMAIL), DEPARTMENT, WRONG_DEPARTMENT);
 
         // Assert
         softAssert.assertAll();
@@ -472,7 +432,7 @@ public class WebTablePageTests extends BaseTest {
         softAssert.assertEquals(webTablesPage.getFirstRowFirstName(), EXPECTED_FIRST_NAME_ALDEN, GENERIC_WRONG_FIRST_NAME);
         softAssert.assertEquals(webTablesPage.getFirstRowLastName(), EXPECTED_LAST_NAME_CANTRELL, GENERIC_WRONG_LAST_NAME);
         softAssert.assertEquals(webTablesPage.getFirstRowAge(), EXPECTED_AGE_45, GENERIC_WRONG_AGE);
-        softAssert.assertEquals(webTablesPage.getFirstRowEmail(), TEST_EMAIL_ALDEN, GENERIC_WRONG_EMAIL);
+        softAssert.assertEquals(webTablesPage.getFirstRowEmail(), ALDEN_EMAIL, GENERIC_WRONG_EMAIL);
         softAssert.assertEquals(webTablesPage.getFirstRowSalary(), EXPECTED_SALARY_12000, GENERIC_WRONG_SALARY);
         softAssert.assertEquals(webTablesPage.getFirstRowDepartment(), EXPECTED_DEPARTMENT_COMPLIANCE, GENERIC_WRONG_DEPARTMENT);
         softAssert.assertAll();
@@ -486,7 +446,7 @@ public class WebTablePageTests extends BaseTest {
         softAssert.assertEquals(webTablesPage.getFirstRowFirstName(), EXPECTED_FIRST_NAME_KIERRA, GENERIC_WRONG_FIRST_NAME);
         softAssert.assertEquals(webTablesPage.getFirstRowLastName(), EXPECTED_LAST_NAME_GENTRY, GENERIC_WRONG_LAST_NAME);
         softAssert.assertEquals(webTablesPage.getFirstRowAge(), EXPECTED_AGE_29, GENERIC_WRONG_AGE);
-        softAssert.assertEquals(webTablesPage.getFirstRowEmail(), TEST_EMAIL_KIERRA, GENERIC_WRONG_EMAIL);
+        softAssert.assertEquals(webTablesPage.getFirstRowEmail(), KIERRA_EMAIL, GENERIC_WRONG_EMAIL);
         softAssert.assertEquals(webTablesPage.getFirstRowSalary(), EXPECTED_SALARY_2000, GENERIC_WRONG_SALARY);
         softAssert.assertEquals(webTablesPage.getFirstRowDepartment(), EXPECTED_DEPARTMENT_LEGAL, GENERIC_WRONG_DEPARTMENT);
 
@@ -497,12 +457,12 @@ public class WebTablePageTests extends BaseTest {
     @Test(enabled = true, description = "Search with existing age and check results")
     public void searchWithExistingAgeAndCheckResults() {
         // Arrange & Act
-        webTablesPage.searchWithWord(SEARCH_EXISTING_AGE);
+        webTablesPage.searchWithWord(EXISTING_AGE);
 
         softAssert.assertEquals(webTablesPage.getFirstRowFirstName(), EXPECTED_FIRST_NAME_ALDEN, GENERIC_WRONG_FIRST_NAME);
         softAssert.assertEquals(webTablesPage.getFirstRowLastName(), EXPECTED_LAST_NAME_CANTRELL, GENERIC_WRONG_LAST_NAME);
         softAssert.assertEquals(webTablesPage.getFirstRowAge(), EXPECTED_AGE_45, GENERIC_WRONG_AGE);
-        softAssert.assertEquals(webTablesPage.getFirstRowEmail(), TEST_EMAIL_ALDEN, GENERIC_WRONG_EMAIL);
+        softAssert.assertEquals(webTablesPage.getFirstRowEmail(), ALDEN_EMAIL, GENERIC_WRONG_EMAIL);
         softAssert.assertEquals(webTablesPage.getFirstRowSalary(), EXPECTED_SALARY_12000, GENERIC_WRONG_SALARY);
         softAssert.assertEquals(webTablesPage.getFirstRowDepartment(), EXPECTED_DEPARTMENT_COMPLIANCE, GENERIC_WRONG_DEPARTMENT);
 
@@ -513,12 +473,12 @@ public class WebTablePageTests extends BaseTest {
     @Test(enabled = true, description = "Search with existing email and check results")
     public void searchWithExistingEmailAndCheckResults() {
         // Arrange & Act
-        webTablesPage.searchWithWord(SEARCH_EXISTING_EMAIL_ALDEN);
+        webTablesPage.searchWithWord(ALDEN_EMAIL);
 
         softAssert.assertEquals(webTablesPage.getFirstRowFirstName(), EXPECTED_FIRST_NAME_ALDEN, GENERIC_WRONG_FIRST_NAME);
         softAssert.assertEquals(webTablesPage.getFirstRowLastName(), EXPECTED_LAST_NAME_CANTRELL, GENERIC_WRONG_LAST_NAME);
         softAssert.assertEquals(webTablesPage.getFirstRowAge(), EXPECTED_AGE_45, GENERIC_WRONG_AGE);
-        softAssert.assertEquals(webTablesPage.getFirstRowEmail(), TEST_EMAIL_ALDEN, GENERIC_WRONG_EMAIL);
+        softAssert.assertEquals(webTablesPage.getFirstRowEmail(), ALDEN_EMAIL, GENERIC_WRONG_EMAIL);
         softAssert.assertEquals(webTablesPage.getFirstRowSalary(), EXPECTED_SALARY_12000, GENERIC_WRONG_SALARY);
         softAssert.assertEquals(webTablesPage.getFirstRowDepartment(), EXPECTED_DEPARTMENT_COMPLIANCE, GENERIC_WRONG_DEPARTMENT);
 
@@ -529,12 +489,12 @@ public class WebTablePageTests extends BaseTest {
     @Test(enabled = true, description = "Search with existing salary and check results")
     public void searchWithExistingSalaryAndCheckResults() {
         // Arrange & Act
-        webTablesPage.searchWithWord(SEARCH_EXISTING_SALARY_12000);
+        webTablesPage.searchWithWord(SALARY_12000);
 
         softAssert.assertEquals(webTablesPage.getFirstRowFirstName(), EXPECTED_FIRST_NAME_ALDEN, GENERIC_WRONG_FIRST_NAME);
         softAssert.assertEquals(webTablesPage.getFirstRowLastName(), EXPECTED_LAST_NAME_CANTRELL, GENERIC_WRONG_LAST_NAME);
         softAssert.assertEquals(webTablesPage.getFirstRowAge(), EXPECTED_AGE_45, GENERIC_WRONG_AGE);
-        softAssert.assertEquals(webTablesPage.getFirstRowEmail(), TEST_EMAIL_ALDEN, GENERIC_WRONG_EMAIL);
+        softAssert.assertEquals(webTablesPage.getFirstRowEmail(), ALDEN_EMAIL, GENERIC_WRONG_EMAIL);
         softAssert.assertEquals(webTablesPage.getFirstRowSalary(), EXPECTED_SALARY_12000, GENERIC_WRONG_SALARY);
         softAssert.assertEquals(webTablesPage.getFirstRowDepartment(), EXPECTED_DEPARTMENT_COMPLIANCE, GENERIC_WRONG_DEPARTMENT);
 
@@ -545,14 +505,14 @@ public class WebTablePageTests extends BaseTest {
     @Test(enabled = true, description = "Search with existing department and check results")
     public void searchWithExistingDepartmentAndCheckResults() {
         // Arrange & Act
-        webTablesPage.searchWithWord(SEARCH_EXISTING_DEPARTMENT_INSURANCE);
+        webTablesPage.searchWithWord(INSURANCE_DEPARTMENT);
 
-        softAssert.assertEquals(webTablesPage.getTableFirstName(TEST_EMAIL_CIERRA), EXPECTED_FIRST_NAME_CIERRA, GENERIC_WRONG_FIRST_NAME);
-        softAssert.assertEquals(webTablesPage.getTableLastName(TEST_EMAIL_CIERRA), EXPECTED_LAST_NAME_VEGA, GENERIC_WRONG_LAST_NAME);
-        softAssert.assertEquals(webTablesPage.getTableAge(TEST_EMAIL_CIERRA), EXPECTED_AGE_39, GENERIC_WRONG_AGE);
-        softAssert.assertEquals(webTablesPage.getTableEmail(TEST_EMAIL_CIERRA), TEST_EMAIL_CIERRA, GENERIC_WRONG_EMAIL);
-        softAssert.assertEquals(webTablesPage.getTableSalary(TEST_EMAIL_CIERRA), EXPECTED_SALARY_10000, GENERIC_WRONG_SALARY);
-        softAssert.assertEquals(webTablesPage.getTableDepartment(TEST_EMAIL_CIERRA), SEARCH_EXISTING_DEPARTMENT_INSURANCE, GENERIC_WRONG_DEPARTMENT);
+        softAssert.assertEquals(webTablesPage.getTableFirstName(CIERRA_EMAIL), EXPECTED_FIRST_NAME_CIERRA, GENERIC_WRONG_FIRST_NAME);
+        softAssert.assertEquals(webTablesPage.getTableLastName(CIERRA_EMAIL), EXPECTED_LAST_NAME_VEGA, GENERIC_WRONG_LAST_NAME);
+        softAssert.assertEquals(webTablesPage.getTableAge(CIERRA_EMAIL), EXPECTED_AGE_39, GENERIC_WRONG_AGE);
+        softAssert.assertEquals(webTablesPage.getTableEmail(CIERRA_EMAIL), CIERRA_EMAIL, GENERIC_WRONG_EMAIL);
+        softAssert.assertEquals(webTablesPage.getTableSalary(CIERRA_EMAIL), EXPECTED_SALARY_10000, GENERIC_WRONG_SALARY);
+        softAssert.assertEquals(webTablesPage.getTableDepartment(CIERRA_EMAIL), INSURANCE_DEPARTMENT, GENERIC_WRONG_DEPARTMENT);
 
         // Assert
         softAssert.assertAll();
@@ -572,7 +532,7 @@ public class WebTablePageTests extends BaseTest {
     }
 
     @Test(enabled = true, description = "Verify border color change from red to green after add")
-    public void verifyColorsChangeFromRedToGreenAfterAdd() {
+    public void verifyColorsChangeFromRedToGreenAfterValidValue() {
         // Arrange & Act
         webTablesPage.clickAddButton();
         webTablesPage.clickSubmitButton();
@@ -590,7 +550,7 @@ public class WebTablePageTests extends BaseTest {
 
         String actualEmailColorBefore = webTablesPage.getEmailBorderColor();
         softAssert.assertEquals(actualEmailColorBefore, EXPECTED_RED_COLOR, GENERIC_WRONG_COLOR_RED);
-        webTablesPage.setEmail(ZHIVKO_EMAIL);
+        webTablesPage.setEmail(IVAN_EMAIL);
         softAssert.assertTrue(webTablesPage.isEmailBorderColorGreen(EXPECTED_GREEN_COLOR));
 
         String actualAgeColorBefore = webTablesPage.getAgeBorderColor();

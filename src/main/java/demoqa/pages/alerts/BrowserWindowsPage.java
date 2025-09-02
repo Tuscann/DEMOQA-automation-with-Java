@@ -12,7 +12,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 public class BrowserWindowsPage extends BasePage {
 
@@ -51,80 +50,37 @@ public class BrowserWindowsPage extends BasePage {
     }
 
     public String getNewWindowUrl() {
-        String originalWindow = driver.getWindowHandle();
-        try {
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-            wait.until(d -> d.getWindowHandles().size() > 1);
-
-            Set<String> windows = driver.getWindowHandles();
-            String newWindow = windows.stream()
-                    .filter(handle -> !handle.equals(originalWindow))
-                    .findFirst()
-                    .orElse(null);
-
-            if (newWindow != null) {
-                driver.switchTo().window(newWindow);
-                return driver.getCurrentUrl();
-            }
-            return "";
-        } finally {
-            driver.switchTo().window(originalWindow);
-        }
+        List<String> tabs = new ArrayList<>(driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(1));
+        return driver.getCurrentUrl();
     }
 
     public String getBrowserMessage() {
-        String originalWindow = driver.getWindowHandle();
-        String expectedMessage = "Knowledge increases by sharing but not by saving. Please share this website with your friends and in your organization.";
+        String parentWindow = driver.getWindowHandle();
 
-        try {
-            // Wait for the new window to appear
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
-        }
+        // Wait for a new window to appear
+        new WebDriverWait(driver, Duration.ofSeconds(10))
+                .until(d -> d.getWindowHandles().size() > 1);
 
-        // Get all window handles
-        Set<String> allWindows = driver.getWindowHandles();
-        String newWindow = null;
-
-        // Find the new window handle
-        for (String window : allWindows) {
-            if (!window.equals(originalWindow)) {
-                newWindow = window;
+        // Switch to the new window
+        for (String windowHandle : driver.getWindowHandles()) {
+            if (!windowHandle.equals(parentWindow)) {
+                driver.switchTo().window(windowHandle);
                 break;
             }
         }
 
-        // If no new window was found, return empty string
-        if (newWindow == null) {
-            return "";
-        }
+        // Wait for the body to be visible
+        WebElement body = new WebDriverWait(driver, Duration.ofSeconds(5))
+                .until(ExpectedConditions.visibilityOfElementLocated(By.tagName("body")));
 
-        try {
-            // Switch to the new window
-            driver.switchTo().window(newWindow);
+        String message = body.getText();
 
-            // Wait for the text to be present in the body
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-            WebElement body = wait.until(ExpectedConditions.presenceOfElementLocated(By.tagName("body")));
-            String message = body.getText().trim();
+        // (Optional) Close the new window and switch back
+        driver.close();
+        driver.switchTo().window(parentWindow);
 
-            // If we found the message, return it
-            if (message.equals(expectedMessage)) {
-                return message;
-            }
-            return "";
-        } catch (Exception e) {
-            // If anything goes wrong (window closed, etc), return empty string
-            return "";
-        } finally {
-            try {
-                // Always try to switch back to the original window
-                driver.switchTo().window(originalWindow);
-            } catch (Exception e) {
-                // If we can't switch back, the test will fail anyway
-            }
-        }
+        return message;
     }
 
     public String getNewTabText() {
@@ -153,5 +109,17 @@ public class BrowserWindowsPage extends BasePage {
 
     public String getNewWindowMessageColor() {
         return newWindowMessageButton.getCssValue("background-color");
+    }
+
+    public String getSecondTabH1Text() {
+        List<String> tabs = new ArrayList<>(driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(1));
+        return driver.findElement(By.tagName("h1")).getText();
+    }
+
+    public String getSecondTabBackgroundColor() {
+        List<String> tabs = new ArrayList<>(driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(1));
+        return driver.findElement(By.tagName("body")).getCssValue("background-color");
     }
 }
