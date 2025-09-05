@@ -43,7 +43,15 @@ public class AlertsPageTests extends BaseTest {
     private static final String OK_SELECTION_ERROR = "OK selection result mismatch";
     private static final String PROMPT_RESULT_MISMATCH_ERROR = "Prompt alert result mismatch";
     private static final String ALERT_RESULT_VISIBILITY_ERROR = "Alert result visibility mismatch";
-    private static final String CLICK_ME_BUTTON_COLOR_ERROR = "Wrong click me button color ";
+    private static final String CLICK_ME_FIRST_BUTTON_TEXT_ERROR = "Wrong text on first button click me";
+    private static final String CLICK_ME_SECOND_BUTTON_TEXT_ERROR = "Wrong text on second button click me";
+    private static final String CLICK_ME_THIRD_BUTTON_TEXT_ERROR = "Wrong text on third button click me";
+    private static final String CLICK_ME_FOURTH_BUTTON_TEXT_ERROR = "Wrong text on four button click me";
+    private static final String CLICK_ME_FIRST_BUTTON_BACKGROUND_COLOR_ERROR = "Wrong background color on first button click me";
+    private static final String CLICK_ME_SECOND_BUTTON_BACKGROUND_COLOR_ERROR = "Wrong background color on second button click me";
+    private static final String CLICK_ME_THIRD_BUTTON_BACKGROUND_COLOR_ERROR = "Wrong background color on third button click me";
+    private static final String CLICK_ME_FOURTH_BUTTON_BACKGROUND_COLOR_ERROR = "Wrong background color on four button click me";
+    private static final String RESULT_BACKGROUND_COLOR_ERROR = "Wrong background color of result message";
 
     private static final String ALERTS_PAGE_URL = "alerts";
     private AlertsPage alertsPage;
@@ -61,30 +69,32 @@ public class AlertsPageTests extends BaseTest {
     public void verifyAllTextOnPage() {
         // Arrange & Act
         softAssert.assertEquals(alertsPage.getAlertsHeaderText(), HEADER_TEXT, HEADER_MISMATCH_ERROR);
+
         softAssert.assertEquals(alertsPage.getFirstAlertTitle(), FIRST_ALERT_TEXT, FIRST_TEXT_MISMATCH_ERROR);
         softAssert.assertEquals(alertsPage.getSecondAlertTitle(), SECOND_ALERT_TEXT, SECOND_TEXT_MISMATCH_ERROR);
         softAssert.assertEquals(alertsPage.getThirdAlertTitle(), THIRD_ALERT_TEXT, THIRD_TEXT_MISMATCH_ERROR);
         softAssert.assertEquals(alertsPage.getFourthAlertTitle(), FOURTH_ALERT_TEXT, FOURTH_TEXT_MISMATCH_ERROR);
 
-        softAssert.assertEquals(alertsPage.getFirstButtonBackGroundColor(), EXPECTED_BLUE_COLOR, CLICK_ME_BUTTON_COLOR_ERROR);
-        softAssert.assertEquals(alertsPage.getSecondButtonBackGroundColor(), EXPECTED_BLUE_COLOR, CLICK_ME_BUTTON_COLOR_ERROR);
-        softAssert.assertEquals(alertsPage.getThirdButtonBackGroundColor(), EXPECTED_BLUE_COLOR, CLICK_ME_BUTTON_COLOR_ERROR);
-        softAssert.assertEquals(alertsPage.getFourthButtonBackGroundColor(), EXPECTED_BLUE_COLOR, CLICK_ME_BUTTON_COLOR_ERROR);
+        softAssert.assertEquals(alertsPage.getFirstClickMeButtonBackGroundColor(), EXPECTED_BLUE_COLOR, CLICK_ME_FIRST_BUTTON_BACKGROUND_COLOR_ERROR);
+        softAssert.assertEquals(alertsPage.getSecondClickMeButtonBackGroundColor(), EXPECTED_BLUE_COLOR, CLICK_ME_SECOND_BUTTON_BACKGROUND_COLOR_ERROR);
+        softAssert.assertEquals(alertsPage.getThirdClickMeButtonBackGroundColor(), EXPECTED_BLUE_COLOR, CLICK_ME_THIRD_BUTTON_BACKGROUND_COLOR_ERROR);
+        softAssert.assertEquals(alertsPage.getFourthClickMeButtonBackGroundColor(), EXPECTED_BLUE_COLOR, CLICK_ME_FOURTH_BUTTON_BACKGROUND_COLOR_ERROR);
 
-        softAssert.assertEquals(alertsPage.getFirstButtonText(), CLICK_ME_BUTTON_TEXT, CLICK_ME_BUTTON_COLOR_ERROR);
-        softAssert.assertEquals(alertsPage.getSecondButtonText(), CLICK_ME_BUTTON_TEXT, CLICK_ME_BUTTON_COLOR_ERROR);
-        softAssert.assertEquals(alertsPage.getThirdButtonText(), CLICK_ME_BUTTON_TEXT, CLICK_ME_BUTTON_COLOR_ERROR);
-        softAssert.assertEquals(alertsPage.getFourButtonText(), CLICK_ME_BUTTON_TEXT, CLICK_ME_BUTTON_COLOR_ERROR);
+        softAssert.assertEquals(alertsPage.getFirstClickMeButtonText(), CLICK_ME_BUTTON_TEXT, CLICK_ME_FIRST_BUTTON_TEXT_ERROR);
+        softAssert.assertEquals(alertsPage.getSecondClickMeButtonText(), CLICK_ME_BUTTON_TEXT, CLICK_ME_SECOND_BUTTON_TEXT_ERROR);
+        softAssert.assertEquals(alertsPage.getThirdClickMeButtonText(), CLICK_ME_BUTTON_TEXT, CLICK_ME_THIRD_BUTTON_TEXT_ERROR);
+        softAssert.assertEquals(alertsPage.getFourClickButtonText(), CLICK_ME_BUTTON_TEXT, CLICK_ME_FOURTH_BUTTON_TEXT_ERROR);
 
         // Assert
         softAssert.assertAll();
     }
 
-    @Test(enabled = true, description = "Verify text of Information alert")
-    public void verifyPromptAlertWithTextInput() {
+    @Test(enabled = true, description = "Verify text on see alert")
+    public void verifyPromptAlertTextAndClickOk() {
         // Arrange & Act
         alertsPage.clickInformationAlertButton();
         String actualAlertMessage = switchToUtility.getAlertText();
+        switchToUtility.ClickOKButton();
 
         // Assert
         softAssert.assertEquals(actualAlertMessage, INFO_ALERT_MESSAGE, INFO_ALERT_MISMATCH_ERROR);
@@ -96,9 +106,23 @@ public class AlertsPageTests extends BaseTest {
         // Arrange & Act
         alertsPage.clickConfirmationTimeAlertButton();
         String actualAlertMessage = switchToUtility.getAlertText();
+        switchToUtility.ClickOKButton();
 
         // Assert
         softAssert.assertEquals(actualAlertMessage, TIMED_ALERT_MESSAGE, TIMED_ALERT_MISMATCH_ERROR);
+        softAssert.assertAll();
+    }
+
+    @Test(enabled = true, description = "Verify selected OK on confirmation alert")
+    public void verifyTextOfConfirmationAlertOk() {
+        // Arrange & Act
+        alertsPage.clickConfirmationAlertButton();
+        switchToUtility.acceptAlert();
+        String resultBackgroundColor = alertsPage.getConfirmationResultBackgroundColor();
+
+        // Assert
+        softAssert.assertEquals(resultBackgroundColor, EXPECTED_GREEN_COLOR, RESULT_BACKGROUND_COLOR_ERROR);
+        softAssert.assertEquals(alertsPage.getConfirmationResult(), OK_RESULT, OK_SELECTION_ERROR);
         softAssert.assertAll();
     }
 
@@ -110,21 +134,8 @@ public class AlertsPageTests extends BaseTest {
         String resultBackgroundColor = alertsPage.getConfirmationResultBackgroundColor();
 
         // Assert
-        softAssert.assertEquals(resultBackgroundColor, EXPECTED_GREEN_COLOR, CLICK_ME_BUTTON_COLOR_ERROR);
+        softAssert.assertEquals(resultBackgroundColor, EXPECTED_GREEN_COLOR, RESULT_BACKGROUND_COLOR_ERROR);
         softAssert.assertEquals(alertsPage.getConfirmationResult(), CANCEL_RESULT, CANCEL_SELECTION_ERROR);
-        softAssert.assertAll();
-    }
-
-    @Test(enabled = true, description = "Verify you selected ok on confirmation alert")
-    public void verifyTextOfConfirmationAlertYes() {
-        // Arrange & Act
-        alertsPage.clickConfirmationAlertButton();
-        switchToUtility.acceptAlert();
-        String resultBackgroundColor = alertsPage.getConfirmationResultBackgroundColor();
-
-        // Assert
-        softAssert.assertEquals(resultBackgroundColor, EXPECTED_GREEN_COLOR, CLICK_ME_BUTTON_COLOR_ERROR);
-        softAssert.assertEquals(alertsPage.getConfirmationResult(), OK_RESULT, OK_SELECTION_ERROR);
         softAssert.assertAll();
     }
 
@@ -162,7 +173,7 @@ public class AlertsPageTests extends BaseTest {
         String promptResultBackgroundColor = alertsPage.getPromptResultBackgroundColor();
 
         // Assert
-        softAssert.assertEquals(promptResultBackgroundColor, EXPECTED_GREEN_COLOR, CLICK_ME_BUTTON_COLOR_ERROR);
+        softAssert.assertEquals(promptResultBackgroundColor, EXPECTED_GREEN_COLOR, RESULT_BACKGROUND_COLOR_ERROR);
         softAssert.assertEquals(actualResult, PROMPT_RESULT_PREFIX + PROMPT_INPUT_TEXT, PROMPT_RESULT_MISMATCH_ERROR);
         softAssert.assertAll();
     }

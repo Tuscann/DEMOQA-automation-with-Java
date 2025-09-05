@@ -30,28 +30,28 @@ public class NestedFramesPageTests extends BaseTest {
     }
 
     @Test(enabled = true, description = "Verify all text on page and heading text in parent Iframe")
-    public void verifyHeadingTextInParentIframe() {
+    public void verifyHeadingTextInParentIFrame() {
         // Arrange & Act
+        String actualHeaderText = nestedFramesPage.getHeadingText();
         String actualMainText = nestedFramesPage.getMainText();
-        String actualHeadingText = nestedFramesPage.getHeadingText();
         nestedFramesPage.selectParentIframe();
-        String actualParentText = nestedFramesPage.getParentIframeText();
+        String actualParentIFrameText = nestedFramesPage.getParentIframeText();
 
         // Assert
-        softAssert.assertEquals(actualHeadingText, PAGE_HEADING_TEXT, HEADING_MISMATCH_ERROR);
+        softAssert.assertEquals(actualHeaderText, PAGE_HEADING_TEXT, HEADING_MISMATCH_ERROR);
         softAssert.assertEquals(actualMainText, MAIN_DESCRIPTION_TEXT, MAIN_TEXT_MISMATCH_ERROR);
-        softAssert.assertEquals(actualParentText, PARENT_FRAME_TEXT, PARENT_FRAME_TEXT_ERROR);
+        softAssert.assertEquals(actualParentIFrameText, PARENT_FRAME_TEXT, PARENT_FRAME_TEXT_ERROR);
         softAssert.assertAll();
     }
 
     @Test(enabled = true, description = "Verify heading text in child Iframe")
-    public void verifyHeadingTextInChildIframe() {
+    public void verifyHeadingTextInChildIFrame() {
         // Arrange & Act
         nestedFramesPage.selectChildIframe();
-        String actualChildIframe = nestedFramesPage.getChildIframeText();
+        String actualChildIFrame = nestedFramesPage.getChildIframeText();
 
         // Assert
-        softAssert.assertEquals(actualChildIframe, CHILD_FRAME_TEXT, CHILD_FRAME_TEXT_ERROR);
+        softAssert.assertEquals(actualChildIFrame, CHILD_FRAME_TEXT, CHILD_FRAME_TEXT_ERROR);
         softAssert.assertAll();
     }
 }

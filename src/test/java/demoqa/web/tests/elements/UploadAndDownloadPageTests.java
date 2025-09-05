@@ -22,12 +22,10 @@ public class UploadAndDownloadPageTests extends BaseTest {
     private static final String SELECT_A_FILE_TEXT_MISMATCH = "Select a file text mismatch";
     private static final String UPLOAD_NAME_MISMATCH = "Upload file name mismatch";
     private static final String FILE_NOT_DOWNLOADED_ERROR = "File was not downloaded";
-
-    private UploadAndDownloadPage uploadAndDownloadPage;
     private static final String UPLOAD_DOWNLOAD_URL = "upload-download";
-
     // Color Constants
     private static final String EXPECTED_BLUE_COLOR = "rgba(0, 123, 255, 1)";
+    private UploadAndDownloadPage uploadAndDownloadPage;
 
     @BeforeMethod
     public void goToUploadDownloadPage() {
@@ -38,10 +36,10 @@ public class UploadAndDownloadPageTests extends BaseTest {
     @Test(enabled = true, description = "Verify all text elements on the upload and download page")
     public void verifyAllTextOnPage() {
         // Arrange & Act & Assert
-        softAssert.assertEquals(uploadAndDownloadPage.getUploadAndDownloadText(), EXPECTED_UPLOAD_AND_DOWNLOAD_TEXT, UPLOAD_DOWNLOAD_TEXT_MISMATCH);
+        softAssert.assertEquals(uploadAndDownloadPage.getHeaderText(), EXPECTED_UPLOAD_AND_DOWNLOAD_TEXT, UPLOAD_DOWNLOAD_TEXT_MISMATCH);
         softAssert.assertEquals(uploadAndDownloadPage.getDownloadButtonText(), EXPECTED_DOWNLOAD_BUTTON_TEXT, DOWNLOAD_BUTTON_TEXT_MISMATCH);
+        softAssert.assertEquals(uploadAndDownloadPage.getDownloadButtonBackgroundColor(), EXPECTED_BLUE_COLOR, SELECT_A_FILE_TEXT_MISMATCH);
         softAssert.assertEquals(uploadAndDownloadPage.getSelectAFileText(), EXPECTED_SELECT_A_FILE_TEXT, SELECT_A_FILE_TEXT_MISMATCH);
-        softAssert.assertEquals(uploadAndDownloadPage.getButtonDownloadBackgroundColor(), EXPECTED_BLUE_COLOR, SELECT_A_FILE_TEXT_MISMATCH);
         softAssert.assertAll();
     }
 
@@ -60,7 +58,7 @@ public class UploadAndDownloadPageTests extends BaseTest {
     }
 
     @Test(enabled = true, description = "Click download button and verify file download")
-    public void clickDownloadButtonAndVerifyIsDownloadFile() {
+    public void clickDownloadButtonAndVerifyDownloadFile() {
         // Arrange & Act
         uploadAndDownloadPage.clickDownloadButton();
 

@@ -6,6 +6,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class SelectablePageTests extends BaseTest {
+    public static final String SELECTABLE_URL = "selectable";
     // Text Constants
     private static final String PAGE_TITLE = "Selectable";
     private static final String LIST_TAB = "List";
@@ -24,7 +25,6 @@ public class SelectablePageTests extends BaseTest {
     private static final String GRID_EIGHT = "Eight";
     private static final String GRID_NINE = "Nine";
     private static final String ERROR_TEXT = "Error";
-
     // Error Message Constants
     private static final String PAGE_TITLE_ERROR = "Page title mismatch";
     private static final String LIST_TAB_ERROR = "List tab name mismatch";
@@ -51,8 +51,6 @@ public class SelectablePageTests extends BaseTest {
     private static final String FOURTH_ROW_SELECTED_ERROR = "Fourth row should not be selected initially";
     private static final String FOURTH_ROW_NOT_SELECTED_ERROR = "Fourth row should be selected after click";
     private static final String GRID_POSITION_NOT_SELECTED_ERROR = "Grid position is not selected";
-
-    public static final String SELECTABLE_URL = "selectable";
     private SelectablePage selectablePage;
 
     @BeforeMethod
@@ -107,35 +105,25 @@ public class SelectablePageTests extends BaseTest {
     public void selectOneByOneAllFromList() {
         // Arrange      
         int position = 0;
-
         // Act
-        boolean isRowSelected = selectablePage.RowSelected(LIST_FIRST_TEXT);
-        softAssert.assertFalse(isRowSelected, FIRST_ROW_SELECTED_ERROR);
-
+        softAssert.assertFalse(selectablePage.RowSelected(LIST_FIRST_TEXT), FIRST_ROW_SELECTED_ERROR);
         selectablePage.clickElement(position);
-        isRowSelected = selectablePage.RowSelected(LIST_FIRST_TEXT);
-        softAssert.assertTrue(isRowSelected, FIRST_ROW_NOT_SELECTED_ERROR);
+        softAssert.assertTrue(selectablePage.RowSelected(LIST_FIRST_TEXT), FIRST_ROW_NOT_SELECTED_ERROR);
+        softAssert.assertFalse(selectablePage.RowSelected(LIST_SECOND_TEXT), SECOND_ROW_SELECTED_ERROR);
 
-        isRowSelected = selectablePage.RowSelected(LIST_SECOND_TEXT);
-        softAssert.assertFalse(isRowSelected, SECOND_ROW_SELECTED_ERROR);
         position = 1;
         selectablePage.clickElement(position);
-        isRowSelected = selectablePage.RowSelected(LIST_SECOND_TEXT);
-        softAssert.assertTrue(isRowSelected, SECOND_ROW_NOT_SELECTED_ERROR);
+        softAssert.assertTrue(selectablePage.RowSelected(LIST_SECOND_TEXT), SECOND_ROW_NOT_SELECTED_ERROR);
+        softAssert.assertFalse(selectablePage.RowSelected(LIST_THIRD_TEXT), THIRD_ROW_SELECTED_ERROR);
 
-        isRowSelected = selectablePage.RowSelected(LIST_THIRD_TEXT);
-        softAssert.assertFalse(isRowSelected, THIRD_ROW_SELECTED_ERROR);
         position = 2;
         selectablePage.clickElement(position);
-        isRowSelected = selectablePage.RowSelected(LIST_THIRD_TEXT);
-        softAssert.assertTrue(isRowSelected, THIRD_ROW_NOT_SELECTED_ERROR);
+        softAssert.assertTrue(selectablePage.RowSelected(LIST_THIRD_TEXT), THIRD_ROW_NOT_SELECTED_ERROR);
+        softAssert.assertFalse(selectablePage.RowSelected(LIST_FOUR_TEXT), FOURTH_ROW_SELECTED_ERROR);
 
-        isRowSelected = selectablePage.RowSelected(LIST_FOUR_TEXT);
-        softAssert.assertFalse(isRowSelected, FOURTH_ROW_SELECTED_ERROR);
         position = 3;
         selectablePage.clickElement(position);
-        isRowSelected = selectablePage.RowSelected(LIST_FOUR_TEXT);
-        softAssert.assertTrue(isRowSelected, FOURTH_ROW_NOT_SELECTED_ERROR);
+        softAssert.assertTrue(selectablePage.RowSelected(LIST_FOUR_TEXT), FOURTH_ROW_NOT_SELECTED_ERROR);
 
         // Assert
         softAssert.assertAll();

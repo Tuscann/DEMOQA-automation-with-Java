@@ -60,14 +60,14 @@ public class AlertsFramesWindowsPageTests extends BaseTest {
     @Test(enabled = true, description = "Verify left side menu collapses and expands correctly.")
     public void clickLeftDropdownMenu() {
         // Arrange & Act
-        String actualString = alerts_frames_windowsPage.getMainText();
+        String actualMainText = alerts_frames_windowsPage.getMainText();
         boolean textBoxIsVisible = alerts_frames_windowsPage.verifyFramesIsVisible();
 
         alerts_frames_windowsPage.clickAlertFramesWindowsTab();
         boolean textBoxIsVisible2 = alerts_frames_windowsPage.verifyFramesIsNotVisible();
 
         // Assert
-        softAssert.assertEquals(actualString, EXPECTED_MAIN_TEXT, MAIN_TEXT_ERROR);
+        softAssert.assertEquals(actualMainText, EXPECTED_MAIN_TEXT, MAIN_TEXT_ERROR);
         softAssert.assertTrue(textBoxIsVisible, FRAMES_VISIBLE_ERROR);
         softAssert.assertFalse(textBoxIsVisible2, FRAMES_NOT_VISIBLE_ERROR);
         softAssert.assertAll();

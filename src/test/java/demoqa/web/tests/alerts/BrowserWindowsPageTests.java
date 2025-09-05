@@ -47,21 +47,23 @@ public class BrowserWindowsPageTests extends BaseTest {
     public void verifyAllTextOnPage() {
         // Arrange & Act
         String actualBrowserWindowsText = browserWindowsPage.getBrowserWindowsText();
+
         String actualNewTabText = browserWindowsPage.getNewTabText();
         String actualNewWindowText = browserWindowsPage.getNewWindowText();
         String actualNewWindowMessageText = browserWindowsPage.getNewWindowMessageText();
-        String actualBrowserWindowsColor = browserWindowsPage.getBrowserWindowsColor();
-        String actualNewWindowColor = browserWindowsPage.getNewWindowColor();
-        String actualNewWindowMessageColor = browserWindowsPage.getNewWindowMessageColor();
+
+        String actualNewTabBackgroundColor = browserWindowsPage.getNewTabBackgroundColor();
+        String actualNewWindowBackgroundColor = browserWindowsPage.getNewWindowBackgroundColor();
+        String actualNewWindowMessageBackgroundColor = browserWindowsPage.getNewWindowMessageBackgroundColor();
 
         // Assert
         softAssert.assertEquals(actualBrowserWindowsText, BROWSER_WINDOWS_TEXT, BROWSER_WINDOWS_TEXT_ERROR);
         softAssert.assertEquals(actualNewTabText, NEW_TAB_TEXT, NEW_TAB_TEXT_ERROR);
-        softAssert.assertEquals(actualBrowserWindowsColor, EXPECTED_BLUE_COLOR, WRONG_COLOR_NEW_TAB_ERROR);
+        softAssert.assertEquals(actualNewTabBackgroundColor, EXPECTED_BLUE_COLOR, WRONG_COLOR_NEW_TAB_ERROR);
         softAssert.assertEquals(actualNewWindowText, NEW_WINDOW_TEXT, NEW_WINDOW_TEXT_ERROR);
-        softAssert.assertEquals(actualNewWindowColor, EXPECTED_BLUE_COLOR, WRONG_COLOR_NEW_WINDOW_ERROR);
+        softAssert.assertEquals(actualNewWindowBackgroundColor, EXPECTED_BLUE_COLOR, WRONG_COLOR_NEW_WINDOW_ERROR);
         softAssert.assertEquals(actualNewWindowMessageText, NEW_WINDOW_MESSAGE_TEXT, NEW_WINDOW_MESSAGE_TEXT_ERROR);
-        softAssert.assertEquals(actualNewWindowMessageColor, EXPECTED_BLUE_COLOR, WRONG_COLOR_NEW_WINDOW_MESSAGE_ERROR);
+        softAssert.assertEquals(actualNewWindowMessageBackgroundColor, EXPECTED_BLUE_COLOR, WRONG_COLOR_NEW_WINDOW_MESSAGE_ERROR);
 
         softAssert.assertAll();
     }

@@ -17,13 +17,12 @@ public class SwitchToUtility {
 
     public String getAlertText() {
         Alert alert;
-        String az = "";
+        String result = "";
 
         while (true) {
             try {
                 alert = driver.switchTo().alert();
-                az = alert.getText();
-                alert.accept();
+                result = alert.getText();
                 break;
             } catch (org.openqa.selenium.NoAlertPresentException e) {
                 try {
@@ -35,7 +34,7 @@ public class SwitchToUtility {
             }
         }
 
-        return az;
+        return result;
     }
 
     public void setAlertText(String text) {
@@ -48,5 +47,26 @@ public class SwitchToUtility {
 
     public void dismissAlert() {
         switchTo().alert().dismiss();
+    }
+
+    public void ClickOKButton() {
+        Alert alert;
+
+        while (true) {
+            try {
+                alert = driver.switchTo().alert();
+                alert.accept();
+                break;
+            } catch (org.openqa.selenium.NoAlertPresentException e) {
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException ex) {
+                    Thread.currentThread().interrupt();
+                    break;
+                }
+            }
+        }
+
+
     }
 }

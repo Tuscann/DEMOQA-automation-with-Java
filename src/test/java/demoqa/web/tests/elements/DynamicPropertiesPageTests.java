@@ -15,7 +15,7 @@ public class DynamicPropertiesPageTests extends BaseTest {
 
     // Color Constants
     private static final String EXPECTED_WHITE_COLOR = "rgba(255, 255, 255, 1)";
-    private static final String EXPECTED_RED_COLOR = "rgba(255, 255, 255, 1)";
+    private static final String EXPECTED_RED_COLOR = "rgba(220, 53, 69, 1)";
 
     // Error Message Constants
     private static final String DYNAMIC_PROPERTIES_TEXT_MISMATCH = "Dynamic properties text mismatch";
@@ -44,7 +44,7 @@ public class DynamicPropertiesPageTests extends BaseTest {
         softAssert.assertEquals(dynamicPropertiesPage.getTextWithRandomIdText(), EXPECTED_RANDOM_ID_TEXT, RANDOM_ID_TEXT_MISMATCH);
         softAssert.assertEquals(dynamicPropertiesPage.getWillEnable5SecondsButtonText(), EXPECTED_ENABLE_BUTTON_TEXT, ENABLE_BUTTON_TEXT_MISMATCH);
         softAssert.assertEquals(dynamicPropertiesPage.getColorChangeButtonText(), EXPECTED_COLOR_CHANGE_TEXT, COLOR_CHANGE_TEXT_MISMATCH);
-        softAssert.assertEquals(dynamicPropertiesPage.getVisibleAfter5SecondsButtonTextAfter5seconds(), EXPECTED_VISIBLE_AFTER_5_SEC_TEXT, VISIBLE_AFTER_5_SEC_TEXT_MISMATCH);
+        softAssert.assertEquals(dynamicPropertiesPage.getVisibleAfter5SecondsButtonText(), EXPECTED_VISIBLE_AFTER_5_SEC_TEXT, VISIBLE_AFTER_5_SEC_TEXT_MISMATCH);
         softAssert.assertAll();
     }
 
@@ -52,12 +52,12 @@ public class DynamicPropertiesPageTests extends BaseTest {
     public void verifyMissingButtonOnPage() {
         // Arrange & Act
         boolean isEnableButton = dynamicPropertiesPage.checkButtonWillEnable5Seconds();
-        String colorOfColorChangeButton = dynamicPropertiesPage.getColorOfChangeButton();
+        String colorChangeButtonColor = dynamicPropertiesPage.getChangeButtonColor();
         boolean isVisibleAfter5SecondsButton = dynamicPropertiesPage.checkButtonVisibleAfter5Seconds();
 
         // Assert
         softAssert.assertFalse(isEnableButton, ENABLE_BUTTON_ENABLED_ERROR);
-        softAssert.assertEquals(colorOfColorChangeButton, EXPECTED_WHITE_COLOR, COLOR_CHANGE_COLOR_MISMATCH);
+        softAssert.assertEquals(colorChangeButtonColor, EXPECTED_WHITE_COLOR, COLOR_CHANGE_COLOR_MISMATCH);
         softAssert.assertFalse(isVisibleAfter5SecondsButton, VISIBLE_BUTTON_VISIBLE_ERROR);
         softAssert.assertAll();
     }
@@ -65,19 +65,18 @@ public class DynamicPropertiesPageTests extends BaseTest {
     @Test(enabled = true, description = "Verify button states and properties after 5-second delay")
     public void checkAfter5SecondsAllButtons() {
         // Arrange & Act
-        String colorOfColorChangeButton = dynamicPropertiesPage.getColorOfChangeButton();
-        String visibleAfter5SecondsButtonText = dynamicPropertiesPage.getVisibleAfter5SecondsButtonTextAfter5seconds();
+        String colorOfColorChangeButton = dynamicPropertiesPage.getChangeButtonColor();
+        String visibleAfter5SecondsButtonText = dynamicPropertiesPage.getVisibleAfter5SecondsButtonText();
         boolean isEnableButton = dynamicPropertiesPage.checkButtonWillEnable5Seconds();
         boolean isVisibleAfter5SecondsButton = dynamicPropertiesPage.checkButtonVisibleAfter5Seconds();
-        String colorOfColorChangeButtonAfter = dynamicPropertiesPage.getColorOfChangeButton();
+        String colorOfColorChangeButtonAfter = dynamicPropertiesPage.getChangeButtonColor();
 
         // Assert
         softAssert.assertTrue(isEnableButton, ENABLE_BUTTON_NOT_ENABLED_ERROR);
         softAssert.assertEquals(colorOfColorChangeButton, EXPECTED_WHITE_COLOR, COLOR_CHANGE_COLOR_MISMATCH);
         softAssert.assertTrue(isVisibleAfter5SecondsButton, VISIBLE_BUTTON_NOT_VISIBLE_ERROR);
         softAssert.assertEquals(visibleAfter5SecondsButtonText, EXPECTED_VISIBLE_AFTER_5_SEC_TEXT, VISIBLE_AFTER_5_SEC_TEXT_MISMATCH);
-        softAssert.assertEquals(colorOfColorChangeButton, EXPECTED_RED_COLOR, COLOR_CHANGE_COLOR_MISMATCH);
-
+        softAssert.assertEquals(colorOfColorChangeButtonAfter, EXPECTED_RED_COLOR, COLOR_CHANGE_COLOR_MISMATCH);
         softAssert.assertAll();
     }
 }

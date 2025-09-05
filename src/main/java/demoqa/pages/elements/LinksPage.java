@@ -144,6 +144,7 @@ public class LinksPage extends BasePage {
     public String getResponse() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
         wait.until(ExpectedConditions.visibilityOf(responseLink));
+        delay(100);
         return responseLink.getText();
     }
 

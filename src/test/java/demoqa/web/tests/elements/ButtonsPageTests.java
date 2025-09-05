@@ -31,9 +31,8 @@ public class ButtonsPageTests extends BaseTest {
     private static final String DOUBLE_CLICK_MESSAGE_MISMATCH = "Double click message mismatch";
     private static final String RIGHT_CLICK_MESSAGE_MISMATCH = "Right click message mismatch";
     private static final String DYNAMIC_CLICK_MESSAGE_MISMATCH = "Dynamic click message mismatch";
-
-    private ButtonsPage buttonsPage;
     private static final String BUTTONS_URL = "buttons";
+    private ButtonsPage buttonsPage;
 
     @BeforeMethod
     public void goToButtonsPage() {
@@ -60,8 +59,8 @@ public class ButtonsPageTests extends BaseTest {
     @Test(enabled = true, description = "Click on three buttons and verify success messages")
     public void clickOnThreeButtonsAndVerifyMessages() {
         // Arrange & Act
-        buttonsPage.doubleClickOnButton();
-        buttonsPage.rightClickOnButton();
+        buttonsPage.clickOnButtonDoubleClickMe();
+        buttonsPage.clickOnButtonRightClickMe();
         buttonsPage.clickOnClickMeButton();
 
         // Assert

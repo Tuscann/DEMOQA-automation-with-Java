@@ -117,11 +117,11 @@ public class ModalDialogsPage extends BasePage {
         return smallCloseButton.getCssValue("background-color");
     }
 
-    public void clickXSmallCloseButton() {
+    public void clickXSmallModalCloseButton() {
         clickXCLoseButton.click();
     }
 
-    public void clickSmallCloseButton() {
+    public void clickSmallModalCloseButton() {
         smallCloseButton.click();
     }
 

@@ -152,7 +152,7 @@ public class TextBoxPageTests extends BaseTest {
     }
 
     @Test(enabled = true, description = "Submit invalid email and verify red border validation")
-    public void tryToSubmitWithInvalidEmailAndCheckRedLine() {
+    public void submitWithInvalidEmail() {
         // Arrange & Act
         textBoxPage.setEmailField(INVALID_EMAIL);
         textBoxPage.clickSubmitButton();

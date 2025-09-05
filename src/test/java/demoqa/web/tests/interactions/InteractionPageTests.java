@@ -60,13 +60,9 @@ public class InteractionPageTests extends BaseTest {
         // Arrange & Act
         softAssert.assertEquals(interactionsPage.getMainText(), MAIN_TEXT, MAIN_TEXT_ERROR);
 
-        boolean TextBoxIsVisible = interactionsPage.verifySortableIsVisible();
-        softAssert.assertTrue(TextBoxIsVisible, SORTABLE_VISIBILITY_ERROR);
-
+        softAssert.assertTrue(interactionsPage.verifySortableIsVisible(), SORTABLE_VISIBILITY_ERROR);
         interactionsPage.clickInteractions();
-
-        TextBoxIsVisible = interactionsPage.verifyFramesIsNotVisible();
-        softAssert.assertFalse(TextBoxIsVisible, FRAMES_VISIBILITY_ERROR);
+        softAssert.assertFalse(interactionsPage.verifyFramesIsNotVisible(), FRAMES_VISIBILITY_ERROR);
 
         // Assert
         softAssert.assertAll();

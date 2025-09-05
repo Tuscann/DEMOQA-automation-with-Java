@@ -39,7 +39,7 @@ public class UploadAndDownloadPage extends BasePage {
         return downloadButton.getText();
     }
 
-    public String getUploadAndDownloadText() {
+    public String getHeaderText() {
         return uploadAndDownloadLabel.getText();
     }
 
@@ -71,7 +71,7 @@ public class UploadAndDownloadPage extends BasePage {
         return downloadedFile.exists();
     }
 
-    public String getButtonDownloadBackgroundColor() {
+    public String getDownloadButtonBackgroundColor() {
         return downloadButton.getCssValue("background-color");
     }
 }

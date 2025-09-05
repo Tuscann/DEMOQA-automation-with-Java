@@ -12,6 +12,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public class BrowserWindowsPage extends BasePage {
 
@@ -23,6 +24,9 @@ public class BrowserWindowsPage extends BasePage {
     WebElement newWindowButton;
     @FindBy(id = "messageWindowButton")
     WebElement newWindowMessageButton;
+
+    @FindBy(xpath = "/html/body")
+    WebElement header1;
 
     public BrowserWindowsPage(WebDriver driver) {
         super(driver);
@@ -62,21 +66,19 @@ public class BrowserWindowsPage extends BasePage {
         new WebDriverWait(driver, Duration.ofSeconds(10))
                 .until(d -> d.getWindowHandles().size() > 1);
 
-        // Switch to the new window
-        for (String windowHandle : driver.getWindowHandles()) {
-            if (!windowHandle.equals(parentWindow)) {
+        // Get all window handles
+        Set<String> allWindowHandles = driver.getWindowHandles();
+        String mainWindowHandle = driver.getWindowHandle(); // Main window handle
+        String message = "";
+        // Switch to the new window (there should only be 2 windows now)
+        for (String windowHandle : allWindowHandles) {
+            if (!windowHandle.equals(mainWindowHandle)) {
                 driver.switchTo().window(windowHandle);
-                break;
+                message = header1.getText();
+                break; // Switch to the second window (new one)
             }
         }
 
-        // Wait for the body to be visible
-        WebElement body = new WebDriverWait(driver, Duration.ofSeconds(5))
-                .until(ExpectedConditions.visibilityOfElementLocated(By.tagName("body")));
-
-        String message = body.getText();
-
-        // (Optional) Close the new window and switch back
         driver.close();
         driver.switchTo().window(parentWindow);
 
@@ -99,15 +101,15 @@ public class BrowserWindowsPage extends BasePage {
         return header.getText();
     }
 
-    public String getBrowserWindowsColor() {
+    public String getNewTabBackgroundColor() {
         return newTabButton.getCssValue("background-color");
     }
 
-    public String getNewWindowColor() {
+    public String getNewWindowBackgroundColor() {
         return newWindowButton.getCssValue("background-color");
     }
 
-    public String getNewWindowMessageColor() {
+    public String getNewWindowMessageBackgroundColor() {
         return newWindowMessageButton.getCssValue("background-color");
     }
 

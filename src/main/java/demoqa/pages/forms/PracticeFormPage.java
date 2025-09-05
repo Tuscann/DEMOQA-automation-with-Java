@@ -32,7 +32,7 @@ public class PracticeFormPage extends BasePage {
     @FindBy(id = "currentAddress")
     private WebElement currentAddressArea;
     @FindBy(id = "react-select-3-input")
-    private WebElement states22;
+    private WebElement selectStates;
     @FindBy(id = "react-select-4-input")
     private WebElement cities;
     @FindBy(xpath = "//div[@class=' css-1wa3eu0-placeholder'][contains(.,'Select State')]")
@@ -41,6 +41,11 @@ public class PracticeFormPage extends BasePage {
     private WebElement selectCity;
     @FindBy(id = "submit")
     private WebElement submitButton;
+
+    @FindBy(xpath = "//button[@type='button'][contains(.,'Close')]")
+    private WebElement closeButton;
+
+
     @FindBy(xpath = "//th[contains(.,'Label')]")
     private WebElement labelForm;
     @FindBy(xpath = "//th[contains(.,'Label')]/following-sibling::*[1]")
@@ -171,6 +176,8 @@ public class PracticeFormPage extends BasePage {
     }
 
     public String getHobbiesFromModal() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(4));
+        wait.until(ExpectedConditions.visibilityOf(this.hobbiesForm));
         return hobbiesForm.getText();
     }
 
@@ -202,6 +209,7 @@ public class PracticeFormPage extends BasePage {
     }
 
     public String getSubjectsFromModal() {
+        javaScriptUtility.scrollToElementJS(subjectsForm);
         return subjectsForm.getText();
     }
 
@@ -348,12 +356,13 @@ public class PracticeFormPage extends BasePage {
     }
 
     public void clickSubmitButton2() {
-
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.textToBePresentInElementValue(this.currentAddressArea, ""));
-
         javaScriptUtility.scrollToElementJS(submitButton);
         submitButton.click();
+    }
+
+    public void clickCloseButton() {
+        javaScriptUtility.scrollToElementJS(closeButton);
+        closeButton.click();
     }
 
     public boolean isReadingCheckBoxSelected() {
@@ -405,8 +414,8 @@ public class PracticeFormPage extends BasePage {
     }
 
     public void setState(String expectedState) {
-        states22.sendKeys(expectedState);
-        states22.sendKeys("" + Keys.ENTER);
+        selectStates.sendKeys(expectedState);
+        selectStates.sendKeys("" + Keys.ENTER);
     }
 
     public void setCity(String expectedCity) {
@@ -414,21 +423,24 @@ public class PracticeFormPage extends BasePage {
         cities.sendKeys("" + Keys.ENTER);
     }
 
-    public String getColorOfFirstNameBorder(String expectedColor) {
+    public String getBorderColorOfFirstName(String expectedColor) {
+        javaScriptUtility.scrollToElementJS(practiceFormLabel);
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.attributeToBe(firstName, "border-color", expectedColor));
-
+        wait.until(ExpectedConditions.attributeToBe(lastName, "border-color", expectedColor));
         return firstName.getCssValue("border-color");
     }
 
-    public String getColorOfLastNameBorder(String expectedColor) {
+    public String getBorderColorOfLastName(String expectedColor) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.attributeToBe(lastName, "border-color", expectedColor));
 
         return lastName.getCssValue("border-color");
     }
 
-    public String getColorOfEmail() {
+    public String getBorderColorOfEmail(String expectedColor) {
+        javaScriptUtility.scrollToElementJS(email);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.attributeToBe(email, "border-color", expectedColor));
         return email.getCssValue("border-color");
     }
 
@@ -444,13 +456,13 @@ public class PracticeFormPage extends BasePage {
         return otherRadioButtonLabel.getCssValue("color");
     }
 
-    public String getColorOfMobile(String expectedColor) {
+    public String getBorderColorOfMobile(String expectedColor) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.attributeToBe(mobile, "border-color", expectedColor));
         return mobile.getCssValue("border-color");
     }
 
-    public String getColorOfDateOfBirth() {
+    public String getBorderColorOfDateOfBirth() {
         return dateOfBirth.getCssValue("border-color");
     }
 
@@ -466,7 +478,7 @@ public class PracticeFormPage extends BasePage {
         return musicLabel.getCssValue("color");
     }
 
-    public String getCurrentAddressColor() {
+    public String getBorderColorCurrentAddress() {
         return currentAddressArea.getCssValue("border-color");
     }
 
@@ -584,5 +596,12 @@ public class PracticeFormPage extends BasePage {
 
     public String getCloseButtonBackgroundColor() {
         return closeLargeModal.getCssValue("background-color");
+    }
+
+    public String getBorderColorOfSubjects(String expectedColor) {
+//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+//        wait.until(ExpectedConditions.attributeToBe(subjects, "border-color", expectedColor));
+
+        return subjects.getCssValue("border-color");
     }
 }

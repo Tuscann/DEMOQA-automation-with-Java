@@ -46,16 +46,16 @@ public class ModalDialogsPagePageTests extends BaseTest {
     @Test(enabled = true, description = "Verify all text on page")
     public void verifyAllTextOnPage() {
         // Arrange & Act
-        String actualModalDialogsText = modalDialogsPage.getModalDialogsText();
-        String actualClickText = modalDialogsPage.getClickText();
+        String actualHeaderModalDialogsText = modalDialogsPage.getModalDialogsText();
+        String actualClickOnButtonSeeModalText = modalDialogsPage.getClickText();
         String actualSmallModalButtonText = modalDialogsPage.getSmallModalButtonText();
         String actualLargeModalButtonText = modalDialogsPage.getLargeModalButtonText();
         String actualSmallModalButtonBackgroundColor = modalDialogsPage.getSmallModalDialogsBackgroundColor();
         String actualLargeModalButtonBackgroundColor = modalDialogsPage.getLargeModalDialogsBackgroundColor();
 
         // Assert
-        softAssert.assertEquals(actualModalDialogsText, MODAL_DIALOGS_TEXT, MODAL_DIALOGS_TEXT_ERROR);
-        softAssert.assertEquals(actualClickText, CLICK_TEXT, CLICK_TEXT_ERROR);
+        softAssert.assertEquals(actualHeaderModalDialogsText, MODAL_DIALOGS_TEXT, MODAL_DIALOGS_TEXT_ERROR);
+        softAssert.assertEquals(actualClickOnButtonSeeModalText, CLICK_TEXT, CLICK_TEXT_ERROR);
         softAssert.assertEquals(actualSmallModalButtonText, SMALL_BUTTON_TEXT, SMALL_BUTTON_TEXT_ERROR);
         softAssert.assertEquals(actualLargeModalButtonText, LARGE_BUTTON_TEXT, LARGE_BUTTON_TEXT_ERROR);
         softAssert.assertEquals(actualSmallModalButtonBackgroundColor, EXPECTED_BLUE_COLOR, WRONG_BLUE_COLOR);
@@ -67,7 +67,7 @@ public class ModalDialogsPagePageTests extends BaseTest {
     public void verifySmallModalDialogTextAndClickCloseButton() {
         // Arrange
         modalDialogsPage.clickSmallModalButton();
-        modalDialogsPage.clickSmallCloseButton();
+        modalDialogsPage.clickSmallModalCloseButton();
         modalDialogsPage.clickSmallModalButton();
 
         // Act
@@ -75,7 +75,7 @@ public class ModalDialogsPagePageTests extends BaseTest {
         String actualSmallBodyText = modalDialogsPage.getSmallModalText();
         String actualCloseButtonText = modalDialogsPage.getSmallCloseButtonText();
         String actualCloseButtonBackgroundColor = modalDialogsPage.getSmallModalDialogCloseButtonBackgroundColor();
-        modalDialogsPage.clickXSmallCloseButton();
+        modalDialogsPage.clickXSmallModalCloseButton();
 
         // Assert
         softAssert.assertEquals(actualSmallModalHeader, SMALL_MODAL_HEADER, SMALL_MODAL_HEADER_ERROR);
@@ -96,14 +96,14 @@ public class ModalDialogsPagePageTests extends BaseTest {
         String actualLargeModalHeader = modalDialogsPage.getLargeModalHeaderText();
         String actualBodyText = modalDialogsPage.getLargeModalText();
         String actualCloseButtonText = modalDialogsPage.getLargeCloseButtonText();
-        String actualLargeModalBackgroundColor = modalDialogsPage.getLargeModalDialogCloseButtonBackgroundColor();
-        modalDialogsPage.clickXSmallCloseButton();
+        String actualCloseButtonBackgroundColor = modalDialogsPage.getLargeModalDialogCloseButtonBackgroundColor();
+        modalDialogsPage.clickXSmallModalCloseButton();
 
         // Assert
         softAssert.assertEquals(actualLargeModalHeader, LARGE_MODAL_HEADER, LARGE_MODAL_HEADER_ERROR);
         softAssert.assertEquals(actualBodyText, LARGE_MODAL_BODY, LARGE_MODAL_BODY_ERROR);
         softAssert.assertEquals(actualCloseButtonText, CLOSE_BUTTON_TEXT, CLOSE_BUTTON_TEXT_ERROR);
-        softAssert.assertEquals(actualLargeModalBackgroundColor, EXPECTED_BLUE_COLOR, LARGE_MODAL_HEADER_ERROR);
+        softAssert.assertEquals(actualCloseButtonBackgroundColor, EXPECTED_BLUE_COLOR, LARGE_MODAL_HEADER_ERROR);
         softAssert.assertAll();
     }
 }

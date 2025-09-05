@@ -92,35 +92,35 @@ public class AlertsPage extends BasePage {
         confirmationTimeAlertButton.click();
     }
 
-    public String getFirstButtonBackGroundColor() {
+    public String getFirstClickMeButtonBackGroundColor() {
         return informationAlertButton.getCssValue("background-color");
     }
 
-    public String getSecondButtonBackGroundColor() {
+    public String getSecondClickMeButtonBackGroundColor() {
         return confirmationAlertButton.getCssValue("background-color");
     }
 
-    public String getThirdButtonBackGroundColor() {
+    public String getThirdClickMeButtonBackGroundColor() {
         return confirmationTimeAlertButton.getCssValue("background-color");
     }
 
-    public String getFourthButtonBackGroundColor() {
+    public String getFourthClickMeButtonBackGroundColor() {
         return promptAlertButton.getCssValue("background-color");
     }
 
-    public String getFirstButtonText() {
+    public String getFirstClickMeButtonText() {
         return informationAlertButton.getText();
     }
 
-    public String getSecondButtonText() {
+    public String getSecondClickMeButtonText() {
         return confirmationAlertButton.getText();
     }
 
-    public String getThirdButtonText() {
+    public String getThirdClickMeButtonText() {
         return confirmationTimeAlertButton.getText();
     }
 
-    public String getFourButtonText() {
+    public String getFourClickButtonText() {
         return promptAlertButton.getText();
     }
 

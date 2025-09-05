@@ -8,11 +8,11 @@ import org.testng.annotations.Test;
 
 public class ResizablePageTests extends BaseTest {
 
+    public static final String RESIZABLE_URL = "resizable";
     // Text Constants
     private static final String EXPECTED_PAGE_TITLE = "Resizable";
     private static final String EXPECTED_RESIZABLE_BOX_WITH_RESTRICTION_TEXT = "Resizable box, starting at 200x200. Min size is 150x150, max is 500x300.";
     private static final String EXPECTED_RESIZABLE_TEXT = "Resizable";
-
     // Error Message Constants
     private static final String WRONG_PAGE_TITLE = "\nWrong page title.\n";
     private static final String WRONG_RESIZABLE_BOX_TEXT = "\nWrong resizable text.\n";
@@ -22,8 +22,6 @@ public class ResizablePageTests extends BaseTest {
     private static final String WRONG_SIZE_AFTER_DIAGONAL_RESIZE = "\nWrong size after diagonal resize.\n";
     private static final String RESIZE_HANDLE_SHOULD_BE_VISIBLE = "\nResize handle should be visible.\n";
     private static final String SECOND_RESIZE_HANDLE_SHOULD_BE_VISIBLE = "\nSecond resize handle should be visible.\n";
-
-    public static final String RESIZABLE_URL = "resizable";
     private static final String EXPECTED_GREY_COLOR = "rgba(255, 255, 255, 1)";
     private ResizablePage resizablePage;
 
@@ -54,10 +52,9 @@ public class ResizablePageTests extends BaseTest {
     public Object[][] resizeDataProvider() {
         return new Object[][]{
                 {300, 100, 500, 300}, // Test case 1: Test max limit Width and height
-                //   {301, 301, 500, 300}, // Test case 2: More than limits
-                {0, 0, 200, 200},     // Test case 3: No change
-                {-50, -50, 150, 150}, // Test case 4: Test min values
-                {-51, -51, 150, 150}  // Test case 5: More than min values
+                {0, 0, 200, 200},     // Test case 2: No change
+                {-50, -50, 150, 150}, // Test case 3: Test min values
+                {-51, -51, 150, 150}  // Test case 4: More than min values
         };
     }
 

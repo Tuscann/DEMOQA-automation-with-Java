@@ -52,11 +52,11 @@ public class DynamicPropertiesPage extends BasePage {
         return dynamicProperties.getText();
     }
 
-    public String getColorOfChangeButton() {
+    public String getChangeButtonColor() {
         return colorChangeButton.getCssValue("color");
     }
 
-    public String getVisibleAfter5SecondsButtonTextAfter5seconds() {
+    public String getVisibleAfter5SecondsButtonText() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(6));
         wait.until(ExpectedConditions.visibilityOf(visibleAfter5SecondsButton));
         return visibleAfter5SecondsButton.getText();

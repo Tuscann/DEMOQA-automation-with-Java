@@ -7,6 +7,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 public class SortablePageTests extends BaseTest {
+    public static final String SORTABLE_URL = "sortable";
     // Text Constants
     private static final String PAGE_TITLE = "Sortable";
     private static final String LIST_TAB = "List";
@@ -26,7 +27,6 @@ public class SortablePageTests extends BaseTest {
     private static final String GRID_SEVEN = "Seven";
     private static final String GRID_EIGHT = "Eight";
     private static final String GRID_NINE = "Nine";
-
     // Error Message Constants
     private static final String PAGE_TITLE_ERROR = "Page title mismatch";
     private static final String LIST_TAB_ERROR = "List tab name mismatch";
@@ -48,8 +48,6 @@ public class SortablePageTests extends BaseTest {
     private static final String GRID_NINE_ERROR = "Grid nine text mismatch";
     private static final String LIST_ORDER_ERROR = "Wrong order in the list";
     private static final String GRID_ORDER_ERROR = "Wrong order in the grid";
-
-    public static final String SORTABLE_URL = "sortable";
     private SortablePage sortablePage;
 
     @BeforeMethod
@@ -261,14 +259,14 @@ public class SortablePageTests extends BaseTest {
     }
 
     @Test(dataProvider = "resizeData2", description = "Check order in Grid", enabled = true)
-    public void dragAndDropFromGridTab(String dragFromPlace, String dropOnPlace, String expectedOrder) throws InterruptedException {
+    public void dragAndDropFromGridTab(String dragFromPlace, String dropOnPlace, String expectedGridOrder) throws InterruptedException {
         // Arrange & Act
         sortablePage.clickGridTab();
         sortablePage.moveOverGrid(dragFromPlace, dropOnPlace);
-        String actualList = sortablePage.getGridOrder();
+        String actualGridOrderAfter = sortablePage.getGridOrder();
 
         // Assert
-        softAssert.assertEquals(actualList, expectedOrder, GRID_ORDER_ERROR);
+        softAssert.assertEquals(actualGridOrderAfter, expectedGridOrder, GRID_ORDER_ERROR);
         softAssert.assertAll();
     }
 }

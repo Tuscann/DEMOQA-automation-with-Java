@@ -73,7 +73,7 @@ public class ButtonsPage extends BasePage {
         return clickMeButton.getCssValue("border-color");
     }
 
-    public void doubleClickOnButton() {
+    public void clickOnButtonDoubleClickMe() {
         Actions actions = new Actions(driver);
         actions.doubleClick(doubleClickMeButton).perform();
     }
@@ -86,7 +86,7 @@ public class ButtonsPage extends BasePage {
         return rightClickMessage.getText();
     }
 
-    public void rightClickOnButton() {
+    public void clickOnButtonRightClickMe() {
         Actions actions = new Actions(driver);
         actions.contextClick(rightClickMeButton).perform();
     }

@@ -3,7 +3,6 @@ package demoqa.web.tests.elements;
 import demoqa.pages.elements.LinksPage;
 import demoqa.web.base.BaseTest;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 public class LinksPageTests extends BaseTest {
@@ -79,7 +78,7 @@ public class LinksPageTests extends BaseTest {
         String actualFollowingLinksWillOpenNewTabText = linksPage.getNewTabText();
         String actualHomeSimpleLinkText = linksPage.getSimpleLinkText();
         int actualHomeDynamicLinkTextLength = linksPage.getDynamicLinkTextLength();
-        String actualFollowingLinksWillSendAnApiCall = linksPage.getApiCallText();
+        String actualFollowingLinksWillSendAnApiCallText = linksPage.getApiCallText();
         String actualCreatedText = linksPage.getCreatedRequestLinkText();
         String actualNoContentText = linksPage.getNoContentRequestLinkText();
         String actualMovedText = linksPage.getMovedRequestLinkText();
@@ -93,7 +92,7 @@ public class LinksPageTests extends BaseTest {
         softAssert.assertEquals(actualFollowingLinksWillOpenNewTabText, EXPECTED_FOLLOWING_LINKS_NEW_TAB_TEXT, NEW_TAB_TEXT_MISMATCH);
         softAssert.assertEquals(actualHomeSimpleLinkText, EXPECTED_HOME_TEXT, HOME_TEXT_MISMATCH);
         softAssert.assertEquals(actualHomeDynamicLinkTextLength, 9, HOME_TEXT_MISMATCH);
-        softAssert.assertEquals(actualFollowingLinksWillSendAnApiCall, EXPECTED_FOLLOWING_LINKS_API_CALL, API_CALL_TEXT_MISMATCH);
+        softAssert.assertEquals(actualFollowingLinksWillSendAnApiCallText, EXPECTED_FOLLOWING_LINKS_API_CALL, API_CALL_TEXT_MISMATCH);
         softAssert.assertEquals(actualCreatedText, EXPECTED_CREATED_TEXT, CREATED_TEXT_MISMATCH);
         softAssert.assertEquals(actualNoContentText, EXPECTED_NO_CONTENT_TEXT, NO_CONTENT_TEXT_MISMATCH);
         softAssert.assertEquals(actualMovedText, EXPECTED_MOVED_TEXT, MOVED_TEXT_MISMATCH);
@@ -105,7 +104,7 @@ public class LinksPageTests extends BaseTest {
     }
 
     @Test(enabled = true, description = "Open new tab from simple link and verify URL")
-    public void openNewTabFromSimpleLink() {
+    public void clickHomeLink() {
         // Arrange & Act
         linksPage.clickSimpleLinkHome();
 
@@ -115,7 +114,7 @@ public class LinksPageTests extends BaseTest {
     }
 
     @Test(enabled = true, description = "Open new tab from dynamic link and verify URL")
-    public void openNewTabFromDynamicLink() {
+    public void clickDynamicHome() {
         // Arrange & Act
         linksPage.clickDynamicLinkHome();
 
@@ -124,50 +123,62 @@ public class LinksPageTests extends BaseTest {
         softAssert.assertAll();
     }
 
-    @DataProvider(name = "linkData")
-    public Object[][] linkDataProvider() {
-        return new Object[][]{
-                {"createdLink", RESPONSE_CREATED, CREATED_LINK_RESPONSE_ERROR},
-                {"noContentLink", RESPONSE_NO_CONTENT, NO_CONTENT_LINK_RESPONSE_ERROR},
-                {"movedLink", RESPONSE_MOVED, MOVED_LINK_RESPONSE_ERROR},
-                {"badRequestLink", BAD_REQUEST_RESPONSE, BAD_REQUEST_LINK_RESPONSE_ERROR},
-                {"unauthorizedLink", UNAUTHORIZED_REQUEST_RESPONSE, UNAUTHORIZED_LINK_RESPONSE_ERROR},
-                {"forbiddenLink", FORBIDDEN_REQUEST_RESPONSE, FORBIDDEN_LINK_RESPONSE_ERROR},
-                {"notFoundLink", NOT_FOUND_REQUEST_RESPONSE, NOT_FOUND_LINK_RESPONSE_ERROR}
+
+    @Test(enabled = true, description = "Click on various links and verify the response")
+    public void clickOnLinkAndVerifyResponse() {
+        // Define the link names and expected responses in arrays
+        String[] linkNames = {
+                "createdLink", "noContentLink",
+                "movedLink", "badRequestLink",
+                "unauthorizedLink", "forbiddenLink", "notFoundLink"
         };
-    }
 
-    @Test(dataProvider = "linkData", description = "Click on various links and verify the response")
-    public void clickOnLinkAndVerifyResponse(String linkName, String expectedResponse, String errorMessage) {
-        // Arrange & Act
-        switch (linkName) {
-            case "createdLink":
-                linksPage.clickCreatedLink();
-                break;
-            case "noContentLink":
-                linksPage.clickNoContentRequestLink();
-                break;
-            case "movedLink":
-                linksPage.clickMovedLink();
-                break;
-            case "badRequestLink":
-                linksPage.clickBadRequestLink();
-                break;
-            case "unauthorizedLink":
-                linksPage.clickUnauthorizedLink();
-                break;
-            case "forbiddenLink":
-                linksPage.clickForbiddenLink();
-                break;
-            case "notFoundLink":
-                linksPage.clickNotFoundLink();
-                break;
+        String[] expectedResponses = {
+                RESPONSE_CREATED, RESPONSE_NO_CONTENT, RESPONSE_MOVED,
+                BAD_REQUEST_RESPONSE, UNAUTHORIZED_REQUEST_RESPONSE,
+                FORBIDDEN_REQUEST_RESPONSE, NOT_FOUND_REQUEST_RESPONSE
+        };
+
+        String[] errorMessages = {
+                CREATED_LINK_RESPONSE_ERROR, NO_CONTENT_LINK_RESPONSE_ERROR,
+                MOVED_LINK_RESPONSE_ERROR, BAD_REQUEST_LINK_RESPONSE_ERROR,
+                UNAUTHORIZED_LINK_RESPONSE_ERROR,
+                FORBIDDEN_LINK_RESPONSE_ERROR,
+                NOT_FOUND_LINK_RESPONSE_ERROR
+        };
+
+        // Loop through all the links and verify the response
+        for (int i = 0; i < linkNames.length; i++) {
+            // Arrange & Act: Click the appropriate link based on the link name
+            switch (linkNames[i]) {
+                case "createdLink":
+                    linksPage.clickCreatedLink();
+                    break;
+                case "noContentLink":
+                    linksPage.clickNoContentRequestLink();
+                    break;
+                case "movedLink":
+                    linksPage.clickMovedLink();
+                    break;
+                case "badRequestLink":
+                    linksPage.clickBadRequestLink();
+                    break;
+                case "unauthorizedLink":
+                    linksPage.clickUnauthorizedLink();
+                    break;
+                case "forbiddenLink":
+                    linksPage.clickForbiddenLink();
+                    break;
+                case "notFoundLink":
+                    linksPage.clickNotFoundLink();
+                    break;
+                default:
+                    throw new IllegalArgumentException("Unknown link name: " + linkNames[i]);
+            }
+            // Assert: Verify the response
+            String actualResponse = linksPage.getResponse();
+            softAssert.assertEquals(actualResponse, expectedResponses[i], errorMessages[i]);
         }
-
-        // Assert
-        String actualResponse = linksPage.getResponse();
-        softAssert.assertEquals(actualResponse, expectedResponse, errorMessage);
         softAssert.assertAll();
     }
-
 }
