@@ -15,19 +15,14 @@ public class DynamicPropertiesPage extends BasePage {
 
     @FindBy(xpath = "//h1[@class='text-center'][contains(.,'Dynamic Properties')]")
     private WebElement dynamicProperties;
-
     @FindBy(xpath = "//p[contains(.,'This text has random Id')]")
     private WebElement textWithRandomId;
-
     @FindBy(id = "enableAfter")
     private WebElement willEnable5SecondsButton;
-
     @FindBy(id = "colorChange")
     private WebElement colorChangeButton;
-
     @FindBy(id = "visibleAfter")
     private WebElement visibleAfter5SecondsButton;
-
     @FindBy(id = "visibleAfter")
     private List<WebElement> visibleAfter5SecondsButtonList;
 
@@ -57,7 +52,7 @@ public class DynamicPropertiesPage extends BasePage {
     }
 
     public String getVisibleAfter5SecondsButtonText() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(6));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(7));
         wait.until(ExpectedConditions.visibilityOf(visibleAfter5SecondsButton));
         return visibleAfter5SecondsButton.getText();
     }

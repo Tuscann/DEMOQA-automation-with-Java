@@ -9,53 +9,39 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utilities.JavaScriptUtility;
 
 import java.time.Duration;
 
-import utilities.JavaScriptUtility;
-
 public class DraggablePage extends BasePage {
 
+    private final JavaScriptUtility javaScriptUtility;
     @FindBy(xpath = "//h1[@class='text-center'][contains(.,'Dragabble')]")
     private WebElement pageTitle;
-
     @FindBy(id = "draggableExample-tab-simple")
     private WebElement simpleTabTitle;
-
     @FindBy(id = "dragBox")
     private WebElement simpleDragMe;
-
     @FindBy(id = "draggableExample-tab-axisRestriction")
     private WebElement axisRestrictedTab;
-
     @FindBy(id = "restrictedX")
     private WebElement axisRestrictedOnlyX;
-
     @FindBy(id = "restrictedY")
     private WebElement axisRestrictedOnlyY;
-
     @FindBy(id = "draggableExample-tab-containerRestriction")
     private WebElement containerRestrictedTab;
-
     @FindBy(xpath = "//div[contains(@class,'draggable ui-widget-content ui-draggable ui-draggable-handle')]")
     private WebElement containerRestrictedFirstText;
-
     @FindBy(xpath = "//span[contains(@class,'ui-widget-header ui-draggable ui-draggable-handle')]")
     private WebElement containerRestrictedSecondText;
-
     @FindBy(id = "draggableExample-tab-cursorStyle")
     private WebElement cursorStyleTab;
-
     @FindBy(id = "cursorCenter")
     private WebElement cursorStyleFirstText;
-
     @FindBy(id = "cursorTopLeft")
     private WebElement cursorStyleSecondText;
-
     @FindBy(id = "cursorBottom")
     private WebElement cursorStyleThirdText;
-
-    private final JavaScriptUtility javaScriptUtility;
 
     public DraggablePage(WebDriver driver) {
         super(driver);
@@ -213,6 +199,7 @@ public class DraggablePage extends BasePage {
 
     public void dragAndDropInCursorStyleThirdText(int xOffset, int yOffset) {
         Actions actions = new Actions(driver);
+        javaScriptUtility.scrollToElementJS(cursorStyleThirdText);
         actions.dragAndDropBy(cursorStyleThirdText, xOffset, yOffset).build().perform();
     }
 }

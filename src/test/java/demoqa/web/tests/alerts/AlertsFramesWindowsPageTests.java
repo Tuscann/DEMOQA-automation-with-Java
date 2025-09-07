@@ -47,9 +47,9 @@ public class AlertsFramesWindowsPageTests extends BaseTest {
     public void checkAllFivePagesLinks(String cardName, String expectedUrl, Runnable clickAction) {
         // Arrange & Act
         clickAction.run();
-        String actualUrl = alerts_frames_windowsPage.checkCurrentUrl();
+        String actualUrl = alerts_frames_windowsPage.getCurrentUrl();
         alerts_frames_windowsPage.clickTopImage();
-        String url = alerts_frames_windowsPage.checkCurrentUrl();
+        String url = alerts_frames_windowsPage.getCurrentUrl();
 
         // Assert
         softAssert.assertEquals(actualUrl, expectedUrl, String.format(CARD_NAVIGATION_ERROR, cardName));
@@ -58,7 +58,7 @@ public class AlertsFramesWindowsPageTests extends BaseTest {
     }
 
     @Test(enabled = true, description = "Verify left side menu collapses and expands correctly.")
-    public void clickLeftDropdownMenu() {
+    public void VerifyLeftSideMenuCollapses() {
         // Arrange & Act
         String actualMainText = alerts_frames_windowsPage.getMainText();
         boolean textBoxIsVisible = alerts_frames_windowsPage.verifyFramesIsVisible();

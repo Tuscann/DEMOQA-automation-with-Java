@@ -28,9 +28,9 @@ public class FormsPageTests extends BaseTest {
         // Arrange & Act
         softAssert.assertEquals(formsPage.getText(), EMPTY_STATE_MESSAGE, EMPTY_STATE_ERROR);
         formsPage.clickPracticeFormLink();
-        String actualUrl = formsPage.checkCurrentUrl();
+        String actualUrl = formsPage.getCurrentUrl();
         formsPage.clickTopImage();
-        String url = formsPage.checkCurrentUrl();
+        String url = formsPage.getCurrentUrl();
 
         // Assert
         softAssert.assertEquals(actualUrl, PRACTICE_FORM_FULL_URL, URL_NAVIGATION_ERROR);

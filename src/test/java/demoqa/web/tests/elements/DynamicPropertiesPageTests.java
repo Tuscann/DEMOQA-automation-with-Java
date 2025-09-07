@@ -65,18 +65,18 @@ public class DynamicPropertiesPageTests extends BaseTest {
     @Test(enabled = true, description = "Verify button states and properties after 5-second delay")
     public void checkAfter5SecondsAllButtons() {
         // Arrange & Act
-        String colorOfColorChangeButton = dynamicPropertiesPage.getChangeButtonColor();
+        String colorChangeButtonBefore = dynamicPropertiesPage.getChangeButtonColor();
         String visibleAfter5SecondsButtonText = dynamicPropertiesPage.getVisibleAfter5SecondsButtonText();
         boolean isEnableButton = dynamicPropertiesPage.checkButtonWillEnable5Seconds();
         boolean isVisibleAfter5SecondsButton = dynamicPropertiesPage.checkButtonVisibleAfter5Seconds();
-        String colorOfColorChangeButtonAfter = dynamicPropertiesPage.getChangeButtonColor();
+        String changeButtonColorAfter = dynamicPropertiesPage.getChangeButtonColor();
 
         // Assert
         softAssert.assertTrue(isEnableButton, ENABLE_BUTTON_NOT_ENABLED_ERROR);
-        softAssert.assertEquals(colorOfColorChangeButton, EXPECTED_WHITE_COLOR, COLOR_CHANGE_COLOR_MISMATCH);
+        softAssert.assertEquals(colorChangeButtonBefore, EXPECTED_WHITE_COLOR, COLOR_CHANGE_COLOR_MISMATCH);
         softAssert.assertTrue(isVisibleAfter5SecondsButton, VISIBLE_BUTTON_NOT_VISIBLE_ERROR);
         softAssert.assertEquals(visibleAfter5SecondsButtonText, EXPECTED_VISIBLE_AFTER_5_SEC_TEXT, VISIBLE_AFTER_5_SEC_TEXT_MISMATCH);
-        softAssert.assertEquals(colorOfColorChangeButtonAfter, EXPECTED_RED_COLOR, COLOR_CHANGE_COLOR_MISMATCH);
+        softAssert.assertEquals(changeButtonColorAfter, EXPECTED_RED_COLOR, COLOR_CHANGE_COLOR_MISMATCH);
         softAssert.assertAll();
     }
 }

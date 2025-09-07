@@ -5,13 +5,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import utilities.JavaScriptUtility;
 
 import java.util.List;
 
 public class AlertsPage extends BasePage {
 
-    private final JavaScriptUtility javaScriptUtility;
     @FindBy(id = "alertButton")
     WebElement informationAlertButton;
     @FindBy(id = "confirmButton")
@@ -38,7 +36,6 @@ public class AlertsPage extends BasePage {
     public AlertsPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
-        this.javaScriptUtility = new JavaScriptUtility(driver);
     }
 
     public String getAlertsHeaderText() {
@@ -74,12 +71,10 @@ public class AlertsPage extends BasePage {
     }
 
     public void clickConfirmationAlertButton() {
-        //  javaScriptUtility.scrollToElementJS(confirmationAlertButton);
         confirmationAlertButton.click();
     }
 
     public void clickPromptAlertButton() {
-        //    javaScriptUtility.scrollToElementJS(promptAlertButton);
         promptAlertButton.click();
     }
 
@@ -88,7 +83,6 @@ public class AlertsPage extends BasePage {
     }
 
     public void clickConfirmationTimeAlertButton() {
-        //   javaScriptUtility.scrollToElementJS(confirmationTimeAlertButton);
         confirmationTimeAlertButton.click();
     }
 

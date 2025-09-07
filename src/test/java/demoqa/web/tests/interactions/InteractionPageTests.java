@@ -45,9 +45,9 @@ public class InteractionPageTests extends BaseTest {
     public void checkAllFivePagesLinks(String cardName, String expectedUrl, Runnable clickAction) {
         // Arrange & Act
         clickAction.run();
-        String actualUrl = interactionsPage.checkCurrentUrl();
+        String actualUrl = interactionsPage.getCurrentUrl();
         interactionsPage.clickTopImage();
-        String url = interactionsPage.checkCurrentUrl();
+        String url = interactionsPage.getCurrentUrl();
 
         // Assert
         softAssert.assertEquals(actualUrl, expectedUrl, String.format(CARD_NAVIGATION_ERROR, cardName));

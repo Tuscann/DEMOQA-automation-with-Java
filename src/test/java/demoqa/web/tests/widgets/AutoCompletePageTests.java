@@ -54,7 +54,7 @@ public class AutoCompletePageTests extends BaseTest {
     @Test(enabled = true, description = "Select two multiple colors")
     public void selectTwoMultipleColors() {
         // Arrange & Act
-        autoCompletePage.waitForPageReady();
+        autoCompletePage.waitForPageToBeLoaded();
 
         autoCompletePage.multiAutoCompleteSelectColor(COLOR_RED);
         autoCompletePage.multiAutoCompleteSelectColor(COLOR_BLUE);
@@ -67,7 +67,7 @@ public class AutoCompletePageTests extends BaseTest {
     @Test(enabled = true, description = "Select two multiple colors")
     public void selectTwoMultipleColorsAndCloseFirst() {
         // Arrange & Act
-        autoCompletePage.waitForPageReady();
+        autoCompletePage.waitForPageToBeLoaded();
         autoCompletePage.multiAutoCompleteSelectColor(COLOR_INDIGO);
         autoCompletePage.multiAutoCompleteSelectColor(COLOR_GREEN);
 
@@ -78,10 +78,10 @@ public class AutoCompletePageTests extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(enabled = true, description = "Select two multiple colors")
+    @Test(enabled = true, description = "Select two multiple colors and close all one by one")
     public void selectAllMultipleColorsAndCloseAllOneByOne() {
         // Arrange & Act
-        autoCompletePage.waitForPageReady();
+        autoCompletePage.waitForPageToBeLoaded();
 
         autoCompletePage.multiAutoCompleteSelectColor(COLOR_RED);
         autoCompletePage.multiAutoCompleteSelectColor(COLOR_BLUE);
@@ -107,7 +107,7 @@ public class AutoCompletePageTests extends BaseTest {
     @Test(enabled = true, description = "Select two multiple colors")
     public void selectTwoMultipleColorsAndCloseAll() {
         // Arrange & Act
-        autoCompletePage.waitForPageReady();
+        autoCompletePage.waitForPageToBeLoaded();
 
         autoCompletePage.multiAutoCompleteSelectColor(COLOR_RED);
         autoCompletePage.multiAutoCompleteSelectColor(COLOR_BLUE);
@@ -121,8 +121,8 @@ public class AutoCompletePageTests extends BaseTest {
 
     @Test(enabled = true, description = "Select four multiple colors delete and two new")
     public void selectFourMultipleColorsCloseAlAddNewTwoColors() {
-        // Arrange & Act
-        autoCompletePage.waitForPageReady();
+        // Arrange & Act & Assert
+        autoCompletePage.waitForPageToBeLoaded();
 
         autoCompletePage.multiAutoCompleteSelectColor(COLOR_RED);
         autoCompletePage.multiAutoCompleteSelectColor(COLOR_BLUE);
@@ -137,7 +137,6 @@ public class AutoCompletePageTests extends BaseTest {
         autoCompletePage.multiAutoCompleteSelectColor(COLOR_GREEN);
 
         softAssert.assertEquals(autoCompletePage.getAllSelectedMultiColorNames(), COLOR_WHITE + "\n" + COLOR_GREEN, COLORS_SELECTED_SECOND_ERROR);
-
         softAssert.assertAll();
     }
 
@@ -151,7 +150,7 @@ public class AutoCompletePageTests extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(enabled = true, description = "Select one color clear and add new single color ")
+    @Test(enabled = true, description = "Select one color and select other color ")
     public void selectOneSingleColorAndChangeColor() {
         // Arrange & Act
         autoCompletePage.singleAutoComplete(COLOR_GREEN);

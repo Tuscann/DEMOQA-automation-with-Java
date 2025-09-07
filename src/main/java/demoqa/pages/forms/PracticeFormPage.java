@@ -41,11 +41,6 @@ public class PracticeFormPage extends BasePage {
     private WebElement selectCity;
     @FindBy(id = "submit")
     private WebElement submitButton;
-
-    @FindBy(xpath = "//button[@type='button'][contains(.,'Close')]")
-    private WebElement closeButton;
-
-
     @FindBy(xpath = "//th[contains(.,'Label')]")
     private WebElement labelForm;
     @FindBy(xpath = "//th[contains(.,'Label')]/following-sibling::*[1]")
@@ -252,6 +247,7 @@ public class PracticeFormPage extends BasePage {
     public void setSubject(String subject) {
         subjects.sendKeys(subject);
         subjects.sendKeys("" + Keys.ENTER);
+        delay(100);
     }
 
     public void setFirstName(String firstName) {
@@ -343,13 +339,6 @@ public class PracticeFormPage extends BasePage {
         }
     }
 
-    public void unClickReadingHobbyCheckbox() {
-        if (readingHobbyCheckbox.isSelected()) {
-            javaScriptUtility.scrollToElementJS(readingHobbyCheckbox);
-            javaScriptUtility.clickJS(readingHobbyCheckbox);
-        }
-    }
-
     public void clickSubmitButton() {
         javaScriptUtility.scrollToElementJS(submitButton);
         submitButton.click();
@@ -358,23 +347,6 @@ public class PracticeFormPage extends BasePage {
     public void clickSubmitButton2() {
         javaScriptUtility.scrollToElementJS(submitButton);
         submitButton.click();
-    }
-
-    public void clickCloseButton() {
-        javaScriptUtility.scrollToElementJS(closeButton);
-        closeButton.click();
-    }
-
-    public boolean isReadingCheckBoxSelected() {
-        return readingHobbyCheckbox.isSelected();
-    }
-
-    public boolean isMusicCheckBoxSelected() {
-        return musicHobbyCheckbox.isSelected();
-    }
-
-    public boolean isSportCheckBSelected() {
-        return sportHobbyCheckbox.isSelected();
     }
 
     public String getEmailLLabel() {
@@ -596,12 +568,5 @@ public class PracticeFormPage extends BasePage {
 
     public String getCloseButtonBackgroundColor() {
         return closeLargeModal.getCssValue("background-color");
-    }
-
-    public String getBorderColorOfSubjects(String expectedColor) {
-//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-//        wait.until(ExpectedConditions.attributeToBe(subjects, "border-color", expectedColor));
-
-        return subjects.getCssValue("border-color");
     }
 }

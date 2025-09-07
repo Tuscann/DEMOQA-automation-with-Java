@@ -15,25 +15,18 @@ import java.time.Duration;
 public class AutoCompletePage extends BasePage {
     @FindBy(id = "autoCompleteMultipleInput")
     private WebElement multiAutoComplete;
-
     @FindBy(id = "autoCompleteSingleInput")
     private WebElement singleAutoComplete;
-
     @FindBy(xpath = "//h1[contains(.,'Auto Complete')]")
     private WebElement text;
-
     @FindBy(id = "autoCompleteMultiple")
     private WebElement multipleContainerText;
-
     @FindBy(id = "autoCompleteSingle")
     private WebElement autoCompleteSingleText;
-
     @FindBy(xpath = "//div[@aria-hidden='true']")
     private WebElement closeButton;
-
     @FindBy(xpath = "//div[contains(@class,'value-container')]")
     private WebElement allSelectedMultiColorNames;
-
     @FindBy(xpath = "(//div[contains(@class,'remove')])[1]")
     private WebElement closeFirstButton;
 
@@ -138,10 +131,7 @@ public class AutoCompletePage extends BasePage {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
         WebElement input = wait.until(ExpectedConditions.elementToBeClickable(singleAutoComplete));
 
-        // Clear any existing text
         input.clear();
-
-        // Input the color
         input.sendKeys(color);
 
         // Wait a moment for suggestions to appear
@@ -162,10 +152,7 @@ public class AutoCompletePage extends BasePage {
         }
     }
 
-    /**
-     * Wait for the page to be ready before interactions
-     */
-    public void waitForPageReady() {
+    public void waitForPageToBeLoaded() {
         try {
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
             wait.until(ExpectedConditions.visibilityOf(text));

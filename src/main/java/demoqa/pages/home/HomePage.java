@@ -9,8 +9,6 @@ import utilities.JavaScriptUtility;
 
 import java.util.List;
 
-import static utilities.StaticVariables.HOME_MENU_ITEMS;
-
 public class HomePage extends BasePage {
 
     private final JavaScriptUtility javaScriptUtility;
@@ -104,19 +102,7 @@ public class HomePage extends BasePage {
         alertsFrameWindowsCard.click();
     }
 
-    public void chooseHomePageMenu(String homeMenu) {
-        int indexOfElement = HOME_MENU_ITEMS.indexOf(homeMenu);
-        javaScriptUtility.scrollToElementJS(clickHomePageItems.getFirst());
-
-        for (int i = 0; i < 3 && i < clickHomePageItems.size(); i++) {
-            if (i == indexOfElement) {
-                clickHomePageItems.get(i).click();
-            }
-        }
-    }
-
     public String getBackgroundColor() {
         return backgroundColor.getCssValue("background-color");
     }
-
 }

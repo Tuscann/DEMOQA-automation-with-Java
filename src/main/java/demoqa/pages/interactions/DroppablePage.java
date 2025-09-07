@@ -16,79 +16,54 @@ public class DroppablePage extends BasePage {
 
     @FindBy(xpath = "//h1")
     private WebElement droppableHeader;
-
     @FindBy(xpath = " //*[@id='droppableExample-tab-simple']")
     private WebElement simpleTab;
-
     @FindBy(xpath = " //*[@id='draggable']")
     private WebElement simpleTabDragMe;
-
     @FindBy(xpath = "(//*[@id=\"droppable\"])[1]")
     private WebElement droppableSimpleTab;
-
     @FindBy(xpath = "(//*[@id=\"droppable\"]/p)[1]")
     private WebElement droppableSimpleTabText;
-
     @FindBy(xpath = "(//*[@id=\"droppable\"])[2]")
     private WebElement droppableAcceptTab;
-
     @FindBy(xpath = "(//*[@id=\"droppable\"]/p)[2]")
     private WebElement acceptableDroppableText;
-
     @FindBy(xpath = "(//*[@id=\"droppable\"])[3]")
     private WebElement droppableRevertDraggableTab;
-
     @FindBy(xpath = "(//*[@id=\"droppable\"]/p)[3]")
     private WebElement droppableRevertDraggableTabText;
-
     @FindBy(id = "droppableExample-tab-accept")
     private WebElement acceptTab;
-
     @FindBy(id = "acceptable")
     private WebElement acceptableButton;
-
     @FindBy(id = "notAcceptable")
     private WebElement notAcceptableButton;
-
     @FindBy(id = "droppableExample-tab-preventPropogation")
     private WebElement preventPropagationTab;
-
     @FindBy(id = "dragBox")
     private WebElement preventPropagationDragMeButton;
-
     @FindBy(id = "notGreedyDropBox")
     private WebElement preventPropagationNotGreedyDropBox;
-
     @FindBy(id = "greedyDropBoxInner")
     private WebElement preventPropagationGreedyDropBox;
-
     @FindBy(id = "greedyDropBox")
     private WebElement greedyDropBox;
-
     @FindBy(id = "notGreedyInnerDropBox")
     private WebElement notGreedyInnerDropBox;
-
     @FindBy(xpath = "(//p[contains(.,'Outer droppable')])[1]")
     private WebElement outerDroppableNotGreedyText;
-
     @FindBy(xpath = "//p[contains(.,'Inner droppable (not greedy)')]")
     private WebElement innerDroppableNotGreedyText;
-
     @FindBy(xpath = "(//p[contains(.,'Outer droppable')])[2]")
     private WebElement outerDroppableGreedyText;
-
     @FindBy(xpath = "//p[contains(.,'Inner droppable (greedy)')]")
     private WebElement innerDroppableGreedyText;
-
     @FindBy(id = "droppableExample-tab-revertable")
     private WebElement revertDraggableTab;
-
     @FindBy(id = "revertable")
     private WebElement willRevert;
-
     @FindBy(id = "notRevertable")
     private WebElement notWillRevert;
-
     @FindBy(xpath = "(//div[@id='droppable'])[3]")
     private WebElement dropHereRevertDraggable;
 
@@ -207,19 +182,13 @@ public class DroppablePage extends BasePage {
         Actions actions = new Actions(driver);
         actions.dragAndDrop(acceptableButton, acceptableDroppableText).perform();
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(4));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(6));
         wait.until(ExpectedConditions.textToBePresentInElement(acceptableDroppableText, "Dropped!"));
     }
 
     public void dragAndDropNotAcceptable() {
         Actions actions = new Actions(driver);
         actions.dragAndDrop(notAcceptableButton, acceptableDroppableText).perform();
-    }
-
-    public String getColorAcceptable() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(6));
-        wait.until(ExpectedConditions.textToBePresentInElement(acceptableDroppableText, "Dropped!"));
-        return acceptableDroppableText.getCssValue("background-color");
     }
 
     public void dragAndDropPropagationOuterDroppableNotGreedy() {
@@ -230,12 +199,6 @@ public class DroppablePage extends BasePage {
     public void dragAndDropPropagationInnerDroppableGreedy() {
         Actions actions = new Actions(driver);
         actions.dragAndDrop(preventPropagationDragMeButton, preventPropagationGreedyDropBox).perform();
-    }
-
-    public String getInnerDroppableGreedyColor() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.visibilityOf(preventPropagationGreedyDropBox));
-        return preventPropagationGreedyDropBox.getCssValue("background-color");
     }
 
     public String getOuterDroppableGreedyText() {
@@ -276,12 +239,6 @@ public class DroppablePage extends BasePage {
     public void dragAndDropPropagationInnerDroppableNotGreedy() {
         Actions actions = new Actions(driver);
         actions.dragAndDrop(preventPropagationDragMeButton, notGreedyInnerDropBox).perform();
-    }
-
-    public String getDroppableBackGroundColor() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-        wait.until(ExpectedConditions.visibilityOf(droppableSimpleTab));
-        return droppableSimpleTab.getCssValue("background-color");
     }
 
     public String getWillNotRevertBackGroundColor() {

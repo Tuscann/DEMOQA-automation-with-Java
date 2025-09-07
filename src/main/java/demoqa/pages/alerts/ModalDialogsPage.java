@@ -41,7 +41,6 @@ public class ModalDialogsPage extends BasePage {
     @FindBy(xpath = "//span[contains(@aria-hidden,'true')]")
     WebElement clickXCLoseButton;
 
-
     public ModalDialogsPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);

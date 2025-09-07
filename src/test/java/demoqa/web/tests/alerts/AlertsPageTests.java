@@ -169,12 +169,12 @@ public class AlertsPageTests extends BaseTest {
         alertsPage.clickPromptAlertButton();
         switchToUtility.setAlertText(PROMPT_INPUT_TEXT);
         switchToUtility.acceptAlert();
-        String actualResult = alertsPage.getPromptAlertResult();
-        String promptResultBackgroundColor = alertsPage.getPromptResultBackgroundColor();
+        String actualResultMessage = alertsPage.getPromptAlertResult();
+        String actualResultMessageBackgroundColor = alertsPage.getPromptResultBackgroundColor();
 
         // Assert
-        softAssert.assertEquals(promptResultBackgroundColor, EXPECTED_GREEN_COLOR, RESULT_BACKGROUND_COLOR_ERROR);
-        softAssert.assertEquals(actualResult, PROMPT_RESULT_PREFIX + PROMPT_INPUT_TEXT, PROMPT_RESULT_MISMATCH_ERROR);
+        softAssert.assertEquals(actualResultMessage, PROMPT_RESULT_PREFIX + PROMPT_INPUT_TEXT, PROMPT_RESULT_MISMATCH_ERROR);
+        softAssert.assertEquals(actualResultMessageBackgroundColor, EXPECTED_GREEN_COLOR, RESULT_BACKGROUND_COLOR_ERROR);
         softAssert.assertAll();
     }
 }

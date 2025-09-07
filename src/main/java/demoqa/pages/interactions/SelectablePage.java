@@ -8,89 +8,68 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utilities.JavaScriptUtility;
 
 import java.time.Duration;
 import java.util.List;
 
 public class SelectablePage extends BasePage {
+    private final JavaScriptUtility javaScriptUtility;
     @FindBy(xpath = "//h1[@class='text-center'][contains(.,'Selectable')]")
     private WebElement pageTitle;
-
     @FindBy(xpath = "(//li[@class='mt-2 list-group-item list-group-item-action'])[1]")
     private WebElement firstRowSelect;
-
     @FindBy(xpath = "(//li[@class='mt-2 list-group-item list-group-item-action'])[2]")
     private WebElement secondRowSelect;
-
     @FindBy(xpath = "(//li[@class='mt-2 list-group-item list-group-item-action'])[3]")
     private WebElement thirdRowSelect;
-
     @FindBy(xpath = "(//li[@class='mt-2 list-group-item list-group-item-action'])[4]")
     private WebElement fourRowSelect;
-
     @FindBy(xpath = "(//li[@class='mt-2 list-group-item active list-group-item-action'])[1]")
     private WebElement firstRowDeselect;
-
     @FindBy(xpath = "(//li[@class='mt-2 list-group-item active list-group-item-action'])[2]")
     private WebElement secondRowDeselect;
-
     @FindBy(xpath = "(//li[@class='mt-2 list-group-item active list-group-item-action'])[3]")
     private WebElement thirdRowDeselect;
-
     @FindBy(xpath = "(//li[@class='mt-2 list-group-item active list-group-item-action'])[4]")
     private WebElement fourRowDeselect;
-
     @FindBy(xpath = "//*[contains(@class,'mt-2')]")
     private List<WebElement> allList;
-
     @FindBy(id = "demo-tab-list")
     private WebElement listTabText;
-
     @FindBy(xpath = "//li[@class='mt-2 list-group-item list-group-item-action'][contains(.,'Cras justo odio')]")
     private WebElement listFirstText;
-
     @FindBy(xpath = "//li[@class='mt-2 list-group-item list-group-item-action'][contains(.,'Dapibus ac facilisis in')]")
     private WebElement listSecondText;
-
     @FindBy(xpath = "//li[@class='mt-2 list-group-item list-group-item-action'][contains(.,'Morbi leo risus')]")
     private WebElement listThirdText;
-
     @FindBy(xpath = "//li[contains(.,'Porta ac consectetur ac')]")
     private WebElement listFourText;
-
     @FindBy(id = "demo-tab-grid")
     private WebElement gridTabText;
-
     @FindBy(xpath = "//li[@class='list-group-item list-group-item-action'][contains(.,'One')]")
     private WebElement gridOne;
-
     @FindBy(xpath = "//li[@class='list-group-item list-group-item-action'][contains(.,'Two')]")
     private WebElement gridTwo;
-
     @FindBy(xpath = "//li[@class='list-group-item list-group-item-action'][contains(.,'Three')]")
     private WebElement gridThree;
-
     @FindBy(xpath = "//li[@class='list-group-item list-group-item-action'][contains(.,'Four')]")
     private WebElement gridFour;
-
     @FindBy(xpath = "//li[@class='list-group-item list-group-item-action'][contains(.,'Five')]")
     private WebElement gridFive;
-
     @FindBy(xpath = "//li[@class='list-group-item list-group-item-action'][contains(.,'Six')]")
     private WebElement gridSix;
-
     @FindBy(xpath = "//li[@class='list-group-item list-group-item-action'][contains(.,'Seven')]")
     private WebElement gridSeven;
-
     @FindBy(xpath = "//li[@class='list-group-item list-group-item-action'][contains(.,'Eight')]")
     private WebElement gridEight;
-
     @FindBy(xpath = "//li[@class='list-group-item list-group-item-action'][contains(.,'Nine')]")
     private WebElement gridNine;
 
     public SelectablePage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
+        this.javaScriptUtility = new JavaScriptUtility(driver);
     }
 
     public String getPageTitleText() {
@@ -124,6 +103,7 @@ public class SelectablePage extends BasePage {
     }
 
     public void clickGridTab() {
+        javaScriptUtility.scrollToElementJS(gridTabText);
         gridTabText.click();
     }
 
@@ -134,11 +114,8 @@ public class SelectablePage extends BasePage {
     }
 
     public boolean RowSelected(String searchedSelection) {
-
         WebElement listItem = driver.findElement(By.xpath("//li[contains(.,'" + searchedSelection + "')]"));
-
         String backgroundColor = listItem.getCssValue("background-color");
-
         return backgroundColor.equals("rgba(0, 123, 255, 1)");
     }
 
@@ -196,9 +173,7 @@ public class SelectablePage extends BasePage {
 
     public boolean isPositionFromGridSelected(String searchedSelection) {
         WebElement listItem = driver.findElement(By.xpath("//li[contains(.,'" + searchedSelection + "')]"));
-
         String backgroundColor = listItem.getCssValue("background-color");
-
         return backgroundColor.equals("rgba(0, 123, 255, 1)");
     }
 }

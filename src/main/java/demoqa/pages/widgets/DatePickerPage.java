@@ -58,13 +58,6 @@ public class DatePickerPage extends BasePage {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(4));
         wait.until(ExpectedConditions.elementToBeClickable(sectionOneHeading));
 
-//        String osName = System.getProperty("os.name").toLowerCase();
-//        if (osName.contains("mac")) {
-//            sectionOneHeading.sendKeys(Keys.COMMAND + "a");
-//            sectionOneHeading.clear();
-//        } else {
-//            sectionOneHeading.sendKeys(Keys.CONTROL + "a");
-//        }
         sectionOneHeading.sendKeys(expectedDate);
         sectionOneHeading.sendKeys(Keys.chord(Keys.ENTER));
     }

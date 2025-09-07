@@ -13,43 +13,31 @@ import utilities.JavaScriptUtility;
 import java.time.Duration;
 
 public class ToolTipsPage extends BasePage {
+    private final JavaScriptUtility javaScriptUtility;
     @FindBy(xpath = "//*[@id='buttonToolTopContainer']/p")
     private WebElement practiceToolTipsText;
-
     @FindBy(id = "toolTipButton")
     private WebElement hoverMeToSeeButton;
-
     @FindBy(id = "buttonToolTip")
     private WebElement buttonTooltip;
-
     @FindBy(id = "toolTipTextField")
     private WebElement hoverMeTextField;
-
     @FindBy(xpath = "//h1[@class='text-center'][contains(.,'Tool Tips')]")
     private WebElement header;
-
     @FindBy(id = "texToolTopContainer")
     private WebElement mainText;
-
     @FindBy(xpath = "//a[@href='javascript:void(0)'][contains(.,'Contrary')]")
     private WebElement contrary;
-
     @FindBy(xpath = "//a[@href='javascript:void(0)'][contains(.,'1.10.32')]")
     private WebElement section;
-
     @FindBy(xpath = "//*[@id=\"buttonToolTip\"]/div[2]")
     private WebElement buttonToolTip;
-
     @FindBy(xpath = "//*[@id=\"textFieldToolTip\"]/div[2]")
     private WebElement practiceTextFieldToolTip;
-
     @FindBy(xpath = "//*[@id=\"contraryTexToolTip\"]/div[2]")
     private WebElement contraryToolTip;
-
     @FindBy(xpath = "//*[@id=\"sectionToolTip\"]/div[2]")
     private WebElement sectionToolTip;
-
-    private final JavaScriptUtility javaScriptUtility;
 
     public ToolTipsPage(WebDriver driver) {
         super(driver);
@@ -119,8 +107,7 @@ public class ToolTipsPage extends BasePage {
         return mainText.getText();
     }
 
-
-    public String getGreenColorButton() {
+    public String getGreenButtonBackgroundColor() {
         return hoverMeToSeeButton.getCssValue("background-color");
     }
 }

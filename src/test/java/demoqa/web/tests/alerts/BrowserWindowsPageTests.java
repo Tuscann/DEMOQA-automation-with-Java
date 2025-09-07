@@ -72,11 +72,11 @@ public class BrowserWindowsPageTests extends BaseTest {
     public void clickNewTabButton() {
         // Arrange & Act
         browserWindowsPage.clickNewTabButton();
-        String h1Text = browserWindowsPage.getSecondTabH1Text();
+        String secondTabH1Text = browserWindowsPage.getSecondTabH1Text();
         String secondTabBackgroundColor = browserWindowsPage.getSecondTabBackgroundColor();
 
         // Assert
-        softAssert.assertEquals(h1Text, NEW_TAB_H1_TEXT, SECOND_TAB_H1_ERROR);
+        softAssert.assertEquals(secondTabH1Text, NEW_TAB_H1_TEXT, SECOND_TAB_H1_ERROR);
         softAssert.assertEquals(secondTabBackgroundColor, EXPECTED_GREY_COLOR, WRONG_COLOR_NEW_WINDOW_MESSAGE_ERROR);
         softAssert.assertEquals(browserWindowsPage.getNewTabUrl(), EXPECTED_SAMPLE_URL, NEW_TAB_URL_ERROR);
         softAssert.assertAll();
@@ -86,14 +86,14 @@ public class BrowserWindowsPageTests extends BaseTest {
     public void clickNewWindowButton() {
         // Arrange & Act
         browserWindowsPage.clickNewWindowButton();
-        String actualNewTabUrl = browserWindowsPage.getNewWindowUrl();
-        String h1Text = browserWindowsPage.getSecondTabH1Text();
+        String secondTabTabUrl = browserWindowsPage.getNewWindowUrl();
+        String secondTabH1Text = browserWindowsPage.getSecondTabH1Text();
         String secondTabBackgroundColor = browserWindowsPage.getSecondTabBackgroundColor();
 
         // Assert
-        softAssert.assertEquals(h1Text, NEW_TAB_H1_TEXT, SECOND_TAB_H1_ERROR);
+        softAssert.assertEquals(secondTabTabUrl, EXPECTED_SAMPLE_URL, NEW_WINDOW_URL_ERROR);
+        softAssert.assertEquals(secondTabH1Text, NEW_TAB_H1_TEXT, SECOND_TAB_H1_ERROR);
         softAssert.assertEquals(secondTabBackgroundColor, EXPECTED_GREY_COLOR, WRONG_COLOR_NEW_WINDOW_MESSAGE_ERROR);
-        softAssert.assertEquals(actualNewTabUrl, EXPECTED_SAMPLE_URL, NEW_WINDOW_URL_ERROR);
         softAssert.assertAll();
     }
 

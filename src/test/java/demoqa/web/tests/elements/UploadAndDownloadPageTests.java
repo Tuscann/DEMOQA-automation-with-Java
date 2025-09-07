@@ -12,7 +12,7 @@ public class UploadAndDownloadPageTests extends BaseTest {
     private static final String EXPECTED_SELECT_A_FILE_TEXT = "Select a file";
 
     // File Constants
-    private static final String PICTURE_NAME = "zhivko.jpg";
+    private static final String PICTURE_NAME = "ivan.jpg";
     private static final String EXPECTED_DOWNLOAD_FILE_NAME = "sampleFile.jpeg";
     private static final String FAKE_PATH_PREFIX = "C:\\fakepath\\";
 

@@ -11,77 +11,53 @@ import java.util.List;
 
 public class CheckBoxPage extends BasePage {
 
+    private final JavaScriptUtility javaScriptUtility;
     @FindBy(xpath = "//h1[@class='text-center'][contains(.,'Check Box')]")
     private WebElement header;
-
     @FindBy(xpath = "(//span[contains(.,'Home')])[2]")
     private WebElement home;
-
     @FindBy(xpath = "(//span[contains(.,'Desktop')])[2]")
     private WebElement desktop;
-
     @FindBy(xpath = "(//span[contains(.,'Notes')])[2]")
     private WebElement notes;
-
     @FindBy(xpath = "(//span[contains(.,'Commands')])[2]")
     private WebElement commands;
-
     @FindBy(xpath = "(//span[contains(.,'Documents')])[2]")
     private WebElement documents;
-
     @FindBy(xpath = "(//span[contains(.,'WorkSpace')])[2]")
     private WebElement workSpace;
-
     @FindBy(xpath = "(//span[contains(.,'React')])[2]")
     private WebElement react;
-
     @FindBy(xpath = "(//span[contains(.,'Angular')])[2]")
     private WebElement angular;
-
     @FindBy(xpath = "(//span[contains(.,'Veu')])[2]")
     private WebElement veu;
-
     @FindBy(xpath = "(//span[contains(.,'Office')])[2]")
     private WebElement office;
-
     @FindBy(xpath = "(//span[contains(.,'Public')])[2]")
     private WebElement officePublic;
-
     @FindBy(xpath = "(//span[contains(.,'Private')])[2]")
     private WebElement officePrivate;
-
     @FindBy(xpath = "(//span[contains(.,'Classified')])[2]")
     private WebElement classified;
-
     @FindBy(xpath = "(//span[contains(.,'General')])[2]")
     private WebElement general;
-
     @FindBy(xpath = "(//span[contains(.,'Downloads')])[2]")
     private WebElement downloads;
-
     @FindBy(xpath = "(//span[contains(.,'Word File.doc')])[2]")
     private WebElement wordFileDoc;
-
     @FindBy(xpath = "(//span[contains(.,'Excel File.doc')])[2]")
     private WebElement excelFileDoc;
-
     @FindBy(css = ".rct-option.rct-option-expand-all")
     private WebElement expandAll;
-
     @FindBy(css = ".rct-option.rct-option-collapse-all")
     private WebElement collapseAll;
-
     @FindBy(id = "result")
     private WebElement resultMessage;
-
     @FindBy(id = "result")
     private List<WebElement> resultMessageList;
-
     @FindBy(xpath = "//span[@class='text-success'][1]")
     private WebElement firstSelectedNotesCheckbox;
-
-
-    private final JavaScriptUtility javaScriptUtility;
 
     public CheckBoxPage(WebDriver driver) {
         super(driver);

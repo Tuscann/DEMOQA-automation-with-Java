@@ -33,16 +33,11 @@ public class BasePage {
         locator.sendKeys(text);
     }
 
-    protected void set(By locator, String text) {
-        find(locator).clear();
-        find(locator).sendKeys(text);
-    }
-
     protected void click(By locator) {
         find(locator).click();
     }
 
-    public String checkCurrentUrl() {
+    public String getCurrentUrl() {
         return driver.getCurrentUrl();
     }
 

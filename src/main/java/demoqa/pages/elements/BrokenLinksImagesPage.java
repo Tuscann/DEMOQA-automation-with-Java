@@ -5,11 +5,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-
 import utilities.JavaScriptUtility;
 
 public class BrokenLinksImagesPage extends BasePage {
 
+    private final JavaScriptUtility javaScriptUtility;
     @FindBy(xpath = "//h1[@class='text-center'][contains(.,'Broken Links - Images')]")
     WebElement headerText;
     @FindBy(xpath = "//p[contains(.,'Valid image')]")
@@ -24,8 +24,6 @@ public class BrokenLinksImagesPage extends BasePage {
     WebElement clickHereValidLinkText;
     @FindBy(xpath = "//a[contains(.,'Click Here for Broken Link')]")
     WebElement clickHereBrokenLinkText;
-
-    private final JavaScriptUtility javaScriptUtility;
 
     public BrokenLinksImagesPage(WebDriver driver) {
         super(driver);
@@ -59,10 +57,6 @@ public class BrokenLinksImagesPage extends BasePage {
 
     public String getClickHereBrokenLinkText() {
         return clickHereBrokenLinkText.getText();
-    }
-
-    public String getCurrentUrl() {
-        return driver.getCurrentUrl();
     }
 
     public void clickOnClickHereForValidLink() {

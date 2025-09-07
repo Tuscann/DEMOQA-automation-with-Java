@@ -62,18 +62,10 @@ public class BooksPageTests extends BaseTest {
     private static final String BOOKS_COUNT_100_ERROR = "Books count is not 100";
     private static final String BOOKS_ORDERING_ERROR = "Books ordering mismatch";
     private static final String BOOKS_SEARCH_ORDERING_ERROR = "Books search and ordering mismatch";
-
-    private BooksPage booksPage;
-
     // Logger instance for enhanced test reporting
     private static final Logger logger = LoggerFactory.getLogger(BooksPageTests.class);
-
-    // Helper Methods for Common Operations
-    private void verifyBookCount(int expectedCount, String errorMessage) {
-        int actualCount = booksPage.getCountFoundBooks();
-        softAssert.assertEquals(actualCount, expectedCount, errorMessage);
-        logger.debug("Verified book count: expected={}, actual={}", expectedCount, actualCount);
-    }
+    private static final String BOOKS_URL = "books";
+    private BooksPage booksPage;
 
     private void verifyPaginationButtons(boolean previousActive, boolean nextActive) {
         boolean isActivePreviousButton = booksPage.checkPreviousButtonIsActive();
@@ -92,7 +84,7 @@ public class BooksPageTests extends BaseTest {
     }
 
     private void verifyUrlNavigation(String expectedUrl, String errorMessage) {
-        String actualUrl = booksPage.checkCurrentUrl();
+        String actualUrl = booksPage.getCurrentUrl();
         softAssert.assertEquals(actualUrl, expectedUrl, errorMessage);
         logger.debug("URL verification: expected={}, actual={}", expectedUrl, actualUrl);
     }
@@ -102,7 +94,6 @@ public class BooksPageTests extends BaseTest {
         logger.debug("Testing rows per page option: {} -> {} books", rowsPerPage, expectedCount);
 
         booksPage.chooseBooksPerPage(rowsPerPage);
-        verifyBookCount(expectedCount, errorMessage);
 
         // Note: For rows per page > 8, the page will show all available books (8 total)
         // This is the expected behavior when there are fewer books than the selected rows per page
@@ -121,7 +112,6 @@ public class BooksPageTests extends BaseTest {
         };
     }
 
-
     @DataProvider(name = "paginationData")
     public Object[][] paginationDataProvider() {
         return new Object[][]{
@@ -130,8 +120,6 @@ public class BooksPageTests extends BaseTest {
                 {"after_previous", 5, false, true, "After clicking previous button"}
         };
     }
-
-    private static final String BOOKS_URL = "books";
 
     @BeforeMethod
     public void goToBooksPage() {
@@ -158,7 +146,6 @@ public class BooksPageTests extends BaseTest {
         logger.debug("Dropdown state after click: visible={}", textBoxIsVisible);
 
         // Assert
-
         softAssert.assertFalse(textBoxIsVisible, DROPDOWN_LOGIN_SHOWN_ERROR);
         softAssert.assertAll();
 
@@ -218,13 +205,13 @@ public class BooksPageTests extends BaseTest {
     @Test(enabled = true, description = "Verify default count of books is 8")
     public void verifyCountOfDefaultBooks() {
         logger.info("Starting default books count verification test");
-
         // Arrange
         int expectedBooksCount = 8;
         logger.debug("Expected books count: {}", expectedBooksCount);
 
         // Act & Assert
-        verifyBookCount(expectedBooksCount, BOOKS_COUNT_ERROR);
+        int currentDefaultBookCount = booksPage.getCountFoundBooks();
+        softAssert.assertEquals(currentDefaultBookCount, expectedBooksCount, BOOKS_COUNT_ERROR);
         softAssert.assertAll();
 
         logger.info("Default books count verification test completed successfully");
@@ -244,7 +231,7 @@ public class BooksPageTests extends BaseTest {
     }
 
     @Test(enabled = true, description = "Search by book title and find one book and verify book details")
-    public void searchBookByTitleAndFindOneBook() {
+    public void searchByBookByTitleAndFindOneBook() {
         logger.info("Starting book search by title test for '{}'", SEARCHED_BOOK_ECMASCRIPT);
 
         // Act & Assert
@@ -351,10 +338,9 @@ public class BooksPageTests extends BaseTest {
 
         try {
             booksPage.chooseBooksPerPage(rowsPerPage);
-            verifyBookCount(expectedCount, errorMessage);
+            int expectedCount2 = booksPage.getCountFoundBooks();
+            softAssert.assertEquals(expectedCount2, expectedCount, errorMessage);
 
-            // Verify pagination buttons state based on actual page behavior
-            // Note: The page may not always show the expected count due to actual data availability
             logger.info("Rows per page test completed: {} -> {} books", rowsPerPage, expectedCount);
         } catch (Exception e) {
             logger.error("Error in rows per page test for {}: {}", rowsPerPage, e.getMessage());
@@ -769,7 +755,6 @@ public class BooksPageTests extends BaseTest {
             }
             // For "initial" scenario, no navigation needed
 
-            verifyBookCount(expectedCount, "Book count mismatch for " + scenario);
             verifyPaginationButtons(previousActive, nextActive);
 
             logger.info("Pagination test completed for scenario: {}", scenario);

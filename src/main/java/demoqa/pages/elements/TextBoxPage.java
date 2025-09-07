@@ -14,53 +14,38 @@ import java.time.Duration;
 
 public class TextBoxPage extends BasePage {
 
-    @FindBy(xpath = "//h1[@class='text-center'][contains(.,'Text Box')]")
-    private WebElement header;
-
-    @FindBy(id = "userName-label")
-    private WebElement fullNameLabel;
-
-    @FindBy(id = "userName")
-    private WebElement fullNameField;
-
-    @FindBy(id = "userEmail-label")
-    private WebElement emailLabel;
-
-    @FindBy(id = "userEmail")
-    private WebElement emailField;
-
-    @FindBy(id = "currentAddress-label")
-    private WebElement currentAddressLabel;
-
-    @FindBy(id = "currentAddress")
-    private WebElement currentAddressField;
-
-    @FindBy(id = "permanentAddress-label")
-    private WebElement permanentAddressLabel;
-
-    @FindBy(id = "permanentAddress")
-    private WebElement permanentAddress;
-
-    @FindBy(id = "submit")
-    private WebElement submitButton;
-
-    @FindBy(xpath = "//p[@id='name']")
-    private WebElement expectedFullName;
-
-    @FindBy(xpath = "//p[@id='email']")
-    private WebElement expectedEmail;
-
-    @FindBy(xpath = "//p[@id=\"currentAddress\"]")
-    private WebElement expectedCurrentAddress;
-
-    @FindBy(xpath = "//p[@id=\"permanentAddress\"]")
-    private WebElement expectedPermanentAddress;
-
-    @FindBy(id = "output")
-    private WebElement output;
-
     private final ActionUtility actionUtility;
     private final JavaScriptUtility javaScriptUtility;
+    @FindBy(xpath = "//h1[@class='text-center'][contains(.,'Text Box')]")
+    private WebElement header;
+    @FindBy(id = "userName-label")
+    private WebElement fullNameLabel;
+    @FindBy(id = "userName")
+    private WebElement fullNameField;
+    @FindBy(id = "userEmail-label")
+    private WebElement emailLabel;
+    @FindBy(id = "userEmail")
+    private WebElement emailField;
+    @FindBy(id = "currentAddress-label")
+    private WebElement currentAddressLabel;
+    @FindBy(id = "currentAddress")
+    private WebElement currentAddressField;
+    @FindBy(id = "permanentAddress-label")
+    private WebElement permanentAddressLabel;
+    @FindBy(id = "permanentAddress")
+    private WebElement permanentAddress;
+    @FindBy(id = "submit")
+    private WebElement submitButton;
+    @FindBy(xpath = "//p[@id='name']")
+    private WebElement expectedFullName;
+    @FindBy(xpath = "//p[@id='email']")
+    private WebElement expectedEmail;
+    @FindBy(xpath = "//p[@id=\"currentAddress\"]")
+    private WebElement expectedCurrentAddress;
+    @FindBy(xpath = "//p[@id=\"permanentAddress\"]")
+    private WebElement expectedPermanentAddress;
+    @FindBy(id = "output")
+    private WebElement output;
 
     public TextBoxPage(WebDriver driver) {
         super(driver);

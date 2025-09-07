@@ -13,16 +13,12 @@ public class UploadAndDownloadPage extends BasePage {
 
     @FindBy(id = "downloadButton")
     private WebElement downloadButton;
-
     @FindBy(id = "uploadFile")
     private WebElement chooseFileButton;
-
     @FindBy(id = "uploadedFilePath")
     private WebElement uploadFilePath;
-
     @FindBy(xpath = "//label[@for='uploadFile'][contains(.,'Select a file')]")
     private WebElement selectAFileLabel;
-
     @FindBy(xpath = "//h1[@class='text-center'][contains(.,'Upload and Download')]")
     private WebElement uploadAndDownloadLabel;
 

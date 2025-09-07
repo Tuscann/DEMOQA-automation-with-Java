@@ -33,13 +33,14 @@ public class AccordionPageTests extends BaseTest {
         accordianPage = new AccordianPage(driver);
     }
 
-    @Test(enabled = true, description = "Verify all headings on Accordian page")
+    @Test(enabled = true, description = "Verify accordion initial state and content")
     public void verifyAllTextOnPageAndDefaultFirstHeading() throws InterruptedException {
-        // Arrange & Act & Assert
+        // Arrange
         boolean isFirstHeadingOpenBefore = accordianPage.isFirstHeadingVisible();
         boolean isSecondHeadingOpenBefore = accordianPage.isSecondHeadingVisible();
         boolean isThirdHeadingOpenBefore = accordianPage.isThirdHeadingVisible();
 
+        // Act & Assert
         softAssert.assertEquals(accordianPage.getHeading(), PAGE_HEADING, PAGE_HEADING_ERROR);
         softAssert.assertEquals(accordianPage.getFirstSectionHeadingText(), SECTION_ONE_HEADING, SECTION_ONE_HEADING_ERROR);
         softAssert.assertEquals(accordianPage.getFirstSectionText(), SECTION_ONE_TEXT, SECTION_ONE_TEXT_ERROR);

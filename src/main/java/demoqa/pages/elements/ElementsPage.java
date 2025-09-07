@@ -13,43 +13,31 @@ import java.time.Duration;
 
 public class ElementsPage extends BasePage {
 
+    private final JavaScriptUtility javaScriptUtility;
     @FindBy(xpath = "//li[@id='item-0']/span[text()='Text Box']")
     private WebElement textBoxTab;
-
     @FindBy(xpath = "//li[@id='item-1']/span[text()='Check Box']")
     private WebElement checkBox;
-
     @FindBy(xpath = "//li[@id='item-2']/span[text()='Radio Button']")
     private WebElement radioButton;
-
     @FindBy(xpath = "//li[@id='item-3']/span[text()='Web Tables']")
     private WebElement webTables;
-
     @FindBy(xpath = "//li[@id='item-4']/span[text()='Buttons']")
     private WebElement buttons;
-
     @FindBy(xpath = "//li[@id='item-5']/span[text()='Links']")
     private WebElement links;
-
     @FindBy(xpath = "//li[@id='item-6']/span[text()='Broken Links - Images']")
     private WebElement brokenLinksImages;
-
     @FindBy(xpath = "//li[@id='item-7']/span[text()='Upload and Download']")
     private WebElement uploadAndDownload;
-
     @FindBy(xpath = "//li[@id='item-8']/span[text()='Dynamic Properties']")
     private WebElement dynamicPropertiesMenuItem;
-
     @FindBy(xpath = "(//div[contains(.,'Please select an item from left to start practice.')])[5]")
     private WebElement text;
-
     @FindBy(xpath = "(//div[@class='header-wrapper'][contains(.,'Elements')])")
     private WebElement elements;
-
     @FindBy(xpath = "//div[contains(@class,'element-list collapse')]")
     private WebElement collapseDiv;
-
-    private final JavaScriptUtility javaScriptUtility;
 
     public ElementsPage(WebDriver driver) {
         super(driver);

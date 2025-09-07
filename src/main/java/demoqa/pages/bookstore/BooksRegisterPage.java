@@ -12,61 +12,41 @@ import utilities.JavaScriptUtility;
 import java.time.Duration;
 
 public class BooksRegisterPage extends BasePage {
+    private final JavaScriptUtility javaScriptUtility;
     @FindBy(id = "firstname")
     private WebElement firstName;
-
     @FindBy(id = "lastname")
     private WebElement lastName;
-
     @FindBy(id = "userName")
     private WebElement username;
-
     @FindBy(id = "password")
     private WebElement password;
-
     @FindBy(id = "register")
     private WebElement registerButton;
-
     @FindBy(id = "gotologin")
     private WebElement backToLoginButton;
-
-    @FindBy(id = "g-recaptcha")
-    private WebElement iamRobotButton;
-
     @FindBy(id = "name")
     private WebElement errorMessage;
-
     @FindBy(xpath = "//input[@id='firstname']")
     private WebElement firstNameField;
-
     @FindBy(xpath = "//input[@id='lastname']")
     private WebElement lastNameField;
-
     @FindBy(xpath = "//input[@id='userName']")
     private WebElement userNameField;
-
     @FindBy(xpath = "//input[@id='password']")
     private WebElement passwordNameField;
-
     @FindBy(xpath = "//h1[contains(.,'Register')]")
     private WebElement title;
-
     @FindBy(xpath = "//h4[contains(.,'Register to Book Store')]")
     private WebElement firstText;
-
     @FindBy(xpath = "//label[@id='firstname-label']")
     private WebElement firstNameLabel;
-
     @FindBy(xpath = "//label[@id='lastname-label']")
     private WebElement lastNameLabel;
-
     @FindBy(xpath = "//label[@id='userName-label']")
     private WebElement userNameLabel;
-
     @FindBy(xpath = "//label[@id='password-label']")
     private WebElement passwordLabel;
-
-    private final JavaScriptUtility javaScriptUtility;
 
     public BooksRegisterPage(WebDriver driver) {
         super(driver);

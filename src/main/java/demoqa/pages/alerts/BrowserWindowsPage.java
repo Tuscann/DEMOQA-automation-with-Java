@@ -24,7 +24,6 @@ public class BrowserWindowsPage extends BasePage {
     WebElement newWindowButton;
     @FindBy(id = "messageWindowButton")
     WebElement newWindowMessageButton;
-
     @FindBy(xpath = "/html/body")
     WebElement header1;
 
@@ -101,12 +100,12 @@ public class BrowserWindowsPage extends BasePage {
         return header.getText();
     }
 
-    public String getNewTabBackgroundColor() {
-        return newTabButton.getCssValue("background-color");
-    }
-
     public String getNewWindowBackgroundColor() {
         return newWindowButton.getCssValue("background-color");
+    }
+
+    public String getNewTabBackgroundColor() {
+        return newTabButton.getCssValue("background-color");
     }
 
     public String getNewWindowMessageBackgroundColor() {

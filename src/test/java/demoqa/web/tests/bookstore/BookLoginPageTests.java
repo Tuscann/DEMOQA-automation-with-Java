@@ -46,9 +46,8 @@ public class BookLoginPageTests extends BaseTest {
     private static final String LOGIN_TEXT_ERROR = "Login text mismatch";
     private static final String BOOKS_URL_ERROR = "Books URL mismatch";
     private static final String ALREADY_LOGGED_IN_ERROR = "Already logged in message mismatch";
-
-    private BooksLoginPage booksLoginPage;
     private static final String LOGIN_URL = "login";
+    private BooksLoginPage booksLoginPage;
 
     @BeforeMethod
     public void goToLoginPage() {
@@ -170,7 +169,7 @@ public class BookLoginPageTests extends BaseTest {
         booksLoginPage.setPassword(VALID_PASSWORD);
         booksLoginPage.clickLoginButton();
         booksProfilePage.clickGoToBookStoreButton();
-        String actualUrl = booksPage.checkCurrentUrl();
+        String actualUrl = booksPage.getCurrentUrl();
 
         // Assert
         softAssert.assertEquals(actualUrl, EXPECTED_BOOKS_URL, BOOKS_URL_ERROR);

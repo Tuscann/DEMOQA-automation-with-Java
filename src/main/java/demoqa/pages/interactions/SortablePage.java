@@ -8,74 +8,53 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utilities.JavaScriptUtility;
 
 import java.time.Duration;
 
-import utilities.JavaScriptUtility;
-
 public class SortablePage extends BasePage {
 
+    private final JavaScriptUtility javaScriptUtility;
     @FindBy(xpath = "//h1[@class='text-center'][contains(.,'Sortable')]")
     private WebElement pageTitle;
-
     @FindBy(id = "demo-tab-list")
     private WebElement listTab;
-
     @FindBy(xpath = "(//div[@class='list-group-item list-group-item-action'][contains(.,'One')])[1]")
     private WebElement listOne;
-
     @FindBy(xpath = "(//div[@class='list-group-item list-group-item-action'][contains(.,'Two')])[1]")
     private WebElement listTwo;
-
     @FindBy(xpath = "(//div[@class='list-group-item list-group-item-action'][contains(.,'Three')])[1]")
     private WebElement listThree;
-
     @FindBy(xpath = "(//div[@class='list-group-item list-group-item-action'][contains(.,'Four')])[1]")
     private WebElement listFour;
-
     @FindBy(xpath = "(//div[@class='list-group-item list-group-item-action'][contains(.,'Five')])[1]")
     private WebElement listFive;
-
     @FindBy(xpath = "(//div[@class='list-group-item list-group-item-action'][contains(.,'Six')])[1]")
     private WebElement listSix;
-
     @FindBy(id = "demo-tab-grid")
     private WebElement gridTab;
-
     @FindBy(xpath = "(//div[@class='list-group-item list-group-item-action'][contains(.,'One')])[2]")
     private WebElement gridOne;
-
     @FindBy(xpath = "(//div[@class='list-group-item list-group-item-action'][contains(.,'Two')])[2]")
     private WebElement gridTwo;
-
     @FindBy(xpath = "(//div[@class='list-group-item list-group-item-action'][contains(.,'Three')])[2]")
     private WebElement gridThree;
-
     @FindBy(xpath = "(//div[@class='list-group-item list-group-item-action'][contains(.,'Four')])[2]")
     private WebElement gridFour;
-
     @FindBy(xpath = "(//div[@class='list-group-item list-group-item-action'][contains(.,'Five')])[2]")
     private WebElement gridFive;
-
     @FindBy(xpath = "(//div[@class='list-group-item list-group-item-action'][contains(.,'Six')])[2]")
     private WebElement gridSix;
-
     @FindBy(xpath = "(//div[@class='list-group-item list-group-item-action'][contains(.,'Seven')])")
     private WebElement gridSeven;
-
     @FindBy(xpath = "//div[@class='list-group-item list-group-item-action'][contains(.,'Eight')]")
     private WebElement gridEight;
-
     @FindBy(xpath = "//div[@class='list-group-item list-group-item-action'][contains(.,'Nine')]")
     private WebElement gridNine;
-
     @FindBy(id = "demo-tabpane-list")
     private WebElement listOrder;
-
     @FindBy(id = "demo-tabpane-grid")
     private WebElement gridOrder;
-
-    private final JavaScriptUtility javaScriptUtility;
 
     public SortablePage(WebDriver driver) {
         super(driver);
@@ -169,7 +148,7 @@ public class SortablePage extends BasePage {
         return listOrder.getText();
     }
 
-    public String getGridOrder() {       
+    public String getGridOrder() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(7));
         wait.until(ExpectedConditions.visibilityOf(this.gridOrder));
         javaScriptUtility.scrollToElementJS(gridOrder);

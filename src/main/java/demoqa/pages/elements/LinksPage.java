@@ -148,10 +148,6 @@ public class LinksPage extends BasePage {
         return responseLink.getText();
     }
 
-    public String getCurrentUrl() {
-        return driver.getCurrentUrl();
-    }
-
     public int getDynamicLinkTextLength() {
         return dynamicLink.getText().length();
     }

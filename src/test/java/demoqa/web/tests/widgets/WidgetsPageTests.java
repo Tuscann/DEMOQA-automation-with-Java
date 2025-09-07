@@ -53,12 +53,12 @@ public class WidgetsPageTests extends BaseTest {
     }
 
     @Test(dataProvider = "homePageCards", description = "Click and verify card: {0} ")
-    public void checkAllFivePagesLinks(String cardName, String expectedUrl, Runnable clickAction) {
+    public void checkAllNinePagesLinks(String cardName, String expectedUrl, Runnable clickAction) {
         // Arrange & Act
         clickAction.run();
-        String actualUrl = widgetsPage.checkCurrentUrl();
+        String actualUrl = widgetsPage.getCurrentUrl();
         widgetsPage.clickTopImage();
-        String url = widgetsPage.checkCurrentUrl();
+        String url = widgetsPage.getCurrentUrl();
 
         // Assert
         softAssert.assertEquals(actualUrl, expectedUrl, String.format(CARD_NAVIGATION_ERROR, cardName));

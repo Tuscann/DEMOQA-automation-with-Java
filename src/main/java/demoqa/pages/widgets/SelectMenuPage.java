@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class SelectMenuPage extends BasePage {
+
     private final JavaScriptUtility javaScriptUtility;
     @FindBy(id = "react-select-2-input")
     private WebElement selectValue;
@@ -57,10 +58,14 @@ public class SelectMenuPage extends BasePage {
     private WebElement expectedMultiselectDropdownPlaceholder;
     @FindBy(xpath = "//b[contains(.,'Standard multi select')]")
     private WebElement expectedStandardMultiSelectLabel;
-
     @FindBy(xpath = "//div[@class='css-xb97g8']")
-    private List<WebElement> fourColors;
-
+    private List<WebElement> multiDropDownAllSelected;
+    @FindBy(xpath = "//div[@class=' css-1gl4k7y']")
+    private WebElement noOptionsSelected;
+    @FindBy(xpath = "(//div[@class=' css-tlfecz-indicatorContainer'])[4]")
+    private WebElement selectedOptions;
+    @FindBy(xpath = "(//div[@class=' css-tlfecz-indicatorContainer'])[3]")
+    private WebElement closAll;
 
     public SelectMenuPage(WebDriver driver) {
         super(driver);
@@ -84,15 +89,15 @@ public class SelectMenuPage extends BasePage {
         return selectedValueLabel.getText();
     }
 
-    public String getSelectedValuePlaceholder() {
+    public String getSelectedValuePlaceholderText() {
         return selectedValuePlaceholder.getText();
     }
 
-    public String getSelectTitleLabel() {
+    public String getSelectOneTitleText() {
         return selectTitleLabel.getText();
     }
 
-    public String getSelectTitlePlaceholder() {
+    public String getSelectTitlePlaceholderText() {
         return expectedSelectTitlePlaceholder.getText();
     }
 
@@ -104,15 +109,15 @@ public class SelectMenuPage extends BasePage {
         return oldStyleSelectMenuPlaceholder.getText();
     }
 
-    public String getMultiselectDropdownLabel() {
+    public String getMultiselectDropdownLabelText() {
         return expectedMultiselectDropdownLabel.getText();
     }
 
-    public String getMultiselectDropdownPlaceholder() {
+    public String getMultiselectDropdownPlaceholderText() {
         return expectedMultiselectDropdownPlaceholder.getText();
     }
 
-    public String getStandardMultiSelectLabel() {
+    public String getStandardMultiSelectLabelText() {
         return expectedStandardMultiSelectLabel.getText();
     }
 
@@ -133,9 +138,11 @@ public class SelectMenuPage extends BasePage {
     }
 
     public void multiSelectOne(String color) {
-        selectDropDown.click();
         Actions actions = new Actions(driver);
-        actions.sendKeys(color).sendKeys(Keys.ENTER).perform();
+        actions.click(selectDropDown) // ensure focus
+                .sendKeys(color)
+                .sendKeys(Keys.ENTER)
+                .perform();
     }
 
     public void selectSelectValue(String option) {
@@ -172,17 +179,25 @@ public class SelectMenuPage extends BasePage {
     }
 
     public String getMultiSelectDropdownValue() {
+        delay(300); //TODO
         return selectedResults.getText();
     }
 
     public void closeAllMultiSelectDropdown() {
-        closeAllDropDown.click();
+        oldStyle.click();
+        javaScriptUtility.scrollToElementJS(closAll);
+        closAll.click();
     }
 
-    public void closeMultiSelectOne() {
+    public void closeMultiSelectDropDown() throws InterruptedException {
+        this.multiDropDownAllSelected.getFirst().click();
+        delay(300); //TODO
+    }
 
-        var d = fourColors.get(1);
-
-        fourColors.getFirst().click();
+    public String selectNoOptionsText() {
+        delay(100); //TODO
+        oldStyle.click();
+        selectedOptions.click();
+        return noOptionsSelected.getText();
     }
 }

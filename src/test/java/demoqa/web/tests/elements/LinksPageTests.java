@@ -57,7 +57,7 @@ public class LinksPageTests extends BaseTest {
     private static final String NEW_TAB_DYNAMIC_URL_MISMATCH = "New tab URL mismatch";
     private static final String CREATED_LINK_RESPONSE_ERROR = "Created link response error";
     private static final String NO_CONTENT_LINK_RESPONSE_ERROR = "No content link response error";
-    private static final String MOVED_LINK_RESPONSE_ERROR = "Moved link response error";
+    private static final String MOVED_LINK_RESPONSE_ERROR = "Moved permanently link response error";
     private static final String BAD_REQUEST_LINK_RESPONSE_ERROR = "Bad request link response error";
     private static final String UNAUTHORIZED_LINK_RESPONSE_ERROR = "Unauthorized link response error";
     private static final String FORBIDDEN_LINK_RESPONSE_ERROR = "Forbidden link response error";

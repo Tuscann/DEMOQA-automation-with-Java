@@ -9,40 +9,29 @@ import utilities.JavaScriptUtility;
 
 public class WidgetsPage extends BasePage {
 
+    private final JavaScriptUtility javaScriptUtility;
     @FindBy(xpath = "//li[@id='item-1']/span[text()='Auto Complete']")
     private WebElement selectAutoComplete;
-
     @FindBy(xpath = "//li[@id='item-2']/span[text()='Date Picker']")
     private WebElement datePickerMenuItem;
-
     @FindBy(xpath = "//li[@id='item-3']/span[text()='Slider']")
     private WebElement sliderMenuItem;
-
     @FindBy(xpath = "//li[@id='item-4']/span[text()='Progress Bar']")
     private WebElement progressBarMenuItem;
-
     @FindBy(xpath = "//li[@id='item-5']/span[text()='Tabs']")
     private WebElement selectTabs;
-
     @FindBy(xpath = "//li[@id='item-6']/span[text()='Tool Tips']")
     private WebElement selectToolTips;
-
     @FindBy(xpath = "//li[@id='item-7']/span[text()='Menu']")
     private WebElement selectMenu;
-
     @FindBy(xpath = "//li[@id='item-8']/span[text()='Select Menu']")
     private WebElement selectSelectMenu;
-
     @FindBy(xpath = "//li[@id='item-0']/span[text()='Accordian']")
     private WebElement selectAccordion;
-
     @FindBy(xpath = "//div[@class='header-text'][contains(.,'Widgets')]")
     private WebElement widgets;
-
     @FindBy(xpath = "//div[@class='col-12 mt-4 col-md-6'][contains(.,'Please select an item from left to start practice.')]")
     private WebElement text;
-
-    private final JavaScriptUtility javaScriptUtility;
 
     public WidgetsPage(WebDriver driver) {
         super(driver);

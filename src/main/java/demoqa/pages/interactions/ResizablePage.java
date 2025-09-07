@@ -10,28 +10,21 @@ import org.openqa.selenium.support.PageFactory;
 import utilities.JavaScriptUtility;
 
 public class ResizablePage extends BasePage {
+    private final JavaScriptUtility javaScriptUtility;
     @FindBy(xpath = "//h1[@class='text-center'][contains(.,'Resizable')]")
     private WebElement pageTitle;
-
     @FindBy(xpath = "//div[@class='text'][contains(.,'Resizable box, starting at 200x200. Min size is 150x150, max is 500x300.')]")
     private WebElement resizableBoxWithRestrictionText;
-
     @FindBy(xpath = "//h1[@class='text-center'][contains(.,'Resizable')]")
     private WebElement resizable;
-
     @FindBy(id = "resizableBoxWithRestriction")
     private WebElement resizableBoxWithRestriction;
-
     @FindBy(id = "resizable")
     private WebElement resizableWithoutRestriction;
-
     @FindBy(xpath = "(//span[contains(@class,'react-resizable-handle react-resizable-handle-se')])[1]")
     private WebElement resizeHandle;
-
     @FindBy(xpath = "(//span[contains(@class,'react-resizable-handle react-resizable-handle-se')])[2]")
     private WebElement resizeHandle2;
-
-    private final JavaScriptUtility javaScriptUtility;
 
     public ResizablePage(WebDriver driver) {
         super(driver);

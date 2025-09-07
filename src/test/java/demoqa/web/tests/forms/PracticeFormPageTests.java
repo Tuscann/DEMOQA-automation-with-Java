@@ -75,7 +75,6 @@ public class PracticeFormPageTests extends BaseTest {
     private static final String TEST_PICTURE_FILE = "ivan.jpg";
 
     // Color Constants
-    private static final String BLACK_COLOR = "rgba(33, 37, 41, 1)";
     private static final String BLACK_COLOR2 = "rgba(33, 37, 41, 1)";
     private static final String BLUE_COLOR2 = "rgba(0, 123, 255, 1)";
     private static final String GREY_COLOR = "rgb(206, 212, 218)";
@@ -85,7 +84,6 @@ public class PracticeFormPageTests extends BaseTest {
     private static final String GREEN_COLOR2 = "rgba(40, 167, 69, 1)";
 
     // Modal Constants
-
     private static final String MODAL_LABEL_TEXT = "Label";
     private static final String MODAL_VALUES_TEXT = "Values";
     private static final String MODAL_STUDENT_NAME_TEXT = "Student Name";
@@ -266,8 +264,8 @@ public class PracticeFormPageTests extends BaseTest {
         practiceFormPage.setSubject(BIOLOGY_SUBJECT);
 
         practiceFormPage.clickSubmitButton();
-        // Assert
 
+        // Assert
         softAssert.assertEquals(practiceFormPage.getSubjectsFromModal(), ALL_SUBJECTS, SUBJECTS_VALUE_ERROR);
         softAssert.assertAll();
     }
@@ -301,7 +299,7 @@ public class PracticeFormPageTests extends BaseTest {
         softAssert.assertEquals(practiceFormPage.getCloseButtonText(), CLOSE_BUTTON_TEXT, CLOSE_BUTTON_ERROR);
         softAssert.assertEquals(practiceFormPage.getCloseButtonBackgroundColor(), BLUE_COLOR2, CLOSE_BUTTON_BACKGROUND_COLOR);
 
-//        // Assert
+        // Assert
         softAssert.assertEquals(practiceFormPage.getHeaderText(), HEADER_TEXT, VALUES_TEXT_ERROR);
         softAssert.assertEquals(practiceFormPage.getLabelTextFromModal(), MODAL_LABEL_TEXT, LABEL_VALUE_ERROR);
         softAssert.assertEquals(practiceFormPage.getValuesTextFromModal(), MODAL_VALUES_TEXT, VALUES_TEXT_ERROR);

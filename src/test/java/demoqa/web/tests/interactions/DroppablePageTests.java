@@ -121,7 +121,7 @@ public class DroppablePageTests extends BaseTest {
         softAssert.assertEquals(actualButtonDragMePreventPropagationText, DRAG_ME_PREVENT_PROPAGATION_TEXT, DRAG_ME_PREVENT_PROPAGATION_ERROR);
         softAssert.assertEquals(actualOuterDroppableNotGreedyText, OUTER_DROPPABLE_TEXT, OUTER_DROPPABLE_1_ERROR);
         softAssert.assertEquals(actualInnerDroppableNotGreedyText, INNER_DROPPABLE_NOT_GREEDY_TEXT, INNER_DROPPABLE_NOT_GREEDY_ERROR);
-        softAssert.assertEquals(actualOuterDroppableGreedyText, OUTER_DROPPABLE_TEXT, OUTER_DROPPABLE_2_ERROR);
+        softAssert.assertEquals(actualOuterDroppableGreedyText, OUTER_DROPPABLE_GREEDY_TEXT_BEFORE, OUTER_DROPPABLE_2_ERROR);
         softAssert.assertEquals(actualInnerDroppableGreedyText, INNER_DROPPABLE_GREEDY_TEXT, INNER_DROPPABLE_GREEDY_ERROR);
         softAssert.assertEquals(actualWillRevertText, WILL_REVERT_TEXT, WILL_REVERT_ERROR);
         softAssert.assertEquals(actualNotRevertText, NOT_REVERT_TEXT, NOT_REVERT_ERROR);

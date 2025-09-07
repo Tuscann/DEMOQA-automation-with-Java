@@ -95,7 +95,6 @@ public class ResizablePageTests extends BaseTest {
     public Object[][] diagonalResizeDataProvider() {
         return new Object[][]{
                 {100, 100, 300, 300},  // Diagonal resize within limits
-                //  {400, 400, 500, 300},  // Diagonal resize beyond max limits
                 {-100, -100, 150, 150}, // Diagonal resize to min limits (constrained by minimum size)
         };
     }

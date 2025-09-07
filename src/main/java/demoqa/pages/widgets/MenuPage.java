@@ -10,40 +10,28 @@ import org.openqa.selenium.support.PageFactory;
 public class MenuPage extends BasePage {
     @FindBy(xpath = "//h1[@class='text-center'][contains(.,'Menu')]")
     private WebElement header;
-
     @FindBy(xpath = "//a[@href='#'][contains(.,'Main Item 1')]")
     private WebElement mainItem1;
-
     @FindBy(xpath = "//a[@href='#'][contains(.,'Main Item 2')]")
     private WebElement mainItem2;
-
     @FindBy(xpath = "//a[@href='#'][contains(.,'Main Item 3')]")
     private WebElement mainItem3;
-
     @FindBy(xpath = "//*[@id='nav']/li[2]/ul/li[1]")
     private WebElement mainItem2SubItem1;
-
     @FindBy(xpath = "//*[@id='nav']/li[2]/ul/li[2]")
     private WebElement mainItem2SubItem2;
-
     @FindBy(xpath = "//*[@id='nav']/li[2]/ul/li[3]/a")
     private WebElement mainItem2SubItem3;
-
     @FindBy(xpath = "//*[@id='nav']/li[2]/ul/li[3]/ul/li[1]")
     private WebElement mainItem2SubSubListSubSubItem1;
-
     @FindBy(xpath = "//*[@id='nav']/li[2]/ul/li[3]/ul/li[2]")
     private WebElement mainItem2SubSubListSubSubItem2;
-
     @FindBy(xpath = "//*[@id='nav']/li[1]")
     private WebElement mainItemFirstLi;
-
     @FindBy(xpath = "//*[@id='nav']/li[2]")
     private WebElement mainItemSecondLi;
-
     @FindBy(xpath = "//*[@id='nav']/li[3]")
     private WebElement mainItemThirdLi;
-
     @FindBy(xpath = "//*[@id='nav']/li[2]/ul/li[3]")
     private WebElement subSub;
 
@@ -165,9 +153,5 @@ public class MenuPage extends BasePage {
 
     public String getMainItem2SubSubListSubItem2() {
         return mainItem2SubSubListSubSubItem2.getText();
-    }
-
-    public String getGreenColorButton() {
-        return mainItem1.getCssValue("background-color");
     }
 }

@@ -12,6 +12,7 @@ import utilities.JavaScriptUtility;
 import java.time.Duration;
 
 public class AccordianPage extends BasePage {
+
     private final JavaScriptUtility javaScriptUtility;
     @FindBy(id = "section1Heading")
     private WebElement sectionOneHeading;
@@ -27,16 +28,12 @@ public class AccordianPage extends BasePage {
     private WebElement sectionThreeContent;
     @FindBy(xpath = "//h1[contains(.,'Accordian')]")
     private WebElement heading;
-
     @FindBy(xpath = "//div[@id='section1Heading']/following-sibling::div")
     private WebElement sectionOneHeadingCollapse;
-
     @FindBy(xpath = "//div[@id='section2Heading']/following-sibling::div")
     private WebElement sectionTwoHeadingCollapse;
-
     @FindBy(xpath = "//div[@id='section3Heading']/following-sibling::div")
     private WebElement sectionThreeHeadingCollapse;
-
 
     public AccordianPage(WebDriver driver) {
         super(driver);
@@ -88,6 +85,7 @@ public class AccordianPage extends BasePage {
     }
 
     public void clickSecondHeading() {
+        javaScriptUtility.scrollToElementJS(sectionTwoHeading);
         sectionTwoHeading.click();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.elementToBeClickable(sectionTwoContent));
@@ -105,7 +103,7 @@ public class AccordianPage extends BasePage {
     public boolean isSecondHeadingVisible() throws InterruptedException {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOf(sectionOneHeading));
-        Thread.sleep(500);  //TODO MAGIC
+        Thread.sleep(500);  //TODO magic number
         return sectionTwoHeadingCollapse.getAttribute("class").contains("collapse show");
     }
 

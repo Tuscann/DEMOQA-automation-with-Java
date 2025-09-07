@@ -63,7 +63,7 @@ public class ModalDialogsPagePageTests extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(enabled = true, description = "Verify small modal dialog text")
+    @Test(enabled = true, description = "Verify small modal dialog text and click x close button")
     public void verifySmallModalDialogTextAndClickCloseButton() {
         // Arrange
         modalDialogsPage.clickSmallModalButton();
@@ -85,8 +85,8 @@ public class ModalDialogsPagePageTests extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(enabled = true, description = "Verify large modal dialog text")
-    public void verifyLargeModalDialogText() {
+    @Test(enabled = true, description = "Verify large modal dialog text and click x close button")
+    public void verifyLargeModalDialogTextAndClickCloseButton() {
         // Arrange
         modalDialogsPage.clickLargeModalButton();
         modalDialogsPage.clickLargeCloseButton();

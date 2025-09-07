@@ -14,61 +14,43 @@ import java.time.Duration;
 import java.util.List;
 
 public class BooksPage extends BasePage {
+    private final JavaScriptUtility javaScriptUtility;
     @FindBy(xpath = "//button[contains(.,'Next')]")
     private WebElement nextButton;
-
     @FindBy(xpath = "//button[contains(.,'Previous')]")
     private WebElement previousButton;
-
     @FindBy(className = "rt-noData")
     private WebElement noRowsFound;
-
     @FindBy(xpath = "//div[@class='header-text'][contains(.,'Book Store Application')]")
     private WebElement bookStoreApplication;
-
     @FindBy(xpath = "//div[contains(@class,'element-list collapse')]")
     private WebElement collapseDiv;
-
     @FindBy(xpath = "(//div[contains(@class,'rt-resizable-header-content')])[2]")
     private WebElement title;
-
     @FindBy(xpath = "(//div[contains(@class,'rt-resizable-header-content')])[3]")
     private WebElement author;
-
     @FindBy(xpath = "//span[@class='text'][contains(.,'Login')]")
     private WebElement loginLink;
-
     @FindBy(xpath = "//span[@class='text'][contains(.,'Book Store')]")
     private WebElement bookStoreLink;
-
     @FindBy(xpath = "//span[@class='text'][contains(.,'Profile')]")
     private WebElement profileLink;
-
     @FindBy(xpath = "//span[contains(.,'Book Store API')]")
     private WebElement bookStoreAPILink;
-
     @FindBy(id = "searchBox")
     private WebElement searchBox;
-
     @FindBy(id = "basic-addon2")
     private WebElement searchIcon;
-
     @FindBy(id = "login")
     private WebElement loginButton;
-
     @FindBy(className = "rt-tr")
     private WebElement topRowTable;
-
     @FindBy(className = "rt-tr-group")
     private List<WebElement> allRows;
-
     @FindBy(xpath = "//select")
     private WebElement rowPerPage;
-
     @FindBy(xpath = "(//div[contains(@class,'rt-resizable-header-content')])[4]")
     private WebElement publisher;
-
-    private final JavaScriptUtility javaScriptUtility;
 
     public BooksPage(WebDriver driver) {
         super(driver);

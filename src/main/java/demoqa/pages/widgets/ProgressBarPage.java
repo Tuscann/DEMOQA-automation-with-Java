@@ -12,22 +12,17 @@ import java.time.Duration;
 import java.util.Objects;
 
 public class ProgressBarPage extends BasePage {
+    private final JavaScriptUtility javaScriptUtility;
     @FindBy(xpath = "//div[contains(@class, 'mb-3')]")
     private WebElement progressBarText;
-
     @FindBy(id = "startStopButton")
     private WebElement startStopButton;
-
     @FindBy(id = "resetButton")
     private WebElement resetButton;
-
     @FindBy(xpath = "//div[@role='progressbar']")
     private WebElement progressBarCurrent;
-
     @FindBy(xpath = "//h1[@class='text-center'][contains(.,'Progress Bar')]")
     private WebElement header;
-
-    private final JavaScriptUtility javaScriptUtility;
 
     public ProgressBarPage(WebDriver driver) {
         super(driver);
@@ -82,10 +77,6 @@ public class ProgressBarPage extends BasePage {
         resetButton.click();
     }
 
-    public void clickStopButton() {
-        startStopButton.click();
-    }
-
     public void stopProgressBarOnValue2(int targetValue) {
         Wait<WebDriver> wait = new FluentWait<>(driver)
                 .withTimeout(Duration.ofSeconds(8))
@@ -111,36 +102,5 @@ public class ProgressBarPage extends BasePage {
                 }
             }
         });
-    }
-
-    public int stopProgressBarOnValue(int targetValue) {
-        Wait<WebDriver> wait = new FluentWait<>(driver)
-                .withTimeout(Duration.ofSeconds(10))
-                .pollingEvery(Duration.ofMillis(10))
-                .ignoring(org.openqa.selenium.NoSuchElementException.class);
-        int x = 0;
-
-        wait.until(new ExpectedCondition<Integer>() {
-            public Integer apply(WebDriver driver) {
-                String currentValueStr = getProgressBarValue();
-                if (currentValueStr == null || currentValueStr.isEmpty()) {
-                    return x;
-                }
-                try {
-                    int currentValue = Integer.parseInt(currentValueStr);
-
-                    if (currentValue >= targetValue) { // Click only when the target is reached or exceeded
-                        startStopButton.click();
-                        return currentValue; // Return true to stop waiting after click
-                    } else {
-                        return x; // Continue waiting
-                    }
-
-                } catch (NumberFormatException e) {
-                    return x;
-                }
-            }
-        });
-        return x;
     }
 }

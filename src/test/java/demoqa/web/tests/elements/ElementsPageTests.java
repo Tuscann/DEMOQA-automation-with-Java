@@ -52,12 +52,12 @@ public class ElementsPageTests extends BaseTest {
     }
 
     @Test(dataProvider = "homePageCards", description = "Click and verify card: {0} ")
-    public void checkAllFivePagesLinks(String cardName, String expectedUrl, Runnable clickAction) {
+    public void checkAllNinePagesLinks(String cardName, String expectedUrl, Runnable clickAction) {
         // Arrange & Act
         clickAction.run();
-        String actualUrl = elementsPage.checkCurrentUrl();
+        String actualUrl = elementsPage.getCurrentUrl();
         elementsPage.clickTopImage();
-        String url = elementsPage.checkCurrentUrl();
+        String url = elementsPage.getCurrentUrl();
 
         // Assert
         softAssert.assertEquals(actualUrl, expectedUrl, String.format(CARD_NAVIGATION_ERROR, cardName));
