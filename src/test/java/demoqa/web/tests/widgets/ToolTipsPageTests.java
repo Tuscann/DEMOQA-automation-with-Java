@@ -46,28 +46,29 @@ public class ToolTipsPageTests extends BaseTest {
     @Test(enabled = true, description = "Verify all text on page")
     public void verifyAllTextOnPage() {
         // Arrange & Act & Assert
-        softAssert.assertEquals(toolTipsPage.getGreenButtonBackgroundColor(), EXPECTED_GREEN_COLOR, BUTTON_COLOR_ERROR);
+
         softAssert.assertEquals(toolTipsPage.getToolTipsHeaderText(), EXPECTED_HEADER_TEXT, HEADER_MISSING_ERROR);
         softAssert.assertEquals(toolTipsPage.getPracticeToolTipsText(), EXPECTED_PRACTICE_TEXT, PRACTICE_TEXT_MISSING_ERROR);
         softAssert.assertEquals(toolTipsPage.getHoverMeButtonText(), EXPECTED_BUTTON_TEXT, BUTTON_TEXT_MISSING_ERROR);
-        softAssert.assertEquals(toolTipsPage.getHoverMeToSeeDivPlaceholder(), EXPECTED_TEXT_FIELD_PLACEHOLDER, PLACEHOLDER_MISSING_ERROR);
+        softAssert.assertEquals(toolTipsPage.getHoverMeButtonBackgroundColor(), EXPECTED_GREEN_COLOR, BUTTON_COLOR_ERROR);
+        softAssert.assertEquals(toolTipsPage.getHoverMeToSeeInputPlaceholder(), EXPECTED_TEXT_FIELD_PLACEHOLDER, PLACEHOLDER_MISSING_ERROR);
         softAssert.assertEquals(toolTipsPage.getMainText(), EXPECTED_MAIN_PARAGRAPH_TEXT, MAIN_TEXT_MISSING_ERROR);
         softAssert.assertAll();
     }
 
-    @Test(enabled = true, description = "Verify over 4 tooltips")
+    @Test(enabled = true, description = "Verify text after hover 4 tooltips")
     public void hoverOver4ToolTips() {
         // Arrange and Act
         String actualHoverMeToSeeButtonToolTipText = toolTipsPage.getHoverOverHoverMeToSeeButtonReturnToolTipText();
         String actualHoverMeToSeeFieldToolTipText = toolTipsPage.getHoverOverHoverMeToSeeTextFieldReturnToolTipText();
-        String actualContraryTextTooltipText = toolTipsPage.getHoverOverContraryReturnToolTipText();
-        String actualSectionTooltipText = toolTipsPage.getHoverOverSectionText();
+        String actualContraryTextToolTipText = toolTipsPage.getHoverOverContraryReturnToolTipText();
+        String actualSectionToolTipText = toolTipsPage.getHoverOverSectionText();
 
         // Assert
         softAssert.assertEquals(actualHoverMeToSeeButtonToolTipText, EXPECTED_BUTTON_TOOLTIP, BUTTON_TOOLTIP_MISSING_ERROR);
         softAssert.assertEquals(actualHoverMeToSeeFieldToolTipText, EXPECTED_TEXT_FIELD_TOOLTIP, TEXT_FIELD_TOOLTIP_MISSING_ERROR);
-        softAssert.assertEquals(actualContraryTextTooltipText, EXPECTED_CONTRARY_LINK_TOOLTIP, CONTRARY_TOOLTIP_MISSING_ERROR);
-        softAssert.assertEquals(actualSectionTooltipText, EXPECTED_SECTION_LINK_TOOLTIP, SECTION_TOOLTIP_MISSING_ERROR);
+        softAssert.assertEquals(actualContraryTextToolTipText, EXPECTED_CONTRARY_LINK_TOOLTIP, CONTRARY_TOOLTIP_MISSING_ERROR);
+        softAssert.assertEquals(actualSectionToolTipText, EXPECTED_SECTION_LINK_TOOLTIP, SECTION_TOOLTIP_MISSING_ERROR);
         softAssert.assertAll();
     }
 }

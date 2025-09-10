@@ -127,4 +127,11 @@ public class BooksProfilePage extends BasePage {
         javaScriptUtility.scrollToElementJS(deleteAccountButton);
         deleteAccountButton.click();
     }
+
+    public String getProfile() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(12));
+        wait.until(ExpectedConditions.urlToBe("https://demoqa.com/profile"));
+        wait.until(ExpectedConditions.elementToBeClickable(profile));
+        return profile.getText();
+    }
 }

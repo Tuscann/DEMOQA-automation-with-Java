@@ -88,9 +88,7 @@ public class SelectMenuPageTests extends BaseTest {
                 case 4 -> "A root option";
                 default -> "Another root option";
             };
-
             selectMenuPage.selectSelectValue(expectedSelectedValue);
-
             String actualSelectValue = selectMenuPage.getSelectedValue();
 
             softAssert.assertEquals(actualSelectValue, expectedSelectedValue, "\nWrong select value +\n" + expectedSelectedValue);
@@ -112,10 +110,9 @@ public class SelectMenuPageTests extends BaseTest {
             };
 
             selectMenuPage.selectSelectOne(expectedSelectOne);
-
             String actualSelectOne = selectMenuPage.getSelectedSelectOne();
 
-            softAssert.assertEquals(actualSelectOne, expectedSelectOne, "\nWrong selected " + expectedSelectOne + "\n");
+            softAssert.assertEquals(actualSelectOne, expectedSelectOne, "\nWrong selected one " + expectedSelectOne + "\n");
         }
         softAssert.assertAll();
     }
@@ -142,7 +139,7 @@ public class SelectMenuPageTests extends BaseTest {
             selectMenuPage.selectOldStyleSelectMenuByText(expectedColor);
             String actualColor = selectMenuPage.getOldStyleSelectMenuSelectedValue();
 
-            softAssert.assertEquals(actualColor, expectedColor, "\nWrong color selected" + expectedColor + ".\n");
+            softAssert.assertEquals(actualColor, expectedColor, "\nWrong selected Old Style Select Menu" + expectedColor + ".\n");
         }
         softAssert.assertAll();
     }

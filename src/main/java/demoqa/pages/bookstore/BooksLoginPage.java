@@ -13,6 +13,7 @@ import java.time.Duration;
 
 public class BooksLoginPage extends BasePage {
 
+    private final JavaScriptUtility javaScriptUtility;
     @FindBy(xpath = "//button[contains(.,'Log out')]")
     WebElement logoutButton;
     @FindBy(xpath = "//button[@id='gotoStore']")
@@ -48,8 +49,6 @@ public class BooksLoginPage extends BasePage {
     @FindBy(id = "userName-value")
     WebElement profile;
 
-    private final JavaScriptUtility javaScriptUtility;
-
     public BooksLoginPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
@@ -58,10 +57,6 @@ public class BooksLoginPage extends BasePage {
 
     public String getLoadingLabel() {
         return loadingLabel.getText();
-    }
-
-    public String getLoginText() {
-        return loginText.getText();
     }
 
     public String getUsernamePlaceholder() {
@@ -115,11 +110,8 @@ public class BooksLoginPage extends BasePage {
         loginButton.click();
     }
 
-    public String getProfile() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(12));
-        wait.until(ExpectedConditions.urlToBe("https://demoqa.com/profile"));
-        wait.until(ExpectedConditions.elementToBeClickable(profile));
-        return profile.getText();
+    public String getLoginText() {
+        return loginText.getText();
     }
 
     public void setUsername(String username2) {
@@ -129,5 +121,13 @@ public class BooksLoginPage extends BasePage {
 
     public void setPassword(String password2) {
         set(password, password2);
+    }
+
+    public String getLoginButtonBackgroundColor() {
+        return loginButton.getCssValue("background-color");
+    }
+
+    public String getNewUserButtonBackgroundColor() {
+        return newUserButton.getCssValue("background-color");
     }
 }

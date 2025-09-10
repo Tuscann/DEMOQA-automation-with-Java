@@ -34,9 +34,8 @@ public class MenuPageTests extends BaseTest {
     private static final String MAIN_ITEM_3_ERROR = "Main Item 3 not correct";
     private static final String COLOR_BEFORE_SELECTION_ERROR = "Not normal green color";
     private static final String COLOR_AFTER_SELECTION_ERROR = "Not dark green color";
-
-    private MenuPage menuPage;
     private static final String MENU_URL = "menu#";
+    private MenuPage menuPage;
 
     @BeforeMethod
     public void goToMenuPage() {
@@ -77,60 +76,44 @@ public class MenuPageTests extends BaseTest {
     @Test(enabled = true, description = "Hover over every item in menu and check hover color")
     public void hoverOverEveryItemInMenuAndCheckHoverColor() {
         // Act - Main Item 1
-        String actualColorSelected = menuPage.takeBackgroundColorMainItem1();
-        softAssert.assertEquals(actualColorSelected, EXPECTED_COLOR_BEFORE_SELECTION, COLOR_BEFORE_SELECTION_ERROR);
+        softAssert.assertEquals(menuPage.getMainItem1BackgroundColor(), EXPECTED_COLOR_BEFORE_SELECTION, COLOR_BEFORE_SELECTION_ERROR);
         menuPage.selectMainItem1();
-        actualColorSelected = menuPage.takeBackgroundColorMainItem1();
-        softAssert.assertEquals(actualColorSelected, EXPECTED_COLOR_AFTER_SELECTION, COLOR_AFTER_SELECTION_ERROR);
+        softAssert.assertEquals(menuPage.getMainItem1BackgroundColor(), EXPECTED_COLOR_AFTER_SELECTION, COLOR_AFTER_SELECTION_ERROR);
 
         // Main Item 2
-        actualColorSelected = menuPage.takeBackgroundColorMainItem2();
-        softAssert.assertEquals(actualColorSelected, EXPECTED_COLOR_BEFORE_SELECTION, COLOR_BEFORE_SELECTION_ERROR);
+        softAssert.assertEquals(menuPage.getMainItem2BackgroundColor(), EXPECTED_COLOR_BEFORE_SELECTION, COLOR_BEFORE_SELECTION_ERROR);
         menuPage.selectMainItem2();
-        actualColorSelected = menuPage.takeBackgroundColorMainItem2();
-        softAssert.assertEquals(actualColorSelected, EXPECTED_COLOR_AFTER_SELECTION, COLOR_AFTER_SELECTION_ERROR);
+        softAssert.assertEquals(menuPage.getMainItem2BackgroundColor(), EXPECTED_COLOR_AFTER_SELECTION, COLOR_AFTER_SELECTION_ERROR);
 
         // Sub Item 1
-        actualColorSelected = menuPage.takeBackgroundColorMainItem2SubItem1();
-        softAssert.assertEquals(actualColorSelected, EXPECTED_COLOR_BEFORE_SELECTION, COLOR_BEFORE_SELECTION_ERROR);
+        softAssert.assertEquals(menuPage.getMainItem2SubItem1BackgroundColor(), EXPECTED_COLOR_BEFORE_SELECTION, COLOR_BEFORE_SELECTION_ERROR);
         menuPage.selectMainItem2SubItem1();
-        actualColorSelected = menuPage.takeBackgroundColorMainItem2SubItem1();
-        softAssert.assertEquals(actualColorSelected, EXPECTED_COLOR_AFTER_SELECTION, COLOR_AFTER_SELECTION_ERROR);
+        softAssert.assertEquals(menuPage.getMainItem2SubItem1BackgroundColor(), EXPECTED_COLOR_AFTER_SELECTION, COLOR_AFTER_SELECTION_ERROR);
 
         // Sub Item 2
-        actualColorSelected = menuPage.takeBackgroundColorMainItem2SubItem2();
-        softAssert.assertEquals(actualColorSelected, EXPECTED_COLOR_BEFORE_SELECTION, COLOR_BEFORE_SELECTION_ERROR);
+        softAssert.assertEquals(menuPage.getMainItem2SubItem2BackgroundColor(), EXPECTED_COLOR_BEFORE_SELECTION, COLOR_BEFORE_SELECTION_ERROR);
         menuPage.selectMainItem2SubItem2();
-        actualColorSelected = menuPage.takeBackgroundColorMainItem2SubItem2();
-        softAssert.assertEquals(actualColorSelected, EXPECTED_COLOR_AFTER_SELECTION, COLOR_AFTER_SELECTION_ERROR);
+        softAssert.assertEquals(menuPage.getMainItem2SubItem2BackgroundColor(), EXPECTED_COLOR_AFTER_SELECTION, COLOR_AFTER_SELECTION_ERROR);
 
         // Sub Sub List
-        actualColorSelected = menuPage.takeBackgroundColorMainItem2SubSubsLIst();
-        softAssert.assertEquals(actualColorSelected, EXPECTED_COLOR_BEFORE_SELECTION, COLOR_BEFORE_SELECTION_ERROR);
+        softAssert.assertEquals(menuPage.getMainItem2SubSubsListBackgroundColor(), EXPECTED_COLOR_BEFORE_SELECTION, COLOR_BEFORE_SELECTION_ERROR);
         menuPage.selectMainItem2SubSubList();
-        actualColorSelected = menuPage.takeBackgroundColorMainItem2SubSubsLIst();
-        softAssert.assertEquals(actualColorSelected, EXPECTED_COLOR_AFTER_SELECTION, COLOR_AFTER_SELECTION_ERROR);
+        softAssert.assertEquals(menuPage.getMainItem2SubSubsListBackgroundColor(), EXPECTED_COLOR_AFTER_SELECTION, COLOR_AFTER_SELECTION_ERROR);
 
         // Sub Sub Item 1
-        actualColorSelected = menuPage.takeBackgroundColorMainItem2SubSubsLIstSubSubItem1();
-        softAssert.assertEquals(actualColorSelected, EXPECTED_COLOR_BEFORE_SELECTION, COLOR_BEFORE_SELECTION_ERROR);
+        softAssert.assertEquals(menuPage.getMainItem2SubSubsLIstSubSubItem1BackgroundColor(), EXPECTED_COLOR_BEFORE_SELECTION, COLOR_BEFORE_SELECTION_ERROR);
         menuPage.selectMainItem2SubSubsLIstSubSubItem1();
-        actualColorSelected = menuPage.takeBackgroundColorMainItem2SubSubsLIstSubSubItem1();
-        softAssert.assertEquals(actualColorSelected, EXPECTED_COLOR_AFTER_SELECTION, COLOR_AFTER_SELECTION_ERROR);
+        softAssert.assertEquals(menuPage.getMainItem2SubSubsLIstSubSubItem1BackgroundColor(), EXPECTED_COLOR_AFTER_SELECTION, COLOR_AFTER_SELECTION_ERROR);
 
         // Sub Sub Item 2
-        actualColorSelected = menuPage.takeBackgroundColorMainItem2SubSubsLIstSubSubItem2();
-        softAssert.assertEquals(actualColorSelected, EXPECTED_COLOR_BEFORE_SELECTION, COLOR_BEFORE_SELECTION_ERROR);
+        softAssert.assertEquals(menuPage.getMainItem2SubSubsLIstSubSubItem2BackgroundColor(), EXPECTED_COLOR_BEFORE_SELECTION, COLOR_BEFORE_SELECTION_ERROR);
         menuPage.selectMainItem2SubSubsLIstSubSubItem2();
-        actualColorSelected = menuPage.takeBackgroundColorMainItem2SubSubsLIstSubSubItem2();
-        softAssert.assertEquals(actualColorSelected, EXPECTED_COLOR_AFTER_SELECTION, COLOR_AFTER_SELECTION_ERROR);
+        softAssert.assertEquals(menuPage.getMainItem2SubSubsLIstSubSubItem2BackgroundColor(), EXPECTED_COLOR_AFTER_SELECTION, COLOR_AFTER_SELECTION_ERROR);
 
         // Main Item 3
-        actualColorSelected = menuPage.takeBackgroundColorMainItem3();
-        softAssert.assertEquals(actualColorSelected, EXPECTED_COLOR_BEFORE_SELECTION, COLOR_BEFORE_SELECTION_ERROR);
+        softAssert.assertEquals(menuPage.getMainItem3BackgroundColor(), EXPECTED_COLOR_BEFORE_SELECTION, COLOR_BEFORE_SELECTION_ERROR);
         menuPage.selectMainItem3();
-        actualColorSelected = menuPage.takeBackgroundColorMainItem3();
-        softAssert.assertEquals(actualColorSelected, EXPECTED_COLOR_AFTER_SELECTION, COLOR_AFTER_SELECTION_ERROR);
+        softAssert.assertEquals(menuPage.getMainItem3BackgroundColor(), EXPECTED_COLOR_AFTER_SELECTION, COLOR_AFTER_SELECTION_ERROR);
 
         softAssert.assertAll();
     }

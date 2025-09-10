@@ -99,7 +99,7 @@ public class ToolTipsPage extends BasePage {
         return hoverMeToSeeButton.getText();
     }
 
-    public String getHoverMeToSeeDivPlaceholder() {
+    public String getHoverMeToSeeInputPlaceholder() {
         return hoverMeTextField.getDomAttribute("placeholder");
     }
 
@@ -107,7 +107,7 @@ public class ToolTipsPage extends BasePage {
         return mainText.getText();
     }
 
-    public String getGreenButtonBackgroundColor() {
+    public String getHoverMeButtonBackgroundColor() {
         return hoverMeToSeeButton.getCssValue("background-color");
     }
 }

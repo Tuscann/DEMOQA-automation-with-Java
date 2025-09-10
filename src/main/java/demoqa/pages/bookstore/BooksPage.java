@@ -15,6 +15,8 @@ import java.util.List;
 
 public class BooksPage extends BasePage {
     private final JavaScriptUtility javaScriptUtility;
+    @FindBy(xpath = "//li[contains(.,'Login')]")
+    WebElement loginTab;
     @FindBy(xpath = "//button[contains(.,'Next')]")
     private WebElement nextButton;
     @FindBy(xpath = "//button[contains(.,'Previous')]")
@@ -97,7 +99,7 @@ public class BooksPage extends BasePage {
         return topRowTable.getText();
     }
 
-    public void clickLogLeftTab() {
+    public void clickLoginLeftTab() {
         javaScriptUtility.scrollToElementJS(loginLink);
         loginLink.click();
     }
@@ -112,6 +114,7 @@ public class BooksPage extends BasePage {
     }
 
     public void clickProfileLeftTab() {
+        javaScriptUtility.scrollToElementJS(profileLink);
         profileLink.click();
     }
 
@@ -146,6 +149,8 @@ public class BooksPage extends BasePage {
     }
 
     public void searchBooksWithWord(String searchedBook) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(6));
+        wait.until(ExpectedConditions.visibilityOf(searchBox));
         searchBox.clear();
         searchBox.sendKeys(searchedBook);
     }
@@ -169,5 +174,9 @@ public class BooksPage extends BasePage {
 
     public void clickBookStoreLeftTab() {
         bookStoreLink.click();
+    }
+
+    public void clickLoginTab() {
+        loginTab.click();
     }
 }

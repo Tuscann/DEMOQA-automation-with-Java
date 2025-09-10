@@ -58,7 +58,7 @@ public class AlertsFramesWindowsPageTests extends BaseTest {
     }
 
     @Test(enabled = true, description = "Verify left side menu collapses and expands correctly.")
-    public void VerifyLeftSideMenuCollapses() {
+    public void verifyLeftSideMenuCollapses() {
         // Arrange & Act
         String actualMainText = alerts_frames_windowsPage.getMainText();
         boolean textBoxIsVisible = alerts_frames_windowsPage.verifyFramesIsVisible();

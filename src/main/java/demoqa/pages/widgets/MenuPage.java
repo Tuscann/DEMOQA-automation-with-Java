@@ -56,27 +56,27 @@ public class MenuPage extends BasePage {
         actions.moveToElement(subSub).perform();
     }
 
-    public String takeBackgroundColorMainItem1() {
+    public String getMainItem1BackgroundColor() {
         return mainItemFirstLi.getCssValue("background-color");
     }
 
-    public String takeBackgroundColorMainItem2() {
+    public String getMainItem2BackgroundColor() {
         return mainItemSecondLi.getCssValue("background-color");
     }
 
-    public String takeBackgroundColorMainItem2SubSubsLIst() {
+    public String getMainItem2SubSubsListBackgroundColor() {
         return subSub.getCssValue("background-color");
     }
 
-    public String takeBackgroundColorMainItem2SubSubsLIstSubSubItem1() {
+    public String getMainItem2SubSubsLIstSubSubItem1BackgroundColor() {
         return mainItem2SubSubListSubSubItem1.getCssValue("background-color");
     }
 
-    public String takeBackgroundColorMainItem2SubSubsLIstSubSubItem2() {
+    public String getMainItem2SubSubsLIstSubSubItem2BackgroundColor() {
         return mainItem2SubSubListSubSubItem2.getCssValue("background-color");
     }
 
-    public String takeBackgroundColorMainItem3() {
+    public String getMainItem3BackgroundColor() {
         return mainItemThirdLi.getCssValue("background-color");
     }
 
@@ -99,11 +99,11 @@ public class MenuPage extends BasePage {
         actions.moveToElement(mainItem2SubSubListSubSubItem2).perform();
     }
 
-    public String takeBackgroundColorMainItem2SubItem1() {
+    public String getMainItem2SubItem1BackgroundColor() {
         return mainItem2SubItem1.getCssValue("background-color");
     }
 
-    public String takeBackgroundColorMainItem2SubItem2() {
+    public String getMainItem2SubItem2BackgroundColor() {
         return mainItem2SubItem2.getCssValue("background-color");
     }
 

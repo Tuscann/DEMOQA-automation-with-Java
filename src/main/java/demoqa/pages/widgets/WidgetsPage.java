@@ -96,7 +96,7 @@ public class WidgetsPage extends BasePage {
         return !selectAccordion.isDisplayed();
     }
 
-    public void clickWidgetsWindows() {
+    public void clickWidgetsLeftMenu() {
         widgets.click();
     }
 }

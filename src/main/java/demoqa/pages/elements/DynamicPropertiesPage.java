@@ -31,7 +31,7 @@ public class DynamicPropertiesPage extends BasePage {
         PageFactory.initElements(driver, this);
     }
 
-    public String getColorChangeButtonText() {
+    public String getChangeButtonColorText() {
         return colorChangeButton.getText();
     }
 

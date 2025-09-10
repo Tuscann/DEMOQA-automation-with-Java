@@ -81,11 +81,13 @@ public class AccordianPage extends BasePage {
 
     public void clickFirstHeading() {
         javaScriptUtility.scrollToElementJS(sectionOneHeading);
+        delay(100); //TODO
         sectionOneHeading.click();
     }
 
     public void clickSecondHeading() {
         javaScriptUtility.scrollToElementJS(sectionTwoHeading);
+        delay(100); //TODO
         sectionTwoHeading.click();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.elementToBeClickable(sectionTwoContent));

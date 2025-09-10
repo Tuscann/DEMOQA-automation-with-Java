@@ -247,7 +247,7 @@ public class PracticeFormPage extends BasePage {
     public void setSubject(String subject) {
         subjects.sendKeys(subject);
         subjects.sendKeys("" + Keys.ENTER);
-        delay(100);
+        delay(300);
     }
 
     public void setFirstName(String firstName) {

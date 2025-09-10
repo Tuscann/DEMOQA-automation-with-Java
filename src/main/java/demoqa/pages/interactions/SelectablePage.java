@@ -65,6 +65,25 @@ public class SelectablePage extends BasePage {
     private WebElement gridEight;
     @FindBy(xpath = "//li[@class='list-group-item list-group-item-action'][contains(.,'Nine')]")
     private WebElement gridNine;
+    @FindBy(xpath = "//li[@class='list-group-item active list-group-item-action'][contains(.,'One')]")
+    private WebElement gridOneDeselect;
+    @FindBy(xpath = "//li[@class='list-group-item active list-group-item-action'][contains(.,'Two')]")
+    private WebElement gridTwoDeselect;
+    @FindBy(xpath = "//li[@class='list-group-item active list-group-item-action'][contains(.,'Three')]")
+    private WebElement gridThreeDeselect;
+    @FindBy(xpath = "//li[@class='list-group-item active list-group-item-action'][contains(.,'Four')]")
+    private WebElement gridFourDeselect;
+    @FindBy(xpath = "//li[@class='list-group-item active list-group-item-action'][contains(.,'Five')]")
+    private WebElement gridFiveDeselect;
+    @FindBy(xpath = "//li[@class='list-group-item active list-group-item-action'][contains(.,'Six')]")
+    private WebElement gridSixDeselect;
+    @FindBy(xpath = "//li[@class='list-group-item active list-group-item-action'][contains(.,'Seven')]")
+    private WebElement gridSevenDeselect;
+    @FindBy(xpath = "//li[@class='list-group-item active list-group-item-action'][contains(.,'Eight')]")
+    private WebElement gridEightDeselect;
+    @FindBy(xpath = "//li[@class='list-group-item active list-group-item-action'][contains(.,'Nine')]")
+    private WebElement gridNineDeselect;
+
 
     public SelectablePage(WebDriver driver) {
         super(driver);
@@ -107,16 +126,10 @@ public class SelectablePage extends BasePage {
         gridTabText.click();
     }
 
-    public void clickElement(int index) {
+    public void selectRowOnPosition(int index) {
         if (index >= 0 && index < allList.size()) {
             allList.get(index).click();
         }
-    }
-
-    public boolean RowSelected(String searchedSelection) {
-        WebElement listItem = driver.findElement(By.xpath("//li[contains(.,'" + searchedSelection + "')]"));
-        String backgroundColor = listItem.getCssValue("background-color");
-        return backgroundColor.equals("rgba(0, 123, 255, 1)");
     }
 
     public String getGridOneText() {
@@ -171,9 +184,27 @@ public class SelectablePage extends BasePage {
         }
     }
 
-    public boolean isPositionFromGridSelected(String searchedSelection) {
+    public void selectPositionFromGridDeselected(String searched1Selection) {
+        switch (searched1Selection) {
+            case "One" -> gridOneDeselect.click();
+            case "Two" -> gridTwoDeselect.click();
+            case "Three" -> gridThreeDeselect.click();
+            case "Four" -> gridFourDeselect.click();
+            case "Five" -> gridFiveDeselect.click();
+            case "Six" -> gridSixDeselect.click();
+            case "Seven" -> gridSevenDeselect.click();
+            case "Eight" -> gridEightDeselect.click();
+            case "Nine" -> gridNineDeselect.click();
+        }
+    }
+
+    public String getRowBackgroundColor(String searchedSelection) {
         WebElement listItem = driver.findElement(By.xpath("//li[contains(.,'" + searchedSelection + "')]"));
-        String backgroundColor = listItem.getCssValue("background-color");
-        return backgroundColor.equals("rgba(0, 123, 255, 1)");
+        return listItem.getCssValue("background-color");
+    }
+
+    public String getGridBackgroundColor(String searchedSelection) {
+        WebElement listItem = driver.findElement(By.xpath("//li[contains(.,'" + searchedSelection + "')]"));
+        return listItem.getCssValue("background-color");
     }
 }

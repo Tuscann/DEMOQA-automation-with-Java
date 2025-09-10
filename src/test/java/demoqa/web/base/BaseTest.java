@@ -32,8 +32,9 @@ public class BaseTest {
 
             // In headless mode, Chrome ignores maximize and instead requires you to explicitly set a window size.
             boolean isHeadless = Boolean.parseBoolean(System.getProperty("headless", "true"));
+
             if (isHeadless) {
-                options.addArguments("--headless=new");
+                options.addArguments("--headless");
                 options.addArguments("--window-size=1920,1080"); // required in headless
             } else {
                 options.addArguments("--start-maximized"); // works only with UI mode

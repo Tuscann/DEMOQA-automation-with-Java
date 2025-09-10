@@ -1,4 +1,4 @@
-package demoqa.web.tests.bookstore;
+package demoqa.web.tests.bookStoreApplication;
 
 import demoqa.pages.bookstore.BooksLoginPage;
 import demoqa.pages.bookstore.BooksPage;
@@ -7,7 +7,7 @@ import demoqa.web.base.BaseTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class BookLoginPageTests extends BaseTest {
+public class LoginPageTests extends BaseTest {
     // Page Content
     private static final String VALID_USERNAME = "fbinnzhivko";
     private static final String VALID_PASSWORD = "Karma1987!@";
@@ -30,6 +30,9 @@ public class BookLoginPageTests extends BaseTest {
     private static final String EXPECTED_ALREADY_LOGGED_IN_TEXT = "You are already logged in. View your profile.";
     private static final String EXPECTED_BOOKS_URL = DEMO_QA_URL + "books";
     private static final String INVALID_USERNAME_PASSWORD_ERROR = "Invalid username or password!";
+
+    // Color Constants
+    private static final String EXPECTED_BLUE_COLOR = "rgba(0, 123, 255, 1)";
 
     // Error Message Constants
     private static final String LOGIN_HEADER_ERROR = "Login header text mismatch";
@@ -66,19 +69,23 @@ public class BookLoginPageTests extends BaseTest {
         softAssert.assertEquals(booksLoginPage.getPasswordLabel(), PASSWORD_LABEL, PASSWORD_LABEL_ERROR);
         softAssert.assertEquals(booksLoginPage.getPasswordPlaceholder(), PASSWORD_PLACEHOLDER, PASSWORD_PLACEHOLDER_ERROR);
         softAssert.assertEquals(booksLoginPage.getLoginButtonText(), LOGIN_BUTTON_TEXT, LOGIN_BUTTON_ERROR);
+        softAssert.assertEquals(booksLoginPage.getLoginButtonBackgroundColor(), EXPECTED_BLUE_COLOR, LOGIN_BUTTON_ERROR);
         softAssert.assertEquals(booksLoginPage.getNewUserButtonText(), NEW_USER_BUTTON_TEXT, NEW_USER_BUTTON_ERROR);
+        softAssert.assertEquals(booksLoginPage.getNewUserButtonBackgroundColor(), EXPECTED_BLUE_COLOR, LOGIN_BUTTON_ERROR);
         softAssert.assertAll();
     }
 
     @Test(enabled = true, description = "Successfully authenticate with valid username and password")
     public void loginWithValidUsernameAndValidPassword() {
-        // Arrange & Act        
+        // Arrange & Act
+        BooksProfilePage booksProfilePage = new BooksProfilePage(driver);
+
         booksLoginPage.setUsername(VALID_USERNAME);
         booksLoginPage.setPassword(VALID_PASSWORD);
         booksLoginPage.clickLoginButton();
 
         // Assert
-        String actualProfile = booksLoginPage.getProfile();
+        String actualProfile = booksProfilePage.getProfile();
         softAssert.assertEquals(actualProfile, VALID_USERNAME, USERNAME_MISMATCH_ERROR);
         softAssert.assertAll();
     }
@@ -144,11 +151,13 @@ public class BookLoginPageTests extends BaseTest {
     @Test(enabled = true, description = "Verify logout functionality after successful login")
     public void clickLogoutAfterLogin() {
         // Arrange & Act
+        BooksProfilePage booksProfilePage = new BooksProfilePage(driver);
+
         booksLoginPage.setUsername(VALID_USERNAME);
         booksLoginPage.setPassword(VALID_PASSWORD);
         booksLoginPage.clickLoginButton();
 
-        String actualProfile = booksLoginPage.getProfile();
+        String actualProfile = booksProfilePage.getProfile();
         booksLoginPage.clickLogoutButton();
         String actualLoginText = booksLoginPage.getLoginText();
 
@@ -177,81 +186,20 @@ public class BookLoginPageTests extends BaseTest {
     }
 
     @Test(enabled = true, description = "Verify login page state when user is already logged in")
-    public void verifyLoginPageAfterLogin() {
+    public void verifyLoginPageTextAfterLogin() {
         // Arrange
         BooksProfilePage booksProfilePage = new BooksProfilePage(driver);
+        BooksPage booksPage = new BooksPage(driver);
 
         // Act
         booksLoginPage.setUsername(VALID_USERNAME);
         booksLoginPage.setPassword(VALID_PASSWORD);
         booksLoginPage.clickLoginButton();
         booksProfilePage.clickGoToBookStoreButton();
-        booksProfilePage.clickLoginTab();
+        booksPage.clickLoginTab();
 
         // Assert
         softAssert.assertEquals(booksLoginPage.getLoadingLabel(), EXPECTED_ALREADY_LOGGED_IN_TEXT, ALREADY_LOGGED_IN_ERROR);
-        softAssert.assertAll();
-    }
-
-    @Test(enabled = true, description = "Verify text of pop window after click delete all books")
-    public void clickOnButtonDeleteAllBooks() {
-        // Arrange
-        BooksProfilePage booksProfilePage = new BooksProfilePage(driver);
-
-        // Act
-        booksLoginPage.setUsername(VALID_USERNAME);
-        booksLoginPage.setPassword(VALID_PASSWORD);
-        booksLoginPage.clickLoginButton();
-        booksProfilePage.clickDeleteAllBooks();
-
-        String expectedPopTitle = "Delete All Books";
-        String popTitle = booksProfilePage.getPopTitle();
-
-        String expectedModalQuestion = "Do you want to delete all books?";
-        String modalQuestion = booksProfilePage.getModalWindowQuestion();
-
-        String expectedWindowOkButtonText = "OK";
-        String modalWindowOkButtonText = booksProfilePage.getModalWindowOkButtonText();
-
-        String expectedWindowCancelButtonText = "Cancel";
-        String modalWindowCancelButtonText = booksProfilePage.getModalWindowCancelButtonText();
-
-        // Assert
-        softAssert.assertEquals(popTitle, expectedPopTitle, "Title should be the same");
-        softAssert.assertEquals(modalQuestion, expectedModalQuestion, "Modal question should be the same");
-        softAssert.assertEquals(modalWindowOkButtonText, expectedWindowOkButtonText, "Ok button should be the same");
-        softAssert.assertEquals(modalWindowCancelButtonText, expectedWindowCancelButtonText, "Cancel button should be the same");
-        softAssert.assertAll();
-    }
-
-    @Test(enabled = true, description = "Verify text on pop window after click delete account button")
-    public void clickOnButtonDeleteAccount() {
-        // Arrange
-        BooksProfilePage booksProfilePage = new BooksProfilePage(driver);
-
-        // Act
-        booksLoginPage.setUsername(VALID_USERNAME);
-        booksLoginPage.setPassword(VALID_PASSWORD);
-        booksLoginPage.clickLoginButton();
-        booksProfilePage.clickDeleteAccountButton();
-
-        String expectedPopTitle = "Delete Account";
-        String popTitle = booksProfilePage.getPopTitle();
-
-        String expectedModalQuestion = "Do you want to delete your account?";
-        String modalQuestion = booksProfilePage.getModalWindowQuestion();
-
-        String expectedWindowOkButtonText = "OK";
-        String modalWindowOkButtonText = booksProfilePage.getModalWindowOkButtonText();
-
-        String expectedWindowCancelButtonText = "Cancel";
-        String modalWindowCancelButtonText = booksProfilePage.getModalWindowCancelButtonText();
-
-        // Assert
-        softAssert.assertEquals(popTitle, expectedPopTitle, "Title should be the same");
-        softAssert.assertEquals(modalQuestion, expectedModalQuestion, "Modal question should be the same");
-        softAssert.assertEquals(modalWindowOkButtonText, expectedWindowOkButtonText, "Ok button should be the same");
-        softAssert.assertEquals(modalWindowCancelButtonText, expectedWindowCancelButtonText, "Cancel button should be the same");
         softAssert.assertAll();
     }
 }

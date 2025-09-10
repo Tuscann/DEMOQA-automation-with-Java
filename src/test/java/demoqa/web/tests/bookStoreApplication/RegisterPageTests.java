@@ -1,4 +1,4 @@
-package demoqa.web.tests.bookstore;
+package demoqa.web.tests.bookStoreApplication;
 
 import com.github.javafaker.Faker;
 import demoqa.pages.bookstore.BooksRegisterPage;
@@ -6,7 +6,7 @@ import demoqa.web.base.BaseTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class BookRegisterPageTests extends BaseTest {
+public class RegisterPageTests extends BaseTest {
     // Page Content
     public static final String PAGE_TITLE = "Register";
     public static final String HEADER_TEXT = "Register to Book Store";
@@ -20,10 +20,10 @@ public class BookRegisterPageTests extends BaseTest {
     public static final String PASSWORD_PLACEHOLDER = "Password";
     public static final String REGISTER_BUTTON_TEXT = "Register";
     public static final String BACK_TO_LOGIN_BUTTON_TEXT = "Back to Login";
-
     // Messages
     public static final String RECAPTCHA_ERROR_MESSAGE = "Please verify reCaptcha to register!";
-
+    // Color Constants
+    private static final String EXPECTED_BLUE_COLOR = "rgba(0, 123, 255, 1)";
     // Error Message Constants
     private static final String FIRST_NAME_PLACEHOLDER_ERROR = "First name placeholder text mismatch";
     private static final String LAST_NAME_PLACEHOLDER_ERROR = "Last name placeholder text mismatch";
@@ -38,9 +38,8 @@ public class BookRegisterPageTests extends BaseTest {
     private static final String REGISTER_BUTTON_ERROR = "Register button text mismatch";
     private static final String BACK_TO_LOGIN_BUTTON_ERROR = "Back to login button text mismatch";
     private static final String RECAPTCHA_ERROR_MESSAGE_ERROR = "ReCAPTCHA error message mismatch";
-
-    private BooksRegisterPage booksRegisterPage;
     private static final String REGISTER_URL = "register";
+    private BooksRegisterPage booksRegisterPage;
     private Faker faker;
 
     @BeforeMethod
@@ -56,16 +55,17 @@ public class BookRegisterPageTests extends BaseTest {
         String actualHeaderText = booksRegisterPage.getTitle();
         String actualFirstText = booksRegisterPage.getFirstText();
         String actualFirstNameLabel = booksRegisterPage.getFirstNameLabel();
-        String actualLastNameLabel = booksRegisterPage.getLastNameLabel();
-        String actualUserNameLabel = booksRegisterPage.getUsernameLabel();
-        String actualPasswordLabel = booksRegisterPage.getPasswordLabel();
-
         String actualFirstNamePlaceholder = booksRegisterPage.getFirstNamePlaceholderText();
+        String actualLastNameLabel = booksRegisterPage.getLastNameLabel();
         String actualLastNamePlaceholder = booksRegisterPage.getLastNamePlaceholderText();
+        String actualUserNameLabel = booksRegisterPage.getUsernameLabel();
         String actualUserNamePlaceholder = booksRegisterPage.getUsernamePlaceholderText();
+        String actualPasswordLabel = booksRegisterPage.getPasswordLabel();
         String actualPasswordPlaceholder = booksRegisterPage.getPasswordPlaceholderText();
         String actualRegisterButtonText = booksRegisterPage.getTextOfRegisterButton();
-        String actualBackToLoginButtonText = booksRegisterPage.getTextOfBackToLoginButton();
+        String actualRegisterButtonBackgroundColor = booksRegisterPage.getRegisterButtonBackgroundColor();
+        String actualBackToLoginButtonText = booksRegisterPage.getBackToLoginButtonText();
+        String actualBackToLoginButtonBackgroundColor = booksRegisterPage.getBackToLoginButtonBackgroundColor();
 
         // Assert
         softAssert.assertEquals(actualFirstNamePlaceholder, FIRST_NAME_PLACEHOLDER, FIRST_NAME_PLACEHOLDER_ERROR);
@@ -80,6 +80,8 @@ public class BookRegisterPageTests extends BaseTest {
         softAssert.assertEquals(actualPasswordLabel, PASSWORD_LABEL, PASSWORD_LABEL_ERROR);
         softAssert.assertEquals(actualRegisterButtonText, REGISTER_BUTTON_TEXT, REGISTER_BUTTON_ERROR);
         softAssert.assertEquals(actualBackToLoginButtonText, BACK_TO_LOGIN_BUTTON_TEXT, BACK_TO_LOGIN_BUTTON_ERROR);
+        softAssert.assertEquals(actualRegisterButtonBackgroundColor, EXPECTED_BLUE_COLOR, BACK_TO_LOGIN_BUTTON_ERROR);
+        softAssert.assertEquals(actualBackToLoginButtonBackgroundColor, EXPECTED_BLUE_COLOR, BACK_TO_LOGIN_BUTTON_ERROR);
         softAssert.assertAll();
     }
 

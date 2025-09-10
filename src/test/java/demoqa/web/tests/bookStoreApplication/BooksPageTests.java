@@ -1,4 +1,4 @@
-package demoqa.web.tests.bookstore;
+package demoqa.web.tests.bookStoreApplication;
 
 import demoqa.pages.bookstore.BooksPage;
 import demoqa.web.base.BaseTest;
@@ -158,7 +158,7 @@ public class BooksPageTests extends BaseTest {
 
         // Act & Assert - Login Link
         logger.debug("Testing Login link navigation");
-        booksPage.clickLogLeftTab();
+        booksPage.clickLoginLeftTab();
         verifyUrlNavigation(EXPECTED_LOGIN_URL, LOGIN_URL_ERROR);
 
         // Act & Assert - Books Link

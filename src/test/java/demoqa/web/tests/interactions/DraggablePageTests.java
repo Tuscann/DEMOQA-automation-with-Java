@@ -7,6 +7,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class DraggablePageTests extends BaseTest {
+    public static final String DRAGGABLE_URL = "dragabble";
     // Text Constants
     private static final String PAGE_TITLE = "Dragabble";
     private static final String SIMPLE_TAB_TITLE = "Simple";
@@ -21,7 +22,6 @@ public class DraggablePageTests extends BaseTest {
     private static final String CURSOR_STYLE_FIRST_TEXT = "I will always stick to the center";
     private static final String CURSOR_STYLE_SECOND_TEXT = "My cursor is at top left";
     private static final String CURSOR_STYLE_THIRD_TEXT = "My cursor is at bottom";
-
     // Error Message Constants
     private static final String PAGE_TITLE_ERROR = "Page title mismatch";
     private static final String SIMPLE_TAB_TITLE_ERROR = "Simple tab title mismatch";
@@ -40,8 +40,6 @@ public class DraggablePageTests extends BaseTest {
     private static final String INITIAL_LOCATION_Y_ERROR = "Initial location Y mismatch";
     private static final String POINT_LOCATION_X_ERROR = "Point location X axis mismatch";
     private static final String POINT_LOCATION_Y_ERROR = "Point location Y axis mismatch";
-
-    public static final String DRAGGABLE_URL = "dragabble";
     private DraggablePage draggablePage;
 
     @BeforeMethod
@@ -112,7 +110,6 @@ public class DraggablePageTests extends BaseTest {
         int yOffset = 50;
 
         draggablePage.clickAxisRestrictedTab();
-
         Point initialLocation = draggablePage.getInitLocationOnlyX();
 
         draggablePage.dragAndDropByOnPositionOnlyX(xOffset, yOffset);
@@ -196,9 +193,7 @@ public class DraggablePageTests extends BaseTest {
         draggablePage.clickContainerRestrictedTab();
 
         Point initialLocation = draggablePage.getInitLocationContainedInParent();
-
         draggablePage.dragAndDropByOnPositionContainedParent(xOffset, yOffset);
-
         Point endPosition = draggablePage.getInitLocationContainedInParent();
 
         // Assert

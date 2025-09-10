@@ -59,26 +59,33 @@ public class BrowserWindowsPage extends BasePage {
     }
 
     public String getBrowserMessage() {
+        // Step 1: Store the parent (main) window
         String parentWindow = driver.getWindowHandle();
 
-        // Wait for a new window to appear
+        // Step 2: Wait until a new (child) window appears
         new WebDriverWait(driver, Duration.ofSeconds(10))
                 .until(d -> d.getWindowHandles().size() > 1);
 
-        // Get all window handles
-        Set<String> allWindowHandles = driver.getWindowHandles();
-        String mainWindowHandle = driver.getWindowHandle(); // Main window handle
-        String message = "";
-        // Switch to the new window (there should only be 2 windows now)
-        for (String windowHandle : allWindowHandles) {
-            if (!windowHandle.equals(mainWindowHandle)) {
-                driver.switchTo().window(windowHandle);
-                message = header1.getText();
-                break; // Switch to the second window (new one)
-            }
-        }
+        // Step 3: Identify the child window
+        Set<String> allWindows = driver.getWindowHandles();
+        String childWindow = allWindows.stream()
+                .filter(handle -> !handle.equals(parentWindow))
+                .findFirst()
+                .orElseThrow(() -> new RuntimeException("Child window not found"));
 
+        // Step 4: Switch to the child window
+        driver.switchTo().window(childWindow);
+
+        // Step 5: Wait for the <h1> element and get its text
+//        WebElement header = new WebDriverWait(driver, Duration.ofSeconds(5))
+//                .until(ExpectedConditions.visibilityOfElementLocated(By.tagName("h1")));
+
+        String message = header1.getText();
+
+        // Optional: Close the child window
         driver.close();
+
+        // Step 6: Switch back to the parent window
         driver.switchTo().window(parentWindow);
 
         return message;

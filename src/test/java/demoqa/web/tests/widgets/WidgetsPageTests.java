@@ -71,7 +71,7 @@ public class WidgetsPageTests extends BaseTest {
         // Arrange and Act       
         softAssert.assertEquals(widgetsPage.getMainText(), EXPECTED_MAIN_TEXT, MAIN_TEXT_ERROR);
         softAssert.assertTrue(widgetsPage.verifyAccordionIsVisible(), ACCORDION_VISIBILITY_ERROR);
-        widgetsPage.clickWidgetsWindows();
+        widgetsPage.clickWidgetsLeftMenu();
         softAssert.assertFalse(widgetsPage.verifyAccordionIsNotVisible(), ACCORDION_HIDDEN_ERROR);
 
         // Assert

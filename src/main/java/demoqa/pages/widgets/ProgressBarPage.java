@@ -23,6 +23,8 @@ public class ProgressBarPage extends BasePage {
     private WebElement progressBarCurrent;
     @FindBy(xpath = "//h1[@class='text-center'][contains(.,'Progress Bar')]")
     private WebElement header;
+    @FindBy(id = "progressBar")
+    private WebElement progressbarTop;
 
     public ProgressBarPage(WebDriver driver) {
         super(driver);
@@ -74,10 +76,12 @@ public class ProgressBarPage extends BasePage {
     }
 
     public void clickResetButton() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.attributeToBe(progressBarCurrent, "aria-valuenow", "100"));
         resetButton.click();
     }
 
-    public void stopProgressBarOnValue2(int targetValue) {
+    public void clickStopButtonOnValue(int targetValue) {
         Wait<WebDriver> wait = new FluentWait<>(driver)
                 .withTimeout(Duration.ofSeconds(8))
                 .pollingEvery(Duration.ofMillis(1))
@@ -102,5 +106,17 @@ public class ProgressBarPage extends BasePage {
                 }
             }
         });
+    }
+
+    public String getStartStopButtonBackgroundColor() {
+        return startStopButton.getCssValue("background-color");
+    }
+
+    public String getStartStopButtonBorderColor() {
+        return startStopButton.getCssValue("border-color");
+    }
+
+    public String getColorProgressTopBar() {
+        return progressbarTop.getCssValue("background-color");
     }
 }
