@@ -40,85 +40,6 @@ public class MenuPage extends BasePage {
         PageFactory.initElements(driver, this);
     }
 
-    public void selectMainItem1() {
-        Actions actions = new Actions(driver);
-        actions.moveToElement(mainItem1).perform();
-    }
-
-    public void selectMainItem2() {
-        Actions actions = new Actions(driver);
-        actions.moveToElement(mainItem2).perform();
-    }
-
-    public void selectMainItem2SubSubList() {
-        Actions actions = new Actions(driver);
-        actions.moveToElement(mainItem2).perform();
-        actions.moveToElement(subSub).perform();
-    }
-
-    public String getMainItem1BackgroundColor() {
-        return mainItemFirstLi.getCssValue("background-color");
-    }
-
-    public String getMainItem2BackgroundColor() {
-        return mainItemSecondLi.getCssValue("background-color");
-    }
-
-    public String getMainItem2SubSubsListBackgroundColor() {
-        return subSub.getCssValue("background-color");
-    }
-
-    public String getMainItem2SubSubsLIstSubSubItem1BackgroundColor() {
-        return mainItem2SubSubListSubSubItem1.getCssValue("background-color");
-    }
-
-    public String getMainItem2SubSubsLIstSubSubItem2BackgroundColor() {
-        return mainItem2SubSubListSubSubItem2.getCssValue("background-color");
-    }
-
-    public String getMainItem3BackgroundColor() {
-        return mainItemThirdLi.getCssValue("background-color");
-    }
-
-    public void selectMainItem3() {
-        Actions actions = new Actions(driver);
-        actions.moveToElement(mainItem3).perform();
-    }
-
-    public void selectMainItem2SubSubsLIstSubSubItem1() {
-        Actions actions = new Actions(driver);
-        actions.moveToElement(mainItem2).perform();
-        actions.moveToElement(subSub).perform();
-        actions.moveToElement(mainItem2SubSubListSubSubItem1).perform();
-    }
-
-    public void selectMainItem2SubSubsLIstSubSubItem2() {
-        Actions actions = new Actions(driver);
-        actions.moveToElement(mainItem2).perform();
-        actions.moveToElement(subSub).perform();
-        actions.moveToElement(mainItem2SubSubListSubSubItem2).perform();
-    }
-
-    public String getMainItem2SubItem1BackgroundColor() {
-        return mainItem2SubItem1.getCssValue("background-color");
-    }
-
-    public String getMainItem2SubItem2BackgroundColor() {
-        return mainItem2SubItem2.getCssValue("background-color");
-    }
-
-    public void selectMainItem2SubItem1() {
-        Actions actions = new Actions(driver);
-        actions.moveToElement(mainItem2).perform();
-        actions.moveToElement(mainItem2SubItem1).perform();
-    }
-
-    public void selectMainItem2SubItem2() {
-        Actions actions = new Actions(driver);
-        actions.moveToElement(mainItem2).perform();
-        actions.moveToElement(mainItem2SubItem2).perform();
-    }
-
     public String getHeaderText() {
         return header.getText();
     }
@@ -153,5 +74,84 @@ public class MenuPage extends BasePage {
 
     public String getMainItem2SubSubListSubItem2() {
         return mainItem2SubSubListSubSubItem2.getText();
+    }
+
+    public String getMainItem2SubItem1BackgroundColor() {
+        return mainItem2SubItem1.getCssValue("background-color");
+    }
+
+    public String getMainItem2SubItem2BackgroundColor() {
+        return mainItem2SubItem2.getCssValue("background-color");
+    }
+
+    public String getMainItem1BackgroundColor() {
+        return mainItemFirstLi.getCssValue("background-color");
+    }
+
+    public String getMainItem2BackgroundColor() {
+        return mainItemSecondLi.getCssValue("background-color");
+    }
+
+    public String getMainItem2SubSubsListBackgroundColor() {
+        return subSub.getCssValue("background-color");
+    }
+
+    public void selectMainItem1() {
+        Actions actions = new Actions(driver);
+        actions.moveToElement(mainItem1).perform();
+    }
+
+    public void selectMainItem2() {
+        Actions actions = new Actions(driver);
+        actions.moveToElement(mainItem2).perform();
+    }
+
+    public void selectMainItem2SubSubList() {
+        Actions actions = new Actions(driver);
+        actions.moveToElement(mainItem2).perform();
+        actions.moveToElement(subSub).perform();
+    }
+
+    public String getMainItem2SubSubsLIstSubSubItem1BackgroundColor() {
+        return mainItem2SubSubListSubSubItem1.getCssValue("background-color");
+    }
+
+    public String getMainItem2SubSubsLIstSubSubItem2BackgroundColor() {
+        return mainItem2SubSubListSubSubItem2.getCssValue("background-color");
+    }
+
+    public String getMainItem3BackgroundColor() {
+        return mainItemThirdLi.getCssValue("background-color");
+    }
+
+    public void selectMainItem3() {
+        Actions actions = new Actions(driver);
+        actions.moveToElement(mainItem3).perform();
+    }
+
+    public void selectMainItem2SubSubsLIstSubSubItem1() {
+        Actions actions = new Actions(driver);
+        actions.moveToElement(mainItem2).perform();
+        actions.moveToElement(subSub).perform();
+        actions.moveToElement(mainItem2SubSubListSubSubItem1).perform();
+    }
+
+    public void selectMainItem2SubSubsLIstSubSubItem2() {
+        Actions actions = new Actions(driver);
+        actions.moveToElement(mainItem2).perform();
+        actions.moveToElement(subSub).perform();
+        actions.moveToElement(mainItem2SubSubListSubSubItem2).perform();
+    }
+
+    public void selectMainItem2SubItem1() {
+        Actions actions = new Actions(driver);
+        actions.moveToElement(mainItem2).perform();
+        actions.moveToElement(mainItem2SubItem1).perform();
+    }
+
+    public void selectMainItem2SubItem2() {
+        Actions actions = new Actions(driver);
+        actions.moveToElement(mainItem2).perform();
+        actions.moveToElement(mainItem2SubItem2).perform();
     }
 }

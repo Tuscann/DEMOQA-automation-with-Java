@@ -84,7 +84,6 @@ public class SelectablePage extends BasePage {
     @FindBy(xpath = "//li[@class='list-group-item active list-group-item-action'][contains(.,'Nine')]")
     private WebElement gridNineDeselect;
 
-
     public SelectablePage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
@@ -97,12 +96,6 @@ public class SelectablePage extends BasePage {
 
     public String getListTabText() {
         return listTabText.getText();
-    }
-
-    public String getListFirstText() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(4));
-        wait.until(ExpectedConditions.visibilityOf(listFirstText));
-        return listFirstText.getText();
     }
 
     public String getListSecondText() {
@@ -119,23 +112,6 @@ public class SelectablePage extends BasePage {
 
     public String getGridText() {
         return gridTabText.getText();
-    }
-
-    public void clickGridTab() {
-        javaScriptUtility.scrollToElementJS(gridTabText);
-        gridTabText.click();
-    }
-
-    public void selectRowOnPosition(int index) {
-        if (index >= 0 && index < allList.size()) {
-            allList.get(index).click();
-        }
-    }
-
-    public String getGridOneText() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(4));
-        wait.until(ExpectedConditions.visibilityOf(gridOne));
-        return gridOne.getText();
     }
 
     public String getGridTwoText() {
@@ -168,6 +144,29 @@ public class SelectablePage extends BasePage {
 
     public String getGridNine() {
         return gridNine.getText();
+    }
+
+    public void clickGridTab() {
+        javaScriptUtility.scrollToElementJS(gridTabText);
+        gridTabText.click();
+    }
+
+    public String getListFirstText() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(4));
+        wait.until(ExpectedConditions.visibilityOf(listFirstText));
+        return listFirstText.getText();
+    }
+
+    public void selectRowOnPosition(int index) {
+        if (index >= 0 && index < allList.size()) {
+            allList.get(index).click();
+        }
+    }
+
+    public String getGridOneText() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(4));
+        wait.until(ExpectedConditions.visibilityOf(gridOne));
+        return gridOne.getText();
     }
 
     public void selectPositionFromGrid(String searched1Selection) {

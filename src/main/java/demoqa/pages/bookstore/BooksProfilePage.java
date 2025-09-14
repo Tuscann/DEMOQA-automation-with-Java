@@ -54,10 +54,6 @@ public class BooksProfilePage extends BasePage {
         return username.getText();
     }
 
-    public String getCurrentUrl() {
-        return driver.getCurrentUrl();
-    }
-
     public String getLoggingWrapper() {
         return notLoggingWrapper.getText();
     }
@@ -68,6 +64,10 @@ public class BooksProfilePage extends BasePage {
 
     public void clickRegisterLink() {
         registerLink.click();
+    }
+
+    public void clickLoginTab() {
+        loginTab.click();
     }
 
     public void clickGoToBookStoreButton() {
@@ -83,10 +83,6 @@ public class BooksProfilePage extends BasePage {
         wait.until(ExpectedConditions.urlToBe("https://demoqa.com/profile"));
         wait.until(ExpectedConditions.elementToBeClickable(logOutButtonTop));
         return logOutButtonTop.getText();
-    }
-
-    public void clickLoginTab() {
-        loginTab.click();
     }
 
     public void clickDeleteAllBooks() {

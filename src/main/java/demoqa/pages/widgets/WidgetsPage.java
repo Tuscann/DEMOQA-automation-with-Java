@@ -39,6 +39,22 @@ public class WidgetsPage extends BasePage {
         this.javaScriptUtility = new JavaScriptUtility(driver);
     }
 
+    public String getMainText() {
+        return text.getText();
+    }
+
+    public boolean verifyAccordionIsVisible() {
+        return selectAccordion.isDisplayed();
+    }
+
+    public boolean verifyAccordionIsNotVisible() {
+        return !selectAccordion.isDisplayed();
+    }
+
+    public void clickWidgetsLeftMenu() {
+        widgets.click();
+    }
+
     public void clickAccordion() {
         javaScriptUtility.scrollToElementJS(selectAccordion);
         selectAccordion.click();
@@ -82,21 +98,5 @@ public class WidgetsPage extends BasePage {
     public void clickSelectMenu() {
         javaScriptUtility.scrollToElementJS(selectSelectMenu);
         selectSelectMenu.click();
-    }
-
-    public String getMainText() {
-        return text.getText();
-    }
-
-    public boolean verifyAccordionIsVisible() {
-        return selectAccordion.isDisplayed();
-    }
-
-    public boolean verifyAccordionIsNotVisible() {
-        return !selectAccordion.isDisplayed();
-    }
-
-    public void clickWidgetsLeftMenu() {
-        widgets.click();
     }
 }

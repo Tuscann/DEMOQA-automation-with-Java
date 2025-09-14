@@ -170,44 +170,6 @@ public class PracticeFormPage extends BasePage {
         return valuesForm.getText();
     }
 
-    public String getHobbiesFromModal() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(4));
-        wait.until(ExpectedConditions.visibilityOf(this.hobbiesForm));
-        return hobbiesForm.getText();
-    }
-
-    public String getPictureFromModal() {
-        return pictureForm.getText();
-    }
-
-    public String getAddressFromModal() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(4));
-        wait.until(ExpectedConditions.visibilityOf(this.addressForm));
-        return addressForm.getText();
-    }
-
-    public String getStateAndCityValueFromModal() {
-        return stateAndCityForm.getText();
-    }
-
-    public String getGenderFromModal() {
-        return genderForm.getText();
-    }
-
-    public String getMobileFromModal() {
-        return mobileForm.getText();
-    }
-
-    public String getDateOfBirthFromModal() {
-        javaScriptUtility.scrollToElementJS(dateOfBirthForm);
-        return dateOfBirthForm.getText();
-    }
-
-    public String getSubjectsFromModal() {
-        javaScriptUtility.scrollToElementJS(subjectsForm);
-        return subjectsForm.getText();
-    }
-
     public String getFirstNamePlaceholderText() {
         return firstName.getDomAttribute("placeholder");
     }
@@ -244,111 +206,6 @@ public class PracticeFormPage extends BasePage {
         return subjects.getDomAttribute("placeholder");
     }
 
-    public void setSubject(String subject) {
-        subjects.sendKeys(subject);
-        subjects.sendKeys("" + Keys.ENTER);
-        delay(300);
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName.click();
-        set(this.firstName, firstName);
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName.click();
-        set(this.lastName, lastName);
-    }
-
-    public void setEmail(String email) {
-        javaScriptUtility.scrollToElementJS(this.email);
-        this.email.click();
-        set(this.email, email);
-    }
-
-    public void setMobile(String mobile) {
-        this.mobile.click();
-        set(this.mobile, mobile);
-    }
-
-    public void setCurrentAddress(String currentAddress) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.visibilityOf(this.currentAddressArea));
-        javaScriptUtility.scrollToElementJS(currentAddressArea);
-        currentAddressArea.click();
-        set(this.currentAddressArea, currentAddress);
-    }
-
-    public void clickGenderRadioButton(String gender) {
-        switch (gender) {
-            case "Male" -> javaScriptUtility.clickJS(maleRadioButton);
-            case "Female" -> javaScriptUtility.clickJS(femaleRadioButton);
-            case "Other" -> javaScriptUtility.clickJS(otherRadioButton);
-        }
-    }
-
-    public void setDateOfBirth(String month, String year, String day) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        WebElement dateOfBirthInput = wait.until(ExpectedConditions.visibilityOf(this.dateOfBirth));
-        javaScriptUtility.scrollToElementJS(dateOfBirth);
-        javaScriptUtility.clickJS(dateOfBirthInput);
-
-        WebElement monthSelectElement = wait.until(ExpectedConditions.visibilityOf(select_month));
-        Select monthSelect = new Select(monthSelectElement);
-        monthSelect.selectByVisibleText(month);
-
-        WebElement yearSelectElement = wait.until(ExpectedConditions.visibilityOf(select_year));
-        Select yearSelect = new Select(yearSelectElement);
-        javaScriptUtility.clickJS(yearSelectElement);
-        yearSelect.selectByVisibleText(year);
-
-        WebElement dateSelectElement = wait.until(ExpectedConditions.visibilityOf(select_date));
-        javaScriptUtility.clickJS(dateSelectElement);
-    }
-
-    public boolean isFemaleRadioButtonSelected() {
-        return femaleRadioButton.isSelected();
-    }
-
-    public boolean isOtherRadioButtonSelected() {
-        return otherRadioButton.isSelected();
-    }
-
-    public boolean isMaleRadioButtonSelected() {
-        return maleRadioButton.isSelected();
-    }
-
-    public void clickSportHobbyCheckbox() {
-        if (!sportHobbyCheckbox.isSelected()) {
-            javaScriptUtility.scrollToElementJS(sportHobbyCheckbox);
-            javaScriptUtility.clickJS(sportHobbyCheckbox);
-        }
-    }
-
-    public void clickReadingHobbyCheckbox() {
-        if (!readingHobbyCheckbox.isSelected()) {
-            javaScriptUtility.scrollToElementJS(readingHobbyCheckbox);
-            javaScriptUtility.clickJS(readingHobbyCheckbox);
-        }
-    }
-
-    public void clickMusicHobbyCheckbox() {
-        if (!musicHobbyCheckbox.isSelected()) {
-            javaScriptUtility.scrollToElementJS(musicHobbyCheckbox);
-            javaScriptUtility.clickJS(musicHobbyCheckbox);
-        }
-    }
-
-    public void clickSubmitButton() {
-        javaScriptUtility.scrollToElementJS(submitButton);
-        submitButton.click();
-    }
-
-    public void clickSubmitButton2() {
-        javaScriptUtility.scrollToElementJS(submitButton);
-        submitButton.click();
-    }
-
     public String getEmailLLabel() {
         return userEmailLabel.getText();
     }
@@ -373,47 +230,16 @@ public class PracticeFormPage extends BasePage {
         return stateAndCityLabel.getText();
     }
 
-    public String getFilePathFromResources(String fileName) {
-        File file = new File(System.getProperty("user.dir") + "/resources/screenshots/" + fileName);
-        if (file.exists()) {
-            return file.getAbsolutePath();
-        }
-        return null;
+    public String getStateAndCityValueFromModal() {
+        return stateAndCityForm.getText();
     }
 
-    public void uploadFile(String pathOfFile) {
-        uploadPicture.sendKeys(pathOfFile);
+    public String getGenderFromModal() {
+        return genderForm.getText();
     }
 
-    public void setState(String expectedState) {
-        selectStates.sendKeys(expectedState);
-        selectStates.sendKeys("" + Keys.ENTER);
-    }
-
-    public void setCity(String expectedCity) {
-        cities.sendKeys(expectedCity);
-        cities.sendKeys("" + Keys.ENTER);
-    }
-
-    public String getBorderColorOfFirstName(String expectedColor) {
-        javaScriptUtility.scrollToElementJS(practiceFormLabel);
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.attributeToBe(lastName, "border-color", expectedColor));
-        return firstName.getCssValue("border-color");
-    }
-
-    public String getBorderColorOfLastName(String expectedColor) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.attributeToBe(lastName, "border-color", expectedColor));
-
-        return lastName.getCssValue("border-color");
-    }
-
-    public String getBorderColorOfEmail(String expectedColor) {
-        javaScriptUtility.scrollToElementJS(email);
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.attributeToBe(email, "border-color", expectedColor));
-        return email.getCssValue("border-color");
+    public String getMobileFromModal() {
+        return mobileForm.getText();
     }
 
     public String getMaleGenderColor() {
@@ -426,12 +252,6 @@ public class PracticeFormPage extends BasePage {
 
     public String getOtherGenderColor() {
         return otherRadioButtonLabel.getCssValue("color");
-    }
-
-    public String getBorderColorOfMobile(String expectedColor) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.attributeToBe(mobile, "border-color", expectedColor));
-        return mobile.getCssValue("border-color");
     }
 
     public String getBorderColorOfDateOfBirth() {
@@ -514,10 +334,8 @@ public class PracticeFormPage extends BasePage {
         return submitButton.getText();
     }
 
-    public String getHeaderText() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(4));
-        wait.until(ExpectedConditions.visibilityOf(this.header));
-        return header.getText();
+    public String getPictureFromModal() {
+        return pictureForm.getText();
     }
 
     public String getStudentNameLabelFromModal() {
@@ -560,13 +378,196 @@ public class PracticeFormPage extends BasePage {
         return stateAndCityLabelForm.getText();
     }
 
+    public String getCloseButtonBackgroundColor() {
+        return closeLargeModal.getCssValue("background-color");
+    }
+
+    public boolean isFemaleRadioButtonSelected() {
+        return femaleRadioButton.isSelected();
+    }
+
+    public boolean isOtherRadioButtonSelected() {
+        return otherRadioButton.isSelected();
+    }
+
+    public boolean isMaleRadioButtonSelected() {
+        return maleRadioButton.isSelected();
+    }
+
+    public String getHobbiesFromModal() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(4));
+        wait.until(ExpectedConditions.visibilityOf(this.hobbiesForm));
+        return hobbiesForm.getText();
+    }
+
+    public String getAddressFromModal() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(4));
+        wait.until(ExpectedConditions.visibilityOf(this.addressForm));
+        return addressForm.getText();
+    }
+
+    public String getDateOfBirthFromModal() {
+        javaScriptUtility.scrollToElementJS(dateOfBirthForm);
+        return dateOfBirthForm.getText();
+    }
+
+    public String getSubjectsFromModal() {
+        javaScriptUtility.scrollToElementJS(subjectsForm);
+        return subjectsForm.getText();
+    }
+
+    public void setSubject(String subject) {
+        subjects.sendKeys(subject);
+        subjects.sendKeys("" + Keys.ENTER);
+        delay(300);
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName.click();
+        set(this.firstName, firstName);
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName.click();
+        set(this.lastName, lastName);
+    }
+
+    public void setEmail(String email) {
+        javaScriptUtility.scrollToElementJS(this.email);
+        this.email.click();
+        set(this.email, email);
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile.click();
+        set(this.mobile, mobile);
+    }
+
+    public void setCurrentAddress(String currentAddress) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOf(this.currentAddressArea));
+        javaScriptUtility.scrollToElementJS(currentAddressArea);
+        currentAddressArea.click();
+        set(this.currentAddressArea, currentAddress);
+    }
+
+    public void clickGenderRadioButton(String gender) {
+        switch (gender) {
+            case "Male" -> javaScriptUtility.clickJS(maleRadioButton);
+            case "Female" -> javaScriptUtility.clickJS(femaleRadioButton);
+            case "Other" -> javaScriptUtility.clickJS(otherRadioButton);
+        }
+    }
+
+    public void setDateOfBirth(String month, String year, String day) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement dateOfBirthInput = wait.until(ExpectedConditions.visibilityOf(this.dateOfBirth));
+        javaScriptUtility.scrollToElementJS(dateOfBirth);
+        javaScriptUtility.clickJS(dateOfBirthInput);
+
+        WebElement monthSelectElement = wait.until(ExpectedConditions.visibilityOf(select_month));
+        Select monthSelect = new Select(monthSelectElement);
+        monthSelect.selectByVisibleText(month);
+
+        WebElement yearSelectElement = wait.until(ExpectedConditions.visibilityOf(select_year));
+        Select yearSelect = new Select(yearSelectElement);
+        javaScriptUtility.clickJS(yearSelectElement);
+        yearSelect.selectByVisibleText(year);
+
+        WebElement dateSelectElement = wait.until(ExpectedConditions.visibilityOf(select_date));
+        javaScriptUtility.clickJS(dateSelectElement);
+    }
+
+    public void clickSportHobbyCheckbox() {
+        if (!sportHobbyCheckbox.isSelected()) {
+            javaScriptUtility.scrollToElementJS(sportHobbyCheckbox);
+            javaScriptUtility.clickJS(sportHobbyCheckbox);
+        }
+    }
+
+    public void clickReadingHobbyCheckbox() {
+        if (!readingHobbyCheckbox.isSelected()) {
+            javaScriptUtility.scrollToElementJS(readingHobbyCheckbox);
+            javaScriptUtility.clickJS(readingHobbyCheckbox);
+        }
+    }
+
+    public void clickMusicHobbyCheckbox() {
+        if (!musicHobbyCheckbox.isSelected()) {
+            javaScriptUtility.scrollToElementJS(musicHobbyCheckbox);
+            javaScriptUtility.clickJS(musicHobbyCheckbox);
+        }
+    }
+
+    public void clickSubmitButton() {
+        javaScriptUtility.scrollToElementJS(submitButton);
+        submitButton.click();
+        delay(300);
+    }
+
+    public void clickSubmitButton2() {
+        javaScriptUtility.scrollToElementJS(submitButton);
+        submitButton.click();
+    }
+
+    public String getFilePathFromResources(String fileName) {
+        File file = new File(System.getProperty("user.dir") + "/resources/screenshots/" + fileName);
+        if (file.exists()) {
+            return file.getAbsolutePath();
+        }
+        return null;
+    }
+
+    public void uploadFile(String pathOfFile) {
+        uploadPicture.sendKeys(pathOfFile);
+    }
+
+    public void setState(String expectedState) {
+        selectStates.sendKeys(expectedState);
+        selectStates.sendKeys("" + Keys.ENTER);
+    }
+
+    public void setCity(String expectedCity) {
+        cities.sendKeys(expectedCity);
+        cities.sendKeys("" + Keys.ENTER);
+    }
+
+    public String getBorderColorOfFirstName(String expectedColor) {
+        javaScriptUtility.scrollToElementJS(practiceFormLabel);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.attributeToBe(lastName, "border-color", expectedColor));
+        return firstName.getCssValue("border-color");
+    }
+
+    public String getBorderColorOfLastName(String expectedColor) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.attributeToBe(lastName, "border-color", expectedColor));
+
+        return lastName.getCssValue("border-color");
+    }
+
+    public String getBorderColorOfEmail(String expectedColor) {
+        javaScriptUtility.scrollToElementJS(email);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.attributeToBe(email, "border-color", expectedColor));
+        return email.getCssValue("border-color");
+    }
+
+    public String getBorderColorOfMobile(String expectedColor) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.attributeToBe(mobile, "border-color", expectedColor));
+        return mobile.getCssValue("border-color");
+    }
+
+    public String getHeaderText() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(4));
+        wait.until(ExpectedConditions.visibilityOf(this.header));
+        return header.getText();
+    }
+
     public String getCloseButtonText() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(4));
         wait.until(ExpectedConditions.visibilityOf(this.closeLargeModal));
         return closeLargeModal.getText();
-    }
-
-    public String getCloseButtonBackgroundColor() {
-        return closeLargeModal.getCssValue("background-color");
     }
 }

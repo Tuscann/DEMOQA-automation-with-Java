@@ -45,6 +45,30 @@ public class ToolTipsPage extends BasePage {
         this.javaScriptUtility = new JavaScriptUtility(driver);
     }
 
+    public String getToolTipsHeaderText() {
+        return header.getText();
+    }
+
+    public String getPracticeToolTipsText() {
+        return practiceToolTipsText.getText();
+    }
+
+    public String getHoverMeButtonText() {
+        return hoverMeToSeeButton.getText();
+    }
+
+    public String getHoverMeToSeeInputPlaceholder() {
+        return hoverMeTextField.getDomAttribute("placeholder");
+    }
+
+    public String getMainText() {
+        return mainText.getText();
+    }
+
+    public String getHoverMeButtonBackgroundColor() {
+        return hoverMeToSeeButton.getCssValue("background-color");
+    }
+
     public String getHoverOverHoverMeToSeeButtonReturnToolTipText() {
         javaScriptUtility.scrollToElementJS(header);
 
@@ -85,29 +109,5 @@ public class ToolTipsPage extends BasePage {
         wait.until(ExpectedConditions.visibilityOf(sectionToolTip));
 
         return sectionToolTip.getText();
-    }
-
-    public String getToolTipsHeaderText() {
-        return header.getText();
-    }
-
-    public String getPracticeToolTipsText() {
-        return practiceToolTipsText.getText();
-    }
-
-    public String getHoverMeButtonText() {
-        return hoverMeToSeeButton.getText();
-    }
-
-    public String getHoverMeToSeeInputPlaceholder() {
-        return hoverMeTextField.getDomAttribute("placeholder");
-    }
-
-    public String getMainText() {
-        return mainText.getText();
-    }
-
-    public String getHoverMeButtonBackgroundColor() {
-        return hoverMeToSeeButton.getCssValue("background-color");
     }
 }

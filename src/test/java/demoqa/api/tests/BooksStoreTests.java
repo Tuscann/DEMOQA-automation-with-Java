@@ -16,6 +16,10 @@ public class BooksStoreTests extends BaseTestApi {
     // Test Data Constants
     private static final String VALID_USERNAME = "fbinnzhivko";
     private static final String VALID_PASSWORD = "Karma1987!@";
+    private static final String VALID_USER_ID = "e90df422-7f2b-4f51-be1b-c92541eb370f";
+    private static final String VALID_ISBN = "9781449331818";
+    private static final String INVALID_USER_ID = "";
+    private static final String INVALID_ISBN = "9781449331811";
 
     // Book Properties Constants
     private static final String EXPECTED_ISBN = "9781449325862";
@@ -39,6 +43,8 @@ public class BooksStoreTests extends BaseTestApi {
     private static final String PAGES_ERROR = "Wrong Pages";
     private static final String DESCRIPTION_ERROR = "Wrong Description";
     private static final String WEBSITE_ERROR = "Wrong Website";
+    private static final String DELETE_RESPONSE_MISMATCH = "Delete operation not finished.";
+    private static final String BOOK_NOT_CREATED_MISMATCH = "Book not created";
 
     private TodoClient todoClient;
 
@@ -47,9 +53,10 @@ public class BooksStoreTests extends BaseTestApi {
         todoClient = new TodoClient();
     }
 
-    @Test(description = "Get count of All Books and verify first book properties.", suiteName = "api", enabled = true)
+    @Test(enabled = true, description = "Get count of All Books and verify first book properties.", suiteName = "api")
     void verifyFirstBookFromBooks() throws IOException, InterruptedException {
-        List<Book> booksList = todoClient.FindAllBooks();
+        // Arrange & Act
+        List<Book> booksList = todoClient.getAllBooks();
 
         String actualBookIsbn = booksList.getFirst().isbn();
         String actualBookTitle = booksList.getFirst().title();
@@ -76,125 +83,99 @@ public class BooksStoreTests extends BaseTestApi {
         softAssert.assertAll();
     }
 
-    @Test(description = "Add book in user collection", suiteName = "api", enabled = true)
-    void addBookToUserCollection() throws IOException, InterruptedException {
-        String userId = "e90df422-7f2b-4f51-be1b-c92541eb370f";
-        String isbn = "9781449331818";
-
-        String response = todoClient.CreateBook(VALID_USERNAME, VALID_PASSWORD, userId, isbn);
-
+    @Test(enabled = true, description = "Add book in user collection", suiteName = "api")
+    void createBook() throws IOException, InterruptedException {
+        // Arrange & Act
+        String currentCreatBookResponse = todoClient.createBook(VALID_USERNAME, VALID_PASSWORD, VALID_USER_ID, VALID_ISBN);
         String expectedResponse = """
                 {"books":[{"isbn":"9781449331818"}]}""";
 
-        softAssert.assertEquals(response, expectedResponse, "Book not created");
+        // Assert
+        softAssert.assertEquals(currentCreatBookResponse, expectedResponse, BOOK_NOT_CREATED_MISMATCH);
 
         // Delete book created in this test
-        String response2 = todoClient.DeleteAllBooksForUser(VALID_USERNAME, VALID_PASSWORD, userId);
-
-        softAssert.assertEquals(response2, "", "Delete operation not finished.");
+        String deleteBooksResponse = todoClient.deleteAllBooksForUser(VALID_USERNAME, VALID_PASSWORD, VALID_USER_ID);
+        softAssert.assertEquals(deleteBooksResponse, "", DELETE_RESPONSE_MISMATCH);
         softAssert.assertAll();
     }
 
-    @Test(description = "Try to add book in user collection with wrong ISBN", suiteName = "api", enabled = true)
-    void tryToAddBookWithWrongIsbn() throws IOException, InterruptedException {
-        String userId = "";
-        String isbn = "9";
-
-        String response = todoClient.CreateBook(VALID_USERNAME, VALID_PASSWORD, userId, isbn);
+    @Test(enabled = true, description = "Try to add book in user collection with wrong ISBN", suiteName = "api")
+    void tryToCreateBookWithInvalidIsbn() throws IOException, InterruptedException {
+        // Arrange & Act
+        String currentCreatBookResponse = todoClient.createBook(VALID_USERNAME, VALID_PASSWORD, VALID_USER_ID, INVALID_ISBN);
 
         String expectedResponse = """
                 {"code":"1205","message":"ISBN supplied is not available in Books Collection!"}""";
 
-        softAssert.assertEquals(response, expectedResponse, "Book not created");
-    }
-
-    @Test(description = "Try to Add book with wrong user id", suiteName = "api", enabled = true)
-    void tryToAddBookWithWrongUserId() throws IOException, InterruptedException {
-        String userId = "e90df422-7f2b-4f51-be1b-c92541eb370f";
-        String isbn = "9781449331818";
-
-        String response = todoClient.CreateBook(VALID_USERNAME, VALID_PASSWORD, userId, isbn);
-
-        String expectedResponse = """
-                {"books":[{"isbn":"9781449331818"}]}""";
-
-        softAssert.assertEquals(response, expectedResponse, "Book not created");
-
-        userId = "e9";
-
-        String response2 = todoClient.CreateBook(VALID_USERNAME, VALID_PASSWORD, userId, isbn);
-
-        String expectedResponse2 = """
-                {"code":"1207","message":"User Id not correct!"}""";
-
-        softAssert.assertEquals(response2, expectedResponse2, "Book not created");
-
-        // Delete book created in this test
-        userId = "e90df422-7f2b-4f51-be1b-c92541eb370f";
-        String response3 = todoClient.DeleteAllBooksForUser(VALID_USERNAME, VALID_PASSWORD, userId);
-
-        softAssert.assertEquals(response3, "", "Delete operation not finished.");
+        // Assert
+        softAssert.assertEquals(currentCreatBookResponse, expectedResponse, BOOK_NOT_CREATED_MISMATCH);
         softAssert.assertAll();
     }
 
-    @Test(description = "Try to add book in user collection which exist", suiteName = "api", enabled = true)
+    @Test(enabled = true, description = "Try to Add book with wrong user id", suiteName = "api")
+    void tryToAddBookWithInvalidUserId() throws IOException, InterruptedException {
+        // Arrange & Act
+        String currentCreatBookResponse = todoClient.createBook(VALID_USERNAME, VALID_PASSWORD, INVALID_USER_ID, VALID_ISBN);
+
+        String expectedResponse2 = """
+                {"code":"1207","message":"User Id not correct!"}""";
+        // Assert
+        softAssert.assertEquals(currentCreatBookResponse, expectedResponse2, BOOK_NOT_CREATED_MISMATCH);
+        softAssert.assertAll();
+    }
+
+    @Test(enabled = true, description = "Try to add book in user collection which exist", suiteName = "api")
     void tryAddBookToUserCollectionWhichExist() throws IOException, InterruptedException {
         // Arrange
-        String userId = "e90df422-7f2b-4f51-be1b-c92541eb370f";
-        String isbn = "9781449331818";
-
-        String response = todoClient.CreateBook(VALID_USERNAME, VALID_PASSWORD, userId, isbn);
+        String currentCreatBookResponse = todoClient.createBook(VALID_USERNAME, VALID_PASSWORD, VALID_USER_ID, VALID_ISBN);
 
         String expectedResponse = """
                 {"books":[{"isbn":"9781449331818"}]}""";
 
-        softAssert.assertEquals(response, expectedResponse, "Book not created");
+        softAssert.assertEquals(currentCreatBookResponse, expectedResponse, BOOK_NOT_CREATED_MISMATCH);
 
         // Act
-        response = todoClient.CreateBook(VALID_USERNAME, VALID_PASSWORD, userId, isbn);
+        String currentCreatBookResponse2 = todoClient.createBook(VALID_USERNAME, VALID_PASSWORD, VALID_USER_ID, VALID_ISBN);
 
         expectedResponse = """
                 {"code":"1210","message":"ISBN already present in the User's Collection!"}""";
 
-        softAssert.assertEquals(response, expectedResponse, "Book not created");
+        softAssert.assertEquals(currentCreatBookResponse2, expectedResponse, BOOK_NOT_CREATED_MISMATCH);
 
         // Clear created book
-        userId = "e90df422-7f2b-4f51-be1b-c92541eb370f";
-        String response3 = todoClient.DeleteAllBooksForUser(VALID_USERNAME, VALID_PASSWORD, userId);
+        String currentDeleteBooksResponse = todoClient.deleteAllBooksForUser(VALID_USERNAME, VALID_PASSWORD, VALID_USER_ID);
 
-        softAssert.assertEquals(response3, "", "Delete operation not finished.");
+        softAssert.assertEquals(currentDeleteBooksResponse, "", DELETE_RESPONSE_MISMATCH);
         softAssert.assertAll();
     }
 
     @Test(description = "Delete All Books For User", suiteName = "api", enabled = true)
     void deleteAllBooksForUser() throws IOException, InterruptedException {
-        // Arrange
-        String userId = "e90df422-7f2b-4f51-be1b-c92541eb370f";
-
-        // Act
-        String response = todoClient.DeleteAllBooksForUser(VALID_USERNAME, VALID_PASSWORD, userId);
+        // Arrange & Act
+        String currentDeleteBooksResponse = todoClient.deleteAllBooksForUser(VALID_USERNAME, VALID_PASSWORD, VALID_USER_ID);
 
         // Assert
-        softAssert.assertEquals(response, "", "Delete operation not finished.");
+        softAssert.assertEquals(currentDeleteBooksResponse, "", DELETE_RESPONSE_MISMATCH);
         softAssert.assertAll();
     }
 
-    @Test(description = "Try to Delete All Books with wrong user id", suiteName = "api", enabled = true)
+    @Test(enabled = true, description = "Try to Delete All Books with wrong user id", suiteName = "api")
     void tryToDeleteAllBooksForUserWithWrongUserId() throws IOException, InterruptedException {
-        String userId = "e90";
-
-        String response = todoClient.DeleteAllBooksForUser(VALID_USERNAME, VALID_PASSWORD, userId);
+        // Arrange & Act
+        String currentDeleteBooksResponse = todoClient.deleteAllBooksForUser(VALID_USERNAME, VALID_PASSWORD, INVALID_USER_ID);
 
         String expectedResponse = """
                 {"code":"1207","message":"User Id not correct!"}""";
-        softAssert.assertEquals(response, expectedResponse, "Delete operation not finished.");
+
+        // Assert
+        softAssert.assertEquals(currentDeleteBooksResponse, expectedResponse, DELETE_RESPONSE_MISMATCH);
         softAssert.assertAll();
     }
 
-    @Test(description = "Get Book By ISBN", suiteName = "api", enabled = true)
+    @Test(enabled = true, description = "Get Book By ISBN", suiteName = "api")
     void getBookByIsbn() throws IOException, InterruptedException {
-        String isbn = "9781449325862";
-        Book books = todoClient.GetBookWithCorrectIsbn(isbn);
+        // Arrange & Act
+        Book books = todoClient.getBookWithValidIsbn(EXPECTED_ISBN);
 
         String actualBookIsbn = books.isbn();
         String actualBookTitle = books.title();
@@ -216,143 +197,122 @@ public class BooksStoreTests extends BaseTestApi {
         softAssert.assertEquals(actualBookPages, EXPECTED_PAGES, PAGES_ERROR);
         softAssert.assertEquals(actualBookDescription, EXPECTED_DESCRIPTION, DESCRIPTION_ERROR);
         softAssert.assertEquals(actualBookWebsite, EXPECTED_WEBSITE, WEBSITE_ERROR);
-
         softAssert.assertAll();
     }
 
-    @Test(description = "Try to get book with wrong isbn", suiteName = "api", enabled = true)
-    void tryToGetBookWithWrongIsbn() throws IOException, InterruptedException {
-        String isbn = "9";
-        String response = todoClient.GetBookWithWrongIsbn(isbn);
+    @Test(enabled = true, description = "Try to get book with invalid isbn", suiteName = "api")
+    void tryToGetBookWithInvalidIsbn() throws IOException, InterruptedException {
+        // Arrange & Act
+        String response = todoClient.getBookWithInvalidIsbn(INVALID_ISBN);
         String expectedResponse = """
                 {"code":"1205","message":"ISBN supplied is not available in Books Collection!"}""";
 
+        // Assert
         softAssert.assertEquals(response, expectedResponse, "Get operation not finished.");
-
         softAssert.assertAll();
     }
 
-    @Test(description = "Delete All Books For User", suiteName = "api", enabled = true)
+    @Test(enabled = true, description = "Delete all books for user by Isbn", suiteName = "api")
     void deleteBookForUserByIsbn() throws IOException, InterruptedException {
-        String userId = "e90df422-7f2b-4f51-be1b-c92541eb370f";
-        String isbn = "9781449331818";
-
-        String response = todoClient.CreateBook(VALID_USERNAME, VALID_PASSWORD, userId, isbn);
+        // Arrange & Act
+        String currentCreatBookResponse = todoClient.createBook(VALID_USERNAME, VALID_PASSWORD, VALID_USER_ID, VALID_ISBN);
         String expectedResponse = """
                 {"books":[{"isbn":"9781449331818"}]}""";
 
-        softAssert.assertEquals(response, expectedResponse, "Book not created");
+        // Assert
+        softAssert.assertEquals(currentCreatBookResponse, expectedResponse, BOOK_NOT_CREATED_MISMATCH);
 
-        String statusCode2 = todoClient.DeleteBookForUserByIsbn(VALID_USERNAME, VALID_PASSWORD, userId, isbn);
+        String currentDeleteBooksResponse = todoClient.deleteBookByUserIsbn(VALID_USERNAME, VALID_PASSWORD, VALID_USER_ID, VALID_ISBN);
 
-        softAssert.assertEquals(statusCode2, "", "Book not deleted");
+        softAssert.assertEquals(currentDeleteBooksResponse, "", DELETE_RESPONSE_MISMATCH);
         softAssert.assertAll();
     }
 
-    @Test(description = "Delete All Books For User", suiteName = "api", enabled = true)
-    void tryToDeleteBookForUserByIsbnWithWrongUserId() throws IOException, InterruptedException {
-        String userId = "e90df422-7f2b-4f51-be1b-c92541eb370f";
-        String isbn = "9781449331818";
-
-        String response = todoClient.CreateBook(VALID_USERNAME, VALID_PASSWORD, userId, isbn);
+    @Test(enabled = true, description = "Try to delete all books for invalid user", suiteName = "api")
+    void tryToDeleteBookForUserByIsbnWithInvalidUserId() throws IOException, InterruptedException {
+        // Arrange & Act
+        String currentCreatBookResponse = todoClient.createBook(VALID_USERNAME, VALID_PASSWORD, VALID_USER_ID, VALID_ISBN);
         String expectedResponse = """
                 {"books":[{"isbn":"9781449331818"}]}""";
 
-        softAssert.assertEquals(response, expectedResponse, "Book not created");
+        softAssert.assertEquals(currentCreatBookResponse, expectedResponse, "Book not created");
 
-        userId = "2";
-
-        String statusCode2 = todoClient.DeleteBookForUserByIsbn(VALID_USERNAME, VALID_PASSWORD, userId, isbn);
+        String currentDeleteBooksResponse = todoClient.deleteBookByUserIsbn(VALID_USERNAME, VALID_PASSWORD, INVALID_USER_ID, VALID_ISBN);
 
         String expectedResponse2 = """
                 {"code":"1207","message":"User Id not correct!"}""";
-
-        softAssert.assertEquals(statusCode2, expectedResponse2, "Book not deleted");
+        // Assert
+        softAssert.assertEquals(currentDeleteBooksResponse, expectedResponse2, "Book not deleted");
 
         // Clear created book
-        userId = "e90df422-7f2b-4f51-be1b-c92541eb370f";
-        String response3 = todoClient.DeleteAllBooksForUser(VALID_USERNAME, VALID_PASSWORD, userId);
-
-        softAssert.assertEquals(response3, "", "Delete operation not finished.");
+        String response3 = todoClient.deleteAllBooksForUser(VALID_USERNAME, VALID_PASSWORD, VALID_USER_ID);
+        softAssert.assertEquals(response3, "", DELETE_RESPONSE_MISMATCH);
         softAssert.assertAll();
     }
 
-    @Test(description = "Try to delete book for user by wrong Isbn", suiteName = "api", enabled = true)
-    void tryToDeleteBookForUserByIsbnWithWrongIsbn() throws IOException, InterruptedException {
-        String userId = "e90df422-7f2b-4f51-be1b-c92541eb370f";
-        String isbn = "9781449331818";
+    @Test(enabled = true, description = "Try to delete book for user by invalid Isbn", suiteName = "api")
+    void tryToDeleteBookForUserByIsbnWithInvalidIsbn() throws IOException, InterruptedException {
+        // Arrange & Act
+        String currentCreatBookResponse = todoClient.createBook(VALID_USERNAME, VALID_PASSWORD, VALID_USER_ID, VALID_ISBN);
 
-        String response = todoClient.CreateBook(VALID_USERNAME, VALID_PASSWORD, userId, isbn);
         String expectedResponse = """
                 {"books":[{"isbn":"9781449331818"}]}""";
 
-        softAssert.assertEquals(response, expectedResponse, "Book not created");
+        softAssert.assertEquals(currentCreatBookResponse, expectedResponse, BOOK_NOT_CREATED_MISMATCH);
 
-        isbn = "97";
         String expectedResponse2 = """
                 {"code":"1206","message":"ISBN supplied is not available in User's Collection!"}""";
 
-        String statusCode2 = todoClient.DeleteBookForUserByIsbn(VALID_USERNAME, VALID_PASSWORD, userId, isbn);
+        String statusCode2 = todoClient.deleteBookByUserIsbn(VALID_USERNAME, VALID_PASSWORD, VALID_USER_ID, INVALID_ISBN);
 
-        softAssert.assertEquals(statusCode2, expectedResponse2, "Book not deleted");
+        // Assert
+        softAssert.assertEquals(statusCode2, expectedResponse2, DELETE_RESPONSE_MISMATCH);
 
         // Delete book from this test
-        isbn = "9781449331818";
-        String statusCode3 = todoClient.DeleteBookForUserByIsbn(VALID_USERNAME, VALID_PASSWORD, userId, isbn);
-
-        softAssert.assertEquals(statusCode3, "", "Book not deleted");
+        String statusCode3 = todoClient.deleteBookByUserIsbn(VALID_USERNAME, VALID_PASSWORD, VALID_USER_ID, VALID_ISBN);
+        softAssert.assertEquals(statusCode3, "", DELETE_RESPONSE_MISMATCH);
         softAssert.assertAll();
-
     }
 
-    @Test(description = "try to put book in user collection", suiteName = "api", enabled = true)
+    @Test(enabled = true, description = "Try to put book in user collection", suiteName = "api")
     void tryToPutBookToUserCollection() throws IOException, InterruptedException {
-        // Arrange
-        String userId = "e90df422-7f2b-4f51-be1b-c92541eb370f";
-        String isbn = "9781449331818";
-
-        String statusCode = todoClient.CreateBook(VALID_USERNAME, VALID_PASSWORD, userId, isbn);
+        // Arrange & Act
+        String currentCreatBookResponse = todoClient.createBook(VALID_USERNAME, VALID_PASSWORD, VALID_USER_ID, VALID_ISBN);
 
         String expectedResponse = """
                 {"books":[{"isbn":"9781449331818"}]}""";
 
-        softAssert.assertEquals(statusCode, expectedResponse, "Book not created");
+        softAssert.assertEquals(currentCreatBookResponse, expectedResponse, BOOK_NOT_CREATED_MISMATCH);
 
         // Clear created book
-        String response2 = todoClient.putBookToUserCollection(VALID_USERNAME, VALID_PASSWORD, userId, isbn);
+        String response2 = todoClient.putBookToUserCollection(VALID_USERNAME, VALID_PASSWORD, VALID_USER_ID, INVALID_ISBN);
 
         String expectedResponse2 = """
-                {"code":"1206","message":"ISBN supplied is not available in User's Collection!"}""";
+                {"code":"1205","message":"ISBN supplied is not available in Books Collection!"}""";
 
-        softAssert.assertEquals(response2, expectedResponse2, "Delete operation not finished.");
+        softAssert.assertEquals(response2, expectedResponse2, DELETE_RESPONSE_MISMATCH);
 
         // Delete book from this test
-        userId = "e90df422-7f2b-4f51-be1b-c92541eb370f";
-        String response3 = todoClient.DeleteAllBooksForUser(VALID_USERNAME, VALID_PASSWORD, userId);
+        String response3 = todoClient.deleteAllBooksForUser(VALID_USERNAME, VALID_PASSWORD, VALID_USER_ID);
 
-        softAssert.assertEquals(response3, "", "Delete operation not finished.");
+        // Assert
+        softAssert.assertEquals(response3, "", DELETE_RESPONSE_MISMATCH);
         softAssert.assertAll();
     }
 
-    @Test(description = "Put book in user collection", suiteName = "api", enabled = false)
+    @Test(enabled = true, description = "Put book in user collection", suiteName = "api")
     void putBookToUserCollection() throws IOException, InterruptedException {
-        // Arrange
-        String userId = "e90df422-7f2b-4f51-be1b-c92541eb370f";
-        String isbn = "9781449331818";
-
-
-        String response2 = todoClient.putBookToUserCollection(VALID_USERNAME, VALID_PASSWORD, userId, isbn);
-
+        // Arrange & Act
+        String response2 = todoClient.putBookToUserCollection(VALID_USERNAME, VALID_PASSWORD, VALID_USER_ID, VALID_ISBN);
         String expectedResponse2 = """
                 {"code":"1206","message":"ISBN supplied is not available in User's Collection!"}""";
 
-        softAssert.assertEquals(response2, expectedResponse2, "Delete operation not finished.");
+        softAssert.assertEquals(response2, expectedResponse2, DELETE_RESPONSE_MISMATCH);
 
-        // Clear created book
-        userId = "e90df422-7f2b-4f51-be1b-c92541eb370f";
-        String response3 = todoClient.DeleteAllBooksForUser(VALID_USERNAME, VALID_PASSWORD, userId);
+        String response3 = todoClient.deleteAllBooksForUser(VALID_USERNAME, VALID_PASSWORD, VALID_USER_ID);
 
-        softAssert.assertEquals(response3, "", "Delete operation not finished.");
+        // Assert
+        softAssert.assertEquals(response3, "", DELETE_RESPONSE_MISMATCH);
         softAssert.assertAll();
     }
 }

@@ -58,8 +58,8 @@ public class ResizablePage extends BasePage {
     }
 
     public String getNewSizeBox2() {
-        Dimension initialSize = resizableWithoutRestriction.getSize();
-        return initialSize.toString();
+        javaScriptUtility.scrollToElementJS(resizableWithoutRestriction);
+        return resizableWithoutRestriction.getSize().toString();
     }
 
     public void changeSizeWithoutLimitations(int xOffset, int yOffset) {
@@ -87,7 +87,7 @@ public class ResizablePage extends BasePage {
         }
     }
 
-    public String getResizableBoxWithRestrictionBackgroudColor() {
+    public String getResizableBoxWithRestrictionBackgroundColor() {
         return resizableBoxWithRestriction.getCssValue("background-color");
     }
 }

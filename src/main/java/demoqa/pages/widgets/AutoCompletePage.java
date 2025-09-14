@@ -43,6 +43,22 @@ public class AutoCompletePage extends BasePage {
         return text.getText();
     }
 
+    public String getAutoCompleteSingleText() {
+        return autoCompleteSingleText.getText();
+    }
+
+    public void clickCloseAllColorsButton() {
+        closeButton.click();
+    }
+
+    public void clickSingleAutoComplete() {
+        singleAutoComplete.click();
+    }
+
+    public void closeFirstSelectedColor() {
+        closeFirstButton.click();
+    }
+
     public String getAllSelectedMultiColorNames() {
         try {
             // Strategy 1: Try the primary element with explicit wait
@@ -64,10 +80,6 @@ public class AutoCompletePage extends BasePage {
                 }
             }
         }
-    }
-
-    public String getAutoCompleteSingleText() {
-        return autoCompleteSingleText.getText();
     }
 
     public String getAllSingleColorNames() {
@@ -98,13 +110,6 @@ public class AutoCompletePage extends BasePage {
         }
     }
 
-    public void clickCloseAllColorsButton() {
-        closeButton.click();
-    }
-
-    public void clickSingleAutoComplete() {
-        singleAutoComplete.click();
-    }
 
     public void multiAutoCompleteSelectColor(String color) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(6));
@@ -153,16 +158,8 @@ public class AutoCompletePage extends BasePage {
     }
 
     public void waitForPageToBeLoaded() {
-        try {
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-            wait.until(ExpectedConditions.visibilityOf(text));
-            wait.until(ExpectedConditions.visibilityOf(multiAutoComplete));
-        } catch (Exception e) {
-            // Continue if some elements are not immediately visible
-        }
-    }
-
-    public void closeFirstSelectedColor() {
-        closeFirstButton.click();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.visibilityOf(text));
+        wait.until(ExpectedConditions.visibilityOf(multiAutoComplete));
     }
 }

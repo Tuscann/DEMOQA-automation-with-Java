@@ -62,16 +62,6 @@ public class SortablePage extends BasePage {
         this.javaScriptUtility = new JavaScriptUtility(driver);
     }
 
-    public void clickGridTab() {
-        javaScriptUtility.scrollToElementJS(gridTab);
-        gridTab.click();
-    }
-
-    public String getPageTitle() {
-        javaScriptUtility.scrollToElementJS(pageTitle);
-        return pageTitle.getText();
-    }
-
     public String getListTab() {
         return listTab.getText();
     }
@@ -98,18 +88,6 @@ public class SortablePage extends BasePage {
 
     public String getListSix() {
         return listSix.getText();
-    }
-
-    public String getGridTab() {
-        javaScriptUtility.scrollToElementJS(gridTab);
-        return gridTab.getText();
-    }
-
-    public String getGridOne() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(7));
-        wait.until(ExpectedConditions.visibilityOf(this.gridOne));
-        javaScriptUtility.scrollToElementJS(gridOne);
-        return gridOne.getText();
     }
 
     public String getGridTwo() {
@@ -145,7 +123,30 @@ public class SortablePage extends BasePage {
     }
 
     public String getListOrder() {
+        javaScriptUtility.scrollToElementJS(listOrder);
         return listOrder.getText();
+    }
+
+    public void clickGridTab() {
+        javaScriptUtility.scrollToElementJS(gridTab);
+        gridTab.click();
+    }
+
+    public String getPageTitle() {
+        javaScriptUtility.scrollToElementJS(pageTitle);
+        return pageTitle.getText();
+    }
+
+    public String getGridTab() {
+        javaScriptUtility.scrollToElementJS(gridTab);
+        return gridTab.getText();
+    }
+
+    public String getGridOne() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(7));
+        wait.until(ExpectedConditions.visibilityOf(this.gridOne));
+        javaScriptUtility.scrollToElementJS(gridOne);
+        return gridOne.getText();
     }
 
     public String getGridOrder() {
@@ -155,16 +156,22 @@ public class SortablePage extends BasePage {
         return gridOrder.getText();
     }
 
-    public void moveOverGrid(String gridOne, String gridSix) {
-        WebElement draggable = getGridElementByName(gridOne);
-        WebElement droppable = getGridElementByName(gridSix);
+    public void moveOverGrid(String dragFromPlace, String dropOnPlace) {
+        WebElement draggable = getGridElementByName(dragFromPlace);
+        WebElement droppable = getGridElementByName(dropOnPlace);
 
         javaScriptUtility.scrollToElementJS(draggable);
 
         if (draggable != null && droppable != null) {
             Actions actions = new Actions(driver);
-            actions.dragAndDrop(draggable, droppable).perform();
+            actions.clickAndHold(draggable)
+                    .moveToElement(droppable)
+                    .pause(Duration.ofSeconds(1)) // small pause helps stability
+                    .release()
+                    .build()
+                    .perform();
         }
+        delay(100);
     }
 
     public void moveOverList(String listOne, String listSix) {
@@ -177,6 +184,7 @@ public class SortablePage extends BasePage {
             Actions actions = new Actions(driver);
             actions.dragAndDrop(draggable, droppable).perform();
         }
+        delay(100);
     }
 
     private WebElement getGridElementByName(String name) {

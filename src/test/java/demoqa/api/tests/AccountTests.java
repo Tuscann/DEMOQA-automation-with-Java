@@ -44,11 +44,9 @@ public class AccountTests extends BaseTestApi {
     private static final String USER_EXISTS_MESSAGE_ERROR = "Error message should indicate user exists";
     private static final String UNAUTHORIZED_ERROR_CODE_ERROR = "Error code should be 1200 for unauthorized user";
     private static final String UNAUTHORIZED_MESSAGE_ERROR = "Error message should indicate user not authorized";
-
+    User testUser = new User();
     // Client instance
     private TodoClient todoClient;
-
-    User testUser = new User();
 
     @BeforeMethod
     public void setUpClient() {
@@ -58,7 +56,7 @@ public class AccountTests extends BaseTestApi {
     @Test(description = "Authorized user with POST", suiteName = "api", enabled = true)
     void authorizeUserWithValidUserAndValidPassword() throws IOException, InterruptedException {
         // Arrange & Act
-        String isUserFound = todoClient.AuthorizeUser(VALID_USERNAME, VALID_PASSWORD);
+        String isUserFound = todoClient.authorizeUser(VALID_USERNAME, VALID_PASSWORD);
 
         // Assert
         softAssert.assertEquals(isUserFound, EXPECTED_AUTHORIZED_RESPONSE, AUTHORIZATION_ERROR);
@@ -68,7 +66,7 @@ public class AccountTests extends BaseTestApi {
     @Test(description = "Try to authorized non existing user with POST", suiteName = "api", enabled = true)
     void tryToAuthorizeInvalidUserAndValidPassword() throws IOException, InterruptedException {
         // Arrange & Act
-        String response = todoClient.AuthorizeUser(INVALID_USERNAME, VALID_PASSWORD);
+        String response = todoClient.authorizeUser(INVALID_USERNAME, VALID_PASSWORD);
 
         // Assert
         softAssert.assertEquals(response, EXPECTED_USER_NOT_FOUND_RESPONSE, API_RESPONSE_ERROR);
@@ -78,7 +76,7 @@ public class AccountTests extends BaseTestApi {
     @Test(description = "Generate Token with POST", suiteName = "api", enabled = true)
     void generateTokenWithValidUsernameAndValidPassword() throws IOException, InterruptedException {
         // Arrange & Act
-        Token token = todoClient.GenerateToken(VALID_USERNAME, VALID_PASSWORD);
+        Token token = todoClient.generateToken(VALID_USERNAME, VALID_PASSWORD);
 
         // Assert
         softAssert.assertNotNull(token.getToken(), TOKEN_FIELD_NULL_ERROR);
@@ -93,7 +91,7 @@ public class AccountTests extends BaseTestApi {
     void createNewUser() throws IOException, InterruptedException {
         // Arrange & Act
         String username = VALID_USERNAME + 100 + (int) (Math.random() * 899);
-        Object response = todoClient.GenerateNewUser(username, VALID_PASSWORD);
+        Object response = todoClient.createNewUser(username, VALID_PASSWORD);
 
         User user = (User) response;
         softAssert.assertNotNull(user.getUserId(), USER_ID_NULL_ERROR);
@@ -106,7 +104,7 @@ public class AccountTests extends BaseTestApi {
     @Test(description = "Try to generate new user with existing user with POST", suiteName = "api", enabled = true)
     void generateNewUserWithExistingUser() throws IOException, InterruptedException {
         // Arrange & Act
-        Object response = todoClient.GenerateNewUser(VALID_USERNAME, VALID_PASSWORD);
+        Object response = todoClient.createNewUser(VALID_USERNAME, VALID_PASSWORD);
 
         // Assert
         softAssert.assertNotNull(response, API_RESPONSE_NULL_ERROR);
@@ -120,9 +118,9 @@ public class AccountTests extends BaseTestApi {
     }
 
     @Test(description = "Try to delete user with not authorized user with DELETE", suiteName = "api", enabled = true)
-    void tryToDeleteUserWithoutAutorization() throws IOException, InterruptedException {
+    void tryToDeleteUserWithoutAuthorization() throws IOException, InterruptedException {
         // Arrange & Act
-        Object response = todoClient.DeleteUser(USER_ID);
+        Object response = todoClient.deleteUser(USER_ID);
 
         // Assert
         softAssert.assertNotNull(response, API_RESPONSE_NULL_ERROR);
@@ -138,7 +136,7 @@ public class AccountTests extends BaseTestApi {
     @Test(description = "Try to get user information with not authorized user with GET", suiteName = "api", enabled = true)
     void getUserInformationWithNonAuthorizedUser() throws IOException, InterruptedException {
         // Arrange & Act
-        Object response = todoClient.GetUserByUUID(USER_ID);
+        Object response = todoClient.getUserByUserId(USER_ID);
 
         // Assert
         softAssert.assertNotNull(response, API_RESPONSE_NULL_ERROR);
@@ -154,9 +152,9 @@ public class AccountTests extends BaseTestApi {
     @Test(description = "Try to2", suiteName = "api", enabled = true)
     void getUserInformation() throws IOException, InterruptedException {
         // Arrange
-        String isUserFound = todoClient.AuthorizeUser(VALID_USERNAME, VALID_PASSWORD);
+        String isUserFound = todoClient.authorizeUser(VALID_USERNAME, VALID_PASSWORD);
         softAssert.assertEquals(isUserFound, EXPECTED_AUTHORIZED_RESPONSE, AUTHORIZATION_ERROR);
-        Object response = todoClient.GetUserByUUID(USER_ID_2);
+        Object response = todoClient.getUserByUserId(USER_ID_2);
 
         // Assert
         softAssert.assertNotNull(response, API_RESPONSE_NULL_ERROR);

@@ -43,8 +43,16 @@ public class UploadAndDownloadPage extends BasePage {
         return selectAFileLabel.getText();
     }
 
+    public String getDownloadButtonBackgroundColor() {
+        return downloadButton.getCssValue("background-color");
+    }
+
     public void clickDownloadButton() {
         downloadButton.click();
+    }
+
+    public void uploadFile(String pathOfFile) {
+        chooseFileButton.sendKeys(pathOfFile);
     }
 
     public String getFilePathFromResources(String fileName) {
@@ -56,18 +64,10 @@ public class UploadAndDownloadPage extends BasePage {
         }
     }
 
-    public void uploadFile(String pathOfFile) {
-        chooseFileButton.sendKeys(pathOfFile);
-    }
-
     public boolean checkIfFileExists(String fileName) {
         String downloadDir = Paths.get(System.getProperty("user.home"), "Downloads").toString();
         File downloadedFile = new File(downloadDir + File.separator + fileName);
 
         return downloadedFile.exists();
-    }
-
-    public String getDownloadButtonBackgroundColor() {
-        return downloadButton.getCssValue("background-color");
     }
 }

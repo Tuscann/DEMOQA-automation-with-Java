@@ -259,7 +259,7 @@ public class SortablePageTests extends BaseTest {
     }
 
     @Test(dataProvider = "resizeData2", description = "Check order in Grid", enabled = true)
-    public void dragAndDropFromGridTab(String dragFromPlace, String dropOnPlace, String expectedGridOrder) throws InterruptedException {
+    public void dragAndDropFromGridTab(String dragFromPlace, String dropOnPlace, String expectedGridOrder) {
         // Arrange & Act
         sortablePage.clickGridTab();
         sortablePage.moveOverGrid(dragFromPlace, dropOnPlace);

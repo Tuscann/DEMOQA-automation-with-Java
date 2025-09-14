@@ -29,7 +29,7 @@ public class TodoClient {
         objectMapper = new ObjectMapper();
     }
 
-    public List<Book> FindAllBooks() throws IOException, InterruptedException {
+    public List<Book> getAllBooks() throws IOException, InterruptedException {
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(DEMO_QA_URL + "BookStore/v1/Books"))
                 .GET()
@@ -43,7 +43,7 @@ public class TodoClient {
         });
     }
 
-    public Book GetBookWithCorrectIsbn(String isbn) throws IOException, InterruptedException {
+    public Book getBookWithValidIsbn(String isbn) throws IOException, InterruptedException {
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(DEMO_QA_URL + "BookStore/v1/Book?ISBN=" + isbn))
                 .GET()
@@ -55,7 +55,7 @@ public class TodoClient {
         });
     }
 
-    public String AuthorizeUser(String username, String password) throws IOException, InterruptedException {
+    public String authorizeUser(String username, String password) throws IOException, InterruptedException {
 
         String requestBody = String.format("userName=%s&password=%s",
                 URLEncoder.encode(username, StandardCharsets.UTF_8),
@@ -71,7 +71,7 @@ public class TodoClient {
         return response.body();
     }
 
-    public Token GenerateToken(String username, String password) throws IOException, InterruptedException {
+    public Token generateToken(String username, String password) throws IOException, InterruptedException {
         String requestBody = String.format("userName=%s&password=%s",
                 URLEncoder.encode(username, StandardCharsets.UTF_8),
                 URLEncoder.encode(password, StandardCharsets.UTF_8));
@@ -85,7 +85,7 @@ public class TodoClient {
         return objectMapper.readValue(response.body(), Token.class);
     }
 
-    public Object GenerateNewUser(String username, String password) throws IOException, InterruptedException {
+    public Object createNewUser(String username, String password) throws IOException, InterruptedException {
         String requestBody = String.format("userName=%s&password=%s",
                 URLEncoder.encode(username, StandardCharsets.UTF_8),
                 URLEncoder.encode(password, StandardCharsets.UTF_8));
@@ -102,11 +102,9 @@ public class TodoClient {
         } catch (Exception e) {
             return objectMapper.readValue(response.body(), ErrorResponse.class);
         }
-
-
     }
 
-    public Object DeleteUser(String userId) throws IOException, InterruptedException {
+    public Object deleteUser(String userId) throws IOException, InterruptedException {
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(DEMO_QA_URL + "Account/v1/User/" + userId))
                 .header("Content-Type", "application/x-www-form-urlencoded")
@@ -121,7 +119,7 @@ public class TodoClient {
         }
     }
 
-    public String CreateBook(String username, String password, String userId, String isbn) throws IOException, InterruptedException {
+    public String createBook(String username, String password, String userId, String isbn) throws IOException, InterruptedException {
 
         String basicAuth = Base64.getEncoder().encodeToString((username + ":" + password).getBytes());
 
@@ -149,7 +147,7 @@ public class TodoClient {
         return response.body();
     }
 
-    public String DeleteAllBooksForUser(String username, String password, String userId) throws IOException, InterruptedException {
+    public String deleteAllBooksForUser(String username, String password, String userId) throws IOException, InterruptedException {
 
         String basicAuth = Base64.getEncoder().encodeToString((username + ":" + password).getBytes());
 
@@ -165,7 +163,7 @@ public class TodoClient {
         return response.body();
     }
 
-    public Object GetUserByUUID(String userId) throws IOException, InterruptedException {
+    public Object getUserByUserId(String userId) throws IOException, InterruptedException {
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(DEMO_QA_URL + "Account/v1/User/" + userId))
                 .header("Content-Type", "application/x-www-form-urlencoded")
@@ -180,7 +178,7 @@ public class TodoClient {
         }
     }
 
-    public String DeleteBookForUserByIsbn(String validUsername, String validPassword, String userId, String isbn) throws IOException, InterruptedException {
+    public String deleteBookByUserIsbn(String validUsername, String validPassword, String userId, String isbn) throws IOException, InterruptedException {
 
         String basicAuth = Base64.getEncoder().encodeToString((validUsername + ":" + validPassword).getBytes());
 
@@ -228,7 +226,7 @@ public class TodoClient {
         return response.body();
     }
 
-    public String GetBookWithWrongIsbn(String isbn) throws IOException, InterruptedException {
+    public String getBookWithInvalidIsbn(String isbn) throws IOException, InterruptedException {
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(DEMO_QA_URL + "BookStore/v1/Book?ISBN=" + isbn))
                 .GET()

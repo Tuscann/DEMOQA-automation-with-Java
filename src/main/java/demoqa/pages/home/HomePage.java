@@ -39,11 +39,6 @@ public class HomePage extends BasePage {
         this.javaScriptUtility = new JavaScriptUtility(driver);
     }
 
-    public void clickJoinNowButton() {
-        javaScriptUtility.scrollToElementJS(joinNow);
-        joinNow.click();
-    }
-
     public String getElementsText() {
         return elementsCard.getText();
     }
@@ -70,6 +65,15 @@ public class HomePage extends BasePage {
 
     public String getFooterText() {
         return footer.getText();
+    }
+
+    public String getBackgroundColor() {
+        return backgroundColor.getCssValue("background-color");
+    }
+
+    public void clickJoinNowButton() {
+        javaScriptUtility.scrollToElementJS(joinNow);
+        joinNow.click();
     }
 
     public void goToForms() {
@@ -100,9 +104,5 @@ public class HomePage extends BasePage {
     public void goToAlertsFramesWindowsCard() {
         javaScriptUtility.scrollToElementJS(alertsFrameWindowsCard);
         alertsFrameWindowsCard.click();
-    }
-
-    public String getBackgroundColor() {
-        return backgroundColor.getCssValue("background-color");
     }
 }

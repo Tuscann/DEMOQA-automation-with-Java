@@ -76,16 +76,8 @@ public class BrowserWindowsPage extends BasePage {
         // Step 4: Switch to the child window
         driver.switchTo().window(childWindow);
 
-        // Step 5: Wait for the <h1> element and get its text
-//        WebElement header = new WebDriverWait(driver, Duration.ofSeconds(5))
-//                .until(ExpectedConditions.visibilityOfElementLocated(By.tagName("h1")));
-
         String message = header1.getText();
-
-        // Optional: Close the child window
         driver.close();
-
-        // Step 6: Switch back to the parent window
         driver.switchTo().window(parentWindow);
 
         return message;

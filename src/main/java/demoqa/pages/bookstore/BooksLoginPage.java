@@ -95,6 +95,14 @@ public class BooksLoginPage extends BasePage {
         return newUserButton.getText();
     }
 
+    public String getLoginButtonBackgroundColor() {
+        return loginButton.getCssValue("background-color");
+    }
+
+    public String getNewUserButtonBackgroundColor() {
+        return newUserButton.getCssValue("background-color");
+    }
+
     public void clickLogoutButton() {
         logoutButton.click();
     }
@@ -123,11 +131,4 @@ public class BooksLoginPage extends BasePage {
         set(password, password2);
     }
 
-    public String getLoginButtonBackgroundColor() {
-        return loginButton.getCssValue("background-color");
-    }
-
-    public String getNewUserButtonBackgroundColor() {
-        return newUserButton.getCssValue("background-color");
-    }
 }

@@ -73,13 +73,6 @@ public class DraggablePage extends BasePage {
         return containerRestrictedTab.getText();
     }
 
-    public String getContainerRestrictedFirstText() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(4));
-        wait.until(ExpectedConditions.elementToBeClickable(containerRestrictedFirstText));
-
-        return containerRestrictedFirstText.getText();
-    }
-
     public String getContainerRestrictedSecondText() {
         return containerRestrictedSecondText.getText();
     }
@@ -94,6 +87,29 @@ public class DraggablePage extends BasePage {
 
     public String getCursorStyleThirdText() {
         return cursorStyleThirdText.getText();
+    }
+
+    public void clickSimpleTab() {
+        simpleTabTitle.click();
+    }
+
+    public void clickAxisRestrictedTab() {
+        axisRestrictedTab.click();
+    }
+
+    public void clickContainerRestrictedTab() {
+        containerRestrictedTab.click();
+    }
+
+    public void clickCursorStyleTab() {
+        cursorStyleTab.click();
+    }
+
+    public String getContainerRestrictedFirstText() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(4));
+        wait.until(ExpectedConditions.elementToBeClickable(containerRestrictedFirstText));
+
+        return containerRestrictedFirstText.getText();
     }
 
     public Point getInitLocationFirstText() {
@@ -120,22 +136,6 @@ public class DraggablePage extends BasePage {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(4));
         wait.until(ExpectedConditions.elementToBeClickable(axisRestrictedOnlyX));
         return axisRestrictedOnlyX.getText();
-    }
-
-    public void clickSimpleTab() {
-        simpleTabTitle.click();
-    }
-
-    public void clickAxisRestrictedTab() {
-        axisRestrictedTab.click();
-    }
-
-    public void clickContainerRestrictedTab() {
-        containerRestrictedTab.click();
-    }
-
-    public void clickCursorStyleTab() {
-        cursorStyleTab.click();
     }
 
     public Point getInitLocation() {
@@ -169,6 +169,7 @@ public class DraggablePage extends BasePage {
     }
 
     public Point getInitLocationContainedInBox() {
+        javaScriptUtility.scrollToElementJS(containerRestrictedFirstText);
         return containerRestrictedFirstText.getLocation();
     }
 

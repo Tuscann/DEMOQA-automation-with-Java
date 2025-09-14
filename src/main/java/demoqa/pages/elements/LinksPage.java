@@ -92,6 +92,10 @@ public class LinksPage extends BasePage {
         return notFoundRequestLink.getText();
     }
 
+    public int getDynamicLinkTextLength() {
+        return dynamicLink.getText().length();
+    }
+
     public void clickSimpleLinkHome() {
         javaScriptUtility.scrollToElementJS(simpleLink);
         simpleLink.click();
@@ -146,9 +150,5 @@ public class LinksPage extends BasePage {
         wait.until(ExpectedConditions.visibilityOf(responseLink));
         delay(100);
         return responseLink.getText();
-    }
-
-    public int getDynamicLinkTextLength() {
-        return dynamicLink.getText().length();
     }
 }

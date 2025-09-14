@@ -32,6 +32,14 @@ public class InteractionsPage extends BasePage {
         this.javaScriptUtility = new JavaScriptUtility(driver);
     }
 
+    public String getMainText() {
+        return text.getText();
+    }
+
+    public boolean verifySortableIsVisible() {
+        return sortable.isDisplayed();
+    }
+
     public void clickSortable() {
         javaScriptUtility.scrollToElementJS(sortable);
         sortable.click();
@@ -52,10 +60,6 @@ public class InteractionsPage extends BasePage {
         droppable.click();
     }
 
-    public boolean verifySortableIsVisible() {
-        return sortable.isDisplayed();
-    }
-
     public void clickInteractions() {
         javaScriptUtility.scrollToElementJS(interactionsHeader);
         interactionsHeader.click();
@@ -68,10 +72,6 @@ public class InteractionsPage extends BasePage {
         } catch (org.openqa.selenium.NoSuchElementException e) {
             return true;  // Element is not visible
         }
-    }
-
-    public String getMainText() {
-        return text.getText();
     }
 
     public void clickDraggable() {

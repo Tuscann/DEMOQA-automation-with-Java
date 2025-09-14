@@ -13,28 +13,20 @@ import java.time.Duration;
 public class TabsPage extends BasePage {
     @FindBy(id = "demo-tab-what")
     private WebElement whatTab;
-
     @FindBy(id = "demo-tab-origin")
     private WebElement originTab;
-
     @FindBy(id = "demo-tab-use")
     private WebElement useTab;
-
     @FindBy(id = "demo-tab-more")
     private WebElement moreTab;
-
     @FindBy(id = "demo-tabpane-what")
     private WebElement whatTabInternalText;
-
     @FindBy(id = "demo-tabpane-origin")
     private WebElement originTabInternalText;
-
     @FindBy(id = "demo-tabpane-use")
     private WebElement useTabInternalText;
-
     @FindBy(xpath = "//*[contains(text(),\"Details about\")]")
     private WebElement underTitle;
-
     @FindBy(xpath = "//h1[contains(.,'Tabs')]")
     private WebElement tabsText;
 
@@ -71,21 +63,6 @@ public class TabsPage extends BasePage {
         return whatTabInternalText.getText();
     }
 
-    public String getOriginTabInternalText() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(4));
-        wait.until(ExpectedConditions.visibilityOf(originTabInternalText));
-
-        return originTabInternalText.getText();
-    }
-
-    public String getUseTabInternalText() {
-
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(4));
-        wait.until(ExpectedConditions.visibilityOf(useTabInternalText));
-
-        return useTabInternalText.getText();
-    }
-
     public void clickWhatTab() {
         whatTab.click();
     }
@@ -96,5 +73,19 @@ public class TabsPage extends BasePage {
 
     public void clickUseTab() {
         useTab.click();
+    }
+
+    public String getOriginTabInternalText() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(4));
+        wait.until(ExpectedConditions.visibilityOf(originTabInternalText));
+
+        return originTabInternalText.getText();
+    }
+
+    public String getUseTabInternalText() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(4));
+        wait.until(ExpectedConditions.visibilityOf(useTabInternalText));
+
+        return useTabInternalText.getText();
     }
 }

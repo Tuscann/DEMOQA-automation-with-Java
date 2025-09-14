@@ -96,40 +96,12 @@ public class DroppablePage extends BasePage {
         return simpleTab.getText();
     }
 
-    public String getSimpleTabDragMeButtonText() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(4));
-        wait.until(ExpectedConditions.visibilityOf(simpleTabDragMe));
-        return simpleTabDragMe.getText();
-    }
-
     public String getSimpleTabDroppableText() {
         return droppableSimpleTabText.getText();
     }
 
     public String getDroppableAcceptTabText() {
         return acceptTab.getText();
-    }
-
-    public String getAcceptTabAcceptableButtonText() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-        wait.until(ExpectedConditions.visibilityOf(acceptableButton));
-        return acceptableButton.getText();
-    }
-
-    public String getAcceptTabNotAcceptableButtonText() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-        wait.until(ExpectedConditions.visibilityOf(notAcceptableButton));
-        return notAcceptableButton.getText();
-    }
-
-    public String getAcceptableDroppableText() {
-        return acceptableDroppableText.getText();
-    }
-
-    public String getDragMePreventPropagationText() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-        wait.until(ExpectedConditions.visibilityOf(preventPropagationDragMeButton));
-        return preventPropagationDragMeButton.getText();
     }
 
     public String getOuterDroppableNotGreedyText() {
@@ -144,6 +116,74 @@ public class DroppablePage extends BasePage {
         return innerDroppableGreedyText.getText();
     }
 
+    public String getRevertDraggableDroppableText() {
+        return droppableRevertDraggableTabText.getText();
+    }
+
+    public String getRevertDraggableTabText() {
+        return revertDraggableTab.getText();
+    }
+
+    public String getAcceptableDroppableText() {
+        return acceptableDroppableText.getText();
+    }
+
+    public String getOuterDroppableGreedyText() {
+        return greedyDropBox.getText();
+    }
+
+    public String getWillNotRevertBackGroundColor() {
+        return notWillRevert.getCssValue("background-color");
+    }
+
+    public String getWillRevertBackGroundColor() {
+        return willRevert.getCssValue("background-color");
+    }
+
+    public String getDroppableBackgroundColor() {
+        return droppableSimpleTab.getCssValue("background-color");
+    }
+
+    public String getAcceptableButtonBackgroundColor() {
+        return acceptableButton.getCssValue("background-color");
+    }
+
+    public String getDroppableAcceptTabBackgroundColor() {
+        return droppableAcceptTab.getCssValue("background-color");
+    }
+
+    public String getPreventPropagationNotGreedyText() {
+        return preventPropagationNotGreedyDropBox.getText();
+    }
+
+    public String getDroppableRevertDraggableText() {
+        return droppableRevertDraggableTabText.getText();
+    }
+
+    public String getSimpleTabDragMeButtonText() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(4));
+        wait.until(ExpectedConditions.visibilityOf(simpleTabDragMe));
+        return simpleTabDragMe.getText();
+    }
+
+    public String getAcceptTabAcceptableButtonText() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.visibilityOf(acceptableButton));
+        return acceptableButton.getText();
+    }
+
+    public String getAcceptTabNotAcceptableButtonText() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.visibilityOf(notAcceptableButton));
+        return notAcceptableButton.getText();
+    }
+
+    public String getDragMePreventPropagationText() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.visibilityOf(preventPropagationDragMeButton));
+        return preventPropagationDragMeButton.getText();
+    }
+
     public String getWillRevertText() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         wait.until(ExpectedConditions.visibilityOf(willRevert));
@@ -156,16 +196,7 @@ public class DroppablePage extends BasePage {
         return notWillRevert.getText();
     }
 
-    public String getRevertDraggableDroppableText() {
-        return droppableRevertDraggableTabText.getText();
-    }
-
-    public String getRevertDraggableTabText() {
-        return revertDraggableTab.getText();
-    }
-
     public String getDraggableBackgroundColor() {
-
         return droppableSimpleTab.getCssValue("background-color");
     }
 
@@ -199,10 +230,6 @@ public class DroppablePage extends BasePage {
     public void dragAndDropPropagationInnerDroppableGreedy() {
         Actions actions = new Actions(driver);
         actions.dragAndDrop(preventPropagationDragMeButton, preventPropagationGreedyDropBox).perform();
-    }
-
-    public String getOuterDroppableGreedyText() {
-        return greedyDropBox.getText();
     }
 
     public void dragAndDropPropagationOuterDroppableGreedy() {
@@ -241,29 +268,8 @@ public class DroppablePage extends BasePage {
         actions.dragAndDrop(preventPropagationDragMeButton, notGreedyInnerDropBox).perform();
     }
 
-    public String getWillNotRevertBackGroundColor() {
-        return notWillRevert.getCssValue("background-color");
-    }
-
-    public String getWillRevertBackGroundColor() {
-        return willRevert.getCssValue("background-color");
-    }
-
-
-    public String getDroppableBackgroundColor() {
-        return droppableSimpleTab.getCssValue("background-color");
-    }
-
-    public String getAcceptableButtonBackgroundColor() {
-        return acceptableButton.getCssValue("background-color");
-    }
-
     public String getNotAcceptableButtonBackgroundColor() {
         return notAcceptableButton.getCssValue("background-color");
-    }
-
-    public String getDroppableAcceptTabBackgroundColor() {
-        return droppableAcceptTab.getCssValue("background-color");
     }
 
     public String getDragMePreventPropagationBackGroundColor() {
@@ -278,20 +284,12 @@ public class DroppablePage extends BasePage {
         return notGreedyInnerDropBox.getCssValue("background-color");
     }
 
-    public String getPreventPropagationNotGreedyText() {
-        return preventPropagationNotGreedyDropBox.getText();
-    }
-
     public String getOuterDroppableGreedyBackGroundColor() {
         return droppableRevertDraggableTab.getCssValue("background-color");
     }
 
     public String getInnerDroppableGreedyBackGroundColor() {
         return preventPropagationGreedyDropBox.getCssValue("background-color");
-    }
-
-    public String getDroppableRevertDraggableText() {
-        return droppableRevertDraggableTabText.getText();
     }
 
     public String getDroppableRevertDraggableBackGroundColor() {

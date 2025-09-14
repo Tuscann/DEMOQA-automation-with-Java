@@ -114,6 +114,10 @@ public class TextBoxPage extends BasePage {
         return submitButton.getText();
     }
 
+    public String getSubmitButtonColor() {
+        return submitButton.getCssValue("background-color");
+    }
+
     public void setFullNameField(String fullName) {
         actionUtility.MoveToElementSelenium(fullNameField);
         set(fullNameField, fullName);
@@ -144,9 +148,5 @@ public class TextBoxPage extends BasePage {
         wait.until(ExpectedConditions.attributeToBe(emailField, "border", color));
 
         return emailField.getCssValue("border");
-    }
-
-    public String getSubmitButtonColor() {
-        return submitButton.getCssValue("background-color");
     }
 }

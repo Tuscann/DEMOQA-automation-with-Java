@@ -11,7 +11,7 @@ import utilities.JavaScriptUtility;
 
 import java.time.Duration;
 
-public class AccordianPage extends BasePage {
+public class AccordionPage extends BasePage {
 
     private final JavaScriptUtility javaScriptUtility;
     @FindBy(id = "section1Heading")
@@ -35,7 +35,7 @@ public class AccordianPage extends BasePage {
     @FindBy(xpath = "//div[@id='section3Heading']/following-sibling::div")
     private WebElement sectionThreeHeadingCollapse;
 
-    public AccordianPage(WebDriver driver) {
+    public AccordionPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
         this.javaScriptUtility = new JavaScriptUtility(driver);

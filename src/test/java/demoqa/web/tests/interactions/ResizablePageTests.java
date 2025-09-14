@@ -37,7 +37,7 @@ public class ResizablePageTests extends BaseTest {
         String actualPageTitle = resizablePage.getPageTitleText();
         String actualResizableBoxWithRestrictionText = resizablePage.getResizableBoxWithRestrictionText();
         String actualResizableText = resizablePage.getResizableText();
-        String actualBackgroundColor = resizablePage.getResizableBoxWithRestrictionBackgroudColor();
+        String actualBackgroundColor = resizablePage.getResizableBoxWithRestrictionBackgroundColor();
 
         // Assert
         softAssert.assertEquals(actualPageTitle, EXPECTED_PAGE_TITLE, WRONG_PAGE_TITLE);
@@ -59,7 +59,7 @@ public class ResizablePageTests extends BaseTest {
     }
 
     @Test(dataProvider = "resizeData", description = "Test resizing with different values", enabled = true)
-    public void testResizedBoxWithLimitation(int addX, int addY, int expectedWidth, int expectedHeight) {
+    public void resizedBoxWithLimitation(int addX, int addY, int expectedWidth, int expectedHeight) {
         // Arrange & Act
         resizablePage.changeSize(addX, addY);
         String actualNewSize = resizablePage.getNewSizeBox();
@@ -81,7 +81,7 @@ public class ResizablePageTests extends BaseTest {
     }
 
     @Test(dataProvider = "resizeData2", description = "Test resizing with different values", enabled = true)
-    public void testResizedBoxWithoutLimitation(int addAmountOnXAxis, int addAmountOnYAxis, int expectedWidth, int expectedHeight) {
+    public void resizedBoxWithoutLimitation(int addAmountOnXAxis, int addAmountOnYAxis, int expectedWidth, int expectedHeight) {
         // Arrange & Act
         resizablePage.changeSizeWithoutLimitations(addAmountOnXAxis, addAmountOnYAxis);
         String actualNewSize = resizablePage.getNewSizeBox2();

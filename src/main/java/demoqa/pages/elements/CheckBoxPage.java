@@ -65,10 +65,6 @@ public class CheckBoxPage extends BasePage {
         this.javaScriptUtility = new JavaScriptUtility(driver);
     }
 
-    public boolean isResultMessageEmpty() {
-        return resultMessageList.isEmpty();
-    }
-
     public String getResultMessage() {
         return resultMessage.getText();
     }
@@ -109,13 +105,41 @@ public class CheckBoxPage extends BasePage {
         workSpace.click();
     }
 
-    public void clickWorkSpaceReact() {
-        javaScriptUtility.scrollToElementJS(react);
-        react.click();
+    public void clickOfficePrivate() {
+        officePrivate.click();
+    }
+
+    public void clickOfficeClassified() {
+        classified.click();
+    }
+
+    public void clickOfficeGeneral() {
+        general.click();
     }
 
     public void clickWorkSpaceAngular() {
         angular.click();
+    }
+
+    public void clickHome() {
+        home.click();
+    }
+
+    public boolean isResultMessageEmpty() {
+        return resultMessageList.isEmpty();
+    }
+
+    public boolean verifyResultMessageIsMissing() {
+        return resultMessageList.isEmpty();
+    }
+
+    public String getResultMessageColor() {
+        return firstSelectedNotesCheckbox.getCssValue("color");
+    }
+
+    public void clickWorkSpaceReact() {
+        javaScriptUtility.scrollToElementJS(react);
+        react.click();
     }
 
     public void clickDownloads() {
@@ -133,10 +157,6 @@ public class CheckBoxPage extends BasePage {
         excelFileDoc.click();
     }
 
-    public void clickHome() {
-        home.click();
-    }
-
     public void clickNotes() {
         javaScriptUtility.scrollToElementJS(notes);
         notes.click();
@@ -145,25 +165,5 @@ public class CheckBoxPage extends BasePage {
     public void clickCommands() {
         javaScriptUtility.scrollToElementJS(commands);
         commands.click();
-    }
-
-    public void clickOfficePrivate() {
-        officePrivate.click();
-    }
-
-    public void clickOfficeClassified() {
-        classified.click();
-    }
-
-    public void clickOfficeGeneral() {
-        general.click();
-    }
-
-    public boolean verifyResultMessageIsMissing() {
-        return resultMessageList.isEmpty();
-    }
-
-    public String getResultMessageColor() {
-        return firstSelectedNotesCheckbox.getCssValue("color");
     }
 }

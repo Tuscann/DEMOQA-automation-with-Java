@@ -21,12 +21,12 @@ public class FormsPage extends BasePage {
         this.javaScriptUtility = new JavaScriptUtility(driver);
     }
 
+    public String getText() {
+        return text.getText();
+    }
+
     public void clickPracticeFormLink() {
         javaScriptUtility.scrollToElementJS(practiceFormMenuItem);
         practiceFormMenuItem.click();
-    }
-
-    public String getText() {
-        return text.getText();
     }
 }

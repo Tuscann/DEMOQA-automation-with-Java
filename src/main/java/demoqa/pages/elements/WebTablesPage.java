@@ -110,12 +110,6 @@ public class WebTablesPage extends BasePage {
         return searchBox.getDomProperty("placeholder");
     }
 
-    public String getRegistrationFirstNameLabel() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(6));
-        wait.until(ExpectedConditions.visibilityOf(registrationFirstNameLabel));
-        return registrationFirstNameLabel.getText();
-    }
-
     public String getRegistrationLastNameLabel() {
         return registrationLastNameLabel.getText();
     }
@@ -160,41 +154,6 @@ public class WebTablesPage extends BasePage {
         return noRowsFound.getText();
     }
 
-    public String getLastNameBorderColor() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(6));
-        wait.until(ExpectedConditions.visibilityOf(registrationLastNameField));
-        delay(200); // Small delay to ensure validation state is applied
-        return registrationLastNameField.getCssValue("border");
-    }
-
-    public String getEmailBorderColor() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(6));
-        wait.until(ExpectedConditions.visibilityOf(registrationEmailField));
-        delay(200); // Small delay to ensure validation state is applied
-        return registrationEmailField.getCssValue("border");
-    }
-
-    public String getAgeBorderColor() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(6));
-        wait.until(ExpectedConditions.visibilityOf(registrationAgeField));
-        delay(200); // Small delay to ensure validation state is applied
-        return registrationAgeField.getCssValue("border");
-    }
-
-    public String getSalaryBorderColor() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(6));
-        wait.until(ExpectedConditions.visibilityOf(registrationSalaryField));
-        delay(200); // Small delay to ensure validation state is applied
-        return registrationSalaryField.getCssValue("border");
-    }
-
-    public String getDepartmentBorderColor() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(6));
-        wait.until(ExpectedConditions.visibilityOf(registrationDepartmentField));
-        delay(200); // Small delay to ensure validation state is applied
-        return registrationDepartmentField.getCssValue("border");
-    }
-
     public String getPageInfo() {
         return pageInfo.getText();
     }
@@ -235,13 +194,117 @@ public class WebTablesPage extends BasePage {
         return thirdRow.getText();
     }
 
-
     public String getSubmitButtonText() {
         return submitButton.getText();
     }
 
+    public String getFirstRowFirstName() {
+        return firstRowFirstName.getText();
+    }
+
+    public String getFirstRowLastName() {
+        return firstRowLastName.getText();
+    }
+
+    public String getFirstRowAge() {
+        return firstRowAge.getText();
+    }
+
+    public String getFirstRowEmail() {
+        return firstRowEmail.getText();
+    }
+
+    public String getFirstRowSalary() {
+        return firstRowSalary.getText();
+    }
+
+    public String getFirstRowDepartment() {
+        return firstRowDepartment.getText();
+    }
+
+    public String getDepartmentPlaceholder() {
+        return registrationDepartmentField.getDomAttribute("placeholder");
+    }
+
+    public String getSubmitButtonBackGroundColor() {
+        return submitButton.getCssValue("background-color");
+    }
+
     public int getCountOfLines() {
         return lineCounts.size();
+    }
+
+    public void clickSubmitButton() {
+        submitButton.click();
+    }
+
+    public void clickAddButton() {
+        addNewRecordButton.click();
+    }
+
+    public void clickFirstNameHeader() {
+        firstNameHeader.click();
+    }
+
+    public void clickLastNameHeader() {
+        lastNameHeader.click();
+    }
+
+    public void clickAgeHeader() {
+        ageHeader.click();
+    }
+
+    public void clickEmailHeader() {
+        emailHeader.click();
+    }
+
+    public void clickSalaryHeader() {
+        salaryHeader.click();
+    }
+
+    public void clickDepartmentHeader() {
+        departmentHeader.click();
+    }
+
+    public String getRegistrationFirstNameLabel() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(6));
+        wait.until(ExpectedConditions.visibilityOf(registrationFirstNameLabel));
+        return registrationFirstNameLabel.getText();
+    }
+
+    public String getLastNameBorderColor() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(6));
+        wait.until(ExpectedConditions.visibilityOf(registrationLastNameField));
+        delay(200); // Small delay to ensure validation state is applied
+        return registrationLastNameField.getCssValue("border");
+    }
+
+    public String getEmailBorderColor() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(6));
+        wait.until(ExpectedConditions.visibilityOf(registrationEmailField));
+        delay(200); // Small delay to ensure validation state is applied
+        return registrationEmailField.getCssValue("border");
+    }
+
+    public String getAgeBorderColor() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(6));
+        wait.until(ExpectedConditions.visibilityOf(registrationAgeField));
+        delay(200); // Small delay to ensure validation state is applied
+        return registrationAgeField.getCssValue("border");
+    }
+
+    public String getSalaryBorderColor() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(6));
+        wait.until(ExpectedConditions.visibilityOf(registrationSalaryField));
+        delay(200); // Small delay to ensure validation state is applied
+        return registrationSalaryField.getCssValue("border");
+    }
+
+    public String getDepartmentBorderColor() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(6));
+        wait.until(ExpectedConditions.visibilityOf(registrationDepartmentField));
+        delay(200); // Small delay to ensure validation state is applied
+        return registrationDepartmentField.getCssValue("border");
     }
 
     public String getFirstNameBorderColor() {
@@ -296,34 +359,6 @@ public class WebTablesPage extends BasePage {
         registrationLastNameField.sendKeys(name);
     }
 
-    public void clickAddButton() {
-        addNewRecordButton.click();
-    }
-
-    public void clickFirstNameHeader() {
-        firstNameHeader.click();
-    }
-
-    public void clickLastNameHeader() {
-        lastNameHeader.click();
-    }
-
-    public void clickAgeHeader() {
-        ageHeader.click();
-    }
-
-    public void clickEmailHeader() {
-        emailHeader.click();
-    }
-
-    public void clickSalaryHeader() {
-        salaryHeader.click();
-    }
-
-    public void clickDepartmentHeader() {
-        departmentHeader.click();
-    }
-
     public void clickNextButton() {
         javaScriptUtility.scrollToElementJS(nextButton);
         nextButton.click();
@@ -332,14 +367,6 @@ public class WebTablesPage extends BasePage {
     public void searchWithWord(String word) {
         searchBox.clear();
         searchBox.sendKeys(word);
-    }
-
-    public String getDepartmentPlaceholder() {
-        return registrationDepartmentField.getDomAttribute("placeholder");
-    }
-
-    public void clickSubmitButton() {
-        submitButton.click();
     }
 
     public void clickEdit(String email) {
@@ -354,36 +381,10 @@ public class WebTablesPage extends BasePage {
         deleteButton.click();
     }
 
-    public String getFirstRowFirstName() {
-        return firstRowFirstName.getText();
-    }
-
-    public String getFirstRowLastName() {
-        return firstRowLastName.getText();
-    }
-
-    public String getFirstRowAge() {
-        return firstRowAge.getText();
-    }
-
-    public String getFirstRowEmail() {
-        return firstRowEmail.getText();
-    }
-
-    public String getFirstRowSalary() {
-        return firstRowSalary.getText();
-    }
-
-    public String getFirstRowDepartment() {
-        return firstRowDepartment.getText();
-    }
-
-
     public String getTableFirstName(String email) {
         WebElement firstNameCell = driver.findElement(By.xpath("//div[text()='" + email + "']//preceding::div[3]"));
         return firstNameCell.getText();
     }
-
 
     public String getTableLastName(String email) {
         WebElement lastNameCell = driver.findElement(By.xpath("//div[text()='" + email + "']//preceding::div[2]"));
@@ -469,9 +470,5 @@ public class WebTablesPage extends BasePage {
     public void clickRowPerPage(String row) {
         Select dropdown = new Select(rowsPerPage);
         dropdown.selectByVisibleText(row);
-    }
-
-    public String getSubmitButtonBackGroundColor() {
-        return submitButton.getCssValue("background-color");
     }
 }

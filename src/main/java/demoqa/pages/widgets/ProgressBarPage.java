@@ -48,6 +48,22 @@ public class ProgressBarPage extends BasePage {
         return resetButton.getText();
     }
 
+    public String getColorProgressBar() {
+        return progressBarCurrent.getCssValue("background-color");
+    }
+
+    public String getStartStopButtonBackgroundColor() {
+        return startStopButton.getCssValue("background-color");
+    }
+
+    public String getStartStopButtonBorderColor() {
+        return startStopButton.getCssValue("border-color");
+    }
+
+    public String getColorProgressTopBar() {
+        return progressbarTop.getCssValue("background-color");
+    }
+
     public int getValueProgressBar() {
         return Integer.parseInt(Objects.requireNonNull(progressBarCurrent.getDomAttribute("aria-valuenow")));
     }
@@ -58,10 +74,6 @@ public class ProgressBarPage extends BasePage {
         } catch (org.openqa.selenium.NoSuchElementException e) {
             return null;
         }
-    }
-
-    public String getColorProgressBar() {
-        return progressBarCurrent.getCssValue("background-color");
     }
 
     public String getValueOfProgressBarOnValue100() {
@@ -106,17 +118,5 @@ public class ProgressBarPage extends BasePage {
                 }
             }
         });
-    }
-
-    public String getStartStopButtonBackgroundColor() {
-        return startStopButton.getCssValue("background-color");
-    }
-
-    public String getStartStopButtonBorderColor() {
-        return startStopButton.getCssValue("border-color");
-    }
-
-    public String getColorProgressTopBar() {
-        return progressbarTop.getCssValue("background-color");
     }
 }

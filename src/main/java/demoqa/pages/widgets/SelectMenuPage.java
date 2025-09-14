@@ -195,7 +195,7 @@ public class SelectMenuPage extends BasePage {
     }
 
     public String selectNoOptionsText() {
-        delay(100); //TODO
+        delay(200); //TODO
         oldStyle.click();
         selectedOptions.click();
         return noOptionsSelected.getText();

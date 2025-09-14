@@ -81,17 +81,17 @@ public class ElementsPage extends BasePage {
         dynamicPropertiesMenuItem.click();
     }
 
-    public void clickLinks() {
-        javaScriptUtility.scrollToElementJS(links);
-        links.click();
-    }
-
     public boolean verifyTextBoxTabIsVisible() {
         return textBoxTab.isDisplayed();
     }
 
     public void clickElements() {
         elements.click();
+    }
+
+    public void clickLinks() {
+        javaScriptUtility.scrollToElementJS(links);
+        links.click();
     }
 
     public boolean verifyTextBoxIsNotVisible() {

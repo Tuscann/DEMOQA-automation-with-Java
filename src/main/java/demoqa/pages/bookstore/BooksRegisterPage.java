@@ -82,10 +82,6 @@ public class BooksRegisterPage extends BasePage {
         return registerButton.getText();
     }
 
-    public String getBackToLoginButtonBackgroundColor() {
-        return backToLoginButton.getCssValue("background-color");
-    }
-
     public String getFirstNameLabel() {
         return firstNameLabel.getText();
     }
@@ -100,6 +96,18 @@ public class BooksRegisterPage extends BasePage {
 
     public String getPasswordLabel() {
         return passwordLabel.getText();
+    }
+
+    public String getBackToLoginButtonText() {
+        return backToLoginButton.getText();
+    }
+
+    public String getRegisterButtonBackgroundColor() {
+        return registerButton.getCssValue("background-color");
+    }
+
+    public String getBackToLoginButtonBackgroundColor() {
+        return backToLoginButton.getCssValue("background-color");
     }
 
     public String getErrorMessage() {
@@ -135,13 +143,5 @@ public class BooksRegisterPage extends BasePage {
     public void clickRegisterButton() {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(12));
         registerButton.click();
-    }
-
-    public String getRegisterButtonBackgroundColor() {
-        return registerButton.getCssValue("background-color");
-    }
-
-    public String getBackToLoginButtonText() {
-        return backToLoginButton.getText();
     }
 }

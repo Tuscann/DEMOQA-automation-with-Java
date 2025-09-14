@@ -80,6 +80,22 @@ public class BooksPage extends BasePage {
         previousButton.click();
     }
 
+    public boolean verifyLoginIsVisible() {
+        return bookStoreApplication.isDisplayed();
+    }
+
+    public void clickBookStoreLeftTab() {
+        bookStoreLink.click();
+    }
+
+    public void clickLoginTab() {
+        loginTab.click();
+    }
+
+    public String noRowsFound() {
+        return noRowsFound.getText();
+    }
+
     public boolean checkPreviousButtonIsActive() {
         javaScriptUtility.scrollToElementJS(previousButton);
         return previousButton.isEnabled();
@@ -155,10 +171,6 @@ public class BooksPage extends BasePage {
         searchBox.sendKeys(searchedBook);
     }
 
-    public String noRowsFound() {
-        return noRowsFound.getText();
-    }
-
     public boolean verifyLoginIsNotVisible() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(6));
         wait.until(ExpectedConditions.invisibilityOf(profileLink));
@@ -166,17 +178,5 @@ public class BooksPage extends BasePage {
         String classAttribute = collapseDiv.getDomAttribute("class");
 
         return classAttribute.equals("element-list collapse show");
-    }
-
-    public boolean verifyLoginIsVisible() {
-        return bookStoreApplication.isDisplayed();
-    }
-
-    public void clickBookStoreLeftTab() {
-        bookStoreLink.click();
-    }
-
-    public void clickLoginTab() {
-        loginTab.click();
     }
 }

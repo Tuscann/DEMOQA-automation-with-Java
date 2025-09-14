@@ -51,17 +51,17 @@ public class DynamicPropertiesPage extends BasePage {
         return colorChangeButton.getCssValue("color");
     }
 
-    public String getVisibleAfter5SecondsButtonText() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(7));
-        wait.until(ExpectedConditions.visibilityOf(visibleAfter5SecondsButton));
-        return visibleAfter5SecondsButton.getText();
-    }
-
     public boolean checkButtonWillEnable5Seconds() {
         return willEnable5SecondsButton.isEnabled();
     }
 
     public boolean checkButtonVisibleAfter5Seconds() {
         return !visibleAfter5SecondsButtonList.isEmpty();
+    }
+
+    public String getVisibleAfter5SecondsButtonText() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(7));
+        wait.until(ExpectedConditions.visibilityOf(visibleAfter5SecondsButton));
+        return visibleAfter5SecondsButton.getText();
     }
 }

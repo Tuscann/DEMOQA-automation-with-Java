@@ -1,6 +1,6 @@
 package demoqa.web.tests.widgets;
 
-import demoqa.pages.widgets.AccordianPage;
+import demoqa.pages.widgets.AccordionPage;
 import demoqa.web.base.BaseTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -25,27 +25,27 @@ public class AccordionPageTests extends BaseTest {
     private static final String SECTION_ONE_TEXT_ERROR = "First section text mismatch";
     private static final String SECTION_TWO_TEXT_ERROR = "Second section text mismatch";
     private static final String SECTION_THREE_TEXT_ERROR = "Third section text mismatch";
-    private AccordianPage accordianPage;
+    private AccordionPage accordionPage;
 
     @BeforeMethod
     public void goToDatePickerPage() {
         navigateToUrl(ACCORDION_URL);
-        accordianPage = new AccordianPage(driver);
+        accordionPage = new AccordionPage(driver);
     }
 
     @Test(enabled = true, description = "Verify accordion initial state and content")
     public void verifyAllTextOnPageAndDefaultFirstHeading() throws InterruptedException {
         // Arrange
-        boolean isFirstHeadingOpenBefore = accordianPage.isFirstHeadingVisible();
-        boolean isSecondHeadingOpenBefore = accordianPage.isSecondHeadingVisible();
-        boolean isThirdHeadingOpenBefore = accordianPage.isThirdHeadingVisible();
+        boolean isFirstHeadingOpenBefore = accordionPage.isFirstHeadingVisible();
+        boolean isSecondHeadingOpenBefore = accordionPage.isSecondHeadingVisible();
+        boolean isThirdHeadingOpenBefore = accordionPage.isThirdHeadingVisible();
 
         // Act & Assert
-        softAssert.assertEquals(accordianPage.getHeading(), PAGE_HEADING, PAGE_HEADING_ERROR);
-        softAssert.assertEquals(accordianPage.getFirstSectionHeadingText(), SECTION_ONE_HEADING, SECTION_ONE_HEADING_ERROR);
-        softAssert.assertEquals(accordianPage.getFirstSectionText(), SECTION_ONE_TEXT, SECTION_ONE_TEXT_ERROR);
-        softAssert.assertEquals(accordianPage.getSecondSectionHeadingText(), SECTION_TWO_HEADING, SECTION_TWO_HEADING_ERROR);
-        softAssert.assertEquals(accordianPage.getThirdSectionHeadingText(), SECTION_THREE_HEADING, SECTION_THREE_HEADING_ERROR);
+        softAssert.assertEquals(accordionPage.getHeading(), PAGE_HEADING, PAGE_HEADING_ERROR);
+        softAssert.assertEquals(accordionPage.getFirstSectionHeadingText(), SECTION_ONE_HEADING, SECTION_ONE_HEADING_ERROR);
+        softAssert.assertEquals(accordionPage.getFirstSectionText(), SECTION_ONE_TEXT, SECTION_ONE_TEXT_ERROR);
+        softAssert.assertEquals(accordionPage.getSecondSectionHeadingText(), SECTION_TWO_HEADING, SECTION_TWO_HEADING_ERROR);
+        softAssert.assertEquals(accordionPage.getThirdSectionHeadingText(), SECTION_THREE_HEADING, SECTION_THREE_HEADING_ERROR);
         softAssert.assertTrue(isFirstHeadingOpenBefore, "First heading before");
         softAssert.assertFalse(isSecondHeadingOpenBefore, "Second heading before");
         softAssert.assertFalse(isThirdHeadingOpenBefore, "Third heading before");
@@ -55,15 +55,15 @@ public class AccordionPageTests extends BaseTest {
     @Test(enabled = true, description = "Select second heading")
     public void verifyTextAfterSelectSecondHeading() throws InterruptedException {
         // Arrange & Act
-        boolean isFirstHeadingOpenBefore = accordianPage.isFirstHeadingVisible();
-        boolean isSecondHeadingOpenBefore = accordianPage.isSecondHeadingVisible();
-        boolean isThirdHeadingOpenBefore = accordianPage.isThirdHeadingVisible();
+        boolean isFirstHeadingOpenBefore = accordionPage.isFirstHeadingVisible();
+        boolean isSecondHeadingOpenBefore = accordionPage.isSecondHeadingVisible();
+        boolean isThirdHeadingOpenBefore = accordionPage.isThirdHeadingVisible();
 
-        accordianPage.clickSecondHeading();
+        accordionPage.clickSecondHeading();
 
-        boolean isFirstHeadingOpenAfter = accordianPage.isFirstHeadingVisible();
-        boolean isSecondHeadingOpenAfter = accordianPage.isSecondHeadingVisible();
-        boolean isThirdHeadingOpenAfter = accordianPage.isThirdHeadingVisible();
+        boolean isFirstHeadingOpenAfter = accordionPage.isFirstHeadingVisible();
+        boolean isSecondHeadingOpenAfter = accordionPage.isSecondHeadingVisible();
+        boolean isThirdHeadingOpenAfter = accordionPage.isThirdHeadingVisible();
 
         // Assert
         softAssert.assertTrue(isFirstHeadingOpenBefore, "First heading before");
@@ -72,22 +72,22 @@ public class AccordionPageTests extends BaseTest {
         softAssert.assertFalse(isFirstHeadingOpenAfter, "First heading after");
         softAssert.assertTrue(isSecondHeadingOpenAfter, "Second heading after");
         softAssert.assertFalse(isThirdHeadingOpenAfter, "Third heading after");
-        softAssert.assertEquals(accordianPage.getSecondSectionText(), SECTION_TWO_TEXT, SECTION_TWO_TEXT_ERROR);
+        softAssert.assertEquals(accordionPage.getSecondSectionText(), SECTION_TWO_TEXT, SECTION_TWO_TEXT_ERROR);
         softAssert.assertAll();
     }
 
     @Test(enabled = true, description = "Select third heading")
     public void verifyTextAfterSelectThirdHeading() throws InterruptedException {
         // Arrange & Act
-        boolean isFirstHeadingOpenBefore = accordianPage.isFirstHeadingVisible();
-        boolean isSecondHeadingOpenBefore = accordianPage.isSecondHeadingVisible();
-        boolean isThirdHeadingOpenBefore = accordianPage.isThirdHeadingVisible();
+        boolean isFirstHeadingOpenBefore = accordionPage.isFirstHeadingVisible();
+        boolean isSecondHeadingOpenBefore = accordionPage.isSecondHeadingVisible();
+        boolean isThirdHeadingOpenBefore = accordionPage.isThirdHeadingVisible();
 
-        accordianPage.clickThirdHeading();
+        accordionPage.clickThirdHeading();
 
-        boolean isFirstHeadingOpenAfter = accordianPage.isFirstHeadingVisible();
-        boolean isSecondHeadingOpenAfter = accordianPage.isSecondHeadingVisible();
-        boolean isThirdHeadingOpenAfter = accordianPage.isThirdHeadingVisible();
+        boolean isFirstHeadingOpenAfter = accordionPage.isFirstHeadingVisible();
+        boolean isSecondHeadingOpenAfter = accordionPage.isSecondHeadingVisible();
+        boolean isThirdHeadingOpenAfter = accordionPage.isThirdHeadingVisible();
 
         // Assert
         softAssert.assertTrue(isFirstHeadingOpenBefore, "First heading before");
@@ -96,24 +96,24 @@ public class AccordionPageTests extends BaseTest {
         softAssert.assertFalse(isFirstHeadingOpenAfter, "First heading after");
         softAssert.assertFalse(isSecondHeadingOpenAfter, "Second heading after");
         softAssert.assertTrue(isThirdHeadingOpenAfter, "Third heading after");
-        softAssert.assertEquals(accordianPage.getThirdSectionText(), SECTION_THREE_TEXT, SECTION_THREE_TEXT_ERROR);
+        softAssert.assertEquals(accordionPage.getThirdSectionText(), SECTION_THREE_TEXT, SECTION_THREE_TEXT_ERROR);
         softAssert.assertAll();
     }
 
     @Test(enabled = true, description = "Select second heading")
     public void clickFirstHeadingAndSecondHeading() throws InterruptedException {
         // Arrange & Act
-        boolean isFirstHeadingOpenBefore = accordianPage.isFirstHeadingVisible();
-        boolean isSecondHeadingOpenBefore = accordianPage.isSecondHeadingVisible();
-        boolean isThirdHeadingOpenBefore = accordianPage.isThirdHeadingVisible();
+        boolean isFirstHeadingOpenBefore = accordionPage.isFirstHeadingVisible();
+        boolean isSecondHeadingOpenBefore = accordionPage.isSecondHeadingVisible();
+        boolean isThirdHeadingOpenBefore = accordionPage.isThirdHeadingVisible();
 
-        accordianPage.clickFirstHeading();
-        accordianPage.clickThirdHeading();
-        accordianPage.clickSecondHeading();
+        accordionPage.clickFirstHeading();
+        accordionPage.clickThirdHeading();
+        accordionPage.clickSecondHeading();
 
-        boolean isFirstHeadingClosedAfter = accordianPage.isFirstHeadingVisible();
-        boolean isSecondHeadingClosedAfter = accordianPage.isSecondHeadingVisible();
-        boolean isThirdHeadingClosedAfter = accordianPage.isThirdHeadingVisible();
+        boolean isFirstHeadingClosedAfter = accordionPage.isFirstHeadingVisible();
+        boolean isSecondHeadingClosedAfter = accordionPage.isSecondHeadingVisible();
+        boolean isThirdHeadingClosedAfter = accordionPage.isThirdHeadingVisible();
 
         // Assert
         softAssert.assertTrue(isFirstHeadingOpenBefore, "First heading before");
