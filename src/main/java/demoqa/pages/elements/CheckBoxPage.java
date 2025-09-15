@@ -12,6 +12,8 @@ import java.util.List;
 public class CheckBoxPage extends BasePage {
 
     private final JavaScriptUtility javaScriptUtility;
+    @FindBy(xpath = "//button[@aria-label='Toggle' and @title='Toggle' and contains(@class, 'rct-collapse-btn')]")
+    private WebElement toggleButtonHome;
     @FindBy(xpath = "//h1[@class='text-center'][contains(.,'Check Box')]")
     private WebElement header;
     @FindBy(xpath = "(//span[contains(.,'Home')])[2]")
@@ -73,7 +75,7 @@ public class CheckBoxPage extends BasePage {
         return header.getText();
     }
 
-    public void clickExpandAllCheckBoxes() {
+    public void selectExpandAllCheckBoxes() {
         expandAll.click();
     }
 
@@ -81,11 +83,11 @@ public class CheckBoxPage extends BasePage {
         collapseAll.click();
     }
 
-    public void clickDesktop() {
+    public void selectDesktop() {
         desktop.click();
     }
 
-    public void clickDocuments() {
+    public void selectDocuments() {
         documents.click();
     }
 
@@ -113,7 +115,7 @@ public class CheckBoxPage extends BasePage {
         classified.click();
     }
 
-    public void clickOfficeGeneral() {
+    public void selectOfficeGeneral() {
         general.click();
     }
 
@@ -121,7 +123,7 @@ public class CheckBoxPage extends BasePage {
         angular.click();
     }
 
-    public void clickHome() {
+    public void selectHome() {
         home.click();
     }
 
@@ -142,28 +144,40 @@ public class CheckBoxPage extends BasePage {
         react.click();
     }
 
-    public void clickDownloads() {
+    public void selectDownloads() {
         javaScriptUtility.scrollToElementJS(downloads);
         downloads.click();
     }
 
-    public void clickWordFileDoc() {
+    public void selectWordFileDoc() {
         javaScriptUtility.scrollToElementJS(wordFileDoc);
         wordFileDoc.click();
     }
 
-    public void clickExcelFileDoc() {
+    public void selectExcelFileDoc() {
         javaScriptUtility.scrollToElementJS(excelFileDoc);
         excelFileDoc.click();
     }
 
-    public void clickNotes() {
+    public void selectNotes() {
         javaScriptUtility.scrollToElementJS(notes);
         notes.click();
     }
 
-    public void clickCommands() {
+    public void selectCommands() {
         javaScriptUtility.scrollToElementJS(commands);
         commands.click();
+    }
+
+    public String getToggleTextAfterHover() {
+        return toggleButtonHome.getAttribute("title");
+    }
+
+    public String getExpandAllTextAfterHover() {
+        return expandAll.getAttribute("title");
+    }
+
+    public String getCollapseTextAfterHover() {
+        return collapseAll.getAttribute("title");
     }
 }

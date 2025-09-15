@@ -90,11 +90,11 @@ public class AlertsPageTests extends BaseTest {
     }
 
     @Test(enabled = true, description = "Verify text on see alert")
-    public void verifyPromptAlertTextAndClickOk() {
+    public void verifyAlertTextAndClickOk() {
         // Arrange & Act
-        alertsPage.clickInformationAlertButton();
+        alertsPage.clickAlertButton();
         String actualAlertMessage = switchToUtility.getAlertText();
-        switchToUtility.ClickOKButton();
+        switchToUtility.clickButtonOk();
 
         // Assert
         softAssert.assertEquals(actualAlertMessage, INFO_ALERT_MESSAGE, INFO_ALERT_MISMATCH_ERROR);
@@ -102,11 +102,11 @@ public class AlertsPageTests extends BaseTest {
     }
 
     @Test(enabled = true, description = "Verify text of prompt alert after 5 seconds")
-    public void verifyTextOfPromptAlertAfter5seconds() {
+    public void verifyTextOfAlertAfter5seconds() {
         // Arrange & Act
-        alertsPage.clickConfirmationTimeAlertButton();
+        alertsPage.clickTimeAlertButton();
         String actualAlertMessage = switchToUtility.getAlertText();
-        switchToUtility.ClickOKButton();
+        switchToUtility.clickButtonOk();
 
         // Assert
         softAssert.assertEquals(actualAlertMessage, TIMED_ALERT_MESSAGE, TIMED_ALERT_MISMATCH_ERROR);

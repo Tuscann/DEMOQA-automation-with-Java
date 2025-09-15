@@ -94,9 +94,6 @@ public class BooksPageTests extends BaseTest {
         logger.debug("Testing rows per page option: {} -> {} books", rowsPerPage, expectedCount);
 
         booksPage.chooseBooksPerPage(rowsPerPage);
-
-        // Note: For rows per page > 8, the page will show all available books (8 total)
-        // This is the expected behavior when there are fewer books than the selected rows per page
     }
 
     // Data Providers for Similar Test Scenarios

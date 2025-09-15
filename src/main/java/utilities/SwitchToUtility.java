@@ -49,7 +49,7 @@ public class SwitchToUtility {
         switchTo().alert().dismiss();
     }
 
-    public void ClickOKButton() {
+    public void clickButtonOk() {
         Alert alert;
 
         while (true) {
@@ -66,7 +66,7 @@ public class SwitchToUtility {
                 }
             }
         }
-
-
     }
+
+
 }

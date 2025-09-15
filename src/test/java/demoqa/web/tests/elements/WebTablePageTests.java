@@ -232,6 +232,8 @@ public class WebTablePageTests extends BaseTest {
     public void verifyAllLabelAndPlaceHoldersOnRegistrationForm() {
         // Arrange & Act
         webTablesPage.clickAddButton();
+
+        String registrationFormText = webTablesPage.getRegistrationFormText();
         String actualFirstNameLabel = webTablesPage.getRegistrationFirstNameLabel();
         String actualFirstNamePlaceholder = webTablesPage.getPlaceholderFirstName();
         String actualLastNameLabel = webTablesPage.getRegistrationLastNameLabel();
@@ -248,7 +250,7 @@ public class WebTablePageTests extends BaseTest {
         String actualSubmitButtonBackgroundColor = webTablesPage.getSubmitButtonBackGroundColor();
 
         // Assert
-        softAssert.assertEquals(webTablesPage.getRegistrationFormText(), EXPECTED_REGISTRATION_FORM_TEXT, REGISTRATION_FORM_TEXT_MISMATCH);
+        softAssert.assertEquals(registrationFormText, EXPECTED_REGISTRATION_FORM_TEXT, REGISTRATION_FORM_TEXT_MISMATCH);
         softAssert.assertEquals(actualFirstNameLabel, EXPECTED_FIRST_NAME_LABEL, FIRST_NAME_LABEL_MISMATCH);
         softAssert.assertEquals(actualLastNameLabel, EXPECTED_LAST_NAME_LABEL, LAST_NAME_LABEL_MISMATCH);
         softAssert.assertEquals(actualEmailLabel, EXPECTED_EMAIL_LABEL, EMAIL_LABEL_MISMATCH);
@@ -291,7 +293,6 @@ public class WebTablePageTests extends BaseTest {
     public void updateFirstUserEmail() {
         // Arrange & Act
         webTablesPage.clickEdit(CIERRA_EMAIL);
-        webTablesPage.setEmail(KIERRA_EMAIL);
         webTablesPage.clickSubmitButton();
 
         // Assert

@@ -66,7 +66,7 @@ public class AlertsPage extends BasePage {
         return confirmationResult.getText();
     }
 
-    public void clickInformationAlertButton() {
+    public void clickAlertButton() {
         informationAlertButton.click();
     }
 
@@ -82,7 +82,7 @@ public class AlertsPage extends BasePage {
         return promptResult.isEmpty();
     }
 
-    public void clickConfirmationTimeAlertButton() {
+    public void clickTimeAlertButton() {
         confirmationTimeAlertButton.click();
     }
 

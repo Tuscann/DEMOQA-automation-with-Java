@@ -58,7 +58,7 @@ public class BrowserWindowsPage extends BasePage {
         return driver.getCurrentUrl();
     }
 
-    public String getBrowserMessage() {
+    public String getNewWindowMessage() {
         // Step 1: Store the parent (main) window
         String parentWindow = driver.getWindowHandle();
 

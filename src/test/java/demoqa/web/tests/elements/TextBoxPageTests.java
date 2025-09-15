@@ -152,15 +152,15 @@ public class TextBoxPageTests extends BaseTest {
     }
 
     @Test(enabled = true, description = "Submit invalid email and verify red border validation")
-    public void submitWithInvalidEmail() {
+    public void tryToSubmitWithInvalidEmail() {
         // Arrange & Act
         textBoxPage.setEmailField(INVALID_EMAIL);
         textBoxPage.clickSubmitButton();
 
-        String actualRedColor = textBoxPage.isBorderRedAroundEmail(EXPECTED_RED_BORDER_COLOR);
+        String actualBorderColor = textBoxPage.getEmailBorderColor();
 
         // Assert
-        softAssert.assertEquals(actualRedColor, EXPECTED_RED_BORDER_COLOR, RED_BORDER_COLOR_MISMATCH);
+        softAssert.assertEquals(actualBorderColor, EXPECTED_RED_BORDER_COLOR, RED_BORDER_COLOR_MISMATCH);
         softAssert.assertAll();
     }
 
@@ -170,8 +170,9 @@ public class TextBoxPageTests extends BaseTest {
         textBoxPage.setCurrentAddressField(CURRENT_ADDRESS);
         textBoxPage.clickSubmitButton();
 
+        String actualCurrentAddress = textBoxPage.getExpectedCurrentAddress();
         // Assert
-        softAssert.assertEquals(textBoxPage.getExpectedCurrentAddress(), CURRENT_ADDRESS_PREFIX + CURRENT_ADDRESS, CURRENT_ADDRESS_DOES_NOT_MATCH_ERROR);
+        softAssert.assertEquals(actualCurrentAddress, CURRENT_ADDRESS_PREFIX + CURRENT_ADDRESS, CURRENT_ADDRESS_DOES_NOT_MATCH_ERROR);
         softAssert.assertAll();
     }
 

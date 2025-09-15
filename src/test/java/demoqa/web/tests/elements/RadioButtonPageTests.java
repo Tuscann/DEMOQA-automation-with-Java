@@ -30,9 +30,8 @@ public class RadioButtonPageTests extends BaseTest {
     private static final String IMPRESSIVE_ANSWER_NOT_CHOSEN_ERROR = "Impressive answer not chosen properly";
     private static final String GREEN_COLOR_IMPRESSIVE_ERROR = "Green color not displayed for Impressive answer";
     private static final String GREEN_COLOR_YES_ERROR = "Green color not displayed for Yes answer";
-
-    private RadioButtonPage radioButtonPage;
     private static final String RADIO_BUTTON_URL = "radio-button";
+    private RadioButtonPage radioButtonPage;
 
     @BeforeMethod
     public void goToRadioButtonPage() {
@@ -67,34 +66,27 @@ public class RadioButtonPageTests extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(enabled = true, description = "Choose Yes answer and verify selection message")
-    public void chooseAnswerYes() {
+    @Test(enabled = true, description = "Choose Yes answer and Impressive and verify selection message")
+    public void chooseAnswerYesAndImpressiveAnswer() {
         // Arrange & Act
         radioButtonPage.clickAnswer(YES_ANSWER);
-
-        // Assert
-        softAssert.assertEquals(radioButtonPage.getResultMessage(), EXPECTED_YES_SELECTION_MESSAGE, YES_ANSWER_NOT_CHOSEN_ERROR);
-        softAssert.assertAll();
-    }
-
-    @Test(enabled = true, description = "Choose Impressive answer and verify selection message")
-    public void chooseAnswerImpressive() {
-        // Arrange & Act
+        String currentResultMessage = radioButtonPage.getResultMessage();
         radioButtonPage.clickAnswer(IMPRESSIVE_ANSWER);
+        String currentResultMessage2 = radioButtonPage.getResultMessage();
 
         // Assert
-        softAssert.assertEquals(radioButtonPage.getResultMessage(), EXPECTED_IMPRESSIVE_SELECTION_MESSAGE, IMPRESSIVE_ANSWER_NOT_CHOSEN_ERROR);
+        softAssert.assertEquals(currentResultMessage, EXPECTED_YES_SELECTION_MESSAGE, YES_ANSWER_NOT_CHOSEN_ERROR);
+        softAssert.assertEquals(currentResultMessage2, EXPECTED_IMPRESSIVE_SELECTION_MESSAGE, IMPRESSIVE_ANSWER_NOT_CHOSEN_ERROR);
         softAssert.assertAll();
     }
 
     @Test(enabled = true, description = "Verify green color of result message for different answers")
     public void verifyGreenColorOfResultMessage() {
-        // Arrange & Act
+        // Arrange & Act &  Assert
         radioButtonPage.clickAnswer(IMPRESSIVE_ANSWER);
         softAssert.assertEquals(radioButtonPage.getResultMessageColor(), EXPECTED_GREEN_COLOR, GREEN_COLOR_IMPRESSIVE_ERROR);
-        radioButtonPage.clickAnswer(YES_ANSWER);
 
-        // Assert
+        radioButtonPage.clickAnswer(YES_ANSWER);
         softAssert.assertEquals(radioButtonPage.getResultMessageColor(), EXPECTED_GREEN_COLOR, GREEN_COLOR_YES_ERROR);
         softAssert.assertAll();
     }

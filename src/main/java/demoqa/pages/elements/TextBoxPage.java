@@ -5,12 +5,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import utilities.ActionUtility;
 import utilities.JavaScriptUtility;
-
-import java.time.Duration;
 
 public class TextBoxPage extends BasePage {
 
@@ -143,10 +139,8 @@ public class TextBoxPage extends BasePage {
         submitButton.click();
     }
 
-    public String isBorderRedAroundEmail(String color) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(6));
-        wait.until(ExpectedConditions.attributeToBe(emailField, "border", color));
-
+    public String getEmailBorderColor() {
+        javaScriptUtility.scrollToElementJS(emailField);
         return emailField.getCssValue("border");
     }
 }
