@@ -446,8 +446,8 @@ public class PracticeFormPage extends BasePage {
     public void setCurrentAddress(String currentAddress) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOf(this.currentAddressArea));
-        javaScriptUtility.scrollToElementJS(currentAddressArea);
-        currentAddressArea.click();
+        //   javaScriptUtility.scrollToElementJS(currentAddressArea);
+        //  currentAddressArea.click();
         set(this.currentAddressArea, currentAddress);
     }
 
@@ -500,14 +500,10 @@ public class PracticeFormPage extends BasePage {
     }
 
     public void clickSubmitButton() {
-        javaScriptUtility.scrollToElementJS(submitButton);
-        submitButton.click();
         delay(300);
-    }
-
-    public void clickSubmitButton2() {
         javaScriptUtility.scrollToElementJS(submitButton);
         submitButton.click();
+
     }
 
     public String getFilePathFromResources(String fileName) {
@@ -520,6 +516,7 @@ public class PracticeFormPage extends BasePage {
 
     public void uploadFile(String pathOfFile) {
         uploadPicture.sendKeys(pathOfFile);
+        delay(300);
     }
 
     public void setState(String expectedState) {
@@ -528,6 +525,8 @@ public class PracticeFormPage extends BasePage {
     }
 
     public void setCity(String expectedCity) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement dateOfBirthInput = wait.until(ExpectedConditions.visibilityOf(this.cities));
         cities.sendKeys(expectedCity);
         cities.sendKeys("" + Keys.ENTER);
     }

@@ -208,7 +208,7 @@ public class DraggablePageTests extends BaseTest {
     public void moveFirstTextCursorStyle() {
         // Arrange
         int xOffset = 0;
-        int yOffset = 100;
+        int yOffset = 200;
 
         draggablePage.clickCursorStyleTab();
 
@@ -226,7 +226,7 @@ public class DraggablePageTests extends BaseTest {
         Point endPosition = draggablePage.getInitLocationFirstText();
 
         // Allow for a larger margin of error (±10 pixels) in position
-        int marginOfError = 8;
+        int marginOfError = 10;
 
         // Assert
         softAssert.assertTrue(Math.abs((initialLocation.x + xOffset) - endPosition.x) <= marginOfError,

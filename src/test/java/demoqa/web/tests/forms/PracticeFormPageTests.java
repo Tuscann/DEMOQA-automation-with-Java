@@ -234,7 +234,7 @@ public class PracticeFormPageTests extends BaseTest {
         practiceFormPage.clickSportHobbyCheckbox();
         practiceFormPage.clickMusicHobbyCheckbox();
         practiceFormPage.clickReadingHobbyCheckbox();
-        practiceFormPage.clickSubmitButton2();
+        practiceFormPage.clickSubmitButton();
 
         // Assert
         softAssert.assertEquals(practiceFormPage.getHobbiesFromModal(), ALL_HOBBIES, HOBBIES_VALUE_ERROR);
@@ -295,7 +295,7 @@ public class PracticeFormPageTests extends BaseTest {
         practiceFormPage.setCity(DELHI_CITY);
         softAssert.assertEquals(practiceFormPage.getSubmitButtonText(), SUBMIT_BUTTON_TEXT, SUBMIT_BUTTON_ERROR);
         softAssert.assertEquals(practiceFormPage.getSubmitButtonBackgroundColor(), BLUE_COLOR2, SUBMIT_BUTTON_ERROR);
-        practiceFormPage.clickSubmitButton2();
+        practiceFormPage.clickSubmitButton();
         softAssert.assertEquals(practiceFormPage.getCloseButtonText(), CLOSE_BUTTON_TEXT, CLOSE_BUTTON_ERROR);
         softAssert.assertEquals(practiceFormPage.getCloseButtonBackgroundColor(), BLUE_COLOR2, CLOSE_BUTTON_BACKGROUND_COLOR);
 

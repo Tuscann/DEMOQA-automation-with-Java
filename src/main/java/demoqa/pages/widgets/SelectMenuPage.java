@@ -143,6 +143,7 @@ public class SelectMenuPage extends BasePage {
                 .sendKeys(color)
                 .sendKeys(Keys.ENTER)
                 .perform();
+        delay(100); //TODO
     }
 
     public void selectSelectValue(String option) {

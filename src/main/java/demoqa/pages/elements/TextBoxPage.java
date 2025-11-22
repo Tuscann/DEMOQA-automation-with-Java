@@ -141,6 +141,7 @@ public class TextBoxPage extends BasePage {
 
     public String getEmailBorderColor() {
         javaScriptUtility.scrollToElementJS(emailField);
+        delay(200);
         return emailField.getCssValue("border");
     }
 }
