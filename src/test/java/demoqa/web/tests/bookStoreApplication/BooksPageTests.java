@@ -50,7 +50,6 @@ public class BooksPageTests extends BaseTest {
     private static final String TABLE_HEADER_ERROR = "Table header mismatch";
     private static final String BOOKS_COUNT_ERROR = "Books count mismatch";
     private static final String LOGIN_BUTTON_URL_ERROR = "Login button URL mismatch";
-    private static final String BOOK_SEARCH_RESULT_ERROR = "Book search result mismatch";
     private static final String NO_ROWS_MESSAGE_ERROR = "No rows found message mismatch";
     private static final String PAGINATION_BUTTONS_ERROR = "Pagination buttons state mismatch";
     private static final String BOOKS_COUNT_5_ERROR = "Books count is not 5";
@@ -75,11 +74,11 @@ public class BooksPageTests extends BaseTest {
         logger.debug("Verified pagination buttons: previous={}, next={}", previousActive, nextActive);
     }
 
-    private void searchAndVerifyBooks(String searchTerm, String expectedResult, String errorMessage) {
+    private void searchAndVerifyBooks(String searchTerm, String expectedResult) {
         logger.info("Searching for books with term: '{}'", searchTerm);
         booksPage.searchBooksWithWord(searchTerm);
         String actualResult = booksPage.getAllFoundBooks();
-        softAssert.assertEquals(actualResult, expectedResult, errorMessage);
+        softAssert.assertEquals(actualResult, expectedResult);
         logger.debug("Search result: expected={}, actual={}", expectedResult, actualResult);
     }
 
@@ -90,7 +89,7 @@ public class BooksPageTests extends BaseTest {
     }
 
     // Helper method for testing individual rows per page option
-    private void testRowsPerPageOption(String rowsPerPage, int expectedCount, String errorMessage) {
+    private void testRowsPerPageOption(String rowsPerPage, int expectedCount) {
         logger.debug("Testing rows per page option: {} -> {} books", rowsPerPage, expectedCount);
 
         booksPage.chooseBooksPerPage(rowsPerPage);
@@ -232,7 +231,7 @@ public class BooksPageTests extends BaseTest {
         logger.info("Starting book search by title test for '{}'", SEARCHED_BOOK_ECMASCRIPT);
 
         // Act & Assert
-        searchAndVerifyBooks(SEARCHED_BOOK_ECMASCRIPT, EXPECTED_ECMASCRIPT_BOOK, BOOK_SEARCH_RESULT_ERROR);
+        searchAndVerifyBooks(SEARCHED_BOOK_ECMASCRIPT, EXPECTED_ECMASCRIPT_BOOK);
         softAssert.assertAll();
 
         logger.info("Book search by title test completed successfully");
@@ -243,7 +242,7 @@ public class BooksPageTests extends BaseTest {
         logger.info("Starting book search by author test for '{}'", SEARCHED_BOOK_AUTHOR);
 
         // Act & Assert
-        searchAndVerifyBooks(SEARCHED_BOOK_AUTHOR, EXPECTED_BOOK_AUTHOR, BOOK_SEARCH_RESULT_ERROR);
+        searchAndVerifyBooks(SEARCHED_BOOK_AUTHOR, EXPECTED_BOOK_AUTHOR);
         softAssert.assertAll();
 
         logger.info("Book search by author test completed successfully");
@@ -254,7 +253,7 @@ public class BooksPageTests extends BaseTest {
         logger.info("Starting book search by publisher test for '{}'", SEARCHED_BOOK_AUTHOR);
 
         // Act & Assert
-        searchAndVerifyBooks(SEARCHED_BOOK_PUBLISHER, EXPECTED_BOOK_PUBLISHER, BOOK_SEARCH_RESULT_ERROR);
+        searchAndVerifyBooks(SEARCHED_BOOK_PUBLISHER, EXPECTED_BOOK_PUBLISHER);
         softAssert.assertAll();
 
         logger.info("Book search by publisher test completed successfully");
@@ -318,12 +317,12 @@ public class BooksPageTests extends BaseTest {
         logger.info("Starting rows per page functionality test");
 
         // Test each rows per page option using helper method
-        testRowsPerPageOption(BOOKS_PER_PAGE_5, 5, BOOKS_COUNT_5_ERROR);
-        testRowsPerPageOption(BOOKS_PER_PAGE_10, 8, BOOKS_COUNT_10_ERROR); // Page only has 8 books total
-        testRowsPerPageOption(BOOKS_PER_PAGE_20, 8, BOOKS_COUNT_20_ERROR); // Page only has 8 books total
-        testRowsPerPageOption(BOOKS_PER_PAGE_25, 8, BOOKS_COUNT_25_ERROR); // Page only has 8 books total
-        testRowsPerPageOption(BOOKS_PER_PAGE_50, 8, BOOKS_COUNT_50_ERROR); // Page only has 8 books total
-        testRowsPerPageOption(BOOKS_PER_PAGE_100, 8, BOOKS_COUNT_100_ERROR); // Page only has 8 books total
+        testRowsPerPageOption(BOOKS_PER_PAGE_5, 5);
+        testRowsPerPageOption(BOOKS_PER_PAGE_10, 8); // Page only has 8 books total
+        testRowsPerPageOption(BOOKS_PER_PAGE_20, 8); // Page only has 8 books total
+        testRowsPerPageOption(BOOKS_PER_PAGE_25, 8); // Page only has 8 books total
+        testRowsPerPageOption(BOOKS_PER_PAGE_50, 8); // Page only has 8 books total
+        testRowsPerPageOption(BOOKS_PER_PAGE_100, 8); // Page only has 8 books total
 
         softAssert.assertAll();
         logger.info("Rows per page functionality test completed");

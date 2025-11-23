@@ -41,7 +41,7 @@ public class InteractionPageTests extends BaseTest {
         };
     }
 
-    @Test(dataProvider = "homePageCards", description = "Click and verify card: {0} ")
+    @Test(enabled = true, dataProvider = "homePageCards", description = "Click and verify card: {0} ")
     public void checkAllFivePagesLinks(String cardName, String expectedUrl, Runnable clickAction) {
         // Arrange & Act
         clickAction.run();

@@ -48,7 +48,7 @@ public class PracticeFormPageTests extends BaseTest {
 
     // Test Data Constants
     private static final String ALL_SUBJECTS = "Hindi, Social Studies, Maths, Accounting, Arts, English, Physics, Chemistry, Computer Science, Economics, History, Civics, Commerce, Biology";
-    private static final String FIRST_NAME = "Zhivko";
+    private static final String FIRST_NAME = "Ivan";
     private static final String LAST_NAME = "Petrov";
     private static final String EMAIL = "karma@gmail.com";
     private static final String INVALID_EMAIL = "ka";
@@ -96,7 +96,6 @@ public class PracticeFormPageTests extends BaseTest {
     private static final String MODAL_PICTURE_TEXT = "Picture";
     private static final String MODAL_ADDRESS_TEXT = "Address";
     private static final String MODAL_STATE_AND_CITY_TEXT = "State and City";
-
 
     // Error Message Constants
     private static final String PRACTICE_FORM_HEADER_ERROR = "Practice form header text mismatch";
@@ -160,7 +159,6 @@ public class PracticeFormPageTests extends BaseTest {
     private static final String CURRENT_ADDRESS_COLOR_ERROR = "Wrong color, expected green";
     private static final String FIRST_NAME_SUCCESS_COLOR_ERROR = "Wrong color, expected green";
     private static final String LAST_NAME_SUCCESS_COLOR_ERROR = "Wrong color, expected green";
-    private static final String FEMALE_GENDER_SUCCESS_COLOR_ERROR = "Wrong color, expected green";
     private static final String MOBILE_SUCCESS_COLOR_ERROR = "Wrong color, expected green";
     private static final String AUTOMATION_PRACTICE_FORM_URL = "automation-practice-form";
     private PracticeFormPage practiceFormPage;

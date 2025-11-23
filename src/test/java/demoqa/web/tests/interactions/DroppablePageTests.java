@@ -27,10 +27,6 @@ public class DroppablePageTests extends BaseTest {
     private static final String NOT_REVERT_TEXT = "Not Revert";
     private static final String DROPPED_TEXT = "Dropped!";
     private static final String DROPPED_TEXT_DOUBLE = "Dropped!\nDropped!";
-    private static final String OUTER_DROPPABLE_BEFORE_TEXT = "Outer droppable\n" +
-            "Inner droppable (not greedy)";
-    private static final String OUTER_DROPPABLE_AFTER_TEXT = "Dropped!\n" +
-            "Inner droppable (not greedy)";
     private static final String OUTER_DROPPABLE_GREEDY_TEXT_BEFORE = "Outer droppable\n" +
             "Inner droppable (greedy)";
     private static final String OUTER_DROPPABLE_GREEDY_DROPPED_TEXT = "Outer droppable\nDropped!";
@@ -60,15 +56,9 @@ public class DroppablePageTests extends BaseTest {
     private static final String COLOR_ERROR = "Color mismatch";
     private static final String DROPPED_BEFORE_TEXT_ERROR = "Dropped text before mismatch";
     private static final String DROPPED_AFTER_TEXT_ERROR = "Dropped text after mismatch";
-    private static final String INNER_COLOR_ERROR = "Inner color mismatch";
-    private static final String OUTER_COLOR_ERROR = "Outer color mismatch";
     private static final String DROPPED_TEXT_DOUBLE_ERROR = "Dropped text double mismatch";
-    private static final String OUTER_DROPPABLE_NOT_GREEDY_TEXT_ERROR = "Outer droppable not greedy text mismatch";
-    private static final String OUTER_DROPPABLE_GREEDY_TEXT_ERROR = "Outer droppable greedy text mismatch";
     private static final String DROP_HERE_TEXT_ERROR = "Drop here text mismatch";
-    private static final String DROPPED_TEXT_MISSING_ERROR = "Dropped text missing";
     private static final String DROPPABLE_BACKGROUND_COLOR_BEFORE = "Droppable background color before mismatch";
-    private static final String DROPPABLE_BACKGROUND_COLOR_AFTER = "Droppable background color after mismatch";
     private static final String POSITION_ERROR = "Position mismatch";
     private DroppablePage droppablePage;
 

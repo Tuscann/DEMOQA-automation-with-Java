@@ -87,7 +87,7 @@ public class WebTablePageTests extends BaseTest {
 
     // Test Data Constants - User Information
     private static final String CIERRA_EMAIL = "cierra@example.com";
-    private static final String FIRST_NAME = "Zhivko";
+    private static final String FIRST_NAME = "Ivan";
     private static final String LAST_NAME = "Petrov";
     private static final String AGE = "37";
     private static final String SALARY = "3600";
@@ -117,7 +117,6 @@ public class WebTablePageTests extends BaseTest {
     private static final String SEARCH_EXISTING_FIRST_NAME = "ALDEN";
     private static final String SEARCH_EXISTING_LAST_NAME = "Gentry";
     private static final String EXISTING_AGE = "45";
-    private static final String EXISTING_EMAIL_ALDEN = "alden@example.com";
     private static final String SALARY_12000 = "12000";
     private static final String INSURANCE_DEPARTMENT = "Insurance";
 
@@ -335,7 +334,6 @@ public class WebTablePageTests extends BaseTest {
         softAssert.assertEquals(webTablesPage.getFirstRowEmail(), IVAN_EMAIL, GENERIC_WRONG_EMAIL);
         softAssert.assertEquals(webTablesPage.getFirstRowSalary(), SALARY, GENERIC_WRONG_SALARY);
         softAssert.assertEquals(webTablesPage.getFirstRowDepartment(), EXPECTED_DEPARTMENT_LEGAL, GENERIC_WRONG_DEPARTMENT);
-
     }
 
     @Test(enabled = true, description = "Add 3 new users and verify count of lines first page")
@@ -346,7 +344,7 @@ public class WebTablePageTests extends BaseTest {
             webTablesPage.setFirstName(FIRST_NAME + i);
             webTablesPage.setLastName(LAST_NAME + i);
             webTablesPage.setEmail(IVAN_EMAIL);
-            webTablesPage.setAge(EXPECTED_AGE_45 + i + "");
+            webTablesPage.setAge(EXPECTED_AGE_45 + i);
             webTablesPage.setSalary(SALARY);
             webTablesPage.setDepartment(DEPARTMENT);
             webTablesPage.clickSubmitButton();
@@ -361,7 +359,7 @@ public class WebTablePageTests extends BaseTest {
     @Test(enabled = true, description = "Add eight new users and verify rows count")
     public void addEightNewUsersAndClickNextAndVerifyData() {
         // Arrange & Act
-        String firstName = "Zhivko2";
+        String firstName = "Ivan2";
         String lastName = "Petrov2";
         String age = "47";
         String salary = "3600";

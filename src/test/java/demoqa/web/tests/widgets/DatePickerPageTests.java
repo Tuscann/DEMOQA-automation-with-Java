@@ -74,7 +74,7 @@ public class DatePickerPageTests extends BaseTest {
     }
 
     @Test(enabled = true, description = "Select valid new date and time")
-    public void createNewDateAndTime() throws InterruptedException {
+    public void createNewDateAndTime() {
         // Arrange
         datePickerPage.selectDateAndTime(DATE_AND_TIME);
 

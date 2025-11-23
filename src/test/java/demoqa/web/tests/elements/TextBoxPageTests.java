@@ -19,13 +19,13 @@ public class TextBoxPageTests extends BaseTest {
     private static final String EXPECTED_SUBMIT_BUTTON_TEXT = "Submit";
 
     // Test Data Constants
-    private static final String FULL_NAME = "Zhivko Nedyalkov";
+    private static final String FULL_NAME = "Ivan petrov";
     private static final String CURRENT_ADDRESS = "Sofia";
     private static final String PERMANENT_ADDRESS = "Earth";
     private static final String INVALID_EMAIL = "InvalidEmailFormat";
     private static final String VALID_EMAIL = "fbinnzhivko@gmail.com";
 
-    private static final String FULL_NAME_ALT = "Petar Kamenov";
+    private static final String FULL_NAME_ALT = "Petar Ivanov";
     private static final String CURRENT_ADDRESS_ALT = "4321 Maple Lane, Metropolis";
     private static final String PERMANENT_ADDRESS_ALT = "1234 Elm Street, Springfield";
     private static final String VALID_EMAIL_ALT = "kimi@gmail.com";
